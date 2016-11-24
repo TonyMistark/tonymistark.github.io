@@ -7,11 +7,11 @@ menu: About
 
 Qloog
 ===
-男 85后
+男 90后
 
 ## 概况
 
-- 主页：[http://lnmp100.com](http://lnmp100.com)
+- 主页：[http://www.ablog.top](http://www.ablog.top)
 
 计算机专业毕业，{{ current_year | minus: 2010 }} 年 web 开发经验。
 
@@ -47,7 +47,6 @@ Qloog
 
 | 名称 | 熟悉程度
 |--:|:--|
-| PHP | ★★★★★ |
 | MySQL | ★★★★☆ |
 | Linux | ★★★★☆ |
 | C | ★★★☆☆ |
