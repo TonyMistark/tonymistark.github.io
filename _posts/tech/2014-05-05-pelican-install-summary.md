@@ -266,12 +266,12 @@ Create a new repository on the command line
     git init
     git add .
     git commit -m "first commit"
-    git remote add origin git@github.com:qloog/lnmp100.github.io.git
+    git remote add origin git@github.com:TonyMistark/tonymistark.github.io.git
     git push -u origin master
 
 Push an existing repository from the command line
 
-    git remote add origin git@github.com:qloog/lnmp100.github.io.git
+    git remote add origin git@github.com:TonyMistark/tonymistark.github.io.git
     git push -u origin master
 
 执行完上面命令后即将博客上传至github服务器上，打开浏览器输入http://lnmp100.github.io即可访问，如果你觉的上面的命令过于复杂，你也直接可以将其添加到Makefile中
