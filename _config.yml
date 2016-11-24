@@ -1,0 +1,89 @@
+title: ABLOG
+name: ABLOG 
+email: tony_mistark@163.com
+description: ABLOG GitHub:https://github.com/TonyMistark
+keywords: Laravel
+skill_keywords: [
+    PHP, MySQL, Linux, Redis, Memcache, Laravel,
+    C, PHP扩展, Go, Docker,
+    JavaScript, HTML+CSS, 
+    Mac, Git, VIM, PHPStorm, Composer, 
+    RESTful, Stackoverflow 
+]
+
+timezone:    PRC
+encoding: "utf-8"
+
+url: http://www.ablog.top
+baseurl:  "/"
+domain:    ablog.top
+permalink:     /:year/:month/:day/:title.html
+paginate_path: 'page:num'
+paginate:   10
+source_code: https://github.com/TonyMistark/tonymistark.github.io
+
+# Build settings
+markdown:    kramdown
+highlighter: rouge
+lsi:         false
+excerpt_separator: "\n\n"
+
+source:      .
+destination: ./_site
+
+quiet:    false
+defaults: []
+
+kramdown:
+  input: GFM
+  enable_coderay: true
+
+gems:
+  - jemoji
+  - rouge
+  # # # - jekyll-mentions
+  # - jekyll-sitemap
+  - jekyll-html-pipeline
+
+disqus:
+  id: ablog
+
+google:
+    analytics_id: UA-27269744-1
+
+# navigation
+navs:
+  -
+    href: /
+    label: Home
+
+  -
+    href: /open-source
+    label: Open-Source
+
+  -
+    href: https://github.com/TonyMistark
+    label: GitHub
+    target: _blank
+
+  -
+    href: /archive
+    label: Archive
+
+  -
+    href: /bookmark
+    label: Bookmark
+
+  -
+    href: /manual
+    label: Manual
+
+  -
+    href: /about
+    label: About
+
+popular_repos: ['laravel5-backend']
+#contribute_repos: ['laravel/framework', 'tymondesigns/jwt-auth', 'caouecs/Laravel-lang']
+resource_recommend: [
+    {'name': '博客推荐','url':'2015/07/16/blog-collection.html'}
+]
