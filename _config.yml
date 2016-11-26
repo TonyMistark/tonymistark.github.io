@@ -85,5 +85,5 @@ navs:
 popular_repos: ['laravel5-backend']
 #contribute_repos: ['laravel/framework', 'tymondesigns/jwt-auth', 'caouecs/Laravel-lang']
 resource_recommend: [
-    {'name': '博客推荐','url':'2015/07/16/blog-collection.html'}
+    {'name': '博客推荐','url':'https://my.oschina.net/michao/blog'}
 ]
