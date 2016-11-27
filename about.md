@@ -13,7 +13,7 @@ tonymistark
 
 - 主页：[http://www.ablog.top](http://www.ablog.top)
 
-计算机专业毕业，{{ current_year | minus: 2010 }} 年 web 开发经验。
+计算机专业毕业，{{ current_year | minus: 2014 }} 年 python  后端开发经验。
 
 ## Keywords
 <div class="btn-inline">
