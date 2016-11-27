@@ -11,7 +11,7 @@ tonymistark
 
 ## 概况
 
-- 主页：[http://www.ablog.top](http://www.ablog.top)
+- 主页：[http://ice.ablog.top](http://ice.ablog.top)
 
 计算机专业毕业，{{ current_year | minus: 2014 }} 年 python  后端开发经验。
 
@@ -47,12 +47,12 @@ tonymistark
 
 | 名称 | 熟悉程度
 |--:|:--|
+| Python | ★★★★☆ |
 | MySQL | ★★★★☆ |
 | Linux | ★★★★☆ |
 | C | ★★★☆☆ |
-| javascript | ★★★★☆ |
-| Nodejs | ★★★★☆ |
-| Markdown | ★★★★★ |
+| javascript | ★★☆☆☆ |
+| Markdown | ★★☆☆☆ |
 
 
 
