@@ -35,7 +35,7 @@ tonymistark
 
  * [Dash](http://kapeli.com/dash) 全语言文档手册速查
  * [Charles](http://www.charlesproxy.com/)	抓包代理调试工具、类 Fiddler
- * [PHPStrom](https://www.jetbrains.com/phpstorm/)  便捷的IDE工具
+ * [PyCharm](http://www.jetbrains.com/pycharm/)  便捷的python IDE开发工具
  * [Clion](https://www.jetbrains.com/clion)  C开发工具
  * [Sublime Text](http://www.sublimetext.com/)
  * [Sequel Pro MySQL](http://www.sequelpro.com/) 管理工具
@@ -50,6 +50,8 @@ tonymistark
 | Python | ★★★★☆ |
 | MySQL | ★★★★☆ |
 | Linux | ★★★★☆ |
+| Django | ★★★★☆ |
+| Tornado | ★★★★☆ |
 | C | ★★★☆☆ |
 | javascript | ★★☆☆☆ |
 | Markdown | ★★☆☆☆ |
