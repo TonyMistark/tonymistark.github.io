@@ -1,4 +1,3 @@
-
 *.zip
 *.rar
 *.via
@@ -12,6 +11,4 @@
 env
 TAGS
 config.py
-uploads/
-uploads
 .idea/
