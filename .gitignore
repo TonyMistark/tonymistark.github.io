@@ -1,3 +1,6 @@
+_site
+.sass-cache
+.jekyll-metadata
 *.zip
 *.rar
 *.via
@@ -12,3 +15,4 @@ env
 TAGS
 config.py
 .idea/
+*.lock
