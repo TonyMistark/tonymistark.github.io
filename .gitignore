@@ -1,4 +1,3 @@
-
 *.zip
 *.rar
 *.via
@@ -12,6 +11,11 @@
 env
 TAGS
 config.py
+web_monitor_config.py
+local_settings.py
 uploads/
 uploads
+migrations/
+deps/pycomm/
+deps/meila_server/
 .idea/
