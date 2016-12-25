@@ -27,3 +27,18 @@ class CommonInfo(models.Model):
 class Student(CommonInfo):
     home_group = models.CharField(max_length=5)
 ```
+
+sql结果
+
+```
+CREATE TABLE "myapp_student" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "name" varchar(100) NOT NULL,
+    "age" integer unsigned NOT NULL,
+    "home_group" varchar(5) NOT NULL
+)
+```
+
+只为Student model 生成了数据表，而CommonInfo不能做为普通的 Django model 使用，因为它是一个抽象基类。他即不生成数据表，也没有 manager ，更不能直接被实例化和保存。
+
+对很多应用来说，这种继承方式正是你想要的。它提供一种在 Python 语言层级上提取公共信息的方式，但在数据库层级上，每个子类仍然只创建一个数据表，在JPA中称作TABLE_PER_CLASS。这种方式下，每张表都包含具体类和继承树上所有父类的字段。因为多个表中有重复字段，从整个继承树上来说，字段是冗余的。
