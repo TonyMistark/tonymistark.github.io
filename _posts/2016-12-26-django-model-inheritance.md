@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Django之Model继承介绍"
+date:   2016-12-25 22:32:40 +0800
 categories: jekyll update
 ---
 
