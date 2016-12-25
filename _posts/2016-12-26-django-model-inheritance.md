@@ -1,3 +1,9 @@
+---
+layout: post
+title:  "Django之Model继承介绍"
+categories: jekyll update
+---
+
 ### Django中的Model继承
 
 Django中的model继承和Python中的类继承非常相似, 只不过你要选择具体的实现方式：
