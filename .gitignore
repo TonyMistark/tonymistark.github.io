@@ -16,3 +16,5 @@ TAGS
 config.py
 .idea/
 *.lock
+.sass-cache
+
