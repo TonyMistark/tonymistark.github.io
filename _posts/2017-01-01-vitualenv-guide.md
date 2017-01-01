@@ -25,8 +25,9 @@ Virtualenv
 3.套件升级不影响其他应用
 
 安装Virtualenv：
-
+```
 sudo apt-get install python-virtualenv
+```
 
 使用方法：
 
@@ -42,12 +43,13 @@ virtualenv  [要创建的虚拟环境的名称]
 virtualenv --no-site-packages [要创建的虚拟环境的名称]
 
 启动虚拟环境：
-
+```
 cd进刚刚创建的my_virtual
 
 cd my_virtual
 
 source ./bin/activate
+```
 
 注意此时命令行多了一个(my_virtual)，my_virtual为虚拟环境的名称，接下来所有的
 模块都只会安装到该目录中去。
@@ -86,6 +88,7 @@ virtualenvwrapper.sh文件，文件路径为：
 
 打开virtualenvwrapper.sh之后就会看见有环境设置的指导，英文的如下：
 
+```
 # Setup:
 #
 #  1. Create a directory to hold the virtual environments.
@@ -103,18 +106,18 @@ virtualenvwrapper.sh文件，文件路径为：
 # 10. Run: workon temp
 # 11. The virtual environment is activated.
 #
+```
 
 提炼出来就是：
 
 创建一个目录用来存放虚拟环境的文件夹
 
-     mkdir $HOME/.virtualenvs
-
-     2.在~/.bashrc文件中添加行：export WORKON_HOME=$HOME/.virtualenvs
-
-     3.在~/.bashrc文件中添加行：source /path/to/this/file/virtualenvwrapper.sh
-
-     4.运行：source ~/.bashrc
+````
+1.mkdir $HOME/.virtualenvs
+2.在~/.bashrc文件中添加行：export WORKON_HOME=$HOME/.virtualenvs
+3.在~/.bashrc文件中添加行：source /path/to/this/file/virtualenvwrapper.sh
+4.运行：source ~/.bashrc
+````
 
 现在：玩具virtualenvwrapper就能跑了
 
