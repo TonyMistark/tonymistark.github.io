@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "初识celery"
-date:   20167-01-01 12:52:40 +0800
+date:   2017-01-01 12:52:40 +0800
 categories: python update
 ---
 
