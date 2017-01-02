@@ -50,6 +50,7 @@ Github： [https://github.com/TonyMistark](https://github.com/TonyMistark)
 
 
 ### 工作经历
+
 #### 深圳科诗特软件有限责任公司  2014.3.31-2015.10.15
  * 大型多人在线游戏（MMOG）项目： 基于BIgWord+Python, 负责整个游戏GUI逻辑实现，
 部分模型技能动作表现实现。工作期间多次获得月优秀员工以及相应奖励。2012年立项预计
