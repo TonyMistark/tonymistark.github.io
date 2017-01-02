@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About
-permalink: /about/
+permalink: about
 ---
 
 {% assign current_year = site.time | date: '%Y' %}
