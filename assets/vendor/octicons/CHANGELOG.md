@@ -1,3 +1,6 @@
+---
+published: false
+---
 ### 3.1.0 (August 13, 2015)
 
 Adds
