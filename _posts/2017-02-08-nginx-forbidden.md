@@ -19,6 +19,6 @@ server {
     server_name www.badhost.com;    # 这里是那个指定的域名
     server_name _;
     return 403;                     # 这个就是返回403错误
-    }
+}
 ```
 当接收到ip访问或非指定域名访问时会返回403错误
