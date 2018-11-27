@@ -4,11 +4,6 @@ title:  "理解Python装饰器(decorator)以及实践"
 date:   2018-11-26 18:07:40 +0800
 categories: python update
 ---
-==================================
-
-.. image:: https://img.shields.io/pypi/pyversions/aiofiles.svg
-        :target: https://github.com/Tinche/aiofiles
-        :alt: Supported Python versions
 
 ### 日志
 ```python
