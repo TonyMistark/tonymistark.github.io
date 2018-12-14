@@ -1,0 +1,982 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-01-14T22:35:30+08:00</updated><id>http://localhost:4000//</id><title type="html">ABLOG</title><subtitle>Python 后端开发相关笔记记录
+</subtitle><entry><title type="html">Python虚拟环境：Vitualenv</title><link href="http://localhost:4000/python/update/2017/01/01/vitualenv-guide.html" rel="alternate" type="text/html" title="Python虚拟环境：Vitualenv" /><published>2017-01-01T12:52:40+08:00</published><updated>2017-01-01T12:52:40+08:00</updated><id>http://localhost:4000/python/update/2017/01/01/vitualenv-guide</id><content type="html" xml:base="http://localhost:4000/python/update/2017/01/01/vitualenv-guide.html">&lt;p&gt;Virtualenv&lt;/p&gt;
+
+&lt;p&gt;使用背景：&lt;/p&gt;
+
+&lt;p&gt;如果我们要同时开发多个应用程序，那这些应用程序都会共用一个Python，就是安装在系
+统的Python 3。如果应用A需要Python 2.7，而应用B需要Python2.6怎么办？这种情况
+下，每个应用可能需要各自拥有一套“独立”的Python运行环境。virtualenv就是用来为
+一个应用创建一套“隔离”的Python运行环境。&lt;/p&gt;
+
+&lt;p&gt;注释：Virtual + environment -&amp;gt;Virtualenv  即虚拟环境&lt;/p&gt;
+
+&lt;p&gt;功能：&lt;/p&gt;
+
+&lt;p&gt;1.在没有权限的情况先安装新套件&lt;/p&gt;
+
+&lt;p&gt;2.不同应用可以使用不同套件版本&lt;/p&gt;
+
+&lt;p&gt;3.套件升级不影响其他应用&lt;/p&gt;
+
+&lt;p&gt;安装Virtualenv：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install python-virtualenv
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;使用方法：&lt;/p&gt;
+
+&lt;p&gt;virtualenv  [要创建的虚拟环境的名称]&lt;/p&gt;
+
+&lt;p&gt;注释：例如：virtualenv my_virtual 回车，就会在当前面目录创建一个叫my_virtual
+的文件夹，即创建的一个虚拟环境&lt;/p&gt;
+
+&lt;p&gt;默认情况下，虚拟环境会依赖系统环境中的site packages,就是说系统中已经安装好的第
+三方package也会安装在虚拟环境中，如果不想依赖这些package，那么就加上参数
+“—site-packages”来创建虚拟环境即：&lt;/p&gt;
+
+&lt;p&gt;virtualenv –no-site-packages [要创建的虚拟环境的名称]&lt;/p&gt;
+
+&lt;p&gt;启动虚拟环境：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd进刚刚创建的my_virtual
+
+cd my_virtual
+
+source ./bin/activate
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;注意此时命令行多了一个(my_virtual)，my_virtual为虚拟环境的名称，接下来所有的
+模块都只会安装到该目录中去。&lt;/p&gt;
+
+&lt;p&gt;退出虚拟环境：&lt;/p&gt;
+
+&lt;p&gt;deactivate&lt;/p&gt;
+
+&lt;p&gt;======我是双分割线========&lt;/p&gt;
+
+&lt;p&gt;接下来再来一个更高级的玩具&lt;/p&gt;
+
+&lt;p&gt;Virtualenvwrapper&lt;/p&gt;
+
+&lt;p&gt;Virtualenwrapper 是Virtual 的扩展，用于方便管理多个虚拟环境&lt;/p&gt;
+
+&lt;p&gt;功能：&lt;/p&gt;
+
+&lt;p&gt;可以在一个目录下创建多个虚拟环境&lt;/p&gt;
+
+&lt;p&gt;新增，删除，复制虚拟环境&lt;/p&gt;
+
+&lt;p&gt;切换虚拟环境&lt;/p&gt;
+
+&lt;p&gt;安装Virtualenwrapper&lt;/p&gt;
+
+&lt;p&gt;注意：virtualenvwrapper是安装在系统中，我一开始还以为是要安装在virtualenv里
+面的，这里注意下&lt;/p&gt;
+
+&lt;p&gt;sudo easy_install virtualenvwrapper&lt;/p&gt;
+
+&lt;p&gt;注释：安装完成还不能使用Virtualenvwrapper,默认virtualenvwrapper安装在
+/usr/local/bin 目录下，需要运行virtualenvwrapper.sh文件才行，现在需要先打开
+virtualenvwrapper.sh文件，文件路径为：
+/usr/local/bin/virtualenvwrapper.sh,（find it，and open it)&lt;/p&gt;
+
+&lt;p&gt;打开virtualenvwrapper.sh之后就会看见有环境设置的指导，英文的如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Setup:
+#
+#  1. Create a directory to hold the virtual environments.
+#     (mkdir $HOME/.virtualenvs).
+#  2. Add a line like &quot;export WORKON_HOME=$HOME/.virtualenvs&quot;
+#     to your .bashrc.
+#  3. Add a line like &quot;source /path/to/this/file/virtualenvwrapper.sh&quot;
+#     to your .bashrc.
+#  4. Run: source ~/.bashrc
+#  5. Run: workon
+#  6. A list of environments, empty, is printed.
+#  7. Run: mkvirtualenv temp
+#  8. Run: workon
+#  9. This time, the &quot;temp&quot; environment is included.
+# 10. Run: workon temp
+# 11. The virtual environment is activated.
+#
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;提炼出来就是：&lt;/p&gt;
+
+&lt;p&gt;创建一个目录用来存放虚拟环境的文件夹&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.mkdir $HOME/.virtualenvs
+2.在~/.bashrc文件中添加行：export WORKON_HOME=$HOME/.virtualenvs
+3.在~/.bashrc文件中添加行：source /path/to/this/file/virtualenvwrapper.sh
+4.运行：source ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;现在：玩具virtualenvwrapper就能跑了&lt;/p&gt;
+
+&lt;p&gt;使用命令：&lt;/p&gt;
+
+&lt;p&gt;列出虚拟环境列表&lt;/p&gt;
+
+&lt;p&gt;workon 或者 lsvirtualenv&lt;/p&gt;
+
+&lt;p&gt;新建虚拟环境&lt;/p&gt;
+
+&lt;p&gt;mkvirtualenv [要创建的虚拟环境的名称]&lt;/p&gt;
+
+&lt;p&gt;启动/切换虚拟环境&lt;/p&gt;
+
+&lt;p&gt;workon [虚拟环境的名称]&lt;/p&gt;
+
+&lt;p&gt;删除虚拟环境&lt;/p&gt;
+
+&lt;p&gt;rmvirtualenv [要删除的虚拟环境的名称]&lt;/p&gt;
+
+&lt;p&gt;离开虚拟环境&lt;/p&gt;
+
+&lt;p&gt;deactivate&lt;/p&gt;</content><summary type="html">Virtualenv</summary></entry><entry><title type="html">初识celery</title><link href="http://localhost:4000/python/update/2017/01/01/acquaintance-celery.html" rel="alternate" type="text/html" title="初识celery" /><published>2017-01-01T12:52:40+08:00</published><updated>2017-01-01T12:52:40+08:00</updated><id>http://localhost:4000/python/update/2017/01/01/acquaintance-celery</id><content type="html" xml:base="http://localhost:4000/python/update/2017/01/01/acquaintance-celery.html">&lt;h4 id=&quot;异步任务&quot;&gt;异步任务&lt;/h4&gt;
+&lt;p&gt;异步任务是web开发中一个很常见的方法。对于一些耗时耗资源的操作，往往从主应用中
+隔离，通过异步的方式执行。简而言之，做一个注册的功能，在用户使用邮箱注册成功之
+后，需要给该邮箱发送一封激活邮件。如果直接放在应用中，则调用发邮件的过程会遇到
+网络IO的阻塞，比好优雅的方式则是使用异步任务，应用在业务逻辑中触发一个异步任务。&lt;/p&gt;
+
+&lt;p&gt;Celery是一个异步任务的调度工具。它是Python写的库，但是它实现的通讯协议也可以
+使用ruby，php，javascript等调用。异步任务除了消息队列的后台执行的方式，还是
+一种则是跟进时间的计划任务。下面将会介绍如何使用celery实现这两种需求。&lt;/p&gt;
+
+&lt;h4 id=&quot;celery-broker-和-backend&quot;&gt;Celery broker 和 backend&lt;/h4&gt;
+&lt;p&gt;开始了解celery的时候一定会有redis、rabbitmq这样的词儿，必然会一头雾水，然而
+这正是celery设计的玄妙之处，简单来说，rabbitmq是一个采用Erlang写的强大的消
+息队列工具。在celery中可以扮演broker的角色。那么broker究竟是什么鬼呢？&lt;/p&gt;
+
+&lt;p&gt;broker是一个消息传输的中间件，可以理解为一个邮箱。每当应用程序调用celery的异
+步任务的时候，会向broker传递消息，而后celery的worker将会取到消息，进行对应的
+程序执行。那么，这个邮箱可以看成是一个消息队列。那么什么又是backend，通常程序
+发送的消息，发完就完了，可能都不知道对方是否接受了。为此，celery实现了一个
+backend，用于存储这些消息以及celery执行的一些消息和结果。对于 brokers，官方
+推荐是rabbitmq和redis，至于backend，就是数据库啦。为了简单起见，我们都用redis。&lt;/p&gt;</content><summary type="html">异步任务
+异步任务是web开发中一个很常见的方法。对于一些耗时耗资源的操作，往往从主应用中
+隔离，通过异步的方式执行。简而言之，做一个注册的功能，在用户使用邮箱注册成功之
+后，需要给该邮箱发送一封激活邮件。如果直接放在应用中，则调用发邮件的过程会遇到
+网络IO的阻塞，比好优雅的方式则是使用异步任务，应用在业务逻辑中触发一个异步任务。</summary></entry><entry><title type="html">Http请求方法介绍</title><link href="http://localhost:4000/notes/update/2016/12/25/http.html" rel="alternate" type="text/html" title="Http请求方法介绍" /><published>2016-12-25T22:32:40+08:00</published><updated>2016-12-25T22:32:40+08:00</updated><id>http://localhost:4000/notes/update/2016/12/25/http</id><content type="html" xml:base="http://localhost:4000/notes/update/2016/12/25/http.html">&lt;p&gt;超文本传输协议（HTTP, HyperText Transfer Protocol）是一种无状态的协议，它位于OSI七层模型的传输层。HTTP客户端会根据需要构建合适
+的HTTP请求方法，而HTTP服务器会根据不同的HTTP请求方法做出不同的响应。&lt;/p&gt;
+
+&lt;h4 id=&quot;http版本与http请求方法&quot;&gt;HTTP版本与HTTP请求方法&lt;/h4&gt;
+
+&lt;p&gt;在HTTP的发展过程中，出现了很多HTTP版本，其中的大部分协议都是向下兼容的。在进行HTTP请求时，客户端在请求时会告诉服务器它采用的协议版
+本号，而服务器则会在使用相同或者更早的协议版本进行响应。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTTP/0.9&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这是HTTP最早大规模使用的版，现已过时。在这个版本中 只有GET一种请求方法，在HTTP通讯也没有指定版本号，也不支持请求头信息。该版本不支
+持POST等方法，因此客户端向服务器传递信息的能力非常有限。HTTP/0.9的请求只有如&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;GET www.ablog.top
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTTP/1.0&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这个版本是第一个在HTTP通讯中指定版本号的协议版本，HTTP/1.0至今仍被广泛采用，特别是在代理服务器中。
+HTTP/1.0支持：GET、POST、HEAD三种HTTP请求方法。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTTP/1.1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;HTTP/1.1是当前正在使用的版本。该版本默认采用持久连接，并能很好地配合代理服务器工作。还支持以管道方式同时发送多个请求，以便降低线路
+负载，提高传输速度。
+HTTP/1.1新增了：OPTIONS、PUT、DELETE、TRACE、CONNECT五种HTTP请求方法。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTTP/2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这个版本是最新发布的版本，于今年5月（2015年5月）做HTTP标准正式发布。HTTP/2通过支持请求与相应的多路重用来减少延迟，通过压缩HTTP头
+字段将协议开销降到最低，同时增加了对请求优先级和服务器端推送的支持。&lt;/p&gt;
+
+&lt;h4 id=&quot;http请求方法介绍&quot;&gt;HTTP请求方法介绍&lt;/h4&gt;
+
+&lt;p&gt;HTTP/1.1协议中共定义了8种HTTP请求方法，HTTP请求方法也被叫做“请求动作”，不同的方法规定了不同的操作指定的资源方式。服务端也会根据不
+同的请求方法做不同的响应。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;GET&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;GET请求会显示请求指定的资源。一般来说GET方法应该只用于数据的读取，而不应当用于会产生副作用的非幂等的操作中。
+GET会方法请求指定的页面信息，并返回响应主体，GET被认为是不安全的方法，因为GET方法会被网络蜘蛛等任意的访问。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HEAD&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;HEAD方法与GET方法一样，都是向服务器发出指定资源的请求。但是，服务器在响应HEAD请求时不会回传资源的内容部分，即：响应主体。这样，我们
+可以不传输全部内容的情况下，就可以获取服务器的响应头信息。HEAD方法常被用于客户端查看服务器的性能。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;POST&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;POST请求会 向指定资源提交数据，请求服务器进行处理，如：表单数据提交、文件上传等，请求数据会被包含在请求体中。POST方法是非幂等的方法，
+因为这个请求可能会创建新的资源或/和修改现有资源。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;PUT&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;PUT请求会身向指定资源位置上传其最新内容，PUT方法是幂等的方法。通过该方法客户端可以将指定资源的最新数据传送给服务器取代指定的资源的内容。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;DELETE&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;DELETE请求用于请求服务器删除所请求URI（统一资源标识符，Uniform Resource Identifier）所标识的资源。DELETE请求后指定资源会被删除，
+DELETE方法也是幂等的。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;CONNECT&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;CONNECT方法是HTTP/1.1协议预留的，能够将连接改为管道方式的代理服务器。通常用于SSL加密服务器的链接与非加密的HTTP代理服务器的通信。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;OPTIONS&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;OPTIONS请求与HEAD类似，一般也是用于客户端查看服务器的性能。 这个方法会请求服务器返回该资源所支持的所有HTTP请求方法，该方法会用’*’
+来代替资源名称，向服务器发送OPTIONS请求，可以测试服务器功能是否正常。JavaScript的XMLHttpRequest对象进行CORS跨域资源共享时，就是
+使用OPTIONS方法发送嗅探请求，以判断是否有对指定资源的访问权限。 允许&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;TRACE&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;TRACE请求服务器回显其收到的请求信息，该方法主要用于HTTP请求的测试或诊断。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;PATCH&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;HTTP/1.1之后增加的方法
+在HTTP/1.1标准制定之后，又陆续扩展了一些方法。其中使用中较多的是&lt;/p&gt;
+
+&lt;p&gt;PATCH方法出现的较晚，它在2010年的RFC 5789标准中被定义。PATCH请求与PUT请求类似，同样用于资源的更新。二者有以下两点不同：
+但PATCH一般用于资源的部分更新，而PUT一般用于资源的整体更新。
+当资源不存在时，PATCH会创建一个新的资源，而PUT只会对已在资源进行更新。&lt;/p&gt;</content><summary type="html">超文本传输协议（HTTP, HyperText Transfer Protocol）是一种无状态的协议，它位于OSI七层模型的传输层。HTTP客户端会根据需要构建合适
+的HTTP请求方法，而HTTP服务器会根据不同的HTTP请求方法做出不同的响应。</summary></entry><entry><title type="html">Django之Model继承介绍</title><link href="http://localhost:4000/jekyll/update/2016/12/25/django-model-inheritance.html" rel="alternate" type="text/html" title="Django之Model继承介绍" /><published>2016-12-25T22:32:40+08:00</published><updated>2016-12-25T22:32:40+08:00</updated><id>http://localhost:4000/jekyll/update/2016/12/25/django-model-inheritance</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2016/12/25/django-model-inheritance.html">&lt;h3 id=&quot;django中的model继承&quot;&gt;Django中的Model继承&lt;/h3&gt;
+
+&lt;p&gt;Django中的model继承和Python中的类继承非常相似, 只不过你要选择具体的实现方式：
+让父 model 拥有独立的数据库；还是让父 model 只包含基本的公共信息，而这些信息
+只能由子 model 呈现。&lt;/p&gt;
+
+&lt;h4 id=&quot;django中有三种继承关系&quot;&gt;Django中有三种继承关系：&lt;/h4&gt;
+
+&lt;p&gt;1.通常，你只是想用父model来保存那些你不想在子 model 中重复录入的信息。父类是不
+使用的也就是不生成单独的数据表,这种情况下使用抽象基类继承Abstract base classes。&lt;/p&gt;
+
+&lt;p&gt;2.如果你想从现有的Model继承并让每个Model都有自己的数据表，那么使用多重表继承
+Multi-table inheritance。&lt;/p&gt;
+
+&lt;p&gt;3.最后，如果你只想在 model 中修改 Python-level 级的行为，而不涉及字段改变。
+代理 model (Proxy models) 适用于这种场合。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Abstract base classes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如果你想把某些公共信息添加到很多 model 中，抽象基类就显得非常有用。你编写完基类
+之后，在 Meta 内嵌类中设置 abstract=True ，该类就不能创建任何数据表。然而如果
+将它做为其他 model 的基类，那么该类的字段就会被添加到子类中。抽象基类和子类如果
+含有同名字段，就会导致错误(Django 将抛出异常)。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class CommonInfo(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.PositiveIntegerField()
+ 
+    class Meta:
+        abstract = True
+ 
+class Student(CommonInfo):
+    home_group = models.CharField(max_length=5)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;sql结果&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;CREATE TABLE &quot;myapp_student&quot; (
+    &quot;id&quot; integer NOT NULL PRIMARY KEY,
+    &quot;name&quot; varchar(100) NOT NULL,
+    &quot;age&quot; integer unsigned NOT NULL,
+    &quot;home_group&quot; varchar(5) NOT NULL
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;只为Student model 生成了数据表，而CommonInfo不能做为普通的Django model使用，
+因为它是一个抽象基类。他即不生成数据表，也没有manager，更不能直接被实例化和保存。&lt;/p&gt;
+
+&lt;p&gt;对很多应用来说，这种继承方式正是你想要的。它提供一种在 Python 语言层级上提取公
+共信息的方式，但在数据库层级上，每个子类仍然只创建一个数据表，在JPA中称作
+TABLE_PER_CLASS。这种方式下，每张表都包含具体类和继承树上所有父类的字段。因为
+多个表中有重复字段，从整个继承树上来说，字段是冗余的。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Meta继承&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;创建抽象基类的时候，Django会将你在基类中所声明的有效的 Meta 内嵌类做为一个属性。
+如果子类没有声明它自己的 Meta 内嵌类，它就会继承父类的 Meta 。子类的Meta也可以
+直接继承父类的 Meta 内嵌类，对其进行扩展。例如：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class CommonInfo(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.PositiveIntegerField()
+    class Meta:
+        abstract = True
+        ordering = ['name']
+ 
+class Student(CommonInfo):
+    home_group = models.CharField(max_length=5)
+    class Meta(CommonInfo.Meta):
+        db_table = 'student_info'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;sqlall结果：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;CREATE TABLE &quot;student_info&quot; (
+    &quot;id&quot; integer NOT NULL PRIMARY KEY,
+    &quot;name&quot; varchar(100) NOT NULL,
+    &quot;age&quot; integer unsigned NOT NULL,
+    &quot;home_group&quot; varchar(5) NOT NULL
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;按照我们指定的名称student_info生成了table。&lt;/p&gt;
+
+&lt;p&gt;继承时，Django 会对基类的 Meta 内嵌类做一个调整：在安装 Meta 属性之前，
+Django会设置abstract=False。 这意味着抽象基类的子类不会自动变成抽象类。当然，
+你可以让一个抽象类继承另一个抽象基类，不过每次都要显式地设置 abstract=True 。&lt;/p&gt;
+
+&lt;p&gt;对于抽象基类而言，有些属性放在Meta内嵌类里面是没有意义的。例如，包含 db_table 
+将意味着所有的子类(是指那些没有指定自己的 Meta 内嵌类的子类)都使用同一张数据表，
+一般来说，这并不是我们想要的。&lt;/p&gt;
+
+&lt;p&gt;谨慎使用 related_name (Be careful with related_name)
+如果你在 ForeignKey 或 ManyToManyField 字段上使用related_name属性，你必须
+总是为该字段指定一个唯一的反向名称。但在抽象基类上这样做就会引发一个很严重的问
+题。因为 Django 会将基类字段添加到每个子类当中，而每个子类的字段属性值都完全相同
+(这里面就包括 related_name)。注：这样使用ForeignKey或ManyToManyField反向指
+定时就无法确定是指向哪个子类了。&lt;/p&gt;</content><summary type="html">Django中的Model继承</summary></entry><entry><title type="html">Shell脚本编程30分钟入门</title><link href="http://localhost:4000/jekyll/update/2016/12/17/bash.html" rel="alternate" type="text/html" title="Shell脚本编程30分钟入门" /><published>2016-12-17T22:32:40+08:00</published><updated>2016-12-17T22:32:40+08:00</updated><id>http://localhost:4000/jekyll/update/2016/12/17/bash</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2016/12/17/bash.html">&lt;h2 id=&quot;什么是shell脚本&quot;&gt;什么是Shell脚本&lt;/h2&gt;
+&lt;h3 id=&quot;示例&quot;&gt;示例&lt;/h3&gt;
+&lt;p&gt;看个例子吧：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~
+mkdir shell_tut
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;shell_tut
+
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0; i&amp;lt;10; i++&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;do
+	&lt;/span&gt;touch test_&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;.txt
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;示例解释&quot;&gt;示例解释&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;第1行：指定脚本解释器，这里是用/bin/sh做解释器的&lt;/li&gt;
+  &lt;li&gt;第2行：切换到当前用户的home目录&lt;/li&gt;
+  &lt;li&gt;第3行：创建一个目录shell_tut&lt;/li&gt;
+  &lt;li&gt;第4行：切换到shell_tut目录&lt;/li&gt;
+  &lt;li&gt;第5行：循环条件，一共循环10次&lt;/li&gt;
+  &lt;li&gt;第6行：创建一个test_1…10.txt文件&lt;/li&gt;
+  &lt;li&gt;第7行：循环体结束&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;cd, mkdir, touch都是系统自带的程序，一般在/bin或者/usr/bin目录下。for, do, done是sh脚本语言的关键字。&lt;/p&gt;
+
+&lt;h3 id=&quot;shell和shell脚本的概念&quot;&gt;shell和shell脚本的概念&lt;/h3&gt;
+&lt;p&gt;shell是指一种应用程序，这个应用程序提供了一个界面，用户通过这个界面访问操作系统内核的服务。Ken Thompson的sh是第一种Unix Shell，Windows Explorer是一个典型的图形界面Shell。&lt;/p&gt;
+
+&lt;p&gt;shell脚本（shell script），是一种为shell编写的脚本程序。业界所说的shell通常都是指shell脚本，但读者朋友要知道，shell和shell script是两个不同的概念。由于习惯的原因，简洁起见，本文出现的“shell编程”都是指shell脚本编程，不是指开发shell自身（如Windows Explorer扩展开发）。&lt;/p&gt;
+
+&lt;h2 id=&quot;环境&quot;&gt;环境&lt;/h2&gt;
+&lt;p&gt;shell编程跟java、php编程一样，只要有一个能编写代码的文本编辑器和一个能解释执行的脚本解释器就可以了。&lt;/p&gt;
+
+&lt;h3 id=&quot;os&quot;&gt;OS&lt;/h3&gt;
+&lt;p&gt;当前主流的操作系统都支持shell编程，本文档所述的shell编程是指Linux下的shell，讲的基本都是POSIX标准下的功能，所以，也适用于Unix及BSD（如Mac OS）。&lt;/p&gt;
+
+&lt;h4 id=&quot;linux&quot;&gt;Linux&lt;/h4&gt;
+&lt;p&gt;Linux默认安装就带了shell解释器。&lt;/p&gt;
+
+&lt;h4 id=&quot;mac-os&quot;&gt;Mac OS&lt;/h4&gt;
+&lt;p&gt;Mac OS不仅带了sh、bash这两个最基础的解释器，还内置了ksh、csh、zsh等不常用的解释器。&lt;/p&gt;
+
+&lt;h4 id=&quot;windows上的模拟器&quot;&gt;Windows上的模拟器&lt;/h4&gt;
+&lt;p&gt;windows出厂时没有内置shell解释器，需要自行安装，为了同时能用grep, awk, curl等工具，最好装一个cygwin或者mingw来模拟linux环境。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.cygwin.com&quot;&gt;cygwin&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.mingw.org&quot;&gt;mingw&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;脚本解释器&quot;&gt;脚本解释器&lt;/h3&gt;
+&lt;h4 id=&quot;sh&quot;&gt;sh&lt;/h4&gt;
+&lt;p&gt;即Bourne shell，POSIX（Portable Operating System Interface）标准的shell解释器，它的二进制文件路径通常是/bin/sh，由Bell Labs开发。&lt;/p&gt;
+
+&lt;p&gt;本文讲的是sh，如果你使用其它语言用作shell编程，请自行参考相应语言的文档。&lt;/p&gt;
+
+&lt;h4 id=&quot;bash&quot;&gt;bash&lt;/h4&gt;
+&lt;p&gt;Bash是Bourne shell的替代品，属GNU Project，二进制文件路径通常是/bin/bash。业界通常混用bash、sh、和shell，比如你会经常在招聘运维工程师的文案中见到：熟悉Linux Bash编程，精通Shell编程。&lt;/p&gt;
+
+&lt;p&gt;在CentOS里，/bin/sh是一个指向/bin/bash的符号链接:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[root@centosraw ~]# ls -l /bin/*sh
+-rwxr-xr-x. 1 root root 903272 Feb 22 05:09 /bin/bash
+-rwxr-xr-x. 1 root root 106216 Oct 17  2012 /bin/dash
+lrwxrwxrwx. 1 root root      4 Mar 22 10:22 /bin/sh -&amp;gt; bash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;但在Mac OS上不是，/bin/sh和/bin/bash是两个不同的文件，尽管它们的大小只相差100字节左右:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;iMac:~ wuxiao$ ls -l /bin/*sh
+-r-xr-xr-x  1 root  wheel  1371648  6 Nov 16:52 /bin/bash
+-rwxr-xr-x  2 root  wheel   772992  6 Nov 16:52 /bin/csh
+-r-xr-xr-x  1 root  wheel  2180736  6 Nov 16:52 /bin/ksh
+-r-xr-xr-x  1 root  wheel  1371712  6 Nov 16:52 /bin/sh
+-rwxr-xr-x  2 root  wheel   772992  6 Nov 16:52 /bin/tcsh
+-rwxr-xr-x  1 root  wheel  1103984  6 Nov 16:52 /bin/zsh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;高级编程语言&quot;&gt;高级编程语言&lt;/h4&gt;
+&lt;p&gt;理论上讲，只要一门语言提供了解释器（而不仅是编译器），这门语言就可以胜任脚本编程，常见的解释型语言都是可以用作脚本编程的，如：Perl、Tcl、Python、PHP、Ruby。Perl是最老牌的脚本编程语言了，Python这些年也成了一些linux发行版的预置解释器。&lt;/p&gt;
+
+&lt;p&gt;编译型语言，只要有解释器，也可以用作脚本编程，如C shell是内置的（/bin/csh），Java有第三方解释器Jshell，Ada有收费的解释器AdaScript。&lt;/p&gt;
+
+&lt;p&gt;如下是一个PHP Shell Script示例（假设文件名叫test.php）：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#!/usr/bin/php
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;执行：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/usr/bin/php test.php 或者：
+
+chmod +x test.php
+./test.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;如何选择shell编程语言&quot;&gt;如何选择shell编程语言&lt;/h2&gt;
+&lt;h3 id=&quot;熟悉-vs-陌生&quot;&gt;熟悉 vs 陌生&lt;/h3&gt;
+&lt;p&gt;如果你已经掌握了一门编程语言（如PHP、Python、Java、JavaScript），建议你就直接使用这门语言编写脚本程序，虽然某些地方会有点啰嗦，但你能利用在这门语言领域里的经验（单元测试、单步调试、IDE、第三方类库）。&lt;/p&gt;
+
+&lt;p&gt;新增的学习成本很小，只要学会怎么使用shell解释器（Jshell、AdaScript）就可以了。&lt;/p&gt;
+
+&lt;h3 id=&quot;简单-vs-高级&quot;&gt;简单 vs 高级&lt;/h3&gt;
+&lt;p&gt;如果你觉得自己熟悉的语言（如Java、C）写shell脚本实在太啰嗦，你只是想做一些备份文件、安装软件、下载数据之类的事情，学着使用sh，bash会是一个好主意。&lt;/p&gt;
+
+&lt;p&gt;shell只定义了一个非常简单的编程语言，所以，如果你的脚本程序复杂度较高，或者要操作的数据结构比较复杂，那么还是应该使用Python、Perl这样的脚本语言，或者是你本来就已经很擅长的高级语言。因为sh和bash在这方面很弱，比如说：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;它的函数只能返回字串，无法返回数组&lt;/li&gt;
+  &lt;li&gt;它不支持面向对象，你无法实现一些优雅的设计模式&lt;/li&gt;
+  &lt;li&gt;它是解释型的，一边解释一边执行，连PHP那种预编译都不是，如果你的脚本包含错误(例如调用了不存在的函数)，只要没执行到这一行，就不会报错&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;环境兼容性&quot;&gt;环境兼容性&lt;/h3&gt;
+&lt;p&gt;如果你的脚本是提供给别的用户使用，使用sh或者bash，你的脚本将具有最好的环境兼容性，perl很早就是linux标配了，python这些年也成了一些linux发行版的标配，至于mac os，它默认安装了perl、python、ruby、php、java等主流编程语言。&lt;/p&gt;
+
+&lt;h2 id=&quot;第一个shell脚本&quot;&gt;第一个shell脚本&lt;/h2&gt;
+&lt;h3 id=&quot;编写&quot;&gt;编写&lt;/h3&gt;
+&lt;p&gt;打开文本编辑器，新建一个文件，扩展名为sh（sh代表shell），扩展名并不影响脚本执行，见名知意就好，如果你用php写shell 脚本，扩展名就用php好了。&lt;/p&gt;
+
+&lt;p&gt;输入一些代码，第一行一般是这样：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#!/usr/bin/php&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;“#!”是一个约定的标记，它告诉系统这个脚本需要什么解释器来执行。&lt;/p&gt;
+
+&lt;h3 id=&quot;运行&quot;&gt;运行&lt;/h3&gt;
+&lt;p&gt;运行Shell脚本有两种方法：&lt;/p&gt;
+&lt;h4 id=&quot;作为可执行程序&quot;&gt;作为可执行程序&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;chmod +x test.sh
+./test.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;注意，一定要写成./test.sh，而不是test.sh，运行其它二进制的程序也一样，直接写test.sh，linux系统会去PATH里寻找有没有叫test.sh的，而只有/bin, /sbin, /usr/bin，/usr/sbin等在PATH里，你的当前目录通常不在PATH里，所以写成test.sh是会找不到命令的，要用./test.sh告诉系统说，就在当前目录找。&lt;/p&gt;
+
+&lt;p&gt;通过这种方式运行bash脚本，第一行一定要写对，好让系统查找到正确的解释器。&lt;/p&gt;
+
+&lt;p&gt;这里的”系统”，其实就是shell这个应用程序（想象一下Windows Explorer），但我故意写成系统，是方便理解，既然这个系统就是指shell，那么一个使用/bin/sh作为解释器的脚本是不是可以省去第一行呢？是的。&lt;/p&gt;
+
+&lt;h4 id=&quot;作为解释器参数&quot;&gt;作为解释器参数&lt;/h4&gt;
+&lt;p&gt;这种运行方式是，直接运行解释器，其参数就是shell脚本的文件名，如：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/bin/sh test.sh
+/bin/php test.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这种方式运行的脚本，不需要在第一行指定解释器信息，写了也没用。&lt;/p&gt;
+
+&lt;h2 id=&quot;变量&quot;&gt;变量&lt;/h2&gt;
+&lt;h3 id=&quot;定义变量&quot;&gt;定义变量&lt;/h3&gt;
+&lt;p&gt;定义变量时，变量名不加美元符号（$），如：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;your_name=&quot;qinjx&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;注意，变量名和等号之间不能有空格，这可能和你熟悉的所有编程语言都不一样。&lt;/p&gt;
+
+&lt;p&gt;除了显式地直接赋值，还可以用语句给变量赋值，如：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for file in `ls /etc`
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;使用变量&quot;&gt;使用变量&lt;/h3&gt;
+&lt;p&gt;使用一个定义过的变量，只要在变量名前面加美元符号即可，如：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;your_name=&quot;qinjx&quot;
+echo $your_name
+echo ${your_name}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;变量名外面的花括号是可选的，加不加都行，加花括号是为了帮助解释器识别变量的边界，比如下面这种情况：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for skill in Ada Coffe Action Java; do
+	echo &quot;I am good at ${skill}Script&quot;
+done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;如果不给skill变量加花括号，写成echo “I am good at $skillScript”，解释器就会把$skillScript当成一个变量（其值为空），代码执行结果就不是我们期望的样子了。&lt;/p&gt;
+
+&lt;p&gt;推荐给所有变量加上花括号，这是个好的编程习惯。IntelliJ IDEA编写shell script时，IDE就会提示加花括号。&lt;/p&gt;
+
+&lt;h3 id=&quot;重定义变量&quot;&gt;重定义变量&lt;/h3&gt;
+&lt;p&gt;已定义的变量，可以被重新定义，如：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;your_name=&quot;qinjx&quot;
+echo $your_name
+
+your_name=&quot;alibaba&quot;
+echo $your_name
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这样写是合法的，但注意，第二次赋值的时候不能写$your_name=”alibaba”，使用变量的时候才加美元符。&lt;/p&gt;
+
+&lt;h2 id=&quot;注释&quot;&gt;注释&lt;/h2&gt;
+&lt;p&gt;以“#”开头的行就是注释，会被解释器忽略。&lt;/p&gt;
+
+&lt;h3 id=&quot;多行注释&quot;&gt;多行注释&lt;/h3&gt;
+&lt;p&gt;sh里没有多行注释，只能每一行加一个#号。就像这样：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#--------------------------------------------
+# 这是一个自动打ipa的脚本，基于webfrogs的ipa-build书写：https://github.com/webfrogs/xcode_shell/blob/master/ipa-build
+
+# 功能：自动为etao ios app打包，产出物为14个渠道的ipa包
+# 特色：全自动打包，不需要输入任何参数
+#--------------------------------------------
+
+##### 用户配置区 开始 #####
+#
+#
+# 项目根目录，推荐将此脚本放在项目的根目录，这里就不用改了
+# 应用名，确保和Xcode里Product下的target_name.app名字一致
+#
+##### 用户配置区 结束  #####
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;如果在开发过程中，遇到大段的代码需要临时注释起来，过一会儿又取消注释，怎么办呢？每一行加个#符号太费力了，可以把这一段要注释的代码用一对花括号括起来，定义成一个函数，没有地方调用这个函数，这块代码就不会执行，达到了和注释一样的效果。&lt;/p&gt;
+
+&lt;h2 id=&quot;字符串&quot;&gt;字符串&lt;/h2&gt;
+&lt;p&gt;字符串是shell编程中最常用最有用的数据类型（除了数字和字符串，也没啥其它类型好用了，哈哈），字符串可以用单引号，也可以用双引号，也可以不用引号。单双引号的区别跟PHP类似。&lt;/p&gt;
+
+&lt;h3 id=&quot;单引号&quot;&gt;单引号&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;str='this is a string'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;单引号字符串的限制：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;单引号里的任何字符都会原样输出，单引号字符串中的变量是无效的&lt;/li&gt;
+  &lt;li&gt;单引号字串中不能出现单引号（对单引号使用转义符后也不行）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;双引号&quot;&gt;双引号&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;your_name='qinjx'
+str=&quot;Hello, I know your are \&quot;$your_name\&quot;! \n&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;双引号里可以有变量&lt;/li&gt;
+  &lt;li&gt;双引号里可以出现转义字符&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;字符串操作&quot;&gt;字符串操作&lt;/h3&gt;
+&lt;h4 id=&quot;拼接字符串&quot;&gt;拼接字符串&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;your_name=&quot;qinjx&quot;
+greeting=&quot;hello, &quot;$your_name&quot; !&quot;
+greeting_1=&quot;hello, ${your_name} !&quot;
+
+echo $greeting $greeting_1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;获取字符串长度&quot;&gt;获取字符串长度：&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;string=&quot;abcd&quot;
+echo ${#string} #输出：4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;提取子字符串&quot;&gt;提取子字符串&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;string=&quot;alibaba is a great company&quot;
+echo ${string:1:4} #输出：liba
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;查找子字符串&quot;&gt;查找子字符串&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;string=&quot;alibaba is a great company&quot;
+echo `expr index &quot;$string&quot; is`#输出：8，这个语句的意思是：找出单词is在这名话中的位置
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;更多&quot;&gt;更多&lt;/h4&gt;
+&lt;p&gt;参见本文档末尾的参考资料中&lt;a href=&quot;http://tldp.org/LDP/abs/html/string-manipulation.html&quot;&gt;Advanced Bash-Scripting Guid Chapter 10.1&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;数组&quot;&gt;数组&lt;/h2&gt;
+
+&lt;h2 id=&quot;管道&quot;&gt;管道&lt;/h2&gt;
+
+&lt;h2 id=&quot;条件判断&quot;&gt;条件判断&lt;/h2&gt;
+
+&lt;h2 id=&quot;流程控制&quot;&gt;流程控制&lt;/h2&gt;
+&lt;p&gt;和Java、PHP等语言不一样，sh的流程控制不可为空，如：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;?php
+if (isset($_GET[&quot;q&quot;])) {
+	search(q);
+}
+else {
+	//do nothing
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;在sh/bash里可不能这么写，如果else分支没有语句执行，就不要写这个else。&lt;/p&gt;
+
+&lt;p&gt;还要注意，sh里的if [ $foo -eq 0 ]，这个方括号跟Java/PHP里if后面的圆括号大不相同，它是一个可执行程序（和cd, ls, grep一样），想不到吧？在CentOS上，它在/usr/bin目录下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ll /usr/bin/[
+-rwxr-xr-x. 1 root root 33408 6月  22 2012 /usr/bin/[
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;正因为方括号在这里是一个可执行程序，方括号后面必须加空格，不能写成if [$foo -eq 0]&lt;/p&gt;
+
+&lt;h3 id=&quot;if-else&quot;&gt;if else&lt;/h3&gt;
+&lt;h4 id=&quot;if&quot;&gt;if&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if condition
+then
+	command1
+	command2
+	...
+	commandN
+fi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;写成一行（适用于终端命令提示符）：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if `ps -ef | grep ssh`;  then echo hello; fi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;末尾的fi就是if倒过来拼写，后面还会遇到类似的&lt;/p&gt;
+
+&lt;h4 id=&quot;if-else-1&quot;&gt;if else&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if condition
+then
+	command1
+	command2
+	...
+	commandN
+else
+	command
+fi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;if-else-if-else&quot;&gt;if else-if else&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if condition1
+then
+	command1
+elif condition2
+	command2
+else
+	commandN
+fi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;for-while&quot;&gt;for while&lt;/h3&gt;
+&lt;h4 id=&quot;for&quot;&gt;for&lt;/h4&gt;
+&lt;p&gt;在开篇的示例里演示过了：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for var in item1 item2 ... itemN
+do
+	command1
+	command2
+	...
+	commandN
+done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;写成一行：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for var in item1 item2 ... itemN; do command1; command2… done;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;c风格的for&quot;&gt;C风格的for&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for (( EXP1; EXP2; EXP3 ))
+do
+	command1
+	command2
+	command3
+done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;while&quot;&gt;while&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;while condition
+do
+	command
+done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;无限循环&quot;&gt;无限循环&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;while :
+do
+	command
+done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;或者&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;while true
+do
+	command
+done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;或者&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for (( ; ; ))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;until&quot;&gt;until&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;until condition
+do
+	command
+done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;case&quot;&gt;case&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;case &quot;${opt}&quot; in
+	&quot;Install-Puppet-Server&quot; )
+		install_master $1
+		exit
+	;;
+
+	&quot;Install-Puppet-Client&quot; )
+		install_client $1
+		exit
+	;;
+
+	&quot;Config-Puppet-Server&quot; )
+		config_puppet_master
+		exit
+	;;
+
+	&quot;Config-Puppet-Client&quot; )
+		config_puppet_client
+		exit
+	;;
+
+	&quot;Exit&quot; )
+		exit
+	;;
+
+	* ) echo &quot;Bad option, please choose again&quot;
+esac
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;case的语法和C family语言差别很大，它需要一个esac（就是case反过来）作为结束标记，每个case分支用右圆括号，用两个分号表示break&lt;/p&gt;
+
+&lt;h2 id=&quot;函数&quot;&gt;函数&lt;/h2&gt;
+&lt;h3 id=&quot;定义&quot;&gt;定义&lt;/h3&gt;
+&lt;h3 id=&quot;调用&quot;&gt;调用&lt;/h3&gt;
+
+&lt;h2 id=&quot;文件包含&quot;&gt;文件包含&lt;/h2&gt;
+&lt;p&gt;可以使用source和.关键字，如：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;source ./function.sh
+. ./function.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;在bash里，source和.是等效的，他们都是读入function.sh的内容并执行其内容（类似PHP里的include），为了更好的可移植性，推荐使用第二种写法。&lt;/p&gt;
+
+&lt;p&gt;包含一个文件和执行一个文件一样，也要写这个文件的路径，不能光写文件名，比如上述例子中:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;. ./function.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;不可以写作：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;. function.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;如果function.sh是用户传入的参数，如何获得它的绝对路径呢？方法是：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;real_path=`readlink -f $1`#$1是用户输入的参数，如function.sh
+. $real_path
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;layout: post
+title:  “Bash 入门”
+date:   2016-12-17 22:32:40 +0800
+categories: jekyll update
+—&lt;/p&gt;
+
+&lt;h2 id=&quot;用户输入&quot;&gt;用户输入&lt;/h2&gt;
+&lt;h3 id=&quot;执行脚本时传入&quot;&gt;执行脚本时传入&lt;/h3&gt;
+&lt;h3 id=&quot;脚本运行中输入&quot;&gt;脚本运行中输入&lt;/h3&gt;
+&lt;h3 id=&quot;select菜单&quot;&gt;select菜单&lt;/h3&gt;
+
+&lt;h2 id=&quot;stdin和stdout&quot;&gt;stdin和stdout&lt;/h2&gt;
+
+&lt;h2 id=&quot;常用的命令&quot;&gt;常用的命令&lt;/h2&gt;
+&lt;p&gt;sh脚本结合系统命令便有了强大的威力，在字符处理领域，有grep、awk、sed三剑客，grep负责找出特定的行，awk能将行拆分成多个字段，sed则可以实现更新插入删除等写操作。&lt;/p&gt;
+
+&lt;h3 id=&quot;ps&quot;&gt;ps&lt;/h3&gt;
+&lt;p&gt;查看进程列表&lt;/p&gt;
+
+&lt;h3 id=&quot;grep&quot;&gt;grep&lt;/h3&gt;
+&lt;h4 id=&quot;排除grep自身&quot;&gt;排除grep自身&lt;/h4&gt;
+&lt;h4 id=&quot;查找与target相邻的结果&quot;&gt;查找与target相邻的结果&lt;/h4&gt;
+
+&lt;h3 id=&quot;awk&quot;&gt;awk&lt;/h3&gt;
+
+&lt;h3 id=&quot;sed&quot;&gt;sed&lt;/h3&gt;
+&lt;h4 id=&quot;插入&quot;&gt;插入&lt;/h4&gt;
+&lt;h4 id=&quot;替换&quot;&gt;替换&lt;/h4&gt;
+&lt;h4 id=&quot;删除&quot;&gt;删除&lt;/h4&gt;
+
+&lt;h3 id=&quot;xargs&quot;&gt;xargs&lt;/h3&gt;
+&lt;h3 id=&quot;curl&quot;&gt;curl&lt;/h3&gt;
+
+&lt;h2 id=&quot;综合案例&quot;&gt;综合案例&lt;/h2&gt;
+
+&lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://tldp.org/LDP/abs/html/&quot;&gt;Advanced Bash-Scripting Guide&lt;/a&gt;，非常详细，非常易读，大量example，既可以当入门教材，也可以当做工具书查阅&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.tutorialspoint.com/unix/unix-shell.htm&quot;&gt;Unix Shell Programming&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://bash.cyberciti.biz/guide/Main_Page&quot;&gt;Linux Shell Scripting Tutorial - A Beginner’s handbook&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/qinjx/30min_guides/edit/master/shell.md&quot;&gt;转&lt;/a&gt;&lt;/p&gt;</content><summary type="html">什么是Shell脚本
+示例
+看个例子吧：</summary></entry><entry><title type="html">国内各大团队博客</title><link href="http://localhost:4000/blog/update/2016/09/18/bat-team-blog.html" rel="alternate" type="text/html" title="国内各大团队博客" /><published>2016-09-18T20:45:40+08:00</published><updated>2016-09-18T20:45:40+08:00</updated><id>http://localhost:4000/blog/update/2016/09/18/bat-team-blog</id><content type="html" xml:base="http://localhost:4000/blog/update/2016/09/18/bat-team-blog.html">&lt;p&gt;&lt;a href=&quot;http://tech.meituan.com/&quot;&gt;美团技术团队博客&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://isux.tencent.com/&quot;&gt;腾讯社交用户体验设计(ISUX)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jdc.jd.com&quot;&gt;京东设计中心&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://gdc.qq.com&quot;&gt;QQ游戏设计中心&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://ued.baidu.com/&quot;&gt;百度搜索用户体验中心&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://ux.etao.com&quot;&gt;一淘UX&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://cdc.tencent.com&quot;&gt;腾讯CDC&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://isux.tencent.com&quot;&gt;腾讯ISUX&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://mxd.tencent.com&quot;&gt;腾讯MXD移动互联网设计中心&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.uxdc.org&quot;&gt;UXDC 2011体验设计峰会&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.visionunion.com&quot;&gt;视觉同盟&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://tgideas.qq.com&quot;&gt;Tencent TG ideas&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.alloyteam.com&quot;&gt;Tencent AlloyTeam&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://impd.tencent.com/&quot;&gt;QQ客户端团队博客&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.aliued.cn&quot;&gt;阿里巴巴（中文站）UED&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://ued.taobao.com/blog/&quot;&gt;Taobao UED&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.aliued.com&quot;&gt;阿里巴巴国际站UED&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://mux.baidu.com&quot;&gt;百度MUX&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://udc.weibo.com&quot;&gt;微博UDC&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://ued.sogou.com&quot;&gt;搜狗UED&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://mued.sohu.com&quot;&gt;搜狐MUED&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://uedc.163.com/&quot;&gt;网易用户体验设计中心&lt;/a&gt;&lt;/p&gt;</content><summary type="html">美团技术团队博客</summary></entry></feed>
