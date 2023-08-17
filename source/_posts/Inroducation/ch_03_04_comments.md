@@ -1,9 +1,11 @@
 ---
-title: ![allow(unused)]
+title: 注释
 date: 2023-08-17 16:29:S
 tags: Rust
 layout: Rust
 ---
+
+```
 #![allow(unused)]
 fn main() {
 // So we’re doing something complicated here, long enough that we need

@@ -1,9 +1,11 @@
 ---
-title: ![allow(unused)]
+title: 函数是如何工作的
 date: 2023-08-17 16:29:S
 tags: Rust
 layout: Rust
 ---
+
+```
 #![allow(unused)]
 fn main() {
 let x = 5;
