@@ -223,69 +223,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_07_04_bringing_paths_into_scope_with_the%20_use_key_word/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_07_04_bringing_paths_into_scope_with_the%20_use_key_word/" class="post-title-link" itemprop="url">全局操作符(The Glob Operator)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-08-17 16:29:44 / Modified: 16:29:46" itemprop="dateCreated datePublished" datetime="2023-08-17T16:29:44+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="全局操作符-The-Glob-Operator"><a href="#全局操作符-The-Glob-Operator" class="headerlink" title="全局操作符(The Glob Operator)"></a>全局操作符(The Glob Operator)</h4><p>如果想将一个路径下所有公有项引入作用域，可以使用指定路径后跟<code>*</code>，glob操作符:</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::collections::*;</span><br></pre></td></tr></table></figure>
-
-<p>这个<code>use</code>语句会将<code>std::collections</code>中定义的所有的公有项引入到当前作用域。使用全局操作符时一定要多加小心！全局操作符会使得我们难以推导作用域中有什么名称和它们是定义在何处。</p>
-<p>全局操作符经常用于测试模块<code>tests</code>中，这时会将所有内容引入作用域；我们将在第十一章”How to Write Tests”部分中讲解。全局操作符有时也用于preclude模式；查看”标准库文档”(<a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/prelude/index.html#other-preludes)%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E7%BB%86%E8%8A%82%E3%80%82">https://doc.rust-lang.org/std/prelude/index.html#other-preludes)了解更多细节。</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -359,7 +296,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_06_02_match/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_07_04_bringing_paths_into_scope_with_the%20_use_key_word/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -373,7 +310,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/08/17/Inroducation/ch_06_02_match/" class="post-title-link" itemprop="url">通用模式和_占位符(Catch-all Patterns and the _ Placeholder)</a>
+            <a href="/2023/08/17/Inroducation/ch_07_04_bringing_paths_into_scope_with_the%20_use_key_word/" class="post-title-link" itemprop="url">全局操作符(The Glob Operator)</a>
         </h2>
 
         <div class="post-meta">
@@ -398,21 +335,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="通用模式和-占位符-Catch-all-Patterns-and-the-Placeholder"><a href="#通用模式和-占位符-Catch-all-Patterns-and-the-Placeholder" class="headerlink" title="通用模式和_占位符(Catch-all Patterns and the _ Placeholder)"></a>通用模式和_占位符(Catch-all Patterns and the _ Placeholder)</h4><p>使用枚举，我们希望对一些特定的值采取特殊操作，而对其他的值采用默认操作。想象我们正在玩一个游戏，如果你掷出一个骰子的值为3，角色不会移动，而是会得到一顶新奇的帽子。如果你掷出了7，你的角色将会失去新奇的帽子。对于其他的数值，你的角色会在棋盘上移动想的格子。这是一个实现了上述逻辑的<code>match</code>。骰子的结果是硬编码而不是一个随机值，其他的逻辑部分使用了没有函数体的函数来表示，实现它们超出了本例的范围：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dice_roll</span> = <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">match</span> dice_roll &#123;</span><br><span class="line">        <span class="number">3</span> =&gt; <span class="title function_ invoke__">add_fancy_hat</span>(),</span><br><span class="line">        <span class="number">7</span> =&gt; <span class="title function_ invoke__">remove_fancy_hat</span>(),</span><br><span class="line">        other =&gt; <span class="title function_ invoke__">move_player</span>(other),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">add_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">remove_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">move_player</span>(num_spaces: <span class="type">u8</span>) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h4 id="全局操作符-The-Glob-Operator"><a href="#全局操作符-The-Glob-Operator" class="headerlink" title="全局操作符(The Glob Operator)"></a>全局操作符(The Glob Operator)</h4><p>如果想将一个路径下所有公有项引入作用域，可以使用指定路径后跟<code>*</code>，glob操作符:</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::collections::*;</span><br></pre></td></tr></table></figure>
 
-<p>对于前两个分支，匹配模式是字面值3和7，最后一个分支则涵盖了所有其他可能性的值，模式使我们命名为<code>other</code>的一个变量。<code>other</code>分支的代码通过将其传递给<code>move_player</code>函数来使用这个变量。</p>
-<p>即使我们没有列出<code>u8</code>所有可能的值，这段代码依然能够编译，因为最后一个模式将匹配所有未被特殊列出的值。这种通配模式满足了<code>match</code>必须穷尽的要求。请注意，我们必须将通过通配分支放在最后，因为模式是按顺序匹配的。如果哦我们在通配分支后添加其他分支，Rust将会警告我们，因为此后的分支永远不会被匹配到。</p>
-<p>Rust还提供了一个模式，当我们不想使用通配模式的值时，请使用<code>_</code>，这是一个特殊模式，可以匹配任意值而不用绑定到该值。这告诉Rust我们不会使用这个值，所以Rust也不会警告我们存在未使用的变量。</p>
-<p>让我们改变游戏规则：现在，当你掷出的值不是3或7的时候，你必须再次掷出。这种情况下我们不需要使用这个值，所以我们改动代码使用<code>_</code>来替代变量<code>other</code>：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dice_roll</span> = <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">match</span> dice_roll &#123;</span><br><span class="line">        <span class="number">3</span> =&gt; <span class="title function_ invoke__">add_fancy_hat</span>(),</span><br><span class="line">        <span class="number">7</span> =&gt; <span class="title function_ invoke__">remove_fancy_hat</span>(),</span><br><span class="line">        _ =&gt; <span class="title function_ invoke__">reroll</span>(),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">add_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">remove_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">reroll</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个例子也满足穷举性要求，因为我们在最后一个分支中明确地忽略了其他的值。我们没有忘记任何东西。</p>
-<p>最后，我们再次改动游戏规则，如果投掷出3或者7以外的值，你的回合将无事发生。我们可以使用单元值(unit value：就是空的tuple，在”The Tuple Type”部分有提及)作为<code>_</code>分支的代码：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dice_roll</span> = <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">match</span> dice_roll &#123;</span><br><span class="line">        <span class="number">3</span> =&gt; <span class="title function_ invoke__">add_fancy_hat</span>(),</span><br><span class="line">        <span class="number">7</span> =&gt; <span class="title function_ invoke__">remove_fancy_hat</span>(),</span><br><span class="line">        _ =&gt; (),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">add_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">remove_fancy_hat</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这里，我们明确告诉Rust我们不会使用与前面模式不匹配的值，并且这种情况下我们不想运行任何代码。</p>
-<p>更详细的模式匹配相关我们将会在Chapter 18进行讲解。目前，我们继续讨论<code>if let</code>语法，这在<code>match</code>表达式有点冗长的情况下比较有用。</p>
+<p>这个<code>use</code>语句会将<code>std::collections</code>中定义的所有的公有项引入到当前作用域。使用全局操作符时一定要多加小心！全局操作符会使得我们难以推导作用域中有什么名称和它们是定义在何处。</p>
+<p>全局操作符经常用于测试模块<code>tests</code>中，这时会将所有内容引入作用域；我们将在第十一章”How to Write Tests”部分中讲解。全局操作符有时也用于preclude模式；查看”标准库文档”(<a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/prelude/index.html#other-preludes)%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E7%BB%86%E8%8A%82%E3%80%82">https://doc.rust-lang.org/std/prelude/index.html#other-preludes)了解更多细节。</a></p>
 
       
     </div>
@@ -500,6 +427,79 @@
 <p>消除错误地假设非空值的风险有助于你对代码更有信心。为了有一个可能为空的值，你必须显式地使用<code>Option&lt;T&gt;</code>。然后，在使用该值时，需要显式地处理值为空的情况。任何地方，一个值不是<code>Option&lt;T&gt;</code>类型，你都可以放心地假设他不是null。这是Rust有意为之的设计决定，目的就是限制null的滥用，以增加Rust代码的安全性。</p>
 <p>所以，当你有一个类型为<code>Option&lt;T&gt;</code>的值时，你如何从<code>Some</code>变量中获得<code>T</code>的值呢？<code>Option&lt;T&gt;</code>枚举有大量很有用的方法适用于各种情况；你可以查看它的文档(<a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/option/enum.Option.html)%E3%80%82%E7%86%9F%E6%82%89%60Option">https://doc.rust-lang.org/std/option/enum.Option.html)。熟悉`Option</a><T>&#96;上的方法将对你的Rust之旅很有用哦！</p>
 <p>通常，为了使用<code>Option&lt;T&gt;</code>值，你需要有处理每个变量的代码。你希望一些代码只在具有<code>Some&lt;T&gt;</code>值时运行，并且允许这些代码使用内部的<code>T</code>。你希望如果有个<code>None</code>值时运行一些其他的代码，而且这些代码也没有一个<code>T</code>的有效值。<code>match</code>表达式就是这么一个处理枚举的控制流结构：它会根据枚举的成员运行不同的代码，这些代码可以使用匹配到的值中的数据。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_06_02_match/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/08/17/Inroducation/ch_06_02_match/" class="post-title-link" itemprop="url">通用模式和_占位符(Catch-all Patterns and the _ Placeholder)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-08-17 16:29:44 / Modified: 16:29:46" itemprop="dateCreated datePublished" datetime="2023-08-17T16:29:44+08:00">2023-08-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="通用模式和-占位符-Catch-all-Patterns-and-the-Placeholder"><a href="#通用模式和-占位符-Catch-all-Patterns-and-the-Placeholder" class="headerlink" title="通用模式和_占位符(Catch-all Patterns and the _ Placeholder)"></a>通用模式和_占位符(Catch-all Patterns and the _ Placeholder)</h4><p>使用枚举，我们希望对一些特定的值采取特殊操作，而对其他的值采用默认操作。想象我们正在玩一个游戏，如果你掷出一个骰子的值为3，角色不会移动，而是会得到一顶新奇的帽子。如果你掷出了7，你的角色将会失去新奇的帽子。对于其他的数值，你的角色会在棋盘上移动想的格子。这是一个实现了上述逻辑的<code>match</code>。骰子的结果是硬编码而不是一个随机值，其他的逻辑部分使用了没有函数体的函数来表示，实现它们超出了本例的范围：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dice_roll</span> = <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">match</span> dice_roll &#123;</span><br><span class="line">        <span class="number">3</span> =&gt; <span class="title function_ invoke__">add_fancy_hat</span>(),</span><br><span class="line">        <span class="number">7</span> =&gt; <span class="title function_ invoke__">remove_fancy_hat</span>(),</span><br><span class="line">        other =&gt; <span class="title function_ invoke__">move_player</span>(other),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">add_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">remove_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">move_player</span>(num_spaces: <span class="type">u8</span>) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于前两个分支，匹配模式是字面值3和7，最后一个分支则涵盖了所有其他可能性的值，模式使我们命名为<code>other</code>的一个变量。<code>other</code>分支的代码通过将其传递给<code>move_player</code>函数来使用这个变量。</p>
+<p>即使我们没有列出<code>u8</code>所有可能的值，这段代码依然能够编译，因为最后一个模式将匹配所有未被特殊列出的值。这种通配模式满足了<code>match</code>必须穷尽的要求。请注意，我们必须将通过通配分支放在最后，因为模式是按顺序匹配的。如果哦我们在通配分支后添加其他分支，Rust将会警告我们，因为此后的分支永远不会被匹配到。</p>
+<p>Rust还提供了一个模式，当我们不想使用通配模式的值时，请使用<code>_</code>，这是一个特殊模式，可以匹配任意值而不用绑定到该值。这告诉Rust我们不会使用这个值，所以Rust也不会警告我们存在未使用的变量。</p>
+<p>让我们改变游戏规则：现在，当你掷出的值不是3或7的时候，你必须再次掷出。这种情况下我们不需要使用这个值，所以我们改动代码使用<code>_</code>来替代变量<code>other</code>：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dice_roll</span> = <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">match</span> dice_roll &#123;</span><br><span class="line">        <span class="number">3</span> =&gt; <span class="title function_ invoke__">add_fancy_hat</span>(),</span><br><span class="line">        <span class="number">7</span> =&gt; <span class="title function_ invoke__">remove_fancy_hat</span>(),</span><br><span class="line">        _ =&gt; <span class="title function_ invoke__">reroll</span>(),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">add_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">remove_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">reroll</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个例子也满足穷举性要求，因为我们在最后一个分支中明确地忽略了其他的值。我们没有忘记任何东西。</p>
+<p>最后，我们再次改动游戏规则，如果投掷出3或者7以外的值，你的回合将无事发生。我们可以使用单元值(unit value：就是空的tuple，在”The Tuple Type”部分有提及)作为<code>_</code>分支的代码：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dice_roll</span> = <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">match</span> dice_roll &#123;</span><br><span class="line">        <span class="number">3</span> =&gt; <span class="title function_ invoke__">add_fancy_hat</span>(),</span><br><span class="line">        <span class="number">7</span> =&gt; <span class="title function_ invoke__">remove_fancy_hat</span>(),</span><br><span class="line">        _ =&gt; (),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">add_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">remove_fancy_hat</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这里，我们明确告诉Rust我们不会使用与前面模式不匹配的值，并且这种情况下我们不想运行任何代码。</p>
+<p>更详细的模式匹配相关我们将会在Chapter 18进行讲解。目前，我们继续讨论<code>if let</code>语法，这在<code>match</code>表达式有点冗长的情况下比较有用。</p>
 
       
     </div>
