@@ -1,13 +1,10 @@
----
-title: page
-date: 2023-08-17 11:25:09
-tags: about
-permalink: about
-layout: about
----
 
-弥超
-===
+---
+title: 
+date: 2023-08-17 15:59:S
+tags: Rust
+layout: Rust
+---
 
 ## 概况
 
@@ -95,3 +92,6 @@ admin/app/web所涉及的相对独立的业务数据服务提供服务。负责�
  * [Sequel Pro MySQL](http://www.sequelpro.com/) 管理工具
  * [Redis Desktop Manager](http://redisdesktop.com/) Cross-platform open source Redis DB management tool
  * [Charles](http://www.charlesproxy.com/)	抓包代理调试工具、类 Fiddler
+rm open source Redis DB management tool
+ * [Charles](http://www.charlesproxy.com/)	抓包代理调试工具、类 Fiddler
+�类 Fiddler
