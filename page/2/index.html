@@ -223,6 +223,69 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_07_04_bringing_paths_into_scope_with_the%20_use_key_word/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/08/17/Inroducation/ch_07_04_bringing_paths_into_scope_with_the%20_use_key_word/" class="post-title-link" itemprop="url">全局操作符(The Glob Operator)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-08-17 16:29:44 / Modified: 16:29:46" itemprop="dateCreated datePublished" datetime="2023-08-17T16:29:44+08:00">2023-08-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="全局操作符-The-Glob-Operator"><a href="#全局操作符-The-Glob-Operator" class="headerlink" title="全局操作符(The Glob Operator)"></a>全局操作符(The Glob Operator)</h4><p>如果想将一个路径下所有公有项引入作用域，可以使用指定路径后跟<code>*</code>，glob操作符:</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::collections::*;</span><br></pre></td></tr></table></figure>
+
+<p>这个<code>use</code>语句会将<code>std::collections</code>中定义的所有的公有项引入到当前作用域。使用全局操作符时一定要多加小心！全局操作符会使得我们难以推导作用域中有什么名称和它们是定义在何处。</p>
+<p>全局操作符经常用于测试模块<code>tests</code>中，这时会将所有内容引入作用域；我们将在第十一章”How to Write Tests”部分中讲解。全局操作符有时也用于preclude模式；查看”标准库文档”(<a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/prelude/index.html#other-preludes)%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E7%BB%86%E8%8A%82%E3%80%82">https://doc.rust-lang.org/std/prelude/index.html#other-preludes)了解更多细节。</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -277,69 +340,6 @@
 <p>因为我们设置了<code>Appetizer</code>为公有枚举，我们可以在<code>eat_at_restaurant</code>中使用<code>Soup</code>和<code>Salad</code>成员变量。</p>
 <p>除非设置枚举的变量为公开的，否则枚举就没什么用了；在每种情况下都必须使用<code>pub</code>来声明所有枚举变量，这将是很恼人的设计，所以默认情况下枚举的所有变量都是公有的。结构体在字段为私有的情况通常是有用的，所以结构体字段默认遵循所有内容为私有的普遍规则，除非使用<code>pub</code>声明公有。</p>
 <p>这里还涉及<code>pub</code>另外一个情况我们没有讨论到，那就是我们最后要讲的模块功能：<code>use</code>关键字。我们将单独介绍<code>use</code>，然后展示如何结合<code>pub</code>和<code>use</code>起来使用。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_07_04_bringing_paths_into_scope_with_the%20_use_key_word/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_07_04_bringing_paths_into_scope_with_the%20_use_key_word/" class="post-title-link" itemprop="url">全局操作符(The Glob Operator)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-08-17 16:29:44 / Modified: 16:29:46" itemprop="dateCreated datePublished" datetime="2023-08-17T16:29:44+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="全局操作符-The-Glob-Operator"><a href="#全局操作符-The-Glob-Operator" class="headerlink" title="全局操作符(The Glob Operator)"></a>全局操作符(The Glob Operator)</h4><p>如果想将一个路径下所有公有项引入作用域，可以使用指定路径后跟<code>*</code>，glob操作符:</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::collections::*;</span><br></pre></td></tr></table></figure>
-
-<p>这个<code>use</code>语句会将<code>std::collections</code>中定义的所有的公有项引入到当前作用域。使用全局操作符时一定要多加小心！全局操作符会使得我们难以推导作用域中有什么名称和它们是定义在何处。</p>
-<p>全局操作符经常用于测试模块<code>tests</code>中，这时会将所有内容引入作用域；我们将在第十一章”How to Write Tests”部分中讲解。全局操作符有时也用于preclude模式；查看”标准库文档”(<a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/prelude/index.html#other-preludes)%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E7%BB%86%E8%8A%82%E3%80%82">https://doc.rust-lang.org/std/prelude/index.html#other-preludes)了解更多细节。</a></p>
 
       
     </div>
