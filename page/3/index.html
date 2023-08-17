@@ -148,7 +148,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_05_03_method_syntax/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_09_01_unrecoverable_errors_with_panic/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -162,7 +162,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/08/17/Inroducation/ch_05_03_method_syntax/" class="post-title-link" itemprop="url">总结(Summary)</a>
+            <a href="/2023/08/17/Inroducation/ch_09_01_unrecoverable_errors_with_panic/" class="post-title-link" itemprop="url">使用`panic!`的backtrace</a>
         </h2>
 
         <div class="post-meta">
@@ -171,9 +171,8 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-08-17 16:29:44 / Modified: 16:29:46" itemprop="dateCreated datePublished" datetime="2023-08-17T16:29:44+08:00">2023-08-17</time>
+              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
             </span>
 
           
@@ -187,199 +186,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="总结-Summary"><a href="#总结-Summary" class="headerlink" title="总结(Summary)"></a>总结(Summary)</h4><p>结构体让你创建自定义的类型在你的domain中。通过使用结构体，你可以将数据关联起来，使得它看起来更加清晰。在impl块内，你可以定义函数并关联你的类型，而且方法是一个很好的关联方式，它让你的结构体有了可以指定它特定行为的能力。</p>
-<p>但是结构体不是唯一的方式来创建自定义类型：让我们转到Rust的枚举(enum)特性来，为你的工具箱再添加一个工具。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_06_00_enums_and_pattern_matching/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_06_00_enums_and_pattern_matching/" class="post-title-link" itemprop="url">Enums and Pattern Matching</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-08-17 16:29:44 / Modified: 16:29:47" itemprop="dateCreated datePublished" datetime="2023-08-17T16:29:44+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="Enums-and-Pattern-Matching"><a href="#Enums-and-Pattern-Matching" class="headerlink" title="Enums and Pattern Matching"></a>Enums and Pattern Matching</h4><p>本章中，我们讲述枚举(enumerations)，也称作enums。枚举允许你通过列举可能的成员(variants)来定义一个类型。首先，我们会定义并使用一个枚举来展示它是如何连同数据一起编码信息的。接下来，我们会探索一个特别有用的枚举，叫做<code>Option</code>，它代表一个值，要么是某个值要么是什么都不是。然后会讲到<code>match</code>表达式中使用模式匹配，针对不同的枚举值编写相应要执行的代码。然后会介绍<code>if let</code>，另一个简洁方便处理代码中枚举的结构。</p>
-<p>枚举是一个很多语言都有的功能，不过不同语言中其功能各不相同。Rust的枚举与F#，OCaml和Haskell这样的函数式编程语言中的代数数据类型(olgebraic data types)最为相似。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_04_00_understanding_ownership/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_04_00_understanding_ownership/" class="post-title-link" itemprop="url">Understanding Ownership</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-08-17 16:29:44 / Modified: 16:29:46" itemprop="dateCreated datePublished" datetime="2023-08-17T16:29:44+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="Understanding-Ownership"><a href="#Understanding-Ownership" class="headerlink" title="Understanding Ownership"></a>Understanding Ownership</h4><p>Ownership 是Rust最独特的特性，并且对剩下的部分有着深刻的意义。它能让Rust在不需要垃圾回收(garbage collection)就能保证内存安全，所以能够很好地理解owership是如何工作的是非常重要的。在本章，我们将讲和ownership关联的一些特性：borrowing, slice, 和Rust如何在内存中布局数据。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_04_01_what_id_ownership/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_04_01_what_id_ownership/" class="post-title-link" itemprop="url">返回值与作用域(Return Values and Scope)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-08-17 16:29:44 / Modified: 16:29:47" itemprop="dateCreated datePublished" datetime="2023-08-17T16:29:44+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="返回值与作用域-Return-Values-and-Scope"><a href="#返回值与作用域-Return-Values-and-Scope" class="headerlink" title="返回值与作用域(Return Values and Scope)"></a>返回值与作用域(Return Values and Scope)</h4><p>返回值也可以转移所有权。Listing 4-4展示了一个示例，与Listing4-3一样带有类似的注释。</p>
+          <h4 id="使用panic-的backtrace"><a href="#使用panic-的backtrace" class="headerlink" title="使用panic!的backtrace"></a>使用<code>panic!</code>的backtrace</h4><p>让我们来看看另外一个例子，当因为我们自己的代码有bug而导致库函数调用<code>panic!</code>是什么样的。如Listing 9-1所示的代码尝试访问超出范围的vector的索引。</p>
 <p>Filename: src&#x2F;main.rs</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s1</span> = <span class="title function_ invoke__">gives_ownership</span>();         <span class="comment">// gives_ownership moves its return</span></span><br><span class="line">                                        <span class="comment">// value into s1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s2</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);     <span class="comment">// s2 comes into scope</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s3</span> = <span class="title function_ invoke__">takes_and_gives_back</span>(s2);  <span class="comment">// s2 is moved into</span></span><br><span class="line">                                        <span class="comment">// takes_and_gives_back, which also</span></span><br><span class="line">                                        <span class="comment">// moves its return value into s3</span></span><br><span class="line">&#125; <span class="comment">// Here, s3 goes out of scope and is dropped. s2 was moved, so nothing</span></span><br><span class="line">  <span class="comment">// happens. s1 goes out of scope and is dropped.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">gives_ownership</span>() <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123;             <span class="comment">// gives_ownership will move its</span></span><br><span class="line">                                             <span class="comment">// return value into the function</span></span><br><span class="line">                                             <span class="comment">// that calls it</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">some_string</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;yours&quot;</span>); <span class="comment">// some_string comes into scope</span></span><br><span class="line"></span><br><span class="line">    some_string                              <span class="comment">// some_string is returned and</span></span><br><span class="line">                                             <span class="comment">// moves out to the calling</span></span><br><span class="line">                                             <span class="comment">// function</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This function takes a String and returns one</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">takes_and_gives_back</span>(a_string: <span class="type">String</span>) <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123; <span class="comment">// a_string comes into</span></span><br><span class="line">                                                      <span class="comment">// scope</span></span><br><span class="line"></span><br><span class="line">    a_string  <span class="comment">// a_string is returned and moves out to the calling function</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    v[<span class="number">99</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Listing 4-4: Transferring ownership of return values</p>
-<p>变量的所有权总是遵循相同的模式：将赋值给另一个变量时移动它。当持有堆中数据的变量离开作用域时，其值将通过drop被清理，除非数据被移动为另一个变量所有。</p>
-<p>虽然这样是可以的，但是在每一个函数中都获取所有权并接着返回所有权有些啰嗦。如果我们想要函数使用一个值但不获取所有权该怎么办呢？如果我们还要接着使用它的话，每次都穿进去再返回来就有点烦人了，除此之外，我们可能想返回函数中产生的一些数据。</p>
-<p>我们可以使用元组来返回多个值，如Listing 4-5。</p>
-<p>Filename：src&#x2F;main.rs</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s1</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> (s2, len) = <span class="title function_ invoke__">calculate_length</span>(s1);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The length of &#x27;&#123;&#125;&#x27; is &#123;&#125;.&quot;</span>, s2, len);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">calculate_length</span>(s: <span class="type">String</span>) <span class="punctuation">-&gt;</span> (<span class="type">String</span>, <span class="type">usize</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">length</span> = s.<span class="title function_ invoke__">len</span>(); <span class="comment">// len() returns the length of a String</span></span><br><span class="line"></span><br><span class="line">    (s, length)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Listing 9-1: Attempting to access an element beyond the end of a vector, which will cause a call to <code>panic!</code></p>
+<p>这里，我们尝试去访问第100个元素(索引99就是第100个元素，索引是从0开始的)，但是vector只有3个元素，肯定会报错。在这个场景中，Rust就会panic。使用<code>[]</code>就是企图返回一个元素，但是你传入一个无效的索引，又不会有这个元素，Rust就肯定不会返回正确的结果。</p>
+<p>在C语言中，尝试读取数据结构之后的值是未定义行为(undefined behavior)。你可能会得到一个这个位置的对应的值，但是这个可能是任何的值，但就不是你想要访问的值，因为这个位置的值不属于你想要访问的数据结构范围的值。这个被叫做**缓冲区溢出(buffer overread)**，并且可能会导致安全漏洞，比如攻击者可以像这样操作索引来读取存储在数据结构之后不被允许访问的数据。</p>
+<p>为了防止这种漏洞，如果尝试读取一个索引不存在的元素，Rust会停止执行并拒绝继续。尝试运行上面的程序会出现如下的错误：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling panic v0.<span class="number">1.0</span> (file:<span class="comment">///projects/panic)</span></span><br><span class="line">    Finished dev [unoptimized + debuginfo] <span class="title function_ invoke__">target</span>(s) <span class="keyword">in</span> <span class="number">0.27</span>s</span><br><span class="line">     Running `target/debug/panic`</span><br><span class="line">thread <span class="symbol">&#x27;main</span>&#x27; panicked at <span class="symbol">&#x27;index</span> out of bounds: the len is <span class="number">3</span> but the index is <span class="number">99</span>&#x27;, src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">note: run with `RUST_BACKTRACE=<span class="number">1</span>` environment variable to display a backtrace</span><br></pre></td></tr></table></figure>
 
-<p>Listing 4-5: Returning ownership of parameters</p>
-<p>但是，对于一个应该是普通的概念来说，这太多的仪式和大量的工作。幸运的是，Rust有一个特性，可以在不用转移所有权的情况下使用值，它叫做引用(references)。</p>
-<p>接下来将讲”引用和借用(References and Borrowing)”</p>
+<p>上面的错误信息指出错误发生在<code>src/main.rs</code>文件的第4行第5个字符，我们尝试访问索引为99的元素。接着一行的信息告诉我们可以设置<code>RUST_BACKTRACE</code>环境变量来获取backtrace查看发生了什么错误。一个backtrace是一个已经被调用直到当前这一个点的所有的函数列表。Backtrace在Rust的工作原理和其他语言一样：阅读backtrace的关键是从头开始读一直到发现你编写的代码；往下则是你调用的代码。这些行可能包含核心Rust代码，标准库代码或用到的crate代码。让我们设置<code>RUST_BACKTRACE</code>环境变量在Listing 9-2中看看都输出了些什么：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ RUST_BACKTRACE=<span class="number">1</span> cargo run</span><br><span class="line">thread <span class="symbol">&#x27;main</span>&#x27; panicked at <span class="symbol">&#x27;index</span> out of bounds: the len is <span class="number">3</span> but the index is <span class="number">99</span>&#x27;, src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">stack backtrace:</span><br><span class="line">   <span class="number">0</span>: rust_begin_unwind</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/std/src/panicking.rs:<span class="number">584</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">1</span>: core::panicking::panic_fmt</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/panicking.rs:<span class="number">142</span>:<span class="number">14</span></span><br><span class="line">   <span class="number">2</span>: core::panicking::panic_bounds_check</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/panicking.rs:<span class="number">84</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">3</span>: &lt;<span class="type">usize</span> <span class="keyword">as</span> core::slice::index::SliceIndex&lt;[T]&gt;&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/slice/index.rs:<span class="number">242</span>:<span class="number">10</span></span><br><span class="line">   <span class="number">4</span>: core::slice::index::&lt;<span class="keyword">impl</span> <span class="title class_">core</span>::ops::index::Index&lt;I&gt; <span class="keyword">for</span> [T]&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/slice/index.rs:<span class="number">18</span>:<span class="number">9</span></span><br><span class="line">   <span class="number">5</span>: &lt;alloc::vec::<span class="type">Vec</span>&lt;T,A&gt; <span class="keyword">as</span> core::ops::index::Index&lt;I&gt;&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/alloc/src/vec/<span class="keyword">mod</span>.rs:<span class="number">2591</span>:<span class="number">9</span></span><br><span class="line">   <span class="number">6</span>: panic::main</span><br><span class="line">             at ./src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">7</span>: core::ops::function::<span class="built_in">FnOnce</span>::call_once</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/ops/function.rs:<span class="number">248</span>:<span class="number">5</span></span><br><span class="line">note: <span class="literal">Some</span> details are omitted, run with `RUST_BACKTRACE=full` <span class="keyword">for</span> <span class="title class_">a</span> verbose backtrace.</span><br></pre></td></tr></table></figure>
+
+<p>Listing 9-2: The backtrace generated by a <code>panic!</code>displayed when the environment variable <code>RUST_BACKTRACE</code>is set</p>
+<p>真是输出了一大坨啊！操作系统不同，Rust版本不同，你看到的输出可能会有所不同。为了使用这些信息进行回溯，必须启用debug模式。默认就是debug模式，只要在<code>cargo build</code>或者<code>cargo run</code>之后不要加<code>--release</code>参数。</p>
+<p>在Listing 9-2的第6行的backtrace指出了我们项目造成的问题：<code>src/main.rs</code>的第4行。如果我们不想我们的程序panic，我们就应该开始检查定位到第一行我们自己写的代码。在Listing 9-1中，我们故意写了造成panic的代码，修复这个panic就是不要去访问超出vector范围的索引。当你的代码在将来panic， 你需要弄清楚代码使用什么数据做了什么样的操作，以及正确情况下代码应该做什么。</p>
+<p>本章后面的小节 <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html#to-panic-or-not-to-panic">“To <code>panic!</code> Or not to <code>panic!</code>“</a> 部分讲回<code>panic!</code>，详细讲解应该或者不应该用<code>panic!</code>来处理错误情况。接下来一节我们来讲解如何使用<code>Result</code>恢复一个错误。</p>
 
       
     </div>
@@ -399,7 +222,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_04_02_references_and_borrowing/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_09_02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -413,7 +236,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/08/17/Inroducation/ch_04_02_references_and_borrowing/" class="post-title-link" itemprop="url">引用的规则(The Rules of References)</a>
+            <a href="/2023/08/17/Inroducation/ch_09_02/" class="post-title-link" itemprop="url">使用`panic!`的backtrace</a>
         </h2>
 
         <div class="post-meta">
@@ -422,9 +245,8 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-08-17 16:29:44 / Modified: 16:29:46" itemprop="dateCreated datePublished" datetime="2023-08-17T16:29:44+08:00">2023-08-17</time>
+              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
             </span>
 
           
@@ -438,277 +260,516 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="引用的规则-The-Rules-of-References"><a href="#引用的规则-The-Rules-of-References" class="headerlink" title="引用的规则(The Rules of References)"></a>引用的规则(The Rules of References)</h4><p>让我们来重新概况一下之前对引用的讨论：</p>
-<ul>
-<li>在任意给定时间，要么只能有一个可变引用，要么只能有多个不可变引用。</li>
-<li>引用必须总是有效的。</li>
+          <h4 id="使用panic-的backtrace"><a href="#使用panic-的backtrace" class="headerlink" title="使用panic!的backtrace"></a>使用<code>panic!</code>的backtrace</h4><p>让我们来看看另外一个例子，当因为我们自己的代码有bug而导致库函数调用<code>panic!</code>是什么样的。如Listing 9-1所示的代码尝试访问超出范围的vector的索引。</p>
+<p>Filename: src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    v[<span class="number">99</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 9-1: Attempting to access an element beyond the end of a vector, which will cause a call to <code>panic!</code></p>
+<p>这里，我们尝试去访问第100个元素(索引99就是第100个元素，索引是从0开始的)，但是vector只有3个元素，肯定会报错。在这个场景中，Rust就会panic。使用<code>[]</code>就是企图返回一个元素，但是你传入一个无效的索引，又不会有这个元素，Rust就肯定不会返回正确的结果。</p>
+<p>在C语言中，尝试读取数据结构之后的值是未定义行为(undefined behavior)。你可能会得到一个这个位置的对应的值，但是这个可能是任何的值，但就不是你想要访问的值，因为这个位置的值不属于你想要访问的数据结构范围的值。这个被叫做**缓冲区溢出(buffer overread)**，并且可能会导致安全漏洞，比如攻击者可以像这样操作索引来读取存储在数据结构之后不被允许访问的数据。</p>
+<p>为了防止这种漏洞，如果尝试读取一个索引不存在的元素，Rust会停止执行并拒绝继续。尝试运行上面的程序会出现如下的错误：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling panic v0.<span class="number">1.0</span> (file:<span class="comment">///projects/panic)</span></span><br><span class="line">    Finished dev [unoptimized + debuginfo] <span class="title function_ invoke__">target</span>(s) <span class="keyword">in</span> <span class="number">0.27</span>s</span><br><span class="line">     Running `target/debug/panic`</span><br><span class="line">thread <span class="symbol">&#x27;main</span>&#x27; panicked at <span class="symbol">&#x27;index</span> out of bounds: the len is <span class="number">3</span> but the index is <span class="number">99</span>&#x27;, src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">note: run with `RUST_BACKTRACE=<span class="number">1</span>` environment variable to display a backtrace</span><br></pre></td></tr></table></figure>
+
+<p>上面的错误信息指出错误发生在<code>src/main.rs</code>文件的第4行第5个字符，我们尝试访问索引为99的元素。接着一行的信息告诉我们可以设置<code>RUST_BACKTRACE</code>环境变量来获取backtrace查看发生了什么错误。一个backtrace是一个已经被调用直到当前这一个点的所有的函数列表。Backtrace在Rust的工作原理和其他语言一样：阅读backtrace的关键是从头开始读一直到发现你编写的代码；往下则是你调用的代码。这些行可能包含核心Rust代码，标准库代码或用到的crate代码。让我们设置<code>RUST_BACKTRACE</code>环境变量在Listing 9-2中看看都输出了些什么：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ RUST_BACKTRACE=<span class="number">1</span> cargo run</span><br><span class="line">thread <span class="symbol">&#x27;main</span>&#x27; panicked at <span class="symbol">&#x27;index</span> out of bounds: the len is <span class="number">3</span> but the index is <span class="number">99</span>&#x27;, src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">stack backtrace:</span><br><span class="line">   <span class="number">0</span>: rust_begin_unwind</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/std/src/panicking.rs:<span class="number">584</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">1</span>: core::panicking::panic_fmt</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/panicking.rs:<span class="number">142</span>:<span class="number">14</span></span><br><span class="line">   <span class="number">2</span>: core::panicking::panic_bounds_check</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/panicking.rs:<span class="number">84</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">3</span>: &lt;<span class="type">usize</span> <span class="keyword">as</span> core::slice::index::SliceIndex&lt;[T]&gt;&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/slice/index.rs:<span class="number">242</span>:<span class="number">10</span></span><br><span class="line">   <span class="number">4</span>: core::slice::index::&lt;<span class="keyword">impl</span> <span class="title class_">core</span>::ops::index::Index&lt;I&gt; <span class="keyword">for</span> [T]&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/slice/index.rs:<span class="number">18</span>:<span class="number">9</span></span><br><span class="line">   <span class="number">5</span>: &lt;alloc::vec::<span class="type">Vec</span>&lt;T,A&gt; <span class="keyword">as</span> core::ops::index::Index&lt;I&gt;&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/alloc/src/vec/<span class="keyword">mod</span>.rs:<span class="number">2591</span>:<span class="number">9</span></span><br><span class="line">   <span class="number">6</span>: panic::main</span><br><span class="line">             at ./src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">7</span>: core::ops::function::<span class="built_in">FnOnce</span>::call_once</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/ops/function.rs:<span class="number">248</span>:<span class="number">5</span></span><br><span class="line">note: <span class="literal">Some</span> details are omitted, run with `RUST_BACKTRACE=full` <span class="keyword">for</span> <span class="title class_">a</span> verbose backtrace.</span><br></pre></td></tr></table></figure>
+
+<p>Listing 9-2: The backtrace generated by a <code>panic!</code>displayed when the environment variable <code>RUST_BACKTRACE</code>is set</p>
+<p>真是输出了一大坨啊！操作系统不同，Rust版本不同，你看到的输出可能会有所不同。为了使用这些信息进行回溯，必须启用debug模式。默认就是debug模式，只要在<code>cargo build</code>或者<code>cargo run</code>之后不要加<code>--release</code>参数。</p>
+<p>在Listing 9-2的第6行的backtrace指出了我们项目造成的问题：<code>src/main.rs</code>的第4行。如果我们不想我们的程序panic，我们就应该开始检查定位到第一行我们自己写的代码。在Listing 9-1中，我们故意写了造成panic的代码，修复这个panic就是不要去访问超出vector范围的索引。当你的代码在将来panic， 你需要弄清楚代码使用什么数据做了什么样的操作，以及正确情况下代码应该做什么。</p>
+<p>本章后面的小节 <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html#to-panic-or-not-to-panic">“To <code>panic!</code> Or not to <code>panic!</code>“</a> 部分讲回<code>panic!</code>，详细讲解应该或者不应该用<code>panic!</code>来处理错误情况。接下来一节我们来讲解如何使用<code>Result</code>恢复一个错误。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/Rust">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Rust" class="post-title-link" itemprop="url">Introducation</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <pre><code>---
+</code></pre>
+<h2 id="title-Inroducationdate-2023-08-17-14-40-49"><a href="#title-Inroducationdate-2023-08-17-14-40-49" class="headerlink" title="title: Inroducationdate: 2023-08-17 14:40:49"></a>title: Inroducation<br>date: 2023-08-17 14:40:49</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/why/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/08/17/Inroducation/why/" class="post-title-link" itemprop="url">来看看AI如何看待：</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="来看看AI如何看待："><a href="#来看看AI如何看待：" class="headerlink" title="来看看AI如何看待："></a>来看看AI如何看待：</h4><blockquote>
+<p>根据你的描述,你已经达到了生活物质上很高的满足度,拥有自己的房产,生活质量远超过大多数人。但即便如此,看见别人过得很好,你还是会感到心理难受。这主要还是出于以下几个原因:</p>
+<ol>
+<li>心理比较并不会随着物质生活的提高而消失。人们的社会比较心理往往与生活状态相关不大,更加源自内在的不安全感。所以即便生活质量很高,这种比较心理仍然存在。</li>
+<li>你可能理想化别人拥有的东西。比如羡慕别人拥有的人际关系,职业成就,生活状态等,而忽视了自己已经拥有的很多东西。这也会带来难受的感觉。</li>
+<li>你期望得到的不仅是物质生活。人的内心渴望往往不仅限于物质层面,也包括精神层面,如获得认同,建立亲密关系,实现自我价值等。如果这些方面没有得到满足,也会感到心理上的难受。</li>
+<li>你可能在某些方面感到不满意。尽管生活总体质量很高,但在情感生活,人际交往,事业发展等某一具体方面,你可能还是感到不如意或不足,这也是产生难受心理的原因之一。<br>所以,要解决这个问题,重点不在于提高生活质量,而是要在心理和精神层面获得安定。学会理性看待他人,不必过度羡慕别人所拥有的一切。关注自己的内心真实需求,努力在各个方面获得满足和进步。培养自己独立稳定的心态,增强自我价值感。这些可以有效地帮助你摆脱这种由社会比较所带来的难受情绪。</li>
+</ol>
+</blockquote>
+<p>根据我党的判断，我们现在仍处于社会主义初级阶段，现阶段中国社会的主要矛盾是人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾。也是涵盖了上述矛盾心理内涵的。近些年，特别是改革开放之后，中国高速发展，让一部分人抓住了高速发展的红利，以不匹配自己能力增长的速度拥有了超速增长的财富和资产。即身心发展和财富发展并不平衡，导致了内心不够充盈，格局尚未完全打开，自我定位错乱。矛盾逐渐凸显扭曲就会发生这样莫名奇怪的心理。</p>
+<p>实际上，在深圳这种高度发达，贫富差距巨大的快节奏生活的城市，大部分年轻人都特别焦虑，焦虑的本质就是日益增长的美好生活需要和不平衡不充分的发展之间的矛盾。大部分年轻人都是来自外地十八线小城市或者小县城，或者农村。回不去，留不下随着时间的推移，越来越焦虑。这部分人特别像小资产阶级的表现：</p>
+<blockquote>
+<p>作为劳动者，在思想上倾向于无产阶级，作为私有者，又倾向于资产阶级，极易受资产阶级思想的影响。因此，在反对封建主义的斗争中既具有革命性，同时也存在政治上的动摇性、斗争中的软弱性和革命的不彻底性。</p>
+</blockquote>
+<p>让我想起了抓猴子的故事里伸手进树洞紧紧抓住坚果，即使猎人来了也舍不得放手。这个猴子是我们每个人。</p>
+<p>对于这种外因短时间无法改变的问题，我们只能改变内因了。看看AI又会给出什么样的建议呢？</p>
+<blockquote>
+<p>这里有些简单实用的建议可以帮助你摆脱由社会比较带来的难受心理:</p>
+<ol>
+<li>转移注意力。当你开始羡慕别人或感到自卑时,立即转移注意力,不要过多聚焦在别人身上。可以换个环境,做点运动,转而关注自己喜欢的事物。这可以有效地改变心情。</li>
+<li>记录自己的收获。时常记录自己生活中已经实现的小成就和收获,提醒自己生活的美好之处。这可以建立信心,也让你意识到自己已经拥有很多。</li>
+<li>限制社交媒体使用。社交媒体上人们主要分享生活的美好时刻,这会助长羡慕心理。适当限制使用社交媒体,关注生活中真实的一面。</li>
+<li>珍惜你所拥有的。时常想想你已经拥有但当作理所当然的东西,会让你觉得很满足和幸运。这可以避免过度关注别人拥有的。</li>
+<li>关注自己的需求。理解自己真正想要什么,并努力实现,这可以让你没有时间和精力过度关注别人,也会让你感到人生有目标和意义。</li>
+<li>施比受更有福。当你羡慕别人时,想想你能为别人带来什么好处。关注别人的需求,提供帮助,这可以让你转移注意力,也会带来成就感。</li>
+<li>培养内在安定。通过冥想,听音乐,上瑜伽课等方式,培养安定的心态。当内心足够安定,外界的比较就不会那么轻易影响你。<br>这些实用的方法,帮助调节心态,关注自我,减少对他人生活的过度比较,可以有效地让你摆脱社会比较带来的难受情绪。需要时间去实践,但效果会非常显著。</li>
+</ol>
+</blockquote>
+<p>这些方法对我都很有启发，对与解决自身的焦虑也很受用。生活在快节奏的深圳，周围人都是狠角色，焦虑对每个人来说是常态。人生的各个阶段也会有不同的焦虑，只有学会面对焦虑，利用焦虑，焦虑也可以是人类进步的助推器。加油吧，少年郎！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/about/me/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/08/17/about/me/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><ul>
+<li>主页：<a target="_blank" rel="noopener" href="http://www.ablog.top/">http://www.ablog.top</a></li>
 </ul>
-<p>接下来，我们来看看另一种不同类型的引用：slice。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_04_03_slices/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_04_03_slices/" class="post-title-link" itemprop="url">总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-08-17 16:29:44 / Modified: 16:29:47" itemprop="dateCreated datePublished" datetime="2023-08-17T16:29:44+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>所有权、借用和slice这些概念让Rust程序在编译时保证内存安全。Rust语言提供了跟其他系统编程语言相同的方式来控制你使用内存，但拥有数据所有者在离开作用域后自动清除其数据的功能意味着你无需额外编写和调试相关的控制代码。</p>
-<p>所有权系统影响了Rust中很多其他部分的工作方式，所以我们还会继续讲到这些概念，这将贯穿本书余下的内容。让我们开始第五章吧，来看看如何将多份数据组合进一个struct中。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_03_03_how_functions_work/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_03_03_how_functions_work/" class="post-title-link" itemprop="url">函数是如何工作的</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-08-17 16:29:44 / Modified: 17:32:41" itemprop="dateCreated datePublished" datetime="2023-08-17T16:29:44+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#![allow(unused)]</span><br><span class="line">fn main() &#123;</span><br><span class="line">let x = 5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其次，five函数没有参数并定义了返回值类型，不过函数体只有单单一个5，因为它是一个表达式，可以返回我们想要的值。</p>
-<p>让我们看看另外一个例子：</p>
-<p>src&#x2F;main.rs</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span> = <span class="title function_ invoke__">plus_one</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The value of x is: &#123;&#125;&quot;</span>, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">plus_one</span>(x: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    x + <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>编译这段代码，会产生一个如下的错误：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> cargo run</span><br><span class="line">   Compiling functions v0.<span class="number">1.0</span> (file:///projects/functions)</span><br><span class="line">error[<span class="type">E0308</span>]: mismatched types</span><br><span class="line"> <span class="literal">--</span>&gt; src/main.rs:<span class="number">7</span>:<span class="number">24</span></span><br><span class="line">  |</span><br><span class="line"><span class="number">7</span> | fn plus_one(x: i32) -&gt; i32 &#123;</span><br><span class="line">  |    <span class="literal">--------</span>            ^^^ expected `i32`, found `()`</span><br><span class="line">  |    |</span><br><span class="line">  |    implicitly returns `()` as its body has no tail or `return` expression</span><br><span class="line"><span class="number">8</span> |     x + <span class="number">1</span>;</span><br><span class="line">  |          - help: consider removing this semicolon</span><br><span class="line"></span><br><span class="line"><span class="keyword">For</span> more information about this error, <span class="keyword">try</span> `rustc <span class="literal">--explain</span> E0308`.</span><br><span class="line">error: could not compile `functions` due to previous error</span><br></pre></td></tr></table></figure>
-
-<p>主要的错误信息”mismatched types”揭示了这段代码的核心问题所在。定义函数plus_one，然后说要返回一个i32，但是语句不会计算得到一个值，使用单位类型()表示不返回值。因为不返回值与函数返回一个i32类型的值矛盾，从而出现一个错误。在输出中，Rust提供了一条信息，可能有助于纠正这个错误：它建议删除分号，这会修复这个错误。</p>
-<p>正确的代码如下：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span> = <span class="title function_ invoke__">plus_one</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The value of x is: &#123;&#125;&quot;</span>, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">plus_one</span>(x: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    x + <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_03_04_comments/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_03_04_comments/" class="post-title-link" itemprop="url">注释</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-08-17 16:29:44 / Modified: 17:32:05" itemprop="dateCreated datePublished" datetime="2023-08-17T16:29:44+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#![allow(unused)]</span><br><span class="line">fn main() &#123;</span><br><span class="line">// So we’re doing something complicated here, long enough that we need</span><br><span class="line">// multiple lines of comments to do it! Whew! Hopefully, this comment will</span><br><span class="line">// explain what’s going on.</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注释可以放在代码行结尾：</p>
-<p>src&#x2F;main.rs</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">lucky_number</span> = <span class="number">7</span>; <span class="comment">// I’m feeling lucky today</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>但是你经常看到更多是如下的格式，在代码的上方的单独一行注释：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="comment">// I’m feeling lucky today</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">lucky_number</span> = <span class="number">7</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Rust 也有其他类型的注释，文档注释(documentation comments)，详细在第14章的”Publishing a Crate to Crates.io” 部分介绍。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_03_05_control_flow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_03_05_control_flow/" class="post-title-link" itemprop="url">总结(Summary)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-08-17 16:29:44 / Modified: 16:29:46" itemprop="dateCreated datePublished" datetime="2023-08-17T16:29:44+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="总结-Summary"><a href="#总结-Summary" class="headerlink" title="总结(Summary)"></a>总结(Summary)</h4><p>你做到了！这是相当大的一章：你学习了关于variables, scalar and compound data type, functions, comments, if expressions, and loops! 讨论并练习这些概念。尝试构建如下的程序：</p>
-<ul>
-<li>相互转换摄氏与华氏温度(Convert temperatures between Fahrenheit and Celsius.)</li>
-<li>生成n阶斐波那契数列(Generate th nth Fibonacci number.)</li>
-<li>打印圣诞颂歌词，并利用歌词中的重复部分(编写循环)(Print the lyrics to the Christmas carol “The Twelve Days of Christmas,” taking advantage of the repetition in the song.)</li>
+<p>计算机专业毕业，9 年 python  后端开发经验。</p>
+<p>弥超&#x2F;男&#x2F;1990</p>
+<p>手机：15999690657</p>
+<p>Email：<a href="mailto:&#116;&#x6f;&#110;&#x79;&#95;&#x6d;&#105;&#x73;&#x74;&#97;&#x72;&#107;&#64;&#49;&#54;&#x33;&#x2e;&#99;&#111;&#x6d;">&#116;&#x6f;&#110;&#x79;&#95;&#x6d;&#105;&#x73;&#x74;&#97;&#x72;&#107;&#64;&#49;&#54;&#x33;&#x2e;&#99;&#111;&#x6d;</a></p>
+<p>QQ：1135223420</p>
+<p>本科&#x2F;江西师范大学 计算机信息工程学院 计算机科学与技术专业</p>
+<p>博客： <a target="_blank" rel="noopener" href="https://my.oschina.net/michao/blog">https://my.oschina.net/michao/blog</a></p>
+<p>Github： <a target="_blank" rel="noopener" href="https://github.com/TonyMistark">https://github.com/TonyMistark</a></p>
+<p>期望职位：Python后端开发工程师</p>
+<p>期望城市：深圳</p>
+<h3 id="综合技能"><a href="#综合技能" class="headerlink" title="综合技能"></a>综合技能</h3><table>
+<thead>
+<tr>
+<th align="right">名称</th>
+<th align="left">熟悉程度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">Python</td>
+<td align="left">★★★★☆</td>
+</tr>
+<tr>
+<td align="right">Django</td>
+<td align="left">★★★★☆</td>
+</tr>
+<tr>
+<td align="right">Tornado</td>
+<td align="left">★★★☆☆</td>
+</tr>
+<tr>
+<td align="right">Mysql</td>
+<td align="left">★★★☆☆</td>
+</tr>
+<tr>
+<td align="right">Redis</td>
+<td align="left">★★★☆☆</td>
+</tr>
+<tr>
+<td align="right">Linux</td>
+<td align="left">★★★☆☆</td>
+</tr>
+<tr>
+<td align="right">C</td>
+<td align="left">★★★☆☆</td>
+</tr>
+<tr>
+<td align="right">HTML</td>
+<td align="left">★★★☆☆</td>
+</tr>
+<tr>
+<td align="right">Javascript</td>
+<td align="left">★★☆☆☆</td>
+</tr>
+<tr>
+<td align="right">CSS</td>
+<td align="left">★★☆☆☆</td>
+</tr>
+</tbody></table>
+<h3 id="工作经历"><a href="#工作经历" class="headerlink" title="工作经历"></a>工作经历</h3><h4 id="深圳科诗特软件有限责任公司-2014-3-31-2015-10-15"><a href="#深圳科诗特软件有限责任公司-2014-3-31-2015-10-15" class="headerlink" title="深圳科诗特软件有限责任公司  2014.3.31-2015.10.15"></a>深圳科诗特软件有限责任公司  2014.3.31-2015.10.15</h4><ul>
+<li>大型多人在线游戏（MMOG）项目： 基于BIgWord+Python, 负责整个游戏GUI逻辑实现，<br>部分模型技能动作表现实现。工作期间多次获得月优秀员工以及相应奖励。2012年立项预计<br>2017年初上线。</li>
 </ul>
-<p>当你准备好继续的时候，让我们讨论一个其他语言中不常见的概念：所有权(ownership)</p>
+<h4 id="深圳-美啦-2015-10-27-至今"><a href="#深圳-美啦-2015-10-27-至今" class="headerlink" title="深圳 美啦 2015.10.27-至今"></a>深圳 美啦 2015.10.27-至今</h4><ul>
+<li>wechat(微信小程序)：相对于美啦APP的一个轻量级产品，具备对美啦海量产品信息的搜<br>索查看，以及每个产品的详尽信息的展示评论功能。负责小程序的部分页面的勾勒，以及大<br>部分后端接口的设计。</li>
+<li>admin项目：基于Django框架依赖超过40个第三方库，功能已趋于完善，基本满足现有<br>所有需求。现负责大部分运营管理后台基本业务设计开发，以及维护，每周会划出固定时间<br>对项目进行逐步性能优化重构，以加强管理后台更高的可用性。减少运营妹子们的痛苦，<br>是我等最大的快乐:)</li>
+<li>app项目：基于tornado提供app请求接口，主要负责现有接口的优化以满足需求变更，<br>新业务接口设计等，独立完成过对于用户地址管理数据的迁移，以及相关底层逻辑调用的<br>封装，负责的模块有“我的”，“标签聚合页”，“优惠券”，“活动”，“标签”等相关内容的<br>接口设计。</li>
+<li>web项目：基于tornado提供web服务，负责过地址管理h5关页面的编写以及美币商城、<br>免费试用，相以及相关接口的设计。</li>
+<li>server项目：提供RPC服务（基于thrift协议涉及平台C++&#x2F;Java&#x2F;Python），对于<br>admin&#x2F;app&#x2F;web所涉及的相对独立的业务数据服务提供服务。负责模块为产品库相关数<br>据的PRC服务的提供。</li>
+<li>logic项目：对于项目所涉及的数据存储数据表的设计，RPC服务的封装，通用业务逻<br>辑封装。第三方服务接口的封装。负责标签，地址管理，标签，话题，产品等相关调用<br>的封装。</li>
+</ul>
+<h3 id="自我描述"><a href="#自我描述" class="headerlink" title="自我描述"></a>自我描述</h3><ul>
+<li>工作热情高涨，善于并乐沟通解决问题</li>
+<li>有责任心，能担当，抗压能力棒</li>
+<li>更看重与团队的技术氛围，希望和有上进心有热情的年轻团队并肩做有技术追求的事情</li>
+<li>生命在于折腾，喜欢挑战</li>
+</ul>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><ul>
+<li>版本管理：Git&#x2F;SVN</li>
+<li>开发平台：Ubuntu&#x2F;Mac</li>
+<li>编辑器：PyCharm&#x2F;Vim&#x2F;Sublime&#x2F;Emacs</li>
+<li><a target="_blank" rel="noopener" href="http://25.io/mou/">Mou</a> Markdown 编辑器</li>
+<li><a target="_blank" rel="noopener" href="http://kapeli.com/dash">Dash</a> 全语言文档手册速查</li>
+<li><a target="_blank" rel="noopener" href="http://ohmyz.sh/">oh-my-zsh</a>	配合上iTerm2, 简直就是最强组合</li>
+<li><a target="_blank" rel="noopener" href="http://www.sublimetext.com/">Sublime Text</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.sequelpro.com/">Sequel Pro MySQL</a> 管理工具</li>
+<li><a target="_blank" rel="noopener" href="http://redisdesktop.com/">Redis Desktop Manager</a> Cross-platform open source Redis DB management tool</li>
+<li><a target="_blank" rel="noopener" href="http://www.charlesproxy.com/">Charles</a>	抓包代理调试工具、类 Fiddler<br>rm open source Redis DB management tool</li>
+<li><a target="_blank" rel="noopener" href="http://www.charlesproxy.com/">Charles</a>	抓包代理调试工具、类 Fiddler<br>�类 Fiddler</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_00_00_introducation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/08/17/Inroducation/ch_00_00_introducation/" class="post-title-link" itemprop="url">欢迎来到Rust编程语言世界！</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="欢迎来到Rust编程语言世界！"><a href="#欢迎来到Rust编程语言世界！" class="headerlink" title="欢迎来到Rust编程语言世界！"></a>欢迎来到Rust编程语言世界！</h4><p>不管写的好与差，挖坑先，要不然永远不会开始。</p>
+<p>Hello, World!</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2022计划开始一系列关于学习Rust入门的学习笔记，主要是根据官方的文档入门学习。</p>
+<p>Rust程序设计语言能帮助你编写更快，更可靠的软件。在编程语言的设计中，高层工程学和底层控制常常是冲突的。Rust挑战了这种冲突。通过平衡强大的技术能力（powerful technical capacity）和 极好的开发者体验（great developer experience）,Rust 可以控制底层的细节（比如内存的使用）但不用忍受传统同类型语言那些困扰。</p>
+<p>Rust 已经在证明着自己，对于学习过编程知识的不同水平的开发者来说，如果他们开发大型协同项目都是不错的生产工具。底层的代码容易产生各种不易发现的bugs,在其他编程语言中，要发现这些bugs只能通过广泛的测试和团队中经验丰富的大佬们仔细的评审（review）。在Rust设计中，编译器（compiler）扮演着守门员的角色，它会拒绝包含各种bugs代码的编译。通过编译器的帮忙，开发团队将会把更多的时间用在程序的逻辑上，而不是one day day 地在写bugs与修bugs之间疲于奔命。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_01_01_Installation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/08/17/Inroducation/ch_01_01_Installation/" class="post-title-link" itemprop="url">本地文档</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="本地文档"><a href="#本地文档" class="headerlink" title="本地文档"></a>本地文档</h4><p>安装过程包括了将对应Rust版本的文档复制到本地。所以你可以阅读官方文档，也可以通过命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> rustup doc</span><br></pre></td></tr></table></figure>
+
+<p>会在浏览器里打开本地文档。</p>
+<p>标准库里面的任何一个类型或者函数你不确定的时候，或者你不知道怎么用。使用应用程序编程接口(API)文档来找出答案。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_01_02_hello_world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/08/17/Inroducation/ch_01_02_hello_world/" class="post-title-link" itemprop="url">编译和运行是彼此独立的步骤</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h5 id="编译和运行是彼此独立的步骤"><a href="#编译和运行是彼此独立的步骤" class="headerlink" title="编译和运行是彼此独立的步骤"></a>编译和运行是彼此独立的步骤</h5><p>你刚刚运行了一个新的程序，所以让我们来检查一下这个过程的每一个步骤。</p>
+<p>在运行Rust程序之前，你必须通过rustc命令，用Rust编译器来编译这个它，并传入你源代码文件的名字，比如：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> rustc main.rs</span><br></pre></td></tr></table></figure>
+
+<p>如果你有C或者C++的技术背景，你可以视作像gcc 或者clang。在编译成功之后，Rust 会输出一个二进制可执行文件。</p>
+<p>对于Linux,macOS和PowerShell on Windows,执行ls的shell命令之后，你就可以看到这个可执行文件。对于Linux，macOS，你可以看到两个文件。对于PowerShell on Windows,你会看到和使用CMD一样的三个文件。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">ls</span></span><br><span class="line">main main.rs</span><br></pre></td></tr></table></figure>
+
+<p>在Windows的CMD，输入命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">dir</span> /B %= the /B option says to only show the file names =%</span><br><span class="line">main.exe</span><br><span class="line">main.pdb</span><br><span class="line">main.rs</span><br></pre></td></tr></table></figure>
+
+<p>这显示出以.rs为扩展名的源代码文件和可执行文件(main.exe on Windows, but main on all other platforms),并且，当使用Windows，一个文件包括了debugging信息的.pdb扩展名。到此，你可以开始运行main 或者main.exe文件，如：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> ./main <span class="comment"># or .\main.exe on Windows</span></span><br></pre></td></tr></table></figure>
+
+<p>如果main.rs是你的”Hello,world!”程序，这行将打印出”Hello,world!”到你的屏幕。</p>
+<p>如果你更加熟悉动态语言，如Ruby,Python, JavaScript, 你也许不习惯将编译和运行分为两个单独的步骤。Rust是一个预编译(ahead-of-time compiled)语言，代表你可以编译一个程序并且给可执行文件其他人，并且他们可以直接运行，不需要安装Rust。如果你给某人一个a.rb, .py, .js文件，他们需要安装一个Ruby,Python 或者JavaScript 实现(运行环境)。不过这些语言中，只需要一句命令就可以编译和运行程序。所有的事都是语言设计上的取舍。</p>
+<p>仅仅使用rustc编译简单程序是没有问题的。但是随着你的项目发展，你会想要管理所有的选项，使得更简单地共享你的代码。接下来，我们将介绍给你一个叫做Cargo的工具，它将帮助你编写真实世界的Rust程序。</p>
 
       
     </div>
@@ -751,9 +812,8 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-08-17 16:29:44 / Modified: 16:29:46" itemprop="dateCreated datePublished" datetime="2023-08-17T16:29:44+08:00">2023-08-17</time>
+              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
             </span>
 
           
@@ -782,6 +842,86 @@
 <li>使用Cargo创建并运行项目</li>
 </ul>
 <p>是时候通过构建更实质性的程序来熟悉写Rust代码了。所以在Chapter 2,我们将构建一个猜数字的游戏程序。如果你更想从学习Rust常用的编程概念开始，请阅读Chapter 3，接着回来看Chapter 2.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_02_00_guessing_game_tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/08/17/Inroducation/ch_02_00_guessing_game_tutorial/" class="post-title-link" itemprop="url">猜测正确后退出</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h5 id="猜测正确后退出"><a href="#猜测正确后退出" class="headerlink" title="猜测正确后退出"></a>猜测正确后退出</h5><p>让我们增加一个break语句，在用户才对时退出游戏：</p>
+<p>src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">       <span class="comment">// --snip--</span></span><br><span class="line">        <span class="keyword">match</span> guess.<span class="title function_ invoke__">cmp</span>(&amp;secret_number) &#123;</span><br><span class="line">            Ordering::Less =&gt; <span class="built_in">println!</span>(<span class="string">&quot;Too small!&quot;</span>),</span><br><span class="line">            Ordering::Greater =&gt; <span class="built_in">println!</span>(<span class="string">&quot;Too big!&quot;</span>),</span><br><span class="line">            Ordering::Equal =&gt; &#123;</span><br><span class="line">                <span class="built_in">println!</span>(<span class="string">&quot;You win!&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过在You win!之后增加一行break;，用户猜对了神秘数字之后会退出循环。退出循环也意味着退出程序，因为循环是main最后一部分。</p>
+<p><strong>处理无效输入</strong></p>
+<p> 为了进一步使得游戏表现更好，而不是当用户输入无效数字就崩溃，需要忽略无效输入，让用户继续猜。可以通过修改guess将String转换为u32那部分代码来实现，如Listing 2-5:</p>
+<p>src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// --snip--</span></span><br><span class="line"></span><br><span class="line">io::<span class="title function_ invoke__">stdin</span>()</span><br><span class="line">    .<span class="title function_ invoke__">read_line</span>(&amp;<span class="keyword">mut</span> guess)</span><br><span class="line">    .<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Failed to read line&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">guess</span>: <span class="type">u32</span> = <span class="keyword">match</span> guess.<span class="title function_ invoke__">trim</span>().<span class="title function_ invoke__">parse</span>() &#123;</span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(num) =&gt; num,</span><br><span class="line">    <span class="title function_ invoke__">Err</span>(_) =&gt; <span class="keyword">continue</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;You guessed: &#123;&#125;&quot;</span>, guess);</span><br><span class="line"></span><br><span class="line"><span class="comment">// --snip--</span></span><br></pre></td></tr></table></figure>
+
+<p>Listing 2-5 Ignoring a non-number guess and asking for another guess instead of crashing the program</p>
+<p>我们将expect调用换成match语句，以从遇到错误就崩溃变为处理错误。需知parse返回一个Result类型，而Result是一个用于Ok或Err成员的枚举。这里使用的match表达式，和之前处理cmp方法返回Ordering时用的一样。</p>
+<p>如果parse不能将字符串转换一个数字，它会返回一个包含更多错误信息的Err。Err值不能匹配第一个match分支的Ok(num)模式，但是会匹配第二个分支Err(_)模式：_是一个通配符值，本例中用来匹配所有的Err值，不管其中有任何信息。所以程序会执行第二个分支的动作，continue 意味着进入loop的下一次循环，请求另一个猜测。这样程序就有效地忽略了parse可能遇到的所有错误！</p>
+<p>现在所有的事情都是我们期待的了，让我们试试：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> cargo run</span><br><span class="line">   Compiling guessing_game v0.<span class="number">1.0</span> (file:///projects/guessing_game)</span><br><span class="line">    Finished dev <span class="function">[<span class="type">unoptimized</span> + <span class="type">debuginfo</span>] <span class="title">target</span></span>(s) <span class="keyword">in</span> <span class="number">4.45</span>s</span><br><span class="line">     Running `target/debug/guessing_game`</span><br><span class="line">Guess the number!</span><br><span class="line">The secret number is: <span class="number">61</span></span><br><span class="line">Please input your guess.</span><br><span class="line"><span class="number">10</span></span><br><span class="line">You guessed: <span class="number">10</span></span><br><span class="line">Too small!</span><br><span class="line">Please input your guess.</span><br><span class="line"><span class="number">99</span></span><br><span class="line">You guessed: <span class="number">99</span></span><br><span class="line">Too big!</span><br><span class="line">Please input your guess.</span><br><span class="line">foo</span><br><span class="line">Please input your guess.</span><br><span class="line"><span class="number">61</span></span><br><span class="line">You guessed: <span class="number">61</span></span><br><span class="line">You win!</span><br></pre></td></tr></table></figure>
+
+<p>牛逼！再有一个小的修改，就能完成猜数字游戏了：还记得程序依然会打印出秘密数字吗？那个是为了便于测试，但是它破坏游戏性。让我们删掉这个打印语句吧。Listing 2-6是最终版本的代码：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> rand::Rng;</span><br><span class="line"><span class="keyword">use</span> std::cmp::Ordering;</span><br><span class="line"><span class="keyword">use</span> std::io;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Guess the number!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">secret_number</span> = rand::<span class="title function_ invoke__">thread_rng</span>().<span class="title function_ invoke__">gen_range</span>(<span class="number">1</span>..<span class="number">101</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">loop</span> &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Please input your guess.&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">guess</span> = <span class="type">String</span>::<span class="title function_ invoke__">new</span>();</span><br><span class="line"></span><br><span class="line">        io::<span class="title function_ invoke__">stdin</span>()</span><br><span class="line">            .<span class="title function_ invoke__">read_line</span>(&amp;<span class="keyword">mut</span> guess)</span><br><span class="line">            .<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Failed to read line&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">guess</span>: <span class="type">u32</span> = <span class="keyword">match</span> guess.<span class="title function_ invoke__">trim</span>().<span class="title function_ invoke__">parse</span>() &#123;</span><br><span class="line">            <span class="title function_ invoke__">Ok</span>(num) =&gt; num,</span><br><span class="line">            <span class="title function_ invoke__">Err</span>(_) =&gt; <span class="keyword">continue</span>,</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;You guessed: &#123;&#125;&quot;</span>, guess);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">match</span> guess.<span class="title function_ invoke__">cmp</span>(&amp;secret_number) &#123;</span><br><span class="line">            Ordering::Less =&gt; <span class="built_in">println!</span>(<span class="string">&quot;Too small!&quot;</span>),</span><br><span class="line">            Ordering::Greater =&gt; <span class="built_in">println!</span>(<span class="string">&quot;Too big!&quot;</span>),</span><br><span class="line">            Ordering::Equal =&gt; &#123;</span><br><span class="line">                <span class="built_in">println!</span>(<span class="string">&quot;You win!&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 2-6 Complete guessing game code</p>
+<p><strong>总结</strong></p>
+<p>至此，你成功地构建了猜数字游戏。恭喜你！</p>
+<p>这个项目是一个通过动手实践，向你介绍了很多Rust新概念：let,match,函数，使用外部crate等等。在接下来的章节中，你将会学习这些概念的细节。第三章介绍大部分程序语言都有的概念，比如变量，数据类型和函数，以及如何在Rust中使用他们。第四章探索所有权(owership)，一个特性，使得Rust与其他语言不同的特性。第五章讨论结构体和方法的语法，第六章介绍枚举如何工作。</p>
 
       
     </div>
