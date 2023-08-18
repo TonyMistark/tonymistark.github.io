@@ -51,4 +51,4 @@ jobs:
         git checkout -b hexo
         git status
         git branch
-        git push --force --quiet "https://$GH_TOKEN@$REPO" hexo:hex
+        git push --force --quiet "https://$GH_TOKEN@$REPO" hexo:hexo
