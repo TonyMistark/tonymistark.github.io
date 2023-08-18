@@ -28,4 +28,19 @@ jobs:
         npm i
         hexo clean
         hexo g
-        hexo deploy
+    - name: Deploy to Github Pages
+      env:
+        GIT_NAME: TonyMistark
+        REPO: TonyMistark/tonymistark.github.io.git
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        cd ./public
+        git init
+        git add .
+        git config --global user.name $GIT_NAME
+        git config --global user.email $GIT_EMAIL
+        git commit -m "Site deployed by GitHub Actions"
+        echo "finishe commit"
+        git status
+        git checkout -b hexo
+        git push --force --quiet "https://$GH_TOKEN@$REPO" hexo:hexo
