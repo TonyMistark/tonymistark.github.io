@@ -148,7 +148,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_04_03_slices/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/18/rust_docs/why/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -162,7 +162,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/08/17/Inroducation/ch_04_03_slices/" class="post-title-link" itemprop="url">总结</a>
+            <a href="/2023/08/18/rust_docs/why/" class="post-title-link" itemprop="url">:来看看AI如何看待：</a>
         </h2>
 
         <div class="post-meta">
@@ -171,8 +171,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
+              <time title="Created: 2023-08-18 10:01:00 / Modified: 10:03:53" itemprop="dateCreated datePublished" datetime="2023-08-18T10:01:00+08:00">2023-08-18</time>
             </span>
 
           
@@ -186,402 +187,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>所有权、借用和slice这些概念让Rust程序在编译时保证内存安全。Rust语言提供了跟其他系统编程语言相同的方式来控制你使用内存，但拥有数据所有者在离开作用域后自动清除其数据的功能意味着你无需额外编写和调试相关的控制代码。</p>
-<p>所有权系统影响了Rust中很多其他部分的工作方式，所以我们还会继续讲到这些概念，这将贯穿本书余下的内容。让我们开始第五章吧，来看看如何将多份数据组合进一个struct中。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_05_00_structs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_05_00_structs/" class="post-title-link" itemprop="url">Using Structs to Structure Related Data</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="Using-Structs-to-Structure-Related-Data"><a href="#Using-Structs-to-Structure-Related-Data" class="headerlink" title="Using Structs to Structure Related Data"></a>Using Structs to Structure Related Data</h4><p>struct or structure 是一个自定义的数据类型，允许你包装和命名多个相关联的值，从而形成一个有意义的组合。如果你熟悉一门面向对象语言，struct就像对象中的数据属性。在本章中，我们会对元组和结构体进行对比和对照。还将演示如何定义和实现实例化结构体，并讨论如何定义关联函数，特别是被称为方法的那种关联函数，以指定与结构体类型相关的行为。你可以在程序中基于结构体和枚举(enum)（在第六章中介绍）创建新类型，以充分利用Rust的编译时类型检查。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_05_01_defining_and_instantiating_structs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_05_01_defining_and_instantiating_structs/" class="post-title-link" itemprop="url">结构体数据的所有权(Ownership of Struct Data)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="结构体数据的所有权-Ownership-of-Struct-Data"><a href="#结构体数据的所有权-Ownership-of-Struct-Data" class="headerlink" title="结构体数据的所有权(Ownership of Struct Data)"></a>结构体数据的所有权(Ownership of Struct Data)</h4><p>在Listing 5-1中的<code>User</code>结构体定义中，我们使用了自身拥有所有权的String类型而不是&amp;str字符串slice类型。这是一个有意为之的选择，因为我们想要这个结构体拥有它所有的数据，为此只要整个结构体是有效的话数据也是有效的。可以使结构体存储被其他对象拥有的数据的引用，不过这么做的话需要用上生命周期(lifetimes)，这是一个第十章会讨论的Rust功能。生命周期确保结构体引用的数据有效性跟结构体本身保持一致。如果你尝试在结构体中存储一个引用而不是指定生命周期将是无效的，比如这样：</p>
-<p>filename: src&#x2F;main.rs</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    active: <span class="type">bool</span>,</span><br><span class="line">    username: &amp;<span class="type">str</span>,</span><br><span class="line">    email: &amp;<span class="type">str</span>,</span><br><span class="line">    sign_in_count: <span class="type">u64</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">user1</span> = User &#123;</span><br><span class="line">        email: <span class="string">&quot;someone@example.com&quot;</span>,</span><br><span class="line">        username: <span class="string">&quot;someusername123&quot;</span>,</span><br><span class="line">        active: <span class="literal">true</span>,</span><br><span class="line">        sign_in_count: <span class="number">1</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>编译器会控诉它需要生命周期标识符：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling structs v0.<span class="number">1.0</span> (file:<span class="comment">///projects/structs)</span></span><br><span class="line">error[E0106]: missing lifetime specifier</span><br><span class="line"> -<span class="punctuation">-&gt;</span> src/main.rs:<span class="number">3</span>:<span class="number">15</span></span><br><span class="line">  |</span><br><span class="line"><span class="number">3</span> |     username: &amp;<span class="type">str</span>,</span><br><span class="line">  |               ^ expected named lifetime parameter</span><br><span class="line">  |</span><br><span class="line">help: consider introducing a named lifetime parameter</span><br><span class="line">  |</span><br><span class="line"><span class="number">1</span> ~ <span class="keyword">struct</span> <span class="title class_">User</span>&lt;<span class="symbol">&#x27;a</span>&gt; &#123;</span><br><span class="line"><span class="number">2</span> |     active: <span class="type">bool</span>,</span><br><span class="line"><span class="number">3</span> ~     username: &amp;<span class="symbol">&#x27;a</span> <span class="type">str</span>,</span><br><span class="line">  |</span><br><span class="line"></span><br><span class="line">error[E0106]: missing lifetime specifier</span><br><span class="line"> -<span class="punctuation">-&gt;</span> src/main.rs:<span class="number">4</span>:<span class="number">12</span></span><br><span class="line">  |</span><br><span class="line"><span class="number">4</span> |     email: &amp;<span class="type">str</span>,</span><br><span class="line">  |            ^ expected named lifetime parameter</span><br><span class="line">  |</span><br><span class="line">help: consider introducing a named lifetime parameter</span><br><span class="line">  |</span><br><span class="line"><span class="number">1</span> ~ <span class="keyword">struct</span> <span class="title class_">User</span>&lt;<span class="symbol">&#x27;a</span>&gt; &#123;</span><br><span class="line"><span class="number">2</span> |     active: <span class="type">bool</span>,</span><br><span class="line"><span class="number">3</span> |     username: &amp;<span class="type">str</span>,</span><br><span class="line"><span class="number">4</span> ~     email: &amp;<span class="symbol">&#x27;a</span> <span class="type">str</span>,</span><br><span class="line">  |</span><br><span class="line"></span><br><span class="line">For more information about this error, <span class="keyword">try</span> `rustc --explain E0106`.</span><br><span class="line">error: could not compile `structs` due to <span class="number">2</span> previous errors=</span><br></pre></td></tr></table></figure>
-
-<p>第十章会讲到如何修复这个问题以便在结构体中存储引用，不过现在，我们使用像String这类拥有所有权的类型来替代&amp;str这样的引用以修正这个错误。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_05_02_example_structs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_05_02_example_structs/" class="post-title-link" itemprop="url">derive(Debug)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>#[derive(Debug)]<br>struct Rectangle {<br>    width: u32,<br>    height: u32,<br>}</p>
-<p>fn main() {<br>    let scale &#x3D; 2;<br>    let rect1 &#x3D; Rectangle {<br>        width: dbg!(30 * scale),<br>        height: 50,<br>    };</p>
-<pre><code>dbg!(&amp;rect1);
-</code></pre>
-<p>}</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">我们可以把`dbg!`放在表达式放在`30 * scale`周围，以为你`dbg!`返回表达式的值的所有权，所以width字段将获得相同的值，就像我们在这里没有`dbg!`调用一样。我们不希望dbg!拥有rect1的所有权，所以我们在下一次调用dbg!时传递一个引用。下面是这个例子的输出结果：</span><br><span class="line"></span><br><span class="line">```rust</span><br><span class="line">$ cargo run</span><br><span class="line">   Compiling rectangles v0.1.0 (file:///projects/rectangles)</span><br><span class="line">    Finished dev [unoptimized + debuginfo] target(s) in 0.61s</span><br><span class="line">     Running `target/debug/rectangles`</span><br><span class="line">[src/main.rs:10] 30 * scale = 60</span><br><span class="line">[src/main.rs:14] &amp;rect1 = Rectangle &#123;</span><br><span class="line">    width: 60,</span><br><span class="line">    height: 50,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们可以看到第一条输出来自src&#x2F;main.rs第10行，我们正在调用表达式<code>30 * scale</code>，其结果值是60(为整数实现的Debug格式化是只打印它们的值)。在src&#x2F;main.rs第14行的dbg!调用输出&amp;rect1的值，即<code>Rectangle</code>类型。<code>dbg!</code>宏确实很有用。</p>
-<p>除了<code>Debug</code>trait，Rust还为我们提供了很多通过derive属性来使用的trait，它们可以为我们的自定义类型增加实用的行为。这些trait和行为被列举在附录C(Appendix C)。第十章会介绍如何通过自定义行为来实现这些trait，同时还有如何创建你自己的trait。除了derive之外，还有很多属性；更多信息见”Rust Reference”的Attribute部分。</p>
-<p>我们的<code>area</code>函数是非常特殊的，它只计算长方形的面积。如果这个行为与<code>Rectangle</code>结构体再结合得更紧密一些就更好了，因为它不能用于其他类型。现在让我们看看如何继续重构这些代码，来将<code>area</code>函数协调进<code>Rectangle</code>类型定义的<code>area</code>方法中。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_05_03_method_syntax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_05_03_method_syntax/" class="post-title-link" itemprop="url">总结(Summary)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="总结-Summary"><a href="#总结-Summary" class="headerlink" title="总结(Summary)"></a>总结(Summary)</h4><p>结构体让你创建自定义的类型在你的domain中。通过使用结构体，你可以将数据关联起来，使得它看起来更加清晰。在impl块内，你可以定义函数并关联你的类型，而且方法是一个很好的关联方式，它让你的结构体有了可以指定它特定行为的能力。</p>
-<p>但是结构体不是唯一的方式来创建自定义类型：让我们转到Rust的枚举(enum)特性来，为你的工具箱再添加一个工具。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_06_00_enums_and_pattern_matching/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_06_00_enums_and_pattern_matching/" class="post-title-link" itemprop="url">Enums and Pattern Matching</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="Enums-and-Pattern-Matching"><a href="#Enums-and-Pattern-Matching" class="headerlink" title="Enums and Pattern Matching"></a>Enums and Pattern Matching</h4><p>本章中，我们讲述枚举(enumerations)，也称作enums。枚举允许你通过列举可能的成员(variants)来定义一个类型。首先，我们会定义并使用一个枚举来展示它是如何连同数据一起编码信息的。接下来，我们会探索一个特别有用的枚举，叫做<code>Option</code>，它代表一个值，要么是某个值要么是什么都不是。然后会讲到<code>match</code>表达式中使用模式匹配，针对不同的枚举值编写相应要执行的代码。然后会介绍<code>if let</code>，另一个简洁方便处理代码中枚举的结构。</p>
-<p>枚举是一个很多语言都有的功能，不过不同语言中其功能各不相同。Rust的枚举与F#，OCaml和Haskell这样的函数式编程语言中的代数数据类型(olgebraic data types)最为相似。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_06_01_defining_an_enum/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_06_01_defining_an_enum/" class="post-title-link" itemprop="url">The Option Enum and Its Advantages Over Null Values</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="The-Option-Enum-and-Its-Advantages-Over-Null-Values"><a href="#The-Option-Enum-and-Its-Advantages-Over-Null-Values" class="headerlink" title="The Option Enum and Its Advantages Over Null Values"></a>The Option Enum and Its Advantages Over Null Values</h3><p>这一部分探索学习<code>Option</code>，另外一个标准库的枚举定义。<code>Option</code>类型编码了非常常见的场景，其中可以是某个值，也可以都不是。</p>
-<p>例如，如果请求一个包含项的列表的第一个值，会得到一个值，如果请求一个空的列表，就什么也不会得到。从类型系统的角度来表达这个概念意思就是编译器需要检查是否处理了所有应该处理的情况，这样就可以避免在其他语言中非常常见的bug.</p>
-<p>编程语言的设计通常考虑的是包含哪些特性，但是你排除的特性也很重要。Rust没有许多其他语言所具有的null特性。<code>Null</code>是一个值，表示什么也没有。在带有null特性的语言中，变量总是可以处于两种状态之一：null 或 not-null.</p>
-<p>Null的发明者Tony Hoare在他2009年的报告”Null Reference: The Billon Dollar Mistake”中这样说：</p>
-<blockquote>
-<p>我称之为十亿美元的错误。当时，我在为一个面向对象语言设计第一个综合性的面向引用的类型系统。我的目标是通过编译器的自动检查来保证所引用的使用都应该是绝对安全的。不过我未能抵抗住引入一个空引用的诱惑，仅仅是因为它是这么的容易实现。这引发了无数错误，漏洞和系统崩溃，在之后的四十多年中造成了十亿美元的苦痛和伤害。</p>
+          <h4 id="来看看AI如何看待："><a href="#来看看AI如何看待：" class="headerlink" title="来看看AI如何看待："></a>来看看AI如何看待：</h4><blockquote>
+<p>根据你的描述,你已经达到了生活物质上很高的满足度,拥有自己的房产,生活质量远超过大多数人。但即便如此,看见别人过得很好,你还是会感到心理难受。这主要还是出于以下几个原因:</p>
+<ol>
+<li>心理比较并不会随着物质生活的提高而消失。人们的社会比较心理往往与生活状态相关不大,更加源自内在的不安全感。所以即便生活质量很高,这种比较心理仍然存在。</li>
+<li>你可能理想化别人拥有的东西。比如羡慕别人拥有的人际关系,职业成就,生活状态等,而忽视了自己已经拥有的很多东西。这也会带来难受的感觉。</li>
+<li>你期望得到的不仅是物质生活。人的内心渴望往往不仅限于物质层面,也包括精神层面,如获得认同,建立亲密关系,实现自我价值等。如果这些方面没有得到满足,也会感到心理上的难受。</li>
+<li>你可能在某些方面感到不满意。尽管生活总体质量很高,但在情感生活,人际交往,事业发展等某一具体方面,你可能还是感到不如意或不足,这也是产生难受心理的原因之一。<br>所以,要解决这个问题,重点不在于提高生活质量,而是要在心理和精神层面获得安定。学会理性看待他人,不必过度羡慕别人所拥有的一切。关注自己的内心真实需求,努力在各个方面获得满足和进步。培养自己独立稳定的心态,增强自我价值感。这些可以有效地帮助你摆脱这种由社会比较所带来的难受情绪。</li>
+</ol>
 </blockquote>
-<p>空值的问题在于，如果你试图将空值用作非空值，会出现某种形式的错误。因为空和非空的属性到处都是，非常容易出现这类错误。</p>
-<p>然而，null试图表达的概念仍然是有用的：null是当前由于某种原因无效或者不存在的值。</p>
-<p>问题不在于概念，而在于具体的实现。因此，Rust没有空值，但它有一个枚举，可以编码值存在或者不存在的概念。这个枚举就是<code>Option&lt;T&gt;</code>，它由标准库定义如下：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Option</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="literal">None</span>,</span><br><span class="line">    <span class="title function_ invoke__">Some</span>(T),</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>Option&lt;T&gt;</code>枚举非常有用，以至于它被包含在relude中；你不需要将它显式地引入作用域。另外，它的成员也是如此（被包含在prelude中），可以不需要<code>Option::</code>前缀来使用<code>Some</code>和<code>None</code>。即便如此<code>Option&lt;T&gt;</code>也仍是常规的枚举，<code>Some&lt;T&gt;</code>和<code>None</code>仍是<code>Option&lt;T&gt;</code>的成员。</p>
-<p><code>&lt;T&gt;</code>语法是我们还没讲到的Rust特性。它是一个泛型参数，在Chapter 10我们将会详细讲解。目前，你需要知道的就是<code>&lt;T&gt;</code>意味着<code>Option</code>枚举的<code>Some</code>成员可以包含任意类型的数据，同事每一个用于<code>T</code>位置的具体类型使得<code>Option&lt;T&gt;</code>整体作为不同的类型。这里是一些包含数字类型和字符串类型<code>Option</code>值的例子：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">some_number</span> = <span class="title function_ invoke__">Some</span>(<span class="number">5</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">some_char</span> = <span class="title function_ invoke__">Some</span>(<span class="string">&#x27;e&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> <span class="variable">absent_number</span>: <span class="type">Option</span>&lt;<span class="type">i32</span>&gt; = <span class="literal">None</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>some_number</code>的类型是<code>Option&lt;i32&gt;</code>。<code>some_char</code>的类型是<code>Option&lt;char&gt;</code>，是不同的类型。因为我们在<code>Some</code>成员中指定了值，Rust可以推断出其类型。对于<code>absent_number</code>，Rust需要我们指定<code>Option</code>整体的类型，因为编译器只通过<code>None</code>值无法推断出<code>Some</code>成员保存的值的类型。这里我们告诉Rust我们需要<code>absent_number</code>的类型是<code>Option&lt;i32&gt;</code>。</p>
-<p>当我们有一个<code>Some</code>值，我们就知道存在一个值，这个值保存在<code>Some</code>中。当我们有一个值<code>None</code>，在某种意义上，它跟空值是有相同的意义：并没有一个有效的值。那么<code>Option&lt;T&gt;</code>为什么就比Null要好呢？</p>
-<p>简单来说，因为<code>Option&lt;T&gt;</code>和<code>T</code>（<code>T</code>可以是任何类型）是不同的类型，编译器不允许像一个肯定有效的值那样使用<code>Option&lt;T&gt;</code>。例如：这段代码不能编译，因为它尝试将<code>Option&lt;i8&gt;</code>与<code>i8</code>相加：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span>: <span class="type">i8</span> = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">y</span>: <span class="type">Option</span>&lt;<span class="type">i8</span>&gt; = <span class="title function_ invoke__">Some</span>(<span class="number">5</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> <span class="variable">sum</span> = x + y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果我们运行这段代码，我们会得到一个错误信息如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling enums v0.1.0 (file:///projects/enums)</span><br><span class="line">error[E0277]: cannot add `Option&lt;i8&gt;` to `i8`</span><br><span class="line"> --&gt; src/main.rs:5:17</span><br><span class="line">  |</span><br><span class="line">5 |     let sum = x + y;</span><br><span class="line">  |                 ^ no implementation for `i8 + Option&lt;i8&gt;`</span><br><span class="line">  |</span><br><span class="line">  = help: the trait `Add&lt;Option&lt;i8&gt;&gt;` is not implemented for `i8`</span><br><span class="line">  = help: the following other types implement trait `Add&lt;Rhs&gt;`:</span><br><span class="line">            &lt;&amp;&#x27;a f32 as Add&lt;f32&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a f64 as Add&lt;f64&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a i128 as Add&lt;i128&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a i16 as Add&lt;i16&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a i32 as Add&lt;i32&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a i64 as Add&lt;i64&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a i8 as Add&lt;i8&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a isize as Add&lt;isize&gt;&gt;</span><br><span class="line">          and 48 others</span><br><span class="line"></span><br><span class="line">For more information about this error, try `rustc --explain E0277`.</span><br><span class="line">error: could not compile `enums` due to previous error</span><br></pre></td></tr></table></figure>
-
-<p>铛!铛!铛!事实上，这个错误意味着Rust不知道如何将<code>i8</code>和<code>Option&lt;i8&gt;</code>相加，因为它们是不同类型。在Rust中，当我们有一个值像<code>i8</code>，编译器将会确保我们总是有一个有效的值。我们可以自信地使用而无需做空检查。只有当使用<code>Option&lt;i8&gt;</code>(或者任何用到的类型)我们需要担心可能没有一个有效值，并且编译器将会确保我们在使用值之前处理了空的情况。</p>
-<p>换句话说，你必须将<code>Option&lt;T&gt;</code>转换成<code>T</code>之后才能对<code>T</code>进行运算。通常这能帮助我们捕获到空值最常见的问题之一：假设某值不为空，但实际上是空的情况。</p>
-<p>消除错误地假设非空值的风险有助于你对代码更有信心。为了有一个可能为空的值，你必须显式地使用<code>Option&lt;T&gt;</code>。然后，在使用该值时，需要显式地处理值为空的情况。任何地方，一个值不是<code>Option&lt;T&gt;</code>类型，你都可以放心地假设他不是null。这是Rust有意为之的设计决定，目的就是限制null的滥用，以增加Rust代码的安全性。</p>
-<p>所以，当你有一个类型为<code>Option&lt;T&gt;</code>的值时，你如何从<code>Some</code>变量中获得<code>T</code>的值呢？<code>Option&lt;T&gt;</code>枚举有大量很有用的方法适用于各种情况；你可以查看它的文档(<a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/option/enum.Option.html)%E3%80%82%E7%86%9F%E6%82%89%60Option">https://doc.rust-lang.org/std/option/enum.Option.html)。熟悉`Option</a><T>&#96;上的方法将对你的Rust之旅很有用哦！</p>
-<p>通常，为了使用<code>Option&lt;T&gt;</code>值，你需要有处理每个变量的代码。你希望一些代码只在具有<code>Some&lt;T&gt;</code>值时运行，并且允许这些代码使用内部的<code>T</code>。你希望如果有个<code>None</code>值时运行一些其他的代码，而且这些代码也没有一个<code>T</code>的有效值。<code>match</code>表达式就是这么一个处理枚举的控制流结构：它会根据枚举的成员运行不同的代码，这些代码可以使用匹配到的值中的数据。</p>
+<p>根据我党的判断，我们现在仍处于社会主义初级阶段，现阶段中国社会的主要矛盾是人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾。也是涵盖了上述矛盾心理内涵的。近些年，特别是改革开放之后，中国高速发展，让一部分人抓住了高速发展的红利，以不匹配自己能力增长的速度拥有了超速增长的财富和资产。即身心发展和财富发展并不平衡，导致了内心不够充盈，格局尚未完全打开，自我定位错乱。矛盾逐渐凸显扭曲就会发生这样莫名奇怪的心理。</p>
+<p>实际上，在深圳这种高度发达，贫富差距巨大的快节奏生活的城市，大部分年轻人都特别焦虑，焦虑的本质就是日益增长的美好生活需要和不平衡不充分的发展之间的矛盾。大部分年轻人都是来自外地十八线小城市或者小县城，或者农村。回不去，留不下随着时间的推移，越来越焦虑。这部分人特别像小资产阶级的表现：</p>
+<blockquote>
+<p>作为劳动者，在思想上倾向于无产阶级，作为私有者，又倾向于资产阶级，极易受资产阶级思想的影响。因此，在反对封建主义的斗争中既具有革命性，同时也存在政治上的动摇性、斗争中的软弱性和革命的不彻底性。</p>
+</blockquote>
+<p>让我想起了抓猴子的故事里伸手进树洞紧紧抓住坚果，即使猎人来了也舍不得放手。这个猴子是我们每个人。</p>
+<p>对于这种外因短时间无法改变的问题，我们只能改变内因了。看看AI又会给出什么样的建议呢？</p>
+<blockquote>
+<p>这里有些简单实用的建议可以帮助你摆脱由社会比较带来的难受心理:</p>
+<ol>
+<li>转移注意力。当你开始羡慕别人或感到自卑时,立即转移注意力,不要过多聚焦在别人身上。可以换个环境,做点运动,转而关注自己喜欢的事物。这可以有效地改变心情。</li>
+<li>记录自己的收获。时常记录自己生活中已经实现的小成就和收获,提醒自己生活的美好之处。这可以建立信心,也让你意识到自己已经拥有很多。</li>
+<li>限制社交媒体使用。社交媒体上人们主要分享生活的美好时刻,这会助长羡慕心理。适当限制使用社交媒体,关注生活中真实的一面。</li>
+<li>珍惜你所拥有的。时常想想你已经拥有但当作理所当然的东西,会让你觉得很满足和幸运。这可以避免过度关注别人拥有的。</li>
+<li>关注自己的需求。理解自己真正想要什么,并努力实现,这可以让你没有时间和精力过度关注别人,也会让你感到人生有目标和意义。</li>
+<li>施比受更有福。当你羡慕别人时,想想你能为别人带来什么好处。关注别人的需求,提供帮助,这可以让你转移注意力,也会带来成就感。</li>
+<li>培养内在安定。通过冥想,听音乐,上瑜伽课等方式,培养安定的心态。当内心足够安定,外界的比较就不会那么轻易影响你。<br>这些实用的方法,帮助调节心态,关注自我,减少对他人生活的过度比较,可以有效地让你摆脱社会比较带来的难受情绪。需要时间去实践,但效果会非常显著。</li>
+</ol>
+</blockquote>
+<p>这些方法对我都很有启发，对与解决自身的焦虑也很受用。生活在快节奏的深圳，周围人都是狠角色，焦虑对每个人来说是常态。人生的各个阶段也会有不同的焦虑，只有学会面对焦虑，利用焦虑，焦虑也可以是人类进步的助推器。加油吧，少年郎！</p>
 
       
     </div>
@@ -601,7 +235,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_06_02_match/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/18/rust_docs/ch_09_02_recoverable_errors_with_result/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -615,7 +249,129 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/08/17/Inroducation/ch_06_02_match/" class="post-title-link" itemprop="url">通用模式和_占位符(Catch-all Patterns and the _ Placeholder)</a>
+            <a href="/2023/08/18/rust_docs/ch_09_02_recoverable_errors_with_result/" class="post-title-link" itemprop="url">Ch 09.02:带有结果的可恢复错误</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-08-18 09:51:00 / Modified: 10:03:53" itemprop="dateCreated datePublished" datetime="2023-08-18T09:51:00+08:00">2023-08-18</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="带有结果的可恢复错误"><a href="#带有结果的可恢复错误" class="headerlink" title="带有结果的可恢复错误"></a>带有结果的可恢复错误</h3><p>大多数错误并不严重到需要程序完全停止。有时，当一个函数失败时，其原因可以很容易地解释和响应。例如，如果您尝试打开一个文件，但由于该文件不存在而导致该操作失败，那么您可能希望创建该文件，而不是终止该进程。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/18/rust_docs/ch_07_04_bringing_paths_into_scope_with_the_use_key_word/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/08/18/rust_docs/ch_07_04_bringing_paths_into_scope_with_the_use_key_word/" class="post-title-link" itemprop="url">Ch 07.04:全局操作符(The Glob Operator)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-08-18 09:25:00 / Modified: 10:03:53" itemprop="dateCreated datePublished" datetime="2023-08-18T09:25:00+08:00">2023-08-18</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="全局操作符-The-Glob-Operator"><a href="#全局操作符-The-Glob-Operator" class="headerlink" title="全局操作符(The Glob Operator)"></a>全局操作符(The Glob Operator)</h4><p>如果想将一个路径下所有公有项引入作用域，可以使用指定路径后跟<code>*</code>，glob操作符:</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::collections::*;</span><br></pre></td></tr></table></figure>
+
+<p>这个<code>use</code>语句会将<code>std::collections</code>中定义的所有的公有项引入到当前作用域。使用全局操作符时一定要多加小心！全局操作符会使得我们难以推导作用域中有什么名称和它们是定义在何处。</p>
+<p>全局操作符经常用于测试模块<code>tests</code>中，这时会将所有内容引入作用域；我们将在第十一章”How to Write Tests”部分中讲解。全局操作符有时也用于preclude模式；查看”标准库文档”(<a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/prelude/index.html#other-preludes)%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E7%BB%86%E8%8A%82%E3%80%82">https://doc.rust-lang.org/std/prelude/index.html#other-preludes)了解更多细节。</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/about/me/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/08/17/about/me/" class="post-title-link" itemprop="url">Untitled</a>
         </h2>
 
         <div class="post-meta">
@@ -639,21 +395,97 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="通用模式和-占位符-Catch-all-Patterns-and-the-Placeholder"><a href="#通用模式和-占位符-Catch-all-Patterns-and-the-Placeholder" class="headerlink" title="通用模式和_占位符(Catch-all Patterns and the _ Placeholder)"></a>通用模式和_占位符(Catch-all Patterns and the _ Placeholder)</h4><p>使用枚举，我们希望对一些特定的值采取特殊操作，而对其他的值采用默认操作。想象我们正在玩一个游戏，如果你掷出一个骰子的值为3，角色不会移动，而是会得到一顶新奇的帽子。如果你掷出了7，你的角色将会失去新奇的帽子。对于其他的数值，你的角色会在棋盘上移动想的格子。这是一个实现了上述逻辑的<code>match</code>。骰子的结果是硬编码而不是一个随机值，其他的逻辑部分使用了没有函数体的函数来表示，实现它们超出了本例的范围：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dice_roll</span> = <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">match</span> dice_roll &#123;</span><br><span class="line">        <span class="number">3</span> =&gt; <span class="title function_ invoke__">add_fancy_hat</span>(),</span><br><span class="line">        <span class="number">7</span> =&gt; <span class="title function_ invoke__">remove_fancy_hat</span>(),</span><br><span class="line">        other =&gt; <span class="title function_ invoke__">move_player</span>(other),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">add_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">remove_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">move_player</span>(num_spaces: <span class="type">u8</span>) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>对于前两个分支，匹配模式是字面值3和7，最后一个分支则涵盖了所有其他可能性的值，模式使我们命名为<code>other</code>的一个变量。<code>other</code>分支的代码通过将其传递给<code>move_player</code>函数来使用这个变量。</p>
-<p>即使我们没有列出<code>u8</code>所有可能的值，这段代码依然能够编译，因为最后一个模式将匹配所有未被特殊列出的值。这种通配模式满足了<code>match</code>必须穷尽的要求。请注意，我们必须将通过通配分支放在最后，因为模式是按顺序匹配的。如果哦我们在通配分支后添加其他分支，Rust将会警告我们，因为此后的分支永远不会被匹配到。</p>
-<p>Rust还提供了一个模式，当我们不想使用通配模式的值时，请使用<code>_</code>，这是一个特殊模式，可以匹配任意值而不用绑定到该值。这告诉Rust我们不会使用这个值，所以Rust也不会警告我们存在未使用的变量。</p>
-<p>让我们改变游戏规则：现在，当你掷出的值不是3或7的时候，你必须再次掷出。这种情况下我们不需要使用这个值，所以我们改动代码使用<code>_</code>来替代变量<code>other</code>：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dice_roll</span> = <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">match</span> dice_roll &#123;</span><br><span class="line">        <span class="number">3</span> =&gt; <span class="title function_ invoke__">add_fancy_hat</span>(),</span><br><span class="line">        <span class="number">7</span> =&gt; <span class="title function_ invoke__">remove_fancy_hat</span>(),</span><br><span class="line">        _ =&gt; <span class="title function_ invoke__">reroll</span>(),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">add_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">remove_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">reroll</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个例子也满足穷举性要求，因为我们在最后一个分支中明确地忽略了其他的值。我们没有忘记任何东西。</p>
-<p>最后，我们再次改动游戏规则，如果投掷出3或者7以外的值，你的回合将无事发生。我们可以使用单元值(unit value：就是空的tuple，在”The Tuple Type”部分有提及)作为<code>_</code>分支的代码：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dice_roll</span> = <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">match</span> dice_roll &#123;</span><br><span class="line">        <span class="number">3</span> =&gt; <span class="title function_ invoke__">add_fancy_hat</span>(),</span><br><span class="line">        <span class="number">7</span> =&gt; <span class="title function_ invoke__">remove_fancy_hat</span>(),</span><br><span class="line">        _ =&gt; (),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">add_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">remove_fancy_hat</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这里，我们明确告诉Rust我们不会使用与前面模式不匹配的值，并且这种情况下我们不想运行任何代码。</p>
-<p>更详细的模式匹配相关我们将会在Chapter 18进行讲解。目前，我们继续讨论<code>if let</code>语法，这在<code>match</code>表达式有点冗长的情况下比较有用。</p>
+          <h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><ul>
+<li>主页：<a target="_blank" rel="noopener" href="http://www.ablog.top/">http://www.ablog.top</a></li>
+</ul>
+<p>计算机专业毕业，9 年 python  后端开发经验。</p>
+<p>弥超&#x2F;男&#x2F;1990</p>
+<p>手机：15999690657</p>
+<p>Email：<a href="mailto:&#116;&#111;&#x6e;&#121;&#95;&#109;&#x69;&#x73;&#x74;&#97;&#114;&#107;&#64;&#49;&#x36;&#51;&#46;&#99;&#111;&#x6d;">&#116;&#111;&#x6e;&#121;&#95;&#109;&#x69;&#x73;&#x74;&#97;&#114;&#107;&#64;&#49;&#x36;&#51;&#46;&#99;&#111;&#x6d;</a></p>
+<p>QQ：1135223420</p>
+<p>本科&#x2F;江西师范大学 计算机信息工程学院 计算机科学与技术专业</p>
+<p>博客： <a target="_blank" rel="noopener" href="https://my.oschina.net/michao/blog">https://my.oschina.net/michao/blog</a></p>
+<p>Github： <a target="_blank" rel="noopener" href="https://github.com/TonyMistark">https://github.com/TonyMistark</a></p>
+<p>期望职位：Python后端开发工程师</p>
+<p>期望城市：深圳</p>
+<h3 id="综合技能"><a href="#综合技能" class="headerlink" title="综合技能"></a>综合技能</h3><table>
+<thead>
+<tr>
+<th align="right">名称</th>
+<th align="left">熟悉程度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">Python</td>
+<td align="left">★★★★☆</td>
+</tr>
+<tr>
+<td align="right">Django</td>
+<td align="left">★★★★☆</td>
+</tr>
+<tr>
+<td align="right">Tornado</td>
+<td align="left">★★★☆☆</td>
+</tr>
+<tr>
+<td align="right">Mysql</td>
+<td align="left">★★★☆☆</td>
+</tr>
+<tr>
+<td align="right">Redis</td>
+<td align="left">★★★☆☆</td>
+</tr>
+<tr>
+<td align="right">Linux</td>
+<td align="left">★★★☆☆</td>
+</tr>
+<tr>
+<td align="right">C</td>
+<td align="left">★★★☆☆</td>
+</tr>
+<tr>
+<td align="right">HTML</td>
+<td align="left">★★★☆☆</td>
+</tr>
+<tr>
+<td align="right">Javascript</td>
+<td align="left">★★☆☆☆</td>
+</tr>
+<tr>
+<td align="right">CSS</td>
+<td align="left">★★☆☆☆</td>
+</tr>
+</tbody></table>
+<h3 id="工作经历"><a href="#工作经历" class="headerlink" title="工作经历"></a>工作经历</h3><h4 id="深圳科诗特软件有限责任公司-2014-3-31-2015-10-15"><a href="#深圳科诗特软件有限责任公司-2014-3-31-2015-10-15" class="headerlink" title="深圳科诗特软件有限责任公司  2014.3.31-2015.10.15"></a>深圳科诗特软件有限责任公司  2014.3.31-2015.10.15</h4><ul>
+<li>大型多人在线游戏（MMOG）项目： 基于BIgWord+Python, 负责整个游戏GUI逻辑实现，<br>部分模型技能动作表现实现。工作期间多次获得月优秀员工以及相应奖励。2012年立项预计<br>2017年初上线。</li>
+</ul>
+<h4 id="深圳-美啦-2015-10-27-至今"><a href="#深圳-美啦-2015-10-27-至今" class="headerlink" title="深圳 美啦 2015.10.27-至今"></a>深圳 美啦 2015.10.27-至今</h4><ul>
+<li>wechat(微信小程序)：相对于美啦APP的一个轻量级产品，具备对美啦海量产品信息的搜<br>索查看，以及每个产品的详尽信息的展示评论功能。负责小程序的部分页面的勾勒，以及大<br>部分后端接口的设计。</li>
+<li>admin项目：基于Django框架依赖超过40个第三方库，功能已趋于完善，基本满足现有<br>所有需求。现负责大部分运营管理后台基本业务设计开发，以及维护，每周会划出固定时间<br>对项目进行逐步性能优化重构，以加强管理后台更高的可用性。减少运营妹子们的痛苦，<br>是我等最大的快乐:)</li>
+<li>app项目：基于tornado提供app请求接口，主要负责现有接口的优化以满足需求变更，<br>新业务接口设计等，独立完成过对于用户地址管理数据的迁移，以及相关底层逻辑调用的<br>封装，负责的模块有“我的”，“标签聚合页”，“优惠券”，“活动”，“标签”等相关内容的<br>接口设计。</li>
+<li>web项目：基于tornado提供web服务，负责过地址管理h5关页面的编写以及美币商城、<br>免费试用，相以及相关接口的设计。</li>
+<li>server项目：提供RPC服务（基于thrift协议涉及平台C++&#x2F;Java&#x2F;Python），对于<br>admin&#x2F;app&#x2F;web所涉及的相对独立的业务数据服务提供服务。负责模块为产品库相关数<br>据的PRC服务的提供。</li>
+<li>logic项目：对于项目所涉及的数据存储数据表的设计，RPC服务的封装，通用业务逻<br>辑封装。第三方服务接口的封装。负责标签，地址管理，标签，话题，产品等相关调用<br>的封装。</li>
+</ul>
+<h3 id="自我描述"><a href="#自我描述" class="headerlink" title="自我描述"></a>自我描述</h3><ul>
+<li>工作热情高涨，善于并乐沟通解决问题</li>
+<li>有责任心，能担当，抗压能力棒</li>
+<li>更看重与团队的技术氛围，希望和有上进心有热情的年轻团队并肩做有技术追求的事情</li>
+<li>生命在于折腾，喜欢挑战</li>
+</ul>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><ul>
+<li>版本管理：Git&#x2F;SVN</li>
+<li>开发平台：Ubuntu&#x2F;Mac</li>
+<li>编辑器：PyCharm&#x2F;Vim&#x2F;Sublime&#x2F;Emacs</li>
+<li><a target="_blank" rel="noopener" href="http://25.io/mou/">Mou</a> Markdown 编辑器</li>
+<li><a target="_blank" rel="noopener" href="http://kapeli.com/dash">Dash</a> 全语言文档手册速查</li>
+<li><a target="_blank" rel="noopener" href="http://ohmyz.sh/">oh-my-zsh</a>	配合上iTerm2, 简直就是最强组合</li>
+<li><a target="_blank" rel="noopener" href="http://www.sublimetext.com/">Sublime Text</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.sequelpro.com/">Sequel Pro MySQL</a> 管理工具</li>
+<li><a target="_blank" rel="noopener" href="http://redisdesktop.com/">Redis Desktop Manager</a> Cross-platform open source Redis DB management tool</li>
+<li><a target="_blank" rel="noopener" href="http://www.charlesproxy.com/">Charles</a>	抓包代理调试工具、类 Fiddler<br>rm open source Redis DB management tool</li>
+<li><a target="_blank" rel="noopener" href="http://www.charlesproxy.com/">Charles</a>	抓包代理调试工具、类 Fiddler<br>�类 Fiddler</li>
+</ul>
 
       
     </div>
@@ -673,7 +505,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_06_03_if_let/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/Rust">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -687,7 +519,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/08/17/Inroducation/ch_06_03_if_let/" class="post-title-link" itemprop="url">总结</a>
+            <a href="/Rust" class="post-title-link" itemprop="url">Introducation</a>
         </h2>
 
         <div class="post-meta">
@@ -699,6 +531,72 @@
 
               <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
             </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <pre><code>---
+</code></pre>
+<h2 id="title-Inroducationdate-2023-08-17-14-40-49"><a href="#title-Inroducationdate-2023-08-17-14-40-49" class="headerlink" title="title: Inroducationdate: 2023-08-17 14:40:49"></a>title: Inroducation<br>date: 2023-08-17 14:40:49</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/06/02/rust_docs/ch_06_03_if_let/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/06/02/rust_docs/ch_06_03_if_let/" class="post-title-link" itemprop="url">Ch 06.03:总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-06-02 10:43:00" itemprop="dateCreated datePublished" datetime="2023-06-02T10:43:00+08:00">2023-06-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-18 10:03:53" itemprop="dateModified" datetime="2023-08-18T10:03:53+08:00">2023-08-18</time>
+              </span>
 
           
 
@@ -733,7 +631,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_07_00_managing_growing_projects_with_packages_crates_and_modules/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_00_managing_growing_projects_with_packages_crates_and_modules/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -747,7 +645,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/08/17/Inroducation/ch_07_00_managing_growing_projects_with_packages_crates_and_modules/" class="post-title-link" itemprop="url">使用包、Crate和模块管理不断增长的项目</a>
+            <a href="/2023/05/18/rust_docs/ch_07_00_managing_growing_projects_with_packages_crates_and_modules/" class="post-title-link" itemprop="url">Ch 07.00:使用包、Crate和模块管理不断增长的项目</a>
         </h2>
 
         <div class="post-meta">
@@ -757,8 +655,15 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
+              <time title="Created: 2023-05-18 10:18:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:18:00+08:00">2023-05-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-18 10:03:53" itemprop="dateModified" datetime="2023-08-18T10:03:53+08:00">2023-08-18</time>
+              </span>
 
           
 
@@ -783,6 +688,229 @@
 <li>路径(path)：一个命名例如结构体，函数或模块等项的方式。</li>
 </ul>
 <p>在本章，我们将涵盖所有这些特性，讨论他们怎样相互作用，并解释如何使用他们管理作用域。最后，你应该对模块系统有一个坚实的理解，并能够像专业人士一样使用作用域！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_01_packages_and_crates/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/18/rust_docs/ch_07_01_packages_and_crates/" class="post-title-link" itemprop="url">Ch 07.01:包和Crates</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-18 10:18:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:18:00+08:00">2023-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-18 10:03:53" itemprop="dateModified" datetime="2023-08-18T10:03:53+08:00">2023-08-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="包和Crates"><a href="#包和Crates" class="headerlink" title="包和Crates"></a>包和Crates</h2><p>模块系统的第一部分我们将介绍包和crate。</p>
+<p>crate是Rust编译时最小的代码单位。如果你用<code>rustc</code>而不是<code>cargo</code>来编译一个文件(第一章我们这么做)，编译器还是会将那个文件认作一个crate。crate可以包含模块，模块可以定义在其他文件，然后和crate一起编译，我们会在接下来的章节中遇到。</p>
+<p>crate有两种形式：二进制项和库。二进制crate可以被编译为可执行程序，比如一个命令行程序或者一个服务器。它们必须有一个<code>main</code>函数来定义当程序被执行的时候所需要做的事情。到目前为止，我们所创建的crate都是二进制crate。</p>
+<p>库(Library crates) 没有<code>main</code>函数，而且它们不会编译成可执行文件。相反，它们定义了旨在与多个项目共享的功能。例如，我们在第二章用过的<code>rand</code>函数，用来生成随机数。大多数的Rust开发者说的crate指的都是库，这与其他变成语言中的library概念一致。</p>
+<p>crate root是一个资源文件，Rust编译器以它为起始点，并组成crate的根模块(我们将在”Defining Modules to Control Scope and Privacy” 部分深度解析)。</p>
+<p>包(package)是提供一系列功能的一个或者多个crate。一个包会包含Cargo.toml文件，阐述如何去创建这些crates。Cargo就是一个包含构建你代码的二进制项的包。Cargo也包含这些二进制项所依赖的库。其他项目也能用Cargo库来实现与Cargo命令行程序一样的逻辑。</p>
+<p>包可以包含很多二进制(binary) crate，但是最多只能有一个库(library) crate。包无论是一个库(library crate)还是一个二进制库(binary crate)， 至少要包含一个library crate。</p>
+<p>让我们来看看创建包的时候会发生什么。首先，我们输入命令<code>cargo new</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">cargo new my-project</span></span><br><span class="line">     Created binary (application) `my-project` package</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> my-project</span></span><br><span class="line">Cargo.toml</span><br><span class="line">src</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> my-project/src</span></span><br><span class="line">main.rs</span><br></pre></td></tr></table></figure>
+
+<p>运行<code>cargo new</code>之后，我们使用<code>ls</code>查看Cargo创建了什么，在这个项目目录里，Cargo会给我们创建一个Cargo.toml文件，这就是一个包(package)。这里也有一个src目录包含main.rs文件。用编辑器打开Cargo.toml，并且文件内容里面没有提及src&#x2F;main.rs。因为Cargo遵循的一个约定：src&#x2F;main.rs就是一个与包同名的二进制crate的crate根。同样地，Cargo知道如果包目录中包含src&#x2F;lib.rs，则包带有与其同名的库(library) crate。crate根文件将由Cargo传递给<code>rustc</code>来构建库(library)或者二进制(binary)。</p>
+<p>这里，我们有一个只包含src&#x2F;main.rs的包，意味着它只含有一个名为<code>my-project</code>的二进制crate。如果一个包同时含有src&#x2F;main.rs和src&#x2F;lib.rs，则它有两个crate：一个二进制(binary)的和一个库(library)，并且名字都与包相同。通过将文件放在src&#x2F;bin目录下，一个包可以拥有多个二进制crate：每个src&#x2F;bin下的文件都会被编译成一个独立的二进制crate。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_02_defining_modules_to_control_scope_and_privacy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/18/rust_docs/ch_07_02_defining_modules_to_control_scope_and_privacy/" class="post-title-link" itemprop="url">Ch 07.02:在模块中对相关代码进行分组(Grouping Related Code in Modules)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-18 10:18:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:18:00+08:00">2023-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-18 10:03:53" itemprop="dateModified" datetime="2023-08-18T10:03:53+08:00">2023-08-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="在模块中对相关代码进行分组-Grouping-Related-Code-in-Modules"><a href="#在模块中对相关代码进行分组-Grouping-Related-Code-in-Modules" class="headerlink" title="在模块中对相关代码进行分组(Grouping Related Code in Modules)"></a>在模块中对相关代码进行分组(Grouping Related Code in Modules)</h4><p>模块让我们在crate中组织代码，以提高可读性和易于重用。模块还允许我们控制items的私有性，因为在module中的代码默认是私有的。Private items是内部实现的细节不对外使用。我们可以选择将模块以及其中的items设置为公共的，这样，外部代码就可以使用并依赖于它们。</p>
+<p>例如，让我们编写一个提供餐厅服务功能的library crate。我们将会定义函数的签名，但是函数的主题留空，集中于代码的组织，而不是实现一个餐馆。</p>
+<p>在餐厅业中，餐馆的某些部分被称为前台(front of house)，其他的部分称为后台(back of house)。前台是顾客所在的空间；这包括主座的顾客的位置，服务员接单和付款，以及调酒师调酒的地方。后台是主厨和厨师们在厨房，洗碗机清理，经历做行政工作。</p>
+<p>这样构建我们的crate，我们可以将这些功能组织成嵌套的模块。创建一个新的库(library)命名为<code>restaurant</code>，通过命令<code>cargo new restaurant --lib</code>。输入如下Listing 7-1代码到src&#x2F;lib.rs来定义一些模块和函数签名。这里是前台部分：</p>
+<p>src&#x2F;lib.rs</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> front_of_house &#123;</span><br><span class="line">    <span class="keyword">mod</span> hosting &#123;</span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">add_to_waitlist</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">seat_at_table</span>() &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">mod</span> serving &#123;</span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">take_order</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">serve_order</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">take_payment</span>() &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 7-1: A <code>front_of_house</code>module containing other modules that then contain functions</p>
+<p>我们用<code>mod</code>关键字定义一个模块(在上面的例子中定义了<code>front_of_house</code>模块)。并用花括号包围模块的主体。在模块内，我们还可以定义其他模块，就像本例子中的<code>hosting</code>和<code>serving</code>模块。模块还可以hold一些定义的其他items，例如structs, enums, constants, traits, 以及Listing 7-1中的函数。</p>
+<p>通过使用模块，我们可以将相关的定义分组到一起，并指出他们为什么相关。程序设计者可以通过使用这段代码，更加容易找到他们想要的定义，因为他们可以基于分组来对代码进行导航，而不需要阅读所有的定义。程序设计者向这段代码中添加一个新功能时，他们也会知道代码应该放置在何处，可以保持程序的组织性。</p>
+<p>在前面我们提到了，<code>src/main.rs</code>和<code>src/lib.rs</code>叫做crate根。之所以这么叫它们是因为这两个文件中的任何一个内容都在crate模块结构的根组成了一个名为crate的模块，该结构被称为模块树(module tree)。</p>
+<p>Listing 7-2 展示了示例Listing 7-1中的模块树(modules tree)的结构。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">crate</span></span><br><span class="line"> └── front_of_house</span><br><span class="line">     ├── hosting</span><br><span class="line">     │   ├── add_to_waitlist</span><br><span class="line">     │   └── seat_at_table</span><br><span class="line">     └── serving</span><br><span class="line">         ├── take_order</span><br><span class="line">         ├── serve_order</span><br><span class="line">         └── take_payment</span><br></pre></td></tr></table></figure>
+
+<p>Listing 7-2: The module tree for the code in Listing 7-1</p>
+<p>这个模块树展示了一些模块内嵌到另一个模块；例如，<code>hosting</code>内嵌在<code>front_of_house</code>之中。这个树结构还展示了一些模块是互为兄弟(siblings)的，这意味着它们定义在同一模块中(<code>hosting</code>和<code>serving</code>被一起定义在<code>front_of_house</code>中)。继续沿用家庭关系的比喻，如果一个模块A被包含在模块B中，我们将模块A称为模块B的子模块，B模块为A的父模块。注意，整个模块树都植根于隐式模块名为<code>crate</code>之下。</p>
+<p>模块树可能会让你想起计算机上的文件系统的目录树；这是一个非常恰当的比较！就像文件系统中的目录一样，你用模块来组织你的代码。就像文件目录中的文件，我们需要一个方式来找到我们的模块(modules)。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_05_separating_modules_into_different_files/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/18/rust_docs/ch_07_05_separating_modules_into_different_files/" class="post-title-link" itemprop="url">Ch 07.05:总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-18 10:18:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:18:00+08:00">2023-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-18 10:03:53" itemprop="dateModified" datetime="2023-08-18T10:03:53+08:00">2023-08-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>Rust提供了将包分成多个crate，将crate分成模块，以及通过指定绝对或者相对路径从一个模块引用另一个模块中定义的项的方式。你可以指定绝对路径或者相对路径。这个路径可以通过<code>use</code>声明引入到作用域，所以你可以在多次使用时可以使用更短的路径。模块定义的代码默认是私有的，不过可以选择增加<code>pub</code>关键字使其定义为公有。</p>
+<p>接下来，我们来看一些标准库提供的集合数据类型，你可以利用它们写出更漂亮整洁的代码。</p>
 
       
     </div>
@@ -867,7 +995,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

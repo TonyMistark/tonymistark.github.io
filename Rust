@@ -209,12 +209,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/08/17/Inroducation/why/" rel="prev" title="来看看AI如何看待：">
-      <i class="fa fa-chevron-left"></i> 来看看AI如何看待：
+    <a href="/2023/06/02/rust_docs/ch_06_03_if_let/" rel="prev" title="Ch 06.03:总结">
+      <i class="fa fa-chevron-left"></i> Ch 06.03:总结
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/08/17/Inroducation/ch_09_02/" rel="next" title="使用`panic!`的backtrace">
-      使用`panic!`的backtrace <i class="fa fa-chevron-right"></i>
+    <a href="/2023/08/17/about/me/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -288,7 +288,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

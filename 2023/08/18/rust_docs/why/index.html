@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="来看看AI如何看待： 根据你的描述,你已经达到了生活物质上很高的满足度,拥有自己的房产,生活质量远超过大多数人。但即便如此,看见别人过得很好,你还是会感到心理难受。这主要还是出于以下几个原因:  心理比较并不会随着物质生活的提高而消失。人们的社会比较心理往往与生活状态相关不大,更加源自内在的不安全感。所以即便生活质量很高,这种比较心理仍然存在。 你可能理想化别人拥有的东西。比如羡慕别人拥有的人际关">
+<meta property="og:type" content="article">
+<meta property="og:title" content=":来看看AI如何看待：">
+<meta property="og:url" content="https://tonymistark.github.io/2023/08/18/rust_docs/why/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="来看看AI如何看待： 根据你的描述,你已经达到了生活物质上很高的满足度,拥有自己的房产,生活质量远超过大多数人。但即便如此,看见别人过得很好,你还是会感到心理难受。这主要还是出于以下几个原因:  心理比较并不会随着物质生活的提高而消失。人们的社会比较心理往往与生活状态相关不大,更加源自内在的不安全感。所以即便生活质量很高,这种比较心理仍然存在。 你可能理想化别人拥有的东西。比如羡慕别人拥有的人际关">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-08-18T02:01:00.000Z">
+<meta property="article:modified_time" content="2023-08-18T02:03:53.432Z">
+<meta property="article:author" content="Ice">
+<meta property="article:tag" content="Rust">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://tonymistark.github.io/2023/08/18/rust_docs/why/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>:来看看AI如何看待： | BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">用心记录思想</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/18/rust_docs/why/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          :来看看AI如何看待：
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-08-18 10:01:00 / Modified: 10:03:53" itemprop="dateCreated datePublished" datetime="2023-08-18T10:01:00+08:00">2023-08-18</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="来看看AI如何看待："><a href="#来看看AI如何看待：" class="headerlink" title="来看看AI如何看待："></a>来看看AI如何看待：</h4><blockquote>
+<p>根据你的描述,你已经达到了生活物质上很高的满足度,拥有自己的房产,生活质量远超过大多数人。但即便如此,看见别人过得很好,你还是会感到心理难受。这主要还是出于以下几个原因:</p>
+<ol>
+<li>心理比较并不会随着物质生活的提高而消失。人们的社会比较心理往往与生活状态相关不大,更加源自内在的不安全感。所以即便生活质量很高,这种比较心理仍然存在。</li>
+<li>你可能理想化别人拥有的东西。比如羡慕别人拥有的人际关系,职业成就,生活状态等,而忽视了自己已经拥有的很多东西。这也会带来难受的感觉。</li>
+<li>你期望得到的不仅是物质生活。人的内心渴望往往不仅限于物质层面,也包括精神层面,如获得认同,建立亲密关系,实现自我价值等。如果这些方面没有得到满足,也会感到心理上的难受。</li>
+<li>你可能在某些方面感到不满意。尽管生活总体质量很高,但在情感生活,人际交往,事业发展等某一具体方面,你可能还是感到不如意或不足,这也是产生难受心理的原因之一。<br>所以,要解决这个问题,重点不在于提高生活质量,而是要在心理和精神层面获得安定。学会理性看待他人,不必过度羡慕别人所拥有的一切。关注自己的内心真实需求,努力在各个方面获得满足和进步。培养自己独立稳定的心态,增强自我价值感。这些可以有效地帮助你摆脱这种由社会比较所带来的难受情绪。</li>
+</ol>
+</blockquote>
+<p>根据我党的判断，我们现在仍处于社会主义初级阶段，现阶段中国社会的主要矛盾是人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾。也是涵盖了上述矛盾心理内涵的。近些年，特别是改革开放之后，中国高速发展，让一部分人抓住了高速发展的红利，以不匹配自己能力增长的速度拥有了超速增长的财富和资产。即身心发展和财富发展并不平衡，导致了内心不够充盈，格局尚未完全打开，自我定位错乱。矛盾逐渐凸显扭曲就会发生这样莫名奇怪的心理。</p>
+<p>实际上，在深圳这种高度发达，贫富差距巨大的快节奏生活的城市，大部分年轻人都特别焦虑，焦虑的本质就是日益增长的美好生活需要和不平衡不充分的发展之间的矛盾。大部分年轻人都是来自外地十八线小城市或者小县城，或者农村。回不去，留不下随着时间的推移，越来越焦虑。这部分人特别像小资产阶级的表现：</p>
+<blockquote>
+<p>作为劳动者，在思想上倾向于无产阶级，作为私有者，又倾向于资产阶级，极易受资产阶级思想的影响。因此，在反对封建主义的斗争中既具有革命性，同时也存在政治上的动摇性、斗争中的软弱性和革命的不彻底性。</p>
+</blockquote>
+<p>让我想起了抓猴子的故事里伸手进树洞紧紧抓住坚果，即使猎人来了也舍不得放手。这个猴子是我们每个人。</p>
+<p>对于这种外因短时间无法改变的问题，我们只能改变内因了。看看AI又会给出什么样的建议呢？</p>
+<blockquote>
+<p>这里有些简单实用的建议可以帮助你摆脱由社会比较带来的难受心理:</p>
+<ol>
+<li>转移注意力。当你开始羡慕别人或感到自卑时,立即转移注意力,不要过多聚焦在别人身上。可以换个环境,做点运动,转而关注自己喜欢的事物。这可以有效地改变心情。</li>
+<li>记录自己的收获。时常记录自己生活中已经实现的小成就和收获,提醒自己生活的美好之处。这可以建立信心,也让你意识到自己已经拥有很多。</li>
+<li>限制社交媒体使用。社交媒体上人们主要分享生活的美好时刻,这会助长羡慕心理。适当限制使用社交媒体,关注生活中真实的一面。</li>
+<li>珍惜你所拥有的。时常想想你已经拥有但当作理所当然的东西,会让你觉得很满足和幸运。这可以避免过度关注别人拥有的。</li>
+<li>关注自己的需求。理解自己真正想要什么,并努力实现,这可以让你没有时间和精力过度关注别人,也会让你感到人生有目标和意义。</li>
+<li>施比受更有福。当你羡慕别人时,想想你能为别人带来什么好处。关注别人的需求,提供帮助,这可以让你转移注意力,也会带来成就感。</li>
+<li>培养内在安定。通过冥想,听音乐,上瑜伽课等方式,培养安定的心态。当内心足够安定,外界的比较就不会那么轻易影响你。<br>这些实用的方法,帮助调节心态,关注自我,减少对他人生活的过度比较,可以有效地让你摆脱社会比较带来的难受情绪。需要时间去实践,但效果会非常显著。</li>
+</ol>
+</blockquote>
+<p>这些方法对我都很有启发，对与解决自身的焦虑也很受用。生活在快节奏的深圳，周围人都是狠角色，焦虑对每个人来说是常态。人生的各个阶段也会有不同的焦虑，只有学会面对焦虑，利用焦虑，焦虑也可以是人类进步的助推器。加油吧，少年郎！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Rust/" rel="tag"># Rust</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/08/18/rust_docs/ch_09_02_recoverable_errors_with_result/" rel="prev" title="Ch 09.02:带有结果的可恢复错误">
+      <i class="fa fa-chevron-left"></i> Ch 09.02:带有结果的可恢复错误
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A5%E7%9C%8B%E7%9C%8BAI%E5%A6%82%E4%BD%95%E7%9C%8B%E5%BE%85%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">来看看AI如何看待：</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ice</p>
+  <div class="site-description" itemprop="description">安静地坐着学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ice</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

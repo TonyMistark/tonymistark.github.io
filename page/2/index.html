@@ -148,7 +148,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_07_01_packages_and_crates/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_00_common_collections/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -162,7 +162,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/08/17/Inroducation/ch_07_01_packages_and_crates/" class="post-title-link" itemprop="url">包和Crates</a>
+            <a href="/2023/05/18/rust_docs/ch_08_00_common_collections/" class="post-title-link" itemprop="url">Ch 08.00:常见集合</a>
         </h2>
 
         <div class="post-meta">
@@ -172,8 +172,15 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
+              <time title="Created: 2023-05-18 10:18:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:18:00+08:00">2023-05-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-18 10:03:53" itemprop="dateModified" datetime="2023-08-18T10:03:53+08:00">2023-08-18</time>
+              </span>
 
           
 
@@ -186,18 +193,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="包和Crates"><a href="#包和Crates" class="headerlink" title="包和Crates"></a>包和Crates</h2><p>模块系统的第一部分我们将介绍包和crate。</p>
-<p>crate是Rust编译时最小的代码单位。如果你用<code>rustc</code>而不是<code>cargo</code>来编译一个文件(第一章我们这么做)，编译器还是会将那个文件认作一个crate。crate可以包含模块，模块可以定义在其他文件，然后和crate一起编译，我们会在接下来的章节中遇到。</p>
-<p>crate有两种形式：二进制项和库。二进制crate可以被编译为可执行程序，比如一个命令行程序或者一个服务器。它们必须有一个<code>main</code>函数来定义当程序被执行的时候所需要做的事情。到目前为止，我们所创建的crate都是二进制crate。</p>
-<p>库(Library crates) 没有<code>main</code>函数，而且它们不会编译成可执行文件。相反，它们定义了旨在与多个项目共享的功能。例如，我们在第二章用过的<code>rand</code>函数，用来生成随机数。大多数的Rust开发者说的crate指的都是库，这与其他变成语言中的library概念一致。</p>
-<p>crate root是一个资源文件，Rust编译器以它为起始点，并组成crate的根模块(我们将在”Defining Modules to Control Scope and Privacy” 部分深度解析)。</p>
-<p>包(package)是提供一系列功能的一个或者多个crate。一个包会包含Cargo.toml文件，阐述如何去创建这些crates。Cargo就是一个包含构建你代码的二进制项的包。Cargo也包含这些二进制项所依赖的库。其他项目也能用Cargo库来实现与Cargo命令行程序一样的逻辑。</p>
-<p>包可以包含很多二进制(binary) crate，但是最多只能有一个库(library) crate。包无论是一个库(library crate)还是一个二进制库(binary crate)， 至少要包含一个library crate。</p>
-<p>让我们来看看创建包的时候会发生什么。首先，我们输入命令<code>cargo new</code>：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">cargo new my-project</span></span><br><span class="line">     Created binary (application) `my-project` package</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> my-project</span></span><br><span class="line">Cargo.toml</span><br><span class="line">src</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> my-project/src</span></span><br><span class="line">main.rs</span><br></pre></td></tr></table></figure>
-
-<p>运行<code>cargo new</code>之后，我们使用<code>ls</code>查看Cargo创建了什么，在这个项目目录里，Cargo会给我们创建一个Cargo.toml文件，这就是一个包(package)。这里也有一个src目录包含main.rs文件。用编辑器打开Cargo.toml，并且文件内容里面没有提及src&#x2F;main.rs。因为Cargo遵循的一个约定：src&#x2F;main.rs就是一个与包同名的二进制crate的crate根。同样地，Cargo知道如果包目录中包含src&#x2F;lib.rs，则包带有与其同名的库(library) crate。crate根文件将由Cargo传递给<code>rustc</code>来构建库(library)或者二进制(binary)。</p>
-<p>这里，我们有一个只包含src&#x2F;main.rs的包，意味着它只含有一个名为<code>my-project</code>的二进制crate。如果一个包同时含有src&#x2F;main.rs和src&#x2F;lib.rs，则它有两个crate：一个二进制(binary)的和一个库(library)，并且名字都与包相同。通过将文件放在src&#x2F;bin目录下，一个包可以拥有多个二进制crate：每个src&#x2F;bin下的文件都会被编译成一个独立的二进制crate。</p>
+          <h2 id="常见集合"><a href="#常见集合" class="headerlink" title="常见集合"></a>常见集合</h2><p>Rust标准库中包含一些非常有用的数据结构叫做结合(collections).大多数其他的数据类型代表一个特殊的值，但是集合可以包含多个值。不像内建的数组和元组类型，这些集合数据指向堆，意味着在编译时不需要知道数据量，并且可以随着程序运行而增加或减少。每一种集合有不同的性能和消耗，并且选择一个合适的集合，对你当前的情景是需要你慢慢学习的技巧。在本章，我们将会讨论三个集合，它们在Rust编程中很常用：</p>
+<ul>
+<li>vector 允许你一个挨着一个地存储一系列数量的可变的值</li>
+<li>string 是一个字符类型的集合。我们之前已经提到过<code>String</code>类型，但是在本章，我们将更加深入地讨论它。</li>
+<li>hash map 允许你用一个特定的key关联一个值(value)，它是成为映射的更通用数据结构的一种实现。</li>
+</ul>
+<p>要学习标准库提供的其他类型的集合，请查看文档<a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/collections/index.html">std::collections</a></p>
+<p>我们将要讨论如何创建和更新vectors, strings，和hash map，以及他们每个类型的独特之处。</p>
 
       
     </div>
@@ -217,7 +220,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_07_02_defining_modules_to_control_scope_and_privacy/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_01_vectors/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -231,7 +234,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/08/17/Inroducation/ch_07_02_defining_modules_to_control_scope_and_privacy/" class="post-title-link" itemprop="url">在模块中对相关代码进行分组(Grouping Related Code in Modules)</a>
+            <a href="/2023/05/18/rust_docs/ch_08_01_vectors/" class="post-title-link" itemprop="url">Ch 08.01:丢弃vector 时也会丢弃其所有元素(Dropping a Vector Drops Its Elements)</a>
         </h2>
 
         <div class="post-meta">
@@ -241,8 +244,15 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
+              <time title="Created: 2023-05-18 10:18:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:18:00+08:00">2023-05-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-18 10:03:53" itemprop="dateModified" datetime="2023-08-18T10:03:53+08:00">2023-08-18</time>
+              </span>
 
           
 
@@ -255,23 +265,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="在模块中对相关代码进行分组-Grouping-Related-Code-in-Modules"><a href="#在模块中对相关代码进行分组-Grouping-Related-Code-in-Modules" class="headerlink" title="在模块中对相关代码进行分组(Grouping Related Code in Modules)"></a>在模块中对相关代码进行分组(Grouping Related Code in Modules)</h4><p>模块让我们在crate中组织代码，以提高可读性和易于重用。模块还允许我们控制items的私有性，因为在module中的代码默认是私有的。Private items是内部实现的细节不对外使用。我们可以选择将模块以及其中的items设置为公共的，这样，外部代码就可以使用并依赖于它们。</p>
-<p>例如，让我们编写一个提供餐厅服务功能的library crate。我们将会定义函数的签名，但是函数的主题留空，集中于代码的组织，而不是实现一个餐馆。</p>
-<p>在餐厅业中，餐馆的某些部分被称为前台(front of house)，其他的部分称为后台(back of house)。前台是顾客所在的空间；这包括主座的顾客的位置，服务员接单和付款，以及调酒师调酒的地方。后台是主厨和厨师们在厨房，洗碗机清理，经历做行政工作。</p>
-<p>这样构建我们的crate，我们可以将这些功能组织成嵌套的模块。创建一个新的库(library)命名为<code>restaurant</code>，通过命令<code>cargo new restaurant --lib</code>。输入如下Listing 7-1代码到src&#x2F;lib.rs来定义一些模块和函数签名。这里是前台部分：</p>
-<p>src&#x2F;lib.rs</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> front_of_house &#123;</span><br><span class="line">    <span class="keyword">mod</span> hosting &#123;</span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">add_to_waitlist</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">seat_at_table</span>() &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">mod</span> serving &#123;</span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">take_order</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">serve_order</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">take_payment</span>() &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h4 id="丢弃vector-时也会丢弃其所有元素-Dropping-a-Vector-Drops-Its-Elements"><a href="#丢弃vector-时也会丢弃其所有元素-Dropping-a-Vector-Drops-Its-Elements" class="headerlink" title="丢弃vector 时也会丢弃其所有元素(Dropping a Vector Drops Its Elements)"></a>丢弃vector 时也会丢弃其所有元素(Dropping a Vector Drops Its Elements)</h4><p>像其他数据结构一样，当一个vector离开了它的作用域，它就会被释放，如Listing 8-10所示：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">v</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// do stuff with v</span></span><br><span class="line">    &#125; <span class="comment">// &lt;- v goes out of scope and is freed here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Listing 7-1: A <code>front_of_house</code>module containing other modules that then contain functions</p>
-<p>我们用<code>mod</code>关键字定义一个模块(在上面的例子中定义了<code>front_of_house</code>模块)。并用花括号包围模块的主体。在模块内，我们还可以定义其他模块，就像本例子中的<code>hosting</code>和<code>serving</code>模块。模块还可以hold一些定义的其他items，例如structs, enums, constants, traits, 以及Listing 7-1中的函数。</p>
-<p>通过使用模块，我们可以将相关的定义分组到一起，并指出他们为什么相关。程序设计者可以通过使用这段代码，更加容易找到他们想要的定义，因为他们可以基于分组来对代码进行导航，而不需要阅读所有的定义。程序设计者向这段代码中添加一个新功能时，他们也会知道代码应该放置在何处，可以保持程序的组织性。</p>
-<p>在前面我们提到了，<code>src/main.rs</code>和<code>src/lib.rs</code>叫做crate根。之所以这么叫它们是因为这两个文件中的任何一个内容都在crate模块结构的根组成了一个名为crate的模块，该结构被称为模块树(module tree)。</p>
-<p>Listing 7-2 展示了示例Listing 7-1中的模块树(modules tree)的结构。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">crate</span></span><br><span class="line"> └── front_of_house</span><br><span class="line">     ├── hosting</span><br><span class="line">     │   ├── add_to_waitlist</span><br><span class="line">     │   └── seat_at_table</span><br><span class="line">     └── serving</span><br><span class="line">         ├── take_order</span><br><span class="line">         ├── serve_order</span><br><span class="line">         └── take_payment</span><br></pre></td></tr></table></figure>
-
-<p>Listing 7-2: The module tree for the code in Listing 7-1</p>
-<p>这个模块树展示了一些模块内嵌到另一个模块；例如，<code>hosting</code>内嵌在<code>front_of_house</code>之中。这个树结构还展示了一些模块是互为兄弟(siblings)的，这意味着它们定义在同一模块中(<code>hosting</code>和<code>serving</code>被一起定义在<code>front_of_house</code>中)。继续沿用家庭关系的比喻，如果一个模块A被包含在模块B中，我们将模块A称为模块B的子模块，B模块为A的父模块。注意，整个模块树都植根于隐式模块名为<code>crate</code>之下。</p>
-<p>模块树可能会让你想起计算机上的文件系统的目录树；这是一个非常恰当的比较！就像文件系统中的目录一样，你用模块来组织你的代码。就像文件目录中的文件，我们需要一个方式来找到我们的模块(modules)。</p>
+<p>Listing 8-10: Showing where the vector and its elements are droped</p>
+<p>当vector被删除时，它的所有内容也会被删除，这意味着它所持有的整数将被清除。借用检查器确保仅在vector本身有效时才使用对向量内容的任何引用。</p>
+<p>接下来，我们将学习下一个集合类型：<code>String</code></p>
 
       
     </div>
@@ -291,7 +290,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_02_strings/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -305,7 +304,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/08/17/Inroducation/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/" class="post-title-link" itemprop="url">创建公有的结构体和枚举(Making Structs and Enums Public)</a>
+            <a href="/2023/05/18/rust_docs/ch_08_02_strings/" class="post-title-link" itemprop="url">Ch 08.02:字符串并不简单</a>
         </h2>
 
         <div class="post-meta">
@@ -315,8 +314,383 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
+              <time title="Created: 2023-05-18 10:18:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:18:00+08:00">2023-05-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-18 10:03:53" itemprop="dateModified" datetime="2023-08-18T10:03:53+08:00">2023-08-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="字符串并不简单"><a href="#字符串并不简单" class="headerlink" title="字符串并不简单"></a>字符串并不简单</h4><p>总之，字符串是很复杂的。不同的语言会有不同的选择如何将这种复杂性呈现给程序员。Rust选择将String数据的正确处理作为所有Rust程序的默认行为,这意味着程序员必须在处理UTF-8数据上花更多的心思。这个权衡在其他编程语言中暴露了更多字符串的复杂性,但它可以防止你在开发生命周期的后期处理涉及非ASCII字符的错误。<br>好消息是标准库基于String和&amp;str类型提供了许多功能来正确处理这些复杂的情况。确保查看文档中有用的方法,比如在字符串中搜索的contains和用另一个字符串替换字符串的一部分replace。<br>让我们切换到略微简单一点的内容:哈希映射!</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_03_hash_maps/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/18/rust_docs/ch_08_03_hash_maps/" class="post-title-link" itemprop="url">Ch 08.03:总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-18 10:18:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:18:00+08:00">2023-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-18 10:03:53" itemprop="dateModified" datetime="2023-08-18T10:03:53+08:00">2023-08-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>vector、字符串和哈希 map 会在你的程序需要储存、访问和修改数据时帮助你。这里有一些你应该能够解决的练习问题:</p>
+<ul>
+<li>给定一系列数字，使用 vector 并返回这个列表的中位数（排列数组后位于中间的值）和众数（mode，出现次数最多的值；这里哈希 map 会很有帮助）。</li>
+<li>将字符串转换为 Pig Latin，也就是每一个单词的第一个辅音字母被移动到单词的结尾并增加 “ay”，所以 “first” 会变成 “irst-fay”。元音字母开头的单词则在结尾增加 “hay”（“apple” 会变成 “apple-hay”）。牢记 UTF-8 编码！</li>
+<li>使用哈希 map 和 vector，创建一个文本接口来允许用户向公司的部门中增加员工的名字。例如，“Add Sally to Engineering” 或 “Add Amir to Sales”。接着让用户获取一个部门的所有员工的列表，或者公司每个部门的所有员工按照字典序排列的列表。</li>
+</ul>
+<p>标准库 API 文档中描述的这些类型的方法将有助于你进行这些练习！</p>
+<p>我们已经开始接触可能会有失败操作的复杂程序了，这也意味着接下来是一个了解错误处理的绝佳时机！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_00_error_handing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/18/rust_docs/ch_09_00_error_handing/" class="post-title-link" itemprop="url">Ch 09.00:错误处理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-18 10:18:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:18:00+08:00">2023-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-18 10:03:53" itemprop="dateModified" datetime="2023-08-18T10:03:53+08:00">2023-08-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><p>在软件中错误是很常见的事实。当有时候软件运行错误的时候，Rust有很多处理这些场景的特性。在很多情况下，Rust要求你确认每一个错误发生的可能，并在代码编译前就采取相应的行为。这个必要前提会让你的程序更加健壮：确保你会提前发现错误，并处理得当，在你将代码部署到生产环境之前。</p>
+<p>Rust将错误分为两大类：<strong>可恢复的</strong>(<code>recoverable</code>)和<strong>不可恢复的</strong>(<code>unrecoverable</code>)。对于可恢复错误，比如文件未找打错误，我们很可能只是想向用户报告问题并重试操作。不可恢复错误总是系统性bugs，像尝试访问一个超过数组最尾端的位置，此时，我们就会想要程序立刻停止运行。</p>
+<p>大多数编程语言无法区分这两种错误，并且都使用同样的方式，使用如exceptions机制。Rust没有exceptions。而是有一个<code>Result&lt;T, E&gt;</code>的类型来处理可恢复错误。另外，当程序发生一个不可恢复的错误，Rust用<code>panic!</code>宏来中止运行程序。</p>
+<p>这一章，首次讨论<code>panic!宏</code>，然后讨论有关<code>Result&lt;T, E&gt;</code>返回的值。</p>
+<p>另外，我们还要探索如何决定一个错误应该是恢复或者是停止运行。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_01_unrecoverable_errors_with_panic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/18/rust_docs/ch_09_01_unrecoverable_errors_with_panic/" class="post-title-link" itemprop="url">Ch 09.01:使用`panic!`的backtrace</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-18 10:18:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:18:00+08:00">2023-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-18 10:03:53" itemprop="dateModified" datetime="2023-08-18T10:03:53+08:00">2023-08-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="使用panic-的backtrace"><a href="#使用panic-的backtrace" class="headerlink" title="使用panic!的backtrace"></a>使用<code>panic!</code>的backtrace</h4><p>让我们来看看另外一个例子，当因为我们自己的代码有bug而导致库函数调用<code>panic!</code>是什么样的。如Listing 9-1所示的代码尝试访问超出范围的vector的索引。</p>
+<p>Filename: src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    v[<span class="number">99</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 9-1: Attempting to access an element beyond the end of a vector, which will cause a call to <code>panic!</code></p>
+<p>这里，我们尝试去访问第100个元素(索引99就是第100个元素，索引是从0开始的)，但是vector只有3个元素，肯定会报错。在这个场景中，Rust就会panic。使用<code>[]</code>就是企图返回一个元素，但是你传入一个无效的索引，又不会有这个元素，Rust就肯定不会返回正确的结果。</p>
+<p>在C语言中，尝试读取数据结构之后的值是未定义行为(undefined behavior)。你可能会得到一个这个位置的对应的值，但是这个可能是任何的值，但就不是你想要访问的值，因为这个位置的值不属于你想要访问的数据结构范围的值。这个被叫做**缓冲区溢出(buffer overread)**，并且可能会导致安全漏洞，比如攻击者可以像这样操作索引来读取存储在数据结构之后不被允许访问的数据。</p>
+<p>为了防止这种漏洞，如果尝试读取一个索引不存在的元素，Rust会停止执行并拒绝继续。尝试运行上面的程序会出现如下的错误：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling panic v0.<span class="number">1.0</span> (file:<span class="comment">///projects/panic)</span></span><br><span class="line">    Finished dev [unoptimized + debuginfo] <span class="title function_ invoke__">target</span>(s) <span class="keyword">in</span> <span class="number">0.27</span>s</span><br><span class="line">     Running `target/debug/panic`</span><br><span class="line">thread <span class="symbol">&#x27;main</span>&#x27; panicked at <span class="symbol">&#x27;index</span> out of bounds: the len is <span class="number">3</span> but the index is <span class="number">99</span>&#x27;, src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">note: run with `RUST_BACKTRACE=<span class="number">1</span>` environment variable to display a backtrace</span><br></pre></td></tr></table></figure>
+
+<p>上面的错误信息指出错误发生在<code>src/main.rs</code>文件的第4行第5个字符，我们尝试访问索引为99的元素。接着一行的信息告诉我们可以设置<code>RUST_BACKTRACE</code>环境变量来获取backtrace查看发生了什么错误。一个backtrace是一个已经被调用直到当前这一个点的所有的函数列表。Backtrace在Rust的工作原理和其他语言一样：阅读backtrace的关键是从头开始读一直到发现你编写的代码；往下则是你调用的代码。这些行可能包含核心Rust代码，标准库代码或用到的crate代码。让我们设置<code>RUST_BACKTRACE</code>环境变量在Listing 9-2中看看都输出了些什么：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ RUST_BACKTRACE=<span class="number">1</span> cargo run</span><br><span class="line">thread <span class="symbol">&#x27;main</span>&#x27; panicked at <span class="symbol">&#x27;index</span> out of bounds: the len is <span class="number">3</span> but the index is <span class="number">99</span>&#x27;, src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">stack backtrace:</span><br><span class="line">   <span class="number">0</span>: rust_begin_unwind</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/std/src/panicking.rs:<span class="number">584</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">1</span>: core::panicking::panic_fmt</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/panicking.rs:<span class="number">142</span>:<span class="number">14</span></span><br><span class="line">   <span class="number">2</span>: core::panicking::panic_bounds_check</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/panicking.rs:<span class="number">84</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">3</span>: &lt;<span class="type">usize</span> <span class="keyword">as</span> core::slice::index::SliceIndex&lt;[T]&gt;&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/slice/index.rs:<span class="number">242</span>:<span class="number">10</span></span><br><span class="line">   <span class="number">4</span>: core::slice::index::&lt;<span class="keyword">impl</span> <span class="title class_">core</span>::ops::index::Index&lt;I&gt; <span class="keyword">for</span> [T]&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/slice/index.rs:<span class="number">18</span>:<span class="number">9</span></span><br><span class="line">   <span class="number">5</span>: &lt;alloc::vec::<span class="type">Vec</span>&lt;T,A&gt; <span class="keyword">as</span> core::ops::index::Index&lt;I&gt;&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/alloc/src/vec/<span class="keyword">mod</span>.rs:<span class="number">2591</span>:<span class="number">9</span></span><br><span class="line">   <span class="number">6</span>: panic::main</span><br><span class="line">             at ./src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">7</span>: core::ops::function::<span class="built_in">FnOnce</span>::call_once</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/ops/function.rs:<span class="number">248</span>:<span class="number">5</span></span><br><span class="line">note: <span class="literal">Some</span> details are omitted, run with `RUST_BACKTRACE=full` <span class="keyword">for</span> <span class="title class_">a</span> verbose backtrace.</span><br></pre></td></tr></table></figure>
+
+<p>Listing 9-2: The backtrace generated by a <code>panic!</code>displayed when the environment variable <code>RUST_BACKTRACE</code>is set</p>
+<p>真是输出了一大坨啊！操作系统不同，Rust版本不同，你看到的输出可能会有所不同。为了使用这些信息进行回溯，必须启用debug模式。默认就是debug模式，只要在<code>cargo build</code>或者<code>cargo run</code>之后不要加<code>--release</code>参数。</p>
+<p>在Listing 9-2的第6行的backtrace指出了我们项目造成的问题：<code>src/main.rs</code>的第4行。如果我们不想我们的程序panic，我们就应该开始检查定位到第一行我们自己写的代码。在Listing 9-1中，我们故意写了造成panic的代码，修复这个panic就是不要去访问超出vector范围的索引。当你的代码在将来panic， 你需要弄清楚代码使用什么数据做了什么样的操作，以及正确情况下代码应该做什么。</p>
+<p>本章后面的小节 <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html#to-panic-or-not-to-panic">“To <code>panic!</code> Or not to <code>panic!</code>“</a> 部分讲回<code>panic!</code>，详细讲解应该或者不应该用<code>panic!</code>来处理错误情况。接下来一节我们来讲解如何使用<code>Result</code>恢复一个错误。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/18/rust_docs/ch_09_02/" class="post-title-link" itemprop="url">使用`panic!`的backtrace</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-18 10:18:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:18:00+08:00">2023-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-18 09:42:10" itemprop="dateModified" datetime="2023-08-18T09:42:10+08:00">2023-08-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="使用panic-的backtrace"><a href="#使用panic-的backtrace" class="headerlink" title="使用panic!的backtrace"></a>使用<code>panic!</code>的backtrace</h4><p>让我们来看看另外一个例子，当因为我们自己的代码有bug而导致库函数调用<code>panic!</code>是什么样的。如Listing 9-1所示的代码尝试访问超出范围的vector的索引。</p>
+<p>Filename: src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    v[<span class="number">99</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 9-1: Attempting to access an element beyond the end of a vector, which will cause a call to <code>panic!</code></p>
+<p>这里，我们尝试去访问第100个元素(索引99就是第100个元素，索引是从0开始的)，但是vector只有3个元素，肯定会报错。在这个场景中，Rust就会panic。使用<code>[]</code>就是企图返回一个元素，但是你传入一个无效的索引，又不会有这个元素，Rust就肯定不会返回正确的结果。</p>
+<p>在C语言中，尝试读取数据结构之后的值是未定义行为(undefined behavior)。你可能会得到一个这个位置的对应的值，但是这个可能是任何的值，但就不是你想要访问的值，因为这个位置的值不属于你想要访问的数据结构范围的值。这个被叫做**缓冲区溢出(buffer overread)**，并且可能会导致安全漏洞，比如攻击者可以像这样操作索引来读取存储在数据结构之后不被允许访问的数据。</p>
+<p>为了防止这种漏洞，如果尝试读取一个索引不存在的元素，Rust会停止执行并拒绝继续。尝试运行上面的程序会出现如下的错误：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling panic v0.<span class="number">1.0</span> (file:<span class="comment">///projects/panic)</span></span><br><span class="line">    Finished dev [unoptimized + debuginfo] <span class="title function_ invoke__">target</span>(s) <span class="keyword">in</span> <span class="number">0.27</span>s</span><br><span class="line">     Running `target/debug/panic`</span><br><span class="line">thread <span class="symbol">&#x27;main</span>&#x27; panicked at <span class="symbol">&#x27;index</span> out of bounds: the len is <span class="number">3</span> but the index is <span class="number">99</span>&#x27;, src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">note: run with `RUST_BACKTRACE=<span class="number">1</span>` environment variable to display a backtrace</span><br></pre></td></tr></table></figure>
+
+<p>上面的错误信息指出错误发生在<code>src/main.rs</code>文件的第4行第5个字符，我们尝试访问索引为99的元素。接着一行的信息告诉我们可以设置<code>RUST_BACKTRACE</code>环境变量来获取backtrace查看发生了什么错误。一个backtrace是一个已经被调用直到当前这一个点的所有的函数列表。Backtrace在Rust的工作原理和其他语言一样：阅读backtrace的关键是从头开始读一直到发现你编写的代码；往下则是你调用的代码。这些行可能包含核心Rust代码，标准库代码或用到的crate代码。让我们设置<code>RUST_BACKTRACE</code>环境变量在Listing 9-2中看看都输出了些什么：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ RUST_BACKTRACE=<span class="number">1</span> cargo run</span><br><span class="line">thread <span class="symbol">&#x27;main</span>&#x27; panicked at <span class="symbol">&#x27;index</span> out of bounds: the len is <span class="number">3</span> but the index is <span class="number">99</span>&#x27;, src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">stack backtrace:</span><br><span class="line">   <span class="number">0</span>: rust_begin_unwind</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/std/src/panicking.rs:<span class="number">584</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">1</span>: core::panicking::panic_fmt</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/panicking.rs:<span class="number">142</span>:<span class="number">14</span></span><br><span class="line">   <span class="number">2</span>: core::panicking::panic_bounds_check</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/panicking.rs:<span class="number">84</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">3</span>: &lt;<span class="type">usize</span> <span class="keyword">as</span> core::slice::index::SliceIndex&lt;[T]&gt;&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/slice/index.rs:<span class="number">242</span>:<span class="number">10</span></span><br><span class="line">   <span class="number">4</span>: core::slice::index::&lt;<span class="keyword">impl</span> <span class="title class_">core</span>::ops::index::Index&lt;I&gt; <span class="keyword">for</span> [T]&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/slice/index.rs:<span class="number">18</span>:<span class="number">9</span></span><br><span class="line">   <span class="number">5</span>: &lt;alloc::vec::<span class="type">Vec</span>&lt;T,A&gt; <span class="keyword">as</span> core::ops::index::Index&lt;I&gt;&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/alloc/src/vec/<span class="keyword">mod</span>.rs:<span class="number">2591</span>:<span class="number">9</span></span><br><span class="line">   <span class="number">6</span>: panic::main</span><br><span class="line">             at ./src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">7</span>: core::ops::function::<span class="built_in">FnOnce</span>::call_once</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/ops/function.rs:<span class="number">248</span>:<span class="number">5</span></span><br><span class="line">note: <span class="literal">Some</span> details are omitted, run with `RUST_BACKTRACE=full` <span class="keyword">for</span> <span class="title class_">a</span> verbose backtrace.</span><br></pre></td></tr></table></figure>
+
+<p>Listing 9-2: The backtrace generated by a <code>panic!</code>displayed when the environment variable <code>RUST_BACKTRACE</code>is set</p>
+<p>真是输出了一大坨啊！操作系统不同，Rust版本不同，你看到的输出可能会有所不同。为了使用这些信息进行回溯，必须启用debug模式。默认就是debug模式，只要在<code>cargo build</code>或者<code>cargo run</code>之后不要加<code>--release</code>参数。</p>
+<p>在Listing 9-2的第6行的backtrace指出了我们项目造成的问题：<code>src/main.rs</code>的第4行。如果我们不想我们的程序panic，我们就应该开始检查定位到第一行我们自己写的代码。在Listing 9-1中，我们故意写了造成panic的代码，修复这个panic就是不要去访问超出vector范围的索引。当你的代码在将来panic， 你需要弄清楚代码使用什么数据做了什么样的操作，以及正确情况下代码应该做什么。</p>
+<p>本章后面的小节 <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html#to-panic-or-not-to-panic">“To <code>panic!</code> Or not to <code>panic!</code>“</a> 部分讲回<code>panic!</code>，详细讲解应该或者不应该用<code>panic!</code>来处理错误情况。接下来一节我们来讲解如何使用<code>Result</code>恢复一个错误。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/31/rust_docs/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/31/rust_docs/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/" class="post-title-link" itemprop="url">Ch 07.03:创建公有的结构体和枚举(Making Structs and Enums Public)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-12-31 13:35:00" itemprop="dateCreated datePublished" datetime="2022-12-31T13:35:00+08:00">2022-12-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-18 10:03:53" itemprop="dateModified" datetime="2023-08-18T10:03:53+08:00">2023-08-18</time>
+              </span>
 
           
 
@@ -363,7 +737,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_07_04_bringing_paths_into_scope_with_the%20_use_key_word/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/24/rust_docs/ch_00_00_introducation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -377,7 +751,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/08/17/Inroducation/ch_07_04_bringing_paths_into_scope_with_the%20_use_key_word/" class="post-title-link" itemprop="url">全局操作符(The Glob Operator)</a>
+            <a href="/2022/12/24/rust_docs/ch_00_00_introducation/" class="post-title-link" itemprop="url">Ch 00.00:欢迎来到Rust编程语言世界！</a>
         </h2>
 
         <div class="post-meta">
@@ -387,8 +761,15 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
+              <time title="Created: 2022-12-24 13:47:00" itemprop="dateCreated datePublished" datetime="2022-12-24T13:47:00+08:00">2022-12-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-18 10:03:53" itemprop="dateModified" datetime="2023-08-18T10:03:53+08:00">2023-08-18</time>
+              </span>
 
           
 
@@ -401,11 +782,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="全局操作符-The-Glob-Operator"><a href="#全局操作符-The-Glob-Operator" class="headerlink" title="全局操作符(The Glob Operator)"></a>全局操作符(The Glob Operator)</h4><p>如果想将一个路径下所有公有项引入作用域，可以使用指定路径后跟<code>*</code>，glob操作符:</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::collections::*;</span><br></pre></td></tr></table></figure>
+          <h4 id="欢迎来到Rust编程语言世界！"><a href="#欢迎来到Rust编程语言世界！" class="headerlink" title="欢迎来到Rust编程语言世界！"></a>欢迎来到Rust编程语言世界！</h4><p>不管写的好与差，挖坑先，要不然永远不会开始。</p>
+<p>Hello, World!</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>这个<code>use</code>语句会将<code>std::collections</code>中定义的所有的公有项引入到当前作用域。使用全局操作符时一定要多加小心！全局操作符会使得我们难以推导作用域中有什么名称和它们是定义在何处。</p>
-<p>全局操作符经常用于测试模块<code>tests</code>中，这时会将所有内容引入作用域；我们将在第十一章”How to Write Tests”部分中讲解。全局操作符有时也用于preclude模式；查看”标准库文档”(<a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/prelude/index.html#other-preludes)%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E7%BB%86%E8%8A%82%E3%80%82">https://doc.rust-lang.org/std/prelude/index.html#other-preludes)了解更多细节。</a></p>
+<p>2022计划开始一系列关于学习Rust入门的学习笔记，主要是根据官方的文档入门学习。</p>
+<p>Rust程序设计语言能帮助你编写更快，更可靠的软件。在编程语言的设计中，高层工程学和底层控制常常是冲突的。Rust挑战了这种冲突。通过平衡强大的技术能力（powerful technical capacity）和 极好的开发者体验（great developer experience）,Rust 可以控制底层的细节（比如内存的使用）但不用忍受传统同类型语言那些困扰。</p>
+<p>Rust 已经在证明着自己，对于学习过编程知识的不同水平的开发者来说，如果他们开发大型协同项目都是不错的生产工具。底层的代码容易产生各种不易发现的bugs,在其他编程语言中，要发现这些bugs只能通过广泛的测试和团队中经验丰富的大佬们仔细的评审（review）。在Rust设计中，编译器（compiler）扮演着守门员的角色，它会拒绝包含各种bugs代码的编译。通过编译器的帮忙，开发团队将会把更多的时间用在程序的逻辑上，而不是one day day 地在写bugs与修bugs之间疲于奔命。</p>
 
       
     </div>
@@ -425,7 +808,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_07_05_separating_modules_into_different_files/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/24/rust_docs/ch_01_01_Installation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -439,7 +822,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/08/17/Inroducation/ch_07_05_separating_modules_into_different_files/" class="post-title-link" itemprop="url">总结</a>
+            <a href="/2022/12/24/rust_docs/ch_01_01_Installation/" class="post-title-link" itemprop="url">Ch 01.01:本地文档</a>
         </h2>
 
         <div class="post-meta">
@@ -449,8 +832,15 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
+              <time title="Created: 2022-12-24 13:47:00" itemprop="dateCreated datePublished" datetime="2022-12-24T13:47:00+08:00">2022-12-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-18 10:03:53" itemprop="dateModified" datetime="2023-08-18T10:03:53+08:00">2023-08-18</time>
+              </span>
 
           
 
@@ -463,321 +853,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>Rust提供了将包分成多个crate，将crate分成模块，以及通过指定绝对或者相对路径从一个模块引用另一个模块中定义的项的方式。你可以指定绝对路径或者相对路径。这个路径可以通过<code>use</code>声明引入到作用域，所以你可以在多次使用时可以使用更短的路径。模块定义的代码默认是私有的，不过可以选择增加<code>pub</code>关键字使其定义为公有。</p>
-<p>接下来，我们来看一些标准库提供的集合数据类型，你可以利用它们写出更漂亮整洁的代码。</p>
+          <h4 id="本地文档"><a href="#本地文档" class="headerlink" title="本地文档"></a>本地文档</h4><p>安装过程包括了将对应Rust版本的文档复制到本地。所以你可以阅读官方文档，也可以通过命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> rustup doc</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_08_00_common_collections/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_08_00_common_collections/" class="post-title-link" itemprop="url">常见集合</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="常见集合"><a href="#常见集合" class="headerlink" title="常见集合"></a>常见集合</h2><p>Rust标准库中包含一些非常有用的数据结构叫做结合(collections).大多数其他的数据类型代表一个特殊的值，但是集合可以包含多个值。不像内建的数组和元组类型，这些集合数据指向堆，意味着在编译时不需要知道数据量，并且可以随着程序运行而增加或减少。每一种集合有不同的性能和消耗，并且选择一个合适的集合，对你当前的情景是需要你慢慢学习的技巧。在本章，我们将会讨论三个集合，它们在Rust编程中很常用：</p>
-<ul>
-<li>vector 允许你一个挨着一个地存储一系列数量的可变的值</li>
-<li>string 是一个字符类型的集合。我们之前已经提到过<code>String</code>类型，但是在本章，我们将更加深入地讨论它。</li>
-<li>hash map 允许你用一个特定的key关联一个值(value)，它是成为映射的更通用数据结构的一种实现。</li>
-</ul>
-<p>要学习标准库提供的其他类型的集合，请查看文档<a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/collections/index.html">std::collections</a></p>
-<p>我们将要讨论如何创建和更新vectors, strings，和hash map，以及他们每个类型的独特之处。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_08_01_vectors/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_08_01_vectors/" class="post-title-link" itemprop="url">丢弃vector 时也会丢弃其所有元素(Dropping a Vector Drops Its Elements)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="丢弃vector-时也会丢弃其所有元素-Dropping-a-Vector-Drops-Its-Elements"><a href="#丢弃vector-时也会丢弃其所有元素-Dropping-a-Vector-Drops-Its-Elements" class="headerlink" title="丢弃vector 时也会丢弃其所有元素(Dropping a Vector Drops Its Elements)"></a>丢弃vector 时也会丢弃其所有元素(Dropping a Vector Drops Its Elements)</h4><p>像其他数据结构一样，当一个vector离开了它的作用域，它就会被释放，如Listing 8-10所示：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">v</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// do stuff with v</span></span><br><span class="line">    &#125; <span class="comment">// &lt;- v goes out of scope and is freed here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Listing 8-10: Showing where the vector and its elements are droped</p>
-<p>当vector被删除时，它的所有内容也会被删除，这意味着它所持有的整数将被清除。借用检查器确保仅在vector本身有效时才使用对向量内容的任何引用。</p>
-<p>接下来，我们将学习下一个集合类型：<code>String</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_08_02_strings/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_08_02_strings/" class="post-title-link" itemprop="url">字符串并不简单</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="字符串并不简单"><a href="#字符串并不简单" class="headerlink" title="字符串并不简单"></a>字符串并不简单</h4><p>总之，字符串是很复杂的。不同的语言会有不同的选择如何将这种复杂性呈现给程序员。Rust选择将String数据的正确处理作为所有Rust程序的默认行为,这意味着程序员必须在处理UTF-8数据上花更多的心思。这个权衡在其他编程语言中暴露了更多字符串的复杂性,但它可以防止你在开发生命周期的后期处理涉及非ASCII字符的错误。<br>好消息是标准库基于String和&amp;str类型提供了许多功能来正确处理这些复杂的情况。确保查看文档中有用的方法,比如在字符串中搜索的contains和用另一个字符串替换字符串的一部分replace。<br>让我们切换到略微简单一点的内容:哈希映射!</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_08_03_hash_maps/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_08_03_hash_maps/" class="post-title-link" itemprop="url">总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>vector、字符串和哈希 map 会在你的程序需要储存、访问和修改数据时帮助你。这里有一些你应该能够解决的练习问题:</p>
-<ul>
-<li>给定一系列数字，使用 vector 并返回这个列表的中位数（排列数组后位于中间的值）和众数（mode，出现次数最多的值；这里哈希 map 会很有帮助）。</li>
-<li>将字符串转换为 Pig Latin，也就是每一个单词的第一个辅音字母被移动到单词的结尾并增加 “ay”，所以 “first” 会变成 “irst-fay”。元音字母开头的单词则在结尾增加 “hay”（“apple” 会变成 “apple-hay”）。牢记 UTF-8 编码！</li>
-<li>使用哈希 map 和 vector，创建一个文本接口来允许用户向公司的部门中增加员工的名字。例如，“Add Sally to Engineering” 或 “Add Amir to Sales”。接着让用户获取一个部门的所有员工的列表，或者公司每个部门的所有员工按照字典序排列的列表。</li>
-</ul>
-<p>标准库 API 文档中描述的这些类型的方法将有助于你进行这些练习！</p>
-<p>我们已经开始接触可能会有失败操作的复杂程序了，这也意味着接下来是一个了解错误处理的绝佳时机！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/17/Inroducation/ch_09_00_error_handing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/17/Inroducation/ch_09_00_error_handing/" class="post-title-link" itemprop="url">错误处理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-08-17 18:38:37" itemprop="dateCreated datePublished" datetime="2023-08-17T18:38:37+08:00">2023-08-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><p>在软件中错误是很常见的事实。当有时候软件运行错误的时候，Rust有很多处理这些场景的特性。在很多情况下，Rust要求你确认每一个错误发生的可能，并在代码编译前就采取相应的行为。这个必要前提会让你的程序更加健壮：确保你会提前发现错误，并处理得当，在你将代码部署到生产环境之前。</p>
-<p>Rust将错误分为两大类：<strong>可恢复的</strong>(<code>recoverable</code>)和<strong>不可恢复的</strong>(<code>unrecoverable</code>)。对于可恢复错误，比如文件未找打错误，我们很可能只是想向用户报告问题并重试操作。不可恢复错误总是系统性bugs，像尝试访问一个超过数组最尾端的位置，此时，我们就会想要程序立刻停止运行。</p>
-<p>大多数编程语言无法区分这两种错误，并且都使用同样的方式，使用如exceptions机制。Rust没有exceptions。而是有一个<code>Result&lt;T, E&gt;</code>的类型来处理可恢复错误。另外，当程序发生一个不可恢复的错误，Rust用<code>panic!</code>宏来中止运行程序。</p>
-<p>这一章，首次讨论<code>panic!宏</code>，然后讨论有关<code>Result&lt;T, E&gt;</code>返回的值。</p>
-<p>另外，我们还要探索如何决定一个错误应该是恢复或者是停止运行。</p>
+<p>会在浏览器里打开本地文档。</p>
+<p>标准库里面的任何一个类型或者函数你不确定的时候，或者你不知道怎么用。使用应用程序编程接口(API)文档来找出答案。</p>
 
       
     </div>
@@ -862,7 +942,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
