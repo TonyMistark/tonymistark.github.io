@@ -35,6 +35,7 @@ jobs:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         cd ./public && git init && git add -f .
+        git status
         git config --global init.defaultBranch hexo
         git config --global user.name $GIT_NAME
         git config --global user.email $GIT_EMAIL
