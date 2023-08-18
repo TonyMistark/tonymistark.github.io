@@ -34,7 +34,7 @@ jobs:
         REPO: TonyMistark/tonymistark.github.io.git
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        cd ./public && git init && git add .
+        cd ./public && git init && git add -f .
         git config --global user.name $GIT_NAME
         git config --global user.email $GIT_EMAIL
         git commit -m "Site deployed by GitHub Actions"
