@@ -1,6 +1,6 @@
 ---
 title: Ch 06.01:The Option Enum and Its Advantages Over Null Values
-date: 2022-12-24 13:47
+date: 2022-12-29 15:24
 tags: Rust
 layout: Rust
 ---

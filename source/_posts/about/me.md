@@ -1,6 +1,5 @@
-
 ---
-title: 
+title: About
 date: 2023-08-17 15:59:S
 tags: Rust
 layout: Rust

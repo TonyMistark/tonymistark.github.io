@@ -1,6 +1,6 @@
 ---
-title: Ch 03.03:![allow(unused)]
-date: 2022-12-24 13:47
+title: Ch 03.03:函数(Functions)
+date: 2022-12-29 15:10
 tags: Rust
 layout: Rust
 ---

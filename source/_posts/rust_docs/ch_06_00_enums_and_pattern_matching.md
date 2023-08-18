@@ -1,6 +1,6 @@
 ---
 title: Ch 06.00:Enums and Pattern Matching
-date: 2022-12-24 13:47
+date: 2022-12-29 15:23
 tags: Rust
 layout: Rust
 ---

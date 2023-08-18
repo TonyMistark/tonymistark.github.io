@@ -1,6 +1,6 @@
 ---
 title: Ch 05.01:结构体数据的所有权(Ownership of Struct Data)
-date: 2022-12-24 13:47
+date: 2022-12-29 15:20
 tags: Rust
 layout: Rust
 ---

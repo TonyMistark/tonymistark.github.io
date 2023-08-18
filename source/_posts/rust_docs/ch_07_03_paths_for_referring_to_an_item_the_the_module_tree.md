@@ -1,6 +1,6 @@
 ---
 title: Ch 07.03:创建公有的结构体和枚举(Making Structs and Enums Public)
-date: 2022-12-31 13:35
+date: 2023-05-18 10:20
 tags: Rust
 layout: Rust
 ---

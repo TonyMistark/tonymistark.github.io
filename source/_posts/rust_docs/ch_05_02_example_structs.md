@@ -1,9 +1,16 @@
 ---
-title: Ch 05.02:[derive(Debug)]
-date: 2022-12-24 13:47
+title: Ch 05.02:An Example Program Using Structs
+date: 2022-12-29 15:21
 tags: Rust
 layout: Rust
 ---
+#### An Example Program Using Structs
+
+为了理解何时需要使用结构体，让我们编写一个计算矩形面积的程序。我们将通过使用单个变量开始，然后重构这个程序，直到用结构体替代它。
+
+让我们用cargo创建一个新的项目叫做`rectangles`的二进制程序，它获取以像素为单位的矩形的宽度和高度，并计算出矩形的面积。Listing 5-8 展示一个简短的程序：
+
+```rust
 #[derive(Debug)]
 struct Rectangle {
     width: u32,

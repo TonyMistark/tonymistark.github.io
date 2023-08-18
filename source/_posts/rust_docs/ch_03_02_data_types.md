@@ -1,6 +1,6 @@
 ---
 title: Ch 03.02:无效的数组元素访问
-date: 2022-12-24 13:47
+date: 2022-12-29 15:07
 tags: Rust
 layout: Rust
 ---

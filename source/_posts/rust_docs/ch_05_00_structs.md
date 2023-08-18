@@ -1,6 +1,6 @@
 ---
 title: Ch 05.00:Using Structs to Structure Related Data
-date: 2022-12-24 13:47
+date: 2022-12-29 15:19
 tags: Rust
 layout: Rust
 ---
