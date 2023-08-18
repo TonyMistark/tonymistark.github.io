@@ -21,6 +21,11 @@ jobs:
       with:
         node-version: '16.14.2'
 
+    - name: add sshkey
+      uses: webfactory/ssh-agent@v0.5.0
+      with: 
+        ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
     - name: Install dependencies & Generate static files
       run: |
         node -v
@@ -31,8 +36,9 @@ jobs:
     - name: Deploy to Github Pages
       env:
         GIT_NAME: TonyMistark
+        GIN_EMAIL: tony_mistark@163.com
         REPO: TonyMistark/tonymistark.github.io.git
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
         cd ./public
         git init
