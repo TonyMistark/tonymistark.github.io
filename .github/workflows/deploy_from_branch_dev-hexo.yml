@@ -49,4 +49,5 @@ jobs:
         echo "finishe commit"
         git status
         git checkout -b hexo
-        git push --force --quiet "https://$GH_TOKEN@$REPO" hexo:hexo
+        git status
+        git push --force
