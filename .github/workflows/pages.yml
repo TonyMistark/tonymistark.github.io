@@ -1,9 +1,9 @@
-name: Pages
+name: auto publish Pages
 
 on:
   push:
     branches:
-      - main # default branch
+      - hexo-dev # default branch
 
 jobs:
   pages:
