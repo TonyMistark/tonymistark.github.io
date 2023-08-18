@@ -36,7 +36,8 @@ jobs:
       run: |
         cd ./public && git init && git add -f .
         git status
-        git config --global init.defaultBranch hexo
+        git chout -b hexo
+        git add -f .
         git config --global user.name $GIT_NAME
         git config --global user.email $GIT_EMAIL
         git commit -m "Site deployed by GitHub Actions"
