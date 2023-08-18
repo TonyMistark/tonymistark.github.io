@@ -31,7 +31,7 @@ jobs:
     - name: Deploy to Github Pages
       env:
         GIT_NAME: TonyMistark
-        REPO: git@github.com:TonyMistark/tonymistark.github.io.git
+        REPO: TonyMistark/tonymistark.github.io.git
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         cd ./public && git init && git add .
