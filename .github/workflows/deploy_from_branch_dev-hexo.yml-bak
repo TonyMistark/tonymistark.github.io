@@ -21,6 +21,11 @@ jobs:
       with:
         node-version: '16.14.2'
 
+    - name: add sshkey
+      uses: webfactory/ssh-agent@v0.5.0
+      with: 
+        ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
     - name: Install dependencies & Generate static files
       run: |
         node -v
@@ -31,18 +36,19 @@ jobs:
     - name: Deploy to Github Pages
       env:
         GIT_NAME: TonyMistark
+        GIN_EMAIL: tony_mistark@163.com
         REPO: TonyMistark/tonymistark.github.io.git
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
-        cd ./public && git init
-        git status
+        cd ./public
+        git init
         git add .
-        git status
         git config --global user.name $GIT_NAME
         git config --global user.email $GIT_EMAIL
         git commit -m "Site deployed by GitHub Actions"
         echo "finishe commit"
         git status
-        git remote add origin https://github.com/TonyMistark/tonymistark.github.io
         git checkout -b hexo
-        git push --force --quiet "https://$GH_TOKEN@$REPO" hexo:hexo
+        git status
+        git branch
+        git push --force --quiet "https://$GH_TOKEN@$REPO" hexo:hex

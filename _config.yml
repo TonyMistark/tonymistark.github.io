@@ -107,4 +107,4 @@ theme: hexo-theme-next
 deploy:
   type: git
   repo: https://github.com/TonyMistark/tonymistark.github.io
-  branch: hexo
+  branch: gh-papges
