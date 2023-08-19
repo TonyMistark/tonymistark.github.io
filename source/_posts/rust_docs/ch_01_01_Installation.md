@@ -1,5 +1,6 @@
 ---
 title: Ch 01.01:本地文档
+categories: Rust
 date: 2022-12-25 13:48
 tags: Rust
 layout: Rust
