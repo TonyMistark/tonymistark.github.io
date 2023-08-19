@@ -148,6 +148,78 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_00_common_collections/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/18/rust_docs/ch_08_00_common_collections/" class="post-title-link" itemprop="url">Ch 08.00:常见集合</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-18 10:30:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:30:00+08:00">2023-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-18 12:27:30" itemprop="dateModified" datetime="2023-08-18T12:27:30+08:00">2023-08-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="常见集合"><a href="#常见集合" class="headerlink" title="常见集合"></a>常见集合</h2><p>Rust标准库中包含一些非常有用的数据结构叫做结合(collections).大多数其他的数据类型代表一个特殊的值，但是集合可以包含多个值。不像内建的数组和元组类型，这些集合数据指向堆，意味着在编译时不需要知道数据量，并且可以随着程序运行而增加或减少。每一种集合有不同的性能和消耗，并且选择一个合适的集合，对你当前的情景是需要你慢慢学习的技巧。在本章，我们将会讨论三个集合，它们在Rust编程中很常用：</p>
+<ul>
+<li>vector 允许你一个挨着一个地存储一系列数量的可变的值</li>
+<li>string 是一个字符类型的集合。我们之前已经提到过<code>String</code>类型，但是在本章，我们将更加深入地讨论它。</li>
+<li>hash map 允许你用一个特定的key关联一个值(value)，它是成为映射的更通用数据结构的一种实现。</li>
+</ul>
+<p>要学习标准库提供的其他类型的集合，请查看文档<a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/collections/index.html">std::collections</a></p>
+<p>我们将要讨论如何创建和更新vectors, strings，和hash map，以及他们每个类型的独特之处。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_05_separating_modules_into_different_files/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -830,72 +902,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/29/rust_docs/ch_06_00_enums_and_pattern_matching/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/29/rust_docs/ch_06_00_enums_and_pattern_matching/" class="post-title-link" itemprop="url">Ch 06.00:Enums and Pattern Matching</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-12-29 15:23:00" itemprop="dateCreated datePublished" datetime="2022-12-29T15:23:00+08:00">2022-12-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-18 12:27:30" itemprop="dateModified" datetime="2023-08-18T12:27:30+08:00">2023-08-18</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="Enums-and-Pattern-Matching"><a href="#Enums-and-Pattern-Matching" class="headerlink" title="Enums and Pattern Matching"></a>Enums and Pattern Matching</h4><p>本章中，我们讲述枚举(enumerations)，也称作enums。枚举允许你通过列举可能的成员(variants)来定义一个类型。首先，我们会定义并使用一个枚举来展示它是如何连同数据一起编码信息的。接下来，我们会探索一个特别有用的枚举，叫做<code>Option</code>，它代表一个值，要么是某个值要么是什么都不是。然后会讲到<code>match</code>表达式中使用模式匹配，针对不同的枚举值编写相应要执行的代码。然后会介绍<code>if let</code>，另一个简洁方便处理代码中枚举的结构。</p>
-<p>枚举是一个很多语言都有的功能，不过不同语言中其功能各不相同。Rust的枚举与F#，OCaml和Haskell这样的函数式编程语言中的代数数据类型(olgebraic data types)最为相似。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -965,7 +971,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
