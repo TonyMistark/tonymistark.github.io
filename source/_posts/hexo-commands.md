@@ -1,6 +1,6 @@
 ---
 layout: tools
-title: hexo_commands
+title: Hexo Commands
 date: 2023-08-19 22:09:35
 tags:
 ---
