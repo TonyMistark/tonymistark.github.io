@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="The Option Enum and Its Advantages Over Null Values这一部分探索学习Option，另外一个标准库的枚举定义。Option类型编码了非常常见的场景，其中可以是某个值，也可以都不是。 例如，如果请求一个包含项的列表的第一个值，会得到一个值，如果请求一个空的列表，就什么也不会得到。从类型系统的角度来表达这个概念意思就是编译器需要检查是否处理了所有应该处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ch 06.01:The Option Enum and Its Advantages Over Null Values">
+<meta property="og:url" content="https://tonymistark.github.io/2022/12/29/rust_docs/ch_06_01_defining_an_enum/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="The Option Enum and Its Advantages Over Null Values这一部分探索学习Option，另外一个标准库的枚举定义。Option类型编码了非常常见的场景，其中可以是某个值，也可以都不是。 例如，如果请求一个包含项的列表的第一个值，会得到一个值，如果请求一个空的列表，就什么也不会得到。从类型系统的角度来表达这个概念意思就是编译器需要检查是否处理了所有应该处理">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-29T07:24:00.000Z">
+<meta property="article:modified_time" content="2023-08-18T04:27:30.219Z">
+<meta property="article:author" content="Ice">
+<meta property="article:tag" content="Rust">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://tonymistark.github.io/2022/12/29/rust_docs/ch_06_01_defining_an_enum/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Ch 06.01:The Option Enum and Its Advantages Over Null Values | BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">用心记录思想</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/29/rust_docs/ch_06_01_defining_an_enum/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ch 06.01:The Option Enum and Its Advantages Over Null Values
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-12-29 15:24:00" itemprop="dateCreated datePublished" datetime="2022-12-29T15:24:00+08:00">2022-12-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-18 12:27:30" itemprop="dateModified" datetime="2023-08-18T12:27:30+08:00">2023-08-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="The-Option-Enum-and-Its-Advantages-Over-Null-Values"><a href="#The-Option-Enum-and-Its-Advantages-Over-Null-Values" class="headerlink" title="The Option Enum and Its Advantages Over Null Values"></a>The Option Enum and Its Advantages Over Null Values</h3><p>这一部分探索学习<code>Option</code>，另外一个标准库的枚举定义。<code>Option</code>类型编码了非常常见的场景，其中可以是某个值，也可以都不是。</p>
+<p>例如，如果请求一个包含项的列表的第一个值，会得到一个值，如果请求一个空的列表，就什么也不会得到。从类型系统的角度来表达这个概念意思就是编译器需要检查是否处理了所有应该处理的情况，这样就可以避免在其他语言中非常常见的bug.</p>
+<p>编程语言的设计通常考虑的是包含哪些特性，但是你排除的特性也很重要。Rust没有许多其他语言所具有的null特性。<code>Null</code>是一个值，表示什么也没有。在带有null特性的语言中，变量总是可以处于两种状态之一：null 或 not-null.</p>
+<p>Null的发明者Tony Hoare在他2009年的报告”Null Reference: The Billon Dollar Mistake”中这样说：</p>
+<blockquote>
+<p>我称之为十亿美元的错误。当时，我在为一个面向对象语言设计第一个综合性的面向引用的类型系统。我的目标是通过编译器的自动检查来保证所引用的使用都应该是绝对安全的。不过我未能抵抗住引入一个空引用的诱惑，仅仅是因为它是这么的容易实现。这引发了无数错误，漏洞和系统崩溃，在之后的四十多年中造成了十亿美元的苦痛和伤害。</p>
+</blockquote>
+<p>空值的问题在于，如果你试图将空值用作非空值，会出现某种形式的错误。因为空和非空的属性到处都是，非常容易出现这类错误。</p>
+<p>然而，null试图表达的概念仍然是有用的：null是当前由于某种原因无效或者不存在的值。</p>
+<p>问题不在于概念，而在于具体的实现。因此，Rust没有空值，但它有一个枚举，可以编码值存在或者不存在的概念。这个枚举就是<code>Option&lt;T&gt;</code>，它由标准库定义如下：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Option</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="literal">None</span>,</span><br><span class="line">    <span class="title function_ invoke__">Some</span>(T),</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>Option&lt;T&gt;</code>枚举非常有用，以至于它被包含在relude中；你不需要将它显式地引入作用域。另外，它的成员也是如此（被包含在prelude中），可以不需要<code>Option::</code>前缀来使用<code>Some</code>和<code>None</code>。即便如此<code>Option&lt;T&gt;</code>也仍是常规的枚举，<code>Some&lt;T&gt;</code>和<code>None</code>仍是<code>Option&lt;T&gt;</code>的成员。</p>
+<p><code>&lt;T&gt;</code>语法是我们还没讲到的Rust特性。它是一个泛型参数，在Chapter 10我们将会详细讲解。目前，你需要知道的就是<code>&lt;T&gt;</code>意味着<code>Option</code>枚举的<code>Some</code>成员可以包含任意类型的数据，同事每一个用于<code>T</code>位置的具体类型使得<code>Option&lt;T&gt;</code>整体作为不同的类型。这里是一些包含数字类型和字符串类型<code>Option</code>值的例子：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">some_number</span> = <span class="title function_ invoke__">Some</span>(<span class="number">5</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">some_char</span> = <span class="title function_ invoke__">Some</span>(<span class="string">&#x27;e&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> <span class="variable">absent_number</span>: <span class="type">Option</span>&lt;<span class="type">i32</span>&gt; = <span class="literal">None</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>some_number</code>的类型是<code>Option&lt;i32&gt;</code>。<code>some_char</code>的类型是<code>Option&lt;char&gt;</code>，是不同的类型。因为我们在<code>Some</code>成员中指定了值，Rust可以推断出其类型。对于<code>absent_number</code>，Rust需要我们指定<code>Option</code>整体的类型，因为编译器只通过<code>None</code>值无法推断出<code>Some</code>成员保存的值的类型。这里我们告诉Rust我们需要<code>absent_number</code>的类型是<code>Option&lt;i32&gt;</code>。</p>
+<p>当我们有一个<code>Some</code>值，我们就知道存在一个值，这个值保存在<code>Some</code>中。当我们有一个值<code>None</code>，在某种意义上，它跟空值是有相同的意义：并没有一个有效的值。那么<code>Option&lt;T&gt;</code>为什么就比Null要好呢？</p>
+<p>简单来说，因为<code>Option&lt;T&gt;</code>和<code>T</code>（<code>T</code>可以是任何类型）是不同的类型，编译器不允许像一个肯定有效的值那样使用<code>Option&lt;T&gt;</code>。例如：这段代码不能编译，因为它尝试将<code>Option&lt;i8&gt;</code>与<code>i8</code>相加：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span>: <span class="type">i8</span> = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">y</span>: <span class="type">Option</span>&lt;<span class="type">i8</span>&gt; = <span class="title function_ invoke__">Some</span>(<span class="number">5</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> <span class="variable">sum</span> = x + y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果我们运行这段代码，我们会得到一个错误信息如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling enums v0.1.0 (file:///projects/enums)</span><br><span class="line">error[E0277]: cannot add `Option&lt;i8&gt;` to `i8`</span><br><span class="line"> --&gt; src/main.rs:5:17</span><br><span class="line">  |</span><br><span class="line">5 |     let sum = x + y;</span><br><span class="line">  |                 ^ no implementation for `i8 + Option&lt;i8&gt;`</span><br><span class="line">  |</span><br><span class="line">  = help: the trait `Add&lt;Option&lt;i8&gt;&gt;` is not implemented for `i8`</span><br><span class="line">  = help: the following other types implement trait `Add&lt;Rhs&gt;`:</span><br><span class="line">            &lt;&amp;&#x27;a f32 as Add&lt;f32&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a f64 as Add&lt;f64&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a i128 as Add&lt;i128&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a i16 as Add&lt;i16&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a i32 as Add&lt;i32&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a i64 as Add&lt;i64&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a i8 as Add&lt;i8&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a isize as Add&lt;isize&gt;&gt;</span><br><span class="line">          and 48 others</span><br><span class="line"></span><br><span class="line">For more information about this error, try `rustc --explain E0277`.</span><br><span class="line">error: could not compile `enums` due to previous error</span><br></pre></td></tr></table></figure>
+
+<p>铛!铛!铛!事实上，这个错误意味着Rust不知道如何将<code>i8</code>和<code>Option&lt;i8&gt;</code>相加，因为它们是不同类型。在Rust中，当我们有一个值像<code>i8</code>，编译器将会确保我们总是有一个有效的值。我们可以自信地使用而无需做空检查。只有当使用<code>Option&lt;i8&gt;</code>(或者任何用到的类型)我们需要担心可能没有一个有效值，并且编译器将会确保我们在使用值之前处理了空的情况。</p>
+<p>换句话说，你必须将<code>Option&lt;T&gt;</code>转换成<code>T</code>之后才能对<code>T</code>进行运算。通常这能帮助我们捕获到空值最常见的问题之一：假设某值不为空，但实际上是空的情况。</p>
+<p>消除错误地假设非空值的风险有助于你对代码更有信心。为了有一个可能为空的值，你必须显式地使用<code>Option&lt;T&gt;</code>。然后，在使用该值时，需要显式地处理值为空的情况。任何地方，一个值不是<code>Option&lt;T&gt;</code>类型，你都可以放心地假设他不是null。这是Rust有意为之的设计决定，目的就是限制null的滥用，以增加Rust代码的安全性。</p>
+<p>所以，当你有一个类型为<code>Option&lt;T&gt;</code>的值时，你如何从<code>Some</code>变量中获得<code>T</code>的值呢？<code>Option&lt;T&gt;</code>枚举有大量很有用的方法适用于各种情况；你可以查看它的文档(<a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/option/enum.Option.html)%E3%80%82%E7%86%9F%E6%82%89%60Option">https://doc.rust-lang.org/std/option/enum.Option.html)。熟悉`Option</a><T>&#96;上的方法将对你的Rust之旅很有用哦！</p>
+<p>通常，为了使用<code>Option&lt;T&gt;</code>值，你需要有处理每个变量的代码。你希望一些代码只在具有<code>Some&lt;T&gt;</code>值时运行，并且允许这些代码使用内部的<code>T</code>。你希望如果有个<code>None</code>值时运行一些其他的代码，而且这些代码也没有一个<code>T</code>的有效值。<code>match</code>表达式就是这么一个处理枚举的控制流结构：它会根据枚举的成员运行不同的代码，这些代码可以使用匹配到的值中的数据。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Rust/" rel="tag"># Rust</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/12/29/rust_docs/ch_06_00_enums_and_pattern_matching/" rel="prev" title="Ch 06.00:Enums and Pattern Matching">
+      <i class="fa fa-chevron-left"></i> Ch 06.00:Enums and Pattern Matching
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/12/29/rust_docs/ch_06_02_match/" rel="next" title="Ch 06.02:通用模式和_占位符(Catch-all Patterns and the _ Placeholder)">
+      Ch 06.02:通用模式和_占位符(Catch-all Patterns and the _ Placeholder) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Option-Enum-and-Its-Advantages-Over-Null-Values"><span class="nav-number">1.</span> <span class="nav-text">The Option Enum and Its Advantages Over Null Values</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ice</p>
+  <div class="site-description" itemprop="description">安静地坐着学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ice</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
