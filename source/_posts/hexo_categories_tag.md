@@ -1,7 +1,8 @@
 ---
+layout: notes
 title: Hexo 添加分类和标签
 date: 2023-08-18 15:12:39
-tags:
+tags: notes
 ---
 
 ### 创建“分类”选项

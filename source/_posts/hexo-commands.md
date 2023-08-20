@@ -1,8 +1,8 @@
 ---
-layout: tools
+layout: notes
 title: Hexo Commands
 date: 2023-08-19 22:09:35
-tags:
+tags: tools
 ---
 ### Hexo 命令
 
