@@ -1,5 +1,6 @@
 ---
 title: Ch 07.02:在模块中对相关代码进行分组(Grouping Related Code in Modules)
+categories: Rust
 date: 2023-05-18 10:19
 tags: Rust
 layout: Rust

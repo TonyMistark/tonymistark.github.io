@@ -1,5 +1,6 @@
 ---
 title: Ch 04.00:Understanding Ownership
+categories: Rust
 date: 2022-12-29 15:14
 tags: Rust
 layout: Rust

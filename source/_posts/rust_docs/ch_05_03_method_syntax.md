@@ -1,5 +1,6 @@
 ---
 title: Ch 05.03:总结(Summary)
+categories: Rust
 date: 2022-12-29 15:22
 tags: Rust
 layout: Rust

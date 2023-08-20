@@ -8,7 +8,7 @@ subtitle: '用心记录思想'
 description: '安静地坐着学习'
 keywords:
 author: Ice
-language: zh
+language: en
 #language: en
 timezone: ''
 
@@ -123,22 +123,6 @@ sitemap:
   tags: true
   categories: true
 
-# Doesn't Workd!
-# I will temporarily comment it out, 
-# as it seems to not be working. 
-# It may be due to the Hexo version being too new 
-# and the plugin version not being updated.
-# next-canlendar config
-# https://github.com/theme-next/theme-next-calendar
-# CloudCalendar:
-#   enable: true
-#   language: zh-CN
-#   single: true
-#   root: /calendar/
-#   calendarCdn: //cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/calendar.min.js
-#   langCdn: //cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/languages.min.js
-#   #disableSidebar: false
-
 # hexo word counter
 # https://github.com/next-theme/hexo-word-counter
 symbols_count_time:
@@ -149,3 +133,12 @@ symbols_count_time:
   exclude_codeblock: false
   wpm: 275
   suffix: "mins."
+
+# Generate categories from directory-tree
+# Dependencies: https://github.com/xu-song/hexo-auto-category
+# depth: the max_depth of directory-tree you want to generate, should > 0
+# multiple: multiple category hierarchies
+auto_category:
+ enable: true
+ multiple: false
+ depth: 

@@ -1,5 +1,6 @@
 ---
 title: Ch 06.03:总结
+categories: Rust
 date: 2023-05-16 10:18
 tags: Rust
 layout: Rust

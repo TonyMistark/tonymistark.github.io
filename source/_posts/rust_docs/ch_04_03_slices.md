@@ -1,5 +1,6 @@
 ---
 title: Ch 04.03:总结
+categories: Rust
 date: 2022-12-29 15:18
 tags: Rust
 layout: Rust

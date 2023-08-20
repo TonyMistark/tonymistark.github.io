@@ -1,5 +1,6 @@
 ---
 title: Ch 08.01:丢弃vector 时也会丢弃其所有元素(Dropping a Vector Drops Its Elements)
+categories: Rust
 date: 2023-05-18 10:31
 tags: Rust
 layout: Rust

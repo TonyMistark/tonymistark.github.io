@@ -1,5 +1,6 @@
 ---
 title: Ch 07.04:全局操作符(The Glob Operator)
+categories: Rust
 date: 2023-05-18 10:21
 tags: Rust
 layout: Rust

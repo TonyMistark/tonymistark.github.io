@@ -1,5 +1,6 @@
 ---
 title: Ch 08.02:字符串并不简单
+categories: Rust
 date: 2023-05-18 10:32
 tags: Rust
 layout: Rust

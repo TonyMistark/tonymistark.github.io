@@ -1,5 +1,6 @@
 ---
 title: Ch 01.03:养成使用Cargo习惯
+categories: Rust
 date: 2022-12-27 13:50
 tags: Rust
 layout: Rust

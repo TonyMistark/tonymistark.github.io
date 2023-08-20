@@ -1,5 +1,6 @@
 ---
 title: Ch 03.03:函数(Functions)
+categories: Rust
 date: 2022-12-29 15:10
 tags: Rust
 layout: Rust

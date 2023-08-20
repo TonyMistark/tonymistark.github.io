@@ -1,5 +1,6 @@
 ---
 title: Ch 06.02:通用模式和_占位符(Catch-all Patterns and the _ Placeholder)
+categories: Rust
 date: 2022-12-29 15:25
 tags: Rust
 layout: Rust

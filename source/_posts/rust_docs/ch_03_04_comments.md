@@ -1,5 +1,6 @@
 ---
 title: Ch 03.04:注释(Comments)
+categories: Rust
 date: 2022-12-29 15:11
 tags: Rust
 layout: Rust

@@ -1,5 +1,6 @@
 ---
 title: Ch 04.02:引用的规则(The Rules of References)
+categories: Rust
 date: 2022-12-29 15:17
 tags: Rust
 layout: Rust
