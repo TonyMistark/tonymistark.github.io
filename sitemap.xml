@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tonymistark.github.io/2023/08/21/%E4%BA%BA%E5%9C%A8%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E6%88%90%E9%95%BF%E6%9C%80%E5%BF%AB%EF%BC%9F/</loc>
+    
+    <lastmod>2023-08-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://tonymistark.github.io/tags/index.html</loc>
     
     <lastmod>2023-08-20</lastmod>
@@ -409,7 +418,7 @@
 
   <url>
     <loc>https://tonymistark.github.io/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -417,35 +426,42 @@
   
   <url>
     <loc>https://tonymistark.github.io/tags/tools/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/ubuntu/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/Rust/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/%E9%9A%8F%E6%83%B3/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/tags/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://tonymistark.github.io/tags/%E9%9A%8F%E7%AC%94/</loc>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -454,14 +470,21 @@
   
   <url>
     <loc>https://tonymistark.github.io/categories/Rust/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/notes/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://tonymistark.github.io/categories/writing/</loc>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
