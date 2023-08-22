@@ -1,5 +1,6 @@
 ---
 title: Ch 09.01:使用`panic!`的backtrace
+categories: Rust
 date: 2023-05-18 10:35
 tags: Rust
 layout: Rust

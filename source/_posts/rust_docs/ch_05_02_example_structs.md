@@ -1,5 +1,6 @@
 ---
 title: Ch 05.02:An Example Program Using Structs
+categories: Rust
 date: 2022-12-29 15:21
 tags: Rust
 layout: Rust

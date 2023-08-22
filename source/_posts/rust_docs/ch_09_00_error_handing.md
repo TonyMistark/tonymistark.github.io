@@ -1,5 +1,6 @@
 ---
 title: Ch 09.00:错误处理
+categories: Rust
 date: 2023-05-18 10:34
 tags: Rust
 layout: Rust

@@ -1,5 +1,6 @@
 ---
 title: Ch 02.00:猜测正确后退出
+categories: Rust
 date: 2022-12-28 13:47
 tags: Rust
 layout: Rust

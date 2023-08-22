@@ -1,5 +1,6 @@
 ---
 title: Ch 03.01:隐藏(Shadowing)
+categories: Rust
 date: 2022-12-29 14:47
 tags: Rust
 layout: Rust

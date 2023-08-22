@@ -1,5 +1,6 @@
 ---
 title: Ch 03.00:关键字(Keywords)
+categories: Rust
 date: 2022-12-29 13:47
 tags: Rust
 layout: Rust

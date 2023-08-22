@@ -2,11 +2,10 @@
 layout: ubuntu
 title: ubuntu 只保留最近一周的日志
 date: 2023-08-18 15:32:38
-tags:
+tags: ubuntu
 ---
 
 ### 只保留最近一周的日志
-
 * 只保留最近一周的日志
 ```
 journalctl --vacuum-time=1w

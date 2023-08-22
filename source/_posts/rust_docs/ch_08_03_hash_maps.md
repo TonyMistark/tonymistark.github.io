@@ -1,5 +1,6 @@
 ---
 title: Ch 08.03:总结
+categories: Rust
 date: 2023-05-18 10:33
 tags: Rust
 layout: Rust

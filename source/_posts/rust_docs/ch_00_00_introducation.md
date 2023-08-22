@@ -1,5 +1,6 @@
 ---
 title: Ch 00.00:欢迎来到Rust编程语言世界！
+categories: Rust
 date: 2022-12-24 13:47
 tags: Rust
 layout: Rust

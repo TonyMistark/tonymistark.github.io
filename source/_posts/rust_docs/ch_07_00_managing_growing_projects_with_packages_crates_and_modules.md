@@ -1,5 +1,6 @@
 ---
 title: Ch 07.00:使用包、Crate和模块管理不断增长的项目
+categories: Rust
 date: 2023-05-18 10:10
 tags: Rust
 layout: Rust

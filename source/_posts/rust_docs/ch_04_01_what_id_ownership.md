@@ -1,5 +1,6 @@
 ---
 title: Ch 04.01:返回值与作用域(Return Values and Scope)
+categories: Rust
 date: 2022-12-29 15:16
 tags: Rust
 layout: Rust

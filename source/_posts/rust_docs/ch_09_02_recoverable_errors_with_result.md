@@ -1,5 +1,6 @@
 ---
 title: Ch 09.02:带有结果的可恢复错误
+categories: Rust
 date: 2023-08-18 09:51
 tags: Rust
 layout: Rust

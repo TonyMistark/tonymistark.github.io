@@ -1,5 +1,6 @@
 ---
 title: Ch 07.01:包和Crates
+categories: Rust
 date: 2023-05-18 10:19
 tags: Rust
 layout: Rust

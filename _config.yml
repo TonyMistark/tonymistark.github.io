@@ -9,6 +9,7 @@ description: '安静地坐着学习'
 keywords:
 author: Ice
 language: en
+#language: en
 timezone: ''
 
 # URL
@@ -108,3 +109,36 @@ deploy:
   type: git
   repo: https://github.com/TonyMistark/tonymistark.github.io
   branch: hexo
+
+
+# next sitemap config
+# https://github.com/hexojs/hexo-generator-sitemap
+sitemap:
+  path: 
+    - sitemap.xml
+    - sitemap.txt
+  template: ./sitemap_template.xml
+  template_txt: ./sitemap_template.txt
+  rel: false
+  tags: true
+  categories: true
+
+# hexo word counter
+# https://github.com/next-theme/hexo-word-counter
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
+  exclude_codeblock: false
+  wpm: 275
+  suffix: "mins."
+
+# Generate categories from directory-tree
+# Dependencies: https://github.com/xu-song/hexo-auto-category
+# depth: the max_depth of directory-tree you want to generate, should > 0
+# multiple: multiple category hierarchies
+auto_category:
+ enable: true
+ multiple: false
+ depth: 
