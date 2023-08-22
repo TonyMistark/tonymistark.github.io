@@ -1,5 +1,5 @@
 ### Readme
-* Install hexo
+#### Install hexo
 所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。
 ```
 $ npm install -g hexo-cli
@@ -9,9 +9,9 @@ $ npm install -g hexo-cli
 ```
 $ npm install hexo
 ```
-* 创建自己的博客项目，这里先不赘述，看文档： https://hexo.io/zh-cn/docs/
+#### 创建自己的博客项目，这里先不赘述，看文档： https://hexo.io/zh-cn/docs/
 
-* Install Theme Next
+#### Install Theme Next
 先fork https://github.com/theme-next/hexo-theme-next 然后 clone 自己的项目，这样自己可以修改并进行版本记录
 ```
 $ git clone git@github.com:TonyMistark/hexo-theme-next.git themes/hexo-theme-next
@@ -20,12 +20,12 @@ $ git clone git@github.com:TonyMistark/hexo-theme-next.git themes/hexo-theme-nex
 ```
 theme: hexo-theme-next
 ```
-* 根据配置`_config.yml`安装next的插件
-** Install sitemap
+#### 根据配置`_config.yml`安装next的插件
+##### Install sitemap
 ```
 $ npm install hexo-generator-sitemap --save
 ```
-** _config.yml sitemap
+##### _config.yml sitemap
 ```
 sitemap:
   path: 
@@ -37,14 +37,12 @@ sitemap:
   tags: true
   categories: true
 ```
-** 
-
-** Install hexo word counter
+##### Install hexo word counter
 ```
 $ npm install hexo-word-counter
 $ hexo clean
 ```
-** _config.yml hexo word counter
+##### _config.yml hexo word counter
 ```
 # https://github.com/next-theme/hexo-word-counter
 symbols_count_time:
@@ -57,11 +55,11 @@ symbols_count_time:
   suffix: "mins."
 ```
 
-** Install hexo-auto-category
+##### Install hexo-auto-category
 ```
 $ npm install hexo-auto-category --save
 ```
-** _config.yml hexo-auto-category
+##### _config.yml hexo-auto-category
 ```
 # Generate categories from directory-tree
 # Dependencies: https://github.com/xu-song/hexo-auto-category
@@ -73,7 +71,7 @@ auto_category:
  depth: 
 ```
 
-* 发布配置
+#### 发布配置
 ```
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
