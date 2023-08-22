@@ -21,11 +21,11 @@ $ git clone git@github.com:TonyMistark/hexo-theme-next.git themes/hexo-theme-nex
 theme: hexo-theme-next
 ```
 * 根据配置`_config.yml`安装next的插件
-** sitemap
+** Install sitemap
 ```
 $ npm install hexo-generator-sitemap --save
 ```
-_config.yml
+** _config.yml sitemap
 ```
 sitemap:
   path: 
@@ -39,20 +39,13 @@ sitemap:
 ```
 ** 
 
-
-# next sitemap config
-# https://github.com/hexojs/hexo-generator-sitemap
-sitemap:
-  path: 
-    - sitemap.xml
-    - sitemap.txt
-  template: ./sitemap_template.xml
-  template_txt: ./sitemap_template.txt
-  rel: false
-  tags: true
-  categories: true
-
-# hexo word counter
+** Install hexo word counter
+```
+$ npm install hexo-word-counter
+$ hexo clean
+```
+** _config.yml hexo word counter
+```
 # https://github.com/next-theme/hexo-word-counter
 symbols_count_time:
   symbols: true
@@ -62,6 +55,8 @@ symbols_count_time:
   exclude_codeblock: false
   wpm: 275
   suffix: "mins."
+```
+
 ** Install hexo-auto-category
 ```
 $ npm install hexo-auto-category --save
