@@ -70,6 +70,30 @@ auto_category:
  multiple: false
  depth: 
 ```
+##### Install hexo-generator-feed
+```
+$ npm install hexo-generator-feed --save
+```
+##### _config.yml hexo-generator-feed
+```
+feed:
+  enable: true
+  type:
+    - atom
+    - rss2
+  path:
+    - ./atom.xml
+    - ./rss2.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+  icon: icon.png
+  autodiscovery: true
+  template:
+```
 
 #### 发布配置
 ```
