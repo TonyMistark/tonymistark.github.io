@@ -1,0 +1,971 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hexo Commands</title>
+    <url>/2023/08/19/hexo-commands/</url>
+    <content><![CDATA[<h3 id="Hexo-命令"><a href="#Hexo-命令" class="headerlink" title="Hexo 命令"></a>Hexo 命令</h3><h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+<p>-p, –path</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-p, –path</td>
+<td>自定义文章的路径</td>
+</tr>
+<tr>
+<td>-r, –replace</td>
+<td>如果存在同名文章，将其替换</td>
+</tr>
+<tr>
+<td>-s, –slug</td>
+<td>文章的slug， 作为新文章的文件名和发布后的url</td>
+</tr>
+</tbody></table>
+<p>默认情况下，Hexo 会使用文章的标题来决定文章文件的路径。对于独立页面来说，Hexo 会创建一个以标题为名字的目录，并在目录中放置一个 index.md 文件。你可以使用 –path 参数来覆盖上述行为、自行决定文件的目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new page --path about/me &quot;About me&quot;</span><br></pre></td></tr></table></figure>
+<p>以上命令会创建一个 source&#x2F;about&#x2F;me.md 文件，同时 Front Matter 中的 title 为 “About me”</p>
+<p>注意！title 是必须指定的！如果你这么做并不能达到你的目的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new page --path about/me</span><br></pre></td></tr></table></figure>
+<p>此时 Hexo 会创建 source&#x2F;_posts&#x2F;about&#x2F;me.md，同时 me.md 的 Front Matter 中的 title 为 “page”。这是因为在上述命令中，hexo-cli 将 page 视为指定文章的标题、并采用默认的 layout。</p>
+]]></content>
+      <tags>
+        <tag>tools</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 添加分类和标签</title>
+    <url>/2023/08/20/hexo_categories_tag/</url>
+    <content><![CDATA[<h3 id="创建“分类”选项"><a href="#创建“分类”选项" class="headerlink" title="创建“分类”选项"></a>创建“分类”选项</h3><p>生成“分类”页并添加tpye属性,进入博客目录。执行命令下方命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ hexo new page categories</span><br></pre></td></tr></table></figure>
+<p>categories文件夹下会有index.md这个文件，打开后默认内容是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2023-08-20 15:33:52</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>添加type: “categories”到内容中，添加后是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2023-08-20 15:33:52</span><br><span class="line">type: categories</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>保存并关闭文件。<br>打开需要添加分类的文章，为其添加categories属性。下方的categories:Hexo表示这篇文章添加到到“Hexo”这个分类。注意：一篇文章只会添加到一个分类中，如果是多个默认放到第一个分类中。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello Rust</span><br><span class="line">date: 2017-05-26 12:12:57</span><br><span class="line">categories: Rust学习资料</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>至此，成功给文章添加分类，点击首页的“分类”可以看到该分类下的所有文章。当然，只有添加了categories: xxx的文章才会被收录到首页的“分类”中。</p>
+<h3 id="创建“标签”选项"><a href="#创建“标签”选项" class="headerlink" title="创建“标签”选项"></a>创建“标签”选项</h3><p>生成“标签”页并添加tpye属性</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ hexo new page tags</span><br></pre></td></tr></table></figure>
+<p>在tags文件夹下，找到index.md这个文件，打开后默认内容是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2023-08-20 15:40:07</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>添加type: “tags”到内容中，添加后是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2023-08-20 15:40:07</span><br><span class="line">type: tag</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>保存并关闭文件。</p>
+<p>给文章添加“tags”属性,打开需要添加标签的文章，为其添加tags属性。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello Rust</span><br><span class="line">date: 2017-05-26 12:12:57</span><br><span class="line">categories: Rust学习资料</span><br><span class="line">tag: Rust</span><br><span class="line">---</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>notes</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ubuntu 只保留最近一周的日志</title>
+    <url>/2023/08/18/ubuntu-%E5%8F%AA%E4%BF%9D%E7%95%99%E6%9C%80%E8%BF%91%E4%B8%80%E5%91%A8%E7%9A%84%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[<h3 id="只保留最近一周的日志"><a href="#只保留最近一周的日志" class="headerlink" title="只保留最近一周的日志"></a>只保留最近一周的日志</h3><ul>
+<li><p>只保留最近一周的日志</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">journalctl --vacuum-time=1w</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>只保留最多500M日志</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">journalctl --vacuum-size=500M</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu 时钟显示秒</title>
+    <url>/2023/08/18/ubuntu-%E6%97%B6%E9%92%9F%E6%98%BE%E7%A4%BA%E7%A7%92/</url>
+    <content><![CDATA[<h3 id="时钟显示秒"><a href="#时钟显示秒" class="headerlink" title="时钟显示秒"></a>时钟显示秒</h3><p>Ubuntu 日期时间显示格式“月-日 星期, 时-分-秒”命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gsettings set org.gnome.desktop.interface clock-show-seconds true</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>tags</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 00.00:欢迎来到Rust编程语言世界！</title>
+    <url>/2022/12/24/rust_docs/ch_00_00_introducation/</url>
+    <content><![CDATA[<h4 id="欢迎来到Rust编程语言世界！"><a href="#欢迎来到Rust编程语言世界！" class="headerlink" title="欢迎来到Rust编程语言世界！"></a>欢迎来到Rust编程语言世界！</h4><p>不管写的好与差，挖坑先，要不然永远不会开始。</p>
+<p>Hello, World!</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2022计划开始一系列关于学习Rust入门的学习笔记，主要是根据官方的文档入门学习。</p>
+<p>Rust程序设计语言能帮助你编写更快，更可靠的软件。在编程语言的设计中，高层工程学和底层控制常常是冲突的。Rust挑战了这种冲突。通过平衡强大的技术能力（powerful technical capacity）和 极好的开发者体验（great developer experience）,Rust 可以控制底层的细节（比如内存的使用）但不用忍受传统同类型语言那些困扰。</p>
+<p>Rust 已经在证明着自己，对于学习过编程知识的不同水平的开发者来说，如果他们开发大型协同项目都是不错的生产工具。底层的代码容易产生各种不易发现的bugs,在其他编程语言中，要发现这些bugs只能通过广泛的测试和团队中经验丰富的大佬们仔细的评审（review）。在Rust设计中，编译器（compiler）扮演着守门员的角色，它会拒绝包含各种bugs代码的编译。通过编译器的帮忙，开发团队将会把更多的时间用在程序的逻辑上，而不是one day day 地在写bugs与修bugs之间疲于奔命。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 01.01:本地文档</title>
+    <url>/2022/12/25/rust_docs/ch_01_01_Installation/</url>
+    <content><![CDATA[<h4 id="本地文档"><a href="#本地文档" class="headerlink" title="本地文档"></a>本地文档</h4><p>安装过程包括了将对应Rust版本的文档复制到本地。所以你可以阅读官方文档，也可以通过命令：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> rustup doc</span><br></pre></td></tr></table></figure>
+
+<p>会在浏览器里打开本地文档。</p>
+<p>标准库里面的任何一个类型或者函数你不确定的时候，或者你不知道怎么用。使用应用程序编程接口(API)文档来找出答案。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 01.02:编译和运行是彼此独立的步骤</title>
+    <url>/2022/12/26/rust_docs/ch_01_02_hello_world/</url>
+    <content><![CDATA[<h5 id="编译和运行是彼此独立的步骤"><a href="#编译和运行是彼此独立的步骤" class="headerlink" title="编译和运行是彼此独立的步骤"></a>编译和运行是彼此独立的步骤</h5><p>你刚刚运行了一个新的程序，所以让我们来检查一下这个过程的每一个步骤。</p>
+<p>在运行Rust程序之前，你必须通过rustc命令，用Rust编译器来编译这个它，并传入你源代码文件的名字，比如：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> rustc main.rs</span><br></pre></td></tr></table></figure>
+
+<p>如果你有C或者C++的技术背景，你可以视作像gcc 或者clang。在编译成功之后，Rust 会输出一个二进制可执行文件。</p>
+<p>对于Linux,macOS和PowerShell on Windows,执行ls的shell命令之后，你就可以看到这个可执行文件。对于Linux，macOS，你可以看到两个文件。对于PowerShell on Windows,你会看到和使用CMD一样的三个文件。</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">ls</span></span><br><span class="line">main main.rs</span><br></pre></td></tr></table></figure>
+
+<p>在Windows的CMD，输入命令：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">dir</span> /B %= the /B option says to only show the file names =%</span><br><span class="line">main.exe</span><br><span class="line">main.pdb</span><br><span class="line">main.rs</span><br></pre></td></tr></table></figure>
+
+<p>这显示出以.rs为扩展名的源代码文件和可执行文件(main.exe on Windows, but main on all other platforms),并且，当使用Windows，一个文件包括了debugging信息的.pdb扩展名。到此，你可以开始运行main 或者main.exe文件，如：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> ./main <span class="comment"># or .\main.exe on Windows</span></span><br></pre></td></tr></table></figure>
+
+<p>如果main.rs是你的”Hello,world!”程序，这行将打印出”Hello,world!”到你的屏幕。</p>
+<p>如果你更加熟悉动态语言，如Ruby,Python, JavaScript, 你也许不习惯将编译和运行分为两个单独的步骤。Rust是一个预编译(ahead-of-time compiled)语言，代表你可以编译一个程序并且给可执行文件其他人，并且他们可以直接运行，不需要安装Rust。如果你给某人一个a.rb, .py, .js文件，他们需要安装一个Ruby,Python 或者JavaScript 实现(运行环境)。不过这些语言中，只需要一句命令就可以编译和运行程序。所有的事都是语言设计上的取舍。</p>
+<p>仅仅使用rustc编译简单程序是没有问题的。但是随着你的项目发展，你会想要管理所有的选项，使得更简单地共享你的代码。接下来，我们将介绍给你一个叫做Cargo的工具，它将帮助你编写真实世界的Rust程序。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 01.03:养成使用Cargo习惯</title>
+    <url>/2022/12/27/rust_docs/ch_01_03_hello_cargo/</url>
+    <content><![CDATA[<h5 id="养成使用Cargo习惯"><a href="#养成使用Cargo习惯" class="headerlink" title="养成使用Cargo习惯"></a>养成使用Cargo习惯</h5><p>对于简单的项目，和rustc相比，Cargo不能提供多大的价值，但是对于复杂的项目，安装了很多crates, 它将会证明它的价值所在。让Cargo来协调构建工作会变得容易更多。</p>
+<p>即使hello_cargo这么简单的项目，它现在使用了很多你之后的Rust生涯将会用到的使用工具。其实，要在任何已存在的项目上工作时，可以使用如下的命令通过Git拿到代码，移动到你的projects目录，并构建：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> git clone example.org/someproject</span><br><span class="line"><span class="variable">$</span> <span class="built_in">cd</span> someproject</span><br><span class="line"><span class="variable">$</span> cargo build</span><br></pre></td></tr></table></figure>
+
+<p>更多关于Cargo详情，请查看Cargo 文档(<a href="https://doc.rust-lang.org/cargo/">https://doc.rust-lang.org/cargo/</a>)</p>
+<p><strong>总结</strong></p>
+<p>对于你的Rust之旅，你已经有一个很棒的开始了！本章你已经学会了如何：</p>
+<ul>
+<li>使用rustup安装最新稳定版Rust</li>
+<li>更新到新版的Rust</li>
+<li>打开本地安装的文档</li>
+<li>直接通过rustc编写并运行”Hello,world!”程序</li>
+<li>使用Cargo创建并运行项目</li>
+</ul>
+<p>是时候通过构建更实质性的程序来熟悉写Rust代码了。所以在Chapter 2,我们将构建一个猜数字的游戏程序。如果你更想从学习Rust常用的编程概念开始，请阅读Chapter 3，接着回来看Chapter 2.</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 02.00:猜测正确后退出</title>
+    <url>/2022/12/28/rust_docs/ch_02_00_guessing_game_tutorial/</url>
+    <content><![CDATA[<h5 id="猜测正确后退出"><a href="#猜测正确后退出" class="headerlink" title="猜测正确后退出"></a>猜测正确后退出</h5><p>让我们增加一个break语句，在用户才对时退出游戏：</p>
+<p>src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line">       <span class="comment">// --snip--</span></span><br><span class="line">        <span class="keyword">match</span> guess.<span class="title function_ invoke__">cmp</span>(&amp;secret_number) &#123;</span><br><span class="line">            Ordering::Less =&gt; <span class="built_in">println!</span>(<span class="string">&quot;Too small!&quot;</span>),</span><br><span class="line">            Ordering::Greater =&gt; <span class="built_in">println!</span>(<span class="string">&quot;Too big!&quot;</span>),</span><br><span class="line">            Ordering::Equal =&gt; &#123;</span><br><span class="line">                <span class="built_in">println!</span>(<span class="string">&quot;You win!&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过在You win!之后增加一行break;，用户猜对了神秘数字之后会退出循环。退出循环也意味着退出程序，因为循环是main最后一部分。</p>
+<p><strong>处理无效输入</strong></p>
+<p> 为了进一步使得游戏表现更好，而不是当用户输入无效数字就崩溃，需要忽略无效输入，让用户继续猜。可以通过修改guess将String转换为u32那部分代码来实现，如Listing 2-5:</p>
+<p>src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// --snip--</span></span><br><span class="line"></span><br><span class="line">io::<span class="title function_ invoke__">stdin</span>()</span><br><span class="line">    .<span class="title function_ invoke__">read_line</span>(&amp;<span class="keyword">mut</span> guess)</span><br><span class="line">    .<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Failed to read line&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">guess</span>: <span class="type">u32</span> = <span class="keyword">match</span> guess.<span class="title function_ invoke__">trim</span>().<span class="title function_ invoke__">parse</span>() &#123;</span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(num) =&gt; num,</span><br><span class="line">    <span class="title function_ invoke__">Err</span>(_) =&gt; <span class="keyword">continue</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;You guessed: &#123;&#125;&quot;</span>, guess);</span><br><span class="line"></span><br><span class="line"><span class="comment">// --snip--</span></span><br></pre></td></tr></table></figure>
+
+<p>Listing 2-5 Ignoring a non-number guess and asking for another guess instead of crashing the program</p>
+<p>我们将expect调用换成match语句，以从遇到错误就崩溃变为处理错误。需知parse返回一个Result类型，而Result是一个用于Ok或Err成员的枚举。这里使用的match表达式，和之前处理cmp方法返回Ordering时用的一样。</p>
+<p>如果parse不能将字符串转换一个数字，它会返回一个包含更多错误信息的Err。Err值不能匹配第一个match分支的Ok(num)模式，但是会匹配第二个分支Err(_)模式：_是一个通配符值，本例中用来匹配所有的Err值，不管其中有任何信息。所以程序会执行第二个分支的动作，continue 意味着进入loop的下一次循环，请求另一个猜测。这样程序就有效地忽略了parse可能遇到的所有错误！</p>
+<p>现在所有的事情都是我们期待的了，让我们试试：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> cargo run</span><br><span class="line">   Compiling guessing_game v0.<span class="number">1.0</span> (file:///projects/guessing_game)</span><br><span class="line">    Finished dev <span class="function">[<span class="type">unoptimized</span> + <span class="type">debuginfo</span>] <span class="title">target</span></span>(s) <span class="keyword">in</span> <span class="number">4.45</span>s</span><br><span class="line">     Running `target/debug/guessing_game`</span><br><span class="line">Guess the number!</span><br><span class="line">The secret number is: <span class="number">61</span></span><br><span class="line">Please input your guess.</span><br><span class="line"><span class="number">10</span></span><br><span class="line">You guessed: <span class="number">10</span></span><br><span class="line">Too small!</span><br><span class="line">Please input your guess.</span><br><span class="line"><span class="number">99</span></span><br><span class="line">You guessed: <span class="number">99</span></span><br><span class="line">Too big!</span><br><span class="line">Please input your guess.</span><br><span class="line">foo</span><br><span class="line">Please input your guess.</span><br><span class="line"><span class="number">61</span></span><br><span class="line">You guessed: <span class="number">61</span></span><br><span class="line">You win!</span><br></pre></td></tr></table></figure>
+
+<p>牛逼！再有一个小的修改，就能完成猜数字游戏了：还记得程序依然会打印出秘密数字吗？那个是为了便于测试，但是它破坏游戏性。让我们删掉这个打印语句吧。Listing 2-6是最终版本的代码：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> rand::Rng;</span><br><span class="line"><span class="keyword">use</span> std::cmp::Ordering;</span><br><span class="line"><span class="keyword">use</span> std::io;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Guess the number!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">secret_number</span> = rand::<span class="title function_ invoke__">thread_rng</span>().<span class="title function_ invoke__">gen_range</span>(<span class="number">1</span>..<span class="number">101</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">loop</span> &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Please input your guess.&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">guess</span> = <span class="type">String</span>::<span class="title function_ invoke__">new</span>();</span><br><span class="line"></span><br><span class="line">        io::<span class="title function_ invoke__">stdin</span>()</span><br><span class="line">            .<span class="title function_ invoke__">read_line</span>(&amp;<span class="keyword">mut</span> guess)</span><br><span class="line">            .<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Failed to read line&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">guess</span>: <span class="type">u32</span> = <span class="keyword">match</span> guess.<span class="title function_ invoke__">trim</span>().<span class="title function_ invoke__">parse</span>() &#123;</span><br><span class="line">            <span class="title function_ invoke__">Ok</span>(num) =&gt; num,</span><br><span class="line">            <span class="title function_ invoke__">Err</span>(_) =&gt; <span class="keyword">continue</span>,</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;You guessed: &#123;&#125;&quot;</span>, guess);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">match</span> guess.<span class="title function_ invoke__">cmp</span>(&amp;secret_number) &#123;</span><br><span class="line">            Ordering::Less =&gt; <span class="built_in">println!</span>(<span class="string">&quot;Too small!&quot;</span>),</span><br><span class="line">            Ordering::Greater =&gt; <span class="built_in">println!</span>(<span class="string">&quot;Too big!&quot;</span>),</span><br><span class="line">            Ordering::Equal =&gt; &#123;</span><br><span class="line">                <span class="built_in">println!</span>(<span class="string">&quot;You win!&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 2-6 Complete guessing game code</p>
+<p><strong>总结</strong></p>
+<p>至此，你成功地构建了猜数字游戏。恭喜你！</p>
+<p>这个项目是一个通过动手实践，向你介绍了很多Rust新概念：let,match,函数，使用外部crate等等。在接下来的章节中，你将会学习这些概念的细节。第三章介绍大部分程序语言都有的概念，比如变量，数据类型和函数，以及如何在Rust中使用他们。第四章探索所有权(owership)，一个特性，使得Rust与其他语言不同的特性。第五章讨论结构体和方法的语法，第六章介绍枚举如何工作。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 03.00:关键字(Keywords)</title>
+    <url>/2022/12/29/rust_docs/ch_03_00_common_programming_concepts/</url>
+    <content><![CDATA[<h5 id="关键字-Keywords"><a href="#关键字-Keywords" class="headerlink" title="关键字(Keywords)"></a>关键字(Keywords)</h5><p>Rust语言有一个关键字集合，这些关键字预留给语言本使用，和其他大部分语言一样。牢记在心，你不能使用这些单词作为变量名或者函数名。大部分的关键字有其特殊的意义，而且你会用这些关键字来做各种各样的任务在Rust程序里。一些关键词目前没有相应的功能，是为了将来可能添加的功能预留的。可以在Appendix A(<a href="https://doc.rust-lang.org/book/appendix-01-keywords.html)%E6%9F%A5%E7%9C%8B">https://doc.rust-lang.org/book/appendix-01-keywords.html)查看</a></p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 03.01:隐藏(Shadowing)</title>
+    <url>/2022/12/29/rust_docs/ch_03_01_variables_and_mutability/</url>
+    <content><![CDATA[<h5 id="隐藏-Shadowing"><a href="#隐藏-Shadowing" class="headerlink" title="隐藏(Shadowing)"></a>隐藏(Shadowing)</h5><p>如你在第二章猜数字游戏教程所见，你可以声明一个新的变量用和前面声明的变量同样的名字。Rustaceans说第一个变量被第二个隐藏(Shadowing)了，意思是第二个变量的值是在程序使用时才看到的。我们可以shadow一个变量使用相同的变量名，并重复地使用let关键字，如下：</p>
+<p>src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span> = x + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">x</span> = x * <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;The value of x in the inner scope is: &#123;&#125;&quot;</span>, x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The value of x is: &#123;&#125;&quot;</span>, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>程序首先绑定了5给x。然后重新用let x&#x3D;隐藏了x，使得原来的值加1，所以变量的值变为了6。然后，在内部作用域，第三次let声明x, 将之前的值乘以2得到12。当内部作用结束，内部的隐藏结束，并且x变回6。当我们运行这个程序，它运行结果如下：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> cargo run</span><br><span class="line">   Compiling variables v0.<span class="number">1.0</span> (file:///projects/variables)</span><br><span class="line">    Finished dev <span class="function">[<span class="type">unoptimized</span> + <span class="type">debuginfo</span>] <span class="title">target</span></span>(s) <span class="keyword">in</span> <span class="number">0.31</span>s</span><br><span class="line">     Running `target/debug/variables`</span><br><span class="line">The value of x <span class="keyword">in</span> the inner scope is: <span class="number">12</span></span><br><span class="line">The value of x is: <span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<p>隐藏不同于将变量标记为mut，因为如果我们意外地尝试重新分配这个变量不使用let关键字，我们会得到一个编译错误。通过使用let，我们可以对一个值执行一些转换，但在这些转换完成后，变量是不可变的。</p>
+<p>其他的mut和shadowing之间的不同之处是因为当我们再次使用let关键字，我们实际上创建了一个新的变量。例如，假如我们的程序要求用户输入空格来显示文本之间需要多少空格，然后我们希望将输入存储为数字：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">spaces</span> = <span class="string">&quot;   &quot;</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">spaces</span> = spaces.<span class="title function_ invoke__">len</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>首先spaces变量是一个string类型，然后第二个spaces变量是数字类型。因此shadowing使我们不需使用不同的变量名，如space_str 和 space_num；然而，如果我们尝试使用mut，如下，我们会得到一个编译时错误：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">spaces</span> = <span class="string">&quot;   &quot;</span>;</span><br><span class="line">    spaces = spaces.<span class="title function_ invoke__">len</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>错误说我们不被允许转变变量的类型：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling variables v0.<span class="number">1.0</span> (file:<span class="comment">///projects/variables)</span></span><br><span class="line">error[E0308]: mismatched types</span><br><span class="line"> -<span class="punctuation">-&gt;</span> src/main.rs:<span class="number">3</span>:<span class="number">14</span></span><br><span class="line">  |</span><br><span class="line"><span class="number">3</span> |     spaces = spaces.<span class="title function_ invoke__">len</span>();</span><br><span class="line">  |              ^^^^^^^^^^^^ expected `&amp;<span class="type">str</span>`, found `<span class="type">usize</span>`</span><br><span class="line"></span><br><span class="line">For more information about this error, <span class="keyword">try</span> `rustc --explain E0308`.</span><br><span class="line">error: could not compile `variables` due to previous error</span><br></pre></td></tr></table></figure>
+
+<p>现在，我们探索了变量是如何工作的，我们还有更多的数据类型等着你呢！</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 03.02:无效的数组元素访问</title>
+    <url>/2022/12/29/rust_docs/ch_03_02_data_types/</url>
+    <content><![CDATA[<h6 id="无效的数组元素访问"><a href="#无效的数组元素访问" class="headerlink" title="无效的数组元素访问"></a>无效的数组元素访问</h6><p>让我们看看发生了什么，如果你尝试访问数组的一个元素，这个元素在数组的结尾之后呢。运行如下的代码，类似于第二章猜数字游戏，从用户输入那里获取数组索引：</p>
+<p>src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> std::io;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">a</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Please enter an array index.&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">index</span> = <span class="type">String</span>::<span class="title function_ invoke__">new</span>();</span><br><span class="line"></span><br><span class="line">    io::<span class="title function_ invoke__">stdin</span>()</span><br><span class="line">        .<span class="title function_ invoke__">read_line</span>(&amp;<span class="keyword">mut</span> index)</span><br><span class="line">        .<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Failed to read line&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">index</span>: <span class="type">usize</span> = index</span><br><span class="line">        .<span class="title function_ invoke__">trim</span>()</span><br><span class="line">        .<span class="title function_ invoke__">parse</span>()</span><br><span class="line">        .<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Index entered was not a number&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">element</span> = a[index];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(</span><br><span class="line">        <span class="string">&quot;The value of the element at index &#123;&#125; is: &#123;&#125;&quot;</span>,</span><br><span class="line">        index, element</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段代码编译成功。如果运行这段代码使用cargo run然后输入0，1，2，3，4，这个程序会打印出在数组内对应索引的值。如果你输入一个超出范围的数字，比如10，你会看到输出如：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">thread <span class="string">&#x27;main&#x27;</span> panicked at <span class="string">&#x27;index out of bounds: the len is 5 but the index is 10&#x27;</span>, src/main.rs:<span class="number">19</span>:<span class="number">19</span></span><br><span class="line">note: run with `RUST_BACKTRACE=<span class="number">1</span>` environment variable to display a backtrace</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>当你使用这个无效的值索引的时候，程序的结果是在运行时间的错误。程序退出并返回错误信息，并且没有运行最后的println!语句。当你试图用一个索引访问一个元素，Rust会检查你指定的这个索引是否会超过数组的长度。如果索引与数组长度相同或者更大，Rust就会死给你看。这个检查在运行时间，特别在这个例子中，因为编译器在编译完之后就不可能知道用户会输入什么。</p>
+<p>这是一个Rust的内存安全原则示例的表现。在很多底层代码语言中，当你提供一个错误的索引，这种类型的检查它们是不做的，无效内存就会被访问，会导致你不知道你到底访问到了别的什么奇奇怪怪的值。Rust项目中会立即退出，而不是允许你继续访问，从而保护你面授此类错误的影响。第九章将会讨论Rust的错误处理。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 03.03:函数(Functions)</title>
+    <url>/2022/12/29/rust_docs/ch_03_03_how_functions_work/</url>
+    <content><![CDATA[<h4 id="函数-Functions"><a href="#函数-Functions" class="headerlink" title="函数(Functions)"></a>函数(Functions)</h4><p>函数在Rust代码中是很普遍的。你已经看了在语言中最重要的函数之一：main函数，是很多程序的入口。你也看到了fn关键字，它允许你声明一个新的函数。</p>
+<p>Rust代码中的函数和变量使用snake case的代码风格，所有的单词小写并用下划线隔开。这里有一个程序包含了一个函数的定义：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#![allow(unused)]</span><br><span class="line">fn main() &#123;</span><br><span class="line">let x = 5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其次，five函数没有参数并定义了返回值类型，不过函数体只有单单一个5，因为它是一个表达式，可以返回我们想要的值。</p>
+<p>让我们看看另外一个例子：</p>
+<p>src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span> = <span class="title function_ invoke__">plus_one</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The value of x is: &#123;&#125;&quot;</span>, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">plus_one</span>(x: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    x + <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译这段代码，会产生一个如下的错误：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> cargo run</span><br><span class="line">   Compiling functions v0.<span class="number">1.0</span> (file:///projects/functions)</span><br><span class="line">error[<span class="type">E0308</span>]: mismatched types</span><br><span class="line"> <span class="literal">--</span>&gt; src/main.rs:<span class="number">7</span>:<span class="number">24</span></span><br><span class="line">  |</span><br><span class="line"><span class="number">7</span> | fn plus_one(x: i32) -&gt; i32 &#123;</span><br><span class="line">  |    <span class="literal">--------</span>            ^^^ expected `i32`, found `()`</span><br><span class="line">  |    |</span><br><span class="line">  |    implicitly returns `()` as its body has no tail or `return` expression</span><br><span class="line"><span class="number">8</span> |     x + <span class="number">1</span>;</span><br><span class="line">  |          - help: consider removing this semicolon</span><br><span class="line"></span><br><span class="line"><span class="keyword">For</span> more information about this error, <span class="keyword">try</span> `rustc <span class="literal">--explain</span> E0308`.</span><br><span class="line">error: could not compile `functions` due to previous error</span><br></pre></td></tr></table></figure>
+
+<p>主要的错误信息”mismatched types”揭示了这段代码的核心问题所在。定义函数plus_one，然后说要返回一个i32，但是语句不会计算得到一个值，使用单位类型()表示不返回值。因为不返回值与函数返回一个i32类型的值矛盾，从而出现一个错误。在输出中，Rust提供了一条信息，可能有助于纠正这个错误：它建议删除分号，这会修复这个错误。</p>
+<p>正确的代码如下：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span> = <span class="title function_ invoke__">plus_one</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The value of x is: &#123;&#125;&quot;</span>, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">plus_one</span>(x: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    x + <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 03.04:注释(Comments)</title>
+    <url>/2022/12/29/rust_docs/ch_03_04_comments/</url>
+    <content><![CDATA[<h4 id="注释-Comments"><a href="#注释-Comments" class="headerlink" title="注释(Comments)"></a>注释(Comments)</h4><p>所有的程序设计人员努力使他们的代码更容易理解，但是有时候额外的解释是有必要的。在这种情况下程序设计人员在源代码中留下注释(comments)，编译器会忽略这些注释，但是人阅读源码会发现它很有用。</p>
+<p>这里有一个简单的注释例子：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#![allow(unused)]</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line"><span class="comment">// So we’re doing something complicated here, long enough that we need</span></span><br><span class="line"><span class="comment">// multiple lines of comments to do it! Whew! Hopefully, this comment will</span></span><br><span class="line"><span class="comment">// explain what’s going on.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注释可以放在代码行结尾：</p>
+<p>src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">lucky_number</span> = <span class="number">7</span>; <span class="comment">// I’m feeling lucky today</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是你经常看到更多是如下的格式，在代码的上方的单独一行注释：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="comment">// I’m feeling lucky today</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">lucky_number</span> = <span class="number">7</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Rust 也有其他类型的注释，文档注释(documentation comments)，详细在第14章的”Publishing a Crate to Crates.io” 部分介绍。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 04.02:引用的规则(The Rules of References)</title>
+    <url>/2022/12/29/rust_docs/ch_04_02_references_and_borrowing/</url>
+    <content><![CDATA[<h4 id="引用的规则-The-Rules-of-References"><a href="#引用的规则-The-Rules-of-References" class="headerlink" title="引用的规则(The Rules of References)"></a>引用的规则(The Rules of References)</h4><p>让我们来重新概况一下之前对引用的讨论：</p>
+<ul>
+<li>在任意给定时间，要么只能有一个可变引用，要么只能有多个不可变引用。</li>
+<li>引用必须总是有效的。</li>
+</ul>
+<p>接下来，我们来看看另一种不同类型的引用：slice。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 03.05:总结(Summary)</title>
+    <url>/2022/12/29/rust_docs/ch_03_05_control_flow/</url>
+    <content><![CDATA[<h4 id="总结-Summary"><a href="#总结-Summary" class="headerlink" title="总结(Summary)"></a>总结(Summary)</h4><p>你做到了！这是相当大的一章：你学习了关于variables, scalar and compound data type, functions, comments, if expressions, and loops! 讨论并练习这些概念。尝试构建如下的程序：</p>
+<ul>
+<li>相互转换摄氏与华氏温度(Convert temperatures between Fahrenheit and Celsius.)</li>
+<li>生成n阶斐波那契数列(Generate th nth Fibonacci number.)</li>
+<li>打印圣诞颂歌词，并利用歌词中的重复部分(编写循环)(Print the lyrics to the Christmas carol “The Twelve Days of Christmas,” taking advantage of the repetition in the song.)</li>
+</ul>
+<p>当你准备好继续的时候，让我们讨论一个其他语言中不常见的概念：所有权(ownership)</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 04.00:Understanding Ownership</title>
+    <url>/2022/12/29/rust_docs/ch_04_00_understanding_ownership/</url>
+    <content><![CDATA[<h4 id="Understanding-Ownership"><a href="#Understanding-Ownership" class="headerlink" title="Understanding Ownership"></a>Understanding Ownership</h4><p>Ownership 是Rust最独特的特性，并且对剩下的部分有着深刻的意义。它能让Rust在不需要垃圾回收(garbage collection)就能保证内存安全，所以能够很好地理解owership是如何工作的是非常重要的。在本章，我们将讲和ownership关联的一些特性：borrowing, slice, 和Rust如何在内存中布局数据。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 04.01:返回值与作用域(Return Values and Scope)</title>
+    <url>/2022/12/29/rust_docs/ch_04_01_what_id_ownership/</url>
+    <content><![CDATA[<h4 id="返回值与作用域-Return-Values-and-Scope"><a href="#返回值与作用域-Return-Values-and-Scope" class="headerlink" title="返回值与作用域(Return Values and Scope)"></a>返回值与作用域(Return Values and Scope)</h4><p>返回值也可以转移所有权。Listing 4-4展示了一个示例，与Listing4-3一样带有类似的注释。</p>
+<p>Filename: src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s1</span> = <span class="title function_ invoke__">gives_ownership</span>();         <span class="comment">// gives_ownership moves its return</span></span><br><span class="line">                                        <span class="comment">// value into s1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s2</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);     <span class="comment">// s2 comes into scope</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s3</span> = <span class="title function_ invoke__">takes_and_gives_back</span>(s2);  <span class="comment">// s2 is moved into</span></span><br><span class="line">                                        <span class="comment">// takes_and_gives_back, which also</span></span><br><span class="line">                                        <span class="comment">// moves its return value into s3</span></span><br><span class="line">&#125; <span class="comment">// Here, s3 goes out of scope and is dropped. s2 was moved, so nothing</span></span><br><span class="line">  <span class="comment">// happens. s1 goes out of scope and is dropped.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">gives_ownership</span>() <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123;             <span class="comment">// gives_ownership will move its</span></span><br><span class="line">                                             <span class="comment">// return value into the function</span></span><br><span class="line">                                             <span class="comment">// that calls it</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">some_string</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;yours&quot;</span>); <span class="comment">// some_string comes into scope</span></span><br><span class="line"></span><br><span class="line">    some_string                              <span class="comment">// some_string is returned and</span></span><br><span class="line">                                             <span class="comment">// moves out to the calling</span></span><br><span class="line">                                             <span class="comment">// function</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This function takes a String and returns one</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">takes_and_gives_back</span>(a_string: <span class="type">String</span>) <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123; <span class="comment">// a_string comes into</span></span><br><span class="line">                                                      <span class="comment">// scope</span></span><br><span class="line"></span><br><span class="line">    a_string  <span class="comment">// a_string is returned and moves out to the calling function</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 4-4: Transferring ownership of return values</p>
+<p>变量的所有权总是遵循相同的模式：将赋值给另一个变量时移动它。当持有堆中数据的变量离开作用域时，其值将通过drop被清理，除非数据被移动为另一个变量所有。</p>
+<p>虽然这样是可以的，但是在每一个函数中都获取所有权并接着返回所有权有些啰嗦。如果我们想要函数使用一个值但不获取所有权该怎么办呢？如果我们还要接着使用它的话，每次都穿进去再返回来就有点烦人了，除此之外，我们可能想返回函数中产生的一些数据。</p>
+<p>我们可以使用元组来返回多个值，如Listing 4-5。</p>
+<p>Filename：src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s1</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> (s2, len) = <span class="title function_ invoke__">calculate_length</span>(s1);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The length of &#x27;&#123;&#125;&#x27; is &#123;&#125;.&quot;</span>, s2, len);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">calculate_length</span>(s: <span class="type">String</span>) <span class="punctuation">-&gt;</span> (<span class="type">String</span>, <span class="type">usize</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">length</span> = s.<span class="title function_ invoke__">len</span>(); <span class="comment">// len() returns the length of a String</span></span><br><span class="line"></span><br><span class="line">    (s, length)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 4-5: Returning ownership of parameters</p>
+<p>但是，对于一个应该是普通的概念来说，这太多的仪式和大量的工作。幸运的是，Rust有一个特性，可以在不用转移所有权的情况下使用值，它叫做引用(references)。</p>
+<p>接下来将讲”引用和借用(References and Borrowing)”</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 04.03:总结</title>
+    <url>/2022/12/29/rust_docs/ch_04_03_slices/</url>
+    <content><![CDATA[<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>所有权、借用和slice这些概念让Rust程序在编译时保证内存安全。Rust语言提供了跟其他系统编程语言相同的方式来控制你使用内存，但拥有数据所有者在离开作用域后自动清除其数据的功能意味着你无需额外编写和调试相关的控制代码。</p>
+<p>所有权系统影响了Rust中很多其他部分的工作方式，所以我们还会继续讲到这些概念，这将贯穿本书余下的内容。让我们开始第五章吧，来看看如何将多份数据组合进一个struct中。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 05.01:结构体数据的所有权(Ownership of Struct Data)</title>
+    <url>/2022/12/29/rust_docs/ch_05_01_defining_and_instantiating_structs/</url>
+    <content><![CDATA[<h4 id="结构体数据的所有权-Ownership-of-Struct-Data"><a href="#结构体数据的所有权-Ownership-of-Struct-Data" class="headerlink" title="结构体数据的所有权(Ownership of Struct Data)"></a>结构体数据的所有权(Ownership of Struct Data)</h4><p>在Listing 5-1中的<code>User</code>结构体定义中，我们使用了自身拥有所有权的String类型而不是&amp;str字符串slice类型。这是一个有意为之的选择，因为我们想要这个结构体拥有它所有的数据，为此只要整个结构体是有效的话数据也是有效的。可以使结构体存储被其他对象拥有的数据的引用，不过这么做的话需要用上生命周期(lifetimes)，这是一个第十章会讨论的Rust功能。生命周期确保结构体引用的数据有效性跟结构体本身保持一致。如果你尝试在结构体中存储一个引用而不是指定生命周期将是无效的，比如这样：</p>
+<p>filename: src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    active: <span class="type">bool</span>,</span><br><span class="line">    username: &amp;<span class="type">str</span>,</span><br><span class="line">    email: &amp;<span class="type">str</span>,</span><br><span class="line">    sign_in_count: <span class="type">u64</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">user1</span> = User &#123;</span><br><span class="line">        email: <span class="string">&quot;someone@example.com&quot;</span>,</span><br><span class="line">        username: <span class="string">&quot;someusername123&quot;</span>,</span><br><span class="line">        active: <span class="literal">true</span>,</span><br><span class="line">        sign_in_count: <span class="number">1</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译器会控诉它需要生命周期标识符：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling structs v0.<span class="number">1.0</span> (file:<span class="comment">///projects/structs)</span></span><br><span class="line">error[E0106]: missing lifetime specifier</span><br><span class="line"> -<span class="punctuation">-&gt;</span> src/main.rs:<span class="number">3</span>:<span class="number">15</span></span><br><span class="line">  |</span><br><span class="line"><span class="number">3</span> |     username: &amp;<span class="type">str</span>,</span><br><span class="line">  |               ^ expected named lifetime parameter</span><br><span class="line">  |</span><br><span class="line">help: consider introducing a named lifetime parameter</span><br><span class="line">  |</span><br><span class="line"><span class="number">1</span> ~ <span class="keyword">struct</span> <span class="title class_">User</span>&lt;<span class="symbol">&#x27;a</span>&gt; &#123;</span><br><span class="line"><span class="number">2</span> |     active: <span class="type">bool</span>,</span><br><span class="line"><span class="number">3</span> ~     username: &amp;<span class="symbol">&#x27;a</span> <span class="type">str</span>,</span><br><span class="line">  |</span><br><span class="line"></span><br><span class="line">error[E0106]: missing lifetime specifier</span><br><span class="line"> -<span class="punctuation">-&gt;</span> src/main.rs:<span class="number">4</span>:<span class="number">12</span></span><br><span class="line">  |</span><br><span class="line"><span class="number">4</span> |     email: &amp;<span class="type">str</span>,</span><br><span class="line">  |            ^ expected named lifetime parameter</span><br><span class="line">  |</span><br><span class="line">help: consider introducing a named lifetime parameter</span><br><span class="line">  |</span><br><span class="line"><span class="number">1</span> ~ <span class="keyword">struct</span> <span class="title class_">User</span>&lt;<span class="symbol">&#x27;a</span>&gt; &#123;</span><br><span class="line"><span class="number">2</span> |     active: <span class="type">bool</span>,</span><br><span class="line"><span class="number">3</span> |     username: &amp;<span class="type">str</span>,</span><br><span class="line"><span class="number">4</span> ~     email: &amp;<span class="symbol">&#x27;a</span> <span class="type">str</span>,</span><br><span class="line">  |</span><br><span class="line"></span><br><span class="line">For more information about this error, <span class="keyword">try</span> `rustc --explain E0106`.</span><br><span class="line">error: could not compile `structs` due to <span class="number">2</span> previous errors=</span><br></pre></td></tr></table></figure>
+
+<p>第十章会讲到如何修复这个问题以便在结构体中存储引用，不过现在，我们使用像String这类拥有所有权的类型来替代&amp;str这样的引用以修正这个错误。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 05.02:An Example Program Using Structs</title>
+    <url>/2022/12/29/rust_docs/ch_05_02_example_structs/</url>
+    <content><![CDATA[<h4 id="An-Example-Program-Using-Structs"><a href="#An-Example-Program-Using-Structs" class="headerlink" title="An Example Program Using Structs"></a>An Example Program Using Structs</h4><p>为了理解何时需要使用结构体，让我们编写一个计算矩形面积的程序。我们将通过使用单个变量开始，然后重构这个程序，直到用结构体替代它。</p>
+<p>让我们用cargo创建一个新的项目叫做<code>rectangles</code>的二进制程序，它获取以像素为单位的矩形的宽度和高度，并计算出矩形的面积。Listing 5-8 展示一个简短的程序：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Rectangle</span> &#123;</span><br><span class="line">    width: <span class="type">u32</span>,</span><br><span class="line">    height: <span class="type">u32</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">scale</span> = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">rect1</span> = Rectangle &#123;</span><br><span class="line">        width: dbg!(<span class="number">30</span> * scale),</span><br><span class="line">        height: <span class="number">50</span>,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    dbg!(&amp;rect1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以把<code>dbg!</code>放在表达式放在<code>30 * scale</code>周围，以为你<code>dbg!</code>返回表达式的值的所有权，所以width字段将获得相同的值，就像我们在这里没有<code>dbg!</code>调用一样。我们不希望dbg!拥有rect1的所有权，所以我们在下一次调用dbg!时传递一个引用。下面是这个例子的输出结果：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling rectangles v0.<span class="number">1.0</span> (file:<span class="comment">///projects/rectangles)</span></span><br><span class="line">    Finished dev [unoptimized + debuginfo] <span class="title function_ invoke__">target</span>(s) <span class="keyword">in</span> <span class="number">0.61</span>s</span><br><span class="line">     Running `target/debug/rectangles`</span><br><span class="line">[src/main.rs:<span class="number">10</span>] <span class="number">30</span> * scale = <span class="number">60</span></span><br><span class="line">[src/main.rs:<span class="number">14</span>] &amp;rect1 = Rectangle &#123;</span><br><span class="line">    width: <span class="number">60</span>,</span><br><span class="line">    height: <span class="number">50</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到第一条输出来自src&#x2F;main.rs第10行，我们正在调用表达式<code>30 * scale</code>，其结果值是60(为整数实现的Debug格式化是只打印它们的值)。在src&#x2F;main.rs第14行的dbg!调用输出&amp;rect1的值，即<code>Rectangle</code>类型。<code>dbg!</code>宏确实很有用。</p>
+<p>除了<code>Debug</code>trait，Rust还为我们提供了很多通过derive属性来使用的trait，它们可以为我们的自定义类型增加实用的行为。这些trait和行为被列举在附录C(Appendix C)。第十章会介绍如何通过自定义行为来实现这些trait，同时还有如何创建你自己的trait。除了derive之外，还有很多属性；更多信息见”Rust Reference”的Attribute部分。</p>
+<p>我们的<code>area</code>函数是非常特殊的，它只计算长方形的面积。如果这个行为与<code>Rectangle</code>结构体再结合得更紧密一些就更好了，因为它不能用于其他类型。现在让我们看看如何继续重构这些代码，来将<code>area</code>函数协调进<code>Rectangle</code>类型定义的<code>area</code>方法中。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 05.00:Using Structs to Structure Related Data</title>
+    <url>/2022/12/29/rust_docs/ch_05_00_structs/</url>
+    <content><![CDATA[<h4 id="Using-Structs-to-Structure-Related-Data"><a href="#Using-Structs-to-Structure-Related-Data" class="headerlink" title="Using Structs to Structure Related Data"></a>Using Structs to Structure Related Data</h4><p>struct or structure 是一个自定义的数据类型，允许你包装和命名多个相关联的值，从而形成一个有意义的组合。如果你熟悉一门面向对象语言，struct就像对象中的数据属性。在本章中，我们会对元组和结构体进行对比和对照。还将演示如何定义和实现实例化结构体，并讨论如何定义关联函数，特别是被称为方法的那种关联函数，以指定与结构体类型相关的行为。你可以在程序中基于结构体和枚举(enum)（在第六章中介绍）创建新类型，以充分利用Rust的编译时类型检查。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 05.03:总结(Summary)</title>
+    <url>/2022/12/29/rust_docs/ch_05_03_method_syntax/</url>
+    <content><![CDATA[<h4 id="总结-Summary"><a href="#总结-Summary" class="headerlink" title="总结(Summary)"></a>总结(Summary)</h4><p>结构体让你创建自定义的类型在你的domain中。通过使用结构体，你可以将数据关联起来，使得它看起来更加清晰。在impl块内，你可以定义函数并关联你的类型，而且方法是一个很好的关联方式，它让你的结构体有了可以指定它特定行为的能力。</p>
+<p>但是结构体不是唯一的方式来创建自定义类型：让我们转到Rust的枚举(enum)特性来，为你的工具箱再添加一个工具。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 06.02:通用模式和_占位符(Catch-all Patterns and the _ Placeholder)</title>
+    <url>/2022/12/29/rust_docs/ch_06_02_match/</url>
+    <content><![CDATA[<h4 id="通用模式和-占位符-Catch-all-Patterns-and-the-Placeholder"><a href="#通用模式和-占位符-Catch-all-Patterns-and-the-Placeholder" class="headerlink" title="通用模式和_占位符(Catch-all Patterns and the _ Placeholder)"></a>通用模式和_占位符(Catch-all Patterns and the _ Placeholder)</h4><p>使用枚举，我们希望对一些特定的值采取特殊操作，而对其他的值采用默认操作。想象我们正在玩一个游戏，如果你掷出一个骰子的值为3，角色不会移动，而是会得到一顶新奇的帽子。如果你掷出了7，你的角色将会失去新奇的帽子。对于其他的数值，你的角色会在棋盘上移动想的格子。这是一个实现了上述逻辑的<code>match</code>。骰子的结果是硬编码而不是一个随机值，其他的逻辑部分使用了没有函数体的函数来表示，实现它们超出了本例的范围：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dice_roll</span> = <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">match</span> dice_roll &#123;</span><br><span class="line">        <span class="number">3</span> =&gt; <span class="title function_ invoke__">add_fancy_hat</span>(),</span><br><span class="line">        <span class="number">7</span> =&gt; <span class="title function_ invoke__">remove_fancy_hat</span>(),</span><br><span class="line">        other =&gt; <span class="title function_ invoke__">move_player</span>(other),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">add_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">remove_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">move_player</span>(num_spaces: <span class="type">u8</span>) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于前两个分支，匹配模式是字面值3和7，最后一个分支则涵盖了所有其他可能性的值，模式使我们命名为<code>other</code>的一个变量。<code>other</code>分支的代码通过将其传递给<code>move_player</code>函数来使用这个变量。</p>
+<p>即使我们没有列出<code>u8</code>所有可能的值，这段代码依然能够编译，因为最后一个模式将匹配所有未被特殊列出的值。这种通配模式满足了<code>match</code>必须穷尽的要求。请注意，我们必须将通过通配分支放在最后，因为模式是按顺序匹配的。如果哦我们在通配分支后添加其他分支，Rust将会警告我们，因为此后的分支永远不会被匹配到。</p>
+<p>Rust还提供了一个模式，当我们不想使用通配模式的值时，请使用<code>_</code>，这是一个特殊模式，可以匹配任意值而不用绑定到该值。这告诉Rust我们不会使用这个值，所以Rust也不会警告我们存在未使用的变量。</p>
+<p>让我们改变游戏规则：现在，当你掷出的值不是3或7的时候，你必须再次掷出。这种情况下我们不需要使用这个值，所以我们改动代码使用<code>_</code>来替代变量<code>other</code>：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dice_roll</span> = <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">match</span> dice_roll &#123;</span><br><span class="line">        <span class="number">3</span> =&gt; <span class="title function_ invoke__">add_fancy_hat</span>(),</span><br><span class="line">        <span class="number">7</span> =&gt; <span class="title function_ invoke__">remove_fancy_hat</span>(),</span><br><span class="line">        _ =&gt; <span class="title function_ invoke__">reroll</span>(),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">add_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">remove_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">reroll</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个例子也满足穷举性要求，因为我们在最后一个分支中明确地忽略了其他的值。我们没有忘记任何东西。</p>
+<p>最后，我们再次改动游戏规则，如果投掷出3或者7以外的值，你的回合将无事发生。我们可以使用单元值(unit value：就是空的tuple，在”The Tuple Type”部分有提及)作为<code>_</code>分支的代码：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dice_roll</span> = <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">match</span> dice_roll &#123;</span><br><span class="line">        <span class="number">3</span> =&gt; <span class="title function_ invoke__">add_fancy_hat</span>(),</span><br><span class="line">        <span class="number">7</span> =&gt; <span class="title function_ invoke__">remove_fancy_hat</span>(),</span><br><span class="line">        _ =&gt; (),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">add_fancy_hat</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">remove_fancy_hat</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这里，我们明确告诉Rust我们不会使用与前面模式不匹配的值，并且这种情况下我们不想运行任何代码。</p>
+<p>更详细的模式匹配相关我们将会在Chapter 18进行讲解。目前，我们继续讨论<code>if let</code>语法，这在<code>match</code>表达式有点冗长的情况下比较有用。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 06.00:Enums and Pattern Matching</title>
+    <url>/2022/12/29/rust_docs/ch_06_00_enums_and_pattern_matching/</url>
+    <content><![CDATA[<h4 id="Enums-and-Pattern-Matching"><a href="#Enums-and-Pattern-Matching" class="headerlink" title="Enums and Pattern Matching"></a>Enums and Pattern Matching</h4><p>本章中，我们讲述枚举(enumerations)，也称作enums。枚举允许你通过列举可能的成员(variants)来定义一个类型。首先，我们会定义并使用一个枚举来展示它是如何连同数据一起编码信息的。接下来，我们会探索一个特别有用的枚举，叫做<code>Option</code>，它代表一个值，要么是某个值要么是什么都不是。然后会讲到<code>match</code>表达式中使用模式匹配，针对不同的枚举值编写相应要执行的代码。然后会介绍<code>if let</code>，另一个简洁方便处理代码中枚举的结构。</p>
+<p>枚举是一个很多语言都有的功能，不过不同语言中其功能各不相同。Rust的枚举与F#，OCaml和Haskell这样的函数式编程语言中的代数数据类型(olgebraic data types)最为相似。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 06.01:The Option Enum and Its Advantages Over Null Values</title>
+    <url>/2022/12/29/rust_docs/ch_06_01_defining_an_enum/</url>
+    <content><![CDATA[<h3 id="The-Option-Enum-and-Its-Advantages-Over-Null-Values"><a href="#The-Option-Enum-and-Its-Advantages-Over-Null-Values" class="headerlink" title="The Option Enum and Its Advantages Over Null Values"></a>The Option Enum and Its Advantages Over Null Values</h3><p>这一部分探索学习<code>Option</code>，另外一个标准库的枚举定义。<code>Option</code>类型编码了非常常见的场景，其中可以是某个值，也可以都不是。</p>
+<p>例如，如果请求一个包含项的列表的第一个值，会得到一个值，如果请求一个空的列表，就什么也不会得到。从类型系统的角度来表达这个概念意思就是编译器需要检查是否处理了所有应该处理的情况，这样就可以避免在其他语言中非常常见的bug.</p>
+<p>编程语言的设计通常考虑的是包含哪些特性，但是你排除的特性也很重要。Rust没有许多其他语言所具有的null特性。<code>Null</code>是一个值，表示什么也没有。在带有null特性的语言中，变量总是可以处于两种状态之一：null 或 not-null.</p>
+<p>Null的发明者Tony Hoare在他2009年的报告”Null Reference: The Billon Dollar Mistake”中这样说：</p>
+<blockquote>
+<p>我称之为十亿美元的错误。当时，我在为一个面向对象语言设计第一个综合性的面向引用的类型系统。我的目标是通过编译器的自动检查来保证所引用的使用都应该是绝对安全的。不过我未能抵抗住引入一个空引用的诱惑，仅仅是因为它是这么的容易实现。这引发了无数错误，漏洞和系统崩溃，在之后的四十多年中造成了十亿美元的苦痛和伤害。</p>
+</blockquote>
+<p>空值的问题在于，如果你试图将空值用作非空值，会出现某种形式的错误。因为空和非空的属性到处都是，非常容易出现这类错误。</p>
+<p>然而，null试图表达的概念仍然是有用的：null是当前由于某种原因无效或者不存在的值。</p>
+<p>问题不在于概念，而在于具体的实现。因此，Rust没有空值，但它有一个枚举，可以编码值存在或者不存在的概念。这个枚举就是<code>Option&lt;T&gt;</code>，它由标准库定义如下：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Option</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="literal">None</span>,</span><br><span class="line">    <span class="title function_ invoke__">Some</span>(T),</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>Option&lt;T&gt;</code>枚举非常有用，以至于它被包含在relude中；你不需要将它显式地引入作用域。另外，它的成员也是如此（被包含在prelude中），可以不需要<code>Option::</code>前缀来使用<code>Some</code>和<code>None</code>。即便如此<code>Option&lt;T&gt;</code>也仍是常规的枚举，<code>Some&lt;T&gt;</code>和<code>None</code>仍是<code>Option&lt;T&gt;</code>的成员。</p>
+<p><code>&lt;T&gt;</code>语法是我们还没讲到的Rust特性。它是一个泛型参数，在Chapter 10我们将会详细讲解。目前，你需要知道的就是<code>&lt;T&gt;</code>意味着<code>Option</code>枚举的<code>Some</code>成员可以包含任意类型的数据，同事每一个用于<code>T</code>位置的具体类型使得<code>Option&lt;T&gt;</code>整体作为不同的类型。这里是一些包含数字类型和字符串类型<code>Option</code>值的例子：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">some_number</span> = <span class="title function_ invoke__">Some</span>(<span class="number">5</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">some_char</span> = <span class="title function_ invoke__">Some</span>(<span class="string">&#x27;e&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> <span class="variable">absent_number</span>: <span class="type">Option</span>&lt;<span class="type">i32</span>&gt; = <span class="literal">None</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>some_number</code>的类型是<code>Option&lt;i32&gt;</code>。<code>some_char</code>的类型是<code>Option&lt;char&gt;</code>，是不同的类型。因为我们在<code>Some</code>成员中指定了值，Rust可以推断出其类型。对于<code>absent_number</code>，Rust需要我们指定<code>Option</code>整体的类型，因为编译器只通过<code>None</code>值无法推断出<code>Some</code>成员保存的值的类型。这里我们告诉Rust我们需要<code>absent_number</code>的类型是<code>Option&lt;i32&gt;</code>。</p>
+<p>当我们有一个<code>Some</code>值，我们就知道存在一个值，这个值保存在<code>Some</code>中。当我们有一个值<code>None</code>，在某种意义上，它跟空值是有相同的意义：并没有一个有效的值。那么<code>Option&lt;T&gt;</code>为什么就比Null要好呢？</p>
+<p>简单来说，因为<code>Option&lt;T&gt;</code>和<code>T</code>（<code>T</code>可以是任何类型）是不同的类型，编译器不允许像一个肯定有效的值那样使用<code>Option&lt;T&gt;</code>。例如：这段代码不能编译，因为它尝试将<code>Option&lt;i8&gt;</code>与<code>i8</code>相加：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span>: <span class="type">i8</span> = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">y</span>: <span class="type">Option</span>&lt;<span class="type">i8</span>&gt; = <span class="title function_ invoke__">Some</span>(<span class="number">5</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> <span class="variable">sum</span> = x + y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果我们运行这段代码，我们会得到一个错误信息如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling enums v0.1.0 (file:///projects/enums)</span><br><span class="line">error[E0277]: cannot add `Option&lt;i8&gt;` to `i8`</span><br><span class="line"> --&gt; src/main.rs:5:17</span><br><span class="line">  |</span><br><span class="line">5 |     let sum = x + y;</span><br><span class="line">  |                 ^ no implementation for `i8 + Option&lt;i8&gt;`</span><br><span class="line">  |</span><br><span class="line">  = help: the trait `Add&lt;Option&lt;i8&gt;&gt;` is not implemented for `i8`</span><br><span class="line">  = help: the following other types implement trait `Add&lt;Rhs&gt;`:</span><br><span class="line">            &lt;&amp;&#x27;a f32 as Add&lt;f32&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a f64 as Add&lt;f64&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a i128 as Add&lt;i128&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a i16 as Add&lt;i16&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a i32 as Add&lt;i32&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a i64 as Add&lt;i64&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a i8 as Add&lt;i8&gt;&gt;</span><br><span class="line">            &lt;&amp;&#x27;a isize as Add&lt;isize&gt;&gt;</span><br><span class="line">          and 48 others</span><br><span class="line"></span><br><span class="line">For more information about this error, try `rustc --explain E0277`.</span><br><span class="line">error: could not compile `enums` due to previous error</span><br></pre></td></tr></table></figure>
+
+<p>铛!铛!铛!事实上，这个错误意味着Rust不知道如何将<code>i8</code>和<code>Option&lt;i8&gt;</code>相加，因为它们是不同类型。在Rust中，当我们有一个值像<code>i8</code>，编译器将会确保我们总是有一个有效的值。我们可以自信地使用而无需做空检查。只有当使用<code>Option&lt;i8&gt;</code>(或者任何用到的类型)我们需要担心可能没有一个有效值，并且编译器将会确保我们在使用值之前处理了空的情况。</p>
+<p>换句话说，你必须将<code>Option&lt;T&gt;</code>转换成<code>T</code>之后才能对<code>T</code>进行运算。通常这能帮助我们捕获到空值最常见的问题之一：假设某值不为空，但实际上是空的情况。</p>
+<p>消除错误地假设非空值的风险有助于你对代码更有信心。为了有一个可能为空的值，你必须显式地使用<code>Option&lt;T&gt;</code>。然后，在使用该值时，需要显式地处理值为空的情况。任何地方，一个值不是<code>Option&lt;T&gt;</code>类型，你都可以放心地假设他不是null。这是Rust有意为之的设计决定，目的就是限制null的滥用，以增加Rust代码的安全性。</p>
+<p>所以，当你有一个类型为<code>Option&lt;T&gt;</code>的值时，你如何从<code>Some</code>变量中获得<code>T</code>的值呢？<code>Option&lt;T&gt;</code>枚举有大量很有用的方法适用于各种情况；你可以查看它的文档(<a href="https://doc.rust-lang.org/std/option/enum.Option.html)%E3%80%82%E7%86%9F%E6%82%89%60Option">https://doc.rust-lang.org/std/option/enum.Option.html)。熟悉`Option</a><T>&#96;上的方法将对你的Rust之旅很有用哦！</p>
+<p>通常，为了使用<code>Option&lt;T&gt;</code>值，你需要有处理每个变量的代码。你希望一些代码只在具有<code>Some&lt;T&gt;</code>值时运行，并且允许这些代码使用内部的<code>T</code>。你希望如果有个<code>None</code>值时运行一些其他的代码，而且这些代码也没有一个<code>T</code>的有效值。<code>match</code>表达式就是这么一个处理枚举的控制流结构：它会根据枚举的成员运行不同的代码，这些代码可以使用匹配到的值中的数据。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 06.03:总结</title>
+    <url>/2023/05/16/rust_docs/ch_06_03_if_let/</url>
+    <content><![CDATA[<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>现在我们学习了如何使用枚举创建自定义类型。我们也展示了标准库的<code>Option&lt;T&gt;</code>类型是如何帮助你利用类型系统来避免出错的。当枚举值包含数据时，你可以根据你需要处理多少种情况来选择使用<code>mathc</code>或者<code>if let</code>来提取或者使用这些值。</p>
+<p>你的Rust程序现在能够使用结构体和枚举在你自己的作用域内表现其内容了。在你的API中使用定义类型保证了类型安全：编译器会确保你的函数只会得到它期望的类型的值。</p>
+<p>为了提供一个有条理的API给你的用户，它使用起来很简单易懂，值暴露了你的用户需要的东西，现在我们准备开始学习Rust的模块。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 07.00:使用包、Crate和模块管理不断增长的项目</title>
+    <url>/2023/05/18/rust_docs/ch_07_00_managing_growing_projects_with_packages_crates_and_modules/</url>
+    <content><![CDATA[<h2 id="使用包、Crate和模块管理不断增长的项目"><a href="#使用包、Crate和模块管理不断增长的项目" class="headerlink" title="使用包、Crate和模块管理不断增长的项目"></a>使用包、Crate和模块管理不断增长的项目</h2><p>当你编写大型程序时，组织代码将变得越来越重要。通过相关功能进行分组，并将具有不同特性的代码分开，你将可以清楚地在哪里可以找到现实特定特性的代码，以及在哪里可以更改一个特性的工作方式。</p>
+<p>到目前为止，我们编写的代码都只在一个文件中的一个模块中。 随着项目不断增长，你应该通过多个模块和多个文件来组织拆分你的代码。一个包可以包含多个二进制crates和一个可选的crate程序库。随着你的包的增长，你可以将部分提取到单独的crates使它变成外部依赖。本章涵盖了所有这些技巧。对于由一组相互关联的包组成的非常大的项目，Cargo提供了工作区(workspaces)，我们将在第14章”Cargo Workspaces”部分学习。</p>
+<p>我们还将讨论封装实现的细节，这让你可以高水平重用代码：一旦你实现了一个操作，其他代码可以通过代码的公共接口调用，无需知道你的实现过程是如何运作。编写代码的方式定义了那些部分是其他代码使用的公共部分，那些代码是你保留更改权利的私有实现细节。这是另一种限制，减少你必须记住项目内容细节的数量的方法。</p>
+<p>这里还一个相关的概念是作用域(scope)：代码所在的嵌套上下文有一组定义”in scope”的名称。当你阅读，编写和编译代码，程序设计师和编译器需要知道模块，常量或者其他有意义的项。你可以创建作用域并改变那些名称再作用域内还是在作用域外。同一个作用域不能拥有两个相同名称的项；可以使用一些工具来解决名称冲突。</p>
+<p>Rust有许多特性允许你来管理你的代码组织结构，包括那些内容可以被公开，那些内容作为私有部分，以及程序每个作用域中的名字。这些功能。有时被称为”模块系统(the module system)”，包括：</p>
+<ul>
+<li>包(Packages)：Cargo的一个功能，它允许你构建，测试和分享crate。</li>
+<li>Crates：一个模块的树形结构，它形成了库或者二进制项目。</li>
+<li>模块(Modules)和Use：允许你控制组织结构的作用域和路径的私有性。</li>
+<li>路径(path)：一个命名例如结构体，函数或模块等项的方式。</li>
+</ul>
+<p>在本章，我们将涵盖所有这些特性，讨论他们怎样相互作用，并解释如何使用他们管理作用域。最后，你应该对模块系统有一个坚实的理解，并能够像专业人士一样使用作用域！</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 07.01:包和Crates</title>
+    <url>/2023/05/18/rust_docs/ch_07_01_packages_and_crates/</url>
+    <content><![CDATA[<h2 id="包和Crates"><a href="#包和Crates" class="headerlink" title="包和Crates"></a>包和Crates</h2><p>模块系统的第一部分我们将介绍包和crate。</p>
+<p>crate是Rust编译时最小的代码单位。如果你用<code>rustc</code>而不是<code>cargo</code>来编译一个文件(第一章我们这么做)，编译器还是会将那个文件认作一个crate。crate可以包含模块，模块可以定义在其他文件，然后和crate一起编译，我们会在接下来的章节中遇到。</p>
+<p>crate有两种形式：二进制项和库。二进制crate可以被编译为可执行程序，比如一个命令行程序或者一个服务器。它们必须有一个<code>main</code>函数来定义当程序被执行的时候所需要做的事情。到目前为止，我们所创建的crate都是二进制crate。</p>
+<p>库(Library crates) 没有<code>main</code>函数，而且它们不会编译成可执行文件。相反，它们定义了旨在与多个项目共享的功能。例如，我们在第二章用过的<code>rand</code>函数，用来生成随机数。大多数的Rust开发者说的crate指的都是库，这与其他变成语言中的library概念一致。</p>
+<p>crate root是一个资源文件，Rust编译器以它为起始点，并组成crate的根模块(我们将在”Defining Modules to Control Scope and Privacy” 部分深度解析)。</p>
+<p>包(package)是提供一系列功能的一个或者多个crate。一个包会包含Cargo.toml文件，阐述如何去创建这些crates。Cargo就是一个包含构建你代码的二进制项的包。Cargo也包含这些二进制项所依赖的库。其他项目也能用Cargo库来实现与Cargo命令行程序一样的逻辑。</p>
+<p>包可以包含很多二进制(binary) crate，但是最多只能有一个库(library) crate。包无论是一个库(library crate)还是一个二进制库(binary crate)， 至少要包含一个library crate。</p>
+<p>让我们来看看创建包的时候会发生什么。首先，我们输入命令<code>cargo new</code>：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">cargo new my-project</span></span><br><span class="line">     Created binary (application) `my-project` package</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> my-project</span></span><br><span class="line">Cargo.toml</span><br><span class="line">src</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> my-project/src</span></span><br><span class="line">main.rs</span><br></pre></td></tr></table></figure>
+
+<p>运行<code>cargo new</code>之后，我们使用<code>ls</code>查看Cargo创建了什么，在这个项目目录里，Cargo会给我们创建一个Cargo.toml文件，这就是一个包(package)。这里也有一个src目录包含main.rs文件。用编辑器打开Cargo.toml，并且文件内容里面没有提及src&#x2F;main.rs。因为Cargo遵循的一个约定：src&#x2F;main.rs就是一个与包同名的二进制crate的crate根。同样地，Cargo知道如果包目录中包含src&#x2F;lib.rs，则包带有与其同名的库(library) crate。crate根文件将由Cargo传递给<code>rustc</code>来构建库(library)或者二进制(binary)。</p>
+<p>这里，我们有一个只包含src&#x2F;main.rs的包，意味着它只含有一个名为<code>my-project</code>的二进制crate。如果一个包同时含有src&#x2F;main.rs和src&#x2F;lib.rs，则它有两个crate：一个二进制(binary)的和一个库(library)，并且名字都与包相同。通过将文件放在src&#x2F;bin目录下，一个包可以拥有多个二进制crate：每个src&#x2F;bin下的文件都会被编译成一个独立的二进制crate。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 07.02:在模块中对相关代码进行分组(Grouping Related Code in Modules)</title>
+    <url>/2023/05/18/rust_docs/ch_07_02_defining_modules_to_control_scope_and_privacy/</url>
+    <content><![CDATA[<h4 id="在模块中对相关代码进行分组-Grouping-Related-Code-in-Modules"><a href="#在模块中对相关代码进行分组-Grouping-Related-Code-in-Modules" class="headerlink" title="在模块中对相关代码进行分组(Grouping Related Code in Modules)"></a>在模块中对相关代码进行分组(Grouping Related Code in Modules)</h4><p>模块让我们在crate中组织代码，以提高可读性和易于重用。模块还允许我们控制items的私有性，因为在module中的代码默认是私有的。Private items是内部实现的细节不对外使用。我们可以选择将模块以及其中的items设置为公共的，这样，外部代码就可以使用并依赖于它们。</p>
+<p>例如，让我们编写一个提供餐厅服务功能的library crate。我们将会定义函数的签名，但是函数的主题留空，集中于代码的组织，而不是实现一个餐馆。</p>
+<p>在餐厅业中，餐馆的某些部分被称为前台(front of house)，其他的部分称为后台(back of house)。前台是顾客所在的空间；这包括主座的顾客的位置，服务员接单和付款，以及调酒师调酒的地方。后台是主厨和厨师们在厨房，洗碗机清理，经历做行政工作。</p>
+<p>这样构建我们的crate，我们可以将这些功能组织成嵌套的模块。创建一个新的库(library)命名为<code>restaurant</code>，通过命令<code>cargo new restaurant --lib</code>。输入如下Listing 7-1代码到src&#x2F;lib.rs来定义一些模块和函数签名。这里是前台部分：</p>
+<p>src&#x2F;lib.rs</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">mod</span> front_of_house &#123;</span><br><span class="line">    <span class="keyword">mod</span> hosting &#123;</span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">add_to_waitlist</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">seat_at_table</span>() &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">mod</span> serving &#123;</span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">take_order</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">serve_order</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">take_payment</span>() &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 7-1: A <code>front_of_house</code>module containing other modules that then contain functions</p>
+<p>我们用<code>mod</code>关键字定义一个模块(在上面的例子中定义了<code>front_of_house</code>模块)。并用花括号包围模块的主体。在模块内，我们还可以定义其他模块，就像本例子中的<code>hosting</code>和<code>serving</code>模块。模块还可以hold一些定义的其他items，例如structs, enums, constants, traits, 以及Listing 7-1中的函数。</p>
+<p>通过使用模块，我们可以将相关的定义分组到一起，并指出他们为什么相关。程序设计者可以通过使用这段代码，更加容易找到他们想要的定义，因为他们可以基于分组来对代码进行导航，而不需要阅读所有的定义。程序设计者向这段代码中添加一个新功能时，他们也会知道代码应该放置在何处，可以保持程序的组织性。</p>
+<p>在前面我们提到了，<code>src/main.rs</code>和<code>src/lib.rs</code>叫做crate根。之所以这么叫它们是因为这两个文件中的任何一个内容都在crate模块结构的根组成了一个名为crate的模块，该结构被称为模块树(module tree)。</p>
+<p>Listing 7-2 展示了示例Listing 7-1中的模块树(modules tree)的结构。</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">crate</span></span><br><span class="line"> └── front_of_house</span><br><span class="line">     ├── hosting</span><br><span class="line">     │   ├── add_to_waitlist</span><br><span class="line">     │   └── seat_at_table</span><br><span class="line">     └── serving</span><br><span class="line">         ├── take_order</span><br><span class="line">         ├── serve_order</span><br><span class="line">         └── take_payment</span><br></pre></td></tr></table></figure>
+
+<p>Listing 7-2: The module tree for the code in Listing 7-1</p>
+<p>这个模块树展示了一些模块内嵌到另一个模块；例如，<code>hosting</code>内嵌在<code>front_of_house</code>之中。这个树结构还展示了一些模块是互为兄弟(siblings)的，这意味着它们定义在同一模块中(<code>hosting</code>和<code>serving</code>被一起定义在<code>front_of_house</code>中)。继续沿用家庭关系的比喻，如果一个模块A被包含在模块B中，我们将模块A称为模块B的子模块，B模块为A的父模块。注意，整个模块树都植根于隐式模块名为<code>crate</code>之下。</p>
+<p>模块树可能会让你想起计算机上的文件系统的目录树；这是一个非常恰当的比较！就像文件系统中的目录一样，你用模块来组织你的代码。就像文件目录中的文件，我们需要一个方式来找到我们的模块(modules)。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 07.03:创建公有的结构体和枚举(Making Structs and Enums Public)</title>
+    <url>/2023/05/18/rust_docs/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/</url>
+    <content><![CDATA[<h4 id="创建公有的结构体和枚举-Making-Structs-and-Enums-Public"><a href="#创建公有的结构体和枚举-Making-Structs-and-Enums-Public" class="headerlink" title="创建公有的结构体和枚举(Making Structs and Enums Public)"></a>创建公有的结构体和枚举(Making Structs and Enums Public)</h4><p>我们也可以使用<code>pub</code>来指定结构体和枚举为公有，但是这里有一些额外的使用详情需要注意。如果我们在使用<code>pub</code>定义一个结构体，我们使得这个结构体为公有，但是结构体的字段将仍是私有的。我们可以视情况而定让每一个字段成为公有或者私有。在Listing 7-9中，我们定义了一个公有的<code>back_of_house::Breakfast</code>结构体并且<code>toast</code>为公有字段，而<code>seasonal_fruit</code>为私有字段。该模型以餐厅为例，顾客可以选择随餐面包的类型，但是主厨会根据当季水果和库存来搭配什么水果。可选择的水果变化很快，所以顾客不能选择水果，甚至不能看到他们能得到的水果。</p>
+<p>src&#x2F;lib.rs</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">mod</span> back_of_house &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Breakfast</span> &#123;</span><br><span class="line">        <span class="keyword">pub</span> toast: <span class="type">String</span>,</span><br><span class="line">        seasonal_fruit: <span class="type">String</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">impl</span> <span class="title class_">Breakfast</span> &#123;</span><br><span class="line">        <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">summer</span>(toast: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> Breakfast &#123;</span><br><span class="line">            Breakfast &#123;</span><br><span class="line">                toast: <span class="type">String</span>::<span class="title function_ invoke__">from</span>(toast),</span><br><span class="line">                seasonal_fruit: <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;peaches&quot;</span>),</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">eat_at_restaurant</span>() &#123;</span><br><span class="line">    <span class="comment">// Order a breakfast in the summer with Rye toast</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">meal</span> = back_of_house::Breakfast::<span class="title function_ invoke__">summer</span>(<span class="string">&quot;Rye&quot;</span>);</span><br><span class="line">    <span class="comment">// Change our mind about what bread we&#x27;d like</span></span><br><span class="line">    meal.toast = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;Wheat&quot;</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;I&#x27;d like &#123;&#125; toast please&quot;</span>, meal.toast);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The next line won&#x27;t compile if we uncomment it; we&#x27;re not allowed</span></span><br><span class="line">    <span class="comment">// to see or modify the seasonal fruit that comes with the meal</span></span><br><span class="line">    <span class="comment">// meal.seasonal_fruit = String::from(&quot;blueberries&quot;);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 7-9: A struct with some public fields and some private fields</p>
+<p>因为<code>toast</code>字段在<code>back_of_house::Breakfast</code>结构体内是公有的，在<code>eat_at_restaurant</code>中我们可以编写并且读到<code>toast</code>字段使用点(.)号。注意，我们不能在<code>eat_at_restaurant</code>中使用<code>seasonal_fruit</code>字段，因为<code>seasonal_fruit</code>字段是私有的。尝试取消注释修改季节水果字段的值，看看会得到什么错误。</p>
+<p>同样，注意因为<code>back_of_house::Breakfast</code>有一个私有字段，这个结构体需要提供一个公有的关联函数来构造一个<code>Breakfast</code>实例(这里是名为<code>summer</code>的函数)。如果<code>Breakfast</code>没有这样一个函数，我们就不能在<code>eat_at_restaurant</code>中创建<code>Breakfast</code>实例，因为我们不能在<code>eat_at_rest_aurant</code>中给<code>seasonal_fruit</code>私有字段设置值。</p>
+<p>相反地，如果我们设置枚举为公有，它所有的字段都是公有的。我们只需要在<code>enum</code>关键字前面加上<code>pub</code>即可，如Listing 7-10所示：</p>
+<p>src&#x2F;lib.rs</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">mod</span> back_of_house &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">enum</span> <span class="title class_">Appetizer</span> &#123;</span><br><span class="line">        Soup,</span><br><span class="line">        Salad,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">eat_at_restaurant</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">order1</span> = back_of_house::Appetizer::Soup;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">order2</span> = back_of_house::Appetizer::Salad;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 7-10: Designating an enum as public makes all its variants public</p>
+<p>因为我们设置了<code>Appetizer</code>为公有枚举，我们可以在<code>eat_at_restaurant</code>中使用<code>Soup</code>和<code>Salad</code>成员变量。</p>
+<p>除非设置枚举的变量为公开的，否则枚举就没什么用了；在每种情况下都必须使用<code>pub</code>来声明所有枚举变量，这将是很恼人的设计，所以默认情况下枚举的所有变量都是公有的。结构体在字段为私有的情况通常是有用的，所以结构体字段默认遵循所有内容为私有的普遍规则，除非使用<code>pub</code>声明公有。</p>
+<p>这里还涉及<code>pub</code>另外一个情况我们没有讨论到，那就是我们最后要讲的模块功能：<code>use</code>关键字。我们将单独介绍<code>use</code>，然后展示如何结合<code>pub</code>和<code>use</code>起来使用。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 07.05:总结</title>
+    <url>/2023/05/18/rust_docs/ch_07_05_separating_modules_into_different_files/</url>
+    <content><![CDATA[<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>Rust提供了将包分成多个crate，将crate分成模块，以及通过指定绝对或者相对路径从一个模块引用另一个模块中定义的项的方式。你可以指定绝对路径或者相对路径。这个路径可以通过<code>use</code>声明引入到作用域，所以你可以在多次使用时可以使用更短的路径。模块定义的代码默认是私有的，不过可以选择增加<code>pub</code>关键字使其定义为公有。</p>
+<p>接下来，我们来看一些标准库提供的集合数据类型，你可以利用它们写出更漂亮整洁的代码。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 07.04:全局操作符(The Glob Operator)</title>
+    <url>/2023/05/18/rust_docs/ch_07_04_bringing_paths_into_scope_with_the_use_key_word/</url>
+    <content><![CDATA[<h4 id="全局操作符-The-Glob-Operator"><a href="#全局操作符-The-Glob-Operator" class="headerlink" title="全局操作符(The Glob Operator)"></a>全局操作符(The Glob Operator)</h4><p>如果想将一个路径下所有公有项引入作用域，可以使用指定路径后跟<code>*</code>，glob操作符:</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> std::collections::*;</span><br></pre></td></tr></table></figure>
+
+<p>这个<code>use</code>语句会将<code>std::collections</code>中定义的所有的公有项引入到当前作用域。使用全局操作符时一定要多加小心！全局操作符会使得我们难以推导作用域中有什么名称和它们是定义在何处。</p>
+<p>全局操作符经常用于测试模块<code>tests</code>中，这时会将所有内容引入作用域；我们将在第十一章”How to Write Tests”部分中讲解。全局操作符有时也用于preclude模式；查看”标准库文档”(<a href="https://doc.rust-lang.org/std/prelude/index.html#other-preludes)%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E7%BB%86%E8%8A%82%E3%80%82">https://doc.rust-lang.org/std/prelude/index.html#other-preludes)了解更多细节。</a></p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 08.00:常见集合</title>
+    <url>/2023/05/18/rust_docs/ch_08_00_common_collections/</url>
+    <content><![CDATA[<h2 id="常见集合"><a href="#常见集合" class="headerlink" title="常见集合"></a>常见集合</h2><p>Rust标准库中包含一些非常有用的数据结构叫做结合(collections).大多数其他的数据类型代表一个特殊的值，但是集合可以包含多个值。不像内建的数组和元组类型，这些集合数据指向堆，意味着在编译时不需要知道数据量，并且可以随着程序运行而增加或减少。每一种集合有不同的性能和消耗，并且选择一个合适的集合，对你当前的情景是需要你慢慢学习的技巧。在本章，我们将会讨论三个集合，它们在Rust编程中很常用：</p>
+<ul>
+<li>vector 允许你一个挨着一个地存储一系列数量的可变的值</li>
+<li>string 是一个字符类型的集合。我们之前已经提到过<code>String</code>类型，但是在本章，我们将更加深入地讨论它。</li>
+<li>hash map 允许你用一个特定的key关联一个值(value)，它是成为映射的更通用数据结构的一种实现。</li>
+</ul>
+<p>要学习标准库提供的其他类型的集合，请查看文档<a href="https://doc.rust-lang.org/std/collections/index.html">std::collections</a></p>
+<p>我们将要讨论如何创建和更新vectors, strings，和hash map，以及他们每个类型的独特之处。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 08.02:字符串并不简单</title>
+    <url>/2023/05/18/rust_docs/ch_08_02_strings/</url>
+    <content><![CDATA[<h4 id="字符串并不简单"><a href="#字符串并不简单" class="headerlink" title="字符串并不简单"></a>字符串并不简单</h4><p>总之，字符串是很复杂的。不同的语言会有不同的选择如何将这种复杂性呈现给程序员。Rust选择将String数据的正确处理作为所有Rust程序的默认行为,这意味着程序员必须在处理UTF-8数据上花更多的心思。这个权衡在其他编程语言中暴露了更多字符串的复杂性,但它可以防止你在开发生命周期的后期处理涉及非ASCII字符的错误。<br>好消息是标准库基于String和&amp;str类型提供了许多功能来正确处理这些复杂的情况。确保查看文档中有用的方法,比如在字符串中搜索的contains和用另一个字符串替换字符串的一部分replace。<br>让我们切换到略微简单一点的内容:哈希映射!</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 08.01:丢弃vector 时也会丢弃其所有元素(Dropping a Vector Drops Its Elements)</title>
+    <url>/2023/05/18/rust_docs/ch_08_01_vectors/</url>
+    <content><![CDATA[<h4 id="丢弃vector-时也会丢弃其所有元素-Dropping-a-Vector-Drops-Its-Elements"><a href="#丢弃vector-时也会丢弃其所有元素-Dropping-a-Vector-Drops-Its-Elements" class="headerlink" title="丢弃vector 时也会丢弃其所有元素(Dropping a Vector Drops Its Elements)"></a>丢弃vector 时也会丢弃其所有元素(Dropping a Vector Drops Its Elements)</h4><p>像其他数据结构一样，当一个vector离开了它的作用域，它就会被释放，如Listing 8-10所示：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">v</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// do stuff with v</span></span><br><span class="line">    &#125; <span class="comment">// &lt;- v goes out of scope and is freed here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 8-10: Showing where the vector and its elements are droped</p>
+<p>当vector被删除时，它的所有内容也会被删除，这意味着它所持有的整数将被清除。借用检查器确保仅在vector本身有效时才使用对向量内容的任何引用。</p>
+<p>接下来，我们将学习下一个集合类型：<code>String</code></p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 09.00:错误处理</title>
+    <url>/2023/05/18/rust_docs/ch_09_00_error_handing/</url>
+    <content><![CDATA[<h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><p>在软件中错误是很常见的事实。当有时候软件运行错误的时候，Rust有很多处理这些场景的特性。在很多情况下，Rust要求你确认每一个错误发生的可能，并在代码编译前就采取相应的行为。这个必要前提会让你的程序更加健壮：确保你会提前发现错误，并处理得当，在你将代码部署到生产环境之前。</p>
+<p>Rust将错误分为两大类：<strong>可恢复的</strong>(<code>recoverable</code>)和<strong>不可恢复的</strong>(<code>unrecoverable</code>)。对于可恢复错误，比如文件未找打错误，我们很可能只是想向用户报告问题并重试操作。不可恢复错误总是系统性bugs，像尝试访问一个超过数组最尾端的位置，此时，我们就会想要程序立刻停止运行。</p>
+<p>大多数编程语言无法区分这两种错误，并且都使用同样的方式，使用如exceptions机制。Rust没有exceptions。而是有一个<code>Result&lt;T, E&gt;</code>的类型来处理可恢复错误。另外，当程序发生一个不可恢复的错误，Rust用<code>panic!</code>宏来中止运行程序。</p>
+<p>这一章，首次讨论<code>panic!宏</code>，然后讨论有关<code>Result&lt;T, E&gt;</code>返回的值。</p>
+<p>另外，我们还要探索如何决定一个错误应该是恢复或者是停止运行。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 08.03:总结</title>
+    <url>/2023/05/18/rust_docs/ch_08_03_hash_maps/</url>
+    <content><![CDATA[<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>vector、字符串和哈希 map 会在你的程序需要储存、访问和修改数据时帮助你。这里有一些你应该能够解决的练习问题:</p>
+<ul>
+<li>给定一系列数字，使用 vector 并返回这个列表的中位数（排列数组后位于中间的值）和众数（mode，出现次数最多的值；这里哈希 map 会很有帮助）。</li>
+<li>将字符串转换为 Pig Latin，也就是每一个单词的第一个辅音字母被移动到单词的结尾并增加 “ay”，所以 “first” 会变成 “irst-fay”。元音字母开头的单词则在结尾增加 “hay”（“apple” 会变成 “apple-hay”）。牢记 UTF-8 编码！</li>
+<li>使用哈希 map 和 vector，创建一个文本接口来允许用户向公司的部门中增加员工的名字。例如，“Add Sally to Engineering” 或 “Add Amir to Sales”。接着让用户获取一个部门的所有员工的列表，或者公司每个部门的所有员工按照字典序排列的列表。</li>
+</ul>
+<p>标准库 API 文档中描述的这些类型的方法将有助于你进行这些练习！</p>
+<p>我们已经开始接触可能会有失败操作的复杂程序了，这也意味着接下来是一个了解错误处理的绝佳时机！</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 09.01:使用`panic!`的backtrace</title>
+    <url>/2023/05/18/rust_docs/ch_09_01_unrecoverable_errors_with_panic/</url>
+    <content><![CDATA[<h4 id="使用panic-的backtrace"><a href="#使用panic-的backtrace" class="headerlink" title="使用panic!的backtrace"></a>使用<code>panic!</code>的backtrace</h4><p>让我们来看看另外一个例子，当因为我们自己的代码有bug而导致库函数调用<code>panic!</code>是什么样的。如Listing 9-1所示的代码尝试访问超出范围的vector的索引。</p>
+<p>Filename: src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    v[<span class="number">99</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 9-1: Attempting to access an element beyond the end of a vector, which will cause a call to <code>panic!</code></p>
+<p>这里，我们尝试去访问第100个元素(索引99就是第100个元素，索引是从0开始的)，但是vector只有3个元素，肯定会报错。在这个场景中，Rust就会panic。使用<code>[]</code>就是企图返回一个元素，但是你传入一个无效的索引，又不会有这个元素，Rust就肯定不会返回正确的结果。</p>
+<p>在C语言中，尝试读取数据结构之后的值是未定义行为(undefined behavior)。你可能会得到一个这个位置的对应的值，但是这个可能是任何的值，但就不是你想要访问的值，因为这个位置的值不属于你想要访问的数据结构范围的值。这个被叫做**缓冲区溢出(buffer overread)**，并且可能会导致安全漏洞，比如攻击者可以像这样操作索引来读取存储在数据结构之后不被允许访问的数据。</p>
+<p>为了防止这种漏洞，如果尝试读取一个索引不存在的元素，Rust会停止执行并拒绝继续。尝试运行上面的程序会出现如下的错误：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling panic v0.<span class="number">1.0</span> (file:<span class="comment">///projects/panic)</span></span><br><span class="line">    Finished dev [unoptimized + debuginfo] <span class="title function_ invoke__">target</span>(s) <span class="keyword">in</span> <span class="number">0.27</span>s</span><br><span class="line">     Running `target/debug/panic`</span><br><span class="line">thread <span class="symbol">&#x27;main</span>&#x27; panicked at <span class="symbol">&#x27;index</span> out of bounds: the len is <span class="number">3</span> but the index is <span class="number">99</span>&#x27;, src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">note: run with `RUST_BACKTRACE=<span class="number">1</span>` environment variable to display a backtrace</span><br></pre></td></tr></table></figure>
+
+<p>上面的错误信息指出错误发生在<code>src/main.rs</code>文件的第4行第5个字符，我们尝试访问索引为99的元素。接着一行的信息告诉我们可以设置<code>RUST_BACKTRACE</code>环境变量来获取backtrace查看发生了什么错误。一个backtrace是一个已经被调用直到当前这一个点的所有的函数列表。Backtrace在Rust的工作原理和其他语言一样：阅读backtrace的关键是从头开始读一直到发现你编写的代码；往下则是你调用的代码。这些行可能包含核心Rust代码，标准库代码或用到的crate代码。让我们设置<code>RUST_BACKTRACE</code>环境变量在Listing 9-2中看看都输出了些什么：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line">$ RUST_BACKTRACE=<span class="number">1</span> cargo run</span><br><span class="line">thread <span class="symbol">&#x27;main</span>&#x27; panicked at <span class="symbol">&#x27;index</span> out of bounds: the len is <span class="number">3</span> but the index is <span class="number">99</span>&#x27;, src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">stack backtrace:</span><br><span class="line">   <span class="number">0</span>: rust_begin_unwind</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/std/src/panicking.rs:<span class="number">584</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">1</span>: core::panicking::panic_fmt</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/panicking.rs:<span class="number">142</span>:<span class="number">14</span></span><br><span class="line">   <span class="number">2</span>: core::panicking::panic_bounds_check</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/panicking.rs:<span class="number">84</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">3</span>: &lt;<span class="type">usize</span> <span class="keyword">as</span> core::slice::index::SliceIndex&lt;[T]&gt;&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/slice/index.rs:<span class="number">242</span>:<span class="number">10</span></span><br><span class="line">   <span class="number">4</span>: core::slice::index::&lt;<span class="keyword">impl</span> <span class="title class_">core</span>::ops::index::Index&lt;I&gt; <span class="keyword">for</span> [T]&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/slice/index.rs:<span class="number">18</span>:<span class="number">9</span></span><br><span class="line">   <span class="number">5</span>: &lt;alloc::vec::<span class="type">Vec</span>&lt;T,A&gt; <span class="keyword">as</span> core::ops::index::Index&lt;I&gt;&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/alloc/src/vec/<span class="keyword">mod</span>.rs:<span class="number">2591</span>:<span class="number">9</span></span><br><span class="line">   <span class="number">6</span>: panic::main</span><br><span class="line">             at ./src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">7</span>: core::ops::function::<span class="built_in">FnOnce</span>::call_once</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/ops/function.rs:<span class="number">248</span>:<span class="number">5</span></span><br><span class="line">note: <span class="literal">Some</span> details are omitted, run with `RUST_BACKTRACE=full` <span class="keyword">for</span> <span class="title class_">a</span> verbose backtrace.</span><br></pre></td></tr></table></figure>
+
+<p>Listing 9-2: The backtrace generated by a <code>panic!</code>displayed when the environment variable <code>RUST_BACKTRACE</code>is set</p>
+<p>真是输出了一大坨啊！操作系统不同，Rust版本不同，你看到的输出可能会有所不同。为了使用这些信息进行回溯，必须启用debug模式。默认就是debug模式，只要在<code>cargo build</code>或者<code>cargo run</code>之后不要加<code>--release</code>参数。</p>
+<p>在Listing 9-2的第6行的backtrace指出了我们项目造成的问题：<code>src/main.rs</code>的第4行。如果我们不想我们的程序panic，我们就应该开始检查定位到第一行我们自己写的代码。在Listing 9-1中，我们故意写了造成panic的代码，修复这个panic就是不要去访问超出vector范围的索引。当你的代码在将来panic， 你需要弄清楚代码使用什么数据做了什么样的操作，以及正确情况下代码应该做什么。</p>
+<p>本章后面的小节 <a href="https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html#to-panic-or-not-to-panic">“To <code>panic!</code> Or not to <code>panic!</code>“</a> 部分讲回<code>panic!</code>，详细讲解应该或者不应该用<code>panic!</code>来处理错误情况。接下来一节我们来讲解如何使用<code>Result</code>恢复一个错误。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 09.02:带有结果的可恢复错误</title>
+    <url>/2023/08/18/rust_docs/ch_09_02_recoverable_errors_with_result/</url>
+    <content><![CDATA[<h3 id="带有结果的可恢复错误"><a href="#带有结果的可恢复错误" class="headerlink" title="带有结果的可恢复错误"></a>带有结果的可恢复错误</h3><p>大多数错误并不严重到需要程序完全停止。有时，当一个函数失败时，其原因可以很容易地解释和响应。例如，如果您尝试打开一个文件，但由于该文件不存在而导致该操作失败，那么您可能希望创建该文件，而不是终止该进程。</p>
+]]></content>
+      <categories>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>为什么看到别人过得好，我就心里好难受呢？</title>
+    <url>/2023/08/18/rust_docs/why/</url>
+    <content><![CDATA[<h3 id="为什么看到别人过得好，我就心里好难受呢？"><a href="#为什么看到别人过得好，我就心里好难受呢？" class="headerlink" title="为什么看到别人过得好，我就心里好难受呢？"></a>为什么看到别人过得好，我就心里好难受呢？</h3><p>早上刚来到公司，一个深圳有房，长得高又帅，身价已然超过95%深圳人的同事发出这样的灵魂拷问：为什么看到别人过得好，我就心里好难受呢？</p>
+<h4 id="来看看AI如何看待："><a href="#来看看AI如何看待：" class="headerlink" title="来看看AI如何看待："></a>来看看AI如何看待：</h4><blockquote>
+<p>根据你的描述,你已经达到了生活物质上很高的满足度,拥有自己的房产,生活质量远超过大多数人。但即便如此,看见别人过得很好,你还是会感到心理难受。这主要还是出于以下几个原因:</p>
+<ol>
+<li>心理比较并不会随着物质生活的提高而消失。人们的社会比较心理往往与生活状态相关不大,更加源自内在的不安全感。所以即便生活质量很高,这种比较心理仍然存在。</li>
+<li>你可能理想化别人拥有的东西。比如羡慕别人拥有的人际关系,职业成就,生活状态等,而忽视了自己已经拥有的很多东西。这也会带来难受的感觉。</li>
+<li>你期望得到的不仅是物质生活。人的内心渴望往往不仅限于物质层面,也包括精神层面,如获得认同,建立亲密关系,实现自我价值等。如果这些方面没有得到满足,也会感到心理上的难受。</li>
+<li>你可能在某些方面感到不满意。尽管生活总体质量很高,但在情感生活,人际交往,事业发展等某一具体方面,你可能还是感到不如意或不足,这也是产生难受心理的原因之一。<br>所以,要解决这个问题,重点不在于提高生活质量,而是要在心理和精神层面获得安定。学会理性看待他人,不必过度羡慕别人所拥有的一切。关注自己的内心真实需求,努力在各个方面获得满足和进步。培养自己独立稳定的心态,增强自我价值感。这些可以有效地帮助你摆脱这种由社会比较所带来的难受情绪。</li>
+</ol>
+</blockquote>
+<p>根据我党的判断，我们现在仍处于社会主义初级阶段，现阶段中国社会的主要矛盾是人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾。也是涵盖了上述矛盾心理内涵的。近些年，特别是改革开放之后，中国高速发展，让一部分人抓住了高速发展的红利，以不匹配自己能力增长的速度拥有了超速增长的财富和资产。即身心发展和财富发展并不平衡，导致了内心不够充盈，格局尚未完全打开，自我定位错乱。矛盾逐渐凸显扭曲就会发生这样莫名奇怪的心理。</p>
+<p>实际上，在深圳这种高度发达，贫富差距巨大的快节奏生活的城市，大部分年轻人都特别焦虑，焦虑的本质就是日益增长的美好生活需要和不平衡不充分的发展之间的矛盾。大部分年轻人都是来自外地十八线小城市或者小县城，或者农村。回不去，留不下随着时间的推移，越来越焦虑。这部分人特别像小资产阶级的表现：</p>
+<blockquote>
+<p>作为劳动者，在思想上倾向于无产阶级，作为私有者，又倾向于资产阶级，极易受资产阶级思想的影响。因此，在反对封建主义的斗争中既具有革命性，同时也存在政治上的动摇性、斗争中的软弱性和革命的不彻底性。</p>
+</blockquote>
+<p>让我想起了抓猴子的故事里伸手进树洞紧紧抓住坚果，即使猎人来了也舍不得放手。这个猴子是我们每个人。</p>
+<p>对于这种外因短时间无法改变的问题，我们只能改变内因了。看看AI又会给出什么样的建议呢？</p>
+<blockquote>
+<p>这里有些简单实用的建议可以帮助你摆脱由社会比较带来的难受心理:</p>
+<ol>
+<li>转移注意力。当你开始羡慕别人或感到自卑时,立即转移注意力,不要过多聚焦在别人身上。可以换个环境,做点运动,转而关注自己喜欢的事物。这可以有效地改变心情。</li>
+<li>记录自己的收获。时常记录自己生活中已经实现的小成就和收获,提醒自己生活的美好之处。这可以建立信心,也让你意识到自己已经拥有很多。</li>
+<li>限制社交媒体使用。社交媒体上人们主要分享生活的美好时刻,这会助长羡慕心理。适当限制使用社交媒体,关注生活中真实的一面。</li>
+<li>珍惜你所拥有的。时常想想你已经拥有但当作理所当然的东西,会让你觉得很满足和幸运。这可以避免过度关注别人拥有的。</li>
+<li>关注自己的需求。理解自己真正想要什么,并努力实现,这可以让你没有时间和精力过度关注别人,也会让你感到人生有目标和意义。</li>
+<li>施比受更有福。当你羡慕别人时,想想你能为别人带来什么好处。关注别人的需求,提供帮助,这可以让你转移注意力,也会带来成就感。</li>
+<li>培养内在安定。通过冥想,听音乐,上瑜伽课等方式,培养安定的心态。当内心足够安定,外界的比较就不会那么轻易影响你。<br>这些实用的方法,帮助调节心态,关注自我,减少对他人生活的过度比较,可以有效地让你摆脱社会比较带来的难受情绪。需要时间去实践,但效果会非常显著。</li>
+</ol>
+</blockquote>
+<p>这些方法对我都很有启发，对与解决自身的焦虑也很受用。生活在快节奏的深圳，周围人都是狠角色，焦虑对每个人来说是常态。人生的各个阶段也会有不同的焦虑，只有学会面对焦虑，利用焦虑，焦虑也可以是人类进步的助推器。加油吧，少年郎！</p>
+]]></content>
+      <tags>
+        <tag>随想</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>人在什么情况下成长最快？</title>
+    <url>/2023/08/21/%E4%BA%BA%E5%9C%A8%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E6%88%90%E9%95%BF%E6%9C%80%E5%BF%AB%EF%BC%9F/</url>
+    <content><![CDATA[<h3 id="人在什么情况下成长最快？"><a href="#人在什么情况下成长最快？" class="headerlink" title="人在什么情况下成长最快？"></a>人在什么情况下成长最快？</h3><p>今天读到一篇知乎回答，感觉挺好的，记录一下自己的理解。<br>人成长最快的时候是: 一个场景， 三个条件。</p>
+<h4 id="一个场景"><a href="#一个场景" class="headerlink" title="一个场景:"></a>一个场景:</h4><p>要牵头做事， 承担责任， 空想是不可能有什么成长的。做事也分很多种，有时候是与其他部门或者人配合做事，有时候是居中协调各个部门、有时候是牵头负责一件事。这里牵头负责一件事是最锻炼人了，成长也是最快的，牵头对成长的好处, 首先就是事情的强度和和面对事情的态度，牵头负责一件事的成败都系于你一人，你需要对这件事情负全责，无论结果怎样躲是躲不掉， 所以唯一的选择就是竭尽全力达成。<br>牵头做事另一方面的锻炼就是解决问题的能力，牵头负责一件事情, 你会发现处处是问题， 人是问题，钱是问题， 你的上面领导是问题，你的下面人是问题， 推进事情节奏是问题， 协调是问题; 出了问题那就得解决问题， 你发现你每一天都在解决问题。有的时候你得哄着团队成员，哄着领导，有时候给吓着他们，有时候还得瞒着，有时候得抓紧， 有时候得放松，有时候亢奋， 有时候失落, 还想散摊子回高老庄。总之到了最后结果也许好也许坏，但这个过程中的你就像八卦炉里的孙猴子，固然伤病一身，但本事也是结结实实地在成长了。</p>
+<h4 id="三个条件：有动力也有压力，-有支持也有劝，-有认真也有放开"><a href="#三个条件：有动力也有压力，-有支持也有劝，-有认真也有放开" class="headerlink" title="三个条件：有动力也有压力， 有支持也有劝， 有认真也有放开"></a>三个条件：有动力也有压力， 有支持也有劝， 有认真也有放开</h4><ol>
+<li><p>是有动力也有压力: 首先得有动力, 要么是自己喜欢, 自己很想, 要么是激励机制到位，你的积极性被激发了，总之首先你的得渴望做成这件事, 只有渴望成事，事情才能成， 其次必须有一定的压力， 这种压力往往来自明确的目标核对结果要求(deadline&#x2F;数据&#x2F;指标&#x2F;盈利养活团队…)，结果会呼唤效率，倒逼自己或者团队改进，只有动力没有压力人很容易进入一种什么都想做， 什么都放弃不了， 无法衡量结果好坏的泥潭，长时间使用自己喜欢过去习惯, 主观认同而非客观最高效率的方式， 直到自己的激情被耗尽。 这种情况下人是很难有快速的成长， 说白了成长是有痛感的， 没有什么事情从头到尾都是快乐的，最后还成事了，那都只有在小说里存在。 这是因为外部结果在对自己的认知、习惯、心态等进行修正和淬炼。没有压力就谈不上任何修正。 </p>
+</li>
+<li><p>有支持也有劝诫: 支持是必须的，物质上给资源、金钱； 精神上给鼓励肯定。环境上给决策权力。说到底做事一要有权， 二要有资源， 三要有肯定。领导只是口头上支持不给权、不给钱、那事情就很难做不如不做。还得有劝诫，自己做事很容易一根筋， 容易有盲区， 很多时候做的事问题很多， 但自己感觉不到， 这时候上面的领导能给自己提点，下面的团队成员敢提出问题这就很关键，这里面的分寸不好掌握, 需要自己慢慢体会。 另外，能成事的人一定有固执的一面， 有原则有坚持的一面， 什么地方该坚持什么地方该灵活改进需要自己去认真把握。</p>
+</li>
+<li><p>有认真也有放开: 就是说自己的心态要认真，想做成事， 必须很认真。 要有担当， 竭尽全力。把事情扛在肩上，放在心理，也就是得上心，得时刻绷着点。很多时候事情不是自己想做成就能做成， 很多时候甚至不是事情的问题， 只是时间还没， 到条件还没到。如果人过度焦虑， 心理负担太重就容易过度反应， 自习把自己压垮。事情还没怎样人已经扛不住了， 这种心理素质是不行的， 这时候人要懂得该放开时需放开，你控制不了的事情就别在意。无论压力多大， 人得有定力， 能冷静分析当前的局势问题到底在哪里? 做事的人最忌讳情绪大起大落。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>writing</category>
+      </categories>
+      <tags>
+        <tag>随想</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>人生南北多歧路,君向潇湘我向秦</title>
+    <url>/2023/08/25/%E4%BA%BA%E7%94%9F%E5%8D%97%E5%8C%97%E5%A4%9A%E6%AD%A7%E8%B7%AF-%E5%90%9B%E5%90%91%E6%BD%87%E6%B9%98%E6%88%91%E5%90%91%E7%A7%A6/</url>
+    <content><![CDATA[<h3 id="人生南北多歧路-君向潇湘我向秦"><a href="#人生南北多歧路-君向潇湘我向秦" class="headerlink" title="人生南北多歧路,君向潇湘我向秦"></a>人生南北多歧路,君向潇湘我向秦</h3><p>这两句诗道尽初遇时的情投意合，最终却南辕北辙，遗憾分开的悲伤结局，有很多人可能并不知道这是被裁缝到一起的。<br>人生南北多歧路清代吴敬梓的《儒林外史》的一首词《秦时月》</p>
+<p>《秦时月》：<br>人生南北多歧路。<br>将相神仙，也要凡人做。<br>百代兴亡朝复暮，<br>江风吹倒前朝树。<br>功名富贵无凭据。<br>费尽心情，总把流光误。<br>浊酒三杯沉醉去，<br>水流花谢知何处。</p>
+<p>而后一句“君向潇湘我向秦”出自唐代诗人郑谷的《淮上与友人别》<br>《淮上与友人别》<br>郑谷<br>扬子江头杨柳春，杨花愁杀渡江人。<br>数声风笛离亭晚，君向潇湘我向秦。</p>
+<p>扬子江边杨柳青青春意正浓，漫天飞扬的杨花使渡江之人非常的愁烦。<br>微风轻拂，笛声幽咽，离亭渐渐染上暮色，你就要南下潇湘我却奔向西秦。</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>谈日本向海洋排放核污染水</title>
+    <url>/2023/08/29/%E8%B0%88%E6%97%A5%E6%9C%AC%E5%90%91%E6%B5%B7%E6%B4%8B%E6%8E%92%E6%A0%B8%E6%B1%A1%E6%9F%93%E6%B0%B4/</url>
+    <content><![CDATA[<h3 id="谈日本向海洋排放核污染水"><a href="#谈日本向海洋排放核污染水" class="headerlink" title="谈日本向海洋排放核污染水"></a>谈日本向海洋排放核污染水</h3><p>8月24日13时，日本福岛第一核电站启动核污染水排海。而且是计划至少30年持续核污染水排海。</p>
+<h4 id="一个极其清晰明了的逻辑"><a href="#一个极其清晰明了的逻辑" class="headerlink" title="一个极其清晰明了的逻辑"></a>一个极其清晰明了的逻辑</h4><p>如果日本的核污水像日本人说的那样是干净的，那么日本就不应该顶着全世界各国的反对非要核污染水排海。<br>如果日本人说了谎，核污染水不干净，那么日本就更加不应该冒天下之大不韪将核污染水排海。<br>因此，日本绝对是不应该将核污染水排海的。</p>
+<h4 id="日本核污染水排海造成的恐慌"><a href="#日本核污染水排海造成的恐慌" class="headerlink" title="日本核污染水排海造成的恐慌"></a>日本核污染水排海造成的恐慌</h4><p>日本核污染水排海实施消息一出，国内有很多人表示很慌，以后不能去海边了，不能去吃海鲜了。也有一些人表示不慌，可能通过网上一些知识博主的宣传了解了一些太平洋洋流的知识，核污水传遍太平洋到东海，南海还需要一段时间。<br>我的观点是，没必要慌，因为慌也没有用，你慌并不能阻止日本人和世界人民有”辐“同享的无耻行径。反而像24号当天有很多抢盐的行为并不可取，让人哭笑不得。以后日本的东西就尽量避免使用、食用。<br>说道海鲜，最近海鲜因为这个事件，导致大面积降价，我觉得倒是可以抓紧去吃一吃，过段时间倒是真的谨慎吃不能吃了哟。</p>
+<h4 id="日本将遭到短视的严重反噬"><a href="#日本将遭到短视的严重反噬" class="headerlink" title="日本将遭到短视的严重反噬"></a>日本将遭到短视的严重反噬</h4><p>日本核污水排海，美国带头默许，西方世界全体失声, 或者表示理解。且看他们做了什么，不要看他们说了什么。<br>日本核污水排海公布之后，欧美各个国家都纷纷发布对日本水产品限制进口政策，已经说明了问题。<br>日本即将迎来的是日本产品被贴上核污染的标签，或者至少不是第一选择产品。日本整个国家的各种产品可能和水有关系的都会面临如此的下场。日本的产品可能含有微量剧毒，可能会导致癌症风险增加。只要大家对日本产品都有这样的印象就够了，这是一个非常可怕的精神暗示。因为水太重要了，它参与着农产品，工业产品的生产。都是对日本是极具毁灭性的打击。</p>
+<p>如开头的逻辑所说，无论如何日本都不应该核污水排海的错误行为。这是对自己国家人民的不负责，也是对世界人民的不负责。那么，我们能做什么呢？尽量不用日本的产品，一方面是对自身健康的考量，另一方面也是对日本这种不负责任的行为的沉默抵抗。另外，宣传更要让日本产品与核污染牢牢绑定。就像他们权衡利益用最廉价却又不最不负责任的处理核污染水一样，让他们无法拒绝地停止核污染水排海。</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>(Life) Advice From The Creator of C++</title>
+    <url>/2023/08/31/Life-Advice-From-The-Creator-of-Cpp/</url>
+    <content><![CDATA[<h3 id="C-之父-Bjarne-Stroustrup-分享人生建议"><a href="#C-之父-Bjarne-Stroustrup-分享人生建议" class="headerlink" title="C++ 之父 Bjarne Stroustrup 分享人生建议"></a>C++ 之父 Bjarne Stroustrup 分享人生建议</h3><p>72岁的Bjarne Stroustrup发明了c++(于1985年首次发布)。38年后，他接受了Honeypot.io公司的一次简短<a href="https://www.youtube.com/watch?v=-QxI-RP6-HM">采访</a>。提供了自己的人生建议:<br>不要过度专业化。不要太确定你知道未来的情况。要灵活变通,记住职业和工作是长期的事情。太多年轻人认为他们可以优化某些东西,然后发现自己在某些可能不是正确的东西上花费了两三年的时间进行专业化。在这个过程中,他们会感到烧毁,因为他们没有花足够的时间建立友谊和生活中的其他事情。<br>我遇到很多“初级极客”——我不知道该怎么称呼他们——他们认为计算机编程、AI、图形之类的专业知识才是唯一重要的东西。其实不是这样的……如果他们什么也不做,只是编写最好的代码,他们认为可以改变世界。但你必须能够倾听。你必须能够与潜在的用户沟通,并从他们那里学习。你也必须能够向他们传达自己的想法。<br>所以你不能只写代码。你必须做一些关于文化和表达想法的事情。我的意思是,我从来不后悔学习历史和数学所花的时间。数学增强你的思维,历史让你对自己的局限性和世界上正在发生的事情有所了解。所以不要太自信。花时间过平衡的生活。<br>要做好抓住机会的准备。我的意思是,广泛的教育,广泛的技能组合——通过教育建立起来的——意味着当机会出现时你可以抓住它。有时候你可以认识到它。我们有很多机会。但我们中很多人要么无法抓住,要么没有注意到。我相对广泛的教育经历——我学过标准的计算机科学,编译器,多种语言……我当时大概知道二十几种。我还学过机器架构,操作系统。这套技能组合发挥了作用。</p>
+<h3 id="Life-Advice-From-The-Creator-of-C"><a href="#Life-Advice-From-The-Creator-of-C" class="headerlink" title="(Life) Advice From The Creator of C++"></a>(Life) Advice From The Creator of C++</h3><p>72-year-old Bjarne Stroustrup invented C++ (first released in 1985). 38 years later, he gave a <a href="https://www.youtube.com/watch?v=-QxI-RP6-HM">short interview</a> for Honeypot.io (which calls itself “Europe’s largest tech-focused job platform”) offering his own advice for life:</p>
+<p>Don’t overspecialize. Don’t be too sure that you know the future. Be flexible, and remember that careers and jobs are a long-term thing. Too many young people think they can optimize something, and then they find they’ve spent a couple of years or more specializing in something that may not have been the right thing. And in the process they burn out, because they haven’t spent enough time building up friendships and having a life outside computing.</p>
+<p>I meet a lot of sort of — I don’t know what you call them, “junior geeks”? — that just think that the only thing that matters is the speciality of computing — programming or AI or graphics or something like that. And — well, it isn’t… And if they do nothing else, well — if you don’t communicate your ideas, you can just as well do Sudoku… You have to communicate. And a lot of sort of caricature nerds forget that. They think that if they can just write the best code, they’ll change the world. But you have to be able to listen. You have to be able to communicate with your would-be users and learn from them. And you have to be able to communicate your ideas to them.</p>
+<p>So you can’t just do code. You have to do something about culture and how to express ideas. I mean, I never regretted the time I spent on history and on math. Math sharpens your mind, history gives you some idea of your limitations and what’s going on in the world. And so don’t be too sure. Take time to have a balanced life.</p>
+<p>And be ready for the opportunity. I mean, a broad-based education, a broad-based skill set — which is what you build up when you educate, you’re basically building a portfolio of skills — means that you can take advantage of an opportunity when it comes along. You can recognize it sometimes. We have lots of opportunities. But a lot of them, we either can’t take advantage of, or we don’t notice. It was my fairly broad education — I’ve done standard computer science, I’ve done compilers, I’ve done multiple languages… I think I knew two dozen at the time. And I have done machine architecture, I’ve done operating systems. And that skill set turned out to be useful.</p>
+<p>At the beginning of the video, Stroustrup jokes that it’s hard to give advice — and that it’s at least as difficult as it is to take advice.</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu20.04/ubuntu22.04 安装，环境配置遇到的问题以及解决方案</title>
+    <url>/2023/08/29/ubuntu20-04-ubuntu22-04-%E5%AE%89%E8%A3%85%EF%BC%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h3 id="build-a-python-env-on-ubuntu20-04"><a href="#build-a-python-env-on-ubuntu20-04" class="headerlink" title="build a python env on ubuntu20.04"></a>build a python env on ubuntu20.04</h3><h4 id="fix-virtualenvwarpper"><a href="#fix-virtualenvwarpper" class="headerlink" title="fix virtualenvwarpper"></a>fix virtualenvwarpper</h4><p>(Ubuntu20.04安装virtualenv方法以及安装过程中遇到的问题处理)[<a href="https://blog.csdn.net/qq_42296146/article/details/108291436]">https://blog.csdn.net/qq_42296146/article/details/108291436]</a></p>
+<p>问题：bash: &#x2F;usr&#x2F;local&#x2F;bin&#x2F;virtualenvwrapper.sh: No such file or directory</p>
+<p>ubuntu18及以上版本，virtualenvwrapper.sh被安装到了家目录下的.local&#x2F;bin&#x2F;中，非原来的&#x2F;usr&#x2F;local&#x2F;bin&#x2F;中</p>
+<p>&#x2F;usr&#x2F;share&#x2F;virtualenvwrapper&#x2F;virtualenvwrapper.sh 实际安装的位置，只要把这个地址配置到.brashrc之后就可以正常运行了。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export WORKON_HOME=$HOME/.virtualenvs</span><br><span class="line">export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.10</span><br><span class="line">export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv</span><br><span class="line">source /usr/share/virtualenvwrapper/virtualenvwrapper.sh</span><br></pre></td></tr></table></figure>
+<h4 id="install-a-local-git-repo-updata"><a href="#install-a-local-git-repo-updata" class="headerlink" title="install a local git repo updata"></a>install a local git repo updata</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git clone git@bitbucket.org:ginolegaltech/updata.git</span><br><span class="line">$ cd updata</span><br><span class="line">&amp; python3.10 setup.py install</span><br><span class="line">$ rm -rf build/</span><br><span class="line">$ rm -rf updata.egg-info/</span><br></pre></td></tr></table></figure>
+
+<h5 id="fix-ImportError-cannot-import-name-‘html5lib’-from-‘pip-vendor’-home-ice-virtualenvs-310-lib-python3-10-site-packages-pip-vendor-init-py"><a href="#fix-ImportError-cannot-import-name-‘html5lib’-from-‘pip-vendor’-home-ice-virtualenvs-310-lib-python3-10-site-packages-pip-vendor-init-py" class="headerlink" title="fix ImportError: cannot import name ‘html5lib’ from ‘pip._vendor’ (&#x2F;home&#x2F;ice&#x2F;.virtualenvs&#x2F;310&#x2F;lib&#x2F;python3.10&#x2F;site-packages&#x2F;pip&#x2F;_vendor&#x2F;init.py)"></a>fix ImportError: cannot import name ‘html5lib’ from ‘pip._vendor’ (&#x2F;home&#x2F;ice&#x2F;.virtualenvs&#x2F;310&#x2F;lib&#x2F;python3.10&#x2F;site-packages&#x2F;pip&#x2F;_vendor&#x2F;<strong>init</strong>.py)</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="bash-显示当前所在分支"><a href="#bash-显示当前所在分支" class="headerlink" title="bash 显示当前所在分支"></a>bash 显示当前所在分支</h4><p>在.bashrc文件追加如下代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function git_branch &#123;</span><br><span class="line">   branch=&quot;`git branch 2&gt;/dev/null | grep &quot;^\*&quot; | sed -e &quot;s/^\*\ //&quot;`&quot;</span><br><span class="line">   if [ &quot;$&#123;branch&#125;&quot; != &quot;&quot; ];then</span><br><span class="line">       if [ &quot;$&#123;branch&#125;&quot; = &quot;(no branch)&quot; ];then</span><br><span class="line">           branch=&quot;(`git rev-parse --short HEAD`...)&quot;</span><br><span class="line">       fi</span><br><span class="line">       echo &quot; ($branch)&quot;</span><br><span class="line">   fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export PS1=&#x27;\u@\h \[\033[01;36m\]\w\[\033[01;32m\]$(git_branch)\[\033[00m\] \$ &#x27;</span><br></pre></td></tr></table></figure>
+
+<h4 id="install-virtualbox"><a href="#install-virtualbox" class="headerlink" title="install virtualbox"></a>install virtualbox</h4><p><a href="https://computingforgeeks.com/install-virtualbox-6-on-ubuntu-linux/">https://computingforgeeks.com/install-virtualbox-6-on-ubuntu-linux/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># step 1</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt -y upgrade</span><br><span class="line">sudo reboot</span><br><span class="line"></span><br><span class="line"># step 2</span><br><span class="line">#Download</span><br><span class="line">curl https://www.virtualbox.org/download/oracle_vbox_2016.asc | gpg --dearmor &gt; oracle_vbox_2016.gpg</span><br><span class="line">curl https://www.virtualbox.org/download/oracle_vbox.asc | gpg --dearmor &gt; oracle_vbox.gpg</span><br><span class="line">#Install on system</span><br><span class="line">sudo install -o root -g root -m 644 oracle_vbox_2016.gpg /etc/apt/trusted.gpg.d/</span><br><span class="line">sudo install -o root -g root -m 644 oracle_vbox.gpg /etc/apt/trusted.gpg.d/</span><br><span class="line"></span><br><span class="line"># step 3</span><br><span class="line"># ubuntu 22.04 </span><br><span class="line">echo &quot;deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian focal contrib&quot; | sudo tee /etc/apt/sources.list.d/virtualbox.list</span><br><span class="line"></span><br><span class="line"># Ubuntu 20.04/18.04:</span><br><span class="line">echo &quot;deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -sc) contrib&quot; | sudo tee /etc/apt/sources.list.d/virtualbox.list</span><br><span class="line"></span><br><span class="line"># step 4</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install linux-headers-$(uname -r) dkms</span><br><span class="line">sudo apt install virtualbox-6.1</span><br></pre></td></tr></table></figure>
+
+<p>virtualbox start error:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ sudo /sbin/vboxconfig </span><br><span class="line">[sudo] password for rcrozier:           </span><br><span class="line">vboxdrv.sh: Stopping VirtualBox services.</span><br><span class="line">vboxdrv.sh: Starting VirtualBox services.</span><br><span class="line">vboxdrv.sh: You must sign these kernel modules before using VirtualBox:</span><br><span class="line">  vboxdrv vboxnetflt vboxnetadp</span><br><span class="line">See the documenatation for your Linux distribution..</span><br><span class="line">vboxdrv.sh: Building VirtualBox kernel modules.</span><br><span class="line">debconf: DbDriver &quot;config&quot;: /var/cache/debconf/config.dat is locked by another process: Resource temporarily unavailable</span><br><span class="line">vboxdrv.sh: Failed to enroll secure boot key..</span><br><span class="line">vboxdrv.sh: failed: modprobe vboxdrv failed. Please use &#x27;dmesg&#x27; to find out why.</span><br><span class="line"></span><br><span class="line">There were problems setting up VirtualBox.  To re-start the set-up process, run</span><br><span class="line">  /sbin/vboxconfig</span><br><span class="line">as root.  If your system is using EFI Secure Boot you may need to sign the</span><br><span class="line">kernel modules (vboxdrv, vboxnetflt, vboxnetadp, vboxpci) before you can load</span><br><span class="line">them. Please see your Linux system&#x27;s documentation for more information.</span><br></pre></td></tr></table></figure>
+
+<p>搜索了很多解决方案都无法处理，最后还是仔细看了报错信息，这里其实有一个很重要的提示信息<code>Secure Boot you may need to sign the kernel modules</code></p>
+<p>最后搜到<a href="https://askubuntu.com/questions/900118/vboxdrv-sh-failed-modprobe-vboxdrv-failed-please-use-dmesg-to-find-out-why">https://askubuntu.com/questions/900118/vboxdrv-sh-failed-modprobe-vboxdrv-failed-please-use-dmesg-to-find-out-why</a> 这个答案最后的以解决答案：</p>
+<p>The above answer probably works fine, but if you want an easier time for it:</p>
+<p>I was able to solve it by</p>
+<p>booting into the BIOS and going &gt; advanced (f7) &gt; boot &gt; scroll down to “secure boot” &gt; change “Windows EUFI mode” to “other OS”</p>
+<p>My virtualbox works perfectly now.</p>
+<p>最后对于为为的解决方案就是进入BIOS系统之后，和这个答案每个硬件平台的BIOS版本会有所不同(我的硬件三HUAWEI MateBook X Pro 2022)找到”secure boot”关键词对应的默认直是enable，为改为disable，第一次修改没有其作用，是应推出的时候没有保存，第二次再修改选择save and exit，再进入ubuntu启动virtualbox就可以正常运作了。</p>
+<p>最近在ubuntu22.04 安装virtualbox的时候遇到另外还有一个报错：</p>
+<h3 id="vboxdrv-sh-failed-Cannot-change-group-vboxusers-for-device-dev-vboxdrv"><a href="#vboxdrv-sh-failed-Cannot-change-group-vboxusers-for-device-dev-vboxdrv" class="headerlink" title="vboxdrv.sh: failed: Cannot change group vboxusers for device &#x2F;dev&#x2F;vboxdrv."></a>vboxdrv.sh: failed: Cannot change group vboxusers for device &#x2F;dev&#x2F;vboxdrv.</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">执行：/sbin/vboxconfig</span><br><span class="line">输出如下报错</span><br><span class="line">root@ice:~# /sbin/vboxconfig</span><br><span class="line">vboxdrv.sh: Stopping VirtualBox services.</span><br><span class="line">vboxdrv.sh: Starting VirtualBox services.</span><br><span class="line">vboxdrv.sh: Building VirtualBox kernel modules.</span><br><span class="line">vboxdrv.sh: failed: Cannot change group vboxusers for device /dev/vboxdrv.</span><br><span class="line"></span><br><span class="line">There were problems setting up VirtualBox.  To re-start the set-up process, run</span><br><span class="line">  /sbin/vboxconfig</span><br><span class="line">as root.  If your system is using EFI Secure Boot you may need to sign the</span><br><span class="line">kernel modules (vboxdrv, vboxnetflt, vboxnetadp, vboxpci) before you can load</span><br><span class="line">them. Please see your Linux system&#x27;s documentation for more information.</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建vboxusers group<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ sudo groupadd vboxusers</span><br></pre></td></tr></table></figure></li>
+<li>把当前user 加入到这个group， 你替换这里的ice<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ sudo usermod -a -G vboxusers ice</span><br></pre></td></tr></table></figure></li>
+<li>检查是否添加成功<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ grep vboxusers /etc/group</span><br><span class="line"># 输出为:</span><br><span class="line"># vboxusers:x:1003:ice</span><br></pre></td></tr></table></figure></li>
+<li>然后运行<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ sudo /sbin/vboxconfig</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>ubuntu</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+</search>
