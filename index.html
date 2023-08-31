@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="安静地坐着学习">
@@ -45,8 +45,26 @@
 
   <title>BLOG</title>
   
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6L4L92Z6Z"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W6L4L92Z6Z');
+      }
+    </script>
 
 
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?99c70b2174a7fbe4af476f28bafb19a3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -102,6 +120,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -136,11 +155,38 @@
     <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -159,6 +205,94 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/31/Life-Advice-From-The-Creator-of-Cpp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/08/31/Life-Advice-From-The-Creator-of-Cpp/" class="post-title-link" itemprop="url">(Life) Advice From The Creator of C++</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-08-31 10:32:17 / Modified: 22:39:21" itemprop="dateCreated datePublished" datetime="2023-08-31T10:32:17+08:00">2023-08-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="C-之父-Bjarne-Stroustrup-分享人生建议"><a href="#C-之父-Bjarne-Stroustrup-分享人生建议" class="headerlink" title="C++ 之父 Bjarne Stroustrup 分享人生建议"></a>C++ 之父 Bjarne Stroustrup 分享人生建议</h3><p>72岁的Bjarne Stroustrup发明了c++(于1985年首次发布)。38年后，他接受了Honeypot.io公司的一次简短<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=-QxI-RP6-HM">采访</a>。提供了自己的人生建议:<br>不要过度专业化。不要太确定你知道未来的情况。要灵活变通,记住职业和工作是长期的事情。太多年轻人认为他们可以优化某些东西,然后发现自己在某些可能不是正确的东西上花费了两三年的时间进行专业化。在这个过程中,他们会感到烧毁,因为他们没有花足够的时间建立友谊和生活中的其他事情。<br>我遇到很多“初级极客”——我不知道该怎么称呼他们——他们认为计算机编程、AI、图形之类的专业知识才是唯一重要的东西。其实不是这样的……如果他们什么也不做,只是编写最好的代码,他们认为可以改变世界。但你必须能够倾听。你必须能够与潜在的用户沟通,并从他们那里学习。你也必须能够向他们传达自己的想法。<br>所以你不能只写代码。你必须做一些关于文化和表达想法的事情。我的意思是,我从来不后悔学习历史和数学所花的时间。数学增强你的思维,历史让你对自己的局限性和世界上正在发生的事情有所了解。所以不要太自信。花时间过平衡的生活。<br>要做好抓住机会的准备。我的意思是,广泛的教育,广泛的技能组合——通过教育建立起来的——意味着当机会出现时你可以抓住它。有时候你可以认识到它。我们有很多机会。但我们中很多人要么无法抓住,要么没有注意到。我相对广泛的教育经历——我学过标准的计算机科学,编译器,多种语言……我当时大概知道二十几种。我还学过机器架构,操作系统。这套技能组合发挥了作用。</p>
+<h3 id="Life-Advice-From-The-Creator-of-C"><a href="#Life-Advice-From-The-Creator-of-C" class="headerlink" title="(Life) Advice From The Creator of C++"></a>(Life) Advice From The Creator of C++</h3><p>72-year-old Bjarne Stroustrup invented C++ (first released in 1985). 38 years later, he gave a <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=-QxI-RP6-HM">short interview</a> for Honeypot.io (which calls itself “Europe’s largest tech-focused job platform”) offering his own advice for life:</p>
+<p>Don’t overspecialize. Don’t be too sure that you know the future. Be flexible, and remember that careers and jobs are a long-term thing. Too many young people think they can optimize something, and then they find they’ve spent a couple of years or more specializing in something that may not have been the right thing. And in the process they burn out, because they haven’t spent enough time building up friendships and having a life outside computing.</p>
+<p>I meet a lot of sort of — I don’t know what you call them, “junior geeks”? — that just think that the only thing that matters is the speciality of computing — programming or AI or graphics or something like that. And — well, it isn’t… And if they do nothing else, well — if you don’t communicate your ideas, you can just as well do Sudoku… You have to communicate. And a lot of sort of caricature nerds forget that. They think that if they can just write the best code, they’ll change the world. But you have to be able to listen. You have to be able to communicate with your would-be users and learn from them. And you have to be able to communicate your ideas to them.</p>
+<p>So you can’t just do code. You have to do something about culture and how to express ideas. I mean, I never regretted the time I spent on history and on math. Math sharpens your mind, history gives you some idea of your limitations and what’s going on in the world. And so don’t be too sure. Take time to have a balanced life.</p>
+<p>And be ready for the opportunity. I mean, a broad-based education, a broad-based skill set — which is what you build up when you educate, you’re basically building a portfolio of skills — means that you can take advantage of an opportunity when it comes along. You can recognize it sometimes. We have lots of opportunities. But a lot of them, we either can’t take advantage of, or we don’t notice. It was my fairly broad education — I’ve done standard computer science, I’ve done compilers, I’ve done multiple languages… I think I knew two dozen at the time. And I have done machine architecture, I’ve done operating systems. And that skill set turned out to be useful.</p>
+<p>At the beginning of the video, Stroustrup jokes that it’s hard to give advice — and that it’s at least as difficult as it is to take advice.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -188,7 +322,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-08-29 20:03:24 / Modified: 20:47:40" itemprop="dateCreated datePublished" datetime="2023-08-29T20:03:24+08:00">2023-08-29</time>
+              <time title="Created: 2023-08-29 20:03:24 / Modified: 21:41:22" itemprop="dateCreated datePublished" datetime="2023-08-29T20:03:24+08:00">2023-08-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -206,7 +340,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>808</span>
+              <span>824</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -225,11 +359,133 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="谈日本向海洋排放核核污染水"><a href="#谈日本向海洋排放核核污染水" class="headerlink" title="谈日本向海洋排放核核污染水"></a>谈日本向海洋排放核核污染水</h3><p>8月24日13时，日本福岛第一核电站启动核污染水排海。</p>
-<h4 id="一个极其清晰明了的逻辑"><a href="#一个极其清晰明了的逻辑" class="headerlink" title="一个极其清晰明了的逻辑"></a>一个极其清晰明了的逻辑</h4><p>如果日本的核污水像日本人说的那样是干净的，那么日本就不应该顶着全世界各国的反对非要核污染水排海。<br>如果日本人说了慌，核污染水不干净，那么日本就更加不应该冒天下之大不韪将核污染水排海。<br>因此，日本绝对是不应该将核污染水排海的。</p>
-<h4 id="日本排海核污染水，造成的恐慌"><a href="#日本排海核污染水，造成的恐慌" class="headerlink" title="日本排海核污染水，造成的恐慌"></a>日本排海核污染水，造成的恐慌</h4><p>日本核污染水排海实施消息一出，国内有很多人表示很慌，以后不能去海边了，不能去吃海鲜了。也有一些人表示不慌，可能通过网上一些知识博主的宣传了解了一些太平洋洋流的知识，核污水传遍太平洋到东海，南海还需要一段时间。<br>我的观点是，没必要慌，因为慌也没有用，你慌并不能阻止日本人和世界人民有”辐“同享的无耻行径。反而像24号当天有很多抢盐的行为并不可取，让人哭笑不得。以后日本的东西就尽量避免使用、食用。<br>说道海鲜，最近海鲜因为这个事件，导致大面积降价，我觉得倒是可以抓紧去吃一吃，过段时间倒是真的谨慎吃不能吃了哟。</p>
-<h4 id="日本将遭到短视的严重反噬"><a href="#日本将遭到短视的严重反噬" class="headerlink" title="日本将遭到短视的严重反噬"></a>日本将遭到短视的严重反噬</h4><p>日本排海核污水，美国带头默许，西方世界全体失声, 或者表示理解。且看他们做了什么，不要看他们说了什么。<br>日本核污水排海公布之后，欧美各个国家都纷纷发布对日本水产品限制进口政策，已经说明了问题。<br>日本即将迎来的是日本产品被贴上核污染的标签，或者至少不是第一选择产品。日本整个国家的各种产品可能和水有关系的都会面临如此的下场。日本的产品可能含有微量剧毒，可能会导致癌症风险增加。只要大家对日本产品都有这样的印象就够了，这是一个非常可怕的精神暗示。因为水太重要了，它参与着农产品，工业产品的生产。都是对日本是极具毁灭性的打击。</p>
+          <h3 id="谈日本向海洋排放核污染水"><a href="#谈日本向海洋排放核污染水" class="headerlink" title="谈日本向海洋排放核污染水"></a>谈日本向海洋排放核污染水</h3><p>8月24日13时，日本福岛第一核电站启动核污染水排海。而且是计划至少30年持续核污染水排海。</p>
+<h4 id="一个极其清晰明了的逻辑"><a href="#一个极其清晰明了的逻辑" class="headerlink" title="一个极其清晰明了的逻辑"></a>一个极其清晰明了的逻辑</h4><p>如果日本的核污水像日本人说的那样是干净的，那么日本就不应该顶着全世界各国的反对非要核污染水排海。<br>如果日本人说了谎，核污染水不干净，那么日本就更加不应该冒天下之大不韪将核污染水排海。<br>因此，日本绝对是不应该将核污染水排海的。</p>
+<h4 id="日本核污染水排海造成的恐慌"><a href="#日本核污染水排海造成的恐慌" class="headerlink" title="日本核污染水排海造成的恐慌"></a>日本核污染水排海造成的恐慌</h4><p>日本核污染水排海实施消息一出，国内有很多人表示很慌，以后不能去海边了，不能去吃海鲜了。也有一些人表示不慌，可能通过网上一些知识博主的宣传了解了一些太平洋洋流的知识，核污水传遍太平洋到东海，南海还需要一段时间。<br>我的观点是，没必要慌，因为慌也没有用，你慌并不能阻止日本人和世界人民有”辐“同享的无耻行径。反而像24号当天有很多抢盐的行为并不可取，让人哭笑不得。以后日本的东西就尽量避免使用、食用。<br>说道海鲜，最近海鲜因为这个事件，导致大面积降价，我觉得倒是可以抓紧去吃一吃，过段时间倒是真的谨慎吃不能吃了哟。</p>
+<h4 id="日本将遭到短视的严重反噬"><a href="#日本将遭到短视的严重反噬" class="headerlink" title="日本将遭到短视的严重反噬"></a>日本将遭到短视的严重反噬</h4><p>日本核污水排海，美国带头默许，西方世界全体失声, 或者表示理解。且看他们做了什么，不要看他们说了什么。<br>日本核污水排海公布之后，欧美各个国家都纷纷发布对日本水产品限制进口政策，已经说明了问题。<br>日本即将迎来的是日本产品被贴上核污染的标签，或者至少不是第一选择产品。日本整个国家的各种产品可能和水有关系的都会面临如此的下场。日本的产品可能含有微量剧毒，可能会导致癌症风险增加。只要大家对日本产品都有这样的印象就够了，这是一个非常可怕的精神暗示。因为水太重要了，它参与着农产品，工业产品的生产。都是对日本是极具毁灭性的打击。</p>
 <p>如开头的逻辑所说，无论如何日本都不应该核污水排海的错误行为。这是对自己国家人民的不负责，也是对世界人民的不负责。那么，我们能做什么呢？尽量不用日本的产品，一方面是对自身健康的考量，另一方面也是对日本这种不负责任的行为的沉默抵抗。另外，宣传更要让日本产品与核污染牢牢绑定。就像他们权衡利益用最廉价却又不最不负责任的处理核污染水一样，让他们无法拒绝地停止核污染水排海。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/29/ubuntu20-04-ubuntu22-04-%E5%AE%89%E8%A3%85%EF%BC%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/08/29/ubuntu20-04-ubuntu22-04-%E5%AE%89%E8%A3%85%EF%BC%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="post-title-link" itemprop="url">ubuntu20.04/ubuntu22.04 安装，环境配置遇到的问题以及解决方案</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-08-29 14:48:08" itemprop="dateCreated datePublished" datetime="2023-08-29T14:48:08+08:00">2023-08-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-31 22:37:03" itemprop="dateModified" datetime="2023-08-31T22:37:03+08:00">2023-08-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>916</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="build-a-python-env-on-ubuntu20-04"><a href="#build-a-python-env-on-ubuntu20-04" class="headerlink" title="build a python env on ubuntu20.04"></a>build a python env on ubuntu20.04</h3><h4 id="fix-virtualenvwarpper"><a href="#fix-virtualenvwarpper" class="headerlink" title="fix virtualenvwarpper"></a>fix virtualenvwarpper</h4><p>(Ubuntu20.04安装virtualenv方法以及安装过程中遇到的问题处理)[<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42296146/article/details/108291436]">https://blog.csdn.net/qq_42296146/article/details/108291436]</a></p>
+<p>问题：bash: &#x2F;usr&#x2F;local&#x2F;bin&#x2F;virtualenvwrapper.sh: No such file or directory</p>
+<p>ubuntu18及以上版本，virtualenvwrapper.sh被安装到了家目录下的.local&#x2F;bin&#x2F;中，非原来的&#x2F;usr&#x2F;local&#x2F;bin&#x2F;中</p>
+<p>&#x2F;usr&#x2F;share&#x2F;virtualenvwrapper&#x2F;virtualenvwrapper.sh 实际安装的位置，只要把这个地址配置到.brashrc之后就可以正常运行了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export WORKON_HOME=$HOME/.virtualenvs</span><br><span class="line">export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.10</span><br><span class="line">export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv</span><br><span class="line">source /usr/share/virtualenvwrapper/virtualenvwrapper.sh</span><br></pre></td></tr></table></figure>
+<h4 id="install-a-local-git-repo-updata"><a href="#install-a-local-git-repo-updata" class="headerlink" title="install a local git repo updata"></a>install a local git repo updata</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git@bitbucket.org:ginolegaltech/updata.git</span><br><span class="line">$ cd updata</span><br><span class="line">&amp; python3.10 setup.py install</span><br><span class="line">$ rm -rf build/</span><br><span class="line">$ rm -rf updata.egg-info/</span><br></pre></td></tr></table></figure>
+
+<h5 id="fix-ImportError-cannot-import-name-‘html5lib’-from-‘pip-vendor’-home-ice-virtualenvs-310-lib-python3-10-site-packages-pip-vendor-init-py"><a href="#fix-ImportError-cannot-import-name-‘html5lib’-from-‘pip-vendor’-home-ice-virtualenvs-310-lib-python3-10-site-packages-pip-vendor-init-py" class="headerlink" title="fix ImportError: cannot import name ‘html5lib’ from ‘pip._vendor’ (&#x2F;home&#x2F;ice&#x2F;.virtualenvs&#x2F;310&#x2F;lib&#x2F;python3.10&#x2F;site-packages&#x2F;pip&#x2F;_vendor&#x2F;init.py)"></a>fix ImportError: cannot import name ‘html5lib’ from ‘pip._vendor’ (&#x2F;home&#x2F;ice&#x2F;.virtualenvs&#x2F;310&#x2F;lib&#x2F;python3.10&#x2F;site-packages&#x2F;pip&#x2F;_vendor&#x2F;<strong>init</strong>.py)</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="bash-显示当前所在分支"><a href="#bash-显示当前所在分支" class="headerlink" title="bash 显示当前所在分支"></a>bash 显示当前所在分支</h4><p>在.bashrc文件追加如下代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function git_branch &#123;</span><br><span class="line">   branch=&quot;`git branch 2&gt;/dev/null | grep &quot;^\*&quot; | sed -e &quot;s/^\*\ //&quot;`&quot;</span><br><span class="line">   if [ &quot;$&#123;branch&#125;&quot; != &quot;&quot; ];then</span><br><span class="line">       if [ &quot;$&#123;branch&#125;&quot; = &quot;(no branch)&quot; ];then</span><br><span class="line">           branch=&quot;(`git rev-parse --short HEAD`...)&quot;</span><br><span class="line">       fi</span><br><span class="line">       echo &quot; ($branch)&quot;</span><br><span class="line">   fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export PS1=&#x27;\u@\h \[\033[01;36m\]\w\[\033[01;32m\]$(git_branch)\[\033[00m\] \$ &#x27;</span><br></pre></td></tr></table></figure>
+
+<h4 id="install-virtualbox"><a href="#install-virtualbox" class="headerlink" title="install virtualbox"></a>install virtualbox</h4><p><a target="_blank" rel="noopener" href="https://computingforgeeks.com/install-virtualbox-6-on-ubuntu-linux/">https://computingforgeeks.com/install-virtualbox-6-on-ubuntu-linux/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># step 1</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt -y upgrade</span><br><span class="line">sudo reboot</span><br><span class="line"></span><br><span class="line"># step 2</span><br><span class="line">#Download</span><br><span class="line">curl https://www.virtualbox.org/download/oracle_vbox_2016.asc | gpg --dearmor &gt; oracle_vbox_2016.gpg</span><br><span class="line">curl https://www.virtualbox.org/download/oracle_vbox.asc | gpg --dearmor &gt; oracle_vbox.gpg</span><br><span class="line">#Install on system</span><br><span class="line">sudo install -o root -g root -m 644 oracle_vbox_2016.gpg /etc/apt/trusted.gpg.d/</span><br><span class="line">sudo install -o root -g root -m 644 oracle_vbox.gpg /etc/apt/trusted.gpg.d/</span><br><span class="line"></span><br><span class="line"># step 3</span><br><span class="line"># ubuntu 22.04 </span><br><span class="line">echo &quot;deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian focal contrib&quot; | sudo tee /etc/apt/sources.list.d/virtualbox.list</span><br><span class="line"></span><br><span class="line"># Ubuntu 20.04/18.04:</span><br><span class="line">echo &quot;deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -sc) contrib&quot; | sudo tee /etc/apt/sources.list.d/virtualbox.list</span><br><span class="line"></span><br><span class="line"># step 4</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install linux-headers-$(uname -r) dkms</span><br><span class="line">sudo apt install virtualbox-6.1</span><br></pre></td></tr></table></figure>
+
+<p>virtualbox start error:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /sbin/vboxconfig </span><br><span class="line">[sudo] password for rcrozier:           </span><br><span class="line">vboxdrv.sh: Stopping VirtualBox services.</span><br><span class="line">vboxdrv.sh: Starting VirtualBox services.</span><br><span class="line">vboxdrv.sh: You must sign these kernel modules before using VirtualBox:</span><br><span class="line">  vboxdrv vboxnetflt vboxnetadp</span><br><span class="line">See the documenatation for your Linux distribution..</span><br><span class="line">vboxdrv.sh: Building VirtualBox kernel modules.</span><br><span class="line">debconf: DbDriver &quot;config&quot;: /var/cache/debconf/config.dat is locked by another process: Resource temporarily unavailable</span><br><span class="line">vboxdrv.sh: Failed to enroll secure boot key..</span><br><span class="line">vboxdrv.sh: failed: modprobe vboxdrv failed. Please use &#x27;dmesg&#x27; to find out why.</span><br><span class="line"></span><br><span class="line">There were problems setting up VirtualBox.  To re-start the set-up process, run</span><br><span class="line">  /sbin/vboxconfig</span><br><span class="line">as root.  If your system is using EFI Secure Boot you may need to sign the</span><br><span class="line">kernel modules (vboxdrv, vboxnetflt, vboxnetadp, vboxpci) before you can load</span><br><span class="line">them. Please see your Linux system&#x27;s documentation for more information.</span><br></pre></td></tr></table></figure>
+
+<p>搜索了很多解决方案都无法处理，最后还是仔细看了报错信息，这里其实有一个很重要的提示信息<code>Secure Boot you may need to sign the kernel modules</code></p>
+<p>最后搜到<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/900118/vboxdrv-sh-failed-modprobe-vboxdrv-failed-please-use-dmesg-to-find-out-why">https://askubuntu.com/questions/900118/vboxdrv-sh-failed-modprobe-vboxdrv-failed-please-use-dmesg-to-find-out-why</a> 这个答案最后的以解决答案：</p>
+<p>The above answer probably works fine, but if you want an easier time for it:</p>
+<p>I was able to solve it by</p>
+<p>booting into the BIOS and going &gt; advanced (f7) &gt; boot &gt; scroll down to “secure boot” &gt; change “Windows EUFI mode” to “other OS”</p>
+<p>My virtualbox works perfectly now.</p>
+<p>最后对于为为的解决方案就是进入BIOS系统之后，和这个答案每个硬件平台的BIOS版本会有所不同(我的硬件三HUAWEI MateBook X Pro 2022)找到”secure boot”关键词对应的默认直是enable，为改为disable，第一次修改没有其作用，是应推出的时候没有保存，第二次再修改选择save and exit，再进入ubuntu启动virtualbox就可以正常运作了。</p>
+<p>最近在ubuntu22.04 安装virtualbox的时候遇到另外还有一个报错：</p>
+<h3 id="vboxdrv-sh-failed-Cannot-change-group-vboxusers-for-device-dev-vboxdrv"><a href="#vboxdrv-sh-failed-Cannot-change-group-vboxusers-for-device-dev-vboxdrv" class="headerlink" title="vboxdrv.sh: failed: Cannot change group vboxusers for device &#x2F;dev&#x2F;vboxdrv."></a>vboxdrv.sh: failed: Cannot change group vboxusers for device &#x2F;dev&#x2F;vboxdrv.</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">执行：/sbin/vboxconfig</span><br><span class="line">输出如下报错</span><br><span class="line">root@ice:~# /sbin/vboxconfig</span><br><span class="line">vboxdrv.sh: Stopping VirtualBox services.</span><br><span class="line">vboxdrv.sh: Starting VirtualBox services.</span><br><span class="line">vboxdrv.sh: Building VirtualBox kernel modules.</span><br><span class="line">vboxdrv.sh: failed: Cannot change group vboxusers for device /dev/vboxdrv.</span><br><span class="line"></span><br><span class="line">There were problems setting up VirtualBox.  To re-start the set-up process, run</span><br><span class="line">  /sbin/vboxconfig</span><br><span class="line">as root.  If your system is using EFI Secure Boot you may need to sign the</span><br><span class="line">kernel modules (vboxdrv, vboxnetflt, vboxnetadp, vboxpci) before you can load</span><br><span class="line">them. Please see your Linux system&#x27;s documentation for more information.</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建vboxusers group<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo groupadd vboxusers</span><br></pre></td></tr></table></figure></li>
+<li>把当前user 加入到这个group， 你替换这里的ice<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo usermod -a -G vboxusers ice</span><br></pre></td></tr></table></figure></li>
+<li>检查是否添加成功<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ grep vboxusers /etc/group</span><br><span class="line"># 输出为:</span><br><span class="line"># vboxusers:x:1003:ice</span><br></pre></td></tr></table></figure></li>
+<li>然后运行<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /sbin/vboxconfig</span><br></pre></td></tr></table></figure></li>
+</ul>
 
       
     </div>
@@ -898,198 +1154,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/18/rust_docs/ch_09_02_recoverable_errors_with_result/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/18/rust_docs/ch_09_02_recoverable_errors_with_result/" class="post-title-link" itemprop="url">Ch 09.02:带有结果的可恢复错误</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-08-18 09:51:00" itemprop="dateCreated datePublished" datetime="2023-08-18T09:51:00+08:00">2023-08-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-20 15:27:36" itemprop="dateModified" datetime="2023-08-20T15:27:36+08:00">2023-08-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Rust/" itemprop="url" rel="index"><span itemprop="name">Rust</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>102</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="带有结果的可恢复错误"><a href="#带有结果的可恢复错误" class="headerlink" title="带有结果的可恢复错误"></a>带有结果的可恢复错误</h3><p>大多数错误并不严重到需要程序完全停止。有时，当一个函数失败时，其原因可以很容易地解释和响应。例如，如果您尝试打开一个文件，但由于该文件不存在而导致该操作失败，那么您可能希望创建该文件，而不是终止该进程。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_01_unrecoverable_errors_with_panic/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/05/18/rust_docs/ch_09_01_unrecoverable_errors_with_panic/" class="post-title-link" itemprop="url">Ch 09.01:使用`panic!`的backtrace</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-18 10:35:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:35:00+08:00">2023-05-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-20 15:27:33" itemprop="dateModified" datetime="2023-08-20T15:27:33+08:00">2023-08-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Rust/" itemprop="url" rel="index"><span itemprop="name">Rust</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.1k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="使用panic-的backtrace"><a href="#使用panic-的backtrace" class="headerlink" title="使用panic!的backtrace"></a>使用<code>panic!</code>的backtrace</h4><p>让我们来看看另外一个例子，当因为我们自己的代码有bug而导致库函数调用<code>panic!</code>是什么样的。如Listing 9-1所示的代码尝试访问超出范围的vector的索引。</p>
-<p>Filename: src&#x2F;main.rs</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    v[<span class="number">99</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Listing 9-1: Attempting to access an element beyond the end of a vector, which will cause a call to <code>panic!</code></p>
-<p>这里，我们尝试去访问第100个元素(索引99就是第100个元素，索引是从0开始的)，但是vector只有3个元素，肯定会报错。在这个场景中，Rust就会panic。使用<code>[]</code>就是企图返回一个元素，但是你传入一个无效的索引，又不会有这个元素，Rust就肯定不会返回正确的结果。</p>
-<p>在C语言中，尝试读取数据结构之后的值是未定义行为(undefined behavior)。你可能会得到一个这个位置的对应的值，但是这个可能是任何的值，但就不是你想要访问的值，因为这个位置的值不属于你想要访问的数据结构范围的值。这个被叫做**缓冲区溢出(buffer overread)**，并且可能会导致安全漏洞，比如攻击者可以像这样操作索引来读取存储在数据结构之后不被允许访问的数据。</p>
-<p>为了防止这种漏洞，如果尝试读取一个索引不存在的元素，Rust会停止执行并拒绝继续。尝试运行上面的程序会出现如下的错误：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling panic v0.<span class="number">1.0</span> (file:<span class="comment">///projects/panic)</span></span><br><span class="line">    Finished dev [unoptimized + debuginfo] <span class="title function_ invoke__">target</span>(s) <span class="keyword">in</span> <span class="number">0.27</span>s</span><br><span class="line">     Running `target/debug/panic`</span><br><span class="line">thread <span class="symbol">&#x27;main</span>&#x27; panicked at <span class="symbol">&#x27;index</span> out of bounds: the len is <span class="number">3</span> but the index is <span class="number">99</span>&#x27;, src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">note: run with `RUST_BACKTRACE=<span class="number">1</span>` environment variable to display a backtrace</span><br></pre></td></tr></table></figure>
-
-<p>上面的错误信息指出错误发生在<code>src/main.rs</code>文件的第4行第5个字符，我们尝试访问索引为99的元素。接着一行的信息告诉我们可以设置<code>RUST_BACKTRACE</code>环境变量来获取backtrace查看发生了什么错误。一个backtrace是一个已经被调用直到当前这一个点的所有的函数列表。Backtrace在Rust的工作原理和其他语言一样：阅读backtrace的关键是从头开始读一直到发现你编写的代码；往下则是你调用的代码。这些行可能包含核心Rust代码，标准库代码或用到的crate代码。让我们设置<code>RUST_BACKTRACE</code>环境变量在Listing 9-2中看看都输出了些什么：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ RUST_BACKTRACE=<span class="number">1</span> cargo run</span><br><span class="line">thread <span class="symbol">&#x27;main</span>&#x27; panicked at <span class="symbol">&#x27;index</span> out of bounds: the len is <span class="number">3</span> but the index is <span class="number">99</span>&#x27;, src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">stack backtrace:</span><br><span class="line">   <span class="number">0</span>: rust_begin_unwind</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/std/src/panicking.rs:<span class="number">584</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">1</span>: core::panicking::panic_fmt</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/panicking.rs:<span class="number">142</span>:<span class="number">14</span></span><br><span class="line">   <span class="number">2</span>: core::panicking::panic_bounds_check</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/panicking.rs:<span class="number">84</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">3</span>: &lt;<span class="type">usize</span> <span class="keyword">as</span> core::slice::index::SliceIndex&lt;[T]&gt;&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/slice/index.rs:<span class="number">242</span>:<span class="number">10</span></span><br><span class="line">   <span class="number">4</span>: core::slice::index::&lt;<span class="keyword">impl</span> <span class="title class_">core</span>::ops::index::Index&lt;I&gt; <span class="keyword">for</span> [T]&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/slice/index.rs:<span class="number">18</span>:<span class="number">9</span></span><br><span class="line">   <span class="number">5</span>: &lt;alloc::vec::<span class="type">Vec</span>&lt;T,A&gt; <span class="keyword">as</span> core::ops::index::Index&lt;I&gt;&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/alloc/src/vec/<span class="keyword">mod</span>.rs:<span class="number">2591</span>:<span class="number">9</span></span><br><span class="line">   <span class="number">6</span>: panic::main</span><br><span class="line">             at ./src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">7</span>: core::ops::function::<span class="built_in">FnOnce</span>::call_once</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/ops/function.rs:<span class="number">248</span>:<span class="number">5</span></span><br><span class="line">note: <span class="literal">Some</span> details are omitted, run with `RUST_BACKTRACE=full` <span class="keyword">for</span> <span class="title class_">a</span> verbose backtrace.</span><br></pre></td></tr></table></figure>
-
-<p>Listing 9-2: The backtrace generated by a <code>panic!</code>displayed when the environment variable <code>RUST_BACKTRACE</code>is set</p>
-<p>真是输出了一大坨啊！操作系统不同，Rust版本不同，你看到的输出可能会有所不同。为了使用这些信息进行回溯，必须启用debug模式。默认就是debug模式，只要在<code>cargo build</code>或者<code>cargo run</code>之后不要加<code>--release</code>参数。</p>
-<p>在Listing 9-2的第6行的backtrace指出了我们项目造成的问题：<code>src/main.rs</code>的第4行。如果我们不想我们的程序panic，我们就应该开始检查定位到第一行我们自己写的代码。在Listing 9-1中，我们故意写了造成panic的代码，修复这个panic就是不要去访问超出vector范围的索引。当你的代码在将来panic， 你需要弄清楚代码使用什么数据做了什么样的操作，以及正确情况下代码应该做什么。</p>
-<p>本章后面的小节 <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html#to-panic-or-not-to-panic">“To <code>panic!</code> Or not to <code>panic!</code>“</a> 部分讲回<code>panic!</code>，详细讲解应该或者不应该用<code>panic!</code>来处理错误情况。接下来一节我们来讲解如何使用<code>Result</code>恢复一个错误。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1159,14 +1223,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1222,17 +1286,37 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">20k</span>
+    <span title="Symbols count total">22k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1:14</span>
+    <span title="Reading time total">1:21</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
@@ -1247,6 +1331,7 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
@@ -1268,6 +1353,10 @@
 
 
 
+  
+<script src="/js/local-search.js"></script>
+
+
 
 
 
@@ -1282,6 +1371,7 @@
   
 
   
+
 
 </body>
 </html>

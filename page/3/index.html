@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="安静地坐着学习">
@@ -45,8 +45,26 @@
 
   <title>BLOG</title>
   
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6L4L92Z6Z"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W6L4L92Z6Z');
+      }
+    </script>
 
 
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?99c70b2174a7fbe4af476f28bafb19a3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -102,6 +120,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -136,11 +155,38 @@
     <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -159,6 +205,209 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_01_packages_and_crates/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/18/rust_docs/ch_07_01_packages_and_crates/" class="post-title-link" itemprop="url">Ch 07.01:包和Crates</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-18 10:19:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:19:00+08:00">2023-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-20 15:26:56" itemprop="dateModified" datetime="2023-08-20T15:26:56+08:00">2023-08-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Rust/" itemprop="url" rel="index"><span itemprop="name">Rust</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>814</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="包和Crates"><a href="#包和Crates" class="headerlink" title="包和Crates"></a>包和Crates</h2><p>模块系统的第一部分我们将介绍包和crate。</p>
+<p>crate是Rust编译时最小的代码单位。如果你用<code>rustc</code>而不是<code>cargo</code>来编译一个文件(第一章我们这么做)，编译器还是会将那个文件认作一个crate。crate可以包含模块，模块可以定义在其他文件，然后和crate一起编译，我们会在接下来的章节中遇到。</p>
+<p>crate有两种形式：二进制项和库。二进制crate可以被编译为可执行程序，比如一个命令行程序或者一个服务器。它们必须有一个<code>main</code>函数来定义当程序被执行的时候所需要做的事情。到目前为止，我们所创建的crate都是二进制crate。</p>
+<p>库(Library crates) 没有<code>main</code>函数，而且它们不会编译成可执行文件。相反，它们定义了旨在与多个项目共享的功能。例如，我们在第二章用过的<code>rand</code>函数，用来生成随机数。大多数的Rust开发者说的crate指的都是库，这与其他变成语言中的library概念一致。</p>
+<p>crate root是一个资源文件，Rust编译器以它为起始点，并组成crate的根模块(我们将在”Defining Modules to Control Scope and Privacy” 部分深度解析)。</p>
+<p>包(package)是提供一系列功能的一个或者多个crate。一个包会包含Cargo.toml文件，阐述如何去创建这些crates。Cargo就是一个包含构建你代码的二进制项的包。Cargo也包含这些二进制项所依赖的库。其他项目也能用Cargo库来实现与Cargo命令行程序一样的逻辑。</p>
+<p>包可以包含很多二进制(binary) crate，但是最多只能有一个库(library) crate。包无论是一个库(library crate)还是一个二进制库(binary crate)， 至少要包含一个library crate。</p>
+<p>让我们来看看创建包的时候会发生什么。首先，我们输入命令<code>cargo new</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">cargo new my-project</span></span><br><span class="line">     Created binary (application) `my-project` package</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> my-project</span></span><br><span class="line">Cargo.toml</span><br><span class="line">src</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> my-project/src</span></span><br><span class="line">main.rs</span><br></pre></td></tr></table></figure>
+
+<p>运行<code>cargo new</code>之后，我们使用<code>ls</code>查看Cargo创建了什么，在这个项目目录里，Cargo会给我们创建一个Cargo.toml文件，这就是一个包(package)。这里也有一个src目录包含main.rs文件。用编辑器打开Cargo.toml，并且文件内容里面没有提及src&#x2F;main.rs。因为Cargo遵循的一个约定：src&#x2F;main.rs就是一个与包同名的二进制crate的crate根。同样地，Cargo知道如果包目录中包含src&#x2F;lib.rs，则包带有与其同名的库(library) crate。crate根文件将由Cargo传递给<code>rustc</code>来构建库(library)或者二进制(binary)。</p>
+<p>这里，我们有一个只包含src&#x2F;main.rs的包，意味着它只含有一个名为<code>my-project</code>的二进制crate。如果一个包同时含有src&#x2F;main.rs和src&#x2F;lib.rs，则它有两个crate：一个二进制(binary)的和一个库(library)，并且名字都与包相同。通过将文件放在src&#x2F;bin目录下，一个包可以拥有多个二进制crate：每个src&#x2F;bin下的文件都会被编译成一个独立的二进制crate。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_02_defining_modules_to_control_scope_and_privacy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/18/rust_docs/ch_07_02_defining_modules_to_control_scope_and_privacy/" class="post-title-link" itemprop="url">Ch 07.02:在模块中对相关代码进行分组(Grouping Related Code in Modules)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-18 10:19:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:19:00+08:00">2023-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-20 15:27:01" itemprop="dateModified" datetime="2023-08-20T15:27:01+08:00">2023-08-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Rust/" itemprop="url" rel="index"><span itemprop="name">Rust</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>952</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="在模块中对相关代码进行分组-Grouping-Related-Code-in-Modules"><a href="#在模块中对相关代码进行分组-Grouping-Related-Code-in-Modules" class="headerlink" title="在模块中对相关代码进行分组(Grouping Related Code in Modules)"></a>在模块中对相关代码进行分组(Grouping Related Code in Modules)</h4><p>模块让我们在crate中组织代码，以提高可读性和易于重用。模块还允许我们控制items的私有性，因为在module中的代码默认是私有的。Private items是内部实现的细节不对外使用。我们可以选择将模块以及其中的items设置为公共的，这样，外部代码就可以使用并依赖于它们。</p>
+<p>例如，让我们编写一个提供餐厅服务功能的library crate。我们将会定义函数的签名，但是函数的主题留空，集中于代码的组织，而不是实现一个餐馆。</p>
+<p>在餐厅业中，餐馆的某些部分被称为前台(front of house)，其他的部分称为后台(back of house)。前台是顾客所在的空间；这包括主座的顾客的位置，服务员接单和付款，以及调酒师调酒的地方。后台是主厨和厨师们在厨房，洗碗机清理，经历做行政工作。</p>
+<p>这样构建我们的crate，我们可以将这些功能组织成嵌套的模块。创建一个新的库(library)命名为<code>restaurant</code>，通过命令<code>cargo new restaurant --lib</code>。输入如下Listing 7-1代码到src&#x2F;lib.rs来定义一些模块和函数签名。这里是前台部分：</p>
+<p>src&#x2F;lib.rs</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> front_of_house &#123;</span><br><span class="line">    <span class="keyword">mod</span> hosting &#123;</span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">add_to_waitlist</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">seat_at_table</span>() &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">mod</span> serving &#123;</span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">take_order</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">serve_order</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">take_payment</span>() &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 7-1: A <code>front_of_house</code>module containing other modules that then contain functions</p>
+<p>我们用<code>mod</code>关键字定义一个模块(在上面的例子中定义了<code>front_of_house</code>模块)。并用花括号包围模块的主体。在模块内，我们还可以定义其他模块，就像本例子中的<code>hosting</code>和<code>serving</code>模块。模块还可以hold一些定义的其他items，例如structs, enums, constants, traits, 以及Listing 7-1中的函数。</p>
+<p>通过使用模块，我们可以将相关的定义分组到一起，并指出他们为什么相关。程序设计者可以通过使用这段代码，更加容易找到他们想要的定义，因为他们可以基于分组来对代码进行导航，而不需要阅读所有的定义。程序设计者向这段代码中添加一个新功能时，他们也会知道代码应该放置在何处，可以保持程序的组织性。</p>
+<p>在前面我们提到了，<code>src/main.rs</code>和<code>src/lib.rs</code>叫做crate根。之所以这么叫它们是因为这两个文件中的任何一个内容都在crate模块结构的根组成了一个名为crate的模块，该结构被称为模块树(module tree)。</p>
+<p>Listing 7-2 展示了示例Listing 7-1中的模块树(modules tree)的结构。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">crate</span></span><br><span class="line"> └── front_of_house</span><br><span class="line">     ├── hosting</span><br><span class="line">     │   ├── add_to_waitlist</span><br><span class="line">     │   └── seat_at_table</span><br><span class="line">     └── serving</span><br><span class="line">         ├── take_order</span><br><span class="line">         ├── serve_order</span><br><span class="line">         └── take_payment</span><br></pre></td></tr></table></figure>
+
+<p>Listing 7-2: The module tree for the code in Listing 7-1</p>
+<p>这个模块树展示了一些模块内嵌到另一个模块；例如，<code>hosting</code>内嵌在<code>front_of_house</code>之中。这个树结构还展示了一些模块是互为兄弟(siblings)的，这意味着它们定义在同一模块中(<code>hosting</code>和<code>serving</code>被一起定义在<code>front_of_house</code>中)。继续沿用家庭关系的比喻，如果一个模块A被包含在模块B中，我们将模块A称为模块B的子模块，B模块为A的父模块。注意，整个模块树都植根于隐式模块名为<code>crate</code>之下。</p>
+<p>模块树可能会让你想起计算机上的文件系统的目录树；这是一个非常恰当的比较！就像文件系统中的目录一样，你用模块来组织你的代码。就像文件目录中的文件，我们需要一个方式来找到我们的模块(modules)。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -936,183 +1185,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/29/rust_docs/ch_05_00_structs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/29/rust_docs/ch_05_00_structs/" class="post-title-link" itemprop="url">Ch 05.00:Using Structs to Structure Related Data</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-12-29 15:19:00" itemprop="dateCreated datePublished" datetime="2022-12-29T15:19:00+08:00">2022-12-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-20 15:26:22" itemprop="dateModified" datetime="2023-08-20T15:26:22+08:00">2023-08-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Rust/" itemprop="url" rel="index"><span itemprop="name">Rust</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>191</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="Using-Structs-to-Structure-Related-Data"><a href="#Using-Structs-to-Structure-Related-Data" class="headerlink" title="Using Structs to Structure Related Data"></a>Using Structs to Structure Related Data</h4><p>struct or structure 是一个自定义的数据类型，允许你包装和命名多个相关联的值，从而形成一个有意义的组合。如果你熟悉一门面向对象语言，struct就像对象中的数据属性。在本章中，我们会对元组和结构体进行对比和对照。还将演示如何定义和实现实例化结构体，并讨论如何定义关联函数，特别是被称为方法的那种关联函数，以指定与结构体类型相关的行为。你可以在程序中基于结构体和枚举(enum)（在第六章中介绍）创建新类型，以充分利用Rust的编译时类型检查。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/29/rust_docs/ch_04_03_slices/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/29/rust_docs/ch_04_03_slices/" class="post-title-link" itemprop="url">Ch 04.03:总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-12-29 15:18:00" itemprop="dateCreated datePublished" datetime="2022-12-29T15:18:00+08:00">2022-12-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-20 15:26:19" itemprop="dateModified" datetime="2023-08-20T15:26:19+08:00">2023-08-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Rust/" itemprop="url" rel="index"><span itemprop="name">Rust</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>172</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>所有权、借用和slice这些概念让Rust程序在编译时保证内存安全。Rust语言提供了跟其他系统编程语言相同的方式来控制你使用内存，但拥有数据所有者在离开作用域后自动清除其数据的功能意味着你无需额外编写和调试相关的控制代码。</p>
-<p>所有权系统影响了Rust中很多其他部分的工作方式，所以我们还会继续讲到这些概念，这将贯穿本书余下的内容。让我们开始第五章吧，来看看如何将多份数据组合进一个struct中。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1182,14 +1254,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1245,17 +1317,37 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">20k</span>
+    <span title="Symbols count total">22k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1:14</span>
+    <span title="Reading time total">1:21</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
@@ -1270,6 +1362,7 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
@@ -1291,6 +1384,10 @@
 
 
 
+  
+<script src="/js/local-search.js"></script>
+
+
 
 
 
@@ -1305,6 +1402,7 @@
   
 
   
+
 
 </body>
 </html>
