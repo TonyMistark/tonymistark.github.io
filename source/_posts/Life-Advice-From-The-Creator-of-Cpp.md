@@ -1,6 +1,6 @@
 ---
 layout: layout
-title: (Life) Advice From The Creator of Cpp
+title: (Life) Advice From The Creator of C++
 date: 2023-08-31 10:32:17
 tags: 随笔
 categories: 随笔
