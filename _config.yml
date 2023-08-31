@@ -165,8 +165,10 @@ feed:
   template:
 
 # npm install hexo-generator-searchdb --save
-search:
-  path: search.xml
-  field: post
-  content: true
-  format: html
+# search icon load fail, search service does not work
+# enable it for now
+# search:
+#   path: search.xml
+#   field: post
+#   content: true
+#   format: html
