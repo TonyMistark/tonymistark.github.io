@@ -14,7 +14,7 @@ categories: 随笔
 要做好抓住机会的准备。我的意思是,广泛的教育,广泛的技能组合——通过教育建立起来的——意味着当机会出现时你可以抓住它。有时候你可以认识到它。我们有很多机会。但我们中很多人要么无法抓住,要么没有注意到。我相对广泛的教育经历——我学过标准的计算机科学,编译器,多种语言......我当时大概知道二十几种。我还学过机器架构,操作系统。这套技能组合发挥了作用。
 
 ### (Life) Advice From The Creator of C++
-72-year-old Bjarne Stroustrup invented C++ (first released in 1985). 38 years later, he gave a [short interview](https://www.youtube.com/watch?v=-QxI-RP6-HM)for Honeypot.io (which calls itself "Europe's largest tech-focused job platform") offering his own advice for life:
+72-year-old Bjarne Stroustrup invented C++ (first released in 1985). 38 years later, he gave a [short interview](https://www.youtube.com/watch?v=-QxI-RP6-HM) for Honeypot.io (which calls itself "Europe's largest tech-focused job platform") offering his own advice for life:
 
 Don't overspecialize. Don't be too sure that you know the future. Be flexible, and remember that careers and jobs are a long-term thing. Too many young people think they can optimize something, and then they find they've spent a couple of years or more specializing in something that may not have been the right thing. And in the process they burn out, because they haven't spent enough time building up friendships and having a life outside computing.
 
