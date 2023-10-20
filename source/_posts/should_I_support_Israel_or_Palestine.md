@@ -8,7 +8,8 @@ tags: 随想
 
 ### 我应该支持以色列还是巴勒斯坦？
 这是我在quora上看到到一个高赞回答，粗浅翻译一下，重点是他来自以色列特拉维夫。
-本文地址：https://qr.ae/pKvZJk
+原文地址：https://qr.ae/pKvZJk
+原文作者信息：
 原文作者信息：
 Sociology and Management from The Open UniversityGraduated 2015
 Lives in Tel Aviv, Israel
