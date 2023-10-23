@@ -15,8 +15,62 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Thu, 31 Aug 2023 14:39:21 GMT</pubDate>
+    <pubDate>Mon, 23 Oct 2023 11:32:26 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>我应该支持以色列还是巴勒斯坦？</title>
+      <link>https://tonymistark.github.io/2023/10/20/should_I_support_Israel_or_Palestine/</link>
+      <guid>https://tonymistark.github.io/2023/10/20/should_I_support_Israel_or_Palestine/</guid>
+      <pubDate>Fri, 20 Oct 2023 03:11:20 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;我应该支持以色列还是巴勒斯坦？&quot;&gt;&lt;a href=&quot;#我应该支持以色列还是巴勒斯坦？&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/writing/">writing</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/%E9%9A%8F%E6%83%B3/">随想</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/10/20/should_I_support_Israel_or_Palestine/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Ch 09.02:带有结果的可恢复错误</title>
+      <link>https://tonymistark.github.io/2023/10/18/rust_docs/ch_09_02_recoverable_errors_with_result/</link>
+      <guid>https://tonymistark.github.io/2023/10/18/rust_docs/ch_09_02_recoverable_errors_with_result/</guid>
+      <pubDate>Wed, 18 Oct 2023 11:35:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;带有结果的可恢复错误&quot;&gt;&lt;a href=&quot;#带有结果的可恢复错误&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/Rust/">Rust</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Rust/">Rust</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/10/18/rust_docs/ch_09_02_recoverable_errors_with_result/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>(Life) Advice From The Creator of C++</title>
@@ -283,33 +337,6 @@
     </item>
     
     <item>
-      <title>Ch 09.02:带有结果的可恢复错误</title>
-      <link>https://tonymistark.github.io/2023/08/18/rust_docs/ch_09_02_recoverable_errors_with_result/</link>
-      <guid>https://tonymistark.github.io/2023/08/18/rust_docs/ch_09_02_recoverable_errors_with_result/</guid>
-      <pubDate>Fri, 18 Aug 2023 01:51:00 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h3 id=&quot;带有结果的可恢复错误&quot;&gt;&lt;a href=&quot;#带有结果的可恢复错误&quot; class=&quot;headerlink&quot;</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/Rust/">Rust</category>
-      
-      
-      <category domain="https://tonymistark.github.io/tags/Rust/">Rust</category>
-      
-      
-      <comments>https://tonymistark.github.io/2023/08/18/rust_docs/ch_09_02_recoverable_errors_with_result/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
       <title>Ch 09.01:使用`panic!`的backtrace</title>
       <link>https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_01_unrecoverable_errors_with_panic/</link>
       <guid>https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_01_unrecoverable_errors_with_panic/</guid>
@@ -522,33 +549,6 @@
       
       
       <comments>https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_04_bringing_paths_into_scope_with_the_use_key_word/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Ch 07.03:创建公有的结构体和枚举(Making Structs and Enums Public)</title>
-      <link>https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/</link>
-      <guid>https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/</guid>
-      <pubDate>Thu, 18 May 2023 02:20:00 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h4 id=&quot;创建公有的结构体和枚举-Making-Structs-and-Enums-Public&quot;&gt;&lt;a href=&quot;#创建公有的结构体和枚举-Making-Structs-and-Enums-Public&quot; class=&quot;headerlink&quot;</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/Rust/">Rust</category>
-      
-      
-      <category domain="https://tonymistark.github.io/tags/Rust/">Rust</category>
-      
-      
-      <comments>https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/#disqus_thread</comments>
       
     </item>
     

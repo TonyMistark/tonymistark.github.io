@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="返回值与作用域(Return Values and Scope)返回值也可以转移所有权。Listing 4-4展示了一个示例，与Listing4-3一样带有类似的注释。 Filename: src&#x2F;main.rs 1234567891011121314151617181920212223242526272829fn main() &amp;#123;    let s1 &#x3D; gives_owne">
+  <meta name="description" content="带有结果的可恢复错误大多数错误并不严重到需要程序完全停止。有时，当一个函数失败时，其原因可以很容易地解释和响应。例如，如果您尝试打开一个文件，但由于该文件不存在而导致该操作失败，那么您可能希望创建该文件，而不是终止该进程。 回到第二章Result的枚举定义里，有两个成员，Ok 和Err,如下：···Rustenum Result&lt;T, E&gt; {    Ok(T),    Err(E),">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ch 04.01:返回值与作用域(Return Values and Scope)">
-<meta property="og:url" content="https://tonymistark.github.io/2022/12/29/rust_docs/ch_04_01_what_id_ownership/index.html">
+<meta property="og:title" content="Ch 09.02:带有结果的可恢复错误">
+<meta property="og:url" content="https://tonymistark.github.io/2023/10/18/rust_docs/ch_09_02_recoverable_errors_with_result/index.html">
 <meta property="og:site_name" content="BLOG">
-<meta property="og:description" content="返回值与作用域(Return Values and Scope)返回值也可以转移所有权。Listing 4-4展示了一个示例，与Listing4-3一样带有类似的注释。 Filename: src&#x2F;main.rs 1234567891011121314151617181920212223242526272829fn main() &amp;#123;    let s1 &#x3D; gives_owne">
+<meta property="og:description" content="带有结果的可恢复错误大多数错误并不严重到需要程序完全停止。有时，当一个函数失败时，其原因可以很容易地解释和响应。例如，如果您尝试打开一个文件，但由于该文件不存在而导致该操作失败，那么您可能希望创建该文件，而不是终止该进程。 回到第二章Result的枚举定义里，有两个成员，Ok 和Err,如下：···Rustenum Result&lt;T, E&gt; {    Ok(T),    Err(E),">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-12-29T07:16:00.000Z">
-<meta property="article:modified_time" content="2023-08-20T07:26:13.473Z">
+<meta property="article:published_time" content="2023-10-18T11:35:00.000Z">
+<meta property="article:modified_time" content="2023-10-23T12:39:42.965Z">
 <meta property="article:author" content="Ice">
 <meta property="article:tag" content="Rust">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://tonymistark.github.io/2022/12/29/rust_docs/ch_04_01_what_id_ownership/">
+<link rel="canonical" href="https://tonymistark.github.io/2023/10/18/rust_docs/ch_09_02_recoverable_errors_with_result/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Ch 04.01:返回值与作用域(Return Values and Scope) | BLOG</title>
+  <title>Ch 09.02:带有结果的可恢复错误 | BLOG</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6L4L92Z6Z"></script>
     <script>
@@ -187,7 +187,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/29/rust_docs/ch_04_01_what_id_ownership/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/10/18/rust_docs/ch_09_02_recoverable_errors_with_result/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -200,7 +200,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Ch 04.01:返回值与作用域(Return Values and Scope)
+          Ch 09.02:带有结果的可恢复错误
         </h1>
 
         <div class="post-meta">
@@ -210,14 +210,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2022-12-29 15:16:00" itemprop="dateCreated datePublished" datetime="2022-12-29T15:16:00+08:00">2022-12-29</time>
+              <time title="Created: 2023-10-18 19:35:00" itemprop="dateCreated datePublished" datetime="2023-10-18T19:35:00+08:00">2023-10-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-20 15:26:13" itemprop="dateModified" datetime="2023-08-20T15:26:13+08:00">2023-08-20</time>
+                <time title="Modified: 2023-10-23 20:39:42" itemprop="dateModified" datetime="2023-10-23T20:39:42+08:00">2023-10-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,14 +242,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>497</span>
+              <span>895</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
+              <span>3 mins.</span>
             </span>
 
         </div>
@@ -261,20 +261,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="返回值与作用域-Return-Values-and-Scope"><a href="#返回值与作用域-Return-Values-and-Scope" class="headerlink" title="返回值与作用域(Return Values and Scope)"></a>返回值与作用域(Return Values and Scope)</h4><p>返回值也可以转移所有权。Listing 4-4展示了一个示例，与Listing4-3一样带有类似的注释。</p>
-<p>Filename: src&#x2F;main.rs</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s1</span> = <span class="title function_ invoke__">gives_ownership</span>();         <span class="comment">// gives_ownership moves its return</span></span><br><span class="line">                                        <span class="comment">// value into s1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s2</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);     <span class="comment">// s2 comes into scope</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s3</span> = <span class="title function_ invoke__">takes_and_gives_back</span>(s2);  <span class="comment">// s2 is moved into</span></span><br><span class="line">                                        <span class="comment">// takes_and_gives_back, which also</span></span><br><span class="line">                                        <span class="comment">// moves its return value into s3</span></span><br><span class="line">&#125; <span class="comment">// Here, s3 goes out of scope and is dropped. s2 was moved, so nothing</span></span><br><span class="line">  <span class="comment">// happens. s1 goes out of scope and is dropped.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">gives_ownership</span>() <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123;             <span class="comment">// gives_ownership will move its</span></span><br><span class="line">                                             <span class="comment">// return value into the function</span></span><br><span class="line">                                             <span class="comment">// that calls it</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">some_string</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;yours&quot;</span>); <span class="comment">// some_string comes into scope</span></span><br><span class="line"></span><br><span class="line">    some_string                              <span class="comment">// some_string is returned and</span></span><br><span class="line">                                             <span class="comment">// moves out to the calling</span></span><br><span class="line">                                             <span class="comment">// function</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This function takes a String and returns one</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">takes_and_gives_back</span>(a_string: <span class="type">String</span>) <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123; <span class="comment">// a_string comes into</span></span><br><span class="line">                                                      <span class="comment">// scope</span></span><br><span class="line"></span><br><span class="line">    a_string  <span class="comment">// a_string is returned and moves out to the calling function</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Listing 4-4: Transferring ownership of return values</p>
-<p>变量的所有权总是遵循相同的模式：将赋值给另一个变量时移动它。当持有堆中数据的变量离开作用域时，其值将通过drop被清理，除非数据被移动为另一个变量所有。</p>
-<p>虽然这样是可以的，但是在每一个函数中都获取所有权并接着返回所有权有些啰嗦。如果我们想要函数使用一个值但不获取所有权该怎么办呢？如果我们还要接着使用它的话，每次都穿进去再返回来就有点烦人了，除此之外，我们可能想返回函数中产生的一些数据。</p>
-<p>我们可以使用元组来返回多个值，如Listing 4-5。</p>
-<p>Filename：src&#x2F;main.rs</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s1</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> (s2, len) = <span class="title function_ invoke__">calculate_length</span>(s1);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The length of &#x27;&#123;&#125;&#x27; is &#123;&#125;.&quot;</span>, s2, len);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">calculate_length</span>(s: <span class="type">String</span>) <span class="punctuation">-&gt;</span> (<span class="type">String</span>, <span class="type">usize</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">length</span> = s.<span class="title function_ invoke__">len</span>(); <span class="comment">// len() returns the length of a String</span></span><br><span class="line"></span><br><span class="line">    (s, length)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Listing 4-5: Returning ownership of parameters</p>
-<p>但是，对于一个应该是普通的概念来说，这太多的仪式和大量的工作。幸运的是，Rust有一个特性，可以在不用转移所有权的情况下使用值，它叫做引用(references)。</p>
-<p>接下来将讲”引用和借用(References and Borrowing)”</p>
+        <h3 id="带有结果的可恢复错误"><a href="#带有结果的可恢复错误" class="headerlink" title="带有结果的可恢复错误"></a>带有结果的可恢复错误</h3><p>大多数错误并不严重到需要程序完全停止。有时，当一个函数失败时，其原因可以很容易地解释和响应。例如，如果您尝试打开一个文件，但由于该文件不存在而导致该操作失败，那么您可能希望创建该文件，而不是终止该进程。</p>
+<p>回到第二章<code>Result</code>的枚举定义里，有两个成员，<code>Ok</code> 和<code>Err</code>,如下：<br>···Rust<br>enum Result&lt;T, E&gt; {<br>    Ok(T),<br>    Err(E),<br>}<br>···<br><code>T</code>和<code>E</code>是泛型参数：我们将在第十章详细讨论。目前你需要知道当成功时返回枚举成员<code>Ok</code>，当失败时返回枚举成员<code>Err</code>。由于<code>Result</code>具有这些泛型类型参数，因此我们可以在许多不同的情况下使用<code>Result</code>类型及其上定义的函数，其中我们希望返回的成功值和错误值可能不同。</p>
+<p>我们来调用一个返回值类型为<code>Result</code>的函数，因为调用可能会失败。如Listing 9-3我们尝试打开一个文件。<br>Filename: src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::fs::File;</span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">greeting_file_result</span> = File::<span class="title function_ invoke__">opend</span>(<span class="string">&quot;hello.txt);</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Listing 9-3 Openging a file</p>
+<p><code>File::open</code>的返回值是一个<code>Result&lt;T, E&gt;</code>。泛型参数<code>T</code>已经被<code>File::open</code>实现，并填入了成功的值，<code>std::fs::File</code>是一个文件句柄(file handle)。类型<code>E</code>的错误值是<code>std::io::Error</code>。<code>File::open</code>返回类型意思是如果成功就会返回一个文件句柄，并且可以进行读写。这个函数也有可能会调用失败：例如，文件不存在，或者没有权限访问。<code>File::open</code>函数需要有个方式告诉我们是成功或者失败，同时返回给我们文件句柄或者错误信息。这个信息正是Result枚举所传达的。</p>
+<p>因此，当<code>File::open</code>调用成功，变量<code>greeting_file_result</code>的值将会是成员<code>Ok</code>并包含一个文件句柄。如果失败，<code>greeting_file_result</code>就是一个<code>Err</code>的实例并包含更多错误信息来展示到底发生了什么错误。</p>
+<p>我们需要在Listing9-3中根据<code>File::open</code>的返回值来添加额外的代码。如Listing9-4中所示，这是一个基本的<code>Result</code>的处理工具，就是使用<code>match</code>表达式（我们已经在第六章中讲过了）。<br>Filename:src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::fs::File;</span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">greeting_file_result</span> = File::<span class="title function_ invoke__">open</span>(<span class="string">&quot;hello.txt&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">greeting_file</span> = <span class="keyword">match</span> greeting_file_result &#123;</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(file) =&gt; file,</span><br><span class="line">        <span class="title function_ invoke__">Err</span>(error) =&gt; <span class="built_in">panic!</span>(<span class="string">&quot;Problem opening the file: &#123;:?&#125;&quot;</span>, error),</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Listing 9-4: Using a match expression to handle the <code>Result</code> variants that might be returned</p>
+<p>请注意，与Option enum一样，<code>Result</code>枚举及其成员也通过prelude进入了作用域，因此我们不需要在匹配分支中的Ok和Err成员之前指定<code>Result::</code>。</p>
+<p>当结果为<code>Ok</code>时，这段代码将返回<code>Ok</code>中的<code>file</code>，然后我们将该文件句柄值赋给变量<code>greeting_file</code>。在<code>match</code>之后，我们可以使用文件句柄进行读写了。<br><code>match</code>的另外一个分支就会从<code>File::open</code>中得到一个<code>Err</code>的值。在这个示例中，我们现在调用<code>panic!</code>宏(macro)。如果没有一个叫<code>hello.txt</code>的文件在当前文件夹，并且运行了这段代码，我们就会看到如下来自<code>panic!</code>宏的错误输出:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling error-handling v0.1.0 (file:///projects/error-handling)</span><br><span class="line">    Finished dev [unoptimized + debuginfo] target(s) in 0.73s</span><br><span class="line">     Running `target/debug/error-handling`</span><br><span class="line">thread &#x27;main&#x27; panicked at &#x27;Problem opening the file: Os &#123; code: 2, kind: NotFound, message: &quot;No such file or directory&quot; &#125;&#x27;, src/main.rs:8:23</span><br><span class="line">note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace</span><br></pre></td></tr></table></figure>
+<p>像往常一样，这个输出告诉我们哪里出了问题。</p>
 
     </div>
 
@@ -342,12 +342,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/12/29/rust_docs/ch_04_00_understanding_ownership/" rel="prev" title="Ch 04.00:Understanding Ownership">
-      <i class="fa fa-chevron-left"></i> Ch 04.00:Understanding Ownership
+    <a href="/2023/08/31/Life-Advice-From-The-Creator-of-Cpp/" rel="prev" title="(Life) Advice From The Creator of C++">
+      <i class="fa fa-chevron-left"></i> (Life) Advice From The Creator of C++
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/12/29/rust_docs/ch_04_02_references_and_borrowing/" rel="next" title="Ch 04.02:引用的规则(The Rules of References)">
-      Ch 04.02:引用的规则(The Rules of References) <i class="fa fa-chevron-right"></i>
+    <a href="/2023/10/20/should_I_support_Israel_or_Palestine/" rel="next" title="我应该支持以色列还是巴勒斯坦？">
+      我应该支持以色列还是巴勒斯坦？ <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -408,7 +408,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F-Return-Values-and-Scope"><span class="nav-number">1.</span> <span class="nav-text">返回值与作用域(Return Values and Scope)</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E6%9C%89%E7%BB%93%E6%9E%9C%E7%9A%84%E5%8F%AF%E6%81%A2%E5%A4%8D%E9%94%99%E8%AF%AF"><span class="nav-number">1.</span> <span class="nav-text">带有结果的可恢复错误</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -578,7 +578,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'tonymistark.github.io',
       owner       : 'TonyMistark',
       admin       : ['TonyMistark'],
-      id          : 'bac3177dee942e22c10e2ab09b1e8281',
+      id          : 'ca261e84dfd18edd6325b970578c290c',
         language: 'zh-CN',
       distractionFreeMode: true
     });

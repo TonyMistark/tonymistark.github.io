@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2023-08-31T14:39:21.559Z</updated>
+  <updated>2023-10-23T11:32:26.343Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我应该支持以色列还是巴勒斯坦？</title>
+    <link href="https://tonymistark.github.io/2023/10/20/should_I_support_Israel_or_Palestine/"/>
+    <id>https://tonymistark.github.io/2023/10/20/should_I_support_Israel_or_Palestine/</id>
+    <published>2023-10-20T03:11:20.000Z</published>
+    <updated>2023-10-23T11:32:26.343Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;我应该支持以色列还是巴勒斯坦？&quot;&gt;&lt;a href=&quot;#我应该支持以色列还是巴勒斯坦？&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="writing" scheme="https://tonymistark.github.io/categories/writing/"/>
+    
+    
+    <category term="随想" scheme="https://tonymistark.github.io/tags/%E9%9A%8F%E6%83%B3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ch 09.02:带有结果的可恢复错误</title>
+    <link href="https://tonymistark.github.io/2023/10/18/rust_docs/ch_09_02_recoverable_errors_with_result/"/>
+    <id>https://tonymistark.github.io/2023/10/18/rust_docs/ch_09_02_recoverable_errors_with_result/</id>
+    <published>2023-10-18T11:35:00.000Z</published>
+    <updated>2023-10-23T12:39:42.965Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;带有结果的可恢复错误&quot;&gt;&lt;a href=&quot;#带有结果的可恢复错误&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Rust" scheme="https://tonymistark.github.io/categories/Rust/"/>
+    
+    
+    <category term="Rust" scheme="https://tonymistark.github.io/tags/Rust/"/>
+    
+  </entry>
   
   <entry>
     <title>(Life) Advice From The Creator of C++</title>
@@ -261,31 +311,6 @@
   </entry>
   
   <entry>
-    <title>Ch 09.02:带有结果的可恢复错误</title>
-    <link href="https://tonymistark.github.io/2023/08/18/rust_docs/ch_09_02_recoverable_errors_with_result/"/>
-    <id>https://tonymistark.github.io/2023/08/18/rust_docs/ch_09_02_recoverable_errors_with_result/</id>
-    <published>2023-08-18T01:51:00.000Z</published>
-    <updated>2023-08-20T07:27:36.598Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;带有结果的可恢复错误&quot;&gt;&lt;a href=&quot;#带有结果的可恢复错误&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Rust" scheme="https://tonymistark.github.io/categories/Rust/"/>
-    
-    
-    <category term="Rust" scheme="https://tonymistark.github.io/tags/Rust/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Ch 09.01:使用`panic!`的backtrace</title>
     <link href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_01_unrecoverable_errors_with_panic/"/>
     <id>https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_01_unrecoverable_errors_with_panic/</id>
@@ -473,31 +498,6 @@
         
         
     <summary type="html">&lt;h4 id=&quot;全局操作符-The-Glob-Operator&quot;&gt;&lt;a href=&quot;#全局操作符-The-Glob-Operator&quot; class=&quot;headerlink&quot; title=&quot;全局操作符(The Glob Operator)&quot;&gt;&lt;/a&gt;全局操作符(The Glob</summary>
-        
-      
-    
-    
-    
-    <category term="Rust" scheme="https://tonymistark.github.io/categories/Rust/"/>
-    
-    
-    <category term="Rust" scheme="https://tonymistark.github.io/tags/Rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ch 07.03:创建公有的结构体和枚举(Making Structs and Enums Public)</title>
-    <link href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/"/>
-    <id>https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/</id>
-    <published>2023-05-18T02:20:00.000Z</published>
-    <updated>2023-08-20T07:27:05.414Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;创建公有的结构体和枚举-Making-Structs-and-Enums-Public&quot;&gt;&lt;a href=&quot;#创建公有的结构体和枚举-Making-Structs-and-Enums-Public&quot; class=&quot;headerlink&quot;</summary>
         
       
     

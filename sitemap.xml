@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tonymistark.github.io/2023/10/18/rust_docs/ch_09_02_recoverable_errors_with_result/</loc>
+    
+    <lastmod>2023-10-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tonymistark.github.io/2023/10/20/should_I_support_Israel_or_Palestine/</loc>
+    
+    <lastmod>2023-10-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://tonymistark.github.io/2023/08/31/Life-Advice-From-The-Creator-of-Cpp/</loc>
     
     <lastmod>2023-08-31</lastmod>
@@ -111,15 +129,6 @@
   
   <url>
     <loc>https://tonymistark.github.io/categories/index.html</loc>
-    
-    <lastmod>2023-08-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://tonymistark.github.io/2023/08/18/rust_docs/ch_09_02_recoverable_errors_with_result/</loc>
     
     <lastmod>2023-08-20</lastmod>
     
@@ -454,7 +463,7 @@
 
   <url>
     <loc>https://tonymistark.github.io/</loc>
-    <lastmod>2023-08-31</lastmod>
+    <lastmod>2023-10-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -462,42 +471,42 @@
   
   <url>
     <loc>https://tonymistark.github.io/tags/tools/</loc>
-    <lastmod>2023-08-31</lastmod>
+    <lastmod>2023-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/ubuntu/</loc>
-    <lastmod>2023-08-31</lastmod>
+    <lastmod>2023-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/Rust/</loc>
-    <lastmod>2023-08-31</lastmod>
+    <lastmod>2023-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/%E9%9A%8F%E6%83%B3/</loc>
-    <lastmod>2023-08-31</lastmod>
+    <lastmod>2023-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/tags/</loc>
-    <lastmod>2023-08-31</lastmod>
+    <lastmod>2023-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2023-08-31</lastmod>
+    <lastmod>2023-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -506,35 +515,35 @@
   
   <url>
     <loc>https://tonymistark.github.io/categories/Rust/</loc>
-    <lastmod>2023-08-31</lastmod>
+    <lastmod>2023-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/notes/</loc>
-    <lastmod>2023-08-31</lastmod>
+    <lastmod>2023-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/writing/</loc>
-    <lastmod>2023-08-31</lastmod>
+    <lastmod>2023-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2023-08-31</lastmod>
+    <lastmod>2023-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/ubuntu/</loc>
-    <lastmod>2023-08-31</lastmod>
+    <lastmod>2023-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

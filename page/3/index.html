@@ -183,6 +183,108 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/18/rust_docs/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/" class="post-title-link" itemprop="url">Ch 07.03:创建公有的结构体和枚举(Making Structs and Enums Public)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-18 10:20:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:20:00+08:00">2023-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-20 15:27:05" itemprop="dateModified" datetime="2023-08-20T15:27:05+08:00">2023-08-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Rust/" itemprop="url" rel="index"><span itemprop="name">Rust</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>808</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="创建公有的结构体和枚举-Making-Structs-and-Enums-Public"><a href="#创建公有的结构体和枚举-Making-Structs-and-Enums-Public" class="headerlink" title="创建公有的结构体和枚举(Making Structs and Enums Public)"></a>创建公有的结构体和枚举(Making Structs and Enums Public)</h4><p>我们也可以使用<code>pub</code>来指定结构体和枚举为公有，但是这里有一些额外的使用详情需要注意。如果我们在使用<code>pub</code>定义一个结构体，我们使得这个结构体为公有，但是结构体的字段将仍是私有的。我们可以视情况而定让每一个字段成为公有或者私有。在Listing 7-9中，我们定义了一个公有的<code>back_of_house::Breakfast</code>结构体并且<code>toast</code>为公有字段，而<code>seasonal_fruit</code>为私有字段。该模型以餐厅为例，顾客可以选择随餐面包的类型，但是主厨会根据当季水果和库存来搭配什么水果。可选择的水果变化很快，所以顾客不能选择水果，甚至不能看到他们能得到的水果。</p>
+<p>src&#x2F;lib.rs</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> back_of_house &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Breakfast</span> &#123;</span><br><span class="line">        <span class="keyword">pub</span> toast: <span class="type">String</span>,</span><br><span class="line">        seasonal_fruit: <span class="type">String</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">impl</span> <span class="title class_">Breakfast</span> &#123;</span><br><span class="line">        <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">summer</span>(toast: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> Breakfast &#123;</span><br><span class="line">            Breakfast &#123;</span><br><span class="line">                toast: <span class="type">String</span>::<span class="title function_ invoke__">from</span>(toast),</span><br><span class="line">                seasonal_fruit: <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;peaches&quot;</span>),</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">eat_at_restaurant</span>() &#123;</span><br><span class="line">    <span class="comment">// Order a breakfast in the summer with Rye toast</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">meal</span> = back_of_house::Breakfast::<span class="title function_ invoke__">summer</span>(<span class="string">&quot;Rye&quot;</span>);</span><br><span class="line">    <span class="comment">// Change our mind about what bread we&#x27;d like</span></span><br><span class="line">    meal.toast = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;Wheat&quot;</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;I&#x27;d like &#123;&#125; toast please&quot;</span>, meal.toast);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The next line won&#x27;t compile if we uncomment it; we&#x27;re not allowed</span></span><br><span class="line">    <span class="comment">// to see or modify the seasonal fruit that comes with the meal</span></span><br><span class="line">    <span class="comment">// meal.seasonal_fruit = String::from(&quot;blueberries&quot;);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 7-9: A struct with some public fields and some private fields</p>
+<p>因为<code>toast</code>字段在<code>back_of_house::Breakfast</code>结构体内是公有的，在<code>eat_at_restaurant</code>中我们可以编写并且读到<code>toast</code>字段使用点(.)号。注意，我们不能在<code>eat_at_restaurant</code>中使用<code>seasonal_fruit</code>字段，因为<code>seasonal_fruit</code>字段是私有的。尝试取消注释修改季节水果字段的值，看看会得到什么错误。</p>
+<p>同样，注意因为<code>back_of_house::Breakfast</code>有一个私有字段，这个结构体需要提供一个公有的关联函数来构造一个<code>Breakfast</code>实例(这里是名为<code>summer</code>的函数)。如果<code>Breakfast</code>没有这样一个函数，我们就不能在<code>eat_at_restaurant</code>中创建<code>Breakfast</code>实例，因为我们不能在<code>eat_at_rest_aurant</code>中给<code>seasonal_fruit</code>私有字段设置值。</p>
+<p>相反地，如果我们设置枚举为公有，它所有的字段都是公有的。我们只需要在<code>enum</code>关键字前面加上<code>pub</code>即可，如Listing 7-10所示：</p>
+<p>src&#x2F;lib.rs</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> back_of_house &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">enum</span> <span class="title class_">Appetizer</span> &#123;</span><br><span class="line">        Soup,</span><br><span class="line">        Salad,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">eat_at_restaurant</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">order1</span> = back_of_house::Appetizer::Soup;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">order2</span> = back_of_house::Appetizer::Salad;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 7-10: Designating an enum as public makes all its variants public</p>
+<p>因为我们设置了<code>Appetizer</code>为公有枚举，我们可以在<code>eat_at_restaurant</code>中使用<code>Soup</code>和<code>Salad</code>成员变量。</p>
+<p>除非设置枚举的变量为公开的，否则枚举就没什么用了；在每种情况下都必须使用<code>pub</code>来声明所有枚举变量，这将是很恼人的设计，所以默认情况下枚举的所有变量都是公有的。结构体在字段为私有的情况通常是有用的，所以结构体字段默认遵循所有内容为私有的普遍规则，除非使用<code>pub</code>声明公有。</p>
+<p>这里还涉及<code>pub</code>另外一个情况我们没有讨论到，那就是我们最后要讲的模块功能：<code>use</code>关键字。我们将单独介绍<code>use</code>，然后展示如何结合<code>pub</code>和<code>use</code>起来使用。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_01_packages_and_crates/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1064,101 +1166,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/29/rust_docs/ch_05_01_defining_and_instantiating_structs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/29/rust_docs/ch_05_01_defining_and_instantiating_structs/" class="post-title-link" itemprop="url">Ch 05.01:结构体数据的所有权(Ownership of Struct Data)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-12-29 15:20:00" itemprop="dateCreated datePublished" datetime="2022-12-29T15:20:00+08:00">2022-12-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-20 15:26:25" itemprop="dateModified" datetime="2023-08-20T15:26:25+08:00">2023-08-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Rust/" itemprop="url" rel="index"><span itemprop="name">Rust</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>420</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="结构体数据的所有权-Ownership-of-Struct-Data"><a href="#结构体数据的所有权-Ownership-of-Struct-Data" class="headerlink" title="结构体数据的所有权(Ownership of Struct Data)"></a>结构体数据的所有权(Ownership of Struct Data)</h4><p>在Listing 5-1中的<code>User</code>结构体定义中，我们使用了自身拥有所有权的String类型而不是&amp;str字符串slice类型。这是一个有意为之的选择，因为我们想要这个结构体拥有它所有的数据，为此只要整个结构体是有效的话数据也是有效的。可以使结构体存储被其他对象拥有的数据的引用，不过这么做的话需要用上生命周期(lifetimes)，这是一个第十章会讨论的Rust功能。生命周期确保结构体引用的数据有效性跟结构体本身保持一致。如果你尝试在结构体中存储一个引用而不是指定生命周期将是无效的，比如这样：</p>
-<p>filename: src&#x2F;main.rs</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    active: <span class="type">bool</span>,</span><br><span class="line">    username: &amp;<span class="type">str</span>,</span><br><span class="line">    email: &amp;<span class="type">str</span>,</span><br><span class="line">    sign_in_count: <span class="type">u64</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">user1</span> = User &#123;</span><br><span class="line">        email: <span class="string">&quot;someone@example.com&quot;</span>,</span><br><span class="line">        username: <span class="string">&quot;someusername123&quot;</span>,</span><br><span class="line">        active: <span class="literal">true</span>,</span><br><span class="line">        sign_in_count: <span class="number">1</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>编译器会控诉它需要生命周期标识符：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling structs v0.<span class="number">1.0</span> (file:<span class="comment">///projects/structs)</span></span><br><span class="line">error[E0106]: missing lifetime specifier</span><br><span class="line"> -<span class="punctuation">-&gt;</span> src/main.rs:<span class="number">3</span>:<span class="number">15</span></span><br><span class="line">  |</span><br><span class="line"><span class="number">3</span> |     username: &amp;<span class="type">str</span>,</span><br><span class="line">  |               ^ expected named lifetime parameter</span><br><span class="line">  |</span><br><span class="line">help: consider introducing a named lifetime parameter</span><br><span class="line">  |</span><br><span class="line"><span class="number">1</span> ~ <span class="keyword">struct</span> <span class="title class_">User</span>&lt;<span class="symbol">&#x27;a</span>&gt; &#123;</span><br><span class="line"><span class="number">2</span> |     active: <span class="type">bool</span>,</span><br><span class="line"><span class="number">3</span> ~     username: &amp;<span class="symbol">&#x27;a</span> <span class="type">str</span>,</span><br><span class="line">  |</span><br><span class="line"></span><br><span class="line">error[E0106]: missing lifetime specifier</span><br><span class="line"> -<span class="punctuation">-&gt;</span> src/main.rs:<span class="number">4</span>:<span class="number">12</span></span><br><span class="line">  |</span><br><span class="line"><span class="number">4</span> |     email: &amp;<span class="type">str</span>,</span><br><span class="line">  |            ^ expected named lifetime parameter</span><br><span class="line">  |</span><br><span class="line">help: consider introducing a named lifetime parameter</span><br><span class="line">  |</span><br><span class="line"><span class="number">1</span> ~ <span class="keyword">struct</span> <span class="title class_">User</span>&lt;<span class="symbol">&#x27;a</span>&gt; &#123;</span><br><span class="line"><span class="number">2</span> |     active: <span class="type">bool</span>,</span><br><span class="line"><span class="number">3</span> |     username: &amp;<span class="type">str</span>,</span><br><span class="line"><span class="number">4</span> ~     email: &amp;<span class="symbol">&#x27;a</span> <span class="type">str</span>,</span><br><span class="line">  |</span><br><span class="line"></span><br><span class="line">For more information about this error, <span class="keyword">try</span> `rustc --explain E0106`.</span><br><span class="line">error: could not compile `structs` due to <span class="number">2</span> previous errors=</span><br></pre></td></tr></table></figure>
-
-<p>第十章会讲到如何修复这个问题以便在结构体中存储引用，不过现在，我们使用像String这类拥有所有权的类型来替代&amp;str这样的引用以修正这个错误。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1228,7 +1235,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1291,12 +1298,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">22k</span>
+    <span title="Symbols count total">25k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1:21</span>
+    <span title="Reading time total">1:30</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
