@@ -1,6 +1,6 @@
 ---
 layout: layout
-title: pep-703-making-the-global-interpreter-lock-optional-in-cpython-acceptance
+title: （使全局解释器锁在 CPython 中可选）验收
 date: 2023-10-27 11:05:45
 tags:
 ---
