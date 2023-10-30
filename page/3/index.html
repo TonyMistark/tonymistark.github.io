@@ -183,6 +183,98 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_04_bringing_paths_into_scope_with_the_use_key_word/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/18/rust_docs/ch_07_04_bringing_paths_into_scope_with_the_use_key_word/" class="post-title-link" itemprop="url">Ch 07.04:全局操作符(The Glob Operator)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-18 10:21:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:21:00+08:00">2023-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-20 15:27:09" itemprop="dateModified" datetime="2023-08-20T15:27:09+08:00">2023-08-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Rust/" itemprop="url" rel="index"><span itemprop="name">Rust</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>198</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="全局操作符-The-Glob-Operator"><a href="#全局操作符-The-Glob-Operator" class="headerlink" title="全局操作符(The Glob Operator)"></a>全局操作符(The Glob Operator)</h4><p>如果想将一个路径下所有公有项引入作用域，可以使用指定路径后跟<code>*</code>，glob操作符:</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::collections::*;</span><br></pre></td></tr></table></figure>
+
+<p>这个<code>use</code>语句会将<code>std::collections</code>中定义的所有的公有项引入到当前作用域。使用全局操作符时一定要多加小心！全局操作符会使得我们难以推导作用域中有什么名称和它们是定义在何处。</p>
+<p>全局操作符经常用于测试模块<code>tests</code>中，这时会将所有内容引入作用域；我们将在第十一章”How to Write Tests”部分中讲解。全局操作符有时也用于preclude模式；查看”标准库文档”(<a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/prelude/index.html#other-preludes)%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E7%BB%86%E8%8A%82%E3%80%82">https://doc.rust-lang.org/std/prelude/index.html#other-preludes)了解更多细节。</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1069,103 +1161,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/29/rust_docs/ch_05_02_example_structs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/29/rust_docs/ch_05_02_example_structs/" class="post-title-link" itemprop="url">Ch 05.02:An Example Program Using Structs</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-12-29 15:21:00" itemprop="dateCreated datePublished" datetime="2022-12-29T15:21:00+08:00">2022-12-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-20 15:26:29" itemprop="dateModified" datetime="2023-08-20T15:26:29+08:00">2023-08-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Rust/" itemprop="url" rel="index"><span itemprop="name">Rust</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>573</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="An-Example-Program-Using-Structs"><a href="#An-Example-Program-Using-Structs" class="headerlink" title="An Example Program Using Structs"></a>An Example Program Using Structs</h4><p>为了理解何时需要使用结构体，让我们编写一个计算矩形面积的程序。我们将通过使用单个变量开始，然后重构这个程序，直到用结构体替代它。</p>
-<p>让我们用cargo创建一个新的项目叫做<code>rectangles</code>的二进制程序，它获取以像素为单位的矩形的宽度和高度，并计算出矩形的面积。Listing 5-8 展示一个简短的程序：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Rectangle</span> &#123;</span><br><span class="line">    width: <span class="type">u32</span>,</span><br><span class="line">    height: <span class="type">u32</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">scale</span> = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">rect1</span> = Rectangle &#123;</span><br><span class="line">        width: dbg!(<span class="number">30</span> * scale),</span><br><span class="line">        height: <span class="number">50</span>,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    dbg!(&amp;rect1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们可以把<code>dbg!</code>放在表达式放在<code>30 * scale</code>周围，以为你<code>dbg!</code>返回表达式的值的所有权，所以width字段将获得相同的值，就像我们在这里没有<code>dbg!</code>调用一样。我们不希望dbg!拥有rect1的所有权，所以我们在下一次调用dbg!时传递一个引用。下面是这个例子的输出结果：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling rectangles v0.<span class="number">1.0</span> (file:<span class="comment">///projects/rectangles)</span></span><br><span class="line">    Finished dev [unoptimized + debuginfo] <span class="title function_ invoke__">target</span>(s) <span class="keyword">in</span> <span class="number">0.61</span>s</span><br><span class="line">     Running `target/debug/rectangles`</span><br><span class="line">[src/main.rs:<span class="number">10</span>] <span class="number">30</span> * scale = <span class="number">60</span></span><br><span class="line">[src/main.rs:<span class="number">14</span>] &amp;rect1 = Rectangle &#123;</span><br><span class="line">    width: <span class="number">60</span>,</span><br><span class="line">    height: <span class="number">50</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们可以看到第一条输出来自src&#x2F;main.rs第10行，我们正在调用表达式<code>30 * scale</code>，其结果值是60(为整数实现的Debug格式化是只打印它们的值)。在src&#x2F;main.rs第14行的dbg!调用输出&amp;rect1的值，即<code>Rectangle</code>类型。<code>dbg!</code>宏确实很有用。</p>
-<p>除了<code>Debug</code>trait，Rust还为我们提供了很多通过derive属性来使用的trait，它们可以为我们的自定义类型增加实用的行为。这些trait和行为被列举在附录C(Appendix C)。第十章会介绍如何通过自定义行为来实现这些trait，同时还有如何创建你自己的trait。除了derive之外，还有很多属性；更多信息见”Rust Reference”的Attribute部分。</p>
-<p>我们的<code>area</code>函数是非常特殊的，它只计算长方形的面积。如果这个行为与<code>Rectangle</code>结构体再结合得更紧密一些就更好了，因为它不能用于其他类型。现在让我们看看如何继续重构这些代码，来将<code>area</code>函数协调进<code>Rectangle</code>类型定义的<code>area</code>方法中。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1235,7 +1230,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1298,12 +1293,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">29k</span>
+    <span title="Symbols count total">32k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1:46</span>
+    <span title="Reading time total">1:58</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

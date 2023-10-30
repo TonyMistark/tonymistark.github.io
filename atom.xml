@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2023-10-23T11:32:26.343Z</updated>
+  <updated>2023-10-30T13:44:17.813Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我愿意死在这座山上</title>
+    <link href="https://tonymistark.github.io/2023/10/30/strong-typing-hill-to-die-on/"/>
+    <id>https://tonymistark.github.io/2023/10/30/strong-typing-hill-to-die-on/</id>
+    <published>2023-10-30T13:06:53.000Z</published>
+    <updated>2023-10-30T13:44:17.813Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;我愿意死在这座山上&quot;&gt;&lt;a href=&quot;#我愿意死在这座山上&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>我应该支持以色列还是巴勒斯坦？</title>
@@ -473,31 +494,6 @@
         
         
     <summary type="html">&lt;h4 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Rust" scheme="https://tonymistark.github.io/categories/Rust/"/>
-    
-    
-    <category term="Rust" scheme="https://tonymistark.github.io/tags/Rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ch 07.04:全局操作符(The Glob Operator)</title>
-    <link href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_04_bringing_paths_into_scope_with_the_use_key_word/"/>
-    <id>https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_04_bringing_paths_into_scope_with_the_use_key_word/</id>
-    <published>2023-05-18T02:21:00.000Z</published>
-    <updated>2023-08-20T07:27:09.911Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;全局操作符-The-Glob-Operator&quot;&gt;&lt;a href=&quot;#全局操作符-The-Glob-Operator&quot; class=&quot;headerlink&quot; title=&quot;全局操作符(The Glob Operator)&quot;&gt;&lt;/a&gt;全局操作符(The Glob</summary>
         
       
     

@@ -15,8 +15,31 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Mon, 23 Oct 2023 11:32:26 GMT</pubDate>
+    <pubDate>Mon, 30 Oct 2023 13:44:17 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>我愿意死在这座山上</title>
+      <link>https://tonymistark.github.io/2023/10/30/strong-typing-hill-to-die-on/</link>
+      <guid>https://tonymistark.github.io/2023/10/30/strong-typing-hill-to-die-on/</guid>
+      <pubDate>Mon, 30 Oct 2023 13:06:53 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;我愿意死在这座山上&quot;&gt;&lt;a href=&quot;#我愿意死在这座山上&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2023/10/30/strong-typing-hill-to-die-on/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>我应该支持以色列还是巴勒斯坦？</title>
@@ -522,33 +545,6 @@
       
       
       <comments>https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_05_separating_modules_into_different_files/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Ch 07.04:全局操作符(The Glob Operator)</title>
-      <link>https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_04_bringing_paths_into_scope_with_the_use_key_word/</link>
-      <guid>https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_04_bringing_paths_into_scope_with_the_use_key_word/</guid>
-      <pubDate>Thu, 18 May 2023 02:21:00 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h4 id=&quot;全局操作符-The-Glob-Operator&quot;&gt;&lt;a href=&quot;#全局操作符-The-Glob-Operator&quot; class=&quot;headerlink&quot; title=&quot;全局操作符(The Glob Operator)&quot;&gt;&lt;/a&gt;全局操作符(The Glob</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/Rust/">Rust</category>
-      
-      
-      <category domain="https://tonymistark.github.io/tags/Rust/">Rust</category>
-      
-      
-      <comments>https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_04_bringing_paths_into_scope_with_the_use_key_word/#disqus_thread</comments>
       
     </item>
     

@@ -1,3 +1,4 @@
+https://tonymistark.github.io/2023/10/30/strong-typing-hill-to-die-on/
 https://tonymistark.github.io/2023/10/18/rust_docs/ch_09_02_recoverable_errors_with_result/
 https://tonymistark.github.io/2023/10/20/should_I_support_Israel_or_Palestine/
 https://tonymistark.github.io/2023/08/31/Life-Advice-From-The-Creator-of-Cpp/

@@ -183,6 +183,103 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/29/rust_docs/ch_05_02_example_structs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/29/rust_docs/ch_05_02_example_structs/" class="post-title-link" itemprop="url">Ch 05.02:An Example Program Using Structs</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-12-29 15:21:00" itemprop="dateCreated datePublished" datetime="2022-12-29T15:21:00+08:00">2022-12-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-20 15:26:29" itemprop="dateModified" datetime="2023-08-20T15:26:29+08:00">2023-08-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Rust/" itemprop="url" rel="index"><span itemprop="name">Rust</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>573</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="An-Example-Program-Using-Structs"><a href="#An-Example-Program-Using-Structs" class="headerlink" title="An Example Program Using Structs"></a>An Example Program Using Structs</h4><p>为了理解何时需要使用结构体，让我们编写一个计算矩形面积的程序。我们将通过使用单个变量开始，然后重构这个程序，直到用结构体替代它。</p>
+<p>让我们用cargo创建一个新的项目叫做<code>rectangles</code>的二进制程序，它获取以像素为单位的矩形的宽度和高度，并计算出矩形的面积。Listing 5-8 展示一个简短的程序：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Rectangle</span> &#123;</span><br><span class="line">    width: <span class="type">u32</span>,</span><br><span class="line">    height: <span class="type">u32</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">scale</span> = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">rect1</span> = Rectangle &#123;</span><br><span class="line">        width: dbg!(<span class="number">30</span> * scale),</span><br><span class="line">        height: <span class="number">50</span>,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    dbg!(&amp;rect1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以把<code>dbg!</code>放在表达式放在<code>30 * scale</code>周围，以为你<code>dbg!</code>返回表达式的值的所有权，所以width字段将获得相同的值，就像我们在这里没有<code>dbg!</code>调用一样。我们不希望dbg!拥有rect1的所有权，所以我们在下一次调用dbg!时传递一个引用。下面是这个例子的输出结果：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling rectangles v0.<span class="number">1.0</span> (file:<span class="comment">///projects/rectangles)</span></span><br><span class="line">    Finished dev [unoptimized + debuginfo] <span class="title function_ invoke__">target</span>(s) <span class="keyword">in</span> <span class="number">0.61</span>s</span><br><span class="line">     Running `target/debug/rectangles`</span><br><span class="line">[src/main.rs:<span class="number">10</span>] <span class="number">30</span> * scale = <span class="number">60</span></span><br><span class="line">[src/main.rs:<span class="number">14</span>] &amp;rect1 = Rectangle &#123;</span><br><span class="line">    width: <span class="number">60</span>,</span><br><span class="line">    height: <span class="number">50</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到第一条输出来自src&#x2F;main.rs第10行，我们正在调用表达式<code>30 * scale</code>，其结果值是60(为整数实现的Debug格式化是只打印它们的值)。在src&#x2F;main.rs第14行的dbg!调用输出&amp;rect1的值，即<code>Rectangle</code>类型。<code>dbg!</code>宏确实很有用。</p>
+<p>除了<code>Debug</code>trait，Rust还为我们提供了很多通过derive属性来使用的trait，它们可以为我们的自定义类型增加实用的行为。这些trait和行为被列举在附录C(Appendix C)。第十章会介绍如何通过自定义行为来实现这些trait，同时还有如何创建你自己的trait。除了derive之外，还有很多属性；更多信息见”Rust Reference”的Attribute部分。</p>
+<p>我们的<code>area</code>函数是非常特殊的，它只计算长方形的面积。如果这个行为与<code>Rectangle</code>结构体再结合得更紧密一些就更好了，因为它不能用于其他类型。现在让我们看看如何继续重构这些代码，来将<code>area</code>函数协调进<code>Rectangle</code>类型定义的<code>area</code>方法中。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/29/rust_docs/ch_05_01_defining_and_instantiating_structs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1029,102 +1126,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/29/rust_docs/ch_03_02_data_types/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/29/rust_docs/ch_03_02_data_types/" class="post-title-link" itemprop="url">Ch 03.02:无效的数组元素访问</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-12-29 15:07:00" itemprop="dateCreated datePublished" datetime="2022-12-29T15:07:00+08:00">2022-12-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-20 15:25:54" itemprop="dateModified" datetime="2023-08-20T15:25:54+08:00">2023-08-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Rust/" itemprop="url" rel="index"><span itemprop="name">Rust</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>523</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h6 id="无效的数组元素访问"><a href="#无效的数组元素访问" class="headerlink" title="无效的数组元素访问"></a>无效的数组元素访问</h6><p>让我们看看发生了什么，如果你尝试访问数组的一个元素，这个元素在数组的结尾之后呢。运行如下的代码，类似于第二章猜数字游戏，从用户输入那里获取数组索引：</p>
-<p>src&#x2F;main.rs</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::io;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">a</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Please enter an array index.&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">index</span> = <span class="type">String</span>::<span class="title function_ invoke__">new</span>();</span><br><span class="line"></span><br><span class="line">    io::<span class="title function_ invoke__">stdin</span>()</span><br><span class="line">        .<span class="title function_ invoke__">read_line</span>(&amp;<span class="keyword">mut</span> index)</span><br><span class="line">        .<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Failed to read line&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">index</span>: <span class="type">usize</span> = index</span><br><span class="line">        .<span class="title function_ invoke__">trim</span>()</span><br><span class="line">        .<span class="title function_ invoke__">parse</span>()</span><br><span class="line">        .<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Index entered was not a number&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">element</span> = a[index];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(</span><br><span class="line">        <span class="string">&quot;The value of the element at index &#123;&#125; is: &#123;&#125;&quot;</span>,</span><br><span class="line">        index, element</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这段代码编译成功。如果运行这段代码使用cargo run然后输入0，1，2，3，4，这个程序会打印出在数组内对应索引的值。如果你输入一个超出范围的数字，比如10，你会看到输出如：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">thread <span class="string">&#x27;main&#x27;</span> panicked at <span class="string">&#x27;index out of bounds: the len is 5 but the index is 10&#x27;</span>, src/main.rs:<span class="number">19</span>:<span class="number">19</span></span><br><span class="line">note: run with `RUST_BACKTRACE=<span class="number">1</span>` environment variable to display a backtrace</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>当你使用这个无效的值索引的时候，程序的结果是在运行时间的错误。程序退出并返回错误信息，并且没有运行最后的println!语句。当你试图用一个索引访问一个元素，Rust会检查你指定的这个索引是否会超过数组的长度。如果索引与数组长度相同或者更大，Rust就会死给你看。这个检查在运行时间，特别在这个例子中，因为编译器在编译完之后就不可能知道用户会输入什么。</p>
-<p>这是一个Rust的内存安全原则示例的表现。在很多底层代码语言中，当你提供一个错误的索引，这种类型的检查它们是不做的，无效内存就会被访问，会导致你不知道你到底访问到了别的什么奇奇怪怪的值。Rust项目中会立即退出，而不是允许你继续访问，从而保护你面授此类错误的影响。第九章将会讨论Rust的错误处理。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1194,7 +1195,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1257,12 +1258,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">29k</span>
+    <span title="Symbols count total">32k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1:46</span>
+    <span title="Reading time total">1:58</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
