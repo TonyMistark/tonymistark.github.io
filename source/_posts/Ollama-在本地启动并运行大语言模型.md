@@ -1,6 +1,6 @@
 ---
 layout: layout
-title: 一键部署: Ollama在本地启动并运行大语言模型
+title: 一键部署Ollama在本地启动并运行大语言模型
 date: 2023-11-02 15:13:38
 tags:
 ---
