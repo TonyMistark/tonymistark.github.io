@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2023-10-30T13:51:48.762Z</updated>
+  <updated>2023-11-09T14:53:12.680Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -17,18 +17,90 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>我愿意死在这座山上</title>
-    <link href="https://tonymistark.github.io/2023/10/30/strong-typing-hill-to-die-on/"/>
-    <id>https://tonymistark.github.io/2023/10/30/strong-typing-hill-to-die-on/</id>
-    <published>2023-10-30T13:06:53.000Z</published>
-    <updated>2023-10-30T13:51:48.762Z</updated>
+    <title>What&#39;s a design pattern?</title>
+    <link href="https://tonymistark.github.io/2023/11/09/design-patter/what-is-a-design-pattern/"/>
+    <id>https://tonymistark.github.io/2023/11/09/design-patter/what-is-a-design-pattern/</id>
+    <published>2023-11-09T14:18:59.000Z</published>
+    <updated>2023-11-09T14:53:12.680Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;我愿意死在这座山上&quot;&gt;&lt;a href=&quot;#我愿意死在这座山上&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;What’s-a-design-pattern&quot;&gt;&lt;a href=&quot;#What’s-a-design-pattern&quot; class=&quot;headerlink&quot; title=&quot;What’s a design pattern?&quot;&gt;&lt;/a&gt;What’s a design</summary>
+        
+      
+    
+    
+    
+    <category term="design-patter" scheme="https://tonymistark.github.io/categories/design-patter/"/>
+    
+    
+    <category term="Design Pattern" scheme="https://tonymistark.github.io/tags/Design-Pattern/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一键部署 Ollama在本地启动并运行大语言模型</title>
+    <link href="https://tonymistark.github.io/2023/11/02/Ollama-%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%90%AF%E5%8A%A8%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/"/>
+    <id>https://tonymistark.github.io/2023/11/02/Ollama-%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%90%AF%E5%8A%A8%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/</id>
+    <published>2023-11-02T07:13:38.000Z</published>
+    <updated>2023-11-09T14:12:46.778Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>I am Grinding King</title>
+    <link href="https://tonymistark.github.io/2023/11/01/I-am-Grinding-King/"/>
+    <id>https://tonymistark.github.io/2023/11/01/I-am-Grinding-King/</id>
+    <published>2023-11-01T10:22:41.000Z</published>
+    <updated>2023-11-09T14:12:46.778Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Ice:&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;你理解在中文里面“卷”的特别的意思吗？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Claude:&lt;/strong&gt;&lt;/em</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PEP 703（使全局解释器锁在 CPython 中可选）验收</title>
+    <link href="https://tonymistark.github.io/2023/10/27/pep-703-making-the-global-interpreter-lock-optional-in-cpython-acceptance/"/>
+    <id>https://tonymistark.github.io/2023/10/27/pep-703-making-the-global-interpreter-lock-optional-in-cpython-acceptance/</id>
+    <published>2023-10-27T03:05:45.000Z</published>
+    <updated>2023-11-09T14:12:46.778Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;PEP-703（使全局解释器锁在-CPython-中可选）验收&quot;&gt;&lt;a href=&quot;#PEP-703（使全局解释器锁在-CPython-中可选）验收&quot; class=&quot;headerlink&quot; title=&quot;PEP 703（使全局解释器锁在 CPython</summary>
         
       
     
@@ -419,81 +491,6 @@
         
         
     <summary type="html">&lt;h4 id=&quot;字符串并不简单&quot;&gt;&lt;a href=&quot;#字符串并不简单&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Rust" scheme="https://tonymistark.github.io/categories/Rust/"/>
-    
-    
-    <category term="Rust" scheme="https://tonymistark.github.io/tags/Rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ch 08.01:丢弃vector 时也会丢弃其所有元素(Dropping a Vector Drops Its Elements)</title>
-    <link href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_01_vectors/"/>
-    <id>https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_01_vectors/</id>
-    <published>2023-05-18T02:31:00.000Z</published>
-    <updated>2023-08-20T07:27:20.838Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;丢弃vector-时也会丢弃其所有元素-Dropping-a-Vector-Drops-Its-Elements&quot;&gt;&lt;a href=&quot;#丢弃vector-时也会丢弃其所有元素-Dropping-a-Vector-Drops-Its-Elements&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Rust" scheme="https://tonymistark.github.io/categories/Rust/"/>
-    
-    
-    <category term="Rust" scheme="https://tonymistark.github.io/tags/Rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ch 08.00:常见集合</title>
-    <link href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_00_common_collections/"/>
-    <id>https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_00_common_collections/</id>
-    <published>2023-05-18T02:30:00.000Z</published>
-    <updated>2023-08-20T07:27:17.410Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;常见集合&quot;&gt;&lt;a href=&quot;#常见集合&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Rust" scheme="https://tonymistark.github.io/categories/Rust/"/>
-    
-    
-    <category term="Rust" scheme="https://tonymistark.github.io/tags/Rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ch 07.05:总结</title>
-    <link href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_05_separating_modules_into_different_files/"/>
-    <id>https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_05_separating_modules_into_different_files/</id>
-    <published>2023-05-18T02:22:00.000Z</published>
-    <updated>2023-08-20T07:27:13.884Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot;</summary>
         
       
     

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="PEP 703（使全局解释器锁在 CPython 中可选）验收(Posted for the whole Steering Council.)（发布给整个指导委员会。) As we’ve announced before, the Steering Council has decided to accept PEP 703 (Making the Global Interpreter Lock O">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PEP 703（使全局解释器锁在 CPython 中可选）验收">
+<meta property="og:url" content="https://tonymistark.github.io/2023/10/27/pep-703-making-the-global-interpreter-lock-optional-in-cpython-acceptance/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="PEP 703（使全局解释器锁在 CPython 中可选）验收(Posted for the whole Steering Council.)（发布给整个指导委员会。) As we’ve announced before, the Steering Council has decided to accept PEP 703 (Making the Global Interpreter Lock O">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-27T03:05:45.000Z">
+<meta property="article:modified_time" content="2023-11-09T14:12:46.778Z">
+<meta property="article:author" content="Ice">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://tonymistark.github.io/2023/10/27/pep-703-making-the-global-interpreter-lock-optional-in-cpython-acceptance/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>PEP 703（使全局解释器锁在 CPython 中可选）验收 | BLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6L4L92Z6Z"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W6L4L92Z6Z');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?99c70b2174a7fbe4af476f28bafb19a3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/./atom.xml" title="BLOG" type="application/atom+xml">
+<link rel="alternate" href="/./rss2.xml" title="BLOG" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">用心记录思想</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/10/27/pep-703-making-the-global-interpreter-lock-optional-in-cpython-acceptance/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PEP 703（使全局解释器锁在 CPython 中可选）验收
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-10-27 11:05:45" itemprop="dateCreated datePublished" datetime="2023-10-27T11:05:45+08:00">2023-10-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-11-09 22:12:46" itemprop="dateModified" datetime="2023-11-09T22:12:46+08:00">2023-11-09</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>16 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="PEP-703（使全局解释器锁在-CPython-中可选）验收"><a href="#PEP-703（使全局解释器锁在-CPython-中可选）验收" class="headerlink" title="PEP 703（使全局解释器锁在 CPython 中可选）验收"></a>PEP 703（使全局解释器锁在 CPython 中可选）验收</h3><p>(Posted for the whole Steering Council.)<br>（发布给整个指导委员会。)</p>
+<p>As we’ve <a target="_blank" rel="noopener" href="https://discuss.python.org/t/a-steering-council-notice-about-pep-703-making-the-global-interpreter-lock-optional-in-cpython/30474">announced before</a>, the Steering Council has decided to accept <a target="_blank" rel="noopener" href="https://peps.python.org/pep-0703/">PEP 703 (Making the Global Interpreter Lock Optional in CPython)</a> . We want to make it clear why, and under what expectations we’re doing so.<br>正如我们之前<a target="_blank" rel="noopener" href="https://discuss.python.org/t/a-steering-council-notice-about-pep-703-making-the-global-interpreter-lock-optional-in-cpython/30474">宣布</a>的，指导委员会已决定接受<a target="_blank" rel="noopener" href="https://peps.python.org/pep-0703/">PEP 703（使CPython中的全局解释器锁可选）</a>。我们想明确说明为什么，以及我们这样做的期望。</p>
+<p>It is clear to the Steering Council that theoretically, a no-GIL (or free-threaded) Python would be of great benefit, and the majority of the community seems in agreement. Threads have significant downsides and caveats, but they are widely adopted, both by software and hardware, and they do enable more scalable solutions to problems. The GIL clearly inhibits CPython in this, and removing that barrier would be a good thing.<br>指导委员会很清楚，从理论上讲，无 GIL（或自由线程）Python 将大有裨益，社区的大多数人似乎都同意这一点。线程有明显的缺点和警告，但它们被软件和硬件广泛采用，并且它们确实为问题提供了更具可扩展性的解决方案。GIL在这方面显然抑制了CPython，消除这种障碍将是一件好事。</p>
+<p>At the same time we’re not sure if it’s possible to remove the GIL without fundamentally breaking all extension modules out there, or significantly reducing the performance or maintainability of CPython. The third-party&#x2F;PyPI package ecosystem is one of Python’s strengths, and the tight, efficient integration with C libraries is one of CPython’s. It has enabled the existence of a diverse selection of packages that’s a unique selling point for Python. We need to be careful that we do not destroy those benefits, or discard decades worth of package development.<br>同时，我们不确定是否可以在不从根本上破坏所有扩展模块的情况下删除 GIL，或者显着降低 CPython 的性能或可维护性。第三方&#x2F;PyPI 包生态系统是 Python 的优势之一，与 C 库的紧密、高效集成是 CPython 的优势之一。它使各种包的存在成为可能，这是Python的独特卖点。我们需要小心，不要破坏这些好处，或者放弃几十年的软件包开发。</p>
+<p>Assessing the practical impact, and the practicality of adapting third-party packages to the new free-threaded situation, is difficult without a finished implementation. The unpredictable nature of thread-related issues makes it extra difficult, as some issues won’t show up until put under significant load. The changes necessary to remove the GIL are substantive enough, and require so much coordination with other CPython development happening at the same time, that we can’t reasonably do these experiments in a fork of CPython. We also want to avoid the risk of ecosystem fragmentation and unnecessarily diverging changes because of the work being done in a fork. For PEP 703 to move forward, it has to be included in CPython’s main, and released as part of regular releases (albeit not necessarily by default).<br>如果没有完成的实现，评估实际影响以及使第三方包适应新的自由线程情况的实用性是很困难的。线程相关问题的不可预测性使其变得格外困难，因为某些问题在承受大量负载之前不会显示出来。删除 GIL 所需的更改是实质性的，并且需要与同时发生的其他 CPython 开发进行如此多的协调，以至于我们无法合理地在 CPython 的分支中进行这些实验。我们还希望避免由于分叉中所做的工作而导致生态系统碎片化和不必要的差异变化的风险。为了使PEP 703向前发展，它必须包含在CPython的主版本中，并作为常规版本的一部分发布（尽管不一定是默认的）。</p>
+<p>But while we think removal of the GIL is a worthy and necessary goal, and PEP 703 is the best proposal for it so far, we can’t at this stage guarantee that it will work out. We have to, as we develop PEP 703’s implementation and the necessary user-visible changes to semantics, APIs and ABIs, continually evaluate the feasibility, and be prepared to change course – or reverse it, if that turns out to be necessary.<br>但是，虽然我们认为取消 GIL 是一个有价值且必要的目标，并且 PEP 703 是迄今为止最好的建议，但我们不能在现阶段保证它会成功。当我们开发PEP 703的实现以及对语义，API和ABI的必要用户可见更改时，我们必须不断评估可行性，并准备改变方向 - 或者在必要时扭转它。</p>
+<p>As mentioned before, we see this as a rollout in roughly three stages:<br>如前所述，我们认为这是大约三个阶段的推出：</p>
+<ul>
+<li>Phase I: Experimental phase, which can start immediately, in which the free-threaded build is enabled through a build-time option. This should not be the default install anywhere. At least one major Python release should include this experimental free-threaded build, to allow third-party packages to test and do their own experimentation. In this stage we should make it clear the build is experimental, not supported for “production use”, and may be reverted.<br>阶段 I：实验阶段，可以立即开始，其中通过构建时选项启用自由线程构建。这不应该是任何地方的默认安装。至少一个主要的 Python 版本应该包含这个实验性的自由线程构建，以允许第三方包进行测试并进行自己的实验。在此阶段，我们应该明确构建是实验性的，不支持“生产用途”，并且可以还原。</li>
+<li>Phase II: Supported-but-not-default phase, which would start when the API and ABI changes have sufficiently settled, and there is sufficient community support. Exact criteria for this phase are hard to pin down at this stage, so this will have to involve some discussion among Core Devs and the community, and a decision by the SC at the time. At this point reverting should still be possible (so for example preprocessor guards should remain in place) although obviously we aren’t expecting it.<br>第二阶段：支持但非默认阶段，当 API 和 ABI 更改充分解决并且有足够的社区支持时，该阶段将开始。在这个阶段很难确定这个阶段的确切标准，所以这必须涉及核心开发人员和社区之间的一些讨论，以及当时SC的决定。在这一点上，恢复应该是可能的（因此，例如预处理器保护应该保留在原位），尽管显然我们并不期望它。</li>
+<li>Phase III: Default phase, at which point the free-threaded build becomes the default (but can initially still be disabled). Again, the exact criteria are hard to pin down this far ahead, but the aim is to make this as seamless and painless a default flip as possible. Like the previous phase, the SC at the time will need to make a decision as to when this occurs. Some time after the default flip, when we have a good indication it’s no longer widely used, we should start the discussion on removing the GIL build entirely.<br>阶段 III：默认阶段，此时自由线程构建成为默认阶段（但最初仍可禁用）。同样，确切的标准很难确定这么远，但目的是使它尽可能无缝和无痛地默认翻转。与上一阶段一样，当时的SC需要决定何时发生这种情况。在默认翻转后的一段时间，当我们有一个很好的指示它不再被广泛使用时，我们应该开始讨论完全删除 GIL 构建。<br>The details of the phases are deliberately vague, simply because we can’t know all the ecosystem impact details yet, and we don’t want to set conservative standards now and then hold people to them when in practice we’re being too cautious. (We don’t want to set overly ambitious goals and break too many things, either.)<br>这些阶段的细节故意含糊不清，仅仅是因为我们还不能知道所有的生态系统影响细节，我们不想现在设定保守的标准，然后在实践中我们过于谨慎时让人们遵守这些标准。（我们也不想设定过于雄心勃勃的目标，也不想破坏太多的东西。</li>
+</ul>
+<p>For some of the changes necessary for the free-threaded build, like switching to <a target="_blank" rel="noopener" href="https://github.com/microsoft/mimalloc">mimalloc</a> or significant changes to the GC, it may be useful to make these separately build-time opt-ins, and perhaps make them the default before the free-threaded build becomes the default build (but not before it becomes fully supported). Having them separately enableable allows for experimentation, performance measurements and debugging focusing on the isolated set of changes. We don’t want a complex matrix of build flags, so this should probably be limited to one or two.<br>对于自由线程构建所需的某些更改，例如切换到<a target="_blank" rel="noopener" href="https://github.com/microsoft/mimalloc">mimalloc</a>或对 GC 进行重大更改，进行这些单独的构建时选择加入可能很有用，并且可能在自由线程构建成为默认构建之前将它们设为默认值（但不是在它完全受支持之前）。让它们单独启用允许实验、性能测量和调试，重点是孤立的一组更改。我们不想要一个复杂的构建标志矩阵，所以这可能应该限制在一个或两个。</p>
+<p>Regarding the expected performance impact of the free-threaded build, the SC thinks a significant performance penalty is expected in a free-threaded build, and the benefit is probably worth that price. At this point we’re expecting a (worst case) performance penalty of 10-15%. We don’t want to set strict limits on acceptable performance, partly because we don’t want to get stuck in arguments about how to measure performance and partly because it will depend on user expectations and, for example, how much performance work is invalidated and how much we can expect to see recuperated over time. Solutions for the free-threaded build that are fundamentally problematic for performance improvements going forward, are less acceptable than solutions that are currently suboptimal but have room for improvement.<br>关于自由线程构建的预期性能影响，SC 认为自由线程构建中预计会出现显著的性能损失，其好处可能值得这个价格。在这一点上，我们预计（最坏情况）性能损失为 10-15%。我们不想对可接受的性能设置严格的限制，部分原因是我们不想陷入关于如何衡量性能的争论中，部分原因是这将取决于用户的期望，例如，有多少性能工作无效，以及我们可以期望看到多少随着时间的推移而恢复。自由线程构建的解决方案从根本上对未来的性能改进存在问题，与当前次优但有改进空间的解决方案相比，这些解决方案更不可接受。</p>
+<p>The performance impact should be isolated to a free-threaded build; a GIL build should not see any performance impact in existing code. For API and ABI changes necessary to support both GIL and free-threaded builds (e.g. avoiding APIs that return borrowed references or that rely on the GIL to protect shared data), it’s reasonable for the new interfaces to be slightly less performant, but we expect this to be very limited and usually lost in the noise.<br>性能影响应隔离到自由线程生成;GIL 生成不应在现有代码中看到任何性能影响。对于支持 GIL 和自由线程构建所需的 API 和 ABI 更改（例如，避免返回借用引用或依赖 GIL 来保护共享数据的 API），新接口的性能略低是合理的，但我们预计这非常有限，并且通常会在噪音中丢失。</p>
+<p>In a similar vein, it’s important that as the free-threaded build lands in main, so that its implementation is considered in other development work that’s going on. New features can’t land without proper support for the free-threaded build, when the two intersect. It may seem tempting to ignore free-threaded when developing thread-adjacent changes, but in the end someone will have to make it work, and it’s neither fair nor particularly forward-thinking to expect the free-threaded maintainers to do all the work. We also need to be mindful of the cohesiveness of the language, the implementation and the C API. We have to assume the free-threaded build will be the only build in the reasonable future, and like other fundamental changes to CPython internals, we all have to learn the new way of approaching these problems. This may be a bit of a jump in terms of complexity – the GIL implicitly simplified so much – but it is a necessary step. We do expect, at least initially, the free-threaded build experts to help others ramp up here. The experimental phase is there for CPython and the Core Devs to get used to the free-threaded build as much as it is for users.<br>同样，重要的是，随着自由线程构建登陆main，以便在正在进行的其他开发工作中考虑其实现。当两者相交时，如果没有对自由线程构建的适当支持，新功能就无法落地。在开发与线程相邻的更改时，忽略自由线程似乎很诱人，但最终必须有人让它工作，期望自由线程维护者完成所有工作既不公平也不特别具有前瞻性。我们还需要注意语言、实现和 C API 的凝聚力。我们必须假设自由线程构建将是合理未来唯一的构建，并且就像 CPython 内部的其他根本性更改一样，我们都必须学习解决这些问题的新方法。就复杂性而言，这可能有点飞跃 - GIL隐含地简化了这么多 - 但这是一个必要的步骤。我们确实希望，至少在最初，自由线程构建专家能够帮助其他人在这里提升。实验阶段是CPython和核心开发人员习惯自由线程构建的，就像用户一样。</p>
+<p>We do need a few specific things resolved before PEP 703 can leave the experimental phase. For starters, we need a solution for the ABI. The SC believes strongly that a single ABI serving both with-GIL and free-threaded builds should be possible, should be made possible, and should be required before leaving the experimental phase. If this turns out to be an unreasonable requirement, we’ll have to look at alternative solutions to ease the pressure on package maintainers (e.g. building two extension modules in the same wheel, or providing a compatibility layer through a separate library).<br>在PEP 703离开实验阶段之前，我们确实需要解决一些具体问题。首先，我们需要一个针对 ABI 的解决方案。SC 坚信，在离开实验阶段之前，应该有可能，应该成为可能，并且应该需要同时使用 GIL 和自由线程构建的单个 ABI。如果事实证明这是一个不合理的要求，我们将不得不寻找替代解决方案来减轻软件包维护者的压力（例如，在同一轮子上构建两个扩展模块，或通过单独的库提供兼容层）。</p>
+<p>We also need to consider the testing matrix, both for CPython and for third-party packages. Even with a stable ABI we still need to multiply the test matrix. We probably don’t need complete coverage on all supported platforms, but we do want at least one free-threaded buildbot for each of the T1&#x2F;T2 platforms, as well as some way to test the validity of the unified ABI (a way to build things in one build mode and test against an interpreter built in the other build mode). We currently rely on the stable ABI check and third-party testing of the stable ABI, but that will probably not be good enough to ensure the compatibility between the GIL and free-threaded builds. To get to the supported phase we also expect CI checks on GitHub for free-threaded builds on each of the major platforms.<br>我们还需要考虑CPython和第三方软件包的测试矩阵。即使有稳定的ABI，我们仍然需要乘以测试矩阵。我们可能不需要在所有支持的平台上完全覆盖，但我们确实希望每个 T1&#x2F;T2 平台至少有一个自由线程构建机器人，以及某种方法来测试统一 ABI 的有效性（一种在一种构建模式下构建东西并针对在另一种构建模式下构建的解释器进行测试的方法）。我们目前依赖于稳定 ABI 检查和稳定 ABI 的第三方测试，但这可能不足以确保 GIL 和自由线程构建之间的兼容性。为了进入支持的阶段，我们还希望在 GitHub 上对每个主要平台上的自由线程构建进行 CI 检查。</p>
+<p>There are a few specific things we want to avoid. We do not want the free-threaded build to be used as the default Python anywhere until the Core Devs and the Python community are ready for that. Obviously we can’t stop users and distributors from installing a free-threaded build by default, but we think at this stage it would be a mistake to do so for anything besides end-to-end experimentation. We also want to avoid labelling the free-threaded build “experimental” after the experimental phase. Build-time flags, defines, comments in the code should avoid the word. We want to avoid negatives in terms and flags and such, so we won’t get into double-negative terrain (like we do when we talk about ‘non no-GIL’). We’d like a positive, clear term to talk about the no-GIL build, and we’re suggesting ‘free-threaded’. (Relatedly, that’s why the build mode&#x2F;ABI letter is ‘t’ and not ‘n’; that change was already made.)<br>我们想要避免一些具体的事情。我们不希望在核心开发人员和 Python 社区准备好之前，在任何地方将自由线程构建用作默认 Python。显然，默认情况下，我们无法阻止用户和分销商安装自由线程构建，但我们认为在现阶段，除了端到端实验之外，这样做都是错误的。我们还希望避免在实验阶段之后将自由线程构建标记为“实验性”。代码中的构建时标志、定义、注释应避免使用这个词。我们希望避免在术语和标志等方面出现负面因素，因此我们不会陷入双重负面领域（就像我们谈论“非无 GIL”时所做的那样）。我们想要一个积极、明确的术语来讨论无 GIL 构建，我们建议使用“自由线程”。（与此相关的是，这就是为什么构建模式&#x2F;ABI 字母是“t”而不是“n”;该更改已经进行了。</p>
+<p>In short, the SC accepts PEP 703, but with clear provisio: that the rollout be gradual and break as little as possible, and that we can roll back any changes that turn out to be too disruptive – which includes potentially rolling back all of PEP 703 entirely if necessary (however unlikely or undesirable we expect that to be).<br>简而言之，SC 接受 PEP 703，但有明确的条件：推出是渐进的，尽可能少地中断，我们可以回滚任何破坏性太大的更改——其中包括在必要时可能完全回滚所有 PEP 703（无论我们期望多么不可能或不希望）。</p>
+<p>For the whole SC,<br>Thomas.</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>宇宙山河浪漫，赞赏动力无限</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Ice WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Ice Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.png">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/10/20/should_I_support_Israel_or_Palestine/" rel="prev" title="我应该支持以色列还是巴勒斯坦？">
+      <i class="fa fa-chevron-left"></i> 我应该支持以色列还是巴勒斯坦？
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/11/01/I-am-Grinding-King/" rel="next" title="I am Grinding King">
+      I am Grinding King <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#PEP-703%EF%BC%88%E4%BD%BF%E5%85%A8%E5%B1%80%E8%A7%A3%E9%87%8A%E5%99%A8%E9%94%81%E5%9C%A8-CPython-%E4%B8%AD%E5%8F%AF%E9%80%89%EF%BC%89%E9%AA%8C%E6%94%B6"><span class="nav-number">1.</span> <span class="nav-text">PEP 703（使全局解释器锁在 CPython 中可选）验收</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ice</p>
+  <div class="site-description" itemprop="description">安静地坐着学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/TonyMistark" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;TonyMistark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/Micestark" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;Micestark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tony_mistark@163.com" title="E-Mail → mailto:tony_mistark@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Tony_Mistark" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Tony_Mistark" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ice</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">37k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">2:14</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '298b6503f44953bd4193',
+      clientSecret: '6756a6cfc10d74976c79256c96ae1c441f3116ac',
+      repo        : 'tonymistark.github.io',
+      owner       : 'TonyMistark',
+      admin       : ['TonyMistark'],
+      id          : 'f2feaab6f529d154f2fa8515f32c61a5',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

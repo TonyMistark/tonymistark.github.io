@@ -1,4 +1,7 @@
-https://tonymistark.github.io/2023/10/30/strong-typing-hill-to-die-on/
+https://tonymistark.github.io/2023/11/09/design-patter/what-is-a-design-pattern/
+https://tonymistark.github.io/2023/11/01/I-am-Grinding-King/
+https://tonymistark.github.io/2023/11/02/Ollama-%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%90%AF%E5%8A%A8%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/
+https://tonymistark.github.io/2023/10/27/pep-703-making-the-global-interpreter-lock-optional-in-cpython-acceptance/
 https://tonymistark.github.io/2023/10/18/rust_docs/ch_09_02_recoverable_errors_with_result/
 https://tonymistark.github.io/2023/10/20/should_I_support_Israel_or_Palestine/
 https://tonymistark.github.io/2023/08/31/Life-Advice-From-The-Creator-of-Cpp/
@@ -57,9 +60,11 @@ https://tonymistark.github.io/tags/Rust/
 https://tonymistark.github.io/tags/%E9%9A%8F%E6%83%B3/
 https://tonymistark.github.io/tags/tags/
 https://tonymistark.github.io/tags/%E9%9A%8F%E7%AC%94/
+https://tonymistark.github.io/tags/Design-Pattern/
 https://tonymistark.github.io/categories/Rust/
 https://tonymistark.github.io/categories/notes/
 https://tonymistark.github.io/categories/writing/
 https://tonymistark.github.io/categories/%E9%9A%8F%E7%AC%94/
 https://tonymistark.github.io/categories/ubuntu/
+https://tonymistark.github.io/categories/design-patter/
 

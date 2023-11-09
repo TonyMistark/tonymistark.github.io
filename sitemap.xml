@@ -2,9 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://tonymistark.github.io/2023/10/30/strong-typing-hill-to-die-on/</loc>
+    <loc>https://tonymistark.github.io/2023/11/09/design-patter/what-is-a-design-pattern/</loc>
     
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-11-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tonymistark.github.io/2023/11/01/I-am-Grinding-King/</loc>
+    
+    <lastmod>2023-11-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tonymistark.github.io/2023/11/02/Ollama-%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%90%AF%E5%8A%A8%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/</loc>
+    
+    <lastmod>2023-11-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tonymistark.github.io/2023/10/27/pep-703-making-the-global-interpreter-lock-optional-in-cpython-acceptance/</loc>
+    
+    <lastmod>2023-11-09</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -472,7 +499,7 @@
 
   <url>
     <loc>https://tonymistark.github.io/</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -480,42 +507,49 @@
   
   <url>
     <loc>https://tonymistark.github.io/tags/tools/</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/ubuntu/</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/Rust/</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/%E9%9A%8F%E6%83%B3/</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/tags/</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-11-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://tonymistark.github.io/tags/Design-Pattern/</loc>
+    <lastmod>2023-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -524,35 +558,42 @@
   
   <url>
     <loc>https://tonymistark.github.io/categories/Rust/</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/notes/</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/writing/</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/ubuntu/</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-11-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://tonymistark.github.io/categories/design-patter/</loc>
+    <lastmod>2023-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
