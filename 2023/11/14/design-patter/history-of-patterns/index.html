@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="字符串并不简单总之，字符串是很复杂的。不同的语言会有不同的选择如何将这种复杂性呈现给程序员。Rust选择将String数据的正确处理作为所有Rust程序的默认行为,这意味着程序员必须在处理UTF-8数据上花更多的心思。这个权衡在其他编程语言中暴露了更多字符串的复杂性,但它可以防止你在开发生命周期的后期处理涉及非ASCII字符的错误。好消息是标准库基于String和&amp;str类型提供了许多功能">
+  <meta name="description" content="History of patterns模式的历史Who invented patterns? That’s a good, but not a very accurate, question. Design patterns aren’t obscure, sophisticated concepts—quite the opposite. Patterns are typical solutio">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ch 08.02:字符串并不简单">
-<meta property="og:url" content="https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_02_strings/index.html">
+<meta property="og:title" content="History of patterns">
+<meta property="og:url" content="https://tonymistark.github.io/2023/11/14/design-patter/history-of-patterns/index.html">
 <meta property="og:site_name" content="BLOG">
-<meta property="og:description" content="字符串并不简单总之，字符串是很复杂的。不同的语言会有不同的选择如何将这种复杂性呈现给程序员。Rust选择将String数据的正确处理作为所有Rust程序的默认行为,这意味着程序员必须在处理UTF-8数据上花更多的心思。这个权衡在其他编程语言中暴露了更多字符串的复杂性,但它可以防止你在开发生命周期的后期处理涉及非ASCII字符的错误。好消息是标准库基于String和&amp;str类型提供了许多功能">
+<meta property="og:description" content="History of patterns模式的历史Who invented patterns? That’s a good, but not a very accurate, question. Design patterns aren’t obscure, sophisticated concepts—quite the opposite. Patterns are typical solutio">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-05-18T02:32:00.000Z">
-<meta property="article:modified_time" content="2023-08-20T07:27:24.051Z">
+<meta property="article:published_time" content="2023-11-14T12:53:45.000Z">
+<meta property="article:modified_time" content="2023-11-14T13:00:24.362Z">
 <meta property="article:author" content="Ice">
-<meta property="article:tag" content="Rust">
+<meta property="article:tag" content="Design Pattern">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_02_strings/">
+<link rel="canonical" href="https://tonymistark.github.io/2023/11/14/design-patter/history-of-patterns/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Ch 08.02:字符串并不简单 | BLOG</title>
+  <title>History of patterns | BLOG</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6L4L92Z6Z"></script>
     <script>
@@ -187,7 +187,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_02_strings/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/11/14/design-patter/history-of-patterns/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -200,7 +200,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Ch 08.02:字符串并不简单
+          History of patterns
         </h1>
 
         <div class="post-meta">
@@ -209,23 +209,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2023-05-18 10:32:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:32:00+08:00">2023-05-18</time>
+              <time title="Created: 2023-11-14 20:53:45 / Modified: 21:00:24" itemprop="dateCreated datePublished" datetime="2023-11-14T20:53:45+08:00">2023-11-14</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-20 15:27:24" itemprop="dateModified" datetime="2023-08-20T15:27:24+08:00">2023-08-20</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Rust/" itemprop="url" rel="index"><span itemprop="name">Rust</span></a>
+                  <a href="/categories/design-patter/" itemprop="url" rel="index"><span itemprop="name">design-patter</span></a>
                 </span>
             </span>
 
@@ -242,14 +236,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>235</span>
+              <span>642</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -261,7 +255,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="字符串并不简单"><a href="#字符串并不简单" class="headerlink" title="字符串并不简单"></a>字符串并不简单</h4><p>总之，字符串是很复杂的。不同的语言会有不同的选择如何将这种复杂性呈现给程序员。Rust选择将String数据的正确处理作为所有Rust程序的默认行为,这意味着程序员必须在处理UTF-8数据上花更多的心思。这个权衡在其他编程语言中暴露了更多字符串的复杂性,但它可以防止你在开发生命周期的后期处理涉及非ASCII字符的错误。<br>好消息是标准库基于String和&amp;str类型提供了许多功能来正确处理这些复杂的情况。确保查看文档中有用的方法,比如在字符串中搜索的contains和用另一个字符串替换字符串的一部分replace。<br>让我们切换到略微简单一点的内容:哈希映射!</p>
+        <h1 id="History-of-patterns"><a href="#History-of-patterns" class="headerlink" title="History of patterns"></a>History of patterns</h1><h1 id="模式的历史"><a href="#模式的历史" class="headerlink" title="模式的历史"></a>模式的历史</h1><p>Who invented patterns? That’s a good, but not a very accurate, question. Design patterns aren’t obscure, sophisticated concepts—quite the opposite. Patterns are typical solutions to common problems in object-oriented design. When a solution gets repeated over and over in various projects, someone eventually puts a name to it and describes the solution in detail. That’s basically how a pattern gets discovered.<br>谁发明了模式？这是一个很好的问题，但不是很准确。设计模式不是晦涩难懂的复杂概念，恰恰相反。模式是面向对象设计中常见问题的典型解决方案。当一个解决方案在各种项目中一遍又一遍地重复时，最终会有人给它起一个名字并详细描述该解决方案。这基本上就是发现模式的方式。</p>
+<p>The concept of patterns was first described by Christopher Alexander in A Pattern Language: Towns, Buildings, Construction. The book describes a “language” for designing the urban environment. The units of this language are patterns. They may describe how high windows should be, how many levels a building should have, how large green areas in a neighborhood are supposed to be, and so on.<br>模式的概念最早由克里斯托弗·亚历山大（Christopher Alexander）在《模式语言：城镇、建筑、建筑》中描述。该书描述了一种设计城市环境的“语言”。这种语言的单位是模式。它们可能会描述窗户应该有多高，建筑物应该有多少层，社区中的绿地应该有多大，等等。</p>
+<p>The idea was picked up by four authors: Erich Gamma, John Vlissides, Ralph Johnson, and Richard Helm. In 1994, they published Design Patterns: Elements of Reusable Object-Oriented Software, in which they applied the concept of design patterns to programming. The book featured 23 patterns solving various problems of object-oriented design and became a best-seller very quickly. Due to its lengthy name, people started to call it “the book by the gang of four” which was soon shortened to simply “the GoF book”.<br>这个想法被四位作者采纳：Erich Gamma、John Vlissides、Ralph Johnson 和 Richard Helm。1994 年，他们出版了《设计模式：可重用面向对象软件的元素》，其中他们将设计模式的概念应用于编程。该书收录了 23 种模式，解决了面向对象设计的各种问题，并很快成为畅销书。由于名字很长，人们开始称它为“四人团的书”，很快就简称为《The GoF book》。</p>
+<p>Since then, dozens of other object-oriented patterns have been discovered. The “pattern approach” became very popular in other programming fields, so lots of other patterns now exist outside of object-oriented design as well.<br>从那时起，已经发现了许多其他面向对象的模式。“模式方法”在其他编程领域变得非常流行，因此在面向对象设计之外也存在许多其他模式。</p>
 
     </div>
 
@@ -320,7 +317,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Rust/" rel="tag"># Rust</a>
+              <a href="/tags/Design-Pattern/" rel="tag"># Design Pattern</a>
           </div>
 
         
@@ -329,13 +326,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/05/18/rust_docs/ch_08_01_vectors/" rel="prev" title="Ch 08.01:丢弃vector 时也会丢弃其所有元素(Dropping a Vector Drops Its Elements)">
-      <i class="fa fa-chevron-left"></i> Ch 08.01:丢弃vector 时也会丢弃其所有元素(Dropping a Vector Drops Its Elements)
+    <a href="/2023/11/09/design-patter/what-is-a-design-pattern/" rel="prev" title="What's a design pattern?">
+      <i class="fa fa-chevron-left"></i> What's a design pattern?
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/05/18/rust_docs/ch_08_03_hash_maps/" rel="next" title="Ch 08.03:总结">
-      Ch 08.03:总结 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -395,7 +389,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B9%B6%E4%B8%8D%E7%AE%80%E5%8D%95"><span class="nav-number">1.</span> <span class="nav-text">字符串并不简单</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#History-of-patterns"><span class="nav-number">1.</span> <span class="nav-text">History of patterns</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8E%86%E5%8F%B2"><span class="nav-number">2.</span> <span class="nav-text">模式的历史</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -565,7 +559,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'tonymistark.github.io',
       owner       : 'TonyMistark',
       admin       : ['TonyMistark'],
-      id          : 'fdef60dc4a1a317e1ae96e4e86b8ee46',
+      id          : 'b2067fc49691ed0c782f99607d7162ae',
         language: 'zh-CN',
       distractionFreeMode: true
     });

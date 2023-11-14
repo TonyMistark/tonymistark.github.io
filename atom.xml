@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2023-11-09T14:53:12.680Z</updated>
+  <updated>2023-11-14T13:00:24.362Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>History of patterns</title>
+    <link href="https://tonymistark.github.io/2023/11/14/design-patter/history-of-patterns/"/>
+    <id>https://tonymistark.github.io/2023/11/14/design-patter/history-of-patterns/</id>
+    <published>2023-11-14T12:53:45.000Z</published>
+    <updated>2023-11-14T13:00:24.362Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;History-of-patterns&quot;&gt;&lt;a href=&quot;#History-of-patterns&quot; class=&quot;headerlink&quot; title=&quot;History of patterns&quot;&gt;&lt;/a&gt;History of patterns&lt;/h1&gt;&lt;h1</summary>
+        
+      
+    
+    
+    
+    <category term="design-patter" scheme="https://tonymistark.github.io/categories/design-patter/"/>
+    
+    
+    <category term="Design Pattern" scheme="https://tonymistark.github.io/tags/Design-Pattern/"/>
+    
+  </entry>
   
   <entry>
     <title>What&#39;s a design pattern?</title>
@@ -466,31 +491,6 @@
         
         
     <summary type="html">&lt;h4 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h4&gt;&lt;p&gt;vector、字符串和哈希 map</summary>
-        
-      
-    
-    
-    
-    <category term="Rust" scheme="https://tonymistark.github.io/categories/Rust/"/>
-    
-    
-    <category term="Rust" scheme="https://tonymistark.github.io/tags/Rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ch 08.02:字符串并不简单</title>
-    <link href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_02_strings/"/>
-    <id>https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_02_strings/</id>
-    <published>2023-05-18T02:32:00.000Z</published>
-    <updated>2023-08-20T07:27:24.051Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;字符串并不简单&quot;&gt;&lt;a href=&quot;#字符串并不简单&quot; class=&quot;headerlink&quot;</summary>
         
       
     
