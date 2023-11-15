@@ -183,6 +183,110 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/26/rust_docs/ch_01_02_hello_world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/26/rust_docs/ch_01_02_hello_world/" class="post-title-link" itemprop="url">Ch 01.02:编译和运行是彼此独立的步骤</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-12-26 13:49:00" itemprop="dateCreated datePublished" datetime="2022-12-26T13:49:00+08:00">2022-12-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-19 23:03:15" itemprop="dateModified" datetime="2023-08-19T23:03:15+08:00">2023-08-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Rust/" itemprop="url" rel="index"><span itemprop="name">Rust</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>561</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h5 id="编译和运行是彼此独立的步骤"><a href="#编译和运行是彼此独立的步骤" class="headerlink" title="编译和运行是彼此独立的步骤"></a>编译和运行是彼此独立的步骤</h5><p>你刚刚运行了一个新的程序，所以让我们来检查一下这个过程的每一个步骤。</p>
+<p>在运行Rust程序之前，你必须通过rustc命令，用Rust编译器来编译这个它，并传入你源代码文件的名字，比如：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> rustc main.rs</span><br></pre></td></tr></table></figure>
+
+<p>如果你有C或者C++的技术背景，你可以视作像gcc 或者clang。在编译成功之后，Rust 会输出一个二进制可执行文件。</p>
+<p>对于Linux,macOS和PowerShell on Windows,执行ls的shell命令之后，你就可以看到这个可执行文件。对于Linux，macOS，你可以看到两个文件。对于PowerShell on Windows,你会看到和使用CMD一样的三个文件。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">ls</span></span><br><span class="line">main main.rs</span><br></pre></td></tr></table></figure>
+
+<p>在Windows的CMD，输入命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">dir</span> /B %= the /B option says to only show the file names =%</span><br><span class="line">main.exe</span><br><span class="line">main.pdb</span><br><span class="line">main.rs</span><br></pre></td></tr></table></figure>
+
+<p>这显示出以.rs为扩展名的源代码文件和可执行文件(main.exe on Windows, but main on all other platforms),并且，当使用Windows，一个文件包括了debugging信息的.pdb扩展名。到此，你可以开始运行main 或者main.exe文件，如：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> ./main <span class="comment"># or .\main.exe on Windows</span></span><br></pre></td></tr></table></figure>
+
+<p>如果main.rs是你的”Hello,world!”程序，这行将打印出”Hello,world!”到你的屏幕。</p>
+<p>如果你更加熟悉动态语言，如Ruby,Python, JavaScript, 你也许不习惯将编译和运行分为两个单独的步骤。Rust是一个预编译(ahead-of-time compiled)语言，代表你可以编译一个程序并且给可执行文件其他人，并且他们可以直接运行，不需要安装Rust。如果你给某人一个a.rb, .py, .js文件，他们需要安装一个Ruby,Python 或者JavaScript 实现(运行环境)。不过这些语言中，只需要一句命令就可以编译和运行程序。所有的事都是语言设计上的取舍。</p>
+<p>仅仅使用rustc编译简单程序是没有问题的。但是随着你的项目发展，你会想要管理所有的选项，使得更简单地共享你的代码。接下来，我们将介绍给你一个叫做Cargo的工具，它将帮助你编写真实世界的Rust程序。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/25/rust_docs/ch_01_01_Installation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -434,7 +538,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -497,12 +601,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">37k</span>
+    <span title="Symbols count total">38k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">2:16</span>
+    <span title="Reading time total">2:18</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

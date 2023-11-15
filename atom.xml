@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2023-11-14T13:00:24.362Z</updated>
+  <updated>2023-11-15T11:56:24.993Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Why should I learn patterns?</title>
+    <link href="https://tonymistark.github.io/2023/11/15/design-patter/why-should-i-learn-patterns/"/>
+    <id>https://tonymistark.github.io/2023/11/15/design-patter/why-should-i-learn-patterns/</id>
+    <published>2023-11-15T11:54:40.000Z</published>
+    <updated>2023-11-15T11:56:24.993Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Why-should-I-learn-patterns&quot;&gt;&lt;a href=&quot;#Why-should-I-learn-patterns&quot; class=&quot;headerlink&quot; title=&quot;Why should I learn patterns?&quot;&gt;&lt;/a&gt;Why</summary>
+        
+      
+    
+    
+    
+    <category term="design-patter" scheme="https://tonymistark.github.io/categories/design-patter/"/>
+    
+    
+    <category term="Design Pattern" scheme="https://tonymistark.github.io/tags/Design-Pattern/"/>
+    
+  </entry>
   
   <entry>
     <title>History of patterns</title>
@@ -466,31 +491,6 @@
         
         
     <summary type="html">&lt;h3 id=&quot;错误处理&quot;&gt;&lt;a href=&quot;#错误处理&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Rust" scheme="https://tonymistark.github.io/categories/Rust/"/>
-    
-    
-    <category term="Rust" scheme="https://tonymistark.github.io/tags/Rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ch 08.03:总结</title>
-    <link href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_03_hash_maps/"/>
-    <id>https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_03_hash_maps/</id>
-    <published>2023-05-18T02:33:00.000Z</published>
-    <updated>2023-08-20T07:27:27.628Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h4&gt;&lt;p&gt;vector、字符串和哈希 map</summary>
         
       
     

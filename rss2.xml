@@ -15,8 +15,35 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Tue, 14 Nov 2023 13:00:24 GMT</pubDate>
+    <pubDate>Wed, 15 Nov 2023 11:56:24 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Why should I learn patterns?</title>
+      <link>https://tonymistark.github.io/2023/11/15/design-patter/why-should-i-learn-patterns/</link>
+      <guid>https://tonymistark.github.io/2023/11/15/design-patter/why-should-i-learn-patterns/</guid>
+      <pubDate>Wed, 15 Nov 2023 11:54:40 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Why-should-I-learn-patterns&quot;&gt;&lt;a href=&quot;#Why-should-I-learn-patterns&quot; class=&quot;headerlink&quot; title=&quot;Why should I learn patterns?&quot;&gt;&lt;/a&gt;Why</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-patter/">design-patter</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/11/15/design-patter/why-should-i-learn-patterns/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>History of patterns</title>
@@ -515,33 +542,6 @@
       
       
       <comments>https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_00_error_handing/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Ch 08.03:总结</title>
-      <link>https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_03_hash_maps/</link>
-      <guid>https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_03_hash_maps/</guid>
-      <pubDate>Thu, 18 May 2023 02:33:00 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h4 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h4&gt;&lt;p&gt;vector、字符串和哈希 map</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/Rust/">Rust</category>
-      
-      
-      <category domain="https://tonymistark.github.io/tags/Rust/">Rust</category>
-      
-      
-      <comments>https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_03_hash_maps/#disqus_thread</comments>
       
     </item>
     
