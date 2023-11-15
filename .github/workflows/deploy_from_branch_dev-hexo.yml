@@ -50,6 +50,8 @@ jobs:
         echo " ---->> finishe commit ----->>"
         git status
         git checkout -b hexo
-        git status
-        git branch
-        git push --force --quiet "https://$GH_TOKEN@$REPO" hexo:hexo
+        git remote add origin git@github.com:TonyMistark/tonymistark.github.io.git
+        git push origin hexo -f
+        # git status
+        # git branch
+        # git push --force --quiet "https://$GH_TOKEN@$REPO" hexo:hexo
