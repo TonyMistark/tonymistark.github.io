@@ -1,6 +1,7 @@
 ---
 title: classification of patterns
-categories: design-patter
+categories:
+  - design-pattern
 tags: Design Pattern
 date: 2023-11-15 23:02:50
 ---
