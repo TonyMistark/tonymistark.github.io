@@ -1,7 +1,6 @@
 ---
 title: Factory Method
-categories:
-  - design-pattern
+categories: design-pattern
 tags: Design Pattern
 date: 2023-11-16 21:02:09
 ---

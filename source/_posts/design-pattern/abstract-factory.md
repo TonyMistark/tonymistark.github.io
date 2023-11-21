@@ -1,7 +1,6 @@
 ---
 title: Abstract Factory
-categories:
-  - design-pattern
+categories: design-pattern
 tags: Design Pattern
 date: 2023-11-20 20:16:29
 ---
@@ -33,7 +32,7 @@ A Modern-style sofa doesn’t match Victorian-style chairs.
 Also, you don’t want to change existing code when adding new products or families of products to the program. Furniture vendors update their catalogs very often, and you wouldn’t want to change the core code each time it happens.
 此外，在向程序添加新产品或产品系列时，您不希望更改现有代码。家具供应商经常更新他们的目录，您不希望每次都更改核心代码。
 
-## Solution 溶液
+## Solution 解决方案
 The first thing the Abstract Factory pattern suggests is to explicitly declare interfaces for each distinct product of the product family (e.g., chair, sofa or coffee table). Then you can make all variants of products follow those interfaces. For example, all chair variants can implement the `Chair` interface; all coffee table variants can implement the `CoffeeTable` interface, and so on.
 抽象工厂模式建议的第一件事是显式声明产品系列中每个不同产品（例如，椅子、沙发或咖啡桌）的接口。然后，您可以使产品的所有变体都遵循这些接口。例如，所有椅子变体都可以实现该 `Chair` 接口;所有咖啡桌变体都可以实现接口 `CoffeeTable` ，依此类推。
 <div align="center"> <img src="/images/abs-fac-solution1.png"/>All variants of the same object must be moved to a single class hierarchy.</br>必须将同一对象的所有变体移动到单个类层次结构中。</div>
@@ -67,7 +66,7 @@ There’s one more thing left to clarify: if the client is only exposed to the a
 1. **Abstract Products** declare interfaces for a set of distinct but related products which make up a product family.
 抽象产品声明了一组不同但相关的产品的接口，这些产品构成了一个产品系列。
 
-2. **oncrete Products** are various implementations of abstract products, grouped by variants. Each abstract product (chair/sofa) must be implemented in all given variants (Victorian/Modern).
+2. **concrete Products** are various implementations of abstract products, grouped by variants. Each abstract product (chair/sofa) must be implemented in all given variants (Victorian/Modern).
 具体产品是抽象产品的各种实现，按变体分组。每个抽象产品（椅子/沙发）都必须在所有给定的变体（维多利亚式/现代式）中实现。
 
 3. The **Abstract Factory** interface declares a set of methods for creating each of the abstract products.

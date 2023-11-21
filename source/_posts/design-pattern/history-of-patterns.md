@@ -1,7 +1,6 @@
 ---
 title: History of patterns
-categories:
-  - design-pattern
+categories: design-pattern
 tags: Design Pattern
 date: 2023-11-14 20:53:45
 ---

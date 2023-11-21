@@ -1,7 +1,6 @@
 ---
 title: Why should I learn patterns?
-categories:
-  - design-pattern
+categories: design-pattern
 tags: Design Pattern
 date: 2023-11-15 19:54:40
 ---

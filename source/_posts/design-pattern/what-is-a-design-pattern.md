@@ -1,7 +1,6 @@
 ---
 title: What's a design pattern?
-categories:
-  - design-pattern
+categories: design-pattern
 tags: Design Pattern
 date: 2023-11-09 22:18:59
 ---
