@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Prototype 原型Intent 意图Prototype is a creational design pattern that lets you copy existing objects without making your code dependent on their classes.原型是一种创建性设计模式，它允许您复制现有对象，而不会使代码依赖于它们的类。    Problem">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Prototype">
+<meta property="og:url" content="https://tonymistark.github.io/2023/11/22/design-pattern/prototype/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="Prototype 原型Intent 意图Prototype is a creational design pattern that lets you copy existing objects without making your code dependent on their classes.原型是一种创建性设计模式，它允许您复制现有对象，而不会使代码依赖于它们的类。    Problem">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://tonymistark.github.io/images/prototype-head.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/prototype-comic-1-en.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/prototype-comic-2-en.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/prototype-comic-3-en.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/prototyp-structure.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/structure-prototype-cache.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/prototype-example1.png">
+<meta property="article:published_time" content="2023-11-22T13:10:02.000Z">
+<meta property="article:modified_time" content="2023-11-22T14:10:06.023Z">
+<meta property="article:author" content="Ice">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tonymistark.github.io/images/prototype-head.png">
+
+<link rel="canonical" href="https://tonymistark.github.io/2023/11/22/design-pattern/prototype/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Prototype | BLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6L4L92Z6Z"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W6L4L92Z6Z');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?99c70b2174a7fbe4af476f28bafb19a3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/./atom.xml" title="BLOG" type="application/atom+xml">
+<link rel="alternate" href="/./rss2.xml" title="BLOG" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">用心记录思想</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/11/22/design-pattern/prototype/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Prototype
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-11-22 21:10:02 / Modified: 22:10:06" itemprop="dateCreated datePublished" datetime="2023-11-22T21:10:02+08:00">2023-11-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/design-pattern/" itemprop="url" rel="index"><span itemprop="name">design-pattern</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4.9k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>18 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Prototype-原型"><a href="#Prototype-原型" class="headerlink" title="Prototype 原型"></a>Prototype 原型</h1><h2 id="Intent-意图"><a href="#Intent-意图" class="headerlink" title="Intent 意图"></a>Intent 意图</h2><p><strong>Prototype</strong> is a creational design pattern that lets you copy existing objects without making your code dependent on their classes.<br>原型是一种创建性设计模式，它允许您复制现有对象，而不会使代码依赖于它们的类。</p>
+<div align="center"> <img src="/images/prototype-head.png"/></div>
+
+<h2 id="Problem-问题"><a href="#Problem-问题" class="headerlink" title="Problem 问题"></a>Problem 问题</h2><p>Say you have an object, and you want to create an exact copy of it. How would you do it? First, you have to create a new object of the same class. Then you have to go through all the fields of the original object and copy their values over to the new object.<br>假设你有一个对象，并且你想创建一个精确的副本。你会怎么做？首先，您必须创建同一类的新对象。然后，您必须遍历原始对象的所有字段，并将其值复制到新对象。</p>
+<p>Nice! But there’s a catch. Not all objects can be copied that way because some of the object’s fields may be private and not visible from outside of the object itself.<br>好！但有一个问题。并非所有对象都可以以这种方式复制，因为对象的某些字段可能是私有的，并且从对象本身外部不可见。</p>
+<div align="center"> <img src="/images/prototype-comic-1-en.png"/>Copying an object “from the outside” isn’t always possible.</br>“从外部”复制对象并不总是可行的。</div>
+There’s one more problem with the direct approach. Since you have to know the object’s class to create a duplicate, your code becomes dependent on that class. If the extra dependency doesn’t scare you, there’s another catch. Sometimes you only know the interface that the object follows, but not its concrete class, when, for example, a parameter in a method accepts any objects that follow some interface.
+直接方法还有一个问题。由于您必须知道对象的类才能创建副本，因此您的代码将依赖于该类。如果额外的依赖关系没有吓到你，还有另一个问题。有时，您只知道对象所遵循的接口，而不知道其具体类，例如，当方法中的参数接受某个接口所遵循的任何对象时。
+
+<h2 id="Solution-解决方案"><a href="#Solution-解决方案" class="headerlink" title="Solution 解决方案"></a>Solution 解决方案</h2><p>The Prototype pattern delegates the cloning process to the actual objects that are being cloned. The pattern declares a common interface for all objects that support cloning. This interface lets you clone an object without coupling your code to the class of that object. Usually, such an interface contains just a single <code>clone</code> method.<br>Prototype 模式将克隆过程委托给正在克隆的实际对象。该模式为支持克隆的所有对象声明一个通用接口。此接口允许您克隆对象，而无需将代码耦合到该对象的类。通常，这样的接口只包含一个 <code>clone</code> 方法。</p>
+<p>The implementation of the clone method is very similar in all classes. The method creates an object of the current class and carries over all of the field values of the old object into the new one. You can even copy private fields because most programming languages let objects access private fields of other objects that belong to the same class.<br>该 <code>clone</code> 方法的实现在所有类中都非常相似。该方法创建当前类的对象，并将旧对象的所有字段值转移到新对象中。您甚至可以复制私有字段，因为大多数编程语言允许对象访问属于同一类的其他对象的私有字段。</p>
+<p>An object that supports cloning is called a prototype. When your objects have dozens of fields and hundreds of possible configurations, cloning them might serve as an alternative to subclassing.<br>支持克隆的对象称为原型。当您的对象具有数十个字段和数百种可能的配置时，克隆它们可以作为子类化的替代方法。</p>
+<div align="center"> <img src="/images/prototype-comic-2-en.png"/>Pre-built prototypes can be an alternative to subclassing.</br>预构建的原型可以替代子类化。</div>
+Here’s how it works: you create a set of objects, configured in various ways. When you need an object like the one you’ve configured, you just clone a prototype instead of constructing a new object from scratch.
+它是这样工作的：创建一组对象，以各种方式进行配置。当您需要像您配置的对象一样的对象时，您只需克隆一个原型，而不是从头开始构建一个新对象。
+
+<h2 id="Real-World-Analogy-真实世界的类比"><a href="#Real-World-Analogy-真实世界的类比" class="headerlink" title="Real-World Analogy 真实世界的类比"></a>Real-World Analogy 真实世界的类比</h2><p>In real life, prototypes are used for performing various tests before starting mass production of a product. However, in this case, prototypes don’t participate in any actual production, playing a passive role instead.<br>在现实生活中，原型用于在开始批量生产产品之前进行各种测试。然而，在这种情况下，原型不参与任何实际生产，而是扮演被动角色。</p>
+<div align="center"> <img src="/images/prototype-comic-3-en.png"/>The division of a cell.</br>细胞的分裂。</div>
+Since industrial prototypes don’t really copy themselves, a much closer analogy to the pattern is the process of mitotic cell division (biology, remember?). After mitotic division, a pair of identical cells is formed. The original cell acts as a prototype and takes an active role in creating the copy.
+由于工业原型并不能真正复制自己，因此与该模式更接近的类比是有丝分裂细胞分裂的过程（生物学，还记得吗？有丝分裂后，形成一对相同的细胞。原始单元充当原型，并在创建副本中发挥积极作用。
+
+<h2 id="Structure-结构"><a href="#Structure-结构" class="headerlink" title="Structure 结构"></a>Structure 结构</h2><h3 id="Basic-implementation-基本实现"><a href="#Basic-implementation-基本实现" class="headerlink" title="Basic implementation 基本实现"></a>Basic implementation 基本实现</h3><div align="center"> <img src="/images/prototyp-structure.png"/></div>
+
+<ol>
+<li><p>The <strong>Prototype</strong> interface declares the cloning methods. In most cases, it’s a single clone method.<br>Prototype 接口声明克隆方法。在大多数情况下，它是一种单一 clone 方法。</p>
+</li>
+<li><p>The <code>Concrete Prototype</code> class implements the cloning method. In addition to copying the original object’s data to the clone, this method may also handle some edge cases of the cloning process related to cloning linked objects, untangling recursive dependencies, etc.<br>Concrete Prototype 类实现克隆方法。除了将原始对象的数据复制到克隆中外，该方法还可以处理克隆过程中与克隆链接对象、解开递归依赖关系等相关的一些边缘情况。</p>
+</li>
+<li><p>The <code>Client</code> can produce a copy of any object that follows the prototype interface.<br>客户端可以生成遵循原型接口的任何对象的副本。</p>
+</li>
+</ol>
+<h3 id="Prototype-registry-implementation-原型注册表实现"><a href="#Prototype-registry-implementation-原型注册表实现" class="headerlink" title="Prototype registry implementation 原型注册表实现"></a>Prototype registry implementation 原型注册表实现</h3><div align="center"> <img src="/images/structure-prototype-cache.png"/></div>
+1. The `Prototype Registry` provides an easy way to access frequently-used prototypes. It stores a set of pre-built objects that are ready to be copied. The simplest prototype registry is a name → prototype hash map. However, if you need better search criteria than a simple name, you can build a much more robust version of the registry.
+Prototype Registry 提供了一种访问常用原型的简单方法。它存储一组准备复制的预构建对象。最简单的原型注册表是 name → prototype 哈希映射。但是，如果您需要比简单名称更好的搜索条件，则可以构建更可靠的注册表版本。
+
+<h2 id="Pseudocode-伪代码"><a href="#Pseudocode-伪代码" class="headerlink" title="Pseudocode 伪代码"></a>Pseudocode 伪代码</h2><p>In this example, the Prototype pattern lets you produce exact copies of geometric objects, without coupling the code to their classes.<br>在此示例中，Prototype 模式允许您生成几何对象的精确副本，而无需将代码耦合到其类。</p>
+<div align="center"> <img src="/images/prototype-example1.png"/>Cloning a set of objects that belong to a class hierarchy.</br>克隆属于类层次结构的一组对象。</div>
+
+<p>All shape classes follow the same interface, which provides a cloning method. A subclass may call the parent’s cloning method before copying its own field values to the resulting object.<br>所有形状类都遵循相同的接口，该接口提供克隆方法。子类可以在将其自己的字段值复制到生成的对象之前调用父类的克隆方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Base prototype.</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Shape</span> is</span><br><span class="line">    field X: <span class="type">int</span></span><br><span class="line">    field Y: <span class="type">int</span></span><br><span class="line">    field color: string</span><br><span class="line"></span><br><span class="line">    <span class="comment">// A regular constructor.</span></span><br><span class="line">    constructor <span class="title function_">Shape</span><span class="params">()</span> is</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// The prototype constructor. A fresh object is initialized</span></span><br><span class="line">    <span class="comment">// with values from the existing object.</span></span><br><span class="line">    constructor <span class="title function_">Shape</span><span class="params">(source: Shape)</span> is</span><br><span class="line">        <span class="title function_">this</span><span class="params">()</span></span><br><span class="line">        <span class="built_in">this</span>.X = source.X</span><br><span class="line">        <span class="built_in">this</span>.Y = source.Y</span><br><span class="line">        <span class="built_in">this</span>.color = source.color</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The clone operation returns one of the Shape subclasses.</span></span><br><span class="line">    <span class="keyword">abstract</span> method <span class="title function_">clone</span><span class="params">()</span>:Shape</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Concrete prototype. The cloning method creates a new object</span></span><br><span class="line"><span class="comment">// in one go by calling the constructor of the current class and</span></span><br><span class="line"><span class="comment">// passing the current object as the constructor&#x27;s argument.</span></span><br><span class="line"><span class="comment">// Performing all the actual copying in the constructor helps to</span></span><br><span class="line"><span class="comment">// keep the result consistent: the constructor will not return a</span></span><br><span class="line"><span class="comment">// result until the new object is fully built; thus, no object</span></span><br><span class="line"><span class="comment">// can have a reference to a partially-built clone.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Rectangle</span> <span class="keyword">extends</span> <span class="title class_">Shape</span> is</span><br><span class="line">    field width: <span class="type">int</span></span><br><span class="line">    field height: <span class="type">int</span></span><br><span class="line"></span><br><span class="line">    constructor <span class="title function_">Rectangle</span><span class="params">(source: Rectangle)</span> is</span><br><span class="line">        <span class="comment">// A parent constructor call is needed to copy private</span></span><br><span class="line">        <span class="comment">// fields defined in the parent class.</span></span><br><span class="line">        <span class="built_in">super</span>(source)</span><br><span class="line">        <span class="built_in">this</span>.width = source.width</span><br><span class="line">        <span class="built_in">this</span>.height = source.height</span><br><span class="line"></span><br><span class="line">    method <span class="title function_">clone</span><span class="params">()</span>:Shape is</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Rectangle</span>(<span class="built_in">this</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Circle</span> <span class="keyword">extends</span> <span class="title class_">Shape</span> is</span><br><span class="line">    field radius: <span class="type">int</span></span><br><span class="line"></span><br><span class="line">    constructor <span class="title function_">Circle</span><span class="params">(source: Circle)</span> is</span><br><span class="line">        <span class="title function_">super</span><span class="params">(source)</span></span><br><span class="line">        <span class="built_in">this</span>.radius = source.radius</span><br><span class="line"></span><br><span class="line">    method <span class="title function_">clone</span><span class="params">()</span>:Shape is</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Circle</span>(<span class="built_in">this</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Somewhere in the client code.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Application</span> is</span><br><span class="line">    field shapes: array of Shape</span><br><span class="line"></span><br><span class="line">    constructor <span class="title function_">Application</span><span class="params">()</span> is</span><br><span class="line">        <span class="type">Circle</span> <span class="variable">circle</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Circle</span>()</span><br><span class="line">        circle.X = <span class="number">10</span></span><br><span class="line">        circle.Y = <span class="number">10</span></span><br><span class="line">        circle.radius = <span class="number">20</span></span><br><span class="line">        shapes.add(circle)</span><br><span class="line"></span><br><span class="line">        <span class="type">Circle</span> <span class="variable">anotherCircle</span> <span class="operator">=</span> circle.clone()</span><br><span class="line">        shapes.add(anotherCircle)</span><br><span class="line">        <span class="comment">// The `anotherCircle` variable contains an exact copy</span></span><br><span class="line">        <span class="comment">// of the `circle` object.</span></span><br><span class="line"></span><br><span class="line">        <span class="type">Rectangle</span> <span class="variable">rectangle</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Rectangle</span>()</span><br><span class="line">        rectangle.width = <span class="number">10</span></span><br><span class="line">        rectangle.height = <span class="number">20</span></span><br><span class="line">        shapes.add(rectangle)</span><br><span class="line"></span><br><span class="line">    method <span class="title function_">businessLogic</span><span class="params">()</span> is</span><br><span class="line">        <span class="comment">// Prototype rocks because it lets you produce a copy of</span></span><br><span class="line">        <span class="comment">// an object without knowing anything about its type.</span></span><br><span class="line">        <span class="type">Array</span> <span class="variable">shapesCopy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Array</span> of Shapes.</span><br><span class="line"></span><br><span class="line">        <span class="comment">// For instance, we don&#x27;t know the exact elements in the</span></span><br><span class="line">        <span class="comment">// shapes array. All we know is that they are all</span></span><br><span class="line">        <span class="comment">// shapes. But thanks to polymorphism, when we call the</span></span><br><span class="line">        <span class="comment">// `clone` method on a shape the program checks its real</span></span><br><span class="line">        <span class="comment">// class and runs the appropriate clone method defined</span></span><br><span class="line">        <span class="comment">// in that class. That&#x27;s why we get proper clones</span></span><br><span class="line">        <span class="comment">// instead of a set of simple Shape objects.</span></span><br><span class="line">        foreach (s in shapes) <span class="keyword">do</span></span><br><span class="line">            shapesCopy.add(s.clone())</span><br><span class="line"></span><br><span class="line">        <span class="comment">// The `shapesCopy` array contains exact copies of the</span></span><br><span class="line">        <span class="comment">// `shape` array&#x27;s children.</span></span><br></pre></td></tr></table></figure>
+<h2 id="Applicability-适用性"><a href="#Applicability-适用性" class="headerlink" title="Applicability 适用性"></a>Applicability 适用性</h2><ul>
+<li><p><strong>Use the Prototype pattern when your code shouldn’t depend on the concrete classes of objects that you need to copy.当代码不应依赖于需要复制的具体对象类时，请使用 Prototype 模式。</strong></p>
+</li>
+<li><p>This happens a lot when your code works with objects passed to you from 3rd-party code via some interface. The concrete classes of these objects are unknown, and you couldn’t depend on them even if you wanted to.<br>当您的代码使用通过某些接口从第三方代码传递给您的对象时，这种情况经常发生。这些对象的具体类别是未知的，即使你愿意，你也不能依赖它们。</p>
+</li>
+</ul>
+<p>The Prototype pattern provides the client code with a general interface for working with all objects that support cloning. This interface makes the client code independent from the concrete classes of objects that it clones.<br>Prototype 模式为客户端代码提供了一个通用接口，用于处理支持克隆的所有对象。此接口使客户端代码独立于它克隆的对象的具体类。</p>
+<ul>
+<li><p><strong>Use the pattern when you want to reduce the number of subclasses that only differ in the way they initialize their respective objects.<br>如果要减少子类的数量，这些子类仅在初始化各自对象的方式上有所不同，请使用该模式。</strong></p>
+</li>
+<li><p>Suppose you have a complex class that requires a laborious configuration before it can be used. There are several common ways to configure this class, and this code is scattered through your app. To reduce the duplication, you create several subclasses and put every common configuration code into their constructors. You solved the duplication problem, but now you have lots of dummy subclasses.<br>假设您有一个复杂的类，需要费力的配置才能使用它。有几种常用方法可以配置此类，并且此代码分散在应用中。为了减少重复，您可以创建多个子类，并将每个通用配置代码放入其构造函数中。您解决了重复问题，但现在您有很多虚拟子类。</p>
+</li>
+</ul>
+<p>The Prototype pattern lets you use a set of pre-built objects configured in various ways as prototypes. Instead of instantiating a subclass that matches some configuration, the client can simply look for an appropriate prototype and clone it.<br>Prototype模式允许您使用一组以各种方式配置的预构建对象作为原型。客户端可以简单地寻找一个合适的原型并克隆它，而不是实例化一个匹配某些配置的子类。</p>
+<h2 id="How-to-Implement-如何实现"><a href="#How-to-Implement-如何实现" class="headerlink" title="How to Implement 如何实现"></a>How to Implement 如何实现</h2><ol>
+<li><p>Create the prototype interface and declare the <code>clone</code> method in it. Or just add the method to all classes of an existing class hierarchy, if you have one.<br>创建原型接口并在其中声明 <code>clone</code> 方法。或者，只需将该方法添加到现有类层次结构的所有类（如果有）。</p>
+</li>
+<li><p>A prototype class must define the alternative constructor that accepts an object of that class as an argument. The constructor must copy the values of all fields defined in the class from the passed object into the newly created instance. If you’re changing a subclass, you must call the parent constructor to let the superclass handle the cloning of its private fields.<br>原型类必须定义接受该类的对象作为参数的替代构造函数。构造函数必须将类中定义的所有字段的值从传递的对象复制到新创建的实例中。如果要更改子类，则必须调用父构造函数，让超类处理其私有字段的克隆。</p>
+</li>
+</ol>
+<p>If your programming language doesn’t support method overloading, you won’t be able to create a separate “prototype” constructor. Thus, copying the object’s data into the newly created clone will have to be performed within the <code>clone</code> method. Still, having this code in a regular constructor is safer because the resulting object is returned fully configured right after you call the <code>new</code> operator.<br>如果你的编程语言不支持方法重载，你将无法创建单独的“原型”构造函数。因此，必须在 <code>clone</code> 该方法中将对象的数据复制到新创建的克隆中。不过，在常规构造函数中使用此代码更安全，因为在调用 <code>new</code> 运算符后立即返回完全配置的结果对象。</p>
+<ol start="3">
+<li><p>The cloning method usually consists of just one line: running a <code>new</code> operator with the prototypical version of the constructor. Note, that every class must explicitly override the cloning method and use its own class name along with the <code>new</code> operator. Otherwise, the cloning method may produce an object of a parent class.<br>克隆方法通常只包含一行：使用构造函数的原型版本运行运 <code>new</code> 算符。请注意，每个类都必须显式覆盖克隆方法，并使用自己的类名和 <code>new</code> 运算符。否则，克隆方法可能会生成父类的对象。</p>
+</li>
+<li><p>Optionally, create a centralized prototype registry to store a catalog of frequently used prototypes.<br>（可选）创建一个集中式原型注册表来存储常用原型的目录。</p>
+</li>
+</ol>
+<p>You can implement the registry as a new factory class or put it in the base prototype class with a static method for fetching the prototype. This method should search for a prototype based on search criteria that the client code passes to the method. The criteria might either be a simple string tag or a complex set of search parameters. After the appropriate prototype is found, the registry should clone it and return the copy to the client.<br>您可以将注册表实现为新的工厂类，也可以使用用于获取原型的静态方法将其放在基原型类中。此方法应根据客户端代码传递给该方法的搜索条件搜索原型。条件可以是简单的字符串标记，也可以是一组复杂的搜索参数。找到适当的原型后，注册表应克隆它并将副本返回给客户端。</p>
+<p>Finally, replace the direct calls to the subclasses’ constructors with calls to the factory method of the prototype registry.<br>最后，将对子类构造函数的直接调用替换为对原型注册表的工厂方法的调用。</p>
+<h2 id="Pros-and-Cons-优点和缺点"><a href="#Pros-and-Cons-优点和缺点" class="headerlink" title="Pros and Cons 优点和缺点"></a>Pros and Cons 优点和缺点</h2><ul>
+<li>You can clone objects without coupling to their concrete classes.<br>您可以克隆对象，而无需耦合到其具体类。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Pros 优点</th>
+<th>Cons 缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>You can clone objects without coupling to their concrete classes.您可以克隆对象，而无需耦合到其具体类。</td>
+<td>Cloning complex objects that have circular references might be very tricky.克隆具有循环引用的复杂对象可能非常棘手。</td>
+</tr>
+<tr>
+<td>You can get rid of repeated initialization code in favor of cloning pre-built prototypes.您可以摆脱重复的初始化代码，转而克隆预构建的原型。</td>
+<td></td>
+</tr>
+<tr>
+<td>You can produce complex objects more conveniently.您可以更方便地生成复杂的对象。</td>
+<td></td>
+</tr>
+<tr>
+<td>You get an alternative to inheritance when dealing with configuration presets for complex objects.在处理复杂对象的配置预设时，您可以获得继承的替代方法。</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="Relations-with-Other-Patterns-与其他模式的关系"><a href="#Relations-with-Other-Patterns-与其他模式的关系" class="headerlink" title="Relations with Other Patterns 与其他模式的关系"></a>Relations with Other Patterns 与其他模式的关系</h2><ul>
+<li><p>Many designs start by using <code>Factory Method</code> (less complicated and more customizable via subclasses) and evolve toward <code>Abstract Factory</code>, Prototype, or Builder (more flexible, but more complicated).<br>许多设计从使用工厂方法（不那么复杂，通过子类更可定制）开始，然后发展到抽象工厂、原型或构建器（更灵活，但更复杂）。</p>
+</li>
+<li><p><code>Abstract Factory</code> classes are often based on a set of <code>Factory Methods</code>, but you can also use <code>Prototype</code> to compose the methods on these classes.<br>抽象工厂类通常基于一组工厂方法，但您也可以使用 Prototype 来组合这些类的方法。</p>
+</li>
+<li><p><code>Prototype</code> can help when you need to save copies of <code>Commands</code> into history.<br>当您需要将命令的副本保存到历史记录中时，Prototype 可以提供帮助。</p>
+</li>
+<li><p>Designs that make heavy use of <code>Composite</code> and <code>Decorator</code> can often benefit from using <code>Prototype</code>. Applying the pattern lets you clone complex structures instead of re-constructing them from scratch.<br>大量使用 Composite 和 Decorator 的设计通常可以从使用 Prototype 中受益。通过应用该模式，您可以克隆复杂的结构，而不是从头开始重新构建它们。</p>
+</li>
+<li><p><code>Prototype</code> isn’t based on inheritance, so it doesn’t have its drawbacks. On the other hand, Prototype requires a complicated initialization of the cloned object. <code>Factory Method</code> is based on inheritance but doesn’t require an initialization step.<br>原型不是基于继承的，所以它没有缺点。另一方面，Prototype 需要对克隆对象进行复杂的初始化。工厂方法基于继承，但不需要初始化步骤。</p>
+</li>
+<li><p>Sometimes <code>Prototype</code> can be a simpler alternative to <code>Memento</code>. This works if the object, the state of which you want to store in the history, is fairly straightforward and doesn’t have links to external resources, or the links are easy to re-establish.<br>有时，Prototype 可以成为 Memento 的更简单替代品。如果要存储在历史记录中的对象的状态相当简单，并且没有指向外部资源的链接，或者链接易于重新建立，则此方法有效。</p>
+</li>
+<li><p><code>Abstract Factories</code>, <code>Builders</code> and <code>Prototypes</code> can all be implemented as <code>Singletons</code>.<br>抽象工厂、构建器和原型都可以作为单例实现。</p>
+</li>
+</ul>
+<h2 id="Code-Examples-代码示例"><a href="#Code-Examples-代码示例" class="headerlink" title="Code Examples 代码示例"></a>Code Examples 代码示例</h2><h3 id="Python-Conceptual-example"><a href="#Python-Conceptual-example" class="headerlink" title="Python Conceptual example"></a>Python Conceptual example</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SelfReferencingEntity</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.parent = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_parent</span>(<span class="params">self, parent</span>):</span><br><span class="line">        self.parent = parent</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SomeComponent</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Python provides its own interface of Prototype via `copy.copy` and</span></span><br><span class="line"><span class="string">    `copy.deepcopy` functions. And any class that wants to implement custom</span></span><br><span class="line"><span class="string">    implementations have to override `__copy__` and `__deepcopy__` member</span></span><br><span class="line"><span class="string">    functions.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, some_int, some_list_of_objects, some_circular_ref</span>):</span><br><span class="line">        self.some_int = some_int</span><br><span class="line">        self.some_list_of_objects = some_list_of_objects</span><br><span class="line">        self.some_circular_ref = some_circular_ref</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__copy__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Create a shallow copy. This method will be called whenever someone calls</span></span><br><span class="line"><span class="string">        `copy.copy` with this object and the returned value is returned as the</span></span><br><span class="line"><span class="string">        new shallow copy.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># First, let&#x27;s create copies of the nested objects.</span></span><br><span class="line">        some_list_of_objects = copy.copy(self.some_list_of_objects)</span><br><span class="line">        some_circular_ref = copy.copy(self.some_circular_ref)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Then, let&#x27;s clone the object itself, using the prepared clones of the</span></span><br><span class="line">        <span class="comment"># nested objects.</span></span><br><span class="line">        new = self.__class__(</span><br><span class="line">            self.some_int, some_list_of_objects, some_circular_ref</span><br><span class="line">        )</span><br><span class="line">        new.__dict__.update(self.__dict__)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> new</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__deepcopy__</span>(<span class="params">self, memo=<span class="literal">None</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Create a deep copy. This method will be called whenever someone calls</span></span><br><span class="line"><span class="string">        `copy.deepcopy` with this object and the returned value is returned as</span></span><br><span class="line"><span class="string">        the new deep copy.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        What is the use of the argument `memo`? Memo is the dictionary that is</span></span><br><span class="line"><span class="string">        used by the `deepcopy` library to prevent infinite recursive copies in</span></span><br><span class="line"><span class="string">        instances of circular references. Pass it to all the `deepcopy` calls</span></span><br><span class="line"><span class="string">        you make in the `__deepcopy__` implementation to prevent infinite</span></span><br><span class="line"><span class="string">        recursions.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> memo <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            memo = &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># First, let&#x27;s create copies of the nested objects.</span></span><br><span class="line">        some_list_of_objects = copy.deepcopy(self.some_list_of_objects, memo)</span><br><span class="line">        some_circular_ref = copy.deepcopy(self.some_circular_ref, memo)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Then, let&#x27;s clone the object itself, using the prepared clones of the</span></span><br><span class="line">        <span class="comment"># nested objects.</span></span><br><span class="line">        new = self.__class__(</span><br><span class="line">            self.some_int, some_list_of_objects, some_circular_ref</span><br><span class="line">        )</span><br><span class="line">        new.__dict__ = copy.deepcopy(self.__dict__, memo)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> new</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    list_of_objects = [<span class="number">1</span>, &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]]</span><br><span class="line">    circular_ref = SelfReferencingEntity()</span><br><span class="line">    component = SomeComponent(<span class="number">23</span>, list_of_objects, circular_ref)</span><br><span class="line">    circular_ref.set_parent(component)</span><br><span class="line"></span><br><span class="line">    shallow_copied_component = copy.copy(component)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Let&#x27;s change the list in shallow_copied_component and see if it changes in</span></span><br><span class="line">    <span class="comment"># component.</span></span><br><span class="line">    shallow_copied_component.some_list_of_objects.append(<span class="string">&quot;another object&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> component.some_list_of_objects[-<span class="number">1</span>] == <span class="string">&quot;another object&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(</span><br><span class="line">            <span class="string">&quot;Adding elements to `shallow_copied_component`&#x27;s &quot;</span></span><br><span class="line">            <span class="string">&quot;some_list_of_objects adds it to `component`&#x27;s &quot;</span></span><br><span class="line">            <span class="string">&quot;some_list_of_objects.&quot;</span></span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(</span><br><span class="line">            <span class="string">&quot;Adding elements to `shallow_copied_component`&#x27;s &quot;</span></span><br><span class="line">            <span class="string">&quot;some_list_of_objects doesn&#x27;t add it to `component`&#x27;s &quot;</span></span><br><span class="line">            <span class="string">&quot;some_list_of_objects.&quot;</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Let&#x27;s change the set in the list of objects.</span></span><br><span class="line">    component.some_list_of_objects[<span class="number">1</span>].add(<span class="number">4</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="number">4</span> <span class="keyword">in</span> shallow_copied_component.some_list_of_objects[<span class="number">1</span>]:</span><br><span class="line">        <span class="built_in">print</span>(</span><br><span class="line">            <span class="string">&quot;Changing objects in the `component`&#x27;s some_list_of_objects &quot;</span></span><br><span class="line">            <span class="string">&quot;changes that object in `shallow_copied_component`&#x27;s &quot;</span></span><br><span class="line">            <span class="string">&quot;some_list_of_objects.&quot;</span></span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(</span><br><span class="line">            <span class="string">&quot;Changing objects in the `component`&#x27;s some_list_of_objects &quot;</span></span><br><span class="line">            <span class="string">&quot;doesn&#x27;t change that object in `shallow_copied_component`&#x27;s &quot;</span></span><br><span class="line">            <span class="string">&quot;some_list_of_objects.&quot;</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    deep_copied_component = copy.deepcopy(component)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Let&#x27;s change the list in deep_copied_component and see if it changes in</span></span><br><span class="line">    <span class="comment"># component.</span></span><br><span class="line">    deep_copied_component.some_list_of_objects.append(<span class="string">&quot;one more object&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> component.some_list_of_objects[-<span class="number">1</span>] == <span class="string">&quot;one more object&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(</span><br><span class="line">            <span class="string">&quot;Adding elements to `deep_copied_component`&#x27;s &quot;</span></span><br><span class="line">            <span class="string">&quot;some_list_of_objects adds it to `component`&#x27;s &quot;</span></span><br><span class="line">            <span class="string">&quot;some_list_of_objects.&quot;</span></span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(</span><br><span class="line">            <span class="string">&quot;Adding elements to `deep_copied_component`&#x27;s &quot;</span></span><br><span class="line">            <span class="string">&quot;some_list_of_objects doesn&#x27;t add it to `component`&#x27;s &quot;</span></span><br><span class="line">            <span class="string">&quot;some_list_of_objects.&quot;</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Let&#x27;s change the set in the list of objects.</span></span><br><span class="line">    component.some_list_of_objects[<span class="number">1</span>].add(<span class="number">10</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="number">10</span> <span class="keyword">in</span> deep_copied_component.some_list_of_objects[<span class="number">1</span>]:</span><br><span class="line">        <span class="built_in">print</span>(</span><br><span class="line">            <span class="string">&quot;Changing objects in the `component`&#x27;s some_list_of_objects &quot;</span></span><br><span class="line">            <span class="string">&quot;changes that object in `deep_copied_component`&#x27;s &quot;</span></span><br><span class="line">            <span class="string">&quot;some_list_of_objects.&quot;</span></span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(</span><br><span class="line">            <span class="string">&quot;Changing objects in the `component`&#x27;s some_list_of_objects &quot;</span></span><br><span class="line">            <span class="string">&quot;doesn&#x27;t change that object in `deep_copied_component`&#x27;s &quot;</span></span><br><span class="line">            <span class="string">&quot;some_list_of_objects.&quot;</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(</span><br><span class="line">        <span class="string">f&quot;id(deep_copied_component.some_circular_ref.parent): &quot;</span></span><br><span class="line">        <span class="string">f&quot;<span class="subst">&#123;<span class="built_in">id</span>(deep_copied_component.some_circular_ref.parent)&#125;</span>&quot;</span></span><br><span class="line">    )</span><br><span class="line">    <span class="built_in">print</span>(</span><br><span class="line">        <span class="string">f&quot;id(deep_copied_component.some_circular_ref.parent.some_circular_ref.parent): &quot;</span></span><br><span class="line">        <span class="string">f&quot;<span class="subst">&#123;<span class="built_in">id</span>(deep_copied_component.some_circular_ref.parent.some_circular_ref.parent)&#125;</span>&quot;</span></span><br><span class="line">    )</span><br><span class="line">    <span class="built_in">print</span>(</span><br><span class="line">        <span class="string">&quot;^^ This shows that deepcopied objects contain same reference, they &quot;</span></span><br><span class="line">        <span class="string">&quot;are not cloned repeatedly.&quot;</span></span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<h3 id="Output-txt-Execution-result"><a href="#Output-txt-Execution-result" class="headerlink" title="Output.txt: Execution result"></a>Output.txt: Execution result</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Adding elements to `shallow_copied_component`&#x27;s some_list_of_objects adds it to `component`&#x27;s some_list_of_objects.</span><br><span class="line">Changing objects in the `component`&#x27;s some_list_of_objects changes that object in `shallow_copied_component`&#x27;s some_list_of_objects.</span><br><span class="line">Adding elements to `deep_copied_component`&#x27;s some_list_of_objects doesn&#x27;t add it to `component`&#x27;s some_list_of_objects.</span><br><span class="line">Changing objects in the `component`&#x27;s some_list_of_objects doesn&#x27;t change that object in `deep_copied_component`&#x27;s some_list_of_objects.</span><br><span class="line">id(deep_copied_component.some_circular_ref.parent): 4429472784</span><br><span class="line">id(deep_copied_component.some_circular_ref.parent.some_circular_ref.parent): 4429472784</span><br><span class="line">^^ This shows that deepcopied objects contain same reference, they are not cloned repeatedly.</span><br></pre></td></tr></table></figure>
+
+<h3 id="Rust-Built-in-Clone-trait-内置克隆特征"><a href="#Rust-Built-in-Clone-trait-内置克隆特征" class="headerlink" title="Rust Built-in Clone trait 内置克隆特征"></a>Rust Built-in Clone trait 内置克隆特征</h3><p>Rust has a built-in <code>std::clone::Clone</code> trait with many implementations for various types (via <code>#[derive(Clone)]</code>). Thus, the Prototype pattern is ready to use out of the box.<br>Rust 有一个内置 <code>std::clone::Clone</code> 的特性，具有许多针对各种类型的实现（通过 <code>#[derive(Clone)]</code> ）。因此，原型模式可以开箱即用。</p>
+<h4 id="main-rs"><a href="#main-rs" class="headerlink" title="main.rs"></a>main.rs</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[derive(Clone)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Circle</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> x: <span class="type">u32</span>,</span><br><span class="line">    <span class="keyword">pub</span> y: <span class="type">u32</span>,</span><br><span class="line">    <span class="keyword">pub</span> radius: <span class="type">u32</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">circle1</span> = Circle &#123;</span><br><span class="line">        x: <span class="number">10</span>,</span><br><span class="line">        y: <span class="number">15</span>,</span><br><span class="line">        radius: <span class="number">10</span>,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Prototype in action.</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">circle2</span> = circle1.<span class="title function_ invoke__">clone</span>();</span><br><span class="line">    circle2.radius = <span class="number">77</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Circle 1: &#123;&#125;, &#123;&#125;, &#123;&#125;&quot;</span>, circle1.x, circle1.y, circle1.radius);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Circle 2: &#123;&#125;, &#123;&#125;, &#123;&#125;&quot;</span>, circle2.x, circle2.y, circle2.radius);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Circle 1: 10, 15, 10</span><br><span class="line">Circle 2: 10, 15, 77</span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>宇宙山河浪漫，赞赏动力无限</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Ice WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Ice Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.png">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/11/21/design-pattern/builder/" rel="prev" title="Builder">
+      <i class="fa fa-chevron-left"></i> Builder
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Prototype-%E5%8E%9F%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">Prototype 原型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intent-%E6%84%8F%E5%9B%BE"><span class="nav-number">1.1.</span> <span class="nav-text">Intent 意图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">Problem 问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.3.</span> <span class="nav-text">Solution 解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Real-World-Analogy-%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E7%B1%BB%E6%AF%94"><span class="nav-number">1.4.</span> <span class="nav-text">Real-World Analogy 真实世界的类比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Structure-%E7%BB%93%E6%9E%84"><span class="nav-number">1.5.</span> <span class="nav-text">Structure 结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-implementation-%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.5.1.</span> <span class="nav-text">Basic implementation 基本实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prototype-registry-implementation-%E5%8E%9F%E5%9E%8B%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.5.2.</span> <span class="nav-text">Prototype registry implementation 原型注册表实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pseudocode-%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">1.6.</span> <span class="nav-text">Pseudocode 伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Applicability-%E9%80%82%E7%94%A8%E6%80%A7"><span class="nav-number">1.7.</span> <span class="nav-text">Applicability 适用性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-Implement-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.8.</span> <span class="nav-text">How to Implement 如何实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pros-and-Cons-%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9"><span class="nav-number">1.9.</span> <span class="nav-text">Pros and Cons 优点和缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Relations-with-Other-Patterns-%E4%B8%8E%E5%85%B6%E4%BB%96%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.10.</span> <span class="nav-text">Relations with Other Patterns 与其他模式的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Examples-%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.11.</span> <span class="nav-text">Code Examples 代码示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-Conceptual-example"><span class="nav-number">1.11.1.</span> <span class="nav-text">Python Conceptual example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-txt-Execution-result"><span class="nav-number">1.11.2.</span> <span class="nav-text">Output.txt: Execution result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rust-Built-in-Clone-trait-%E5%86%85%E7%BD%AE%E5%85%8B%E9%9A%86%E7%89%B9%E5%BE%81"><span class="nav-number">1.11.3.</span> <span class="nav-text">Rust Built-in Clone trait 内置克隆特征</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#main-rs"><span class="nav-number">1.11.3.1.</span> <span class="nav-text">main.rs</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output"><span class="nav-number">1.11.4.</span> <span class="nav-text">Output</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ice</p>
+  <div class="site-description" itemprop="description">安静地坐着学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/TonyMistark" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;TonyMistark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/Micestark" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;Micestark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tony_mistark@163.com" title="E-Mail → mailto:tony_mistark@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Tony_Mistark" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Tony_Mistark" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ice</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">63k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">3:50</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '298b6503f44953bd4193',
+      clientSecret: '6756a6cfc10d74976c79256c96ae1c441f3116ac',
+      repo        : 'tonymistark.github.io',
+      owner       : 'TonyMistark',
+      admin       : ['TonyMistark'],
+      id          : '3f5dc8bfe9540a66b9aab6f8381ebc9a',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

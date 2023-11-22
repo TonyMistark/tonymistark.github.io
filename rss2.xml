@@ -15,13 +15,146 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Wed, 15 Nov 2023 12:02:55 GMT</pubDate>
+    <pubDate>Wed, 22 Nov 2023 14:10:06 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
+      <title>Prototype</title>
+      <link>https://tonymistark.github.io/2023/11/22/design-pattern/prototype/</link>
+      <guid>https://tonymistark.github.io/2023/11/22/design-pattern/prototype/</guid>
+      <pubDate>Wed, 22 Nov 2023 13:10:02 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Prototype-原型&quot;&gt;&lt;a href=&quot;#Prototype-原型&quot; class=&quot;headerlink&quot; title=&quot;Prototype 原型&quot;&gt;&lt;/a&gt;Prototype 原型&lt;/h1&gt;&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
+      
+      
+      
+      <comments>https://tonymistark.github.io/2023/11/22/design-pattern/prototype/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Builder</title>
+      <link>https://tonymistark.github.io/2023/11/21/design-pattern/builder/</link>
+      <guid>https://tonymistark.github.io/2023/11/21/design-pattern/builder/</guid>
+      <pubDate>Tue, 21 Nov 2023 12:42:48 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Builder-建造者&quot;&gt;&lt;a href=&quot;#Builder-建造者&quot; class=&quot;headerlink&quot; title=&quot;Builder 建造者&quot;&gt;&lt;/a&gt;Builder 建造者&lt;/h1&gt;&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/11/21/design-pattern/builder/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Abstract Factory</title>
+      <link>https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/</link>
+      <guid>https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/</guid>
+      <pubDate>Mon, 20 Nov 2023 12:16:29 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Abstract-Factory-抽象工厂&quot;&gt;&lt;a href=&quot;#Abstract-Factory-抽象工厂&quot; class=&quot;headerlink&quot; title=&quot;Abstract Factory 抽象工厂&quot;&gt;&lt;/a&gt;Abstract Factory</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Factory Method</title>
+      <link>https://tonymistark.github.io/2023/11/16/design-pattern/factory-method/</link>
+      <guid>https://tonymistark.github.io/2023/11/16/design-pattern/factory-method/</guid>
+      <pubDate>Thu, 16 Nov 2023 13:02:09 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Factory-Method&quot;&gt;&lt;a href=&quot;#Factory-Method&quot; class=&quot;headerlink&quot; title=&quot;Factory Method&quot;&gt;&lt;/a&gt;Factory Method&lt;/h1&gt;&lt;h1 id=&quot;工厂方法&quot;&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/11/16/design-pattern/factory-method/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>classification of patterns</title>
+      <link>https://tonymistark.github.io/2023/11/15/design-pattern/classification-of-patterns/</link>
+      <guid>https://tonymistark.github.io/2023/11/15/design-pattern/classification-of-patterns/</guid>
+      <pubDate>Wed, 15 Nov 2023 15:02:50 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Classification-of-patterns&quot;&gt;&lt;a href=&quot;#Classification-of-patterns&quot; class=&quot;headerlink&quot; title=&quot;Classification of</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/11/15/design-pattern/classification-of-patterns/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
       <title>Why should I learn patterns?</title>
-      <link>https://tonymistark.github.io/2023/11/15/design-patter/why-should-i-learn-patterns/</link>
-      <guid>https://tonymistark.github.io/2023/11/15/design-patter/why-should-i-learn-patterns/</guid>
+      <link>https://tonymistark.github.io/2023/11/15/design-pattern/why-should-i-learn-patterns/</link>
+      <guid>https://tonymistark.github.io/2023/11/15/design-pattern/why-should-i-learn-patterns/</guid>
       <pubDate>Wed, 15 Nov 2023 11:54:40 GMT</pubDate>
       
         
@@ -35,20 +168,20 @@
       
       
       
-      <category domain="https://tonymistark.github.io/categories/design-patter/">design-patter</category>
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
       
       
       <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
       
       
-      <comments>https://tonymistark.github.io/2023/11/15/design-patter/why-should-i-learn-patterns/#disqus_thread</comments>
+      <comments>https://tonymistark.github.io/2023/11/15/design-pattern/why-should-i-learn-patterns/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>History of patterns</title>
-      <link>https://tonymistark.github.io/2023/11/14/design-patter/history-of-patterns/</link>
-      <guid>https://tonymistark.github.io/2023/11/14/design-patter/history-of-patterns/</guid>
+      <link>https://tonymistark.github.io/2023/11/14/design-pattern/history-of-patterns/</link>
+      <guid>https://tonymistark.github.io/2023/11/14/design-pattern/history-of-patterns/</guid>
       <pubDate>Tue, 14 Nov 2023 12:53:45 GMT</pubDate>
       
         
@@ -62,20 +195,20 @@
       
       
       
-      <category domain="https://tonymistark.github.io/categories/design-patter/">design-patter</category>
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
       
       
       <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
       
       
-      <comments>https://tonymistark.github.io/2023/11/14/design-patter/history-of-patterns/#disqus_thread</comments>
+      <comments>https://tonymistark.github.io/2023/11/14/design-pattern/history-of-patterns/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>What&#39;s a design pattern?</title>
-      <link>https://tonymistark.github.io/2023/11/09/design-patter/what-is-a-design-pattern/</link>
-      <guid>https://tonymistark.github.io/2023/11/09/design-patter/what-is-a-design-pattern/</guid>
+      <link>https://tonymistark.github.io/2023/11/09/design-pattern/what-is-a-design-pattern/</link>
+      <guid>https://tonymistark.github.io/2023/11/09/design-pattern/what-is-a-design-pattern/</guid>
       <pubDate>Thu, 09 Nov 2023 14:18:59 GMT</pubDate>
       
         
@@ -89,13 +222,13 @@
       
       
       
-      <category domain="https://tonymistark.github.io/categories/design-patter/">design-patter</category>
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
       
       
       <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
       
       
-      <comments>https://tonymistark.github.io/2023/11/09/design-patter/what-is-a-design-pattern/#disqus_thread</comments>
+      <comments>https://tonymistark.github.io/2023/11/09/design-pattern/what-is-a-design-pattern/#disqus_thread</comments>
       
     </item>
     
@@ -410,138 +543,6 @@
       
       
       <comments>https://tonymistark.github.io/2023/08/19/hexo-commands/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>ubuntu 只保留最近一周的日志</title>
-      <link>https://tonymistark.github.io/2023/08/18/ubuntu-%E5%8F%AA%E4%BF%9D%E7%95%99%E6%9C%80%E8%BF%91%E4%B8%80%E5%91%A8%E7%9A%84%E6%97%A5%E5%BF%97/</link>
-      <guid>https://tonymistark.github.io/2023/08/18/ubuntu-%E5%8F%AA%E4%BF%9D%E7%95%99%E6%9C%80%E8%BF%91%E4%B8%80%E5%91%A8%E7%9A%84%E6%97%A5%E5%BF%97/</guid>
-      <pubDate>Fri, 18 Aug 2023 07:32:38 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h3 id=&quot;只保留最近一周的日志&quot;&gt;&lt;a href=&quot;#只保留最近一周的日志&quot; class=&quot;headerlink&quot; title=&quot;只保留最近一周的日志&quot;&gt;&lt;/a&gt;只保留最近一周的日志&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;只保留最近一周的日志&lt;/p&gt;
-&lt;figure</description>
-          
-        
-      
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/tags/ubuntu/">ubuntu</category>
-      
-      
-      <comments>https://tonymistark.github.io/2023/08/18/ubuntu-%E5%8F%AA%E4%BF%9D%E7%95%99%E6%9C%80%E8%BF%91%E4%B8%80%E5%91%A8%E7%9A%84%E6%97%A5%E5%BF%97/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>ubuntu 时钟显示秒</title>
-      <link>https://tonymistark.github.io/2023/08/18/ubuntu-%E6%97%B6%E9%92%9F%E6%98%BE%E7%A4%BA%E7%A7%92/</link>
-      <guid>https://tonymistark.github.io/2023/08/18/ubuntu-%E6%97%B6%E9%92%9F%E6%98%BE%E7%A4%BA%E7%A7%92/</guid>
-      <pubDate>Fri, 18 Aug 2023 07:12:39 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h3 id=&quot;时钟显示秒&quot;&gt;&lt;a href=&quot;#时钟显示秒&quot; class=&quot;headerlink&quot; title=&quot;时钟显示秒&quot;&gt;&lt;/a&gt;时钟显示秒&lt;/h3&gt;&lt;p&gt;Ubuntu 日期时间显示格式“月-日 星期, 时-分-秒”命令：&lt;/p&gt;
-&lt;figure</description>
-          
-        
-      
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/tags/tags/">tags</category>
-      
-      
-      <comments>https://tonymistark.github.io/2023/08/18/ubuntu-%E6%97%B6%E9%92%9F%E6%98%BE%E7%A4%BA%E7%A7%92/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>为什么看到别人过得好，我就心里好难受呢？</title>
-      <link>https://tonymistark.github.io/2023/08/18/rust_docs/why/</link>
-      <guid>https://tonymistark.github.io/2023/08/18/rust_docs/why/</guid>
-      <pubDate>Fri, 18 Aug 2023 02:01:00 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h3 id=&quot;为什么看到别人过得好，我就心里好难受呢？&quot;&gt;&lt;a href=&quot;#为什么看到别人过得好，我就心里好难受呢？&quot; class=&quot;headerlink&quot;</description>
-          
-        
-      
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/tags/%E9%9A%8F%E6%83%B3/">随想</category>
-      
-      
-      <comments>https://tonymistark.github.io/2023/08/18/rust_docs/why/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Ch 09.01:使用`panic!`的backtrace</title>
-      <link>https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_01_unrecoverable_errors_with_panic/</link>
-      <guid>https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_01_unrecoverable_errors_with_panic/</guid>
-      <pubDate>Thu, 18 May 2023 02:35:00 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h4 id=&quot;使用panic-的backtrace&quot;&gt;&lt;a href=&quot;#使用panic-的backtrace&quot; class=&quot;headerlink&quot;</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/Rust/">Rust</category>
-      
-      
-      <category domain="https://tonymistark.github.io/tags/Rust/">Rust</category>
-      
-      
-      <comments>https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_01_unrecoverable_errors_with_panic/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Ch 09.00:错误处理</title>
-      <link>https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_00_error_handing/</link>
-      <guid>https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_00_error_handing/</guid>
-      <pubDate>Thu, 18 May 2023 02:34:00 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h3 id=&quot;错误处理&quot;&gt;&lt;a href=&quot;#错误处理&quot; class=&quot;headerlink&quot;</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/Rust/">Rust</category>
-      
-      
-      <category domain="https://tonymistark.github.io/tags/Rust/">Rust</category>
-      
-      
-      <comments>https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_00_error_handing/#disqus_thread</comments>
       
     </item>
     
