@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>BLOG</title>
+    <link>https://tonymistark.github.io/</link>
+    
+    <image>
+      <url>https://tonymistark.github.io/icon.png</url>
+      <title>BLOG</title>
+      <link>https://tonymistark.github.io/</link>
+    </image>
+    
+    <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
+    
+    <description>安静地坐着学习</description>
+    <pubDate>Wed, 22 Nov 2023 13:04:41 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Builder</title>
+      <link>https://tonymistark.github.io/2023/11/21/design-pattern/builder/</link>
+      <guid>https://tonymistark.github.io/2023/11/21/design-pattern/builder/</guid>
+      <pubDate>Tue, 21 Nov 2023 12:42:48 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Builder-建造者&quot;&gt;&lt;a href=&quot;#Builder-建造者&quot; class=&quot;headerlink&quot; title=&quot;Builder 建造者&quot;&gt;&lt;/a&gt;Builder 建造者&lt;/h1&gt;&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/11/21/design-pattern/builder/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Abstract Factory</title>
+      <link>https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/</link>
+      <guid>https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/</guid>
+      <pubDate>Mon, 20 Nov 2023 12:16:29 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Abstract-Factory-抽象工厂&quot;&gt;&lt;a href=&quot;#Abstract-Factory-抽象工厂&quot; class=&quot;headerlink&quot; title=&quot;Abstract Factory 抽象工厂&quot;&gt;&lt;/a&gt;Abstract Factory</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Factory Method</title>
+      <link>https://tonymistark.github.io/2023/11/16/design-pattern/factory-method/</link>
+      <guid>https://tonymistark.github.io/2023/11/16/design-pattern/factory-method/</guid>
+      <pubDate>Thu, 16 Nov 2023 13:02:09 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Factory-Method&quot;&gt;&lt;a href=&quot;#Factory-Method&quot; class=&quot;headerlink&quot; title=&quot;Factory Method&quot;&gt;&lt;/a&gt;Factory Method&lt;/h1&gt;&lt;h1 id=&quot;工厂方法&quot;&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/11/16/design-pattern/factory-method/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>classification of patterns</title>
+      <link>https://tonymistark.github.io/2023/11/15/design-pattern/classification-of-patterns/</link>
+      <guid>https://tonymistark.github.io/2023/11/15/design-pattern/classification-of-patterns/</guid>
+      <pubDate>Wed, 15 Nov 2023 15:02:50 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Classification-of-patterns&quot;&gt;&lt;a href=&quot;#Classification-of-patterns&quot; class=&quot;headerlink&quot; title=&quot;Classification of</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/11/15/design-pattern/classification-of-patterns/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Why should I learn patterns?</title>
+      <link>https://tonymistark.github.io/2023/11/15/design-pattern/why-should-i-learn-patterns/</link>
+      <guid>https://tonymistark.github.io/2023/11/15/design-pattern/why-should-i-learn-patterns/</guid>
+      <pubDate>Wed, 15 Nov 2023 11:54:40 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Why-should-I-learn-patterns&quot;&gt;&lt;a href=&quot;#Why-should-I-learn-patterns&quot; class=&quot;headerlink&quot; title=&quot;Why should I learn patterns?&quot;&gt;&lt;/a&gt;Why</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/11/15/design-pattern/why-should-i-learn-patterns/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>History of patterns</title>
+      <link>https://tonymistark.github.io/2023/11/14/design-pattern/history-of-patterns/</link>
+      <guid>https://tonymistark.github.io/2023/11/14/design-pattern/history-of-patterns/</guid>
+      <pubDate>Tue, 14 Nov 2023 12:53:45 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;History-of-patterns&quot;&gt;&lt;a href=&quot;#History-of-patterns&quot; class=&quot;headerlink&quot; title=&quot;History of patterns&quot;&gt;&lt;/a&gt;History of patterns&lt;/h1&gt;&lt;h1</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/11/14/design-pattern/history-of-patterns/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>What&#39;s a design pattern?</title>
+      <link>https://tonymistark.github.io/2023/11/09/design-pattern/what-is-a-design-pattern/</link>
+      <guid>https://tonymistark.github.io/2023/11/09/design-pattern/what-is-a-design-pattern/</guid>
+      <pubDate>Thu, 09 Nov 2023 14:18:59 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;What’s-a-design-pattern&quot;&gt;&lt;a href=&quot;#What’s-a-design-pattern&quot; class=&quot;headerlink&quot; title=&quot;What’s a design pattern?&quot;&gt;&lt;/a&gt;What’s a design</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/11/09/design-pattern/what-is-a-design-pattern/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>一键部署 Ollama在本地启动并运行大语言模型</title>
+      <link>https://tonymistark.github.io/2023/11/02/Ollama-%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%90%AF%E5%8A%A8%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/</link>
+      <guid>https://tonymistark.github.io/2023/11/02/Ollama-%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%90%AF%E5%8A%A8%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/</guid>
+      <pubDate>Thu, 02 Nov 2023 07:13:38 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2023/11/02/Ollama-%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%90%AF%E5%8A%A8%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>I am Grinding King</title>
+      <link>https://tonymistark.github.io/2023/11/01/I-am-Grinding-King/</link>
+      <guid>https://tonymistark.github.io/2023/11/01/I-am-Grinding-King/</guid>
+      <pubDate>Wed, 01 Nov 2023 10:22:41 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Ice:&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;你理解在中文里面“卷”的特别的意思吗？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Claude:&lt;/strong&gt;&lt;/em</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2023/11/01/I-am-Grinding-King/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PEP 703（使全局解释器锁在 CPython 中可选）验收</title>
+      <link>https://tonymistark.github.io/2023/10/27/pep-703-making-the-global-interpreter-lock-optional-in-cpython-acceptance/</link>
+      <guid>https://tonymistark.github.io/2023/10/27/pep-703-making-the-global-interpreter-lock-optional-in-cpython-acceptance/</guid>
+      <pubDate>Fri, 27 Oct 2023 03:05:45 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;PEP-703（使全局解释器锁在-CPython-中可选）验收&quot;&gt;&lt;a href=&quot;#PEP-703（使全局解释器锁在-CPython-中可选）验收&quot; class=&quot;headerlink&quot; title=&quot;PEP 703（使全局解释器锁在 CPython</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2023/10/27/pep-703-making-the-global-interpreter-lock-optional-in-cpython-acceptance/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>我应该支持以色列还是巴勒斯坦？</title>
+      <link>https://tonymistark.github.io/2023/10/20/should_I_support_Israel_or_Palestine/</link>
+      <guid>https://tonymistark.github.io/2023/10/20/should_I_support_Israel_or_Palestine/</guid>
+      <pubDate>Fri, 20 Oct 2023 03:11:20 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;我应该支持以色列还是巴勒斯坦？&quot;&gt;&lt;a href=&quot;#我应该支持以色列还是巴勒斯坦？&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/writing/">writing</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/%E9%9A%8F%E6%83%B3/">随想</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/10/20/should_I_support_Israel_or_Palestine/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Ch 09.02:带有结果的可恢复错误</title>
+      <link>https://tonymistark.github.io/2023/10/18/rust_docs/ch_09_02_recoverable_errors_with_result/</link>
+      <guid>https://tonymistark.github.io/2023/10/18/rust_docs/ch_09_02_recoverable_errors_with_result/</guid>
+      <pubDate>Wed, 18 Oct 2023 11:35:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;带有结果的可恢复错误&quot;&gt;&lt;a href=&quot;#带有结果的可恢复错误&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/Rust/">Rust</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Rust/">Rust</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/10/18/rust_docs/ch_09_02_recoverable_errors_with_result/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>(Life) Advice From The Creator of C++</title>
+      <link>https://tonymistark.github.io/2023/08/31/Life-Advice-From-The-Creator-of-Cpp/</link>
+      <guid>https://tonymistark.github.io/2023/08/31/Life-Advice-From-The-Creator-of-Cpp/</guid>
+      <pubDate>Thu, 31 Aug 2023 02:32:17 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;C-之父-Bjarne-Stroustrup-分享人生建议&quot;&gt;&lt;a href=&quot;#C-之父-Bjarne-Stroustrup-分享人生建议&quot; class=&quot;headerlink&quot; title=&quot;C++ 之父 Bjarne Stroustrup</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/%E9%9A%8F%E7%AC%94/">随笔</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/%E9%9A%8F%E7%AC%94/">随笔</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/08/31/Life-Advice-From-The-Creator-of-Cpp/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>谈日本向海洋排放核污染水</title>
+      <link>https://tonymistark.github.io/2023/08/29/%E8%B0%88%E6%97%A5%E6%9C%AC%E5%90%91%E6%B5%B7%E6%B4%8B%E6%8E%92%E6%A0%B8%E6%B1%A1%E6%9F%93%E6%B0%B4/</link>
+      <guid>https://tonymistark.github.io/2023/08/29/%E8%B0%88%E6%97%A5%E6%9C%AC%E5%90%91%E6%B5%B7%E6%B4%8B%E6%8E%92%E6%A0%B8%E6%B1%A1%E6%9F%93%E6%B0%B4/</guid>
+      <pubDate>Tue, 29 Aug 2023 12:03:24 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;谈日本向海洋排放核污染水&quot;&gt;&lt;a href=&quot;#谈日本向海洋排放核污染水&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/%E9%9A%8F%E7%AC%94/">随笔</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/%E9%9A%8F%E7%AC%94/">随笔</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/08/29/%E8%B0%88%E6%97%A5%E6%9C%AC%E5%90%91%E6%B5%B7%E6%B4%8B%E6%8E%92%E6%A0%B8%E6%B1%A1%E6%9F%93%E6%B0%B4/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>ubuntu20.04/ubuntu22.04 安装，环境配置遇到的问题以及解决方案</title>
+      <link>https://tonymistark.github.io/2023/08/29/ubuntu20-04-ubuntu22-04-%E5%AE%89%E8%A3%85%EF%BC%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
+      <guid>https://tonymistark.github.io/2023/08/29/ubuntu20-04-ubuntu22-04-%E5%AE%89%E8%A3%85%EF%BC%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
+      <pubDate>Tue, 29 Aug 2023 06:48:08 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;build-a-python-env-on-ubuntu20-04&quot;&gt;&lt;a href=&quot;#build-a-python-env-on-ubuntu20-04&quot; class=&quot;headerlink&quot; title=&quot;build a python env on</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/ubuntu/">ubuntu</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/ubuntu/">ubuntu</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/08/29/ubuntu20-04-ubuntu22-04-%E5%AE%89%E8%A3%85%EF%BC%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>人生南北多歧路,君向潇湘我向秦</title>
+      <link>https://tonymistark.github.io/2023/08/25/%E4%BA%BA%E7%94%9F%E5%8D%97%E5%8C%97%E5%A4%9A%E6%AD%A7%E8%B7%AF-%E5%90%9B%E5%90%91%E6%BD%87%E6%B9%98%E6%88%91%E5%90%91%E7%A7%A6/</link>
+      <guid>https://tonymistark.github.io/2023/08/25/%E4%BA%BA%E7%94%9F%E5%8D%97%E5%8C%97%E5%A4%9A%E6%AD%A7%E8%B7%AF-%E5%90%9B%E5%90%91%E6%BD%87%E6%B9%98%E6%88%91%E5%90%91%E7%A7%A6/</guid>
+      <pubDate>Fri, 25 Aug 2023 00:53:24 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;人生南北多歧路-君向潇湘我向秦&quot;&gt;&lt;a href=&quot;#人生南北多歧路-君向潇湘我向秦&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/%E9%9A%8F%E7%AC%94/">随笔</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/%E9%9A%8F%E7%AC%94/">随笔</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/08/25/%E4%BA%BA%E7%94%9F%E5%8D%97%E5%8C%97%E5%A4%9A%E6%AD%A7%E8%B7%AF-%E5%90%9B%E5%90%91%E6%BD%87%E6%B9%98%E6%88%91%E5%90%91%E7%A7%A6/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>人在什么情况下成长最快？</title>
+      <link>https://tonymistark.github.io/2023/08/21/%E4%BA%BA%E5%9C%A8%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E6%88%90%E9%95%BF%E6%9C%80%E5%BF%AB%EF%BC%9F/</link>
+      <guid>https://tonymistark.github.io/2023/08/21/%E4%BA%BA%E5%9C%A8%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E6%88%90%E9%95%BF%E6%9C%80%E5%BF%AB%EF%BC%9F/</guid>
+      <pubDate>Mon, 21 Aug 2023 13:38:17 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;人在什么情况下成长最快？&quot;&gt;&lt;a href=&quot;#人在什么情况下成长最快？&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/writing/">writing</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/%E9%9A%8F%E6%83%B3/">随想</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/08/21/%E4%BA%BA%E5%9C%A8%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E6%88%90%E9%95%BF%E6%9C%80%E5%BF%AB%EF%BC%9F/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Hexo 添加分类和标签</title>
+      <link>https://tonymistark.github.io/2023/08/20/hexo_categories_tag/</link>
+      <guid>https://tonymistark.github.io/2023/08/20/hexo_categories_tag/</guid>
+      <pubDate>Sun, 20 Aug 2023 08:02:39 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;创建“分类”选项&quot;&gt;&lt;a href=&quot;#创建“分类”选项&quot; class=&quot;headerlink&quot; title=&quot;创建“分类”选项&quot;&gt;&lt;/a&gt;创建“分类”选项&lt;/h3&gt;&lt;p&gt;生成“分类”页并添加tpye属性,进入博客目录。执行命令下方命令&lt;/p&gt;
+&lt;figure</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/notes/">notes</category>
+      
+      
+      
+      <comments>https://tonymistark.github.io/2023/08/20/hexo_categories_tag/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Hexo Commands</title>
+      <link>https://tonymistark.github.io/2023/08/19/hexo-commands/</link>
+      <guid>https://tonymistark.github.io/2023/08/19/hexo-commands/</guid>
+      <pubDate>Sat, 19 Aug 2023 14:09:35 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;Hexo-命令&quot;&gt;&lt;a href=&quot;#Hexo-命令&quot; class=&quot;headerlink&quot; title=&quot;Hexo 命令&quot;&gt;&lt;/a&gt;Hexo 命令&lt;/h3&gt;&lt;h4 id=&quot;new&quot;&gt;&lt;a href=&quot;#new&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/tags/tools/">tools</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/08/19/hexo-commands/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>ubuntu 只保留最近一周的日志</title>
+      <link>https://tonymistark.github.io/2023/08/18/ubuntu-%E5%8F%AA%E4%BF%9D%E7%95%99%E6%9C%80%E8%BF%91%E4%B8%80%E5%91%A8%E7%9A%84%E6%97%A5%E5%BF%97/</link>
+      <guid>https://tonymistark.github.io/2023/08/18/ubuntu-%E5%8F%AA%E4%BF%9D%E7%95%99%E6%9C%80%E8%BF%91%E4%B8%80%E5%91%A8%E7%9A%84%E6%97%A5%E5%BF%97/</guid>
+      <pubDate>Fri, 18 Aug 2023 07:32:38 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;只保留最近一周的日志&quot;&gt;&lt;a href=&quot;#只保留最近一周的日志&quot; class=&quot;headerlink&quot; title=&quot;只保留最近一周的日志&quot;&gt;&lt;/a&gt;只保留最近一周的日志&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;只保留最近一周的日志&lt;/p&gt;
+&lt;figure</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/tags/ubuntu/">ubuntu</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/08/18/ubuntu-%E5%8F%AA%E4%BF%9D%E7%95%99%E6%9C%80%E8%BF%91%E4%B8%80%E5%91%A8%E7%9A%84%E6%97%A5%E5%BF%97/#disqus_thread</comments>
+      
+    </item>
+    
+  </channel>
+</rss>

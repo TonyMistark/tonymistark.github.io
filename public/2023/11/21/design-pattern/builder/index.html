@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Builder 建造者Intent 意图Builder is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object usin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Builder">
+<meta property="og:url" content="https://tonymistark.github.io/2023/11/21/design-pattern/builder/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="Builder 建造者Intent 意图Builder is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object usin">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://tonymistark.github.io/images/builder-en.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/builder-problem1.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/builder-problem2.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/builder-solution1.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/builder-comic-1-en.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/builder-comic-2-en.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/builder-structure.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/builder-example-en.png">
+<meta property="article:published_time" content="2023-11-21T12:42:48.000Z">
+<meta property="article:modified_time" content="2023-11-22T13:04:41.297Z">
+<meta property="article:author" content="Ice">
+<meta property="article:tag" content="Design Pattern">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tonymistark.github.io/images/builder-en.png">
+
+<link rel="canonical" href="https://tonymistark.github.io/2023/11/21/design-pattern/builder/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Builder | BLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6L4L92Z6Z"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W6L4L92Z6Z');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?99c70b2174a7fbe4af476f28bafb19a3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/./atom.xml" title="BLOG" type="application/atom+xml">
+<link rel="alternate" href="/./rss2.xml" title="BLOG" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">用心记录思想</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/11/21/design-pattern/builder/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Builder
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-11-21 20:42:48" itemprop="dateCreated datePublished" datetime="2023-11-21T20:42:48+08:00">2023-11-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-11-22 21:04:41" itemprop="dateModified" datetime="2023-11-22T21:04:41+08:00">2023-11-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/design-pattern/" itemprop="url" rel="index"><span itemprop="name">design-pattern</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>7.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>28 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Builder-建造者"><a href="#Builder-建造者" class="headerlink" title="Builder 建造者"></a>Builder 建造者</h1><h2 id="Intent-意图"><a href="#Intent-意图" class="headerlink" title="Intent 意图"></a>Intent 意图</h2><p><strong>Builder</strong> is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object using the same construction code.<br><strong>Builder</strong> 是一种创建性设计模式，可让您逐步构建复杂的对象。该模式允许您使用相同的构造代码生成对象的不同类型和表示形式。</p>
+<div align="center"> <img src="/images/builder-en.png"/></div>
+
+<h2 id="Problem-问题"><a href="#Problem-问题" class="headerlink" title="Problem 问题"></a>Problem 问题</h2><p>Imagine a complex object that requires laborious, step-by-step initialization of many fields and nested objects. Such initialization code is usually buried inside a monstrous constructor with lots of parameters. Or even worse: scattered all over the client code.<br>想象一个复杂的对象，需要费力地逐步初始化许多字段和嵌套对象。这种初始化代码通常隐藏在具有大量参数的可怕构造函数中。或者更糟糕的是：分散在客户端代码中。</p>
+<div align="center"> <img src="/images/builder-problem1.png"/>You might make the program too complex by creating a subclass for every possible configuration of an object.</通过为对象的每个可能配置创建一个子类，可能会使程序过于复杂。></div>
+
+<p>For example, let’s think about how to create a <code>House</code> object. To build a simple house, you need to construct four walls and a floor, install a door, fit a pair of windows, and build a roof. But what if you want a bigger, brighter house, with a backyard and other goodies (like a heating system, plumbing, and electrical wiring)?<br>例如，让我们考虑如何创建一个 <code>House</code> 对象。要建造一个简单的房子，你需要建造四面墙和一个地板，安装一扇门，安装一对窗户，并建造一个屋顶。但是，如果您想要一个更大、更明亮的房子，有后院和其他好东西（如供暖系统、管道和电线）怎么办？</p>
+<p>The simplest solution is to extend the base <code>House</code> class and create a set of subclasses to cover all combinations of the parameters. But eventually you’ll end up with a considerable number of subclasses. Any new parameter, such as the porch style, will require growing this hierarchy even more.<br>最简单的解决方案是扩展基 <code>House</code> 类并创建一组子类以涵盖参数的所有组合。但最终你会得到相当多的子类。任何新参数（例如门廊样式）都需要进一步扩展此层次结构。</p>
+<p>There’s another approach that doesn’t involve breeding subclasses. You can create a giant constructor right in the base <code>House</code> class with all possible parameters that control the house object. While this approach indeed eliminates the need for subclasses, it creates another problem.<br>还有另一种方法不涉及育种子类。您可以直接在基 <code>House</code> 类中创建一个巨大的构造函数，其中包含控制 house 对象的所有可能参数。虽然这种方法确实消除了对子类的需求，但它产生了另一个问题。</p>
+<div align="center"> <img src="/images/builder-problem2.png"/>The constructor with lots of parameters has its downside: not all the parameters are needed at all times.</br>具有大量参数的构造函数有其缺点：并非所有参数都是必需的。</div>
+
+<p>In most cases most of the parameters will be unused, making <strong>the constructor calls pretty ugly</strong>. For instance, only a fraction of houses have swimming pools, so the parameters related to swimming pools will be useless nine times out of ten.<br>在大多数情况下，大多数参数将处于未使用状态，这使得构造函数调用非常丑陋。例如，只有一小部分房屋有游泳池，因此与游泳池相关的参数十有八九将毫无用处。</p>
+<h2 id="Solution-解决方案"><a href="#Solution-解决方案" class="headerlink" title="Solution 解决方案"></a>Solution 解决方案</h2><p>The Builder pattern suggests that you extract the object construction code out of its own class and move it to separate objects called builders.<br>Builder 模式建议您将对象构造代码从其自己的类中提取出来，并将其移动到称为生成器的单独对象中。</p>
+<div align="center"> <img src="/images/builder-solution1.png"/>The Builder pattern lets you construct complex objects step by step. The Builder doesn’t allow other objects to access the product while it’s being built.</br>Builder 模式允许您逐步构建复杂的对象。Builder 不允许其他对象在构建产品时访问产品。</div>
+
+<p>The pattern organizes object construction into a set of steps (<code>buildWalls</code>, <code>buildDoor</code>, etc.). To create an object, you execute a series of these steps on a builder object. The important part is that you don’t need to call all of the steps. You can call only those steps that are necessary for producing a particular configuration of an object.<br>该模式将对象构造组织为一组步骤（<code>buildWalls</code>, <code>buildDoor</code> 等）。要创建对象，请在生成器对象上执行一系列这些步骤。重要的是，您不需要调用所有步骤。您只能调用生成对象的特定配置所需的那些步骤。</p>
+<p>Some of the construction steps might require different implementation when you need to build various representations of the product. For example, walls of a cabin may be built of wood, but the castle walls must be built with stone.<br>当您需要构建产品的各种表示形式时，某些构造步骤可能需要不同的实现。例如，小屋的墙壁可以用木头建造，但城堡的墙壁必须用石头建造。</p>
+<p>In this case, you can create several different builder classes that implement the same set of building steps, but in a different manner. Then you can use these builders in the construction process (i.e., an ordered set of calls to the building steps) to produce different kinds of objects.<br>在这种情况下，您可以创建多个不同的生成器类，这些类以不同的方式实现同一组生成步骤。然后，您可以在构造过程中使用这些构建器（即，对构建步骤的一组有序调用）来生成不同类型的对象。</p>
+<div align="center"> <img src="/images/builder-comic-1-en.png"/>Different builders execute the same task in various ways.</br>不同的构建器以不同的方式执行相同的任务。</div>
+
+<p>For example, imagine a builder that builds everything from wood and glass, a second one that builds everything with stone and iron and a third one that uses gold and diamonds. By calling the same set of steps, you get a regular house from the first builder, a small castle from the second and a palace from the third. However, this would only work if the client code that calls the building steps is able to interact with builders using a common interface.<br>例如，想象一个建筑商用木头和玻璃建造所有东西，第二个建筑商用石头和铁建造所有东西，第三个建筑商使用黄金和钻石建造所有东西。通过调用相同的步骤，您可以从第一个建筑商那里获得普通房屋，从第二个建造者那里获得一座小城堡，从第三个建造者那里获得一座宫殿。但是，仅当调用生成步骤的客户端代码能够使用通用接口与构建器交互时，这才有效。</p>
+<h2 id="Director"><a href="#Director" class="headerlink" title="Director"></a>Director</h2><p>You can go further and extract a series of calls to the builder steps you use to construct a product into a separate class called director. The director class defines the order in which to execute the building steps, while the builder provides the implementation for those steps.<br>您可以更进一步，将对用于将产品构造到称为 director 的单独类的构建器步骤的一系列调用中提取出来。director 类定义执行生成步骤的顺序，而生成器则提供这些步骤的实现。</p>
+<div align="center"> <img src="/images/builder-comic-2-en.png"/>The director knows which building steps to execute to get a working product.</br>主管知道要执行哪些构建步骤才能获得工作产品。</div>
+
+<p>Having a director class in your program isn’t strictly necessary. You can always call the building steps in a specific order directly from the client code. However, the director class might be a good place to put various construction routines so you can reuse them across your program.<br>在您的课程中开设director类并不是绝对必要的。您始终可以直接从客户端代码按特定顺序调用生成步骤。但是，director 类可能是放置各种构造例程的好地方，以便您可以在程序中重用它们。</p>
+<p>In addition, the director class completely hides the details of product construction from the client code. The client only needs to associate a builder with a director, launch the construction with the director, and get the result from the builder.<br>此外，director 类在客户端代码中完全隐藏了产品构造的细节。客户端只需将构建器与控制器关联，与控制器一起启动构造，并从构建器获取结果。</p>
+<h2 id="Structure-结构"><a href="#Structure-结构" class="headerlink" title="Structure 结构"></a>Structure 结构</h2><div align="center"> <img src="/images/builder-structure.png"/></div>
+
+<ol>
+<li><p>The <strong>Builder</strong> interface declares product construction steps that are common to all types of builders.<br>Builder 界面声明了所有类型的构建器通用的产品构建步</p>
+</li>
+<li><p><strong>Concrete</strong> Builders provide different implementations of the construction steps. Concrete builders may produce products that don’t follow the common interface.<br>混凝土建造者提供施工步骤的不同实施。混凝土建筑商可能会生产不遵循通用接口的产品。</p>
+</li>
+<li><p><strong>Products</strong> are resulting objects. Products constructed by different builders don’t have to belong to the same class hierarchy or interface.<br>产品是结果对象。由不同构建器构建的产品不必属于相同的类层次结构或接口。</p>
+</li>
+<li><p>The <strong>Director</strong> class defines the order in which to call construction steps, so you can create and reuse specific configurations of products.<br>Director 类定义调用构造步骤的顺序，以便您可以创建和重用产品的特定配置。</p>
+</li>
+<li><p>The <strong>Client</strong> must associate one of the builder objects with the director. Usually, it’s done just once, via parameters of the director’s constructor. Then the director uses that builder object for all further construction. However, there’s an alternative approach for when the client passes the builder object to the production method of the director. In this case, you can use a different builder each time you produce something with the director.<br>客户端必须将其中一个构建器对象与控制器相关联。通常，它只通过控制器构造函数的参数完成一次。然后，director 使用该构建器对象进行所有进一步的构造。但是，当客户端将生成器对象传递给控制器的生产方法时，还有另一种方法。在这种情况下，每次与director一起制作内容时，都可以使用不同的构建器。</p>
+</li>
+</ol>
+<h2 id="Pseudocode-伪代码"><a href="#Pseudocode-伪代码" class="headerlink" title="Pseudocode 伪代码"></a>Pseudocode 伪代码</h2><p>This example of the <strong>Builder</strong> pattern illustrates how you can reuse the same object construction code when building different types of products, such as cars, and create the corresponding manuals for them.<br>此 Builder 模式示例说明了如何在构建不同类型的产品（如汽车）时重用相同的对象构造代码，并为它们创建相应的手册。</p>
+<div align="center"> <img src="/images/builder-example-en.png"/>The example of step-by-step construction of cars and the user guides that fit those car models.</br>汽车的分步构造示例以及适合这些汽车型号的用户指南。</div>
+
+<p>A car is a complex object that can be constructed in a hundred different ways. Instead of bloating the <code>Car</code> class with a huge constructor, we extracted the car assembly code into a separate car builder class. This class has a set of methods for configuring various parts of a car.<br>汽车是一个复杂的物体，可以用一百种不同的方式建造。我们没有使用庞大的构造函数来膨胀类 <code>Car</code> ，而是将汽车装配代码提取到一个单独的 car builder 类中。此类具有一组用于配置汽车各个部分的方法。</p>
+<p>If the client code needs to assemble a special, fine-tuned model of a car, it can work with the builder directly. On the other hand, the client can delegate the assembly to the director class, which knows how to use a builder to construct several of the most popular models of cars.<br>如果客户端代码需要组装一个特殊的、微调的汽车模型，它可以直接与构建器一起使用。另一方面，客户端可以将程序集委托给 director 类，该类知道如何使用构建器来构造几种最流行的汽车模型。</p>
+<p>You might be shocked, but every car needs a manual (seriously, who reads them?). The manual describes every feature of the car, so the details in the manuals vary across the different models. That’s why it makes sense to reuse an existing construction process for both real cars and their respective manuals. Of course, building a manual isn’t the same as building a car, and that’s why we must provide another builder class that specializes in composing manuals. This class implements the same building methods as its car-building sibling, but instead of crafting car parts, it describes them. By passing these builders to the same director object, we can construct either a car or a manual.<br>您可能会感到震惊，但每辆车都需要一本手册（说真的，谁会读它们？手册描述了汽车的每个功能，因此手册中的细节因不同车型而异。这就是为什么在真实汽车及其各自的手册中重复使用现有的制造过程是有意义的。当然，构建手册与构建汽车不同，这就是为什么我们必须提供另一个专门编写手册的构建者类。该类实现了与其汽车制造同级相同的构建方法，但不是制作汽车零件，而是描述它们。通过将这些构建器传递给同一个 director 对象，我们可以构造汽车或手册。</p>
+<p>The final part is fetching the resulting object. A metal car and a paper manual, although related, are still very different things. We can’t place a method for fetching results in the director without coupling the director to concrete product classes. Hence, we obtain the result of the construction from the builder which performed the job.<br>最后一部分是获取生成的对象。金属汽车和纸质手册虽然相关，但仍然是非常不同的东西。如果不将控制器与具体的产品类耦合，我们就无法在控制器中放置获取结果的方法。因此，我们从执行工作的建筑商那里获得施工结果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Using the Builder pattern makes sense only when your products</span></span><br><span class="line"><span class="comment">// are quite complex and require extensive configuration. The</span></span><br><span class="line"><span class="comment">// following two products are related, although they don&#x27;t have</span></span><br><span class="line"><span class="comment">// a common interface.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> is</span><br><span class="line">    <span class="comment">// A car can have a GPS, trip computer and some number of</span></span><br><span class="line">    <span class="comment">// seats. Different models of cars (sports car, SUV,</span></span><br><span class="line">    <span class="comment">// cabriolet) might have different features installed or</span></span><br><span class="line">    <span class="comment">// enabled.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Manual</span> is</span><br><span class="line">    <span class="comment">// Each car should have a user manual that corresponds to</span></span><br><span class="line">    <span class="comment">// the car&#x27;s configuration and describes all its features.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// The builder interface specifies methods for creating the</span></span><br><span class="line"><span class="comment">// different parts of the product objects.</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Builder</span> is</span><br><span class="line">    method <span class="title function_">reset</span><span class="params">()</span></span><br><span class="line">    method <span class="title function_">setSeats</span><span class="params">(...)</span></span><br><span class="line">    method <span class="title function_">setEngine</span><span class="params">(...)</span></span><br><span class="line">    method <span class="title function_">setTripComputer</span><span class="params">(...)</span></span><br><span class="line">    method <span class="title function_">setGPS</span><span class="params">(...)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// The concrete builder classes follow the builder interface and</span></span><br><span class="line"><span class="comment">// provide specific implementations of the building steps. Your</span></span><br><span class="line"><span class="comment">// program may have several variations of builders, each</span></span><br><span class="line"><span class="comment">// implemented differently.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CarBuilder</span> <span class="keyword">implements</span> <span class="title class_">Builder</span> is</span><br><span class="line">    <span class="keyword">private</span> field car:Car</span><br><span class="line"></span><br><span class="line">    <span class="comment">// A fresh builder instance should contain a blank product</span></span><br><span class="line">    <span class="comment">// object which it uses in further assembly.</span></span><br><span class="line">    constructor <span class="title function_">CarBuilder</span><span class="params">()</span> is</span><br><span class="line">        <span class="built_in">this</span>.reset()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The reset method clears the object being built.</span></span><br><span class="line">    method <span class="title function_">reset</span><span class="params">()</span> is</span><br><span class="line">        <span class="built_in">this</span>.car = <span class="keyword">new</span> <span class="title class_">Car</span>()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// All production steps work with the same product instance.</span></span><br><span class="line">    method <span class="title function_">setSeats</span><span class="params">(...)</span> is</span><br><span class="line">        <span class="comment">// Set the number of seats in the car.</span></span><br><span class="line"></span><br><span class="line">    method <span class="title function_">setEngine</span><span class="params">(...)</span> is</span><br><span class="line">        <span class="comment">// Install a given engine.</span></span><br><span class="line"></span><br><span class="line">    method <span class="title function_">setTripComputer</span><span class="params">(...)</span> is</span><br><span class="line">        <span class="comment">// Install a trip computer.</span></span><br><span class="line"></span><br><span class="line">    method <span class="title function_">setGPS</span><span class="params">(...)</span> is</span><br><span class="line">        <span class="comment">// Install a global positioning system.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Concrete builders are supposed to provide their own</span></span><br><span class="line">    <span class="comment">// methods for retrieving results. That&#x27;s because various</span></span><br><span class="line">    <span class="comment">// types of builders may create entirely different products</span></span><br><span class="line">    <span class="comment">// that don&#x27;t all follow the same interface. Therefore such</span></span><br><span class="line">    <span class="comment">// methods can&#x27;t be declared in the builder interface (at</span></span><br><span class="line">    <span class="comment">// least not in a statically-typed programming language).</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">// Usually, after returning the end result to the client, a</span></span><br><span class="line">    <span class="comment">// builder instance is expected to be ready to start</span></span><br><span class="line">    <span class="comment">// producing another product. That&#x27;s why it&#x27;s a usual</span></span><br><span class="line">    <span class="comment">// practice to call the reset method at the end of the</span></span><br><span class="line">    <span class="comment">// `getProduct` method body. However, this behavior isn&#x27;t</span></span><br><span class="line">    <span class="comment">// mandatory, and you can make your builder wait for an</span></span><br><span class="line">    <span class="comment">// explicit reset call from the client code before disposing</span></span><br><span class="line">    <span class="comment">// of the previous result.</span></span><br><span class="line">    method <span class="title function_">getProduct</span><span class="params">()</span>:Car <span class="type">is</span></span><br><span class="line">        <span class="variable">product</span> <span class="operator">=</span> <span class="built_in">this</span>.car</span><br><span class="line">        <span class="built_in">this</span>.reset()</span><br><span class="line">        <span class="keyword">return</span> product</span><br><span class="line"></span><br><span class="line"><span class="comment">// Unlike other creational patterns, builder lets you construct</span></span><br><span class="line"><span class="comment">// products that don&#x27;t follow the common interface.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CarManualBuilder</span> <span class="keyword">implements</span> <span class="title class_">Builder</span> is</span><br><span class="line">    <span class="keyword">private</span> field manual:Manual</span><br><span class="line"></span><br><span class="line">    constructor <span class="title function_">CarManualBuilder</span><span class="params">()</span> is</span><br><span class="line">        <span class="built_in">this</span>.reset()</span><br><span class="line"></span><br><span class="line">    method <span class="title function_">reset</span><span class="params">()</span> is</span><br><span class="line">        <span class="built_in">this</span>.manual = <span class="keyword">new</span> <span class="title class_">Manual</span>()</span><br><span class="line"></span><br><span class="line">    method <span class="title function_">setSeats</span><span class="params">(...)</span> is</span><br><span class="line">        <span class="comment">// Document car seat features.</span></span><br><span class="line"></span><br><span class="line">    method <span class="title function_">setEngine</span><span class="params">(...)</span> is</span><br><span class="line">        <span class="comment">// Add engine instructions.</span></span><br><span class="line"></span><br><span class="line">    method <span class="title function_">setTripComputer</span><span class="params">(...)</span> is</span><br><span class="line">        <span class="comment">// Add trip computer instructions.</span></span><br><span class="line"></span><br><span class="line">    method <span class="title function_">setGPS</span><span class="params">(...)</span> is</span><br><span class="line">        <span class="comment">// Add GPS instructions.</span></span><br><span class="line"></span><br><span class="line">    method <span class="title function_">getProduct</span><span class="params">()</span>:Manual is</span><br><span class="line">        <span class="comment">// Return the manual and reset the builder.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// The director is only responsible for executing the building</span></span><br><span class="line"><span class="comment">// steps in a particular sequence. It&#x27;s helpful when producing</span></span><br><span class="line"><span class="comment">// products according to a specific order or configuration.</span></span><br><span class="line"><span class="comment">// Strictly speaking, the director class is optional, since the</span></span><br><span class="line"><span class="comment">// client can control builders directly.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Director</span> is</span><br><span class="line">    <span class="comment">// The director works with any builder instance that the</span></span><br><span class="line">    <span class="comment">// client code passes to it. This way, the client code may</span></span><br><span class="line">    <span class="comment">// alter the final type of the newly assembled product.</span></span><br><span class="line">    <span class="comment">// The director can construct several product variations</span></span><br><span class="line">    <span class="comment">// using the same building steps.</span></span><br><span class="line">    method <span class="title function_">constructSportsCar</span><span class="params">(builder: Builder)</span> is</span><br><span class="line">        builder.reset()</span><br><span class="line">        builder.setSeats(<span class="number">2</span>)</span><br><span class="line">        builder.setEngine(<span class="keyword">new</span> <span class="title class_">SportEngine</span>())</span><br><span class="line">        builder.setTripComputer(<span class="literal">true</span>)</span><br><span class="line">        builder.setGPS(<span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line">    method <span class="title function_">constructSUV</span><span class="params">(builder: Builder)</span> is</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// The client code creates a builder object, passes it to the</span></span><br><span class="line"><span class="comment">// director and then initiates the construction process. The end</span></span><br><span class="line"><span class="comment">// result is retrieved from the builder object.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Application</span> is</span><br><span class="line"></span><br><span class="line">    method <span class="title function_">makeCar</span><span class="params">()</span> <span class="type">is</span></span><br><span class="line">        <span class="variable">director</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Director</span>()</span><br><span class="line"></span><br><span class="line">        <span class="type">CarBuilder</span> <span class="variable">builder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CarBuilder</span>()</span><br><span class="line">        director.constructSportsCar(builder)</span><br><span class="line">        <span class="type">Car</span> <span class="variable">car</span> <span class="operator">=</span> builder.getProduct()</span><br><span class="line"></span><br><span class="line">        <span class="type">CarManualBuilder</span> <span class="variable">builder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CarManualBuilder</span>()</span><br><span class="line">        director.constructSportsCar(builder)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// The final product is often retrieved from a builder</span></span><br><span class="line">        <span class="comment">// object since the director isn&#x27;t aware of and not</span></span><br><span class="line">        <span class="comment">// dependent on concrete builders and products.</span></span><br><span class="line">        <span class="type">Manual</span> <span class="variable">manual</span> <span class="operator">=</span> builder.getProduct()</span><br></pre></td></tr></table></figure>
+
+<h2 id="Applicability-适用性"><a href="#Applicability-适用性" class="headerlink" title="Applicability 适用性"></a>Applicability 适用性</h2><ul>
+<li><p><strong>Use the Builder pattern to get rid of a “telescoping constructor”. 使用 Builder 模式来摆脱“伸缩构造函数”。</strong></p>
+</li>
+<li><p>Say you have a constructor with ten optional parameters. Calling such a beast is very inconvenient; therefore, you overload the constructor and create several shorter versions with fewer parameters. These constructors still refer to the main one, passing some default values into any omitted parameters.<br>假设您有一个包含十个可选参数的构造函数。召唤这样的野兽是很不方便的;因此，重载构造函数，并使用较少的参数创建多个较短的版本。这些构造函数仍然引用主构造函数，将一些默认值传递到任何省略的参数中。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Pizza</span> &#123;</span><br><span class="line">    Pizza(<span class="type">int</span> size) &#123; ... &#125;</span><br><span class="line">    Pizza(<span class="type">int</span> size, <span class="type">boolean</span> cheese) &#123; ... &#125;</span><br><span class="line">    Pizza(<span class="type">int</span> size, <span class="type">boolean</span> cheese, <span class="type">boolean</span> pepperoni) &#123; ... &#125;</span><br><span class="line">    <span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+<p>Creating such a monster is only possible in languages that support method overloading, such as C# or Java.只有在支持方法重载的语言（如 C# 或 Java）中才能创建这样的怪物。</p>
+<p>The Builder pattern lets you build objects step by step, using only those steps that you really need. After implementing the pattern, you don’t have to cram dozens of parameters into your constructors anymore.<br>Builder 模式允许您逐步构建对象，仅使用您真正需要的那些步骤。实现该模式后，您不必再将数十个参数塞入构造函数中。</p>
+<ul>
+<li><p><strong>Use the Builder pattern when you want your code to be able to create different representations of some product (for example, stone and wooden houses).当您希望代码能够创建某些产品（例如，石头和木屋）的不同表示形式时，请使用 Builder 模式。</strong></p>
+</li>
+<li><p>The Builder pattern can be applied when construction of various representations of the product involves similar steps that differ only in the details.<br>当构建产品的各种表示形式涉及仅在细节上有所不同的类似步骤时，可以应用构建器模式。</p>
+</li>
+</ul>
+<p>The base builder interface defines all possible construction steps, and concrete builders implement these steps to construct particular representations of the product. Meanwhile, the director class guides the order of construction.<br>基础构建器界面定义了所有可能的构建步骤，具体构建器实现这些步骤来构建产品的特定表示。同时，director类指导施工顺序。</p>
+<ul>
+<li><p><strong>Use the Builder to construct Composite trees or other complex objects.使用构建器构建复合树或其他复杂对象。</strong></p>
+</li>
+<li><p>The Builder pattern lets you construct products step-by-step. You could defer execution of some steps without breaking the final product. You can even call steps recursively, which comes in handy when you need to build an object tree.<br>Builder 模式允许您逐步构建产品。您可以在不破坏最终产品的情况下延迟某些步骤的执行。您甚至可以递归调用步骤，这在需要构建对象树时会派上用场。</p>
+</li>
+</ul>
+<p>A builder doesn’t expose the unfinished product while running construction steps. This prevents the client code from fetching an incomplete result.<br>构建器在运行构造步骤时不会暴露未完成的产品。这样可以防止客户端代码提取不完整的结果。</p>
+<h2 id="How-to-Implement-如何实现"><a href="#How-to-Implement-如何实现" class="headerlink" title="How to Implement 如何实现"></a>How to Implement 如何实现</h2><ol>
+<li><p>Make sure that you can clearly define the common construction steps for building all available product representations. Otherwise, you won’t be able to proceed with implementing the pattern.<br>确保您可以清楚地定义用于构建所有可用产品表示的常见构造步骤。否则，您将无法继续实现该模式。</p>
+</li>
+<li><p>Declare these steps in the base builder interface.<br>在基础构建器界面中声明这些步骤。</p>
+</li>
+<li><p>Create a concrete builder class for each of the product representations and implement their construction steps.<br>为每个产品表示形式创建一个具体的构建器类，并实现其构造步骤。</p>
+</li>
+</ol>
+<p>Don’t forget about implementing a method for fetching the result of the construction. The reason why this method can’t be declared inside the builder interface is that various builders may construct products that don’t have a common interface. Therefore, you don’t know what would be the return type for such a method. However, if you’re dealing with products from a single hierarchy, the fetching method can be safely added to the base interface.<br>不要忘记实现一个获取构造结果的方法。无法在生成器接口中声明此方法的原因是，各种生成器可能会构造没有通用接口的产品。因此，您不知道这种方法的返回类型是什么。但是，如果您要处理来自单个层次结构的产品，则可以安全地将提取方法添加到基本界面。</p>
+<ol start="4">
+<li><p>Think about creating a director class. It may encapsulate various ways to construct a product using the same builder object.<br>考虑创建一个director类。它可以封装使用相同的构建器对象构建产品的各种方法。</p>
+</li>
+<li><p>The client code creates both the builder and the director objects. Before construction starts, the client must pass a builder object to the director. Usually, the client does this only once, via parameters of the director’s class constructor. The director uses the builder object in all further construction. There’s an alternative approach, where the builder is passed to a specific product construction method of the director.<br>客户端代码创建生成器和控制器对象。在构造开始之前，客户端必须将生成器对象传递给控制器。通常，客户端仅通过 director 类构造函数的参数执行此操作一次。director 在所有进一步的构造中使用 builder 对象。还有另一种方法，将构建器传递给主管的特定产品构建方法。</p>
+</li>
+<li><p>The construction result can be obtained directly from the director only if all products follow the same interface. Otherwise, the client should fetch the result from the builder.<br>只有当所有产品都遵循相同的接口时，才能直接从director那里获得施工结果。否则，客户端应从构建器获取结果。</p>
+</li>
+</ol>
+<h2 id="Pros-and-Cons-优点和缺点"><a href="#Pros-and-Cons-优点和缺点" class="headerlink" title="Pros and Cons 优点和缺点"></a>Pros and Cons 优点和缺点</h2><h3 id="Pros-优点"><a href="#Pros-优点" class="headerlink" title="Pros 优点"></a>Pros 优点</h3><ul>
+<li><p>You can construct objects step-by-step, defer construction steps or run steps recursively.<br>您可以逐步构造对象、延迟构造步骤或递归运行步骤。</p>
+</li>
+<li><p>You can reuse the same construction code when building various representations of products.<br>在构建产品的各种表示形式时，您可以重复使用相同的构造代码。</p>
+</li>
+<li><p>Single Responsibility Principle. You can isolate complex construction code from the business logic of the product.<br>单一责任原则。您可以将复杂的构造代码与产品的业务逻辑隔离开来。</p>
+</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>The overall complexity of the code increases since the pattern requires creating multiple new classes.<br>代码的整体复杂性增加，因为该模式需要创建多个新类。</li>
+</ul>
+<h2 id="Relations-with-Other-Patterns-与其他模式的关系"><a href="#Relations-with-Other-Patterns-与其他模式的关系" class="headerlink" title="Relations with Other Patterns 与其他模式的关系"></a>Relations with Other Patterns 与其他模式的关系</h2><ul>
+<li><p>Many designs start by using **Factory Method **(less complicated and more customizable via subclasses) and evolve toward <strong>Abstract Factory</strong>, <strong>Prototype</strong>, or <strong>Builder</strong> (more flexible, but more complicated).<br>许多设计从使用工厂方法（不那么复杂，通过子类更可定制）开始，然后发展到抽象工厂、原型或构建器（更灵活，但更复杂）。</p>
+</li>
+<li><p><strong>Builder</strong> focuses on constructing complex objects step by step. <strong>Abstract Factory</strong> specializes in creating families of related objects. <strong>Abstract Factory</strong> returns the product immediately, whereas Builder lets you run some additional construction steps before fetching the product.<br>Builder 专注于逐步构建复杂的对象。Abstract Factory专门用于创建相关对象的族。Abstract Factory 会立即返回产品，而 Builder 允许您在获取产品之前运行一些额外的构造步骤。</p>
+</li>
+<li><p>You can use <strong>Builder</strong> when creating complex <strong>Composite</strong> trees because you can program its construction steps to work recursively.<br>在创建复杂的复合树时，可以使用 Builder，因为您可以对其构造步骤进行编程以递归方式工作。</p>
+</li>
+<li><p>You can combine <strong>Builder</strong> with <strong>Bridge</strong>: the director class plays the role of the abstraction, while different builders act as implementations.<br>您可以将 Builder 与 Bridge 结合使用：director 类扮演抽象的角色，而不同的构建器充当实现。</p>
+</li>
+<li><p><strong>Abstract Factories</strong>, <strong>Builders</strong> and <strong>Prototypes</strong> can all be implemented as <strong>Singletons</strong>.<br>抽象工厂、构建器和原型都可以作为单例实现。</p>
+</li>
+</ul>
+<h2 id="Code-Examples-代码示例"><a href="#Code-Examples-代码示例" class="headerlink" title="Code Examples 代码示例"></a>Code Examples 代码示例</h2><h3 id="python-Conceptual-Example-概念示例"><a href="#python-Conceptual-Example-概念示例" class="headerlink" title="python Conceptual Example 概念示例"></a>python Conceptual Example 概念示例</h3><p>This example illustrates the structure of the Builder design pattern. It focuses on answering these questions:<br>此示例说明了 Builder 设计模式的结构。它侧重于回答以下问题：</p>
+<ul>
+<li>What classes does it consist of?<br>它由哪些类组成？</li>
+<li>What roles do these classes play?<br>这些课程扮演什么角色？</li>
+<li>In what way the elements of the pattern are related?<br>模式的元素以何种方式相关？</li>
+</ul>
+<p>main.py: 概念示例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> annotations</span><br><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABC, abstractmethod</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Any</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Builder</span>(<span class="title class_ inherited__">ABC</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The Builder interface specifies methods for creating the different parts of</span></span><br><span class="line"><span class="string">    the Product objects.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">product</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">produce_part_a</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">produce_part_b</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">produce_part_c</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteBuilder1</span>(<span class="title class_ inherited__">Builder</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The Concrete Builder classes follow the Builder interface and provide</span></span><br><span class="line"><span class="string">    specific implementations of the building steps. Your program may have</span></span><br><span class="line"><span class="string">    several variations of Builders, implemented differently.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        A fresh builder instance should contain a blank product object, which is</span></span><br><span class="line"><span class="string">        used in further assembly.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.reset()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reset</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self._product = Product1()</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">product</span>(<span class="params">self</span>) -&gt; Product1:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Concrete Builders are supposed to provide their own methods for</span></span><br><span class="line"><span class="string">        retrieving results. That&#x27;s because various types of builders may create</span></span><br><span class="line"><span class="string">        entirely different products that don&#x27;t follow the same interface.</span></span><br><span class="line"><span class="string">        Therefore, such methods cannot be declared in the base Builder interface</span></span><br><span class="line"><span class="string">        (at least in a statically typed programming language).</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Usually, after returning the end result to the client, a builder</span></span><br><span class="line"><span class="string">        instance is expected to be ready to start producing another product.</span></span><br><span class="line"><span class="string">        That&#x27;s why it&#x27;s a usual practice to call the reset method at the end of</span></span><br><span class="line"><span class="string">        the `getProduct` method body. However, this behavior is not mandatory,</span></span><br><span class="line"><span class="string">        and you can make your builders wait for an explicit reset call from the</span></span><br><span class="line"><span class="string">        client code before disposing of the previous result.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        product = self._product</span><br><span class="line">        self.reset()</span><br><span class="line">        <span class="keyword">return</span> product</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">produce_part_a</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self._product.add(<span class="string">&quot;PartA1&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">produce_part_b</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self._product.add(<span class="string">&quot;PartB1&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">produce_part_c</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self._product.add(<span class="string">&quot;PartC1&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Product1</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    It makes sense to use the Builder pattern only when your products are quite</span></span><br><span class="line"><span class="string">    complex and require extensive configuration.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Unlike in other creational patterns, different concrete builders can produce</span></span><br><span class="line"><span class="string">    unrelated products. In other words, results of various builders may not</span></span><br><span class="line"><span class="string">    always follow the same interface.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self.parts = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">self, part: <span class="type">Any</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self.parts.append(part)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">list_parts</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Product parts: <span class="subst">&#123;<span class="string">&#x27;, &#x27;</span>.join(self.parts)&#125;</span>&quot;</span>, end=<span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Director</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The Director is only responsible for executing the building steps in a</span></span><br><span class="line"><span class="string">    particular sequence. It is helpful when producing products according to a</span></span><br><span class="line"><span class="string">    specific order or configuration. Strictly speaking, the Director class is</span></span><br><span class="line"><span class="string">    optional, since the client can control builders directly.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self._builder = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">builder</span>(<span class="params">self</span>) -&gt; Builder:</span><br><span class="line">        <span class="keyword">return</span> self._builder</span><br><span class="line"></span><br><span class="line"><span class="meta">    @builder.setter</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">builder</span>(<span class="params">self, builder: Builder</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        The Director works with any builder instance that the client code passes</span></span><br><span class="line"><span class="string">        to it. This way, the client code may alter the final type of the newly</span></span><br><span class="line"><span class="string">        assembled product.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self._builder = builder</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The Director can construct several product variations using the same</span></span><br><span class="line"><span class="string">    building steps.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">build_minimal_viable_product</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self.builder.produce_part_a()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">build_full_featured_product</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self.builder.produce_part_a()</span><br><span class="line">        self.builder.produce_part_b()</span><br><span class="line">        self.builder.produce_part_c()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The client code creates a builder object, passes it to the director and then</span></span><br><span class="line"><span class="string">    initiates the construction process. The end result is retrieved from the</span></span><br><span class="line"><span class="string">    builder object.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    director = Director()</span><br><span class="line">    builder = ConcreteBuilder1()</span><br><span class="line">    director.builder = builder</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Standard basic product: &quot;</span>)</span><br><span class="line">    director.build_minimal_viable_product()</span><br><span class="line">    builder.product.list_parts()</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Standard full featured product: &quot;</span>)</span><br><span class="line">    director.build_full_featured_product()</span><br><span class="line">    builder.product.list_parts()</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Remember, the Builder pattern can be used without a Director class.</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Custom product: &quot;</span>)</span><br><span class="line">    builder.produce_part_a()</span><br><span class="line">    builder.produce_part_b()</span><br><span class="line">    builder.product.list_parts()</span><br></pre></td></tr></table></figure>
+
+<h3 id="Output-txt-Execution-result"><a href="#Output-txt-Execution-result" class="headerlink" title="Output.txt: Execution result"></a>Output.txt: Execution result</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Standard basic product:</span><br><span class="line">Product parts: PartA1</span><br><span class="line"></span><br><span class="line">Standard full featured product:</span><br><span class="line">Product parts: PartA1, PartB1, PartC1</span><br><span class="line"></span><br><span class="line">Custom product:</span><br><span class="line">Product parts: PartA1, PartB1</span><br></pre></td></tr></table></figure>
+
+<h3 id="Rust-示例：Car-car-manual-builders"><a href="#Rust-示例：Car-car-manual-builders" class="headerlink" title="Rust 示例：Car &amp; car manual builders"></a>Rust 示例：Car &amp; car manual builders</h3><p>This slightly synthetic example illustrates how you can use the <code>Builder</code> pattern to construct totally different products using the same building process. For example, the trait Builder declares steps for assembling a car. However, depending on the builder implementation, a constructed object can be something different, for example, a car manual. The resulting manual will contain instructions from each building step, making it accurate and up-to-date.<br>这个略微合成的示例说明了如何使用 Builder 模式，通过相同的构建过程来构建完全不同的产品。例如，该特征 <code>Builder</code> 声明了组装汽车的步骤。但是，根据构建器实现的不同，构造的对象可以是不同的对象，例如汽车手册。由此产生的手册将包含每个构建步骤的说明，使其准确和最新。</p>
+<p>The <strong>Builder</strong> design pattern is not the same as the <strong>Fluent Interface</strong> idiom (that relies on method chaining), although Rust developers sometimes use those terms interchangeably.<br>Builder 设计模式与 Fluent Interface 习惯用语（依赖于方法链）不同，尽管 Rust 开发人员有时会互换使用这些术语。</p>
+<ol>
+<li><p>Fluent Interface is a way to chain methods for constructing or modifying an object using the following approach:<br>Fluent Interface 是一种使用以下方法链接用于构造或修改对象的方法的方法：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">car</span> = Car::<span class="title function_ invoke__">default</span>().<span class="title function_ invoke__">places</span>(<span class="number">5</span>).<span class="title function_ invoke__">gas</span>(<span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+<p>It’s pretty elegant way to construct an object. Still, such a code may not be an instance of the Builder pattern.<br>这是构造对象的非常优雅的方式。不过，这样的代码可能不是 Builder 模式的实例。</p>
+</li>
+<li><p>While the <strong>Builder</strong> pattern also suggests constructing object step by step, it also lets you build different types of products using the same construction process.<br>虽然 <strong>Builder</strong> 模式还建议逐步构建对象，但它也允许您使用相同的构建过程构建不同类型的产品。</p>
+</li>
+</ol>
+<h3 id="builders-Builders-builders"><a href="#builders-Builders-builders" class="headerlink" title="builders: Builders builders"></a>builders: Builders builders</h3><h4 id="builders-mod-rs"><a href="#builders-mod-rs" class="headerlink" title="builders&#x2F;mod.rs"></a>builders&#x2F;mod.rs</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> car;</span><br><span class="line"><span class="keyword">mod</span> car_manual;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> crate::components::&#123;CarType, Engine, GpsNavigator, Transmission&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// Builder defines how to assemble a car.</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">trait</span> <span class="title class_">Builder</span> &#123;</span><br><span class="line">    <span class="keyword">type</span> <span class="title class_">OutputType</span>;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_car_type</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, car_type: CarType);</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_seats</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, seats: <span class="type">u16</span>);</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_engine</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, engine: Engine);</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_transmission</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, transmission: Transmission);</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_gsp_navigator</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, gps_navigator: GpsNavigator);</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">build</span>(<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span>::OutputType;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">use</span> car::CarBuilder;</span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">use</span> car_manual::CarManualBuilder;</span><br></pre></td></tr></table></figure>
+<h4 id="builders-car-rs"><a href="#builders-car-rs" class="headerlink" title="builders&#x2F;car.rs"></a>builders&#x2F;car.rs</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crate::&#123;</span><br><span class="line">    cars::Car,</span><br><span class="line">    components::&#123;CarType, Engine, GpsNavigator, Transmission&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> super::Builder;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">const</span> DEFAULT_FUEL: <span class="type">f64</span> = <span class="number">5f64</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Default)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">CarBuilder</span> &#123;</span><br><span class="line">    car_type: <span class="type">Option</span>&lt;CarType&gt;,</span><br><span class="line">    engine: <span class="type">Option</span>&lt;Engine&gt;,</span><br><span class="line">    gps_navigator: <span class="type">Option</span>&lt;GpsNavigator&gt;,</span><br><span class="line">    seats: <span class="type">Option</span>&lt;<span class="type">u16</span>&gt;,</span><br><span class="line">    transmission: <span class="type">Option</span>&lt;Transmission&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Builder</span> <span class="keyword">for</span> <span class="title class_">CarBuilder</span> &#123;</span><br><span class="line">    <span class="keyword">type</span> <span class="title class_">OutputType</span> = Car;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_car_type</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, car_type: CarType) &#123;</span><br><span class="line">        <span class="keyword">self</span>.car_type = <span class="title function_ invoke__">Some</span>(car_type);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_engine</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, engine: Engine) &#123;</span><br><span class="line">        <span class="keyword">self</span>.engine = <span class="title function_ invoke__">Some</span>(engine);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_gsp_navigator</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, gps_navigator: GpsNavigator) &#123;</span><br><span class="line">        <span class="keyword">self</span>.gps_navigator = <span class="title function_ invoke__">Some</span>(gps_navigator);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_seats</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, seats: <span class="type">u16</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.seats = <span class="title function_ invoke__">Some</span>(seats);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_transmission</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, transmission: Transmission) &#123;</span><br><span class="line">        <span class="keyword">self</span>.transmission = <span class="title function_ invoke__">Some</span>(transmission);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">build</span>(<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> Car &#123;</span><br><span class="line">        Car::<span class="title function_ invoke__">new</span>(</span><br><span class="line">            <span class="keyword">self</span>.car_type.<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Please, set a car type&quot;</span>),</span><br><span class="line">            <span class="keyword">self</span>.seats.<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Please, set a number of seats&quot;</span>),</span><br><span class="line">            <span class="keyword">self</span>.engine.<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Please, set an engine configuration&quot;</span>),</span><br><span class="line">            <span class="keyword">self</span>.transmission.<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Please, set up transmission&quot;</span>),</span><br><span class="line">            <span class="keyword">self</span>.gps_navigator,</span><br><span class="line">            DEFAULT_FUEL,</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="builders-car-manual-rs"><a href="#builders-car-manual-rs" class="headerlink" title="builders&#x2F;car_manual.rs"></a>builders&#x2F;car_manual.rs</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crate::&#123;</span><br><span class="line">    cars::Manual,</span><br><span class="line">    components::&#123;CarType, Engine, GpsNavigator, Transmission&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> super::Builder;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Default)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">CarManualBuilder</span> &#123;</span><br><span class="line">    car_type: <span class="type">Option</span>&lt;CarType&gt;,</span><br><span class="line">    engine: <span class="type">Option</span>&lt;Engine&gt;,</span><br><span class="line">    gps_navigator: <span class="type">Option</span>&lt;GpsNavigator&gt;,</span><br><span class="line">    seats: <span class="type">Option</span>&lt;<span class="type">u16</span>&gt;,</span><br><span class="line">    transmission: <span class="type">Option</span>&lt;Transmission&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// Builds a car manual instead of an actual car.</span></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Builder</span> <span class="keyword">for</span> <span class="title class_">CarManualBuilder</span> &#123;</span><br><span class="line">    <span class="keyword">type</span> <span class="title class_">OutputType</span> = Manual;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_car_type</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, car_type: CarType) &#123;</span><br><span class="line">        <span class="keyword">self</span>.car_type = <span class="title function_ invoke__">Some</span>(car_type);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_engine</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, engine: Engine) &#123;</span><br><span class="line">        <span class="keyword">self</span>.engine = <span class="title function_ invoke__">Some</span>(engine);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_gsp_navigator</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, gps_navigator: GpsNavigator) &#123;</span><br><span class="line">        <span class="keyword">self</span>.gps_navigator = <span class="title function_ invoke__">Some</span>(gps_navigator);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_seats</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, seats: <span class="type">u16</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.seats = <span class="title function_ invoke__">Some</span>(seats);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_transmission</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, transmission: Transmission) &#123;</span><br><span class="line">        <span class="keyword">self</span>.transmission = <span class="title function_ invoke__">Some</span>(transmission);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">build</span>(<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> Manual &#123;</span><br><span class="line">        Manual::<span class="title function_ invoke__">new</span>(</span><br><span class="line">            <span class="keyword">self</span>.car_type.<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Please, set a car type&quot;</span>),</span><br><span class="line">            <span class="keyword">self</span>.seats.<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Please, set a number of seats&quot;</span>),</span><br><span class="line">            <span class="keyword">self</span>.engine.<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Please, set an engine configuration&quot;</span>),</span><br><span class="line">            <span class="keyword">self</span>.transmission.<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Please, set up transmission&quot;</span>),</span><br><span class="line">            <span class="keyword">self</span>.gps_navigator,</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="cars-Products"><a href="#cars-Products" class="headerlink" title="cars: Products"></a>cars: Products</h4><h5 id="cars-mod-rs"><a href="#cars-mod-rs" class="headerlink" title="cars&#x2F;mod.rs"></a>cars&#x2F;mod.rs</h5><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> car;</span><br><span class="line"><span class="keyword">mod</span> manual;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">use</span> car::Car;</span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">use</span> manual::Manual;</span><br></pre></td></tr></table></figure>
+
+<h5 id="cars-car-rs"><a href="#cars-car-rs" class="headerlink" title="cars&#x2F;car.rs"></a>cars&#x2F;car.rs</h5><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crate::components::&#123;CarType, Engine, GpsNavigator, Transmission&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Car</span> &#123;</span><br><span class="line">    car_type: CarType,</span><br><span class="line">    seats: <span class="type">u16</span>,</span><br><span class="line">    engine: Engine,</span><br><span class="line">    transmission: Transmission,</span><br><span class="line">    gps_navigator: <span class="type">Option</span>&lt;GpsNavigator&gt;,</span><br><span class="line">    fuel: <span class="type">f64</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Car</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">new</span>(</span><br><span class="line">        car_type: CarType,</span><br><span class="line">        seats: <span class="type">u16</span>,</span><br><span class="line">        engine: Engine,</span><br><span class="line">        transmission: Transmission,</span><br><span class="line">        gps_navigator: <span class="type">Option</span>&lt;GpsNavigator&gt;,</span><br><span class="line">        fuel: <span class="type">f64</span>,</span><br><span class="line">    ) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123;</span><br><span class="line">            car_type,</span><br><span class="line">            seats,</span><br><span class="line">            engine,</span><br><span class="line">            transmission,</span><br><span class="line">            gps_navigator,</span><br><span class="line">            fuel,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">car_type</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> CarType &#123;</span><br><span class="line">        <span class="keyword">self</span>.car_type</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">fuel</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">f64</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.fuel</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">set_fuel</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, fuel: <span class="type">f64</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.fuel = fuel;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">seats</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">u16</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.seats</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">engine</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;Engine &#123;</span><br><span class="line">        &amp;<span class="keyword">self</span>.engine</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">transmission</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;Transmission &#123;</span><br><span class="line">        &amp;<span class="keyword">self</span>.transmission</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">gps_navigator</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;<span class="type">Option</span>&lt;GpsNavigator&gt; &#123;</span><br><span class="line">        &amp;<span class="keyword">self</span>.gps_navigator</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="cars-manual-rs"><a href="#cars-manual-rs" class="headerlink" title="cars&#x2F;manual.rs"></a>cars&#x2F;manual.rs</h5><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crate::components::&#123;CarType, Engine, GpsNavigator, Transmission&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Manual</span> &#123;</span><br><span class="line">    car_type: CarType,</span><br><span class="line">    seats: <span class="type">u16</span>,</span><br><span class="line">    engine: Engine,</span><br><span class="line">    transmission: Transmission,</span><br><span class="line">    gps_navigator: <span class="type">Option</span>&lt;GpsNavigator&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Manual</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">new</span>(</span><br><span class="line">        car_type: CarType,</span><br><span class="line">        seats: <span class="type">u16</span>,</span><br><span class="line">        engine: Engine,</span><br><span class="line">        transmission: Transmission,</span><br><span class="line">        gps_navigator: <span class="type">Option</span>&lt;GpsNavigator&gt;,</span><br><span class="line">    ) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123;</span><br><span class="line">            car_type,</span><br><span class="line">            seats,</span><br><span class="line">            engine,</span><br><span class="line">            transmission,</span><br><span class="line">            gps_navigator,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">std</span>::fmt::Display <span class="keyword">for</span> <span class="title class_">Manual</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">fmt</span>(&amp;<span class="keyword">self</span>, f: &amp;<span class="keyword">mut</span> std::fmt::Formatter&lt;<span class="symbol">&#x27;_</span>&gt;) <span class="punctuation">-&gt;</span> std::fmt::<span class="type">Result</span> &#123;</span><br><span class="line">        <span class="built_in">writeln!</span>(f, <span class="string">&quot;Type of car: &#123;:?&#125;&quot;</span>, <span class="keyword">self</span>.car_type)?;</span><br><span class="line">        <span class="built_in">writeln!</span>(f, <span class="string">&quot;Count of seats: &#123;&#125;&quot;</span>, <span class="keyword">self</span>.seats)?;</span><br><span class="line">        <span class="built_in">writeln!</span>(</span><br><span class="line">            f,</span><br><span class="line">            <span class="string">&quot;Engine: volume - &#123;&#125;; mileage - &#123;&#125;&quot;</span>,</span><br><span class="line">            <span class="keyword">self</span>.engine.<span class="title function_ invoke__">volume</span>(),</span><br><span class="line">            <span class="keyword">self</span>.engine.<span class="title function_ invoke__">mileage</span>()</span><br><span class="line">        )?;</span><br><span class="line">        <span class="built_in">writeln!</span>(f, <span class="string">&quot;Transmission: &#123;:?&#125;&quot;</span>, <span class="keyword">self</span>.transmission)?;</span><br><span class="line">        <span class="keyword">match</span> <span class="keyword">self</span>.gps_navigator &#123;</span><br><span class="line">            <span class="title function_ invoke__">Some</span>(_) =&gt; <span class="built_in">writeln!</span>(f, <span class="string">&quot;GPS Navigator: Functional&quot;</span>)?,</span><br><span class="line">            <span class="literal">None</span> =&gt; <span class="built_in">writeln!</span>(f, <span class="string">&quot;GPS Navigator: N/A&quot;</span>)?,</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="components-rs-Product-components"><a href="#components-rs-Product-components" class="headerlink" title="components.rs: Product components"></a>components.rs: Product components</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[derive(Copy, Clone, Debug)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">enum</span> <span class="title class_">CarType</span> &#123;</span><br><span class="line">    CityCar,</span><br><span class="line">    SportsCar,</span><br><span class="line">    Suv,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">enum</span> <span class="title class_">Transmission</span> &#123;</span><br><span class="line">    SingleSpeed,</span><br><span class="line">    Manual,</span><br><span class="line">    Automatic,</span><br><span class="line">    SemiAutomatic,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Engine</span> &#123;</span><br><span class="line">    volume: <span class="type">f64</span>,</span><br><span class="line">    mileage: <span class="type">f64</span>,</span><br><span class="line">    started: <span class="type">bool</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Engine</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">new</span>(volume: <span class="type">f64</span>, mileage: <span class="type">f64</span>) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123;</span><br><span class="line">            volume,</span><br><span class="line">            mileage,</span><br><span class="line">            started: <span class="literal">false</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">on</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.started = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">off</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.started = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">started</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">bool</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.started</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">volume</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">f64</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.volume</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">mileage</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">f64</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.mileage</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">go</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, mileage: <span class="type">f64</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">self</span>.<span class="title function_ invoke__">started</span>() &#123;</span><br><span class="line">            <span class="keyword">self</span>.mileage += mileage;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;Cannot go(), you must start engine first!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">GpsNavigator</span> &#123;</span><br><span class="line">    route: <span class="type">String</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">GpsNavigator</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">new</span>() <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        <span class="keyword">Self</span>::<span class="title function_ invoke__">from_route</span>(</span><br><span class="line">            <span class="string">&quot;221b, Baker Street, London  to Scotland Yard, 8-10 Broadway, London&quot;</span>.<span class="title function_ invoke__">into</span>(),</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">from_route</span>(route: <span class="type">String</span>) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123; route &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">route</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;<span class="type">String</span> &#123;</span><br><span class="line">        &amp;<span class="keyword">self</span>.route</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="director-rs-Directors"><a href="#director-rs-Directors" class="headerlink" title="director.rs: Directors"></a>director.rs: Directors</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crate::&#123;</span><br><span class="line">    builders::Builder,</span><br><span class="line">    components::&#123;CarType, Engine, GpsNavigator, Transmission&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// Director knows how to build a car.</span></span><br><span class="line"><span class="comment">///</span></span><br><span class="line"><span class="comment">/// However, a builder can build a car manual instead of an actual car,</span></span><br><span class="line"><span class="comment">/// everything depends on the concrete builder.</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Director</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Director</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">construct_sports_car</span>(builder: &amp;<span class="keyword">mut</span> <span class="keyword">impl</span> <span class="title class_">Builder</span>) &#123;</span><br><span class="line">        builder.<span class="title function_ invoke__">set_car_type</span>(CarType::SportsCar);</span><br><span class="line">        builder.<span class="title function_ invoke__">set_seats</span>(<span class="number">2</span>);</span><br><span class="line">        builder.<span class="title function_ invoke__">set_engine</span>(Engine::<span class="title function_ invoke__">new</span>(<span class="number">3.0</span>, <span class="number">0.0</span>));</span><br><span class="line">        builder.<span class="title function_ invoke__">set_transmission</span>(Transmission::SemiAutomatic);</span><br><span class="line">        builder.<span class="title function_ invoke__">set_gsp_navigator</span>(GpsNavigator::<span class="title function_ invoke__">new</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">construct_city_car</span>(builder: &amp;<span class="keyword">mut</span> <span class="keyword">impl</span> <span class="title class_">Builder</span>) &#123;</span><br><span class="line">        builder.<span class="title function_ invoke__">set_car_type</span>(CarType::CityCar);</span><br><span class="line">        builder.<span class="title function_ invoke__">set_seats</span>(<span class="number">2</span>);</span><br><span class="line">        builder.<span class="title function_ invoke__">set_engine</span>(Engine::<span class="title function_ invoke__">new</span>(<span class="number">1.2</span>, <span class="number">0.0</span>));</span><br><span class="line">        builder.<span class="title function_ invoke__">set_transmission</span>(Transmission::Automatic);</span><br><span class="line">        builder.<span class="title function_ invoke__">set_gsp_navigator</span>(GpsNavigator::<span class="title function_ invoke__">new</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">construct_suv</span>(builder: &amp;<span class="keyword">mut</span> <span class="keyword">impl</span> <span class="title class_">Builder</span>) &#123;</span><br><span class="line">        builder.<span class="title function_ invoke__">set_car_type</span>(CarType::Suv);</span><br><span class="line">        builder.<span class="title function_ invoke__">set_seats</span>(<span class="number">4</span>);</span><br><span class="line">        builder.<span class="title function_ invoke__">set_engine</span>(Engine::<span class="title function_ invoke__">new</span>(<span class="number">2.5</span>, <span class="number">0.0</span>));</span><br><span class="line">        builder.<span class="title function_ invoke__">set_transmission</span>(Transmission::Manual);</span><br><span class="line">        builder.<span class="title function_ invoke__">set_gsp_navigator</span>(GpsNavigator::<span class="title function_ invoke__">new</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="main-rs-Client-code"><a href="#main-rs-Client-code" class="headerlink" title="main.rs: Client code"></a>main.rs: Client code</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#![allow(unused)]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">mod</span> builders;</span><br><span class="line"><span class="keyword">mod</span> cars;</span><br><span class="line"><span class="keyword">mod</span> components;</span><br><span class="line"><span class="keyword">mod</span> director;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> builders::&#123;Builder, CarBuilder, CarManualBuilder&#125;;</span><br><span class="line"><span class="keyword">use</span> cars::&#123;Car, Manual&#125;;</span><br><span class="line"><span class="keyword">use</span> director::Director;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">car_builder</span> = CarBuilder::<span class="title function_ invoke__">default</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Director gets the concrete builder object from the client</span></span><br><span class="line">    <span class="comment">// (application code). That&#x27;s because application knows better which</span></span><br><span class="line">    <span class="comment">// builder to use to get a specific product.</span></span><br><span class="line">    Director::<span class="title function_ invoke__">construct_sports_car</span>(&amp;<span class="keyword">mut</span> car_builder);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The final product is often retrieved from a builder object, since</span></span><br><span class="line">    <span class="comment">// Director is not aware and not dependent on concrete builders and</span></span><br><span class="line">    <span class="comment">// products.</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">car</span>: Car = car_builder.<span class="title function_ invoke__">build</span>();</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Car built: &#123;:?&#125;\n&quot;</span>, car.<span class="title function_ invoke__">car_type</span>());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">manual_builder</span> = CarManualBuilder::<span class="title function_ invoke__">default</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Director may know several building recipes.</span></span><br><span class="line">    Director::<span class="title function_ invoke__">construct_city_car</span>(&amp;<span class="keyword">mut</span> manual_builder);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The final car manual.</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">manual</span>: Manual = manual_builder.<span class="title function_ invoke__">build</span>();</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Car manual built:\n&#123;&#125;&quot;</span>, manual);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Car built: SportsCar</span><br><span class="line"></span><br><span class="line">Car manual built:</span><br><span class="line">Type of car: CityCar</span><br><span class="line">Count of seats: 2</span><br><span class="line">Engine: volume - 1.2; mileage - 0</span><br><span class="line">Transmission: Automatic</span><br><span class="line">GPS Navigator: Functional</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>宇宙山河浪漫，赞赏动力无限</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Ice WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Ice Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.png">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Design-Pattern/" rel="tag"># Design Pattern</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/11/20/design-pattern/abstract-factory/" rel="prev" title="Abstract Factory">
+      <i class="fa fa-chevron-left"></i> Abstract Factory
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Builder-%E5%BB%BA%E9%80%A0%E8%80%85"><span class="nav-number">1.</span> <span class="nav-text">Builder 建造者</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intent-%E6%84%8F%E5%9B%BE"><span class="nav-number">1.1.</span> <span class="nav-text">Intent 意图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">Problem 问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.3.</span> <span class="nav-text">Solution 解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Director"><span class="nav-number">1.4.</span> <span class="nav-text">Director</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Structure-%E7%BB%93%E6%9E%84"><span class="nav-number">1.5.</span> <span class="nav-text">Structure 结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pseudocode-%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">1.6.</span> <span class="nav-text">Pseudocode 伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Applicability-%E9%80%82%E7%94%A8%E6%80%A7"><span class="nav-number">1.7.</span> <span class="nav-text">Applicability 适用性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-Implement-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.8.</span> <span class="nav-text">How to Implement 如何实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pros-and-Cons-%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9"><span class="nav-number">1.9.</span> <span class="nav-text">Pros and Cons 优点和缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pros-%E4%BC%98%E7%82%B9"><span class="nav-number">1.9.1.</span> <span class="nav-text">Pros 优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">1.9.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Relations-with-Other-Patterns-%E4%B8%8E%E5%85%B6%E4%BB%96%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.10.</span> <span class="nav-text">Relations with Other Patterns 与其他模式的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Examples-%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.11.</span> <span class="nav-text">Code Examples 代码示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python-Conceptual-Example-%E6%A6%82%E5%BF%B5%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.11.1.</span> <span class="nav-text">python Conceptual Example 概念示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-txt-Execution-result"><span class="nav-number">1.11.2.</span> <span class="nav-text">Output.txt: Execution result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rust-%E7%A4%BA%E4%BE%8B%EF%BC%9ACar-car-manual-builders"><span class="nav-number">1.11.3.</span> <span class="nav-text">Rust 示例：Car &amp; car manual builders</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#builders-Builders-builders"><span class="nav-number">1.11.4.</span> <span class="nav-text">builders: Builders builders</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#builders-mod-rs"><span class="nav-number">1.11.4.1.</span> <span class="nav-text">builders&#x2F;mod.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#builders-car-rs"><span class="nav-number">1.11.4.2.</span> <span class="nav-text">builders&#x2F;car.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#builders-car-manual-rs"><span class="nav-number">1.11.4.3.</span> <span class="nav-text">builders&#x2F;car_manual.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cars-Products"><span class="nav-number">1.11.4.4.</span> <span class="nav-text">cars: Products</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#cars-mod-rs"><span class="nav-number">1.11.4.4.1.</span> <span class="nav-text">cars&#x2F;mod.rs</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cars-car-rs"><span class="nav-number">1.11.4.4.2.</span> <span class="nav-text">cars&#x2F;car.rs</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cars-manual-rs"><span class="nav-number">1.11.4.4.3.</span> <span class="nav-text">cars&#x2F;manual.rs</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#components-rs-Product-components"><span class="nav-number">1.11.4.5.</span> <span class="nav-text">components.rs: Product components</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#director-rs-Directors"><span class="nav-number">1.11.4.6.</span> <span class="nav-text">director.rs: Directors</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#main-rs-Client-code"><span class="nav-number">1.11.4.7.</span> <span class="nav-text">main.rs: Client code</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output"><span class="nav-number">1.11.5.</span> <span class="nav-text">Output</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ice</p>
+  <div class="site-description" itemprop="description">安静地坐着学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/TonyMistark" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;TonyMistark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/Micestark" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;Micestark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tony_mistark@163.com" title="E-Mail → mailto:tony_mistark@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Tony_Mistark" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Tony_Mistark" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ice</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">58k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">3:32</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '298b6503f44953bd4193',
+      clientSecret: '6756a6cfc10d74976c79256c96ae1c441f3116ac',
+      repo        : 'tonymistark.github.io',
+      owner       : 'TonyMistark',
+      admin       : ['TonyMistark'],
+      id          : '20f19afd3c26a0f1a406b7662bc3db51',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

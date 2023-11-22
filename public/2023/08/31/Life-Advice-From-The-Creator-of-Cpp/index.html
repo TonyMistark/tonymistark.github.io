@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="C++ 之父 Bjarne Stroustrup 分享人生建议72岁的Bjarne Stroustrup发明了c++(于1985年首次发布)。38年后，他接受了Honeypot.io公司的一次简短采访。提供了自己的人生建议:不要过度专业化。不要太确定你知道未来的情况。要灵活变通,记住职业和工作是长期的事情。太多年轻人认为他们可以优化某些东西,然后发现自己在某些可能不是正确的东西上花费了两三年的时间">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(Life) Advice From The Creator of C++">
+<meta property="og:url" content="https://tonymistark.github.io/2023/08/31/Life-Advice-From-The-Creator-of-Cpp/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="C++ 之父 Bjarne Stroustrup 分享人生建议72岁的Bjarne Stroustrup发明了c++(于1985年首次发布)。38年后，他接受了Honeypot.io公司的一次简短采访。提供了自己的人生建议:不要过度专业化。不要太确定你知道未来的情况。要灵活变通,记住职业和工作是长期的事情。太多年轻人认为他们可以优化某些东西,然后发现自己在某些可能不是正确的东西上花费了两三年的时间">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-08-31T02:32:17.000Z">
+<meta property="article:modified_time" content="2023-11-15T14:36:48.960Z">
+<meta property="article:author" content="Ice">
+<meta property="article:tag" content="随笔">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://tonymistark.github.io/2023/08/31/Life-Advice-From-The-Creator-of-Cpp/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>(Life) Advice From The Creator of C++ | BLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6L4L92Z6Z"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W6L4L92Z6Z');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?99c70b2174a7fbe4af476f28bafb19a3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/./atom.xml" title="BLOG" type="application/atom+xml">
+<link rel="alternate" href="/./rss2.xml" title="BLOG" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">用心记录思想</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/31/Life-Advice-From-The-Creator-of-Cpp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          (Life) Advice From The Creator of C++
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-08-31 10:32:17" itemprop="dateCreated datePublished" datetime="2023-08-31T10:32:17+08:00">2023-08-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-11-15 22:36:48" itemprop="dateModified" datetime="2023-11-15T22:36:48+08:00">2023-11-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="C-之父-Bjarne-Stroustrup-分享人生建议"><a href="#C-之父-Bjarne-Stroustrup-分享人生建议" class="headerlink" title="C++ 之父 Bjarne Stroustrup 分享人生建议"></a>C++ 之父 Bjarne Stroustrup 分享人生建议</h3><p>72岁的Bjarne Stroustrup发明了c++(于1985年首次发布)。38年后，他接受了Honeypot.io公司的一次简短<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=-QxI-RP6-HM">采访</a>。提供了自己的人生建议:<br>不要过度专业化。不要太确定你知道未来的情况。要灵活变通,记住职业和工作是长期的事情。太多年轻人认为他们可以优化某些东西,然后发现自己在某些可能不是正确的东西上花费了两三年的时间进行专业化。在这个过程中,他们会感到烧毁,因为他们没有花足够的时间建立友谊和生活中的其他事情。<br>我遇到很多“初级极客”——我不知道该怎么称呼他们——他们认为计算机编程、AI、图形之类的专业知识才是唯一重要的东西。其实不是这样的……如果他们什么也不做,只是编写最好的代码,他们认为可以改变世界。但你必须能够倾听。你必须能够与潜在的用户沟通,并从他们那里学习。你也必须能够向他们传达自己的想法。<br>所以你不能只写代码。你必须做一些关于文化和表达想法的事情。我的意思是,我从来不后悔学习历史和数学所花的时间。数学增强你的思维,历史让你对自己的局限性和世界上正在发生的事情有所了解。所以不要太自信。花时间过平衡的生活。<br>要做好抓住机会的准备。我的意思是,广泛的教育,广泛的技能组合——通过教育建立起来的——意味着当机会出现时你可以抓住它。有时候你可以认识到它。我们有很多机会。但我们中很多人要么无法抓住,要么没有注意到。我相对广泛的教育经历——我学过标准的计算机科学,编译器,多种语言……我当时大概知道二十几种。我还学过机器架构,操作系统。这套技能组合发挥了作用。</p>
+<h3 id="Life-Advice-From-The-Creator-of-C"><a href="#Life-Advice-From-The-Creator-of-C" class="headerlink" title="(Life) Advice From The Creator of C++"></a>(Life) Advice From The Creator of C++</h3><p>72-year-old Bjarne Stroustrup invented C++ (first released in 1985). 38 years later, he gave a <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=-QxI-RP6-HM">short interview</a> for Honeypot.io (which calls itself “Europe’s largest tech-focused job platform”) offering his own advice for life:</p>
+<p>Don’t overspecialize. Don’t be too sure that you know the future. Be flexible, and remember that careers and jobs are a long-term thing. Too many young people think they can optimize something, and then they find they’ve spent a couple of years or more specializing in something that may not have been the right thing. And in the process they burn out, because they haven’t spent enough time building up friendships and having a life outside computing.</p>
+<p>I meet a lot of sort of — I don’t know what you call them, “junior geeks”? — that just think that the only thing that matters is the speciality of computing — programming or AI or graphics or something like that. And — well, it isn’t… And if they do nothing else, well — if you don’t communicate your ideas, you can just as well do Sudoku… You have to communicate. And a lot of sort of caricature nerds forget that. They think that if they can just write the best code, they’ll change the world. But you have to be able to listen. You have to be able to communicate with your would-be users and learn from them. And you have to be able to communicate your ideas to them.</p>
+<p>So you can’t just do code. You have to do something about culture and how to express ideas. I mean, I never regretted the time I spent on history and on math. Math sharpens your mind, history gives you some idea of your limitations and what’s going on in the world. And so don’t be too sure. Take time to have a balanced life.</p>
+<p>And be ready for the opportunity. I mean, a broad-based education, a broad-based skill set — which is what you build up when you educate, you’re basically building a portfolio of skills — means that you can take advantage of an opportunity when it comes along. You can recognize it sometimes. We have lots of opportunities. But a lot of them, we either can’t take advantage of, or we don’t notice. It was my fairly broad education — I’ve done standard computer science, I’ve done compilers, I’ve done multiple languages… I think I knew two dozen at the time. And I have done machine architecture, I’ve done operating systems. And that skill set turned out to be useful.</p>
+<p>At the beginning of the video, Stroustrup jokes that it’s hard to give advice — and that it’s at least as difficult as it is to take advice.</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>宇宙山河浪漫，赞赏动力无限</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Ice WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Ice Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.png">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag"># 随笔</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/08/29/%E8%B0%88%E6%97%A5%E6%9C%AC%E5%90%91%E6%B5%B7%E6%B4%8B%E6%8E%92%E6%A0%B8%E6%B1%A1%E6%9F%93%E6%B0%B4/" rel="prev" title="谈日本向海洋排放核污染水">
+      <i class="fa fa-chevron-left"></i> 谈日本向海洋排放核污染水
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/10/18/rust_docs/ch_09_02_recoverable_errors_with_result/" rel="next" title="Ch 09.02:带有结果的可恢复错误">
+      Ch 09.02:带有结果的可恢复错误 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E4%B9%8B%E7%88%B6-Bjarne-Stroustrup-%E5%88%86%E4%BA%AB%E4%BA%BA%E7%94%9F%E5%BB%BA%E8%AE%AE"><span class="nav-number">1.</span> <span class="nav-text">C++ 之父 Bjarne Stroustrup 分享人生建议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Life-Advice-From-The-Creator-of-C"><span class="nav-number">2.</span> <span class="nav-text">(Life) Advice From The Creator of C++</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ice</p>
+  <div class="site-description" itemprop="description">安静地坐着学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/TonyMistark" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;TonyMistark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/Micestark" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;Micestark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tony_mistark@163.com" title="E-Mail → mailto:tony_mistark@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Tony_Mistark" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Tony_Mistark" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ice</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">58k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">3:32</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '298b6503f44953bd4193',
+      clientSecret: '6756a6cfc10d74976c79256c96ae1c441f3116ac',
+      repo        : 'tonymistark.github.io',
+      owner       : 'TonyMistark',
+      admin       : ['TonyMistark'],
+      id          : '8b4416ae62d823a5a758e214d98f0d79',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
