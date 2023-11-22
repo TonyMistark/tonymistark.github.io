@@ -958,10 +958,10 @@ Since industrial prototypes don’t really copy themselves, a much closer analog
 由于工业原型并不能真正复制自己，因此与该模式更接近的类比是有丝分裂细胞分裂的过程（生物学，还记得吗？有丝分裂后，形成一对相同的细胞。原始单元充当原型，并在创建副本中发挥积极作用。
 
 <h2 id="Structure-结构"><a href="#Structure-结构" class="headerlink" title="Structure 结构"></a>Structure 结构</h2><h3 id="Basic-implementation-基本实现"><a href="#Basic-implementation-基本实现" class="headerlink" title="Basic implementation 基本实现"></a>Basic implementation 基本实现</h3><div align="center"> <img src="/images/prototyp-structure.png"/></div>
-1. The **Prototype** interface declares the cloning methods. In most cases, it’s a single clone method.
-Prototype 接口声明克隆方法。在大多数情况下，它是一种单一 clone 方法。
 
-<ol start="2">
+<ol>
+<li><p>The <strong>Prototype</strong> interface declares the cloning methods. In most cases, it’s a single clone method.<br>Prototype 接口声明克隆方法。在大多数情况下，它是一种单一 clone 方法。</p>
+</li>
 <li><p>The <code>Concrete Prototype</code> class implements the cloning method. In addition to copying the original object’s data to the clone, this method may also handle some edge cases of the cloning process related to cloning linked objects, untangling recursive dependencies, etc.<br>Concrete Prototype 类实现克隆方法。除了将原始对象的数据复制到克隆中外，该方法还可以处理克隆过程中与克隆链接对象、解开递归依赖关系等相关的一些边缘情况。</p>
 </li>
 <li><p>The <code>Client</code> can produce a copy of any object that follows the prototype interface.<br>客户端可以生成遵循原型接口的任何对象的副本。</p>

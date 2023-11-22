@@ -49,6 +49,7 @@ Since industrial prototypes don’t really copy themselves, a much closer analog
 ## Structure 结构
 ### Basic implementation 基本实现
 <div align="center"> <img src="/images/prototyp-structure.png"/></div>
+
 1. The **Prototype** interface declares the cloning methods. In most cases, it’s a single clone method.
 Prototype 接口声明克隆方法。在大多数情况下，它是一种单一 clone 方法。
 
