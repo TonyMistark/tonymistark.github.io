@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tonymistark.github.io/2023/11/22/design-pattern/prototype/</loc>
+    
+    <lastmod>2023-11-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tonymistark.github.io/2023/11/09/design-pattern/what-is-a-design-pattern/</loc>
+    
+    <lastmod>2023-11-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://tonymistark.github.io/2023/11/21/design-pattern/builder/</loc>
     
     <lastmod>2023-11-22</lastmod>
@@ -39,15 +57,6 @@
   
   <url>
     <loc>https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/</loc>
-    
-    <lastmod>2023-11-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://tonymistark.github.io/2023/11/09/design-pattern/what-is-a-design-pattern/</loc>
     
     <lastmod>2023-11-21</lastmod>
     

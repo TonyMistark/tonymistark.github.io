@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2023-11-22T13:04:41.297Z</updated>
+  <updated>2023-11-22T13:45:57.047Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Prototype</title>
+    <link href="https://tonymistark.github.io/2023/11/22/design-pattern/prototype/"/>
+    <id>https://tonymistark.github.io/2023/11/22/design-pattern/prototype/</id>
+    <published>2023-11-22T13:10:02.000Z</published>
+    <updated>2023-11-22T13:45:57.047Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Prototype-原型&quot;&gt;&lt;a href=&quot;#Prototype-原型&quot; class=&quot;headerlink&quot; title=&quot;Prototype 原型&quot;&gt;&lt;/a&gt;Prototype 原型&lt;/h1&gt;&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="design-pattern" scheme="https://tonymistark.github.io/categories/design-pattern/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Builder</title>
@@ -171,7 +194,7 @@
     <link href="https://tonymistark.github.io/2023/11/09/design-pattern/what-is-a-design-pattern/"/>
     <id>https://tonymistark.github.io/2023/11/09/design-pattern/what-is-a-design-pattern/</id>
     <published>2023-11-09T14:18:59.000Z</published>
-    <updated>2023-11-21T12:45:30.764Z</updated>
+    <updated>2023-11-22T13:12:21.885Z</updated>
     
     
       
@@ -478,31 +501,6 @@
     
     
     <category term="tools" scheme="https://tonymistark.github.io/tags/tools/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ubuntu 只保留最近一周的日志</title>
-    <link href="https://tonymistark.github.io/2023/08/18/ubuntu-%E5%8F%AA%E4%BF%9D%E7%95%99%E6%9C%80%E8%BF%91%E4%B8%80%E5%91%A8%E7%9A%84%E6%97%A5%E5%BF%97/"/>
-    <id>https://tonymistark.github.io/2023/08/18/ubuntu-%E5%8F%AA%E4%BF%9D%E7%95%99%E6%9C%80%E8%BF%91%E4%B8%80%E5%91%A8%E7%9A%84%E6%97%A5%E5%BF%97/</id>
-    <published>2023-08-18T07:32:38.000Z</published>
-    <updated>2023-11-15T14:36:48.989Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;只保留最近一周的日志&quot;&gt;&lt;a href=&quot;#只保留最近一周的日志&quot; class=&quot;headerlink&quot; title=&quot;只保留最近一周的日志&quot;&gt;&lt;/a&gt;只保留最近一周的日志&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;只保留最近一周的日志&lt;/p&gt;
-&lt;figure</summary>
-        
-      
-    
-    
-    
-    
-    <category term="ubuntu" scheme="https://tonymistark.github.io/tags/ubuntu/"/>
     
   </entry>
   

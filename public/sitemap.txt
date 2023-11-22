@@ -1,9 +1,10 @@
+https://tonymistark.github.io/2023/11/22/design-pattern/prototype/
+https://tonymistark.github.io/2023/11/09/design-pattern/what-is-a-design-pattern/
 https://tonymistark.github.io/2023/11/21/design-pattern/builder/
 https://tonymistark.github.io/2023/11/15/design-pattern/why-should-i-learn-patterns/
 https://tonymistark.github.io/2023/11/14/design-pattern/history-of-patterns/
 https://tonymistark.github.io/2023/11/16/design-pattern/factory-method/
 https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/
-https://tonymistark.github.io/2023/11/09/design-pattern/what-is-a-design-pattern/
 https://tonymistark.github.io/2023/11/15/design-pattern/classification-of-patterns/
 https://tonymistark.github.io/tags/index.html
 https://tonymistark.github.io/writing/index.html
