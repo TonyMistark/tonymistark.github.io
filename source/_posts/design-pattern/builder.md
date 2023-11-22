@@ -1,7 +1,7 @@
 ---
 title: Builder
 categories:
-  - design-patter
+  - design-pattern
 tags: Design Pattern
 date: 2023-11-21 20:42:48
 ---
