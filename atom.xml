@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2023-11-22T15:21:21.585Z</updated>
+  <updated>2023-11-23T14:14:51.512Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Singleton</title>
+    <link href="https://tonymistark.github.io/2023/11/23/design-pattern/singleton/"/>
+    <id>https://tonymistark.github.io/2023/11/23/design-pattern/singleton/</id>
+    <published>2023-11-23T13:08:58.000Z</published>
+    <updated>2023-11-23T14:14:51.512Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Singleton-单例模式&quot;&gt;&lt;a href=&quot;#Singleton-单例模式&quot; class=&quot;headerlink&quot; title=&quot;Singleton 单例模式&quot;&gt;&lt;/a&gt;Singleton 单例模式&lt;/h1&gt;&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="design-pattern" scheme="https://tonymistark.github.io/categories/design-pattern/"/>
+    
+    
+    <category term="Design Pattern" scheme="https://tonymistark.github.io/tags/Design-Pattern/"/>
+    
+  </entry>
   
   <entry>
     <title>Prototype</title>
@@ -478,29 +503,6 @@
     
     <category term="notes" scheme="https://tonymistark.github.io/categories/notes/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo Commands</title>
-    <link href="https://tonymistark.github.io/2023/08/19/hexo-commands/"/>
-    <id>https://tonymistark.github.io/2023/08/19/hexo-commands/</id>
-    <published>2023-08-19T14:09:35.000Z</published>
-    <updated>2023-11-22T15:21:21.586Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;Hexo-命令&quot;&gt;&lt;a href=&quot;#Hexo-命令&quot; class=&quot;headerlink&quot; title=&quot;Hexo 命令&quot;&gt;&lt;/a&gt;Hexo 命令&lt;/h3&gt;&lt;h4 id=&quot;new&quot;&gt;&lt;a href=&quot;#new&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="tools" scheme="https://tonymistark.github.io/tags/tools/"/>
     
   </entry>
   

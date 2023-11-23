@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tonymistark.github.io/2023/11/23/design-pattern/singleton/</loc>
+    
+    <lastmod>2023-11-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://tonymistark.github.io/notes/index.html</loc>
     
     <lastmod>2023-11-22</lastmod>
@@ -74,7 +83,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2023/08/18/ubuntu-%E5%8F%AA%E4%BF%9D%E7%95%99%E6%9C%80%E8%BF%91%E4%B8%80%E5%91%A8%E7%9A%84%E6%97%A5%E5%BF%97/</loc>
+    <loc>https://tonymistark.github.io/2023/10/20/should_I_support_Israel_or_Palestine/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -83,7 +92,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2023/10/20/should_I_support_Israel_or_Palestine/</loc>
+    <loc>https://tonymistark.github.io/2023/08/18/ubuntu-%E5%8F%AA%E4%BF%9D%E7%95%99%E6%9C%80%E8%BF%91%E4%B8%80%E5%91%A8%E7%9A%84%E6%97%A5%E5%BF%97/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -128,7 +137,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_00_error_handing/</loc>
+    <loc>https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_03_hash_maps/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -137,7 +146,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_03_hash_maps/</loc>
+    <loc>https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_00_error_handing/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -164,7 +173,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_00_common_collections/</loc>
+    <loc>https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_05_separating_modules_into_different_files/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -173,7 +182,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_05_separating_modules_into_different_files/</loc>
+    <loc>https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_00_common_collections/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -200,7 +209,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_02_defining_modules_to_control_scope_and_privacy/</loc>
+    <loc>https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_01_packages_and_crates/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -209,7 +218,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_01_packages_and_crates/</loc>
+    <loc>https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_02_defining_modules_to_control_scope_and_privacy/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -236,7 +245,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2022/12/29/rust_docs/ch_06_01_defining_an_enum/</loc>
+    <loc>https://tonymistark.github.io/2022/12/29/rust_docs/ch_06_02_match/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -245,7 +254,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2022/12/29/rust_docs/ch_06_02_match/</loc>
+    <loc>https://tonymistark.github.io/2022/12/29/rust_docs/ch_06_01_defining_an_enum/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -308,7 +317,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2022/12/29/rust_docs/ch_04_03_slices/</loc>
+    <loc>https://tonymistark.github.io/2022/12/29/rust_docs/ch_04_02_references_and_borrowing/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -317,7 +326,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2022/12/29/rust_docs/ch_04_02_references_and_borrowing/</loc>
+    <loc>https://tonymistark.github.io/2022/12/29/rust_docs/ch_04_03_slices/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -362,7 +371,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2022/12/29/rust_docs/ch_03_00_common_programming_concepts/</loc>
+    <loc>https://tonymistark.github.io/2022/12/28/rust_docs/ch_02_00_guessing_game_tutorial/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -371,7 +380,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2022/12/28/rust_docs/ch_02_00_guessing_game_tutorial/</loc>
+    <loc>https://tonymistark.github.io/2022/12/29/rust_docs/ch_03_00_common_programming_concepts/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -407,7 +416,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2022/12/27/rust_docs/ch_01_03_hello_cargo/</loc>
+    <loc>https://tonymistark.github.io/2022/12/26/rust_docs/ch_01_02_hello_world/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -416,7 +425,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2022/12/26/rust_docs/ch_01_02_hello_world/</loc>
+    <loc>https://tonymistark.github.io/2022/12/27/rust_docs/ch_01_03_hello_cargo/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -443,7 +452,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2023/08/20/hexo_categories_tag/</loc>
+    <loc>https://tonymistark.github.io/2023/08/19/hexo-commands/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -452,7 +461,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2023/08/19/hexo-commands/</loc>
+    <loc>https://tonymistark.github.io/2023/08/20/hexo_categories_tag/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -542,7 +551,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2023/11/01/I-am-Grinding-King/</loc>
+    <loc>https://tonymistark.github.io/2023/08/31/Life-Advice-From-The-Creator-of-Cpp/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -551,7 +560,7 @@
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/2023/08/31/Life-Advice-From-The-Creator-of-Cpp/</loc>
+    <loc>https://tonymistark.github.io/2023/11/01/I-am-Grinding-King/</loc>
     
     <lastmod>2023-11-22</lastmod>
     
@@ -562,7 +571,7 @@
 
   <url>
     <loc>https://tonymistark.github.io/</loc>
-    <lastmod>2023-11-22</lastmod>
+    <lastmod>2023-11-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -570,49 +579,49 @@
   
   <url>
     <loc>https://tonymistark.github.io/tags/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2023-11-22</lastmod>
+    <lastmod>2023-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/tools/</loc>
-    <lastmod>2023-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://tonymistark.github.io/tags/ubuntu/</loc>
-    <lastmod>2023-11-22</lastmod>
+    <lastmod>2023-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/%E9%9A%8F%E6%83%B3/</loc>
-    <lastmod>2023-11-22</lastmod>
+    <lastmod>2023-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://tonymistark.github.io/tags/Design-Pattern/</loc>
-    <lastmod>2023-11-22</lastmod>
+    <loc>https://tonymistark.github.io/tags/ubuntu/</loc>
+    <lastmod>2023-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/tags/</loc>
-    <lastmod>2023-11-22</lastmod>
+    <lastmod>2023-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://tonymistark.github.io/tags/Design-Pattern/</loc>
+    <lastmod>2023-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/Rust/</loc>
-    <lastmod>2023-11-22</lastmod>
+    <lastmod>2023-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -621,42 +630,42 @@
   
   <url>
     <loc>https://tonymistark.github.io/categories/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2023-11-22</lastmod>
+    <lastmod>2023-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/notes/</loc>
-    <lastmod>2023-11-22</lastmod>
+    <lastmod>2023-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/writing/</loc>
-    <lastmod>2023-11-22</lastmod>
+    <lastmod>2023-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/ubuntu/</loc>
-    <lastmod>2023-11-22</lastmod>
+    <lastmod>2023-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/design-pattern/</loc>
-    <lastmod>2023-11-22</lastmod>
+    <lastmod>2023-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/Rust/</loc>
-    <lastmod>2023-11-22</lastmod>
+    <lastmod>2023-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
