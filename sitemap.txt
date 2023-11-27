@@ -1,3 +1,5 @@
+https://tonymistark.github.io/2023/11/26/design-pattern/Creational-Design-Patterns/
+https://tonymistark.github.io/2023/11/24/sam_altman/growth-and-government/
 https://tonymistark.github.io/2023/11/23/design-pattern/singleton/
 https://tonymistark.github.io/notes/index.html
 https://tonymistark.github.io/tags/index.html
@@ -69,10 +71,12 @@ https://tonymistark.github.io/tags/ubuntu/
 https://tonymistark.github.io/tags/tags/
 https://tonymistark.github.io/tags/Design-Pattern/
 https://tonymistark.github.io/tags/Rust/
+https://tonymistark.github.io/tags/sam-altman/
 https://tonymistark.github.io/categories/%E9%9A%8F%E7%AC%94/
 https://tonymistark.github.io/categories/notes/
 https://tonymistark.github.io/categories/writing/
 https://tonymistark.github.io/categories/ubuntu/
 https://tonymistark.github.io/categories/design-pattern/
 https://tonymistark.github.io/categories/Rust/
+https://tonymistark.github.io/categories/sam-altman/
 

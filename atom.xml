@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2023-11-23T14:14:51.512Z</updated>
+  <updated>2023-11-27T15:25:52.034Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -17,11 +17,59 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Creational Design Patterns</title>
+    <link href="https://tonymistark.github.io/2023/11/26/design-pattern/Creational-Design-Patterns/"/>
+    <id>https://tonymistark.github.io/2023/11/26/design-pattern/Creational-Design-Patterns/</id>
+    <published>2023-11-26T13:50:49.000Z</published>
+    <updated>2023-11-27T15:25:52.034Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Creational-Design-Patterns-创建设计模式&quot;&gt;&lt;a href=&quot;#Creational-Design-Patterns-创建设计模式&quot; class=&quot;headerlink&quot; title=&quot;Creational Design</summary>
+        
+      
+    
+    
+    
+    <category term="design-pattern" scheme="https://tonymistark.github.io/categories/design-pattern/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Growth and Government</title>
+    <link href="https://tonymistark.github.io/2023/11/24/sam_altman/growth-and-government/"/>
+    <id>https://tonymistark.github.io/2023/11/24/sam_altman/growth-and-government/</id>
+    <published>2023-11-24T03:29:07.000Z</published>
+    <updated>2023-11-24T14:44:12.334Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;这是一篇11年前于2013年3月5日,山姆</summary>
+        
+      
+    
+    
+    
+    <category term="sam_altman" scheme="https://tonymistark.github.io/categories/sam-altman/"/>
+    
+    
+    <category term="sam altman" scheme="https://tonymistark.github.io/tags/sam-altman/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Singleton</title>
     <link href="https://tonymistark.github.io/2023/11/23/design-pattern/singleton/"/>
     <id>https://tonymistark.github.io/2023/11/23/design-pattern/singleton/</id>
     <published>2023-11-23T13:08:58.000Z</published>
-    <updated>2023-11-23T14:14:51.512Z</updated>
+    <updated>2023-11-23T14:35:50.091Z</updated>
     
     
       
@@ -454,55 +502,6 @@
     
     
     <category term="随笔" scheme="https://tonymistark.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>人在什么情况下成长最快？</title>
-    <link href="https://tonymistark.github.io/2023/08/21/%E4%BA%BA%E5%9C%A8%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E6%88%90%E9%95%BF%E6%9C%80%E5%BF%AB%EF%BC%9F/"/>
-    <id>https://tonymistark.github.io/2023/08/21/%E4%BA%BA%E5%9C%A8%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E6%88%90%E9%95%BF%E6%9C%80%E5%BF%AB%EF%BC%9F/</id>
-    <published>2023-08-21T13:38:17.000Z</published>
-    <updated>2023-11-22T15:21:21.606Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;人在什么情况下成长最快？&quot;&gt;&lt;a href=&quot;#人在什么情况下成长最快？&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="writing" scheme="https://tonymistark.github.io/categories/writing/"/>
-    
-    
-    <category term="随想" scheme="https://tonymistark.github.io/tags/%E9%9A%8F%E6%83%B3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo 添加分类和标签</title>
-    <link href="https://tonymistark.github.io/2023/08/20/hexo_categories_tag/"/>
-    <id>https://tonymistark.github.io/2023/08/20/hexo_categories_tag/</id>
-    <published>2023-08-20T08:02:39.000Z</published>
-    <updated>2023-11-22T15:21:21.586Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;创建“分类”选项&quot;&gt;&lt;a href=&quot;#创建“分类”选项&quot; class=&quot;headerlink&quot; title=&quot;创建“分类”选项&quot;&gt;&lt;/a&gt;创建“分类”选项&lt;/h3&gt;&lt;p&gt;生成“分类”页并添加tpye属性,进入博客目录。执行命令下方命令&lt;/p&gt;
-&lt;figure</summary>
-        
-      
-    
-    
-    
-    <category term="notes" scheme="https://tonymistark.github.io/categories/notes/"/>
-    
     
   </entry>
   
