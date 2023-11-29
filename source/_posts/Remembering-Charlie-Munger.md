@@ -2,11 +2,11 @@
 [November 28, 2023 News Release](https://www.berkshirehathaway.com/news/nov2823.pdf)
 伯克希尔·哈撒韦公司新闻发布
 
-NEWS RELEASE  新闻发布
+# NEWS RELEASE  新闻发布
 
-FOR IMMEDIATE RELEASE  立即发布
+# FOR IMMEDIATE RELEASE  立即发布
 
-November 28, 2023  2023年11月28日
+# November 28, 2023  2023年11月28日
 
 Omaha, NE (BRK.A; BRK.B) –  内布拉斯加州奥马哈（BRK.A; BRK.B）-
 
@@ -18,7 +18,7 @@ Warren Buffett, CEO of Berkshire Hathaway, wishes to say: “Berkshire Hathaway 
 
 The family will handle all affairs pursuant to Charlie’s instructions.  芒格的家人将根据他的指示处理所有事务。
 
-About Berkshire  关于伯克希尔
+# About Berkshire  关于伯克希尔
 
 Berkshire Hathaway and its subsidiaries engage in diverse business activities including insurance and reinsurance, utilities and energy, freight rail transportation, manufacturing, retailing and services.  伯克希尔·哈撒韦及其子公司从事多种业务活动，包括保险和再保险、公用事业和能源、货运铁路运输、制造、零售和服务。
 
