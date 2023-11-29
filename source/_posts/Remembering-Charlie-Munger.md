@@ -4,9 +4,7 @@
 
 # NEWS RELEASE  新闻发布
 
-# FOR IMMEDIATE RELEASE  立即发布
-
-# November 28, 2023  2023年11月28日
+## FOR IMMEDIATE RELEASE  立即发布       November 28, 2023  2023年11月28日
 
 Omaha, NE (BRK.A; BRK.B) –  内布拉斯加州奥马哈（BRK.A; BRK.B）-
 
