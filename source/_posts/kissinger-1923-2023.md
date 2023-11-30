@@ -190,16 +190,23 @@ In lieu of flowers the family suggests considering donations to:
 为了代替鲜花，家人建议考虑捐赠给：
 
 Animal Medical Center 动物医疗中心
+
 Development Office 发展办公室
+
 510 East 62nd Street
 东62街510号
+
 New York, NY 10065
 纽约， NY 10065
 
 Henry A. Kissinger Center for Global Affairs
 亨利·基辛格全球事务中心
+
 Johns Hopkins University School of Advanced International Studies
 约翰霍普金斯大学高级国际研究学院
+
 1717 Massachusetts Avenue, NW
 1717马萨诸塞大道，西北
+
 Washington, DC 20036 华盛顿特区 20036
+
