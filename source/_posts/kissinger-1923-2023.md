@@ -1,5 +1,5 @@
 # Henry A.Kissinger 1923 – 2023
-
+<div align="center"> <img src="/images/kissinger-header.png"/></div>
 Henry A. Kissinger was the 56th Secretary of State, a respected American scholar and Nobel Peace Prize Laureate who helped create the post-World War II world order and led the U.S. through some of its most complicated foreign policy challenges.
 亨利·基辛格（Henry A. Kissinger）是第56任国务卿，是一位受人尊敬的美国学者和诺贝尔和平奖获得者，他帮助建立了二战后的世界秩序，并领导美国克服了一些最复杂的外交政策挑战。
 
@@ -70,10 +70,10 @@ Harold Brown, 2018, former Secretary of Defense and CSIS Counselor and Trustee
 
 Professor James Bindenagel, Henry Kissinger Professor, Bonn, 2018
 詹姆斯·宾德纳格尔教授，亨利·基辛格教授，波恩，2018
-Early Life 早年生活
+## Early Life 早年生活
 Henry A. Kissinger was born to a schoolteacher and a homemaker in Furth, Germany, in 1923, just as nationalism was beginning to sweep Germany. As Jews, the Kissinger family found many activities were off-limits, including attending public soccer matches, a sport that Dr. Kissinger loved, even if he did not excel in it. What he may have lacked in athletic talent, however, he made up for in academics. As a child, he was bookish and introverted, yet also competitive.
 亨利·基辛格（Henry A. Kissinger）于1923年出生于德国富尔特（Furth）的一名教师和家庭主妇，当时民族主义刚刚开始席卷德国。作为犹太人，基辛格一家发现许多活动都是禁止的，包括参加公共足球比赛，这是基辛格博士喜欢的运动，即使他并不擅长这项运动。然而，他可能在运动天赋方面有所欠缺，但他在学业上弥补了这一点。小时候，他书卷气十足，性格内向，但也很争强好胜。
-
+<div align="center"> <img src="/images/Early_life_1-658x1024.jpg"/></div>
 
 In 1935, the Nuremburg Laws were enacted, and Dr. Kissinger’s father, Louis, became a casualty of the rules, losing his job as a schoolteacher. Dr. Kissinger’s mother recognized that leaving Germany was the family’s best hope for their future and in 1938, three months before Kristallnacht, Dr. Kissinger, his younger brother Walter and their parents fled Nazi Germany and settled in New York City.
 1935年，《纽伦堡法》颁布，基辛格博士的父亲路易斯成为该法的牺牲品，失去了教师的工作。基辛格的母亲认识到，离开德国是这个家庭未来的最大希望，1938年，在水晶之夜前三个月，基辛格博士、他的弟弟沃尔特和他们的父母逃离纳粹德国，定居在纽约市。
@@ -81,8 +81,7 @@ In 1935, the Nuremburg Laws were enacted, and Dr. Kissinger’s father, Louis, b
 Many of his extended family were not able to escape, and 13 of them perished in the Holocaust. Well into his 80s, Dr. Kissinger remarked that people managed to survive the Holocaust through “singleness of purpose,” a trait that defined him throughout his career.
 他的许多大家庭都无法逃脱，其中13人在大屠杀中丧生。基辛格博士在80多岁时表示，人们通过“单一目标”在大屠杀中幸存下来，这是他整个职业生涯的特征。
 
-New Beginnings in America
-美国的新起点
+## New Beginnings in America 美国的新起点
 Dr. Kissinger’s experience of fleeing a country where he once had to cross the street to avoid being beaten by non-Jewish boys, and coming to a country where such persecution did not exist for him, was a transformative one. Upon arriving in America, he was keen to be considered an American. As he later reflected in his farewell speech as Secretary of State, “When I came here in 1938, I was asked to write an essay at George Washington High School about what it meant to be an American. I wrote that…this was a country where one could walk across the street with one’s head erect.”
 基辛格博士逃离了一个他曾经不得不过马路以避免被非犹太男孩殴打的国家，来到一个对他来说不存在这种迫害的国家，这是一次变革性的经历。抵达美国后，他渴望被视为美国人。正如他后来在作为国务卿的告别演说中所说，“当我1938年来到这里时，我被要求在乔治华盛顿高中写一篇关于作为一个美国人意味着什么的文章。我写道......这是一个可以昂首挺胸走过马路的国家。
 
@@ -90,13 +89,13 @@ In America, Dr. Kissinger plunged into his studies at George Washington High. He
 在美国，基辛格博士在乔治华盛顿高中投入研究。他最终转入夜校，这样他就可以在白天在剃须刷公司工作。良好的成绩加上稳定的职业道德，使基辛格博士很容易进入纽约市立学院，在那里他享受了免费教育。他的目标是成为一名会计师，但在军队中度过的时光使他的生活走上了不同的道路。
 
 
-A lifetime of service. 终身服务。
+## A lifetime of service. 终身服务。
 
-See the timeline →
-查看时间线→
+[See the timeline →](https://www.henryakissinger.com/timeline/)
+[查看时间线→](https://www.henryakissinger.com/timeline/)
 
 
-Service to Country 服务国家
+## Service to Country 服务国家
 In 1943, the year he became a U.S. citizen, Dr. Kissinger was drafted into the U.S. Army, where his intellect and fluency in German would make him a perfect candidate for military intelligence. His intellectual abilities earned him a placement in the Army Specialized Training Program, an opportunity that sent him from combat training to college instead. Dr. Kissinger was sent to Lafayette College in Pennsylvania, where he studied engineering, read books on history in his spare time, and tutored other students.
 1943年，基辛格博士成为美国公民，被征召入伍，他的智慧和流利的德语使他成为军事情报部门的完美人选。他的智力为他赢得了陆军专业训练计划的安置，这个机会使他从战斗训练进入了大学。基辛格博士被送到宾夕法尼亚州的拉斐特学院，在那里他学习工程学，在业余时间阅读历史书籍，并辅导其他学生。
 
@@ -112,7 +111,7 @@ Dr. Kissinger’s work in the CIC would continue even after the war had ended, a
 In 1946, he was discharged from the Army, having obtained the rank of sergeant. As he would later reflect, his military service would become for him the highlight of his career, and also one that affirmed his American identity and gave him confidence.
 1946年，他从陆军退伍，获得了中士军衔。正如他后来所反映的那样，服兵役将成为他职业生涯的亮点，也是肯定他的美国身份并给予他信心的亮点。
 
-Academia 学术界
+## Academia 学术界
 Following his service in the Army, and a brief stint teaching military officers in Germany, Dr. Kissinger returned to academics, earning his B.A., M.A. and Ph.D. from Harvard University. Legend has it that his doctoral dissertation was, and remains, the longest dissertation ever submitted at Harvard University.
 在军队服役并在德国短暂教授军官后，基辛格博士重返学术界，在哈佛大学获得学士、硕士和博士学位。传说他的博士论文是，现在仍然是哈佛大学有史以来最长的论文。
 
@@ -124,19 +123,19 @@ At Harvard, perhaps his most passionate pursuit, and a formative precursor to hi
 
 It was also during his time in academia that Dr. Kissinger refined his belief in the balance of power, linkage and triangular diplomacy. This would become the driving philosophy of his time as Secretary of State. His dissertation, Peace, Legitimacy, and the Equilibrium: A Study of the Statesmanship of Castlereagh and Metternich, argued that peace and stability do not come from the pursuit of peace per se. Rather, he looked at the diplomatic successes of Klemens von Metternich and Congress of Europe and concluded that peace comes from “an international agreement about the nature of workable arrangements and the permissible aims and methods of foreign policy. It implies the acceptance of the framework of international order by all major powers.” While Dr. Kissinger’s approach to peace through rules, power and stability was controversial, it also led to his greatest accomplishments.
 也是在学术界期间，基辛格博士完善了他对权力平衡、联系和三角外交的信念。这将成为他担任国务卿期间的驱动哲学。他的论文《和平、合法性和均衡：卡斯尔雷和梅特涅政治家风度研究》认为，和平与稳定并非来自对和平本身的追求。相反，他研究了克莱门斯·冯·梅特涅（Klemens von Metternich）和欧洲会议（Congress of Europe）的外交成功，并得出结论，和平来自“关于可行安排的性质以及外交政策的允许目标和方法的国际协议。它意味着所有大国都接受国际秩序的框架。虽然基辛格博士通过规则、权力和稳定实现和平的方法存在争议，但它也导致了他最伟大的成就。
+<div align="center"> <img src="/images/Academia_1.png"/></div>
 
-
-Global Statesman 全球政治家
+## Global Statesman 全球政治家
 Though successful in academia, Dr. Kissinger longed to have a direct impact on policy. He entered the political arena in 1960, serving as a senior foreign policy advisor to Gov. Nelson Rockefeller’s presidential campaigns in 1960, 1964 and 1968. When Rockefeller lost the Republican nomination in 1968, Dr. Kissinger, reluctantly at first, joined the campaign of the party nominee, Richard Nixon.
 虽然在学术界取得了成功，但基辛格博士渴望对政策产生直接影响。他于 1960 年进入政坛，在 1960 年、1964 年和 1968 年担任纳尔逊·洛克菲勒州长总统竞选活动的高级外交政策顾问。1968年，洛克菲勒在共和党提名中落败，基辛格起初不情愿地加入了该党提名人理查德·尼克松（Richard Nixon）的竞选活动。
 
 Following Nixon’s victory, Dr. Kissinger was named Assistant to the President for National Security Affairs and then National Security Advisor. In this capacity, and eventually as Secretary of State, Dr. Kissinger deftly guided the U.S. through many of the most difficult national security issues the nation would face.
 尼克松获胜后，基辛格博士被任命为总统国家安全事务助理，然后被任命为国家安全顾问。在这个职位上，并最终作为国务卿，基辛格博士巧妙地指导美国解决了美国将面临的许多最困难的国家安全问题。
-
+<div align="center"> <img src="/images/Influence_5.png"/></div>
 
 He led the Administration’s historic efforts to open relations with China — ultimately opening the door to greater stability between the nations, greater prosperity for the citizens within, and normalized relations between the two countries for the first time in decades. Specifically, in 1971 Dr. Kissinger made two secret trips to China, laying the groundwork for Nixon’s visit to the Republic the following year.
 他领导了本届政府开放与中国关系的历史性努力，最终为两国之间的更大稳定、国内公民的更大繁荣以及两国关系几十年来首次正常化打开了大门。具体来说，1971年，基辛格博士两次秘密访华，为尼克松次年访华奠定了基础。
-
+<div align="center"> <img src="/images/statesman_2.png"/></div>
 
 Dr. Kissinger believed in the power of triangulation as a tool for diplomacy, and this can be seen in his near-concurrent negotiations with China and the Soviet Union, as well — connecting the world’s three superpowers at the time. Dr. Kissinger later reflected that the triangular relationship was “in itself a form of pressure on each of them, and we carefully maneuvered so we would try to be closer to each than they were to each other.”
 基辛格博士相信三角测量作为外交工具的力量，这可以从他与中国和苏联几乎同时进行的谈判中看出——当时连接了世界上三个超级大国。基辛格博士后来反映说，三角关系“本身就是对他们每个人施加压力的一种形式，我们小心翼翼地操纵着，所以我们会努力更接近彼此，而不是彼此之间。
@@ -145,9 +144,9 @@ Dr. Kissinger believed in the power of triangulation as a tool for diplomacy, an
 “美国、苏联和中国之间的三角关系'本身就是对彼此施加压力的一种形式，我们小心翼翼地操纵着，所以我们会努力更接近彼此，而不是彼此之间。
 Ultimately, Dr. Kissinger was influential in achieving the historic détente between the United States and the Soviet Union through the 1972 Strategic Arms Limitation Treaty (SALT I) and the Anti-Ballistic Missile Treaty. In doing so, he helped to ease tensions between the world’s two superpowers amidst the tension of the Cold War era, achieving a vision for a global order that would preserve peace.
 最终，基辛格博士通过1972年《限制战略武器条约》（SALT I）和《反弹道导弹条约》实现了美苏之间的历史性缓和，发挥了重要作用。在此过程中，他帮助缓解了冷战时期紧张局势中的世界两个超级大国之间的紧张关系，实现了维护和平的全球秩序的愿景。
+<div align="center"> <img src="/images/Statesman_3-1024x623.jpg"/></div>
 
-
-
+<div align="center"> <img src="/images/Statesman_4.png"/></div>
 Dr. Kissinger also worked to end America’s involvement in the Vietnam War through the Paris Peace Accords. Dr. Kissinger recognized that the conflict could not be won in conventional military terms, so he set about trying to secure peace through active diplomacy. Soon after the Nixon Administration took office in 1969, Dr. Kissinger began painstaking negotiations that lasted nearly four years. In 1973, Dr. Kissinger and the North Vietnamese negotiator struck a deal for a ceasefire that ended American involvement in the war. That same year, he received plaudits for limiting the damage of, and outside influence in, the Yom Kippur War between America’s ally Israel, and the Soviet Union’s ally Egypt — ultimately preventing the regional conflict from spiraling into a global conflict. It was this experience that helped coin the term “shuttle diplomacy,” for the number of short trips Dr. Kissinger took between Middle Eastern capitals, as he worked to contain the military activities and to address the fallout of the war.
 基辛格博士还致力于通过《巴黎和平协定》结束美国对越南战争的参与。基辛格博士认识到，以常规军事手段无法赢得这场冲突，因此他开始试图通过积极的外交手段确保和平。1969年尼克松政府上台后不久，基辛格博士就开始了历时近四年的艰苦谈判。1973年，基辛格博士和北越谈判代表达成了停火协议，结束了美国对战争的介入。同年，他因限制美国盟友以色列和苏联盟友埃及之间的赎罪日战争的损害和外部影响而受到赞誉，最终阻止了地区冲突升级为全球冲突。正是这段经历帮助创造了“穿梭外交”一词，基辛格博士在中东各国首都之间进行了多次短途旅行，因为他努力遏制军事活动并解决战争的后果。
 
@@ -160,9 +159,14 @@ A force for international stability, Dr. Kissinger was also a steady hand at hom
 While his choices were not without controversy, and his behavior — as he operated with single-minded intent to realize his vision — was sometimes maddening to colleagues, Dr. Kissinger was aware of who he was, and owned it. In his own words, “Accept everything about yourself — I mean everything. You are you and that is the beginning and the end — no apologies, no regrets.”
 虽然他的选择并非没有争议，而且他的行为——他一心一意地实现自己的愿景——有时会让同事们抓狂，但基辛格博士知道自己是谁，并拥有它。用他自己的话说，“接受关于你自己的一切——我的意思是一切。你就是你，这就是开始和结束——没有道歉，没有遗憾。
 
-Enduring Influence 持久的影响
+## Enduring Influence 持久的影响
 After Dr. Kissinger stepped down as Secretary of State, he remained an advisor and voice on matters of foreign policy. At the bequest of President Ronald Reagan, Dr. Kissinger chaired the National Bipartisan Commission on Central America, and would later serve on the President’s Foreign Intelligence Advisory Board under Presidents Reagan and George H.W. Bush.
 基辛格博士卸任国务卿后，他仍然是外交政策事务的顾问和代言人。在罗纳德·里根总统的遗赠下，基辛格博士担任了中美洲国家两党委员会主席，后来在里根总统和乔治·H·W·布什总统的领导下担任总统外国情报顾问委员会的成员。
+<div align="center"> <img src="/images/Influence_1.png"/></div>
+<div align="center"> <img src="/images/Influence_2.png"/></div>
+<div align="center"> <img src="/images/Influence_3.png"/></div>
+<div align="center"> <img src="/images/Influence_4.png"/></div>
+<div align="center"> <img src="/images/Influence_5.png"/></div>
 
 After leaving government, Dr. Kissinger remained a frequent commentator on national security issues, as well as a prolific writer and founder of the consulting firm Kissinger Associates. As such, he remained an informal, but frequent, advisor to U.S. presidents, and he welcomed and met with countless heads of state and dignitaries from nearly every country in the world.
 离开政府后，基辛格博士仍然经常就国家安全问题发表评论，也是一位多产的作家和咨询公司基辛格协会的创始人。因此，他仍然是美国总统的非正式顾问，但经常担任顾问，他欢迎并会见了来自世界上几乎每个国家的无数国家元首和政要。
