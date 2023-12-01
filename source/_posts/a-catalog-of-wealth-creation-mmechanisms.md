@@ -1,11 +1,11 @@
 ---
 layout: layout
-title: 财富创造的机制清单
+title: 财富创造机制清单
 date: 2023-12-01 17:27:10
 tags:
 ---
 
-今天读到一篇关于[财富创造的机制](https://blog.rongarret.info/2009/10/catalog-of-wealth-creation-mechanisms.html)一些模式的讨论，讨论带来了一些启发，做了一下简单的总结。
+今天读到一篇关于[财富创造机制](https://blog.rongarret.info/2009/10/catalog-of-wealth-creation-mechanisms.html)一些模式的讨论，讨论带来了一些启发，做了一下简单的总结。
 这篇文章主要讨论了财富创造的基本机制。作者指出，财富与金钱是不同的概念，财富是人们真正看重的物质财产，而金钱只是人类为了促进交易而创造的一种会计机制。在财富创造的核心机制中，作者列举了以下几个要点：
 
 * 将物品从一个地方运送到另一个地方，这是航运业的基础，也是美国工业化的资金来源之一。
