@@ -1,5 +1,7 @@
 ---
 title: 山姆 奥特曼的野心
+categories:
+  - sam_altman
 date: 2023-11-27 15:25:19
 tags:
 ---

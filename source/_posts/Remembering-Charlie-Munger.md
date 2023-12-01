@@ -1,3 +1,10 @@
+---
+title: 伯克希尔·哈撒韦公司悼念查理·芒格：致敬一位伟大的领导者
+date: 2023-11-28 12:14:30
+categories: writing
+tags: 随想
+---
+
 # 伯克希尔·哈撒韦公司悼念查理·芒格：致敬一位伟大的领导者
 [November 28, 2023 News Release](https://www.berkshirehathaway.com/news/nov2823.pdf)
 伯克希尔·哈撒韦公司新闻发布

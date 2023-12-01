@@ -1,3 +1,9 @@
+---
+title: Henry A.Kissinger 1923 – 2023
+date: 2023-11-29 11:11:20
+categories: writing
+tags: 历史事件
+---
 # Henry A.Kissinger 1923 – 2023
 <div align="center"> <img src="/images/kissinger-header.png"/></div>
 Henry A. Kissinger was the 56th Secretary of State, a respected American scholar and Nobel Peace Prize Laureate who helped create the post-World War II world order and led the U.S. through some of its most complicated foreign policy challenges.
