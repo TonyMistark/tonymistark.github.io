@@ -1,3 +1,9 @@
+https://tonymistark.github.io/2023/12/03/design-pattern/adapter/
+https://tonymistark.github.io/2023/11/27/sam_altman/Successful-people/
+https://tonymistark.github.io/2023/11/29/kissinger-1923-2023/
+https://tonymistark.github.io/2023/12/01/a-catalog-of-wealth-creation-mmechanisms/
+https://tonymistark.github.io/2023/12/01/a-catalog-of-wealth-creation-mmechanisms-translate/
+https://tonymistark.github.io/2023/11/28/Remembering-Charlie-Munger/
 https://tonymistark.github.io/2023/11/26/design-pattern/Creational-Design-Patterns/
 https://tonymistark.github.io/2023/11/24/sam_altman/growth-and-government/
 https://tonymistark.github.io/2023/11/23/design-pattern/singleton/
@@ -72,6 +78,7 @@ https://tonymistark.github.io/tags/tags/
 https://tonymistark.github.io/tags/Design-Pattern/
 https://tonymistark.github.io/tags/Rust/
 https://tonymistark.github.io/tags/sam-altman/
+https://tonymistark.github.io/tags/%E5%8E%86%E5%8F%B2%E4%BA%8B%E4%BB%B6/
 https://tonymistark.github.io/categories/%E9%9A%8F%E7%AC%94/
 https://tonymistark.github.io/categories/notes/
 https://tonymistark.github.io/categories/writing/
