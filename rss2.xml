@@ -15,8 +15,35 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Sun, 03 Dec 2023 10:07:40 GMT</pubDate>
+    <pubDate>Wed, 06 Dec 2023 14:40:46 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Bridge</title>
+      <link>https://tonymistark.github.io/2023/12/06/design-pattern/bridge/</link>
+      <guid>https://tonymistark.github.io/2023/12/06/design-pattern/bridge/</guid>
+      <pubDate>Wed, 06 Dec 2023 13:36:04 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Bridge-桥接模式&quot;&gt;&lt;a href=&quot;#Bridge-桥接模式&quot; class=&quot;headerlink&quot; title=&quot;Bridge 桥接模式&quot;&gt;&lt;/a&gt;Bridge 桥接模式&lt;/h1&gt;&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/12/06/design-pattern/bridge/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Adapter</title>
@@ -511,29 +538,6 @@
       
       
       <comments>https://tonymistark.github.io/2023/11/01/I-am-Grinding-King/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>PEP 703（使全局解释器锁在 CPython 中可选）验收</title>
-      <link>https://tonymistark.github.io/2023/10/27/pep-703-making-the-global-interpreter-lock-optional-in-cpython-acceptance/</link>
-      <guid>https://tonymistark.github.io/2023/10/27/pep-703-making-the-global-interpreter-lock-optional-in-cpython-acceptance/</guid>
-      <pubDate>Fri, 27 Oct 2023 03:05:45 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h3 id=&quot;PEP-703（使全局解释器锁在-CPython-中可选）验收&quot;&gt;&lt;a href=&quot;#PEP-703（使全局解释器锁在-CPython-中可选）验收&quot; class=&quot;headerlink&quot; title=&quot;PEP 703（使全局解释器锁在 CPython</description>
-          
-        
-      
-      
-      
-      
-      
-      
-      <comments>https://tonymistark.github.io/2023/10/27/pep-703-making-the-global-interpreter-lock-optional-in-cpython-acceptance/#disqus_thread</comments>
       
     </item>
     

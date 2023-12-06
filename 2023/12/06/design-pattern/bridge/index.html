@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Bridge 桥接模式Intent 意图Bridge is a structural design pattern that lets you split a large class or a set of closely related classes into two separate hierarchies—abstraction and implementation—which can b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bridge">
+<meta property="og:url" content="https://tonymistark.github.io/2023/12/06/design-pattern/bridge/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="Bridge 桥接模式Intent 意图Bridge is a structural design pattern that lets you split a large class or a set of closely related classes into two separate hierarchies—abstraction and implementation—which can b">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://tonymistark.github.io/images/bridge-header.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/bridge-problem-en.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/bridge-solution-en.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/bridge-bridge-3-en.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/bridge-bridge-2-en.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/bridge-structure-en.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/bridge-example-en.png">
+<meta property="article:published_time" content="2023-12-06T13:36:04.000Z">
+<meta property="article:modified_time" content="2023-12-06T14:40:46.093Z">
+<meta property="article:author" content="Ice">
+<meta property="article:tag" content="Design Pattern">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tonymistark.github.io/images/bridge-header.png">
+
+<link rel="canonical" href="https://tonymistark.github.io/2023/12/06/design-pattern/bridge/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Bridge | BLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6L4L92Z6Z"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W6L4L92Z6Z');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?99c70b2174a7fbe4af476f28bafb19a3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/./atom.xml" title="BLOG" type="application/atom+xml">
+<link rel="alternate" href="/./rss2.xml" title="BLOG" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">用心记录思想</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/12/06/design-pattern/bridge/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Bridge
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-12-06 21:36:04 / Modified: 22:40:46" itemprop="dateCreated datePublished" datetime="2023-12-06T21:36:04+08:00">2023-12-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/design-pattern/" itemprop="url" rel="index"><span itemprop="name">design-pattern</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>5.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>21 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Bridge-桥接模式"><a href="#Bridge-桥接模式" class="headerlink" title="Bridge 桥接模式"></a>Bridge 桥接模式</h1><h2 id="Intent-意图"><a href="#Intent-意图" class="headerlink" title="Intent 意图"></a>Intent 意图</h2><p><strong>Bridge</strong> is a structural design pattern that lets you split a large class or a set of closely related classes into two separate hierarchies—abstraction and implementation—which can be developed independently of each other.<br><strong>Bridge</strong>是一种结构设计模式，它允许您将一个大型类或一组密切相关的类拆分为两个单独的层次结构（抽象和实现），这两个层次结构可以相互独立开发。</p>
+<div align="center"> <img src="/images/bridge-header.png"/></div>
+
+<h2 id="Problem-问题"><a href="#Problem-问题" class="headerlink" title="Problem 问题"></a>Problem 问题</h2><p>Abstraction? Implementation? Sound scary? Stay calm and let’s consider a simple example.<br>抽象化？实现？听起来很吓人？保持冷静，让我们考虑一个简单的例子。</p>
+<p>Say you have a geometric <code>Shape</code> class with a pair of subclasses: <code>Circle</code> and <code>Square</code>. You want to extend this class hierarchy to incorporate colors, so you plan to create <code>Red</code> and <code>Blue</code> shape subclasses. However, since you already have two subclasses, you’ll need to create four class combinations such as <code>BlueCircle</code> and <code>RedSquare</code>.<br>假设您有一个几何类，其中包含一对子 <code>Shape</code> 类： <code>Circle</code> 和 <code>Square</code> 。您希望扩展此类层次结构以合并颜色，因此您计划创建 <code>Red</code> 和 <code>Blue</code> 调整子类。但是，由于您已经有两个子类，因此需要创建四个类组合，例如 <code>BlueCircle</code> 和 <code>RedSquare</code> 。</p>
+<div align="center"> <img src="/images/bridge-problem-en.png"/>Number of class combinations grows in geometric progression.</br>类组合的数量以几何级数增长。</div>
+Adding new shape types and colors to the hierarchy will grow it exponentially. For example, to add a triangle shape you’d need to introduce two subclasses, one for each color. And after that, adding a new color would require creating three subclasses, one for each shape type. The further we go, the worse it becomes.
+向层次结构添加新的形状类型和颜色将使其呈指数级增长。例如，要添加三角形形状，您需要引入两个子类，每个子类对应一种颜色。之后，添加新颜色将需要创建三个子类，每个子类对应一个形状类型。我们走得越远，情况就越糟。
+
+<h2 id="Solution-解决方案"><a href="#Solution-解决方案" class="headerlink" title="Solution 解决方案"></a>Solution 解决方案</h2><p>This problem occurs because we’re trying to extend the shape classes in two independent dimensions: by form and by color. That’s a very common issue with class inheritance.<br>出现此问题的原因是，我们尝试在两个独立的维度中扩展形状类：按形状和按颜色。这是类继承的一个非常常见的问题。</p>
+<p>The Bridge pattern attempts to solve this problem by switching from inheritance to the object composition. What this means is that you extract one of the dimensions into a separate class hierarchy, so that the original classes will reference an object of the new hierarchy, instead of having all of its state and behaviors within one class.<br>Bridge 模式试图通过从继承切换到对象组合来解决此问题。这意味着将其中一个维度提取到单独的类层次结构中，以便原始类将引用新层次结构的对象，而不是将其所有状态和行为都放在一个类中。</p>
+<div align="center"> <img src="/images/bridge-solution-en.png"/>You can prevent the explosion of a class hierarchy by transforming it into several related hierarchies.</br>可以通过将类层次结构转换为多个相关的层次结构来防止类层次结构的爆炸式增长。</div>
+Following this approach, we can extract the color-related code into its own class with two subclasses: `Red` and `Blue`. The `Shape` class then gets a reference field pointing to one of the color objects. Now the shape can delegate any color-related work to the linked color object. That reference will act as a bridge between the `Shape` and `Color` classes. From now on, adding new colors won’t require changing the shape hierarchy, and vice versa.
+按照这种方法，我们可以将与颜色相关的代码提取到它自己的类中，其中包含两个子类： `Red` 和 `Blue` .然后，该 `Shape` 类获取指向其中一个颜色对象的引用字段。现在，形状可以将任何与颜色相关的工作委托给链接的颜色对象。该引用将充当 `Shape` 和 `Color` 类之间的桥梁。从现在开始，添加新颜色将不需要更改形状层次结构，反之亦然。
+
+<h3 id="Abstraction-and-Implementation-抽象和实现"><a href="#Abstraction-and-Implementation-抽象和实现" class="headerlink" title="Abstraction and Implementation 抽象和实现"></a>Abstraction and Implementation 抽象和实现</h3><p>The <a target="_blank" rel="noopener" href="https://refactoring.guru/gof-book" title="“Gang of Four” is a nickname given to the four authors of the original book about design patterns: Design Patterns: Elements of Reusable Object-Oriented Software 设计模式：可重用面向对象软件的元素">GoF book</a>  introduces the terms Abstraction and Implementation as part of the Bridge definition. In my opinion, the terms sound too academic and make the pattern seem more complicated than it really is. Having read the simple example with shapes and colors, let’s decipher the meaning behind the GoF book’s scary words.<br>GoF一书引入了术语“抽象”和“实现”，作为桥接定义的一部分。在我看来，这些术语听起来太学术化了，使模式看起来比实际情况更复杂。在阅读了带有形状和颜色的简单示例之后，让我们破译 GoF 书的可怕单词背后的含义。</p>
+<p>Abstraction (also called interface) is a high-level control layer for some entity. This layer isn’t supposed to do any real work on its own. It should delegate the work to the implementation layer (also called platform).<br>抽象（也称为接口）是某些实体的高级控制层。这个层不应该自己做任何真正的工作。它应该将工作委托给实现层（也称为平台）。</p>
+<p>Note that we’re not talking about interfaces or abstract classes from your programming language. These aren’t the same things.<br>请注意，我们不是在谈论编程语言中的接口或抽象类。这些不是一回事。</p>
+<p>When talking about real applications, the abstraction can be represented by a graphical user interface (GUI), and the implementation could be the underlying operating system code (API) which the GUI layer calls in response to user interactions.<br>在谈论实际应用程序时，抽象可以由图形用户界面 （GUI） 表示，实现可以是 GUI 层为响应用户交互而调用的底层操作系统代码 （API）。</p>
+<p>Generally speaking, you can extend such an app in two independent directions:<br>一般来说，您可以在两个独立的方向上扩展此类应用程序：</p>
+<ul>
+<li>Have several different GUIs (for instance, tailored for regular customers or admins).<br>有几个不同的 GUI（例如，为普通客户或管理员量身定制）。</li>
+<li>Support several different APIs (for example, to be able to launch the app under Windows, Linux, and macOS).<br>支持多个不同的 API（例如，能够在 Windows、Linux 和 macOS 下启动应用程序）。</li>
+</ul>
+<p>In a worst-case scenario, this app might look like a giant spaghetti bowl, where hundreds of conditionals connect different types of GUI with various APIs all over the code.<br>在最坏的情况下，这个应用程序可能看起来像一个巨大的意大利面碗，其中数百个条件将不同类型的 GUI 与代码中的各种 API 连接起来。</p>
+<div align="center"> <img src="/images/bridge-bridge-3-en.png"/>Making even a simple change to a monolithic codebase is pretty hard because you must understand the entire thing very well. Making changes to smaller, well-defined modules is much easier.</br>即使是对单体代码库进行简单的更改也非常困难，因为您必须很好地理解整个事情。对更小、定义明确的模块进行更改要容易得多。</div>
+You can bring order to this chaos by extracting the code related to specific interface-platform combinations into separate classes. However, soon you’ll discover that there are lots of these classes. The class hierarchy will grow exponentially because adding a new GUI or supporting a different API would require creating more and more classes.
+您可以通过将与特定接口平台组合相关的代码提取到单独的类中来恢复这种混乱。但是，很快您就会发现有很多这样的课程。类层次结构将呈指数级增长，因为添加新的 GUI 或支持不同的 API 需要创建越来越多的类。
+
+<p>Let’s try to solve this issue with the Bridge pattern. It suggests that we divide the classes into two hierarchies:<br>让我们尝试使用 Bridge 模式来解决这个问题。它建议我们将类分为两个层次结构：</p>
+<ul>
+<li>Abstraction: the GUI layer of the app.<br>抽象：应用的 GUI 层。</li>
+<li>Implementation: the operating systems’ APIs.<br>实现：操作系统的 API。<div align="center"> <img src="/images/bridge-bridge-2-en.png"/>One of the ways to structure a cross-platform application.</br>构建跨平台应用程序的方法之一。</div>
+The abstraction object controls the appearance of the app, delegating the actual work to the linked implementation object. Different implementations are interchangeable as long as they follow a common interface, enabling the same GUI to work under Windows and Linux.
+抽象对象控制应用的外观，将实际工作委托给链接的实现对象。不同的实现是可以互换的，只要它们遵循一个通用的接口，使相同的 GUI 能够在 Windows 和 Linux 下工作。</li>
+</ul>
+<p>As a result, you can change the GUI classes without touching the API-related classes. Moreover, adding support for another operating system only requires creating a subclass in the implementation hierarchy.<br>因此，您可以在不接触 API 相关类的情况下更改 GUI 类。此外，添加对另一个操作系统的支持只需要在实现层次结构中创建一个子类。</p>
+<h2 id="Structure-结构"><a href="#Structure-结构" class="headerlink" title="Structure 结构"></a>Structure 结构</h2><div align="center"> <img src="/images/bridge-structure-en.png"/></div>
+
+<ol>
+<li><p>The <strong>Abstraction</strong> provides high-level control logic. It relies on the implementation object to do the actual low-level work.<br>抽象提供高级控制逻辑。它依赖于实现对象来执行实际的低级工作。</p>
+</li>
+<li><p>The <strong>Implementation</strong> declares the interface that’s common for all concrete implementations. An abstraction can only communicate with an implementation object via methods that are declared here.<br>实现声明了所有具体实现通用的接口。抽象只能通过此处声明的方法与实现对象进行通信。</p>
+</li>
+<li><p><strong>Concrete Implementations</strong> contain platform-specific code.<br>具体实现包含特定于平台的代码。</p>
+</li>
+<li><p><strong>Refined Abstractions</strong> provide variants of control logic. Like their parent, they work with different implementations via the general implementation interface.<br>精炼的抽象提供了控制逻辑的变体。与它们的父级一样，它们通过通用实现接口使用不同的实现。</p>
+</li>
+<li><p>Usually, the <strong>Client</strong> is only interested in working with the abstraction. However, it’s the client’s job to link the abstraction object with one of the implementation objects.<br>通常，客户端只对处理抽象感兴趣。但是，客户端的工作是将抽象对象与其中一个实现对象链接起来。</p>
+</li>
+</ol>
+<h2 id="Pseudocode-伪代码"><a href="#Pseudocode-伪代码" class="headerlink" title="Pseudocode 伪代码"></a>Pseudocode 伪代码</h2><p>This example illustrates how the <strong>Bridge</strong> pattern can help divide the monolithic code of an app that manages devices and their remote controls. The <code>Device</code> classes act as the implementation, whereas the <code>Remote</code>s act as the abstraction.<br>此示例演示了 Bridge 模式如何帮助划分管理设备及其遥控器的应用的整体代码。 <code>Device</code> 类充当实现，而 <code>Remote</code>s 充当抽象。</p>
+<div align="center"> <img src="/images/bridge-example-en.png"/>The original class hierarchy is divided into two parts: devices and remote controls.</br>原始的类层次结构分为两部分：设备和遥控器。</div>
+The base remote control class declares a reference field that links it with a device object. All remotes work with the devices via the general device interface, which lets the same remote support multiple device types.
+基远程控制类声明一个引用字段，该字段将其与设备对象链接。所有遥控器都通过通用设备接口与设备配合使用，这使得同一个遥控器支持多种设备类型。
+
+<p>You can develop the remote control classes independently from the device classes. All that’s needed is to create a new remote subclass. For example, a basic remote control might only have two buttons, but you could extend it with additional features, such as an extra battery or a touchscreen.<br>您可以独立于设备类开发远程控制类。所需要的只是创建一个新的远程子类。例如，一个基本的遥控器可能只有两个按钮，但您可以使用其他功能（例如额外的电池或触摸屏）对其进行扩展。</p>
+<p>The client code links the desired type of remote control with a specific device object via the remote’s constructor.<br>客户端代码通过遥控器的构造函数将所需类型的遥控器与特定设备对象链接起来。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The &quot;abstraction&quot; defines the interface for the &quot;control&quot;</span></span><br><span class="line"><span class="comment">// part of the two class hierarchies. It maintains a reference</span></span><br><span class="line"><span class="comment">// to an object of the &quot;implementation&quot; hierarchy and delegates</span></span><br><span class="line"><span class="comment">// all of the real work to this object.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">RemoteControl</span> is</span><br><span class="line">    <span class="keyword">protected</span> field device: Device</span><br><span class="line">    constructor <span class="title function_">RemoteControl</span><span class="params">(device: Device)</span> is</span><br><span class="line">        <span class="built_in">this</span>.device = device</span><br><span class="line">    method <span class="title function_">togglePower</span><span class="params">()</span> is</span><br><span class="line">        <span class="title function_">if</span> <span class="params">(device.isEnabled()</span>) then</span><br><span class="line">            device.disable()</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            device.enable()</span><br><span class="line">    method <span class="title function_">volumeDown</span><span class="params">()</span> is</span><br><span class="line">        device.setVolume(device.getVolume() - <span class="number">10</span>)</span><br><span class="line">    method <span class="title function_">volumeUp</span><span class="params">()</span> is</span><br><span class="line">        device.setVolume(device.getVolume() + <span class="number">10</span>)</span><br><span class="line">    method <span class="title function_">channelDown</span><span class="params">()</span> is</span><br><span class="line">        device.setChannel(device.getChannel() - <span class="number">1</span>)</span><br><span class="line">    method <span class="title function_">channelUp</span><span class="params">()</span> is</span><br><span class="line">        device.setChannel(device.getChannel() + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// You can extend classes from the abstraction hierarchy</span></span><br><span class="line"><span class="comment">// independently from device classes.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AdvancedRemoteControl</span> <span class="keyword">extends</span> <span class="title class_">RemoteControl</span> is</span><br><span class="line">    method <span class="title function_">mute</span><span class="params">()</span> is</span><br><span class="line">        device.setVolume(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// The &quot;implementation&quot; interface declares methods common to all</span></span><br><span class="line"><span class="comment">// concrete implementation classes. It doesn&#x27;t have to match the</span></span><br><span class="line"><span class="comment">// abstraction&#x27;s interface. In fact, the two interfaces can be</span></span><br><span class="line"><span class="comment">// entirely different. Typically the implementation interface</span></span><br><span class="line"><span class="comment">// provides only primitive operations, while the abstraction</span></span><br><span class="line"><span class="comment">// defines higher-level operations based on those primitives.</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Device</span> is</span><br><span class="line">    method <span class="title function_">isEnabled</span><span class="params">()</span></span><br><span class="line">    method <span class="title function_">enable</span><span class="params">()</span></span><br><span class="line">    method <span class="title function_">disable</span><span class="params">()</span></span><br><span class="line">    method <span class="title function_">getVolume</span><span class="params">()</span></span><br><span class="line">    method <span class="title function_">setVolume</span><span class="params">(percent)</span></span><br><span class="line">    method <span class="title function_">getChannel</span><span class="params">()</span></span><br><span class="line">    method <span class="title function_">setChannel</span><span class="params">(channel)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// All devices follow the same interface.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Tv</span> <span class="keyword">implements</span> <span class="title class_">Device</span> is</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Radio</span> <span class="keyword">implements</span> <span class="title class_">Device</span> is</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Somewhere in client code.</span></span><br><span class="line">tv = <span class="keyword">new</span> <span class="title class_">Tv</span>()</span><br><span class="line">remote = <span class="keyword">new</span> <span class="title class_">RemoteControl</span>(tv)</span><br><span class="line">remote.togglePower()</span><br><span class="line"></span><br><span class="line">radio = <span class="keyword">new</span> <span class="title class_">Radio</span>()</span><br><span class="line">remote = <span class="keyword">new</span> <span class="title class_">AdvancedRemoteControl</span>(radio)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Applicability-适用性"><a href="#Applicability-适用性" class="headerlink" title="Applicability 适用性"></a>Applicability 适用性</h2><ul>
+<li><p><strong>Use the Bridge pattern when you want to divide and organize a monolithic class that has several variants of some functionality (for example, if the class can work with various database servers).如果要划分和组织具有某些功能的多个变体的整体类（例如，如果该类可以与各种数据库服务器一起使用），请使用 Bridge 模式。</strong></p>
+</li>
+<li><p>The bigger a class becomes, the harder it is to figure out how it works, and the longer it takes to make a change. The changes made to one of the variations of functionality may require making changes across the whole class, which often results in making errors or not addressing some critical side effects.<br>一个班级变得越大，就越难弄清楚它是如何工作的，做出改变所需的时间就越长。对功能变体之一所做的更改可能需要在整个类中进行更改，这通常会导致出错或无法解决一些关键的副作用。</p>
+</li>
+</ul>
+<p>The Bridge pattern lets you split the monolithic class into several class hierarchies. After this, you can change the classes in each hierarchy independently of the classes in the others. This approach simplifies code maintenance and minimizes the risk of breaking existing code.<br>Bridge 模式允许您将整体类拆分为多个类层次结构。在此之后，您可以独立于其他层次结构中的类更改每个层次结构中的类。此方法简化了代码维护，并最大限度地降低了破坏现有代码的风险。</p>
+<ul>
+<li><p><strong>Use the pattern when you need to extend a class in several orthogonal (independent) dimensions. 当您需要在多个正交（独立）维度中扩展类时，请使用该模式。</strong></p>
+</li>
+<li><p>The Bridge suggests that you extract a separate class hierarchy for each of the dimensions. The original class delegates the related work to the objects belonging to those hierarchies instead of doing everything on its own.<br>Bridge 建议您为每个维度提取单独的类层次结构。原始类将相关工作委托给属于这些层次结构的对象，而不是自己执行所有操作。</p>
+</li>
+</ul>
+<p> Use the Bridge if you need to be able to switch implementations at runtime.<br>如果您需要能够在运行时切换实现，请使用 Bridge。</p>
+<p> Although it’s optional, the Bridge pattern lets you replace the implementation object inside the abstraction. It’s as easy as assigning a new value to a field.<br>尽管它是可选的，但 Bridge 模式允许您替换抽象中的实现对象。这就像为字段分配新值一样简单。</p>
+<p>By the way, this last item is the main reason why so many people confuse the Bridge with the Strategy pattern. Remember that a pattern is more than just a certain way to structure your classes. It may also communicate intent and a problem being addressed.<br>顺便说一句，最后一项是这么多人将桥牌与策略模式混淆的主要原因。请记住，模式不仅仅是构建类的某种方式。它还可以传达意图和正在解决的问题。</p>
+<h2 id="How-to-Implement-如何实现"><a href="#How-to-Implement-如何实现" class="headerlink" title="How to Implement 如何实现"></a>How to Implement 如何实现</h2><ol>
+<li><p>Identify the orthogonal dimensions in your classes. These independent concepts could be: abstraction&#x2F;platform, domain&#x2F;infrastructure, front-end&#x2F;back-end, or interface&#x2F;implementation.<br>确定类中的正交维度。这些独立的概念可以是：抽象&#x2F;平台、域&#x2F;基础结构、前端&#x2F;后端或接口&#x2F;实现。</p>
+</li>
+<li><p>See what operations the client needs and define them in the base abstraction class.<br>查看客户端需要哪些操作，并在基抽象类中定义它们。</p>
+</li>
+<li><p>Determine the operations available on all platforms. Declare the ones that the abstraction needs in the general implementation interface.<br>确定所有平台上可用的操作。在通用实现接口中声明抽象需要的那些。</p>
+</li>
+<li><p>For all platforms in your domain create concrete implementation classes, but make sure they all follow the implementation interface.<br>对于域中的所有平台，请创建具体的实现类，但请确保它们都遵循实现接口。</p>
+</li>
+<li><p>Inside the abstraction class, add a reference field for the implementation type. The abstraction delegates most of the work to the implementation object that’s referenced in that field.<br>在抽象类中，为实现类型添加一个引用字段。抽象将大部分工作委托给该字段中引用的实现对象。</p>
+</li>
+<li><p>If you have several variants of high-level logic, create refined abstractions for each variant by extending the base abstraction class.<br>如果有多个高级逻辑变体，请通过扩展基本抽象类为每个变体创建精细的抽象。</p>
+</li>
+<li><p>The client code should pass an implementation object to the abstraction’s constructor to associate one with the other. After that, the client can forget about the implementation and work only with the abstraction object.<br>客户端代码应将实现对象传递给抽象的构造函数，以将一个对象与另一个对象相关联。之后，客户端可以忘记实现，只使用抽象对象。</p>
+</li>
+</ol>
+<h2 id="Pros-and-Cons-优点和缺点"><a href="#Pros-and-Cons-优点和缺点" class="headerlink" title="Pros and Cons 优点和缺点"></a>Pros and Cons 优点和缺点</h2><table>
+<thead>
+<tr>
+<th>Pros 优点</th>
+<th>Cons 缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>You can create platform-independent classes and apps.您可以创建与平台无关的类和应用。</td>
+<td>You might make the code more complicated by applying the pattern to a highly cohesive class. 通过将模式应用于高度内聚的类，可以使代码更加复杂。</td>
+</tr>
+<tr>
+<td>The client code works with high-level abstractions. It isn’t exposed to the platform details. 客户端代码使用高级抽象。它不会公开给平台详细信息。</td>
+<td></td>
+</tr>
+<tr>
+<td>Open&#x2F;Closed Principle. You can introduce new abstractions and implementations independently from each other. 开&#x2F;闭原理。您可以引入新的抽象和实现，彼此独立。</td>
+<td></td>
+</tr>
+<tr>
+<td>Single Responsibility Principle. You can focus on high-level logic in the abstraction and on platform details in the implementation. 单一责任原则。您可以专注于抽象中的高级逻辑和实现中的平台细节。</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="Relations-with-Other-Patterns-与其他模式的关系"><a href="#Relations-with-Other-Patterns-与其他模式的关系" class="headerlink" title="Relations with Other Patterns 与其他模式的关系"></a>Relations with Other Patterns 与其他模式的关系</h2><ul>
+<li><p><strong>Bridge</strong> is usually designed up-front, letting you develop parts of an application independently of each other. On the other hand, <strong>Adapter</strong> is commonly used with an existing app to make some otherwise-incompatible classes work together nicely.<br><strong>Bridge</strong> 通常是预先设计的，允许您彼此独立地开发应用程序的各个部分。另一方面，<strong>Adapter</strong> 通常与现有应用程序一起使用，以使一些不兼容的类很好地协同工作。</p>
+</li>
+<li><p><strong>Bridge, State, Strategy</strong> (and to some degree <strong>Adapter</strong>) have very similar structures. Indeed, all of these patterns are based on composition, which is delegating work to other objects. However, they all solve different problems. A pattern isn’t just a recipe for structuring your code in a specific way. It can also communicate to other developers the problem the pattern solves.<br>桥接、状态、策略（在某种程度上还有适配器）具有非常相似的结构。事实上，所有这些模式都是基于构图的，而构图是将工作委托给其他对象。但是，它们都解决了不同的问题。模式不仅仅是以特定方式构建代码的秘诀。它还可以向其他开发人员传达该模式解决的问题。</p>
+</li>
+<li><p>You can use <strong>Abstract Factory</strong> along with <strong>Bridge</strong>. This pairing is useful when some abstractions defined by <strong>Bridge</strong> can only work with specific implementations. In this case, Abstract Factory can encapsulate these relations and hide the complexity from the client code.</p>
+</li>
+<li><p>You can combine <strong>Builder</strong> with <strong>Bridge</strong>: the director class plays the role of the abstraction, while different builders act as implementations.<br>您可以将 <strong>Builder</strong> 与 <strong>Bridge</strong> 结合使用：director 类扮演抽象的角色，而不同的构建器充当实现。</p>
+</li>
+</ul>
+<h2 id="Code-Examples-代码示例"><a href="#Code-Examples-代码示例" class="headerlink" title="Code Examples 代码示例"></a>Code Examples 代码示例</h2><h3 id="Python-Conceptual-Example-概念示例"><a href="#Python-Conceptual-Example-概念示例" class="headerlink" title="Python Conceptual Example 概念示例"></a>Python Conceptual Example 概念示例</h3><p>This example illustrates the structure of the Bridge design pattern. It focuses on answering these questions:<br>此示例说明了 Bridge 设计模式的结构。它侧重于回答以下问题：</p>
+<ul>
+<li>What classes does it consist of?<br>它由哪些类组成？</li>
+<li>What roles do these classes play?<br>这些课程扮演什么角色？</li>
+<li>In what way the elements of the pattern are related?<br>模式的元素以何种方式相关？</li>
+</ul>
+<h4 id="main-py"><a href="#main-py" class="headerlink" title="main.py"></a>main.py</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> annotations</span><br><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABC, abstractmethod</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Abstraction</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The Abstraction defines the interface for the &quot;control&quot; part of the two</span></span><br><span class="line"><span class="string">    class hierarchies. It maintains a reference to an object of the</span></span><br><span class="line"><span class="string">    Implementation hierarchy and delegates all of the real work to this object.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, implementation: Implementation</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self.implementation = implementation</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">operation</span>(<span class="params">self</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">return</span> (<span class="string">f&quot;Abstraction: Base operation with:\n&quot;</span></span><br><span class="line">                <span class="string">f&quot;<span class="subst">&#123;self.implementation.operation_implementation()&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ExtendedAbstraction</span>(<span class="title class_ inherited__">Abstraction</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    You can extend the Abstraction without changing the Implementation classes.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">operation</span>(<span class="params">self</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">return</span> (<span class="string">f&quot;ExtendedAbstraction: Extended operation with:\n&quot;</span></span><br><span class="line">                <span class="string">f&quot;<span class="subst">&#123;self.implementation.operation_implementation()&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Implementation</span>(<span class="title class_ inherited__">ABC</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The Implementation defines the interface for all implementation classes. It</span></span><br><span class="line"><span class="string">    doesn&#x27;t have to match the Abstraction&#x27;s interface. In fact, the two</span></span><br><span class="line"><span class="string">    interfaces can be entirely different. Typically the Implementation interface</span></span><br><span class="line"><span class="string">    provides only primitive operations, while the Abstraction defines higher-</span></span><br><span class="line"><span class="string">    level operations based on those primitives.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">operation_implementation</span>(<span class="params">self</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Each Concrete Implementation corresponds to a specific platform and implements</span></span><br><span class="line"><span class="string">the Implementation interface using that platform&#x27;s API.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteImplementationA</span>(<span class="title class_ inherited__">Implementation</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">operation_implementation</span>(<span class="params">self</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;ConcreteImplementationA: Here&#x27;s the result on the platform A.&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteImplementationB</span>(<span class="title class_ inherited__">Implementation</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">operation_implementation</span>(<span class="params">self</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;ConcreteImplementationB: Here&#x27;s the result on the platform B.&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">client_code</span>(<span class="params">abstraction: Abstraction</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Except for the initialization phase, where an Abstraction object gets linked</span></span><br><span class="line"><span class="string">    with a specific Implementation object, the client code should only depend on</span></span><br><span class="line"><span class="string">    the Abstraction class. This way the client code can support any abstraction-</span></span><br><span class="line"><span class="string">    implementation combination.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(abstraction.operation(), end=<span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The client code should be able to work with any pre-configured abstraction-</span></span><br><span class="line"><span class="string">    implementation combination.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    implementation = ConcreteImplementationA()</span><br><span class="line">    abstraction = Abstraction(implementation)</span><br><span class="line">    client_code(abstraction)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">    implementation = ConcreteImplementationB()</span><br><span class="line">    abstraction = ExtendedAbstraction(implementation)</span><br><span class="line">    client_code(abstraction)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Output-txt-Execution-result"><a href="#Output-txt-Execution-result" class="headerlink" title="Output.txt: Execution result"></a>Output.txt: Execution result</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Abstraction: Base operation with:</span><br><span class="line">ConcreteImplementationA: Here&#x27;s the result on the platform A.</span><br><span class="line"></span><br><span class="line">ExtendedAbstraction: Extended operation with:</span><br><span class="line">ConcreteImplementationB: Here&#x27;s the result on the platform B.</span><br></pre></td></tr></table></figure>
+
+<h3 id="Rust-Conceptual-Example-概念示例"><a href="#Rust-Conceptual-Example-概念示例" class="headerlink" title="Rust Conceptual Example 概念示例"></a>Rust Conceptual Example 概念示例</h3><h4 id="Devices-and-Remotes-设备和遥控器"><a href="#Devices-and-Remotes-设备和遥控器" class="headerlink" title="Devices and Remotes 设备和遥控器"></a>Devices and Remotes 设备和遥控器</h4><p>This example illustrates how the Bridge pattern can help divide the monolithic code of an app that manages devices and their remote controls. The Device classes act as the implementation, whereas the Remotes act as the abstraction.<br>此示例演示了 Bridge 模式如何帮助划分管理设备及其遥控器的应用的整体代码。Device 类充当实现，而 Remote 充当抽象。</p>
+<h4 id="remotes-mod-rs"><a href="#remotes-mod-rs" class="headerlink" title="remotes&#x2F;mod.rs"></a>remotes&#x2F;mod.rs</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> advanced;</span><br><span class="line"><span class="keyword">mod</span> basic;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">use</span> advanced::AdvancedRemove;</span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">use</span> basic::BasicRemote;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> crate::device::Device;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">trait</span> <span class="title class_">HasMutableDevice</span>&lt;D: Device&gt; &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">device</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;<span class="keyword">mut</span> D;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">trait</span> <span class="title class_">Remote</span>&lt;D: Device&gt;: HasMutableDevice&lt;D&gt; &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">power</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Remote: power toggle&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">self</span>.<span class="title function_ invoke__">device</span>().<span class="title function_ invoke__">is_enabled</span>() &#123;</span><br><span class="line">            <span class="keyword">self</span>.<span class="title function_ invoke__">device</span>().<span class="title function_ invoke__">disable</span>();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">self</span>.<span class="title function_ invoke__">device</span>().<span class="title function_ invoke__">enable</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">volume_down</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Remote: volume down&quot;</span>);</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">volume</span> = <span class="keyword">self</span>.<span class="title function_ invoke__">device</span>().<span class="title function_ invoke__">volume</span>();</span><br><span class="line">        <span class="keyword">self</span>.<span class="title function_ invoke__">device</span>().<span class="title function_ invoke__">set_volume</span>(volume - <span class="number">10</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">volume_up</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Remote: volume up&quot;</span>);</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">volume</span> = <span class="keyword">self</span>.<span class="title function_ invoke__">device</span>().<span class="title function_ invoke__">volume</span>();</span><br><span class="line">        <span class="keyword">self</span>.<span class="title function_ invoke__">device</span>().<span class="title function_ invoke__">set_volume</span>(volume + <span class="number">10</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">channel_down</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Remote: channel down&quot;</span>);</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">channel</span> = <span class="keyword">self</span>.<span class="title function_ invoke__">device</span>().<span class="title function_ invoke__">channel</span>();</span><br><span class="line">        <span class="keyword">self</span>.<span class="title function_ invoke__">device</span>().<span class="title function_ invoke__">set_channel</span>(channel - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">channel_up</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Remote: channel up&quot;</span>);</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">channel</span> = <span class="keyword">self</span>.<span class="title function_ invoke__">device</span>().<span class="title function_ invoke__">channel</span>();</span><br><span class="line">        <span class="keyword">self</span>.<span class="title function_ invoke__">device</span>().<span class="title function_ invoke__">set_channel</span>(channel + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="remotes-basic-rs"><a href="#remotes-basic-rs" class="headerlink" title="remotes&#x2F;basic.rs"></a>remotes&#x2F;basic.rs</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crate::device::Device;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> super::&#123;HasMutableDevice, Remote&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">BasicRemote</span>&lt;D: Device&gt; &#123;</span><br><span class="line">    device: D,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;D: Device&gt; BasicRemote&lt;D&gt; &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">new</span>(device: D) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123; device &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;D: Device&gt; HasMutableDevice&lt;D&gt; <span class="keyword">for</span> <span class="title class_">BasicRemote</span>&lt;D&gt; &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">device</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;<span class="keyword">mut</span> D &#123;</span><br><span class="line">        &amp;<span class="keyword">mut</span> <span class="keyword">self</span>.device</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;D: Device&gt; Remote&lt;D&gt; <span class="keyword">for</span> <span class="title class_">BasicRemote</span>&lt;D&gt; &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="remotes-advanced-rs"><a href="#remotes-advanced-rs" class="headerlink" title="remotes&#x2F;advanced.rs"></a>remotes&#x2F;advanced.rs</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crate::device::Device;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> super::&#123;HasMutableDevice, Remote&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">AdvancedRemote</span>&lt;D: Device&gt; &#123;</span><br><span class="line">    device: D,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;D: Device&gt; AdvancedRemote&lt;D&gt; &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">new</span>(device: D) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123; device &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">mute</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Remote: mute&quot;</span>);</span><br><span class="line">        <span class="keyword">self</span>.device.<span class="title function_ invoke__">set_volume</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;D: Device&gt; HasMutableDevice&lt;D&gt; <span class="keyword">for</span> <span class="title class_">AdvancedRemote</span>&lt;D&gt; &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">device</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;<span class="keyword">mut</span> D &#123;</span><br><span class="line">        &amp;<span class="keyword">mut</span> <span class="keyword">self</span>.device</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;D: Device&gt; Remote&lt;D&gt; <span class="keyword">for</span> <span class="title class_">AdvancedRemote</span>&lt;D&gt; &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="device-mod-rs"><a href="#device-mod-rs" class="headerlink" title="device&#x2F;mod.rs"></a>device&#x2F;mod.rs</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> radio;</span><br><span class="line"><span class="keyword">mod</span> tv;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">use</span> radio::Radio;</span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">use</span> tv::Tv;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">trait</span> <span class="title class_">Device</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">is_enabled</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">bool</span>;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">enable</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>);</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">disable</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>);</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">volume</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">u8</span>;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_volume</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, percent: <span class="type">u8</span>);</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">channel</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">u16</span>;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_channel</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, channel: <span class="type">u16</span>);</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">print_status</span>(&amp;<span class="keyword">self</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="device-radio-rs"><a href="#device-radio-rs" class="headerlink" title="device&#x2F;radio.rs"></a>device&#x2F;radio.rs</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> super::Device;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Clone)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Radio</span> &#123;</span><br><span class="line">    on: <span class="type">bool</span>,</span><br><span class="line">    volume: <span class="type">u8</span>,</span><br><span class="line">    channel: <span class="type">u16</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Default</span> <span class="keyword">for</span> <span class="title class_">Radio</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">default</span>() <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123;</span><br><span class="line">            on: <span class="literal">false</span>,</span><br><span class="line">            volume: <span class="number">30</span>,</span><br><span class="line">            channel: <span class="number">1</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Device</span> <span class="keyword">for</span> <span class="title class_">Radio</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">is_enabled</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">bool</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.on</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">enable</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.on = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">disable</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.on = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">volume</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">u8</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.volume</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_volume</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, percent: <span class="type">u8</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.volume = std::cmp::<span class="title function_ invoke__">min</span>(percent, <span class="number">100</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">channel</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">u16</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.channel</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_channel</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, channel: <span class="type">u16</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.channel = channel;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">print_status</span>(&amp;<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;------------------------------------&quot;</span>);</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;| I&#x27;m radio.&quot;</span>);</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;| I&#x27;m &#123;&#125;&quot;</span>, <span class="keyword">if</span> <span class="keyword">self</span>.on &#123; <span class="string">&quot;enabled&quot;</span> &#125; <span class="keyword">else</span> &#123; <span class="string">&quot;disabled&quot;</span> &#125;);</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;| Current volume is &#123;&#125;%&quot;</span>, <span class="keyword">self</span>.volume);</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;| Current channel is &#123;&#125;&quot;</span>, <span class="keyword">self</span>.channel);</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;------------------------------------\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="device-tv-rs"><a href="#device-tv-rs" class="headerlink" title="device&#x2F;tv.rs"></a>device&#x2F;tv.rs</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> super::Device;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Clone)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Tv</span> &#123;</span><br><span class="line">    on: <span class="type">bool</span>,</span><br><span class="line">    volume: <span class="type">u8</span>,</span><br><span class="line">    channel: <span class="type">u16</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Default</span> <span class="keyword">for</span> <span class="title class_">Tv</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">default</span>() <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123;</span><br><span class="line">            on: <span class="literal">false</span>,</span><br><span class="line">            volume: <span class="number">30</span>,</span><br><span class="line">            channel: <span class="number">1</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Device</span> <span class="keyword">for</span> <span class="title class_">Tv</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">is_enabled</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">bool</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.on</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">enable</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.on = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">disable</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.on = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">volume</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">u8</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.volume</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_volume</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, percent: <span class="type">u8</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.volume = std::cmp::<span class="title function_ invoke__">min</span>(percent, <span class="number">100</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">channel</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">u16</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.channel</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">set_channel</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, channel: <span class="type">u16</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.channel = channel;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">print_status</span>(&amp;<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;------------------------------------&quot;</span>);</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;| I&#x27;m TV set.&quot;</span>);</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;| I&#x27;m &#123;&#125;&quot;</span>, <span class="keyword">if</span> <span class="keyword">self</span>.on &#123; <span class="string">&quot;enabled&quot;</span> &#125; <span class="keyword">else</span> &#123; <span class="string">&quot;disabled&quot;</span> &#125;);</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;| Current volume is &#123;&#125;%&quot;</span>, <span class="keyword">self</span>.volume);</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;| Current channel is &#123;&#125;&quot;</span>, <span class="keyword">self</span>.channel);</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;------------------------------------\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="main-rs"><a href="#main-rs" class="headerlink" title="main.rs"></a>main.rs</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> device;</span><br><span class="line"><span class="keyword">mod</span> remotes;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> device::&#123;Device, Radio, Tv&#125;;</span><br><span class="line"><span class="keyword">use</span> remotes::&#123;AdvancedRemove, BasicRemote, HasMutableDevice, Remote&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="title function_ invoke__">test_device</span>(Tv::<span class="title function_ invoke__">default</span>());</span><br><span class="line">    <span class="title function_ invoke__">test_device</span>(Radio::<span class="title function_ invoke__">default</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">test_device</span>(device: <span class="keyword">impl</span> <span class="title class_">Device</span> + <span class="built_in">Clone</span>) &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Tests with basic remote.&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">basic_remote</span> = BasicRemote::<span class="title function_ invoke__">new</span>(device.<span class="title function_ invoke__">clone</span>());</span><br><span class="line">    basic_remote.<span class="title function_ invoke__">power</span>();</span><br><span class="line">    basic_remote.<span class="title function_ invoke__">device</span>().<span class="title function_ invoke__">print_status</span>();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Tests with advanced remote.&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">advanced_remote</span> = AdvancedRemove::<span class="title function_ invoke__">new</span>(device);</span><br><span class="line">    advanced_remote.<span class="title function_ invoke__">power</span>();</span><br><span class="line">    advanced_remote.<span class="title function_ invoke__">mute</span>();</span><br><span class="line">    advanced_remote.<span class="title function_ invoke__">device</span>().<span class="title function_ invoke__">print_status</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Output-输出"><a href="#Output-输出" class="headerlink" title="Output 输出"></a>Output 输出</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">Tests with basic remote.</span><br><span class="line">Remote: power toggle</span><br><span class="line">------------------------------------</span><br><span class="line">| I&#x27;m TV set.</span><br><span class="line">| I&#x27;m enabled</span><br><span class="line">| Current volume is 30%</span><br><span class="line">| Current channel is 1</span><br><span class="line">------------------------------------</span><br><span class="line"></span><br><span class="line">Tests with advanced remote.</span><br><span class="line">Remote: power toggle</span><br><span class="line">Remote: mute</span><br><span class="line">------------------------------------</span><br><span class="line">| I&#x27;m TV set.</span><br><span class="line">| I&#x27;m enabled</span><br><span class="line">| Current volume is 0%</span><br><span class="line">| Current channel is 1</span><br><span class="line">------------------------------------</span><br><span class="line"></span><br><span class="line">Tests with basic remote.</span><br><span class="line">Remote: power toggle</span><br><span class="line">------------------------------------</span><br><span class="line">| I&#x27;m radio.</span><br><span class="line">| I&#x27;m enabled</span><br><span class="line">| Current volume is 30%</span><br><span class="line">| Current channel is 1</span><br><span class="line">------------------------------------</span><br><span class="line"></span><br><span class="line">Tests with advanced remote.</span><br><span class="line">Remote: power toggle</span><br><span class="line">Remote: mute</span><br><span class="line">------------------------------------</span><br><span class="line">| I&#x27;m radio.</span><br><span class="line">| I&#x27;m enabled</span><br><span class="line">| Current volume is 0%</span><br><span class="line">| Current channel is 1</span><br><span class="line">------------------------------------</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>宇宙山河浪漫，赞赏动力无限</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Ice WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Ice Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.png">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Design-Pattern/" rel="tag"># Design Pattern</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/12/03/design-pattern/adapter/" rel="prev" title="Adapter">
+      <i class="fa fa-chevron-left"></i> Adapter
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Bridge-%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">Bridge 桥接模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intent-%E6%84%8F%E5%9B%BE"><span class="nav-number">1.1.</span> <span class="nav-text">Intent 意图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">Problem 问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.3.</span> <span class="nav-text">Solution 解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Abstraction-and-Implementation-%E6%8A%BD%E8%B1%A1%E5%92%8C%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.1.</span> <span class="nav-text">Abstraction and Implementation 抽象和实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Structure-%E7%BB%93%E6%9E%84"><span class="nav-number">1.4.</span> <span class="nav-text">Structure 结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pseudocode-%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">1.5.</span> <span class="nav-text">Pseudocode 伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Applicability-%E9%80%82%E7%94%A8%E6%80%A7"><span class="nav-number">1.6.</span> <span class="nav-text">Applicability 适用性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-Implement-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.7.</span> <span class="nav-text">How to Implement 如何实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pros-and-Cons-%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9"><span class="nav-number">1.8.</span> <span class="nav-text">Pros and Cons 优点和缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Relations-with-Other-Patterns-%E4%B8%8E%E5%85%B6%E4%BB%96%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.9.</span> <span class="nav-text">Relations with Other Patterns 与其他模式的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Examples-%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.10.</span> <span class="nav-text">Code Examples 代码示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-Conceptual-Example-%E6%A6%82%E5%BF%B5%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.10.1.</span> <span class="nav-text">Python Conceptual Example 概念示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#main-py"><span class="nav-number">1.10.1.1.</span> <span class="nav-text">main.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output-txt-Execution-result"><span class="nav-number">1.10.1.2.</span> <span class="nav-text">Output.txt: Execution result</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rust-Conceptual-Example-%E6%A6%82%E5%BF%B5%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.10.2.</span> <span class="nav-text">Rust Conceptual Example 概念示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Devices-and-Remotes-%E8%AE%BE%E5%A4%87%E5%92%8C%E9%81%A5%E6%8E%A7%E5%99%A8"><span class="nav-number">1.10.2.1.</span> <span class="nav-text">Devices and Remotes 设备和遥控器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#remotes-mod-rs"><span class="nav-number">1.10.2.2.</span> <span class="nav-text">remotes&#x2F;mod.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#remotes-basic-rs"><span class="nav-number">1.10.2.3.</span> <span class="nav-text">remotes&#x2F;basic.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#remotes-advanced-rs"><span class="nav-number">1.10.2.4.</span> <span class="nav-text">remotes&#x2F;advanced.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#device-mod-rs"><span class="nav-number">1.10.2.5.</span> <span class="nav-text">device&#x2F;mod.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#device-radio-rs"><span class="nav-number">1.10.2.6.</span> <span class="nav-text">device&#x2F;radio.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#device-tv-rs"><span class="nav-number">1.10.2.7.</span> <span class="nav-text">device&#x2F;tv.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#main-rs"><span class="nav-number">1.10.2.8.</span> <span class="nav-text">main.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output-%E8%BE%93%E5%87%BA"><span class="nav-number">1.10.2.9.</span> <span class="nav-text">Output 输出</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ice</p>
+  <div class="site-description" itemprop="description">安静地坐着学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/TonyMistark" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;TonyMistark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/Micestark" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;Micestark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tony_mistark@163.com" title="E-Mail → mailto:tony_mistark@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Tony_Mistark" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Tony_Mistark" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ice</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">97k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">5:54</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '298b6503f44953bd4193',
+      clientSecret: '6756a6cfc10d74976c79256c96ae1c441f3116ac',
+      repo        : 'tonymistark.github.io',
+      owner       : 'TonyMistark',
+      admin       : ['TonyMistark'],
+      id          : '5c22b3cac2dfcb5079da83dce6270e41',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2023-12-03T10:07:40.302Z</updated>
+  <updated>2023-12-06T14:40:46.093Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Bridge</title>
+    <link href="https://tonymistark.github.io/2023/12/06/design-pattern/bridge/"/>
+    <id>https://tonymistark.github.io/2023/12/06/design-pattern/bridge/</id>
+    <published>2023-12-06T13:36:04.000Z</published>
+    <updated>2023-12-06T14:40:46.093Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Bridge-桥接模式&quot;&gt;&lt;a href=&quot;#Bridge-桥接模式&quot; class=&quot;headerlink&quot; title=&quot;Bridge 桥接模式&quot;&gt;&lt;/a&gt;Bridge 桥接模式&lt;/h1&gt;&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="design-pattern" scheme="https://tonymistark.github.io/categories/design-pattern/"/>
+    
+    
+    <category term="Design Pattern" scheme="https://tonymistark.github.io/tags/Design-Pattern/"/>
+    
+  </entry>
   
   <entry>
     <title>Adapter</title>
@@ -466,27 +491,6 @@
 &lt;p&gt;你理解在中文里面“卷”的特别的意思吗？&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;Claude:&lt;/strong&gt;&lt;/em</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>PEP 703（使全局解释器锁在 CPython 中可选）验收</title>
-    <link href="https://tonymistark.github.io/2023/10/27/pep-703-making-the-global-interpreter-lock-optional-in-cpython-acceptance/"/>
-    <id>https://tonymistark.github.io/2023/10/27/pep-703-making-the-global-interpreter-lock-optional-in-cpython-acceptance/</id>
-    <published>2023-10-27T03:05:45.000Z</published>
-    <updated>2023-11-22T15:21:21.587Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;PEP-703（使全局解释器锁在-CPython-中可选）验收&quot;&gt;&lt;a href=&quot;#PEP-703（使全局解释器锁在-CPython-中可选）验收&quot; class=&quot;headerlink&quot; title=&quot;PEP 703（使全局解释器锁在 CPython</summary>
         
       
     

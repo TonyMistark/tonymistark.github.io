@@ -1,3 +1,4 @@
+https://tonymistark.github.io/2023/12/06/design-pattern/bridge/
 https://tonymistark.github.io/2023/12/03/design-pattern/adapter/
 https://tonymistark.github.io/2023/11/27/sam_altman/Successful-people/
 https://tonymistark.github.io/2023/11/29/kissinger-1923-2023/
