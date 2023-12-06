@@ -2505,7 +2505,7 @@ Following this approach, we can extract the color-related code into its own clas
 <p>Generally speaking, you can extend such an app in two independent directions:<br>一般来说，您可以在两个独立的方向上扩展此类应用程序：</p>
 <ul>
 <li>Have several different GUIs (for instance, tailored for regular customers or admins).<br>有几个不同的 GUI（例如，为普通客户或管理员量身定制）。</li>
-<li>Support several different APIs (for example, to be able to launch the app under Windows, Linux, and macOS).<br>支持多个不同的 API（例如，能够在 Windows、Linux 和 macOS 下启动应用程序）。</li>
+<li>Support several different APIs (for example, to be able to launch the app under Harmony, Windows, Linux, and macOS).<br>支持多个不同的 API（例如，能够在 Harmony, Windows、Linux 和 macOS 下启动应用程序）。</li>
 </ul>
 <p>In a worst-case scenario, this app might look like a giant spaghetti bowl, where hundreds of conditionals connect different types of GUI with various APIs all over the code.<br>在最坏的情况下，这个应用程序可能看起来像一个巨大的意大利面碗，其中数百个条件将不同类型的 GUI 与代码中的各种 API 连接起来。</p>
 <div align="center"> <img src="/images/bridge-bridge-3-en.png"/>Making even a simple change to a monolithic codebase is pretty hard because you must understand the entire thing very well. Making changes to smaller, well-defined modules is much easier.</br>即使是对单体代码库进行简单的更改也非常困难，因为您必须很好地理解整个事情。对更小、定义明确的模块进行更改要容易得多。</div>
@@ -2516,8 +2516,8 @@ You can bring order to this chaos by extracting the code related to specific int
 <ul>
 <li>Abstraction: the GUI layer of the app.<br>抽象：应用的 GUI 层。</li>
 <li>Implementation: the operating systems’ APIs.<br>实现：操作系统的 API。<div align="center"> <img src="/images/bridge-bridge-2-en.png"/>One of the ways to structure a cross-platform application.</br>构建跨平台应用程序的方法之一。</div>
-The abstraction object controls the appearance of the app, delegating the actual work to the linked implementation object. Different implementations are interchangeable as long as they follow a common interface, enabling the same GUI to work under Windows and Linux.
-抽象对象控制应用的外观，将实际工作委托给链接的实现对象。不同的实现是可以互换的，只要它们遵循一个通用的接口，使相同的 GUI 能够在 Windows 和 Linux 下工作。</li>
+The abstraction object controls the appearance of the app, delegating the actual work to the linked implementation object. Different implementations are interchangeable as long as they follow a common interface, enabling the same GUI to work under Harmony, Windows and Linux.
+抽象对象控制应用的外观，将实际工作委托给链接的实现对象。不同的实现是可以互换的，只要它们遵循一个通用的接口，使相同的 GUI 能够在Harmony, Windows 和 Linux 下工作。</li>
 </ul>
 <p>As a result, you can change the GUI classes without touching the API-related classes. Moreover, adding support for another operating system only requires creating a subclass in the implementation hierarchy.<br>因此，您可以在不接触 API 相关类的情况下更改 GUI 类。此外，添加对另一个操作系统的支持只需要在实现层次结构中创建一个子类。</p>
 <h2 id="Structure-结构"><a href="#Structure-结构" class="headerlink" title="Structure 结构"></a>Structure 结构</h2><div align="center"> <img src="/images/bridge-structure-en.png"/></div>
@@ -2558,7 +2558,7 @@ The base remote control class declares a reference field that links it with a de
 </ul>
 <p> Use the Bridge if you need to be able to switch implementations at runtime.<br>如果您需要能够在运行时切换实现，请使用 Bridge。</p>
 <p> Although it’s optional, the Bridge pattern lets you replace the implementation object inside the abstraction. It’s as easy as assigning a new value to a field.<br>尽管它是可选的，但 Bridge 模式允许您替换抽象中的实现对象。这就像为字段分配新值一样简单。</p>
-<p>By the way, this last item is the main reason why so many people confuse the Bridge with the Strategy pattern. Remember that a pattern is more than just a certain way to structure your classes. It may also communicate intent and a problem being addressed.<br>顺便说一句，最后一项是这么多人将桥牌与策略模式混淆的主要原因。请记住，模式不仅仅是构建类的某种方式。它还可以传达意图和正在解决的问题。</p>
+<p>By the way, this last item is the main reason why so many people confuse the Bridge with the Strategy pattern. Remember that a pattern is more than just a certain way to structure your classes. It may also communicate intent and a problem being addressed.<br>顺便说一句，最后一项是这么多人将桥接模式与策略模式混淆的主要原因。请记住，模式不仅仅是构建类的某种方式。它还可以传达意图和正在解决的问题。</p>
 <h2 id="How-to-Implement-如何实现"><a href="#How-to-Implement-如何实现" class="headerlink" title="How to Implement 如何实现"></a>How to Implement 如何实现</h2><ol>
 <li><p>Identify the orthogonal dimensions in your classes. These independent concepts could be: abstraction&#x2F;platform, domain&#x2F;infrastructure, front-end&#x2F;back-end, or interface&#x2F;implementation.<br>确定类中的正交维度。这些独立的概念可以是：抽象&#x2F;平台、域&#x2F;基础结构、前端&#x2F;后端或接口&#x2F;实现。</p>
 </li>
@@ -2640,5 +2640,18 @@ The base remote control class declares a reference field that links it with a de
       <tags>
         <tag>Design Pattern</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>maydat-lip-syncing</title>
+    <url>/2023/12/04/mayday-lip-syncing/</url>
+    <content><![CDATA[<h3 id="今日单词"><a href="#今日单词" class="headerlink" title="今日单词"></a>今日单词</h3><div align="center"> <img src="/images/lip-synches.png"/>今日单词</div>
+
+<h1 id="Mayday-lip-synches-五月天假唱"><a href="#Mayday-lip-synches-五月天假唱" class="headerlink" title="Mayday lip-synches 五月天假唱"></a>Mayday lip-synches 五月天假唱</h1><h1 id="什么才是真正的摇滚精神？"><a href="#什么才是真正的摇滚精神？" class="headerlink" title="什么才是真正的摇滚精神？"></a>什么才是真正的摇滚精神？</h1><p>真正的摇滚精神是一种对自由、反叛和个人表达的热情。它代表着对传统观念的挑战，对权威和束缚的抗拒。摇滚精神鼓励个体追求自己的激情和独立思考，不受限制地表达自己的声音和观点。它强调对社会问题和不公正的关注，并通过音乐和艺术表达对这些问题的批判和反思。摇滚精神是一种生活态度，鼓励人们勇敢地追求自己的梦想，坚持自己的价值观，并与他人分享共同的热情和信念。</p>
+<h2 id="一个歌手假唱意味着什么？"><a href="#一个歌手假唱意味着什么？" class="headerlink" title="一个歌手假唱意味着什么？"></a>一个歌手假唱意味着什么？</h2><p>一个歌手假唱意味着他或她在现场演出时并没有真正地唱歌，而是通过播放预先录制的音乐来模拟演唱。这通常被认为是一种不诚实和欺骗观众的行为，因为观众可能会认为他们正在观看一场真正的现场表演，而事实上，演出者并没有真正地展示他们的音乐才华。此外，假唱也可能违反某些演出和音乐产业的道德标准和规定。</p>
+<h2 id="一个摇滚歌手假唱符合摇滚精神吗？他的内心能过的安宁吗？"><a href="#一个摇滚歌手假唱符合摇滚精神吗？他的内心能过的安宁吗？" class="headerlink" title="一个摇滚歌手假唱符合摇滚精神吗？他的内心能过的安宁吗？"></a>一个摇滚歌手假唱符合摇滚精神吗？他的内心能过的安宁吗？</h2><p>摇滚精神强调真实、自由和个人表达，因此一个摇滚歌手假唱与摇滚精神并不相符。假唱被认为是一种不诚实的行为，摇滚精神鼓励艺术家真实地展示他们的才华和表达自己的声音。假唱可能会削弱观众对艺术家的信任和尊重，破坏他们与观众之间的联系。</p>
+<p>至于内心的安宁，这是一个个体的感受，每个人的体验可能不同。然而，对于许多艺术家来说，真实地表达自己是一种重要的价值观和追求。当一个摇滚歌手选择假唱时，可能会在内心产生不安和冲突，因为他们没有真正地展示自己的音乐才华和个人表达。因此，假唱可能会对他们的内心和艺术追求造成一定程度的困扰。</p>
+<h2 id="演唱会假唱对于一个摇滚歌手来说属于轻微错误还是严重错误？"><a href="#演唱会假唱对于一个摇滚歌手来说属于轻微错误还是严重错误？" class="headerlink" title="演唱会假唱对于一个摇滚歌手来说属于轻微错误还是严重错误？"></a>演唱会假唱对于一个摇滚歌手来说属于轻微错误还是严重错误？</h2><p>对于一个摇滚歌手来说，演唱会假唱可以被认为是一个严重错误。摇滚音乐注重现场表演的真实性和能量，观众期望在演唱会上亲眼见证歌手的实力和情感投入。选择假唱可能会被认为是一种欺骗观众的行为，削弱了演唱会的真实性和互动性。这可能会对歌手的声誉和信任度造成负面影响，并引发观众的不满和失望。</p>
+<p>然而，每个情况都是独特的，有时候摇滚歌手选择假唱可能是出于保护嗓子健康或其他技术或声音问题的考虑。因此，如何评价这个错误的严重程度可能因情况而异。但总体而言，对于一个摇滚歌手来说，选择假唱在摇滚音乐领域中可能被视为一个严重错误。</p>
+]]></content>
   </entry>
 </search>

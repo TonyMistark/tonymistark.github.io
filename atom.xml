@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2023-12-06T14:40:46.093Z</updated>
+  <updated>2023-12-06T14:52:20.514Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://tonymistark.github.io/2023/12/06/design-pattern/bridge/"/>
     <id>https://tonymistark.github.io/2023/12/06/design-pattern/bridge/</id>
     <published>2023-12-06T13:36:04.000Z</published>
-    <updated>2023-12-06T14:40:46.093Z</updated>
+    <updated>2023-12-06T14:52:20.514Z</updated>
     
     
       
@@ -38,6 +38,27 @@
     
     
     <category term="Design Pattern" scheme="https://tonymistark.github.io/tags/Design-Pattern/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>maydat-lip-syncing</title>
+    <link href="https://tonymistark.github.io/2023/12/04/mayday-lip-syncing/"/>
+    <id>https://tonymistark.github.io/2023/12/04/mayday-lip-syncing/</id>
+    <published>2023-12-04T10:04:22.000Z</published>
+    <updated>2023-12-06T14:57:50.194Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;今日单词&quot;&gt;&lt;a href=&quot;#今日单词&quot; class=&quot;headerlink&quot; title=&quot;今日单词&quot;&gt;&lt;/a&gt;今日单词&lt;/h3&gt;&lt;div align=&quot;center&quot;&gt; &lt;img</summary>
+        
+      
+    
+    
+    
     
   </entry>
   
@@ -465,32 +486,6 @@
         
         
     <summary type="html">&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>I am Grinding King</title>
-    <link href="https://tonymistark.github.io/2023/11/01/I-am-Grinding-King/"/>
-    <id>https://tonymistark.github.io/2023/11/01/I-am-Grinding-King/</id>
-    <published>2023-11-01T10:22:41.000Z</published>
-    <updated>2023-11-22T15:21:21.582Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;Ice:&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;你理解在中文里面“卷”的特别的意思吗？&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;Claude:&lt;/strong&gt;&lt;/em</summary>
         
       
     
