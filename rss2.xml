@@ -15,8 +15,86 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Wed, 06 Dec 2023 14:52:20 GMT</pubDate>
+    <pubDate>Mon, 29 Jan 2024 14:28:59 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Facade 门面（外观）模式</title>
+      <link>https://tonymistark.github.io/2024/01/29/design-pattern/facade/</link>
+      <guid>https://tonymistark.github.io/2024/01/29/design-pattern/facade/</guid>
+      <pubDate>Mon, 29 Jan 2024 14:15:32 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;意图&quot;&gt;&lt;a href=&quot;#意图&quot; class=&quot;headerlink&quot; title=&quot;意图&quot;&gt;&lt;/a&gt;意图&lt;/h2&gt;&lt;p&gt;Facade是一种结构化设计模式，它为库、框架或任何其他复杂的类集提供了一个简化的接口。&lt;/p&gt;
+&lt;div align=&quot;center&quot;&gt;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2024/01/29/design-pattern/facade/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Decorator 装饰器模式</title>
+      <link>https://tonymistark.github.io/2024/01/28/design-pattern/decorator/</link>
+      <guid>https://tonymistark.github.io/2024/01/28/design-pattern/decorator/</guid>
+      <pubDate>Sun, 28 Jan 2024 05:26:52 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Decorator-装饰器模式&quot;&gt;&lt;a href=&quot;#Decorator-装饰器模式&quot; class=&quot;headerlink&quot; title=&quot;Decorator 装饰器模式&quot;&gt;&lt;/a&gt;Decorator 装饰器模式&lt;/h1&gt;&lt;h2</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
+      
+      
+      <comments>https://tonymistark.github.io/2024/01/28/design-pattern/decorator/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Composite 部分-整体模式</title>
+      <link>https://tonymistark.github.io/2023/12/07/design-pattern/composite/</link>
+      <guid>https://tonymistark.github.io/2023/12/07/design-pattern/composite/</guid>
+      <pubDate>Thu, 07 Dec 2023 13:52:43 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Composite-部分-整体模式&quot;&gt;&lt;a href=&quot;#Composite-部分-整体模式&quot; class=&quot;headerlink&quot; title=&quot;Composite 部分-整体模式&quot;&gt;&lt;/a&gt;Composite 部分-整体模式&lt;/h1&gt;&lt;p&gt;Also</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
+      
+      
+      <comments>https://tonymistark.github.io/2023/12/07/design-pattern/composite/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Bridge</title>
@@ -456,83 +534,6 @@
       
       
       <comments>https://tonymistark.github.io/2023/11/15/design-pattern/why-should-i-learn-patterns/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>History of patterns</title>
-      <link>https://tonymistark.github.io/2023/11/14/design-pattern/history-of-patterns/</link>
-      <guid>https://tonymistark.github.io/2023/11/14/design-pattern/history-of-patterns/</guid>
-      <pubDate>Tue, 14 Nov 2023 12:53:45 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h1 id=&quot;History-of-patterns&quot;&gt;&lt;a href=&quot;#History-of-patterns&quot; class=&quot;headerlink&quot; title=&quot;History of patterns&quot;&gt;&lt;/a&gt;History of patterns&lt;/h1&gt;&lt;h1</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
-      
-      
-      <comments>https://tonymistark.github.io/2023/11/14/design-pattern/history-of-patterns/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>What&#39;s a design pattern?</title>
-      <link>https://tonymistark.github.io/2023/11/09/design-pattern/what-is-a-design-pattern/</link>
-      <guid>https://tonymistark.github.io/2023/11/09/design-pattern/what-is-a-design-pattern/</guid>
-      <pubDate>Thu, 09 Nov 2023 14:18:59 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h1 id=&quot;What’s-a-design-pattern&quot;&gt;&lt;a href=&quot;#What’s-a-design-pattern&quot; class=&quot;headerlink&quot; title=&quot;What’s a design pattern?&quot;&gt;&lt;/a&gt;What’s a design</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
-      
-      
-      <comments>https://tonymistark.github.io/2023/11/09/design-pattern/what-is-a-design-pattern/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>一键部署 Ollama在本地启动并运行大语言模型</title>
-      <link>https://tonymistark.github.io/2023/11/02/Ollama-%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%90%AF%E5%8A%A8%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/</link>
-      <guid>https://tonymistark.github.io/2023/11/02/Ollama-%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%90%AF%E5%8A%A8%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/</guid>
-      <pubDate>Thu, 02 Nov 2023 07:13:38 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td</description>
-          
-        
-      
-      
-      
-      
-      
-      
-      <comments>https://tonymistark.github.io/2023/11/02/Ollama-%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%90%AF%E5%8A%A8%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/#disqus_thread</comments>
       
     </item>
     

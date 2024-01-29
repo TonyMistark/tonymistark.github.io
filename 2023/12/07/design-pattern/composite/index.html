@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Composite 部分-整体模式Also known as: Object Tree也称为：对象树 Intent 意图Composite is a structural design pattern that lets you compose objects into tree structures and then work with these structures as if they w">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Composite 部分-整体模式">
+<meta property="og:url" content="https://tonymistark.github.io/2023/12/07/design-pattern/composite/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="Composite 部分-整体模式Also known as: Object Tree也称为：对象树 Intent 意图Composite is a structural design pattern that lets you compose objects into tree structures and then work with these structures as if they w">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://tonymistark.github.io/images/composite-header.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/composite-problem-en.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/composite-comic-1-en.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/composite-live-example.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/composite-structure-en.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/composite-example1.png">
+<meta property="article:published_time" content="2023-12-07T13:52:43.000Z">
+<meta property="article:modified_time" content="2023-12-07T14:45:21.837Z">
+<meta property="article:author" content="Ice">
+<meta property="article:tag" content="Design Pattern">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tonymistark.github.io/images/composite-header.png">
+
+<link rel="canonical" href="https://tonymistark.github.io/2023/12/07/design-pattern/composite/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Composite 部分-整体模式 | BLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6L4L92Z6Z"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W6L4L92Z6Z');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?99c70b2174a7fbe4af476f28bafb19a3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/./atom.xml" title="BLOG" type="application/atom+xml">
+<link rel="alternate" href="/./rss2.xml" title="BLOG" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">用心记录思想</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/12/07/design-pattern/composite/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Composite 部分-整体模式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-12-07 21:52:43 / Modified: 22:45:21" itemprop="dateCreated datePublished" datetime="2023-12-07T21:52:43+08:00">2023-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/design-pattern/" itemprop="url" rel="index"><span itemprop="name">design-pattern</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>18 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Composite-部分-整体模式"><a href="#Composite-部分-整体模式" class="headerlink" title="Composite 部分-整体模式"></a>Composite 部分-整体模式</h1><p>Also known as: Object Tree<br>也称为：对象树</p>
+<h2 id="Intent-意图"><a href="#Intent-意图" class="headerlink" title="Intent 意图"></a>Intent 意图</h2><p><strong>Composite</strong> is a structural design pattern that lets you compose objects into tree structures and then work with these structures as if they were individual objects.<br>复合是一种结构设计模式，可用于将对象组合成树结构，然后像使用单个对象一样处理这些结构。</p>
+<div align="center"> <img src="/images/composite-header.png"/></div>
+
+<h2 id="Problem-问题"><a href="#Problem-问题" class="headerlink" title="Problem 问题"></a>Problem 问题</h2><p>Using the Composite pattern makes sense only when the core model of your app can be represented as a tree.<br>只有当应用的核心模型可以表示为树时，使用复合模式才有意义。</p>
+<p>For example, imagine that you have two types of objects: <code>Products</code> and <code>Boxes</code>. A <code>Box</code> can contain several <code>Products</code> as well as a number of smaller <code>Boxes</code>. These little <code>Boxes</code> can also hold some <code>Products</code> or even smaller <code>Boxes</code>, and so on.<br>例如，假设您有两种类型的对象： <code>Products</code> 和 <code>Boxes</code>。 一个 <code>Box</code> 可以包含多个以及多个 <code>Products</code> 较小的 <code>Boxes</code>。这些小的也可以容纳一些 <code>Products</code> 甚至更小 <code>Boxes</code> 的 <code>Boxes</code> ，以此类推。</p>
+<p>Say you decide to create an ordering system that uses these classes. Orders could contain simple products without any wrapping, as well as boxes stuffed with products…and other boxes. How would you determine the total price of such an order?<br>假设您决定创建一个使用这些类的排序系统。订单可以包含没有任何包装的简单产品，也可以包含装满产品的盒子……和其他盒子。您如何确定此类订单的总价？</p>
+<div align="center"> <img src="/images/composite-problem-en.png"/>An order might comprise various products, packaged in boxes, which are packaged in bigger boxes and so on. The whole structure looks like an upside down tree.</br>一个订单可能包括各种产品，包装在盒子里，这些产品包装在更大的盒子里，依此类推。整个结构看起来像一棵倒置的树。</div>
+
+<p>You could try the direct approach: unwrap all the boxes, go over all the products and then calculate the total. That would be doable in the real world; but in a program, it’s not as simple as running a loop. You have to know the classes of <code>Products</code> and <code>Boxes</code> you’re going through, the nesting level of the boxes and other nasty details beforehand. All of this makes the direct approach either too awkward or even impossible.<br>您可以尝试直接方法：打开所有盒子，检查所有产品，然后计算总数。这在现实世界中是可行的;但在程序中，它并不像运行循环那么简单。你必须事先知道 <code>Boxes</code> 你正在经历的 <code>Products</code> 类别、盒子的嵌套级别和其他令人讨厌的细节。所有这些都使得直接方法要么过于尴尬，甚至不可能。</p>
+<h2 id="Solution-解决方案"><a href="#Solution-解决方案" class="headerlink" title="Solution 解决方案"></a>Solution 解决方案</h2><p>The Composite pattern suggests that you work with <code>Products</code> and <code>Boxes</code> through a common interface which declares a method for calculating the total price.<br>复合模式建议您使用 <code>Products</code> 并通过 <code>Boxes</code> 一个通用接口进行工作，该接口声明了计算总价的方法。</p>
+<p>How would this method work? For a product, it’d simply return the product’s price. For a box, it’d go over each item the box contains, ask its price and then return a total for this box. If one of these items were a smaller box, that box would also start going over its contents and so on, until the prices of all inner components were calculated. A box could even add some extra cost to the final price, such as packaging cost.<br>这种方法如何工作？对于产品，它只会返回产品的价格。对于一个盒子，它会检查盒子里的每件物品，询问它的价格，然后返回这个盒子的总数。如果其中一个物品是一个较小的盒子，那么该盒子也会开始检查其内容，依此类推，直到计算出所有内部组件的价格。一个盒子甚至会给最终价格增加一些额外的成本，比如包装成本。</p>
+<div align="center"> <img src="/images/composite-comic-1-en.png"/>The Composite pattern lets you run a behavior recursively over all components of an object tree.</br>Composite 模式允许您以递归方式对对象树的所有组件运行行为。</div>
+
+<p>The greatest benefit of this approach is that you don’t need to care about the concrete classes of objects that compose the tree. You don’t need to know whether an object is a simple product or a sophisticated box. You can treat them all the same via the common interface. When you call a method, the objects themselves pass the request down the tree.<br>这种方法的最大好处是，您不需要关心组成树的具体对象类。您不需要知道一个对象是简单的产品还是复杂的盒子。您可以通过通用界面对它们一视同仁。调用方法时，对象本身会将请求传递到树中。</p>
+<h2 id="Real-World-Analogy-真实世界的类比"><a href="#Real-World-Analogy-真实世界的类比" class="headerlink" title="Real-World Analogy 真实世界的类比"></a>Real-World Analogy 真实世界的类比</h2><div align="center"> <img src="/images/composite-live-example.png"/>An example of a military structure.</br>军事结构的一个例子。</div>
+Armies of most countries are structured as hierarchies. An army consists of several divisions; a division is a set of brigades, and a brigade consists of platoons, which can be broken down into squads. Finally, a squad is a small group of real soldiers. Orders are given at the top of the hierarchy and passed down onto each level until every soldier knows what needs to be done.
+大多数国家的军队都是等级制度。一支军队由几个师组成;一个师是一组旅，一个旅由排组成，排可以分解成小队。最后，小队是一小群真正的士兵。命令在等级制度的顶端下达，并向下传递到每个级别，直到每个士兵都知道需要做什么。
+
+<h2 id="Structure-结构"><a href="#Structure-结构" class="headerlink" title="Structure 结构"></a>Structure 结构</h2><div align="center"> <img src="/images/composite-structure-en.png"/></div>
+
+<ol>
+<li><p>The <strong>Component</strong> interface describes operations that are common to both simple and complex elements of the tree.<br><strong>Component</strong> 接口描述树的简单元素和复杂元素通用的操作。</p>
+</li>
+<li><p>The Leaf is a basic element of a tree that doesn’t have sub-elements.<br>叶子是树的基本元素，没有子元素。</p>
+</li>
+</ol>
+<p>Usually, leaf components end up doing most of the real work, since they don’t have anyone to delegate the work to.<br>通常，叶子组件最终会完成大部分实际工作，因为它们没有人可以将工作委派给它们。</p>
+<ol start="3">
+<li>The <strong>Container</strong> (aka composite) is an element that has sub-elements: leaves or other containers. A container doesn’t know the concrete classes of its children. It works with all sub-elements only via the component interface.<br>容器（又名复合）是一个具有子元素的元素：树叶或其他容器。容器不知道其子项的具体类。它仅通过组件接口处理所有子元素。</li>
+</ol>
+<p>Upon receiving a request, a container delegates the work to its sub-elements, processes intermediate results and then returns the final result to the client.<br>收到请求后，容器将工作委托给其子元素，处理中间结果，然后将最终结果返回给客户端。</p>
+<ol start="4">
+<li>The <strong>Client</strong> works with all elements through the component interface. As a result, the client can work in the same way with both simple or complex elements of the tree.<br>客户端通过组件接口处理所有元素。因此，客户端可以以相同的方式处理树的简单或复杂元素。</li>
+</ol>
+<h2 id="Pseudocode-伪代码"><a href="#Pseudocode-伪代码" class="headerlink" title="Pseudocode 伪代码"></a>Pseudocode 伪代码</h2><p>In this example, the <strong>Composite</strong> pattern lets you implement stacking of geometric shapes in a graphical editor.<br>在此示例中，复合模式允许您在图形编辑器中实现几何形状的堆叠。</p>
+<div align="center"> <img src="/images/composite-example1.png"/>The geometric shapes editor example.</br>几何形状编辑器示例。</div>
+
+<p>The <code>CompoundGraphic</code> class is a container that can comprise any number of sub-shapes, including other compound shapes. A compound shape has the same methods as a simple shape. However, instead of doing something on its own, a compound shape passes the request recursively to all its children and “sums up” the result.<br>该 <code>CompoundGraphic</code> 类是一个容器，可以包含任意数量的子形状，包括其他复合形状。复合形状与简单形状具有相同的方法。但是，复合形状不是自己执行某些操作，而是以递归方式将请求传递给其所有子项，并“汇总”结果。</p>
+<p>The client code works with all shapes through the single interface common to all shape classes. Thus, the client doesn’t know whether it’s working with a simple shape or a compound one. The client can work with very complex object structures without being coupled to concrete classes that form that structure.<br>客户端代码通过所有形状类通用的单个接口处理所有形状。因此，客户不知道它是在处理简单形状还是复合形状。客户端可以使用非常复杂的对象结构，而无需与构成该结构的具体类耦合。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The component interface declares common operations for both</span></span><br><span class="line"><span class="comment">// simple and complex objects of a composition.</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Graphic</span> is</span><br><span class="line">    method <span class="title function_">move</span><span class="params">(x, y)</span></span><br><span class="line">    method <span class="title function_">draw</span><span class="params">()</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// The leaf class represents end objects of a composition. A</span></span><br><span class="line"><span class="comment">// leaf object can&#x27;t have any sub-objects. Usually, it&#x27;s leaf</span></span><br><span class="line"><span class="comment">// objects that do the actual work, while composite objects only</span></span><br><span class="line"><span class="comment">// delegate to their sub-components.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dot</span> <span class="keyword">implements</span> <span class="title class_">Graphic</span> is</span><br><span class="line">    field x, y</span><br><span class="line"></span><br><span class="line">    constructor <span class="title function_">Dot</span><span class="params">(x, y)</span> &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">    method <span class="title function_">move</span><span class="params">(x, y)</span> is</span><br><span class="line">        <span class="built_in">this</span>.x += x, <span class="built_in">this</span>.y += y</span><br><span class="line"></span><br><span class="line">    method <span class="title function_">draw</span><span class="params">()</span> is</span><br><span class="line">        <span class="comment">// Draw a dot at X and Y.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// All component classes can extend other components.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Circle</span> <span class="keyword">extends</span> <span class="title class_">Dot</span> is</span><br><span class="line">    field radius</span><br><span class="line"></span><br><span class="line">    constructor <span class="title function_">Circle</span><span class="params">(x, y, radius)</span> &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">    method <span class="title function_">draw</span><span class="params">()</span> is</span><br><span class="line">        <span class="comment">// Draw a circle at X and Y with radius R.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// The composite class represents complex components that may</span></span><br><span class="line"><span class="comment">// have children. Composite objects usually delegate the actual</span></span><br><span class="line"><span class="comment">// work to their children and then &quot;sum up&quot; the result.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CompoundGraphic</span> <span class="keyword">implements</span> <span class="title class_">Graphic</span> is</span><br><span class="line">    field children: array of Graphic</span><br><span class="line"></span><br><span class="line">    <span class="comment">// A composite object can add or remove other components</span></span><br><span class="line">    <span class="comment">// (both simple or complex) to or from its child list.</span></span><br><span class="line">    method <span class="title function_">add</span><span class="params">(child: Graphic)</span> is</span><br><span class="line">        <span class="comment">// Add a child to the array of children.</span></span><br><span class="line"></span><br><span class="line">    method <span class="title function_">remove</span><span class="params">(child: Graphic)</span> is</span><br><span class="line">        <span class="comment">// Remove a child from the array of children.</span></span><br><span class="line"></span><br><span class="line">    method <span class="title function_">move</span><span class="params">(x, y)</span> is</span><br><span class="line">        <span class="title function_">foreach</span> <span class="params">(child in children)</span> <span class="keyword">do</span></span><br><span class="line">            child.move(x, y)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// A composite executes its primary logic in a particular</span></span><br><span class="line">    <span class="comment">// way. It traverses recursively through all its children,</span></span><br><span class="line">    <span class="comment">// collecting and summing up their results. Since the</span></span><br><span class="line">    <span class="comment">// composite&#x27;s children pass these calls to their own</span></span><br><span class="line">    <span class="comment">// children and so forth, the whole object tree is traversed</span></span><br><span class="line">    <span class="comment">// as a result.</span></span><br><span class="line">    method <span class="title function_">draw</span><span class="params">()</span> is</span><br><span class="line">        <span class="comment">// 1. For each child component:</span></span><br><span class="line">        <span class="comment">//     - Draw the component.</span></span><br><span class="line">        <span class="comment">//     - Update the bounding rectangle.</span></span><br><span class="line">        <span class="comment">// 2. Draw a dashed rectangle using the bounding</span></span><br><span class="line">        <span class="comment">// coordinates.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// The client code works with all the components via their base</span></span><br><span class="line"><span class="comment">// interface. This way the client code can support simple leaf</span></span><br><span class="line"><span class="comment">// components as well as complex composites.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ImageEditor</span> is</span><br><span class="line">    field all: CompoundGraphic</span><br><span class="line"></span><br><span class="line">    method <span class="title function_">load</span><span class="params">()</span> <span class="type">is</span></span><br><span class="line">        <span class="variable">all</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CompoundGraphic</span>()</span><br><span class="line">        all.add(<span class="keyword">new</span> <span class="title class_">Dot</span>(<span class="number">1</span>, <span class="number">2</span>))</span><br><span class="line">        all.add(<span class="keyword">new</span> <span class="title class_">Circle</span>(<span class="number">5</span>, <span class="number">3</span>, <span class="number">10</span>))</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Combine selected components into one complex composite</span></span><br><span class="line">    <span class="comment">// component.</span></span><br><span class="line">    method <span class="title function_">groupSelected</span><span class="params">(components: array of Graphic)</span> <span class="type">is</span></span><br><span class="line">        <span class="variable">group</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CompoundGraphic</span>()</span><br><span class="line">        foreach (component in components) <span class="keyword">do</span></span><br><span class="line">            group.add(component)</span><br><span class="line">            all.remove(component)</span><br><span class="line">        all.add(group)</span><br><span class="line">        <span class="comment">// All components will be drawn.</span></span><br><span class="line">        all.draw()</span><br></pre></td></tr></table></figure>
+
+<h2 id="Applicability-适用性"><a href="#Applicability-适用性" class="headerlink" title="Applicability 适用性"></a>Applicability 适用性</h2><ul>
+<li><p>** Use the Composite pattern when you have to implement a tree-like object structure. 当必须实现树状对象结构时，请使用 Composite 模式。**</p>
+</li>
+<li><p>The Composite pattern provides you with two basic element types that share a common interface: simple leaves and complex containers. A container can be composed of both leaves and other containers. This lets you construct a nested recursive object structure that resembles a tree.<br>Composite 模式为您提供了两种共享通用接口的基本元素类型：简单叶子和复杂容器。容器可以由叶子和其他容器组成。这使您可以构造类似于树的嵌套递归对象结构。</p>
+</li>
+<li><p><strong>Use the pattern when you want the client code to treat both simple and complex elements uniformly. 如果希望客户端代码统一处理简单元素和复杂元素，请使用该模式。</strong></p>
+</li>
+<li><p>All elements defined by the Composite pattern share a common interface. Using this interface, the client doesn’t have to worry about the concrete class of the objects it works with.<br>Composite 模式定义的所有元素共享一个公共接口。使用此接口，客户端不必担心它所处理的对象的具体类。</p>
+</li>
+</ul>
+<h2 id="How-to-Implement-如何实现"><a href="#How-to-Implement-如何实现" class="headerlink" title="How to Implement 如何实现"></a>How to Implement 如何实现</h2><ol>
+<li><p>Make sure that the core model of your app can be represented as a tree structure. Try to break it down into simple elements and containers. Remember that containers must be able to contain both simple elements and other containers.<br>确保应用的核心模型可以表示为树结构。尝试将其分解为简单的元素和容器。请记住，容器必须能够同时包含简单元素和其他容器。</p>
+</li>
+<li><p>Declare the component interface with a list of methods that make sense for both simple and complex components.<br>使用对简单和复杂组件都有意义的方法列表声明组件接口。</p>
+</li>
+<li><p>Create a leaf class to represent simple elements. A program may have multiple different leaf classes.<br>创建一个叶类来表示简单元素。一个程序可以有多个不同的叶类。</p>
+</li>
+</ol>
+<p>Create a container class to represent complex elements. In this class, provide an array field for storing references to sub-elements. The array must be able to store both leaves and containers, so make sure it’s declared with the component interface type.<br>创建一个容器类来表示复杂元素。在此类中，提供一个数组字段，用于存储对子元素的引用。数组必须能够存储叶子和容器，因此请确保使用组件接口类型声明它。</p>
+<ol start="4">
+<li><p>While implementing the methods of the component interface, remember that a container is supposed to be delegating most of the work to sub-elements.<br>在实现组件接口的方法时，请记住，容器应该将大部分工作委托给子元素。</p>
+</li>
+<li><p>Finally, define the methods for adding and removal of child elements in the container.<br>最后，定义在容器中添加和删除子元素的方法。</p>
+</li>
+</ol>
+<p>Keep in mind that these operations can be declared in the component interface. This would violate the Interface Segregation Principle because the methods will be empty in the leaf class. However, the client will be able to treat all the elements equally, even when composing the tree.<br>请记住，这些操作可以在组件接口中声明。这将违反接口隔离原则，因为方法在叶类中为空。但是，客户端将能够平等地对待所有元素，即使在组成树时也是如此。</p>
+<h2 id="Pros-and-Cons-优点和缺点"><a href="#Pros-and-Cons-优点和缺点" class="headerlink" title="Pros and Cons 优点和缺点"></a>Pros and Cons 优点和缺点</h2><table>
+<thead>
+<tr>
+<th>Pros 优点</th>
+<th>Cons 缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>You can work with complex tree structures more conveniently: use polymorphism and recursion to your advantage. 您可以更方便地使用复杂的树结构：使用多态性和递归来发挥自己的优势。</td>
+<td>It might be difficult to provide a common interface for classes whose functionality differs too much. In certain scenarios, you’d need to overgeneralize the component interface, making it harder to comprehend.可能很难为功能差异太大的类提供通用接口。在某些情况下，需要过度概括组件接口，使其更难理解。</td>
+</tr>
+<tr>
+<td>Open&#x2F;Closed Principle. You can introduce new element types into the app without breaking the existing code, which now works with the object tree. 开&#x2F;闭原理。您可以在不破坏现有代码的情况下将新的元素类型引入应用程序，这些代码现在适用于对象树。</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="Relations-with-Other-Patterns-与其他模式的关系"><a href="#Relations-with-Other-Patterns-与其他模式的关系" class="headerlink" title="Relations with Other Patterns 与其他模式的关系"></a>Relations with Other Patterns 与其他模式的关系</h2><ul>
+<li><p>You can use <strong>Builder</strong> when creating complex <strong>Composite</strong> trees because you can program its construction steps to work recursively.<br>在创建复杂的复合树时，可以使用 Builder，因为您可以对其构造步骤进行编程以递归方式工作。</p>
+</li>
+<li><p>Chain of <strong>Responsibility</strong> is often used in conjunction with <strong>Composite</strong>. In this case, when a leaf component gets a request, it may pass it through the chain of all of the parent components down to the root of the object tree.<br>责任链通常与复合结合使用。在这种情况下，当叶组件收到请求时，它可能会通过所有父组件的链向下传递到对象树的根目录。</p>
+</li>
+<li><p>You can use <strong>Iterators</strong> to traverse <strong>Composite</strong> trees.<br>可以使用迭代器遍历复合树。</p>
+</li>
+<li><p>You can use Visitor to execute an operation over an entire <strong>Composite</strong> tree.<br>您可以使用 Visitor 对整个复合树执行操作。</p>
+</li>
+<li><p>You can implement shared leaf nodes of the <strong>Composite</strong> tree as <strong>Flyweights</strong> to save some RAM.<br>您可以将复合树的共享叶节点实现为轻量级，以节省一些 RAM。</p>
+</li>
+<li><p><strong>Composite</strong> and <strong>Decorator</strong> have similar structure diagrams since both rely on recursive composition to organize an open-ended number of objects.<br>Composite 和 Decorator 具有相似的结构图，因为两者都依赖于递归组合来组织开放数量的对象。<br>A Decorator is like a Composite but only has one child component. There’s another significant difference: Decorator adds additional responsibilities to the wrapped object, while Composite just “sums up” its children’s results.<br>装饰器类似于 Composite，但只有一个子组件。还有另一个显著的区别：Decorator 为包装的对象添加了额外的职责，而 Composite 只是“汇总”其子对象的结果。<br>However, the patterns can also cooperate: you can use Decorator to extend the behavior of a specific object in the Composite tree.<br>但是，这些模式也可以协同工作：您可以使用 Decorator 来扩展 <strong>Composite</strong> 树中特定对象的行为。</p>
+</li>
+<li><p>Designs that make heavy use of <strong>Composite</strong> and <strong>Decorator</strong> can often benefit from using <strong>Prototype</strong>. Applying the pattern lets you clone complex structures instead of re-constructing them from scratch.<br>大量使用 <strong>Composite</strong> 和 <strong>Decorator</strong> 的设计通常可以从使用 <strong>Prototype</strong> 中受益。通过应用该模式，您可以克隆复杂的结构，而不是从头开始重新构建它们。</p>
+</li>
+</ul>
+<h2 id="Code-Examples-代码示例"><a href="#Code-Examples-代码示例" class="headerlink" title="Code Examples 代码示例"></a>Code Examples 代码示例</h2><h3 id="Python-Conceptual-Example-概念示例"><a href="#Python-Conceptual-Example-概念示例" class="headerlink" title="Python Conceptual Example 概念示例"></a>Python Conceptual Example 概念示例</h3><p>This example illustrates the structure of the Composite design pattern. It focuses on answering these questions:<br>此示例阐释了 Composite 设计模式的结构。它侧重于回答以下问题：</p>
+<ul>
+<li>What classes does it consist of?<br>它由哪些类组成？</li>
+<li>What roles do these classes play?<br>这些课程扮演什么角色？</li>
+<li>In what way the elements of the pattern are related?<br>模式的元素以何种方式相关？</li>
+</ul>
+<h4 id="main-py"><a href="#main-py" class="headerlink" title="main.py"></a>main.py</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> annotations</span><br><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABC, abstractmethod</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Component</span>(<span class="title class_ inherited__">ABC</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The base Component class declares common operations for both simple and</span></span><br><span class="line"><span class="string">    complex objects of a composition.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">parent</span>(<span class="params">self</span>) -&gt; Component:</span><br><span class="line">        <span class="keyword">return</span> self._parent</span><br><span class="line"></span><br><span class="line"><span class="meta">    @parent.setter</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">parent</span>(<span class="params">self, parent: Component</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Optionally, the base Component can declare an interface for setting and</span></span><br><span class="line"><span class="string">        accessing a parent of the component in a tree structure. It can also</span></span><br><span class="line"><span class="string">        provide some default implementation for these methods.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        self._parent = parent</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    In some cases, it would be beneficial to define the child-management</span></span><br><span class="line"><span class="string">    operations right in the base Component class. This way, you won&#x27;t need to</span></span><br><span class="line"><span class="string">    expose any concrete component classes to the client code, even during the</span></span><br><span class="line"><span class="string">    object tree assembly. The downside is that these methods will be empty for</span></span><br><span class="line"><span class="string">    the leaf-level components.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">self, component: Component</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">remove</span>(<span class="params">self, component: Component</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">is_composite</span>(<span class="params">self</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        You can provide a method that lets the client code figure out whether a</span></span><br><span class="line"><span class="string">        component can bear children.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">operation</span>(<span class="params">self</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        The base Component may implement some default behavior or leave it to</span></span><br><span class="line"><span class="string">        concrete classes (by declaring the method containing the behavior as</span></span><br><span class="line"><span class="string">        &quot;abstract&quot;).</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Leaf</span>(<span class="title class_ inherited__">Component</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The Leaf class represents the end objects of a composition. A leaf can&#x27;t</span></span><br><span class="line"><span class="string">    have any children.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Usually, it&#x27;s the Leaf objects that do the actual work, whereas Composite</span></span><br><span class="line"><span class="string">    objects only delegate to their sub-components.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">operation</span>(<span class="params">self</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Leaf&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Composite</span>(<span class="title class_ inherited__">Component</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The Composite class represents the complex components that may have</span></span><br><span class="line"><span class="string">    children. Usually, the Composite objects delegate the actual work to their</span></span><br><span class="line"><span class="string">    children and then &quot;sum-up&quot; the result.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self._children: <span class="type">List</span>[Component] = []</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    A composite object can add or remove other components (both simple or</span></span><br><span class="line"><span class="string">    complex) to or from its child list.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">self, component: Component</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self._children.append(component)</span><br><span class="line">        component.parent = self</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">remove</span>(<span class="params">self, component: Component</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self._children.remove(component)</span><br><span class="line">        component.parent = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">is_composite</span>(<span class="params">self</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">operation</span>(<span class="params">self</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        The Composite executes its primary logic in a particular way. It</span></span><br><span class="line"><span class="string">        traverses recursively through all its children, collecting and summing</span></span><br><span class="line"><span class="string">        their results. Since the composite&#x27;s children pass these calls to their</span></span><br><span class="line"><span class="string">        children and so forth, the whole object tree is traversed as a result.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        results = []</span><br><span class="line">        <span class="keyword">for</span> child <span class="keyword">in</span> self._children:</span><br><span class="line">            results.append(child.operation())</span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&quot;Branch(<span class="subst">&#123;<span class="string">&#x27;+&#x27;</span>.join(results)&#125;</span>)&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">client_code</span>(<span class="params">component: Component</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The client code works with all of the components via the base interface.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;RESULT: <span class="subst">&#123;component.operation()&#125;</span>&quot;</span>, end=<span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">client_code2</span>(<span class="params">component1: Component, component2: Component</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Thanks to the fact that the child-management operations are declared in the</span></span><br><span class="line"><span class="string">    base Component class, the client code can work with any component, simple or</span></span><br><span class="line"><span class="string">    complex, without depending on their concrete classes.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> component1.is_composite():</span><br><span class="line">        component1.add(component2)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;RESULT: <span class="subst">&#123;component1.operation()&#125;</span>&quot;</span>, end=<span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># This way the client code can support the simple leaf components...</span></span><br><span class="line">    simple = Leaf()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Client: I&#x27;ve got a simple component:&quot;</span>)</span><br><span class="line">    client_code(simple)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ...as well as the complex composites.</span></span><br><span class="line">    tree = Composite()</span><br><span class="line"></span><br><span class="line">    branch1 = Composite()</span><br><span class="line">    branch1.add(Leaf())</span><br><span class="line">    branch1.add(Leaf())</span><br><span class="line"></span><br><span class="line">    branch2 = Composite()</span><br><span class="line">    branch2.add(Leaf())</span><br><span class="line"></span><br><span class="line">    tree.add(branch1)</span><br><span class="line">    tree.add(branch2)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Client: Now I&#x27;ve got a composite tree:&quot;</span>)</span><br><span class="line">    client_code(tree)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Client: I don&#x27;t need to check the components classes even when managing the tree:&quot;</span>)</span><br><span class="line">    client_code2(tree, simple)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Output-txt-Execution-result"><a href="#Output-txt-Execution-result" class="headerlink" title="Output.txt: Execution result"></a>Output.txt: Execution result</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Client: I&#x27;ve got a simple component:</span><br><span class="line">RESULT: Leaf</span><br><span class="line"></span><br><span class="line">Client: Now I&#x27;ve got a composite tree:</span><br><span class="line">RESULT: Branch(Branch(Leaf+Leaf)+Branch(Leaf))</span><br><span class="line"></span><br><span class="line">Client: I don&#x27;t need to check the components classes even when managing the tree:</span><br><span class="line">RESULT: Branch(Branch(Leaf+Leaf)+Branch(Leaf)+Leaf)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Rust-Files-and-Folders-文件和文件夹"><a href="#Rust-Files-and-Folders-文件和文件夹" class="headerlink" title="Rust: Files and Folders 文件和文件夹"></a>Rust: Files and Folders 文件和文件夹</h3><p>Let’s try to understand the Composite pattern with an example of an operating system’s file system. In the file system, there are two types of objects: files and folders. There are cases when files and folders should be treated to be the same way. This is where the Composite pattern comes in handy.<br>让我们尝试通过操作系统文件系统的示例来理解 Composite 模式。在文件系统中，有两种类型的对象：文件和文件夹。在某些情况下，文件和文件夹应以相同的方式处理。这就是复合模式派上用场的地方。</p>
+<p>File and Directory are both of the trait Component with a single search method. For a file, it will just look into the contents of the file; for a folder, it will go through all files of that folder to find that keyword.<br>File 并且 Directory 都 trait Component 使用单一 search 方法。对于文件，它只会查看文件的内容;对于文件夹，它将遍历该文件夹的所有文件以查找该关键字。</p>
+<h4 id="fs-mod-rs"><a href="#fs-mod-rs" class="headerlink" title="fs&#x2F;mod.rs"></a>fs&#x2F;mod.rs</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> file;</span><br><span class="line"><span class="keyword">mod</span> folder;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">use</span> file::File;</span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">use</span> folder::Folder;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">trait</span> <span class="title class_">Component</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">search</span>(&amp;<span class="keyword">self</span>, keyword: &amp;<span class="type">str</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="fs-file-rs"><a href="#fs-file-rs" class="headerlink" title="fs&#x2F;file.rs"></a>fs&#x2F;file.rs</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> super::Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">File</span> &#123;</span><br><span class="line">    name: &amp;<span class="symbol">&#x27;static</span> <span class="type">str</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">File</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">new</span>(name: &amp;<span class="symbol">&#x27;static</span> <span class="type">str</span>) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123; name &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Component</span> <span class="keyword">for</span> <span class="title class_">File</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">search</span>(&amp;<span class="keyword">self</span>, keyword: &amp;<span class="type">str</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Searching for keyword &#123;&#125; in file &#123;&#125;&quot;</span>, keyword, <span class="keyword">self</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="fs-folder-rs"><a href="#fs-folder-rs" class="headerlink" title="fs&#x2F;folder.rs"></a>fs&#x2F;folder.rs</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> super::Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Folder</span> &#123;</span><br><span class="line">    name: &amp;<span class="symbol">&#x27;static</span> <span class="type">str</span>,</span><br><span class="line">    components: <span class="type">Vec</span>&lt;<span class="type">Box</span>&lt;<span class="keyword">dyn</span> Component&gt;&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Folder</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">new</span>(name: &amp;<span class="symbol">&#x27;static</span> <span class="type">str</span>) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123;</span><br><span class="line">            name,</span><br><span class="line">            components: <span class="built_in">vec!</span>[],</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">add</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, component: <span class="keyword">impl</span> <span class="title class_">Component</span> + <span class="symbol">&#x27;static</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.components.<span class="title function_ invoke__">push</span>(<span class="type">Box</span>::<span class="title function_ invoke__">new</span>(component));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Component</span> <span class="keyword">for</span> <span class="title class_">Folder</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">search</span>(&amp;<span class="keyword">self</span>, keyword: &amp;<span class="type">str</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(</span><br><span class="line">            <span class="string">&quot;Searching recursively for keyword &#123;&#125; in folder &#123;&#125;&quot;</span>,</span><br><span class="line">            keyword, <span class="keyword">self</span>.name</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> <span class="variable">component</span> <span class="keyword">in</span> <span class="keyword">self</span>.components.<span class="title function_ invoke__">iter</span>() &#123;</span><br><span class="line">            component.<span class="title function_ invoke__">search</span>(keyword);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="main-rs"><a href="#main-rs" class="headerlink" title="main.rs"></a>main.rs</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> fs;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> fs::&#123;Component, File, Folder&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">file1</span> = File::<span class="title function_ invoke__">new</span>(<span class="string">&quot;File 1&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">file2</span> = File::<span class="title function_ invoke__">new</span>(<span class="string">&quot;File 2&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">file3</span> = File::<span class="title function_ invoke__">new</span>(<span class="string">&quot;File 3&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">folder1</span> = Folder::<span class="title function_ invoke__">new</span>(<span class="string">&quot;Folder 1&quot;</span>);</span><br><span class="line">    folder1.<span class="title function_ invoke__">add</span>(file1);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">folder2</span> = Folder::<span class="title function_ invoke__">new</span>(<span class="string">&quot;Folder 2&quot;</span>);</span><br><span class="line">    folder2.<span class="title function_ invoke__">add</span>(file2);</span><br><span class="line">    folder2.<span class="title function_ invoke__">add</span>(file3);</span><br><span class="line">    folder2.<span class="title function_ invoke__">add</span>(folder1);</span><br><span class="line"></span><br><span class="line">    folder2.<span class="title function_ invoke__">search</span>(<span class="string">&quot;rose&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Output-输出"><a href="#Output-输出" class="headerlink" title="Output 输出"></a>Output 输出</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Searching recursively for keyword rose in folder Folder 2</span><br><span class="line">Searching for keyword rose in file File 2</span><br><span class="line">Searching for keyword rose in file File 3</span><br><span class="line">Searching recursively for keyword rose in folder Folder 1</span><br><span class="line">Searching for keyword rose in file File 1</span><br><span class="line">------------------------------------</span><br></pre></td></tr></table></figure>
+
+
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>宇宙山河浪漫，赞赏动力无限</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Ice WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Ice Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.png">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Design-Pattern/" rel="tag"># Design Pattern</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/12/06/design-pattern/bridge/" rel="prev" title="Bridge">
+      <i class="fa fa-chevron-left"></i> Bridge
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/01/28/design-pattern/decorator/" rel="next" title="Decorator 装饰器模式">
+      Decorator 装饰器模式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Composite-%E9%83%A8%E5%88%86-%E6%95%B4%E4%BD%93%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">Composite 部分-整体模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intent-%E6%84%8F%E5%9B%BE"><span class="nav-number">1.1.</span> <span class="nav-text">Intent 意图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">Problem 问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.3.</span> <span class="nav-text">Solution 解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Real-World-Analogy-%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E7%B1%BB%E6%AF%94"><span class="nav-number">1.4.</span> <span class="nav-text">Real-World Analogy 真实世界的类比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Structure-%E7%BB%93%E6%9E%84"><span class="nav-number">1.5.</span> <span class="nav-text">Structure 结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pseudocode-%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">1.6.</span> <span class="nav-text">Pseudocode 伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Applicability-%E9%80%82%E7%94%A8%E6%80%A7"><span class="nav-number">1.7.</span> <span class="nav-text">Applicability 适用性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-Implement-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.8.</span> <span class="nav-text">How to Implement 如何实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pros-and-Cons-%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9"><span class="nav-number">1.9.</span> <span class="nav-text">Pros and Cons 优点和缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Relations-with-Other-Patterns-%E4%B8%8E%E5%85%B6%E4%BB%96%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.10.</span> <span class="nav-text">Relations with Other Patterns 与其他模式的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Examples-%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.11.</span> <span class="nav-text">Code Examples 代码示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-Conceptual-Example-%E6%A6%82%E5%BF%B5%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.11.1.</span> <span class="nav-text">Python Conceptual Example 概念示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#main-py"><span class="nav-number">1.11.1.1.</span> <span class="nav-text">main.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output-txt-Execution-result"><span class="nav-number">1.11.1.2.</span> <span class="nav-text">Output.txt: Execution result</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rust-Files-and-Folders-%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">1.11.2.</span> <span class="nav-text">Rust: Files and Folders 文件和文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fs-mod-rs"><span class="nav-number">1.11.2.1.</span> <span class="nav-text">fs&#x2F;mod.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fs-file-rs"><span class="nav-number">1.11.2.2.</span> <span class="nav-text">fs&#x2F;file.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fs-folder-rs"><span class="nav-number">1.11.2.3.</span> <span class="nav-text">fs&#x2F;folder.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#main-rs"><span class="nav-number">1.11.2.4.</span> <span class="nav-text">main.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output-%E8%BE%93%E5%87%BA"><span class="nav-number">1.11.2.5.</span> <span class="nav-text">Output 输出</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ice</p>
+  <div class="site-description" itemprop="description">安静地坐着学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/TonyMistark" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;TonyMistark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/Micestark" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;Micestark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tony_mistark@163.com" title="E-Mail → mailto:tony_mistark@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Tony_Mistark" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Tony_Mistark" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ice</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">112k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">6:46</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '298b6503f44953bd4193',
+      clientSecret: '6756a6cfc10d74976c79256c96ae1c441f3116ac',
+      repo        : 'tonymistark.github.io',
+      owner       : 'TonyMistark',
+      admin       : ['TonyMistark'],
+      id          : 'de7a4d2d3e7b5be3051af909eadda170',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

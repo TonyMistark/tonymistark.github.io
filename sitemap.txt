@@ -1,3 +1,6 @@
+https://tonymistark.github.io/2024/01/29/design-pattern/facade/
+https://tonymistark.github.io/2024/01/28/design-pattern/decorator/
+https://tonymistark.github.io/2023/12/07/design-pattern/composite/
 https://tonymistark.github.io/2023/12/04/mayday-lip-syncing/
 https://tonymistark.github.io/2023/12/06/design-pattern/bridge/
 https://tonymistark.github.io/2023/12/03/design-pattern/adapter/
