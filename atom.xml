@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2024-01-29T14:28:59.618Z</updated>
+  <updated>2024-01-29T14:47:19.383Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://tonymistark.github.io/2024/01/29/design-pattern/facade/"/>
     <id>https://tonymistark.github.io/2024/01/29/design-pattern/facade/</id>
     <published>2024-01-29T14:15:32.000Z</published>
-    <updated>2024-01-29T14:28:59.618Z</updated>
+    <updated>2024-01-29T14:47:19.383Z</updated>
     
     
       
@@ -34,6 +34,8 @@
       
     
     
+    
+    <category term="design-pattern" scheme="https://tonymistark.github.io/categories/design-pattern/"/>
     
     
   </entry>
