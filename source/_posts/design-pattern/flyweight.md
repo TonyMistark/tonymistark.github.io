@@ -6,7 +6,7 @@ tags: Design Pattern
 date: 2024-01-30 21:55:21
 ---
 
-# Flyweight 享元模式
+
 
 ## 意图
 
