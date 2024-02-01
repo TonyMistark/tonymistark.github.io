@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2024-02-01T14:08:16.681Z</updated>
+  <updated>2024-02-01T14:55:53.713Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -17,11 +17,33 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Structural Design Patterns 结构设计模式</title>
+    <link href="https://tonymistark.github.io/2024/02/01/design-pattern/structural-patterns/"/>
+    <id>https://tonymistark.github.io/2024/02/01/design-pattern/structural-patterns/</id>
+    <published>2024-02-01T14:27:04.000Z</published>
+    <updated>2024-02-01T14:55:53.713Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;结构设计模式解释了如何将对象和类组装成更大的结构，同时保持这些结构的灵活性和效率。&lt;/p&gt;
+&lt;h1 id=&quot;Adapter-适配器&quot;&gt;&lt;a href=&quot;#Adapter-适配器&quot; class=&quot;headerlink&quot; title=&quot;Adapter</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>Proxy 代理模式</title>
     <link href="https://tonymistark.github.io/2024/02/01/design-pattern/proxy/"/>
     <id>https://tonymistark.github.io/2024/02/01/design-pattern/proxy/</id>
     <published>2024-02-01T13:50:38.000Z</published>
-    <updated>2024-02-01T14:08:16.681Z</updated>
+    <updated>2024-02-01T14:14:51.472Z</updated>
     
     
       
@@ -33,6 +55,8 @@
       
     
     
+    
+    <category term="design-pattern" scheme="https://tonymistark.github.io/categories/design-pattern/"/>
     
     
   </entry>
@@ -456,31 +480,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;Abstract-Factory-抽象工厂&quot;&gt;&lt;a href=&quot;#Abstract-Factory-抽象工厂&quot; class=&quot;headerlink&quot; title=&quot;Abstract Factory 抽象工厂&quot;&gt;&lt;/a&gt;Abstract Factory</summary>
-        
-      
-    
-    
-    
-    <category term="design-pattern" scheme="https://tonymistark.github.io/categories/design-pattern/"/>
-    
-    
-    <category term="Design Pattern" scheme="https://tonymistark.github.io/tags/Design-Pattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Factory Method</title>
-    <link href="https://tonymistark.github.io/2023/11/16/design-pattern/factory-method/"/>
-    <id>https://tonymistark.github.io/2023/11/16/design-pattern/factory-method/</id>
-    <published>2023-11-16T13:02:09.000Z</published>
-    <updated>2023-11-22T15:21:21.585Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Factory-Method&quot;&gt;&lt;a href=&quot;#Factory-Method&quot; class=&quot;headerlink&quot; title=&quot;Factory Method&quot;&gt;&lt;/a&gt;Factory Method&lt;/h1&gt;&lt;h1 id=&quot;工厂方法&quot;&gt;&lt;a</summary>
         
       
     

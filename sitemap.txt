@@ -1,3 +1,4 @@
+https://tonymistark.github.io/2024/02/01/design-pattern/structural-patterns/
 https://tonymistark.github.io/2024/02/01/design-pattern/proxy/
 https://tonymistark.github.io/2024/01/30/design-pattern/flyweight/
 https://tonymistark.github.io/2024/01/29/design-pattern/facade/

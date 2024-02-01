@@ -3308,5 +3308,62 @@ All of that said, in absolute sense I’d much rather live in the world of today
 <h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Url: /app/status</span><br><span class="line">HttpCode: 200</span><br><span class="line">Body: Ok</span><br><span class="line"></span><br><span class="line">Url: /app/status</span><br><span class="line">HttpCode: 200</span><br><span class="line">Body: Ok</span><br><span class="line"></span><br><span class="line">Url: /app/status</span><br><span class="line">HttpCode: 403</span><br><span class="line">Body: Not Allowed</span><br><span class="line"></span><br><span class="line">Url: /create/user</span><br><span class="line">HttpCode: 201</span><br><span class="line">Body: User Created</span><br><span class="line"></span><br><span class="line">Url: /create/user</span><br><span class="line">HttpCode: 404</span><br><span class="line">Body: Not Ok</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>design-pattern</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Structural Design Patterns 结构设计模式</title>
+    <url>/2024/02/01/design-pattern/structural-patterns/</url>
+    <content><![CDATA[<p>结构设计模式解释了如何将对象和类组装成更大的结构，同时保持这些结构的灵活性和效率。</p>
+<h1 id="Adapter-适配器"><a href="#Adapter-适配器" class="headerlink" title="Adapter 适配器"></a>Adapter 适配器</h1><div align="center"> 
+    <a href="https://mp.weixin.qq.com/s/lxvFOqjS8m0DDNrs7qG9_A">
+    <img src="/images/adapter-header.png"/>
+    Adapter 适配器
+    <a/>
+</div>
+
+<h1 id="Bridge-桥接"><a href="#Bridge-桥接" class="headerlink" title="Bridge 桥接"></a>Bridge 桥接</h1><div align="center"> 
+    <a href="https://mp.weixin.qq.com/s/dSixwlU9Ds3tzR3KmmkbTg">
+    <img src="/images/bridge-header.png"/>
+    Bridge 桥接
+    <a/>
+</div>
+
+<h1 id="Composite-部分-整体或复合模式"><a href="#Composite-部分-整体或复合模式" class="headerlink" title="Composite 部分-整体或复合模式"></a>Composite 部分-整体或复合模式</h1><div align="center"> 
+    <a href="https://mp.weixin.qq.com/s/qtmrz-mTx_BXj_DhLHTbDw">
+    <img src="/images/composite-header.png"/>
+    Composite 部分-整体或复合模式
+    <a/>
+</div>
+
+<h1 id="Decorator-装饰器"><a href="#Decorator-装饰器" class="headerlink" title="Decorator 装饰器"></a>Decorator 装饰器</h1><div align="center"> 
+    <a href="https://mp.weixin.qq.com/s/ztmaiAPiNUkysA4HQWevzQ">
+    <img src="/images/decorator.png"/>
+    Decorator 装饰器
+    <a/>
+</div>
+
+<h1 id="Facade-门面（外观）模式"><a href="#Facade-门面（外观）模式" class="headerlink" title="Facade 门面（外观）模式"></a>Facade 门面（外观）模式</h1><div align="center"> 
+    <a href="https://mp.weixin.qq.com/s/-rVPbWR1AgHIwN5pG0_zsQ">
+    <img src="/images/facade.png"/>
+    Facade 门面（外观）模式
+    <a/>
+</div>
+
+<h1 id="Flyweight-享元模式"><a href="#Flyweight-享元模式" class="headerlink" title="Flyweight 享元模式"></a>Flyweight 享元模式</h1><div align="center"> 
+    <a href="https://mp.weixin.qq.com/s/FkCGFQSyK-CxpRSXCEnyWw">
+    <img src="/images/flyweight.png"/>
+    Flyweight 享元模式
+    <a/>
+</div>
+
+<h1 id="Proxy-代理模式"><a href="#Proxy-代理模式" class="headerlink" title="Proxy 代理模式"></a>Proxy 代理模式</h1><div align="center"> 
+    <a href="https://mp.weixin.qq.com/s/EF2x7td1p0UP_YUFCBjmxQ">
+    <img src="/images/proxy.png"/>
+    Proxy 代理模式
+    <a/>
+</div>
+]]></content>
   </entry>
 </search>

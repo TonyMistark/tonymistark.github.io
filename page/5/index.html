@@ -183,6 +183,110 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_01_unrecoverable_errors_with_panic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/18/rust_docs/ch_09_01_unrecoverable_errors_with_panic/" class="post-title-link" itemprop="url">Ch 09.01:使用`panic!`的backtrace</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-18 10:35:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:35:00+08:00">2023-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-11-22 23:21:21" itemprop="dateModified" datetime="2023-11-22T23:21:21+08:00">2023-11-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Rust/" itemprop="url" rel="index"><span itemprop="name">Rust</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="使用panic-的backtrace"><a href="#使用panic-的backtrace" class="headerlink" title="使用panic!的backtrace"></a>使用<code>panic!</code>的backtrace</h4><p>让我们来看看另外一个例子，当因为我们自己的代码有bug而导致库函数调用<code>panic!</code>是什么样的。如Listing 9-1所示的代码尝试访问超出范围的vector的索引。</p>
+<p>Filename: src&#x2F;main.rs</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    v[<span class="number">99</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 9-1: Attempting to access an element beyond the end of a vector, which will cause a call to <code>panic!</code></p>
+<p>这里，我们尝试去访问第100个元素(索引99就是第100个元素，索引是从0开始的)，但是vector只有3个元素，肯定会报错。在这个场景中，Rust就会panic。使用<code>[]</code>就是企图返回一个元素，但是你传入一个无效的索引，又不会有这个元素，Rust就肯定不会返回正确的结果。</p>
+<p>在C语言中，尝试读取数据结构之后的值是未定义行为(undefined behavior)。你可能会得到一个这个位置的对应的值，但是这个可能是任何的值，但就不是你想要访问的值，因为这个位置的值不属于你想要访问的数据结构范围的值。这个被叫做**缓冲区溢出(buffer overread)**，并且可能会导致安全漏洞，比如攻击者可以像这样操作索引来读取存储在数据结构之后不被允许访问的数据。</p>
+<p>为了防止这种漏洞，如果尝试读取一个索引不存在的元素，Rust会停止执行并拒绝继续。尝试运行上面的程序会出现如下的错误：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling panic v0.<span class="number">1.0</span> (file:<span class="comment">///projects/panic)</span></span><br><span class="line">    Finished dev [unoptimized + debuginfo] <span class="title function_ invoke__">target</span>(s) <span class="keyword">in</span> <span class="number">0.27</span>s</span><br><span class="line">     Running `target/debug/panic`</span><br><span class="line">thread <span class="symbol">&#x27;main</span>&#x27; panicked at <span class="symbol">&#x27;index</span> out of bounds: the len is <span class="number">3</span> but the index is <span class="number">99</span>&#x27;, src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">note: run with `RUST_BACKTRACE=<span class="number">1</span>` environment variable to display a backtrace</span><br></pre></td></tr></table></figure>
+
+<p>上面的错误信息指出错误发生在<code>src/main.rs</code>文件的第4行第5个字符，我们尝试访问索引为99的元素。接着一行的信息告诉我们可以设置<code>RUST_BACKTRACE</code>环境变量来获取backtrace查看发生了什么错误。一个backtrace是一个已经被调用直到当前这一个点的所有的函数列表。Backtrace在Rust的工作原理和其他语言一样：阅读backtrace的关键是从头开始读一直到发现你编写的代码；往下则是你调用的代码。这些行可能包含核心Rust代码，标准库代码或用到的crate代码。让我们设置<code>RUST_BACKTRACE</code>环境变量在Listing 9-2中看看都输出了些什么：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ RUST_BACKTRACE=<span class="number">1</span> cargo run</span><br><span class="line">thread <span class="symbol">&#x27;main</span>&#x27; panicked at <span class="symbol">&#x27;index</span> out of bounds: the len is <span class="number">3</span> but the index is <span class="number">99</span>&#x27;, src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">stack backtrace:</span><br><span class="line">   <span class="number">0</span>: rust_begin_unwind</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/std/src/panicking.rs:<span class="number">584</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">1</span>: core::panicking::panic_fmt</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/panicking.rs:<span class="number">142</span>:<span class="number">14</span></span><br><span class="line">   <span class="number">2</span>: core::panicking::panic_bounds_check</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/panicking.rs:<span class="number">84</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">3</span>: &lt;<span class="type">usize</span> <span class="keyword">as</span> core::slice::index::SliceIndex&lt;[T]&gt;&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/slice/index.rs:<span class="number">242</span>:<span class="number">10</span></span><br><span class="line">   <span class="number">4</span>: core::slice::index::&lt;<span class="keyword">impl</span> <span class="title class_">core</span>::ops::index::Index&lt;I&gt; <span class="keyword">for</span> [T]&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/slice/index.rs:<span class="number">18</span>:<span class="number">9</span></span><br><span class="line">   <span class="number">5</span>: &lt;alloc::vec::<span class="type">Vec</span>&lt;T,A&gt; <span class="keyword">as</span> core::ops::index::Index&lt;I&gt;&gt;::index</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/alloc/src/vec/<span class="keyword">mod</span>.rs:<span class="number">2591</span>:<span class="number">9</span></span><br><span class="line">   <span class="number">6</span>: panic::main</span><br><span class="line">             at ./src/main.rs:<span class="number">4</span>:<span class="number">5</span></span><br><span class="line">   <span class="number">7</span>: core::ops::function::<span class="built_in">FnOnce</span>::call_once</span><br><span class="line">             at /rustc/e092d0b6b43f2de967af0887873151bb1c0b18d3/library/core/src/ops/function.rs:<span class="number">248</span>:<span class="number">5</span></span><br><span class="line">note: <span class="literal">Some</span> details are omitted, run with `RUST_BACKTRACE=full` <span class="keyword">for</span> <span class="title class_">a</span> verbose backtrace.</span><br></pre></td></tr></table></figure>
+
+<p>Listing 9-2: The backtrace generated by a <code>panic!</code>displayed when the environment variable <code>RUST_BACKTRACE</code>is set</p>
+<p>真是输出了一大坨啊！操作系统不同，Rust版本不同，你看到的输出可能会有所不同。为了使用这些信息进行回溯，必须启用debug模式。默认就是debug模式，只要在<code>cargo build</code>或者<code>cargo run</code>之后不要加<code>--release</code>参数。</p>
+<p>在Listing 9-2的第6行的backtrace指出了我们项目造成的问题：<code>src/main.rs</code>的第4行。如果我们不想我们的程序panic，我们就应该开始检查定位到第一行我们自己写的代码。在Listing 9-1中，我们故意写了造成panic的代码，修复这个panic就是不要去访问超出vector范围的索引。当你的代码在将来panic， 你需要弄清楚代码使用什么数据做了什么样的操作，以及正确情况下代码应该做什么。</p>
+<p>本章后面的小节 <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html#to-panic-or-not-to-panic">“To <code>panic!</code> Or not to <code>panic!</code>“</a> 部分讲回<code>panic!</code>，详细讲解应该或者不应该用<code>panic!</code>来处理错误情况。接下来一节我们来讲解如何使用<code>Result</code>恢复一个错误。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_00_error_handing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1024,110 +1128,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_02_defining_modules_to_control_scope_and_privacy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/05/18/rust_docs/ch_07_02_defining_modules_to_control_scope_and_privacy/" class="post-title-link" itemprop="url">Ch 07.02:在模块中对相关代码进行分组(Grouping Related Code in Modules)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-18 10:19:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:19:00+08:00">2023-05-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-11-22 23:21:21" itemprop="dateModified" datetime="2023-11-22T23:21:21+08:00">2023-11-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Rust/" itemprop="url" rel="index"><span itemprop="name">Rust</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>952</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="在模块中对相关代码进行分组-Grouping-Related-Code-in-Modules"><a href="#在模块中对相关代码进行分组-Grouping-Related-Code-in-Modules" class="headerlink" title="在模块中对相关代码进行分组(Grouping Related Code in Modules)"></a>在模块中对相关代码进行分组(Grouping Related Code in Modules)</h4><p>模块让我们在crate中组织代码，以提高可读性和易于重用。模块还允许我们控制items的私有性，因为在module中的代码默认是私有的。Private items是内部实现的细节不对外使用。我们可以选择将模块以及其中的items设置为公共的，这样，外部代码就可以使用并依赖于它们。</p>
-<p>例如，让我们编写一个提供餐厅服务功能的library crate。我们将会定义函数的签名，但是函数的主题留空，集中于代码的组织，而不是实现一个餐馆。</p>
-<p>在餐厅业中，餐馆的某些部分被称为前台(front of house)，其他的部分称为后台(back of house)。前台是顾客所在的空间；这包括主座的顾客的位置，服务员接单和付款，以及调酒师调酒的地方。后台是主厨和厨师们在厨房，洗碗机清理，经历做行政工作。</p>
-<p>这样构建我们的crate，我们可以将这些功能组织成嵌套的模块。创建一个新的库(library)命名为<code>restaurant</code>，通过命令<code>cargo new restaurant --lib</code>。输入如下Listing 7-1代码到src&#x2F;lib.rs来定义一些模块和函数签名。这里是前台部分：</p>
-<p>src&#x2F;lib.rs</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> front_of_house &#123;</span><br><span class="line">    <span class="keyword">mod</span> hosting &#123;</span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">add_to_waitlist</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">seat_at_table</span>() &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">mod</span> serving &#123;</span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">take_order</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">serve_order</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">take_payment</span>() &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Listing 7-1: A <code>front_of_house</code>module containing other modules that then contain functions</p>
-<p>我们用<code>mod</code>关键字定义一个模块(在上面的例子中定义了<code>front_of_house</code>模块)。并用花括号包围模块的主体。在模块内，我们还可以定义其他模块，就像本例子中的<code>hosting</code>和<code>serving</code>模块。模块还可以hold一些定义的其他items，例如structs, enums, constants, traits, 以及Listing 7-1中的函数。</p>
-<p>通过使用模块，我们可以将相关的定义分组到一起，并指出他们为什么相关。程序设计者可以通过使用这段代码，更加容易找到他们想要的定义，因为他们可以基于分组来对代码进行导航，而不需要阅读所有的定义。程序设计者向这段代码中添加一个新功能时，他们也会知道代码应该放置在何处，可以保持程序的组织性。</p>
-<p>在前面我们提到了，<code>src/main.rs</code>和<code>src/lib.rs</code>叫做crate根。之所以这么叫它们是因为这两个文件中的任何一个内容都在crate模块结构的根组成了一个名为crate的模块，该结构被称为模块树(module tree)。</p>
-<p>Listing 7-2 展示了示例Listing 7-1中的模块树(modules tree)的结构。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">crate</span></span><br><span class="line"> └── front_of_house</span><br><span class="line">     ├── hosting</span><br><span class="line">     │   ├── add_to_waitlist</span><br><span class="line">     │   └── seat_at_table</span><br><span class="line">     └── serving</span><br><span class="line">         ├── take_order</span><br><span class="line">         ├── serve_order</span><br><span class="line">         └── take_payment</span><br></pre></td></tr></table></figure>
-
-<p>Listing 7-2: The module tree for the code in Listing 7-1</p>
-<p>这个模块树展示了一些模块内嵌到另一个模块；例如，<code>hosting</code>内嵌在<code>front_of_house</code>之中。这个树结构还展示了一些模块是互为兄弟(siblings)的，这意味着它们定义在同一模块中(<code>hosting</code>和<code>serving</code>被一起定义在<code>front_of_house</code>中)。继续沿用家庭关系的比喻，如果一个模块A被包含在模块B中，我们将模块A称为模块B的子模块，B模块为A的父模块。注意，整个模块树都植根于隐式模块名为<code>crate</code>之下。</p>
-<p>模块树可能会让你想起计算机上的文件系统的目录树；这是一个非常恰当的比较！就像文件系统中的目录一样，你用模块来组织你的代码。就像文件目录中的文件，我们需要一个方式来找到我们的模块(modules)。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1197,7 +1197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1265,7 +1265,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">7:19</span>
+    <span title="Reading time total">7:20</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

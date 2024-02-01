@@ -15,8 +15,32 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Thu, 01 Feb 2024 14:08:16 GMT</pubDate>
+    <pubDate>Thu, 01 Feb 2024 14:55:53 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Structural Design Patterns 结构设计模式</title>
+      <link>https://tonymistark.github.io/2024/02/01/design-pattern/structural-patterns/</link>
+      <guid>https://tonymistark.github.io/2024/02/01/design-pattern/structural-patterns/</guid>
+      <pubDate>Thu, 01 Feb 2024 14:27:04 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;结构设计模式解释了如何将对象和类组装成更大的结构，同时保持这些结构的灵活性和效率。&lt;/p&gt;
+&lt;h1 id=&quot;Adapter-适配器&quot;&gt;&lt;a href=&quot;#Adapter-适配器&quot; class=&quot;headerlink&quot; title=&quot;Adapter</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2024/02/01/design-pattern/structural-patterns/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Proxy 代理模式</title>
@@ -34,6 +58,8 @@
       
       
       
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
       
       
       
@@ -505,33 +531,6 @@
       
       
       <comments>https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Factory Method</title>
-      <link>https://tonymistark.github.io/2023/11/16/design-pattern/factory-method/</link>
-      <guid>https://tonymistark.github.io/2023/11/16/design-pattern/factory-method/</guid>
-      <pubDate>Thu, 16 Nov 2023 13:02:09 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h1 id=&quot;Factory-Method&quot;&gt;&lt;a href=&quot;#Factory-Method&quot; class=&quot;headerlink&quot; title=&quot;Factory Method&quot;&gt;&lt;/a&gt;Factory Method&lt;/h1&gt;&lt;h1 id=&quot;工厂方法&quot;&gt;&lt;a</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
-      
-      
-      <comments>https://tonymistark.github.io/2023/11/16/design-pattern/factory-method/#disqus_thread</comments>
       
     </item>
     
