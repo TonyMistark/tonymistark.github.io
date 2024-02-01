@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="意图Flyweight是一种结构化的设计模式，通过在多个对象之间共享状态的公共部分，而不是保留每个对象中的所有数据，可以将更多的对象放入可用的RAM中。     问题为了在长时间的工作后找点乐子，你决定创建一个简单的视频游戏：玩家在地图上移动并互相射击。您选择实现一个逼真的粒子系统，并使其成为游戏的独特功能。大量的子弹、导弹和爆炸产生的弹片应该在地图上到处飞，给玩家带来惊心动魄的体验。 完成后，你">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flyweight 享元模式">
+<meta property="og:url" content="https://tonymistark.github.io/2024/01/30/design-pattern/flyweight/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="意图Flyweight是一种结构化的设计模式，通过在多个对象之间共享状态的公共部分，而不是保留每个对象中的所有数据，可以将更多的对象放入可用的RAM中。     问题为了在长时间的工作后找点乐子，你决定创建一个简单的视频游戏：玩家在地图上移动并互相射击。您选择实现一个逼真的粒子系统，并使其成为游戏的独特功能。大量的子弹、导弹和爆炸产生的弹片应该在地图上到处飞，给玩家带来惊心动魄的体验。 完成后，你">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://tonymistark.github.io/images/flyweight.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/flyweight-problem-en.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/flyweight-solution1-en.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/flyweight-solution3.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/flyweight-solution4.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/flyweight-structure.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/flyweight-example.png">
+<meta property="article:published_time" content="2024-01-30T13:55:21.000Z">
+<meta property="article:modified_time" content="2024-01-31T14:19:37.304Z">
+<meta property="article:author" content="Ice">
+<meta property="article:tag" content="Design Pattern">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tonymistark.github.io/images/flyweight.png">
+
+<link rel="canonical" href="https://tonymistark.github.io/2024/01/30/design-pattern/flyweight/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Flyweight 享元模式 | BLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6L4L92Z6Z"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W6L4L92Z6Z');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?99c70b2174a7fbe4af476f28bafb19a3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/./atom.xml" title="BLOG" type="application/atom+xml">
+<link rel="alternate" href="/./rss2.xml" title="BLOG" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">用心记录思想</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2024/01/30/design-pattern/flyweight/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Flyweight 享元模式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-01-30 21:55:21" itemprop="dateCreated datePublished" datetime="2024-01-30T21:55:21+08:00">2024-01-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-01-31 22:19:37" itemprop="dateModified" datetime="2024-01-31T22:19:37+08:00">2024-01-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/design-pattern/" itemprop="url" rel="index"><span itemprop="name">design-pattern</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>16 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="意图"><a href="#意图" class="headerlink" title="意图"></a>意图</h2><p>Flyweight是一种结构化的设计模式，通过在多个对象之间共享状态的公共部分，而不是保留每个对象中的所有数据，可以将更多的对象放入可用的RAM中。</p>
+<div align="center"> <img src="/images/flyweight.png"/></div>
+
+
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>为了在长时间的工作后找点乐子，你决定创建一个简单的视频游戏：玩家在地图上移动并互相射击。您选择实现一个逼真的粒子系统，并使其成为游戏的独特功能。大量的子弹、导弹和爆炸产生的弹片应该在地图上到处飞，给玩家带来惊心动魄的体验。</p>
+<p>完成后，你推送了最后一次提交，构建了游戏并将其发送给你的朋友进行测试。虽然游戏在你的机器上运行得很顺利，但你的朋友不能玩很长时间。在他的电脑上，游戏在玩了几分钟后就不断崩溃。在花了几个小时挖掘调试日志后，您发现游戏崩溃是因为RAM不足。原来你朋友的钻机比你自己的电脑功能差得多，这就是为什么问题在他的机器上出现得这么快。</p>
+<p>实际的问题与你的粒子系统有关。每一个粒子，比如一颗子弹、一枚导弹或一块弹片，都由一个包含大量数据的单独对象来表示。在某些时候，当玩家屏幕上的大屠杀达到高潮时，新创建的粒子不再适合剩余的RAM，因此程序崩溃。</p>
+<div align="center"> <img src="/images/flyweight-problem-en.png"/></div>
+
+
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>仔细查看 仔细查看 <code>Particle</code> 类，您可能会注意到color和sprite字段比其他字段占用更多的内存。更糟糕的是，这两个字段存储的所有粒子的数据几乎相同。例如，所有项目符号都具有相同的颜色和子画面。 类，您可能会注意到color和sprite字段比其他字段占用更多的内存。更糟糕的是，这两个字段存储的所有粒子的数据几乎相同。例如，所有项目符号都具有相同的颜色和子画面。</p>
+<div align="center"> <img src="/images/flyweight-solution1-en.png"/></div>
+
+
+<p>粒子状态的其他部分，如坐标、运动矢量和速度，对于每个粒子都是唯一的。毕竟，这些字段的值会随着时间的推移而变化。该数据表示粒子存在的始终变化的上下文，而每个粒子的颜色和子画面保持不变。</p>
+<p>对象的这种恒定数据通常称为固有状态。它存在于物体内部;其他对象只能读取它，而不能改变它。对象的其余状态，通常被其他对象“从外部”改变，称为外部状态。</p>
+<p>Flyweight模式建议您停止在对象内部存储外部状态。相反，你应该把这个状态传递给依赖它的特定方法。只有内在状态留在对象中，让你在不同的上下文中重用它。因此，您需要更少的这些对象，因为它们只在内在状态上有所不同，而内在状态的变化要比外在状态少得多。</p>
+<div align="center"> <img src="/images/flyweight-solution3.png"/></div>
+
+
+<p>让我们回到我们的游戏。假设我们已经从粒子类中提取了外部状态，那么只有三个不同的对象就足以代表游戏中的所有粒子：一颗子弹、一枚导弹和一块弹片。正如你现在可能已经猜到的，一个只存储固有状态的对象被称为flyweight。</p>
+<h4 id="外部状态存储器"><a href="#外部状态存储器" class="headerlink" title="外部状态存储器"></a>外部状态存储器</h4><p>外在的状态向何处去？一些类应该仍然存储它，对吗？在大多数情况下，它会被移动到容器对象中，容器对象在我们应用模式之前聚合对象。</p>
+<p>在我们的例子中，这是主要的 在我们的例子中，这是主要的 <code>Game</code> 对象，它将所有粒子存储在  对象，它将所有粒子存储在  对象，它将所有粒子存储在 <code>particles</code> 场中。要将外部状态移动到这个类中，需要创建几个数组字段来存储每个粒子的坐标、向量和速度。但这还不是全部。您需要另一个数组来存储对表示粒子的特定flyweight的引用。这些数组必须同步，以便您可以使用相同的索引访问粒子的所有数据。 场中。要将外部状态移动到这个类中，需要创建几个数组字段来存储每个粒子的坐标、向量和速度。但这还不是全部。您需要另一个数组来存储对表示粒子的特定flyweight的引用。这些数组必须同步，以便您可以使用相同的索引访问粒子的所有数据。</p>
+<div align="center"> <img src="/images/flyweight-solution4.png"/></div>
+
+
+<p>一个更优雅的解决方案是创建一个单独的上下文类，它将存储外部状态沿着对flyweight对象的引用。这种方法只需要容器类中有一个数组。</p>
+<p>等一下！难道我们不需要像一开始那样，有很多这样的上下文对象吗？严格来说是的但问题是，这些物体比以前小得多。最消耗内存的字段已经被移到几个flyweight对象中。现在，1000个小的上下文对象可以重用一个重flyweight对象，而不是存储其数据的1000个副本。</p>
+<h4 id="Flyweight和不变性"><a href="#Flyweight和不变性" class="headerlink" title="Flyweight和不变性"></a>Flyweight和不变性</h4><p>由于同一个flyweight对象可以在不同的上下文中使用，因此必须确保其状态不能被修改。一个flyweight应该只初始化它的状态一次，通过构造函数参数。它不应该向其他对象公开任何setter或公共字段。</p>
+<h4 id="Flyweight工厂"><a href="#Flyweight工厂" class="headerlink" title="Flyweight工厂"></a>Flyweight工厂</h4><p>为了更方便地访问各种flyweight，您可以创建一个工厂方法来管理现有flyweight对象的池。该方法从客户端接受所需flyweight的内部状态，查找与此状态匹配的现有flyweight对象，如果找到则返回它。如果没有，则创建一个新的flyweight并将其添加到池中。</p>
+<p>有几种选择可以放置这种方法。最明显的地方是flyweight容器。或者，您可以创建一个新的工厂类。或者你可以让工厂方法静态化，并把它放在一个实际的flyweight类中。</p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><div align="center"> <img src="/images/flyweight-structure.png"/></div>
+
+
+<ol>
+<li>Flyweight模式仅仅是一种优化。在应用它之前，请确保您的程序确实存在与内存中同时存在大量类似对象相关的RAM消耗问题。确保这个问题不能以任何其他有意义的方式解决。</li>
+<li>Flyweight类包含原始对象的状态中可以在多个对象之间共享的部分。同一个flyweight对象可以在许多不同的上下文中使用。存储在flyweight中的状态称为intrinsic。传递给flyweight方法的状态称为extrinsic。</li>
+<li>Context类包含外部状态，在所有原始对象中是唯一的。当上下文与其中一个flyweight对象配对时，它表示原始对象的完整状态。</li>
+<li>通常，原始对象的行为保留在flyweight类中。在这种情况下，无论谁调用flyweight的方法，都必须将外部状态的适当位传递到方法的参数中。另一方面，行为可以被移动到上下文类，它将链接的flyweight仅仅作为一个数据对象。</li>
+<li>客户端计算或存储flyweights的外部状态。从客户端的角度来看，flyweight是一个模板对象，可以在运行时通过将一些上下文数据传递到其方法的参数中进行配置。</li>
+<li>Flyweight Factory管理现有的Flyweight。使用工厂，客户不直接创建flyweights。相反，它们调用工厂，向其传递所需flyweight的内部状态位。工厂检查以前创建的flyweights，并返回一个与搜索条件匹配的现有flyweights，或者如果没有找到任何内容，则创建一个新的flyweights。</li>
+</ol>
+<h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><p>在本例中，Flyweight模式有助于在画布上渲染数百万个树对象时减少内存使用。</p>
+<div align="center"> <img src="/images/flyweight-example.png"/></div>
+
+
+<p>该模式从主类 该模式从主类 <code>Tree</code> 中提取重复的固有状态，并将其移动到flyweight类  中提取重复的固有状态，并将其移动到flyweight类  中提取重复的固有状态，并将其移动到flyweight类 <code>TreeType</code> 中。</p>
+<p>现在，不再将相同的数据存储在多个对象中，而是将其保存在几个flyweight对象中，并链接到适当的 现在，不再将相同的数据存储在多个对象中，而是将其保存在几个flyweight对象中，并链接到适当的 <code>Tree</code> 对象，这些对象充当上下文。客户端代码使用flyweight工厂创建新的树对象，该工厂封装了搜索正确对象并在需要时重用它的复杂性。 对象，这些对象充当上下文。客户端代码使用flyweight工厂创建新的树对象，该工厂封装了搜索正确对象并在需要时重用它的复杂性。</p>
+<p>现在，不再将相同的数据存储在多个对象中，而是将其保存在几个flyweight对象中，并链接到适当的 现在，不再将相同的数据存储在多个对象中，而是将其保存在几个flyweight对象中，并链接到适当的 <code>Tree</code> 对象，这些对象充当上下文。客户端代码使用flyweight工厂创建新的树对象，该工厂封装了搜索正确对象并在需要时重用它的复杂性。 对象，这些对象充当上下文。客户端代码使用flyweight工厂创建新的树对象，该工厂封装了搜索正确对象并在需要时重用它的复杂性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The flyweight class contains a portion of the state of a</span></span><br><span class="line"><span class="comment">// tree. These fields store values that are unique for each</span></span><br><span class="line"><span class="comment">// particular tree. For instance, you won&#x27;t find here the tree</span></span><br><span class="line"><span class="comment">// coordinates. But the texture and colors shared between many</span></span><br><span class="line"><span class="comment">// trees are here. Since this data is usually BIG, you&#x27;d waste a</span></span><br><span class="line"><span class="comment">// lot of memory by keeping it in each tree object. Instead, we</span></span><br><span class="line"><span class="comment">// can extract texture, color and other repeating data into a</span></span><br><span class="line"><span class="comment">// separate object which lots of individual tree objects can</span></span><br><span class="line"><span class="comment">// reference.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TreeType</span> is</span><br><span class="line">    field name</span><br><span class="line">    field color</span><br><span class="line">    field texture</span><br><span class="line">    constructor <span class="title function_">TreeType</span><span class="params">(name, color, texture)</span> &#123; ... &#125;</span><br><span class="line">    method <span class="title function_">draw</span><span class="params">(canvas, x, y)</span> is</span><br><span class="line">        <span class="comment">// 1. Create a bitmap of a given type, color &amp; texture.</span></span><br><span class="line">        <span class="comment">// 2. Draw the bitmap on the canvas at X and Y coords.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Flyweight factory decides whether to re-use existing</span></span><br><span class="line"><span class="comment">// flyweight or to create a new object.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TreeFactory</span> is</span><br><span class="line">    <span class="keyword">static</span> field treeTypes: collection of tree types</span><br><span class="line">    <span class="keyword">static</span> method <span class="title function_">getTreeType</span><span class="params">(name, color, texture)</span> <span class="type">is</span></span><br><span class="line">        <span class="variable">type</span> <span class="operator">=</span> treeTypes.find(name, color, texture)</span><br><span class="line">        <span class="keyword">if</span> (type == <span class="literal">null</span>)</span><br><span class="line">            type = <span class="keyword">new</span> <span class="title class_">TreeType</span>(name, color, texture)</span><br><span class="line">            treeTypes.add(type)</span><br><span class="line">        <span class="keyword">return</span> type</span><br><span class="line"></span><br><span class="line"><span class="comment">// The contextual object contains the extrinsic part of the tree</span></span><br><span class="line"><span class="comment">// state. An application can create billions of these since they</span></span><br><span class="line"><span class="comment">// are pretty small: just two integer coordinates and one</span></span><br><span class="line"><span class="comment">// reference field.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Tree</span> is</span><br><span class="line">    field x,y</span><br><span class="line">    field type: TreeType</span><br><span class="line">    constructor <span class="title function_">Tree</span><span class="params">(x, y, type)</span> &#123; ... &#125;</span><br><span class="line">    method <span class="title function_">draw</span><span class="params">(canvas)</span> is</span><br><span class="line">        type.draw(canvas, <span class="built_in">this</span>.x, <span class="built_in">this</span>.y)</span><br><span class="line"></span><br><span class="line"><span class="comment">// The Tree and the Forest classes are the flyweight&#x27;s clients.</span></span><br><span class="line"><span class="comment">// You can merge them if you don&#x27;t plan to develop the Tree</span></span><br><span class="line"><span class="comment">// class any further.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Forest</span> is</span><br><span class="line">    field trees: collection of Trees</span><br><span class="line"></span><br><span class="line">    method <span class="title function_">plantTree</span><span class="params">(x, y, name, color, texture)</span> <span class="type">is</span></span><br><span class="line">        <span class="variable">type</span> <span class="operator">=</span> TreeFactory.getTreeType(name, color, texture)</span><br><span class="line">        tree = <span class="keyword">new</span> <span class="title class_">Tree</span>(x, y, type)</span><br><span class="line">        trees.add(tree)</span><br><span class="line"></span><br><span class="line">    method <span class="title function_">draw</span><span class="params">(canvas)</span> is</span><br><span class="line">        <span class="title function_">foreach</span> <span class="params">(tree in trees)</span> <span class="keyword">do</span></span><br><span class="line">            tree.draw(canvas)</span><br></pre></td></tr></table></figure>
+
+<h2 id="适用性"><a href="#适用性" class="headerlink" title="适用性"></a>适用性</h2><ul>
+<li><p><strong>只有当你的程序必须支持大量的对象，而这些对象几乎不能容纳在可用的RAM中时，才使用Flyweight模式。</strong></p>
+</li>
+<li><p>应用该模式的好处在很大程度上取决于如何以及在何处使用它。它在以下情况下最有用：</p>
+<ul>
+<li>应用程序需要产生大量的类似对象</li>
+<li>这会耗尽目标设备上的所有可用RAM</li>
+<li>对象包含可以在多个对象之间提取和共享的重复状态</li>
+</ul>
+</li>
+</ul>
+<h2 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h2><ol>
+<li><p>将一个类的字段分成两部分，这两部分将成为一个flyweight：</p>
+<ul>
+<li>内部状态：包含跨多个对象复制的不变数据的字段</li>
+<li>外部状态：包含每个对象唯一的上下文数据的字段</li>
+</ul>
+</li>
+<li><p>将表示内部状态的字段保留在类中，但要确保它们是不可变的。它们应该只在构造函数内部取初始值。</p>
+</li>
+<li><p>检查使用外部状态字段的方法。对于方法中使用的每个字段，引入一个新参数并使用它来代替字段。</p>
+</li>
+<li><p>或者，创建一个工厂类来管理flyweights池。它应该在创建新的flyweight之前检查现有的flyweight。一旦工厂到位，客户端必须通过它请求flyweight。他们应该通过将其内在状态传递给工厂来描述所需的flyweight。</p>
+</li>
+<li><p>客户端必须存储或计算外部状态（上下文）的值，以便能够调用flyweight对象的方法。为了方便起见，可以将外部状态沿着飞权引用字段一起移动到单独的上下文类。</p>
+</li>
+</ol>
+<h2 id="利弊"><a href="#利弊" class="headerlink" title="利弊"></a>利弊</h2><table>
+<thead>
+<tr>
+<th>利√</th>
+<th>弊×</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>你可以保存大量的RAM，假设你的程序有很多类似的对象。</td>
+<td>当每次有人调用flyweight方法时都需要重新计算一些上下文数据时，您可能会在CPU周期上牺牲RAM。</td>
+</tr>
+<tr>
+<td></td>
+<td>代码变得更加复杂。新的团队成员总是想知道为什么实体的状态以这种方式分离。</td>
+</tr>
+</tbody></table>
+<h2 id="与其他模式的关系"><a href="#与其他模式的关系" class="headerlink" title="与其他模式的关系"></a>与其他模式的关系</h2><ul>
+<li><p>您可以将复合树的共享叶节点实现为Flyweights，以保存一些RAM。</p>
+</li>
+<li><p>Flyweight展示了如何制作许多小对象，而Facade展示了如何制作代表整个子系统的单个对象。</p>
+</li>
+<li><p>如果你设法将对象的所有共享状态减少到一个flyweight对象，那么Flyweight就类似于Singleton。但这些模式之间有两个根本区别：</p>
+<ul>
+<li>应该只有一个Singleton实例，而Flyweight类可以有多个具有不同内部状态的实例。</li>
+<li>Singleton对象可以是可变的。Flyweight对象是不可变的。</li>
+</ul>
+</li>
+</ul>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><h1 id="Python中的Flyweight模式"><a href="#Python中的Flyweight模式" class="headerlink" title="Python中的Flyweight模式"></a>Python中的Flyweight模式</h1><p>Flyweight是一种结构化设计模式，它允许程序通过保持低内存消耗来支持大量对象。</p>
+<p>该模式通过在多个对象之间共享对象状态的一部分来实现。换句话说，Flyweight通过缓存不同对象使用的相同数据来节省RAM。</p>
+<h2 id="概念示例"><a href="#概念示例" class="headerlink" title="概念示例"></a>概念示例</h2><p>这个例子说明了Flyweight设计模式的结构。它侧重于回答这些问题：</p>
+<ul>
+<li>它由哪些类组成？</li>
+<li>这些班级扮演什么角色？</li>
+<li>模式中的元素是以什么方式联系在一起的？</li>
+</ul>
+<h4 id="main-py：概念性示例"><a href="#main-py：概念性示例" class="headerlink" title="main.py：概念性示例"></a>main.py：概念性示例</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Dict</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Flyweight</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The Flyweight stores a common portion of the state (also called intrinsic</span></span><br><span class="line"><span class="string">    state) that belongs to multiple real business entities. The Flyweight</span></span><br><span class="line"><span class="string">    accepts the rest of the state (extrinsic state, unique for each entity) via</span></span><br><span class="line"><span class="string">    its method parameters.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, shared_state: <span class="built_in">str</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self._shared_state = shared_state</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">operation</span>(<span class="params">self, unique_state: <span class="built_in">str</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        s = json.dumps(self._shared_state)</span><br><span class="line">        u = json.dumps(unique_state)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Flyweight: Displaying shared (<span class="subst">&#123;s&#125;</span>) and unique (<span class="subst">&#123;u&#125;</span>) state.&quot;</span>, end=<span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FlyweightFactory</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The Flyweight Factory creates and manages the Flyweight objects. It ensures</span></span><br><span class="line"><span class="string">    that flyweights are shared correctly. When the client requests a flyweight,</span></span><br><span class="line"><span class="string">    the factory either returns an existing instance or creates a new one, if it</span></span><br><span class="line"><span class="string">    doesn&#x27;t exist yet.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    _flyweights: <span class="type">Dict</span>[<span class="built_in">str</span>, Flyweight] = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, initial_flyweights: <span class="type">Dict</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">for</span> state <span class="keyword">in</span> initial_flyweights:</span><br><span class="line">            self._flyweights[self.get_key(state)] = Flyweight(state)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_key</span>(<span class="params">self, state: <span class="type">Dict</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Returns a Flyweight&#x27;s string hash for a given state.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;_&quot;</span>.join(<span class="built_in">sorted</span>(state))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_flyweight</span>(<span class="params">self, shared_state: <span class="type">Dict</span></span>) -&gt; Flyweight:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Returns an existing Flyweight with a given state or creates a new one.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        key = self.get_key(shared_state)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self._flyweights.get(key):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;FlyweightFactory: Can&#x27;t find a flyweight, creating new one.&quot;</span>)</span><br><span class="line">            self._flyweights[key] = Flyweight(shared_state)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;FlyweightFactory: Reusing existing flyweight.&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> self._flyweights[key]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">list_flyweights</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        count = <span class="built_in">len</span>(self._flyweights)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;FlyweightFactory: I have <span class="subst">&#123;count&#125;</span> flyweights:&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;\n&quot;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, self._flyweights.keys())), end=<span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add_car_to_police_database</span>(<span class="params"></span></span><br><span class="line"><span class="params">    factory: FlyweightFactory, plates: <span class="built_in">str</span>, owner: <span class="built_in">str</span>,</span></span><br><span class="line"><span class="params">    brand: <span class="built_in">str</span>, model: <span class="built_in">str</span>, color: <span class="built_in">str</span></span></span><br><span class="line"><span class="params"></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\n\nClient: Adding a car to database.&quot;</span>)</span><br><span class="line">    flyweight = factory.get_flyweight([brand, model, color])</span><br><span class="line">    <span class="comment"># The client code either stores or calculates extrinsic state and passes it</span></span><br><span class="line">    <span class="comment"># to the flyweight&#x27;s methods.</span></span><br><span class="line">    flyweight.operation([plates, owner])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The client code usually creates a bunch of pre-populated flyweights in the</span></span><br><span class="line"><span class="string">    initialization stage of the application.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    factory = FlyweightFactory([</span><br><span class="line">        [<span class="string">&quot;Chevrolet&quot;</span>, <span class="string">&quot;Camaro2018&quot;</span>, <span class="string">&quot;pink&quot;</span>],</span><br><span class="line">        [<span class="string">&quot;Mercedes Benz&quot;</span>, <span class="string">&quot;C300&quot;</span>, <span class="string">&quot;black&quot;</span>],</span><br><span class="line">        [<span class="string">&quot;Mercedes Benz&quot;</span>, <span class="string">&quot;C500&quot;</span>, <span class="string">&quot;red&quot;</span>],</span><br><span class="line">        [<span class="string">&quot;BMW&quot;</span>, <span class="string">&quot;M5&quot;</span>, <span class="string">&quot;red&quot;</span>],</span><br><span class="line">        [<span class="string">&quot;BMW&quot;</span>, <span class="string">&quot;X6&quot;</span>, <span class="string">&quot;white&quot;</span>],</span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line">    factory.list_flyweights()</span><br><span class="line"></span><br><span class="line">    add_car_to_police_database(</span><br><span class="line">        factory, <span class="string">&quot;CL234IR&quot;</span>, <span class="string">&quot;James Doe&quot;</span>, <span class="string">&quot;BMW&quot;</span>, <span class="string">&quot;M5&quot;</span>, <span class="string">&quot;red&quot;</span>)</span><br><span class="line"></span><br><span class="line">    add_car_to_police_database(</span><br><span class="line">        factory, <span class="string">&quot;CL234IR&quot;</span>, <span class="string">&quot;James Doe&quot;</span>, <span class="string">&quot;BMW&quot;</span>, <span class="string">&quot;X1&quot;</span>, <span class="string">&quot;red&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">    factory.list_flyweights()</span><br></pre></td></tr></table></figure>
+
+<h4 id="执行结果"><a href="#执行结果" class="headerlink" title="执行结果"></a>执行结果</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">FlyweightFactory: I have 5 flyweights:</span><br><span class="line">Camaro2018_Chevrolet_pink</span><br><span class="line">C300_Mercedes Benz_black</span><br><span class="line">C500_Mercedes Benz_red</span><br><span class="line">BMW_M5_red</span><br><span class="line">BMW_X6_white</span><br><span class="line"></span><br><span class="line">Client: Adding a car to database.</span><br><span class="line">FlyweightFactory: Reusing existing flyweight.</span><br><span class="line">Flyweight: Displaying shared ([&quot;BMW&quot;, &quot;M5&quot;, &quot;red&quot;]) and unique ([&quot;CL234IR&quot;, &quot;James Doe&quot;]) state.</span><br><span class="line"></span><br><span class="line">Client: Adding a car to database.</span><br><span class="line">FlyweightFactory: Can&#x27;t find a flyweight, creating new one.</span><br><span class="line">Flyweight: Displaying shared ([&quot;BMW&quot;, &quot;X1&quot;, &quot;red&quot;]) and unique ([&quot;CL234IR&quot;, &quot;James Doe&quot;]) state.</span><br><span class="line"></span><br><span class="line">FlyweightFactory: I have 6 flyweights:</span><br><span class="line">Camaro2018_Chevrolet_pink</span><br><span class="line">C300_Mercedes Benz_black</span><br><span class="line">C500_Mercedes Benz_red</span><br><span class="line">BMW_M5_red</span><br><span class="line">BMW_X6_white</span><br><span class="line">BMW_X1_red</span><br></pre></td></tr></table></figure>
+
+<h1 id="Rust中的Flyweight模式"><a href="#Rust中的Flyweight模式" class="headerlink" title="Rust中的Flyweight模式"></a>Rust中的Flyweight模式</h1><p>Flyweight是一种结构化设计模式，它允许程序通过保持低内存消耗来支持大量对象。</p>
+<p>该模式通过在多个对象之间共享对象状态的一部分来实现。换句话说，Flyweight通过缓存不同对象使用的相同数据来节省RAM。</p>
+<h2 id="字符的Flyweight"><a href="#字符的Flyweight" class="headerlink" title="字符的Flyweight"></a>字符的Flyweight</h2><p>在这个例子中，我们将为字符创建一个Flyweight模式，在这个模式中我们共享共同的字符对象以保存内存。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flyweight Character trait</span></span><br><span class="line"><span class="keyword">trait</span> <span class="title class_">Character</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">display</span>(&amp;<span class="keyword">self</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Concrete Character implementation</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">ConcreteCharacter</span> &#123;</span><br><span class="line">    symbol: <span class="type">char</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Character</span> <span class="keyword">for</span> <span class="title class_">ConcreteCharacter</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">display</span>(&amp;<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Character: &#123;&#125;&quot;</span>, <span class="keyword">self</span>.symbol);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Flyweight factory for characters</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">CharacterFactory</span> &#123;</span><br><span class="line">    characters: std::collections::HashMap&lt;<span class="type">char</span>, <span class="type">Box</span>&lt;<span class="keyword">dyn</span> Character&gt;&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">CharacterFactory</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">new</span>() <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        CharacterFactory &#123;</span><br><span class="line">            characters: std::collections::HashMap::<span class="title function_ invoke__">new</span>(),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">get_character</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, symbol: <span class="type">char</span>) <span class="punctuation">-&gt;</span> &amp;<span class="type">Box</span>&lt;<span class="keyword">dyn</span> Character&gt; &#123;</span><br><span class="line">        <span class="keyword">self</span>.characters</span><br><span class="line">            .<span class="title function_ invoke__">entry</span>(symbol)</span><br><span class="line">            .<span class="title function_ invoke__">or_insert</span>(<span class="type">Box</span>::<span class="title function_ invoke__">new</span>(ConcreteCharacter &#123; symbol &#125;))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Usage</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">character_factory</span> = CharacterFactory::<span class="title function_ invoke__">new</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">char_a</span> = character_factory.<span class="title function_ invoke__">get_character</span>(<span class="string">&#x27;A&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">char_b</span> = character_factory.<span class="title function_ invoke__">get_character</span>(<span class="string">&#x27;B&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">char_a2</span> = character_factory.<span class="title function_ invoke__">get_character</span>(<span class="string">&#x27;A&#x27;</span>); <span class="comment">// Reusing &#x27;A&#x27;</span></span><br><span class="line"></span><br><span class="line">    char_a.<span class="title function_ invoke__">display</span>();</span><br><span class="line">    char_b.<span class="title function_ invoke__">display</span>();</span><br><span class="line">    char_a2.<span class="title function_ invoke__">display</span>(); <span class="comment">// The same instance as &#x27;A&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中：</p>
+<p>我们定义了一个包含 我们定义了一个包含 <code>display</code> 方法的  方法的  方法的 <code>Character</code> trait。</p>
+<p><code>ConcreteCharacter</code> 结构体实现了  结构体实现了  结构体实现了 <code>Character</code> trait，并表示一个具体的字符对象。 trait，并表示一个具体的字符对象。</p>
+<p><code>CharacterFactory</code> 结构体充当一个flyweight工厂，用于创建和管理角色对象。它使用HashMap来存储共享的角色对象。 结构体充当一个flyweight工厂，用于创建和管理角色对象。它使用HashMap来存储共享的角色对象。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>宇宙山河浪漫，赞赏动力无限</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Ice WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Ice Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.png">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Design-Pattern/" rel="tag"># Design Pattern</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/01/29/design-pattern/facade/" rel="prev" title="Facade 门面（外观）模式">
+      <i class="fa fa-chevron-left"></i> Facade 门面（外观）模式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/02/01/design-pattern/proxy/" rel="next" title="Proxy 代理模式">
+      Proxy 代理模式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%84%8F%E5%9B%BE"><span class="nav-number">1.</span> <span class="nav-text">意图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E7%8A%B6%E6%80%81%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">3.0.1.</span> <span class="nav-text">外部状态存储器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Flyweight%E5%92%8C%E4%B8%8D%E5%8F%98%E6%80%A7"><span class="nav-number">3.0.2.</span> <span class="nav-text">Flyweight和不变性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Flyweight%E5%B7%A5%E5%8E%82"><span class="nav-number">3.0.3.</span> <span class="nav-text">Flyweight工厂</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84"><span class="nav-number">4.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E6%80%A7"><span class="nav-number">6.</span> <span class="nav-text">适用性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0"><span class="nav-number">7.</span> <span class="nav-text">如何实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E5%BC%8A"><span class="nav-number">8.</span> <span class="nav-text">利弊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E%E5%85%B6%E4%BB%96%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">9.</span> <span class="nav-text">与其他模式的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">10.</span> <span class="nav-text">代码示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python%E4%B8%AD%E7%9A%84Flyweight%E6%A8%A1%E5%BC%8F"><span class="nav-number"></span> <span class="nav-text">Python中的Flyweight模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">概念示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#main-py%EF%BC%9A%E6%A6%82%E5%BF%B5%E6%80%A7%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.0.1.</span> <span class="nav-text">main.py：概念性示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">1.0.2.</span> <span class="nav-text">执行结果</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Rust%E4%B8%AD%E7%9A%84Flyweight%E6%A8%A1%E5%BC%8F"><span class="nav-number"></span> <span class="nav-text">Rust中的Flyweight模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E7%9A%84Flyweight"><span class="nav-number">1.</span> <span class="nav-text">字符的Flyweight</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ice</p>
+  <div class="site-description" itemprop="description">安静地坐着学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/TonyMistark" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;TonyMistark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/Micestark" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;Micestark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tony_mistark@163.com" title="E-Mail → mailto:tony_mistark@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Tony_Mistark" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Tony_Mistark" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ice</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">121k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">7:19</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '298b6503f44953bd4193',
+      clientSecret: '6756a6cfc10d74976c79256c96ae1c441f3116ac',
+      repo        : 'tonymistark.github.io',
+      owner       : 'TonyMistark',
+      admin       : ['TonyMistark'],
+      id          : '56f426768500b0eb4d4e2f3ba4dc69cf',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

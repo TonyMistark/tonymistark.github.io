@@ -15,8 +15,58 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Mon, 29 Jan 2024 14:47:19 GMT</pubDate>
+    <pubDate>Thu, 01 Feb 2024 14:08:16 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Proxy 代理模式</title>
+      <link>https://tonymistark.github.io/2024/02/01/design-pattern/proxy/</link>
+      <guid>https://tonymistark.github.io/2024/02/01/design-pattern/proxy/</guid>
+      <pubDate>Thu, 01 Feb 2024 13:50:38 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;意图&quot;&gt;&lt;a href=&quot;#意图&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2024/02/01/design-pattern/proxy/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Flyweight 享元模式</title>
+      <link>https://tonymistark.github.io/2024/01/30/design-pattern/flyweight/</link>
+      <guid>https://tonymistark.github.io/2024/01/30/design-pattern/flyweight/</guid>
+      <pubDate>Tue, 30 Jan 2024 13:55:21 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;意图&quot;&gt;&lt;a href=&quot;#意图&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
+      
+      
+      <comments>https://tonymistark.github.io/2024/01/30/design-pattern/flyweight/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Facade 门面（外观）模式</title>
@@ -482,60 +532,6 @@
       
       
       <comments>https://tonymistark.github.io/2023/11/16/design-pattern/factory-method/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>classification of patterns</title>
-      <link>https://tonymistark.github.io/2023/11/15/design-pattern/classification-of-patterns/</link>
-      <guid>https://tonymistark.github.io/2023/11/15/design-pattern/classification-of-patterns/</guid>
-      <pubDate>Wed, 15 Nov 2023 15:02:50 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h1 id=&quot;Classification-of-patterns&quot;&gt;&lt;a href=&quot;#Classification-of-patterns&quot; class=&quot;headerlink&quot; title=&quot;Classification of</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
-      
-      
-      <comments>https://tonymistark.github.io/2023/11/15/design-pattern/classification-of-patterns/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Why should I learn patterns?</title>
-      <link>https://tonymistark.github.io/2023/11/15/design-pattern/why-should-i-learn-patterns/</link>
-      <guid>https://tonymistark.github.io/2023/11/15/design-pattern/why-should-i-learn-patterns/</guid>
-      <pubDate>Wed, 15 Nov 2023 11:54:40 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h1 id=&quot;Why-should-I-learn-patterns&quot;&gt;&lt;a href=&quot;#Why-should-I-learn-patterns&quot; class=&quot;headerlink&quot; title=&quot;Why should I learn patterns?&quot;&gt;&lt;/a&gt;Why</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
-      
-      
-      <comments>https://tonymistark.github.io/2023/11/15/design-pattern/why-should-i-learn-patterns/#disqus_thread</comments>
       
     </item>
     
