@@ -15,8 +15,35 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Thu, 01 Feb 2024 14:55:53 GMT</pubDate>
+    <pubDate>Sat, 03 Feb 2024 13:14:43 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Chain of Responsibility 责任链</title>
+      <link>https://tonymistark.github.io/2024/02/03/design-pattern/chain-of-responsibility/</link>
+      <guid>https://tonymistark.github.io/2024/02/03/design-pattern/chain-of-responsibility/</guid>
+      <pubDate>Sat, 03 Feb 2024 05:49:38 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;意图&quot;&gt;&lt;a href=&quot;#意图&quot; class=&quot;headerlink&quot; title=&quot;意图&quot;&gt;&lt;/a&gt;意图&lt;/h2&gt;&lt;p&gt;Chain of</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
+      
+      
+      <comments>https://tonymistark.github.io/2024/02/03/design-pattern/chain-of-responsibility/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Structural Design Patterns 结构设计模式</title>
@@ -35,6 +62,8 @@
       
       
       
+      
+      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
       
       
       
@@ -504,33 +533,6 @@
       
       
       <comments>https://tonymistark.github.io/2023/11/21/design-pattern/builder/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Abstract Factory</title>
-      <link>https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/</link>
-      <guid>https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/</guid>
-      <pubDate>Mon, 20 Nov 2023 12:16:29 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h1 id=&quot;Abstract-Factory-抽象工厂&quot;&gt;&lt;a href=&quot;#Abstract-Factory-抽象工厂&quot; class=&quot;headerlink&quot; title=&quot;Abstract Factory 抽象工厂&quot;&gt;&lt;/a&gt;Abstract Factory</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
-      
-      
-      <comments>https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/#disqus_thread</comments>
       
     </item>
     

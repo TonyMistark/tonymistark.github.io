@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="意图Chain of Responsibility是一种行为设计模式，它允许您沿着处理程序链沿着传递请求。在接收到请求时，每个处理程序决定是处理请求还是将其传递给链中的下一个处理程序。     问题假设你正在开发一个在线订购系统。您希望限制对系统的访问，以便只有经过身份验证的用户才能创建订单。此外，具有管理权限的用户必须对所有订单具有完全访问权限。 经过一段时间的规划后，您意识到这些检查必须按顺序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chain of Responsibility 责任链">
+<meta property="og:url" content="https://tonymistark.github.io/2024/02/03/design-pattern/chain-of-responsibility/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="意图Chain of Responsibility是一种行为设计模式，它允许您沿着处理程序链沿着传递请求。在接收到请求时，每个处理程序决定是处理请求还是将其传递给链中的下一个处理程序。     问题假设你正在开发一个在线订购系统。您希望限制对系统的访问，以便只有经过身份验证的用户才能创建订单。此外，具有管理权限的用户必须对所有订单具有完全访问权限。 经过一段时间的规划后，您意识到这些检查必须按顺序">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://tonymistark.github.io/images/chain-of-responsibility-header.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/responsibilty-problem1.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/responsibility-problem2.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/responsibility-solution1-en.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/responsibility-solution2.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/responsibility-structure.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/responsibility-example1.png">
+<meta property="og:image" content="https://tonymistark.github.io/images/responsibility-solution2.png">
+<meta property="article:published_time" content="2024-02-03T05:49:38.000Z">
+<meta property="article:modified_time" content="2024-02-03T13:14:43.706Z">
+<meta property="article:author" content="Ice">
+<meta property="article:tag" content="Design Pattern">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tonymistark.github.io/images/chain-of-responsibility-header.png">
+
+<link rel="canonical" href="https://tonymistark.github.io/2024/02/03/design-pattern/chain-of-responsibility/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Chain of Responsibility 责任链 | BLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6L4L92Z6Z"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W6L4L92Z6Z');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?99c70b2174a7fbe4af476f28bafb19a3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/./atom.xml" title="BLOG" type="application/atom+xml">
+<link rel="alternate" href="/./rss2.xml" title="BLOG" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">用心记录思想</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2024/02/03/design-pattern/chain-of-responsibility/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Chain of Responsibility 责任链
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2024-02-03 13:49:38 / Modified: 21:14:43" itemprop="dateCreated datePublished" datetime="2024-02-03T13:49:38+08:00">2024-02-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/design-pattern/" itemprop="url" rel="index"><span itemprop="name">design-pattern</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>5.1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>19 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="意图"><a href="#意图" class="headerlink" title="意图"></a>意图</h2><p>Chain of Responsibility是一种行为设计模式，它允许您沿着处理程序链沿着传递请求。在接收到请求时，每个处理程序决定是处理请求还是将其传递给链中的下一个处理程序。</p>
+<div align="center"> <img src="/images/chain-of-responsibility-header.png"/></div>
+
+
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>假设你正在开发一个在线订购系统。您希望限制对系统的访问，以便只有经过身份验证的用户才能创建订单。此外，具有管理权限的用户必须对所有订单具有完全访问权限。</p>
+<p>经过一段时间的规划后，您意识到这些检查必须按顺序执行。每当应用程序收到包含用户凭据的请求时，它都可以尝试向系统验证用户的身份。但是，如果这些凭据不正确并且身份验证失败，则没有理由继续进行任何其他检查。</p>
+<div align="center"> <img src="/images/responsibilty-problem1.png"/>请求必须通过一系列检查，然后订购系统才能处理它。</div>
+
+
+<p>在接下来的几个月里，您又实现了几个这样的顺序检查。</p>
+<ul>
+<li>您的一位同事建议将原始数据直接传递到订购系统是不安全的。因此，您添加了一个额外的验证步骤来清理请求中的数据。</li>
+<li>后来，有人注意到，该系统是脆弱的暴力破解密码。为了消除这种情况，您立即添加了一个检查，该检查过滤来自同一IP地址的重复失败请求。</li>
+<li>还有人建议，可以通过返回包含相同数据的重复请求的缓存结果来加快系统速度。因此，您添加了另一个检查，仅当没有合适的缓存响应时，才允许请求通过系统。</li>
+</ul>
+<div align="center"> <img src="/images/responsibility-problem2.png"/>代码越庞杂，就越混乱。</div>
+
+
+<p>检查的代码本来看起来就很混乱，随着您添加每个新特性，它变得越来越臃肿。更改一张支票有时会影响其他支票。最糟糕的是，当您试图重用检查来保护系统的其他组件时，您不得不复制一些代码，因为这些组件需要一些检查，但不是所有检查。</p>
+<p>这个系统变得很难理解，维护起来也很昂贵。你在代码上挣扎了一段时间，直到有一天你决定重构整个代码。</p>
+<h2 id="溶液"><a href="#溶液" class="headerlink" title="溶液"></a>溶液</h2><p>与许多其他行为设计模式一样，责任链依赖于将特定行为转换为称为处理程序的独立对象。在我们的例子中，每个检查都应该被提取到它自己的类中，并使用一个执行检查的方法。请求沿着数据作为参数传递给此方法。</p>
+<p>该模式建议您将这些处理程序链接成一个链。每个链接的处理程序都有一个字段，用于存储对链中下一个处理程序的引用。除了处理请求之外，处理程序还将请求进一步沿着链传递。请求沿着链传递，直到所有处理程序都有机会处理它。</p>
+<p>这里是最好的部分：处理程序可以决定不将请求进一步向下传递，并有效地停止任何进一步的处理。</p>
+<p>在我们的订单系统示例中，处理程序执行处理，然后决定是否将请求进一步向下传递。假设请求包含正确的数据，所有处理程序都可以执行其主要行为，无论是身份验证检查还是缓存。</p>
+<div align="center"> <img src="/images/responsibility-solution1-en.png"/>把手一个接一个地排列，形成一条链条。</div>
+
+
+<p>然而，还有一种稍微不同的方法（它更规范一点），在这种方法中，在接收到请求时，处理程序决定它是否可以处理它。如果可以，它就不再传递请求。因此，要么只有一个处理程序处理请求，要么根本没有处理程序。这种方法在处理图形用户界面中的元素堆栈中的事件时非常常见。</p>
+<p>例如，当用户单击按钮时，事件将通过GUI元素链传播，该元素链从按钮开始，沿着其容器（如窗体或面板）传播，最后到达主应用程序窗口。事件由链中能够处理它的第一个元素处理。这个例子也值得注意，因为它表明链总是可以从对象树中提取。</p>
+<div align="center"> <img src="/images/responsibility-solution2.png"/>链可以由对象树的分支形成。</div>
+
+
+<p>所有的处理程序类实现相同的接口是至关重要的。每个具体的处理程序应该只关心下面的一个具有 所有的处理程序类实现相同的接口是至关重要的。每个具体的处理程序应该只关心下面的一个具有 <code>execute</code> 方法的处理程序。通过这种方式，您可以在运行时使用各种处理程序组合链，而无需将代码耦合到它们的具体类。 方法的处理程序。通过这种方式，您可以在运行时使用各种处理程序组合链，而无需将代码耦合到它们的具体类。</p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><div align="center"> <img src="/images/responsibility-structure.png"/></div>
+
+
+<ol>
+<li><p>该函数声明了接口，对所有具体处理程序都是通用的。它通常只包含一个处理请求的方法，但有时它也可能有另一个方法来设置链上的下一个处理程序。</p>
+</li>
+<li><p>BaseHandler是一个可选类，您可以在其中放置所有处理程序类通用的样板代码。</p>
+<p>通常，这个类定义一个字段来存储对下一个处理程序的引用。客户端可以通过将处理程序传递给前一个处理程序的构造函数或setter来构建链。类也可以实现默认的处理行为：它可以在检查其存在之后将执行传递给下一个处理程序。</p>
+</li>
+<li><p>具体处理程序包含处理请求的实际代码。在接收到一个请求后，每个处理程序必须决定是否处理它，另外，是否沿着链沿着它。</p>
+<p>处理程序通常是自包含的和不可变的，通过构造函数只接受一次所有必要的数据。</p>
+</li>
+<li><p>客户端可以只组合一次链，也可以动态组合它们，这取决于应用程序的逻辑。请注意，请求可以发送到链中的任何处理程序-它不必是第一个。</p>
+</li>
+</ol>
+<h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><p>在本例中，责任链模式负责显示活动GUI元素的上下文帮助信息。</p>
+<div align="center"> <img src="/images/responsibility-example1.png"/>GUI类是用Composite模式构建的。每个元素都链接到它的容器元素。在任何时候，您都可以构建一个元素链，该元素链从元素本身开始，遍历它的所有容器元素。</div>
+
+
+<p>应用程序的GUI通常被构造为对象树。例如，呈现应用程序主窗口的 <code>Dialog</code> 类将是对象树的根。对话框包含 <code>Panels</code> ，它可能包含其他面板或简单的低级元素，如 <code>Buttons</code> 和 <code>TextFields</code> 。</p>
+<p>一个简单的组件可以显示简短的上下文工具提示，只要该组件有一些帮助文本分配。但更复杂的组件定义了自己显示上下文帮助的方式，例如显示手册摘录或在浏览器中打开页面。responsibility-example2</p>
+<div align="center"> <img src="/images/responsibility-solution2.png"/>这就是帮助请求遍历GUI对象的方式。</div>
+
+
+<p>当用户将鼠标光标指向某个元素并按下 当用户将鼠标光标指向某个元素并按下 <code>F1</code> 键时，应用程序将检测指针下的组件并向其发送帮助请求。该请求将在元素的所有容器中冒泡，直到到达能够显示帮助信息的元素。 键时，应用程序将检测指针下的组件并向其发送帮助请求。该请求将在元素的所有容器中冒泡，直到到达能够显示帮助信息的元素。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The handler interface declares a method for executing a</span></span><br><span class="line"><span class="comment">// request.</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">ComponentWithContextualHelp</span> is</span><br><span class="line">    method <span class="title function_">showHelp</span><span class="params">()</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// The base class for simple components.</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Component</span> <span class="keyword">implements</span> <span class="title class_">ComponentWithContextualHelp</span> is</span><br><span class="line">    field tooltipText: string</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The component&#x27;s container acts as the next link in the</span></span><br><span class="line">    <span class="comment">// chain of handlers.</span></span><br><span class="line">    <span class="keyword">protected</span> field container: Container</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The component shows a tooltip if there&#x27;s help text</span></span><br><span class="line">    <span class="comment">// assigned to it. Otherwise it forwards the call to the</span></span><br><span class="line">    <span class="comment">// container, if it exists.</span></span><br><span class="line">    method <span class="title function_">showHelp</span><span class="params">()</span> is</span><br><span class="line">        <span class="title function_">if</span> <span class="params">(tooltipText != <span class="literal">null</span>)</span></span><br><span class="line">            <span class="comment">// Show tooltip.</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            container.showHelp()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Containers can contain both simple components and other</span></span><br><span class="line"><span class="comment">// containers as children. The chain relationships are</span></span><br><span class="line"><span class="comment">// established here. The class inherits showHelp behavior from</span></span><br><span class="line"><span class="comment">// its parent.</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Container</span> <span class="keyword">extends</span> <span class="title class_">Component</span> is</span><br><span class="line">    <span class="keyword">protected</span> field children: array of Component</span><br><span class="line"></span><br><span class="line">    method <span class="title function_">add</span><span class="params">(child)</span> is</span><br><span class="line">        children.add(child)</span><br><span class="line">        child.container = <span class="built_in">this</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Primitive components may be fine with default help</span></span><br><span class="line"><span class="comment">// implementation...</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Button</span> <span class="keyword">extends</span> <span class="title class_">Component</span> is</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// But complex components may override the default</span></span><br><span class="line"><span class="comment">// implementation. If the help text can&#x27;t be provided in a new</span></span><br><span class="line"><span class="comment">// way, the component can always call the base implementation</span></span><br><span class="line"><span class="comment">// (see Component class).</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Panel</span> <span class="keyword">extends</span> <span class="title class_">Container</span> is</span><br><span class="line">    field modalHelpText: string</span><br><span class="line"></span><br><span class="line">    method <span class="title function_">showHelp</span><span class="params">()</span> is</span><br><span class="line">        <span class="title function_">if</span> <span class="params">(modalHelpText != <span class="literal">null</span>)</span></span><br><span class="line">            <span class="comment">// Show a modal window with the help text.</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">super</span>.showHelp()</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...same as above...</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dialog</span> <span class="keyword">extends</span> <span class="title class_">Container</span> is</span><br><span class="line">    field wikiPageURL: string</span><br><span class="line"></span><br><span class="line">    method <span class="title function_">showHelp</span><span class="params">()</span> is</span><br><span class="line">        <span class="title function_">if</span> <span class="params">(wikiPageURL != <span class="literal">null</span>)</span></span><br><span class="line">            <span class="comment">// Open the wiki help page.</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">super</span>.showHelp()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Client code.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Application</span> is</span><br><span class="line">    <span class="comment">// Every application configures the chain differently.</span></span><br><span class="line">    method <span class="title function_">createUI</span><span class="params">()</span> <span class="type">is</span></span><br><span class="line">        <span class="variable">dialog</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dialog</span>(<span class="string">&quot;Budget Reports&quot;</span>)</span><br><span class="line">        dialog.wikiPageURL = <span class="string">&quot;http://...&quot;</span></span><br><span class="line">        panel = <span class="keyword">new</span> <span class="title class_">Panel</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">400</span>, <span class="number">800</span>)</span><br><span class="line">        panel.modalHelpText = <span class="string">&quot;This panel does...&quot;</span></span><br><span class="line">        ok = <span class="keyword">new</span> <span class="title class_">Button</span>(<span class="number">250</span>, <span class="number">760</span>, <span class="number">50</span>, <span class="number">20</span>, <span class="string">&quot;OK&quot;</span>)</span><br><span class="line">        ok.tooltipText = <span class="string">&quot;This is an OK button that...&quot;</span></span><br><span class="line">        cancel = <span class="keyword">new</span> <span class="title class_">Button</span>(<span class="number">320</span>, <span class="number">760</span>, <span class="number">50</span>, <span class="number">20</span>, <span class="string">&quot;Cancel&quot;</span>)</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        panel.add(ok)</span><br><span class="line">        panel.add(cancel)</span><br><span class="line">        dialog.add(panel)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Imagine what happens here.</span></span><br><span class="line">    method <span class="title function_">onF1KeyPress</span><span class="params">()</span> <span class="type">is</span></span><br><span class="line">        <span class="variable">component</span> <span class="operator">=</span> <span class="built_in">this</span>.getComponentAtMouseCoords()</span><br><span class="line">        component.showHelp()</span><br></pre></td></tr></table></figure>
+
+<h2 id="适用性"><a href="#适用性" class="headerlink" title="适用性"></a>适用性</h2><ul>
+<li><strong>当你的程序需要以不同的方式处理不同类型的请求，但请求的确切类型和它们的顺序事先是未知的时，请使用责任链模式。</strong></li>
+<li>该模式允许您将多个处理程序链接到一个链中，并在收到请求时“询问”每个处理程序是否可以处理该请求。</li>
+<li><strong>当必须以特定顺序执行多个处理程序时，请使用该模式。</strong></li>
+<li>由于您可以以任何顺序链接链中的处理程序，因此所有请求都将完全按照您的计划通过链。</li>
+<li>当处理程序集及其顺序应该在运行时更改时，请使用CoR模式。</li>
+<li>如果在处理程序类中为引用字段提供setter，则可以动态地插入、删除或重新排序处理程序。</li>
+</ul>
+<h2 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h2><ol>
+<li><p>描述处理程序接口并描述处理请求的方法的签名。</p>
+<p>决定客户端如何将请求数据传递到方法中。最灵活的方法是将请求转换为对象，并将其作为参数传递给处理方法。</p>
+</li>
+<li><p>为了消除具体处理程序中重复的样板代码，可能需要创建一个从处理程序接口派生的抽象基处理程序类。</p>
+<p>这个类应该有一个字段来存储对链中下一个处理程序的引用。考虑使类不可变。但是，如果您计划在运行时修改链，则需要定义一个setter来更改引用字段的值。</p>
+<p>您还可以为处理方法实现方便的默认行为，即将请求转发到下一个对象，除非没有对象了。具体处理程序将能够通过调用父方法来使用此行为。</p>
+</li>
+<li><p>逐个创建具体的处理程序子类并实现它们的处理方法。每个处理程序在接收请求时应该做出两个决定：</p>
+<ul>
+<li>它是否会处理请求。</li>
+<li>它是否会沿着链沿着传递请求。</li>
+</ul>
+</li>
+<li><p>客户端可以自行组装链，也可以从其他对象接收预构建的链。在后一种情况下，您必须实现一些工厂类来根据配置或环境设置构建链</p>
+</li>
+<li><p>客户端可以触发链中的任何处理程序，而不仅仅是第一个。请求将沿着链传递，直到某个处理程序拒绝进一步传递它，或者直到它到达链的末端。</p>
+</li>
+<li><p>由于链的动态特性，客户端应该准备好处理以下场景：</p>
+<ul>
+<li>链条可以由单个链环组成。</li>
+<li>有些请求可能无法到达链的末端。</li>
+<li>其他人可能会到达链条的末端。</li>
+</ul>
+</li>
+</ol>
+<h2 id="利弊"><a href="#利弊" class="headerlink" title="利弊"></a>利弊</h2><table>
+<thead>
+<tr>
+<th>√ 利</th>
+<th>× 弊</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>您可以控制请求处理的顺序。</td>
+<td>有些请求可能最终无法处理。</td>
+</tr>
+<tr>
+<td>单一责任原则。可以将调用操作的类与执行操作的类解耦。</td>
+<td></td>
+</tr>
+<tr>
+<td>开放&#x2F;封闭原则。您可以在应用程序中引入新的处理程序，而不会破坏现有的客户端代码。</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="与其他模式的关系"><a href="#与其他模式的关系" class="headerlink" title="与其他模式的关系"></a>与其他模式的关系</h2><ul>
+<li><p>责任链、命令、调解器和观察者解决了连接请求的接收者和接收者的各种方式：</p>
+<ul>
+<li>责任链（Chain of Responsibility）将请求顺序地沿着一个动态的潜在接收者链传递，直到其中一个接收者处理它。</li>
+<li>命令在中继器和接收器之间建立单向连接。</li>
+<li>Mediator消除了发送者和接收者之间的直接连接，迫使它们通过Mediator对象间接通信。</li>
+<li>观察者允许接收者动态订阅和取消订阅接收请求。</li>
+</ul>
+</li>
+<li><p>责任链通常与复合一起使用。在这种情况下，当一个叶组件收到一个请求时，它可以通过所有父组件的链将其传递到对象树的根。</p>
+</li>
+<li><p>责任链中的处理程序可以作为命令实现。在这种情况下，您可以对同一个上下文对象（由请求表示）执行许多不同的操作。</p>
+<p>然而，还有另一种方法，其中请求本身是一个Command对象。在这种情况下，您可以在链接成链的一系列不同上下文中执行相同的操作。</p>
+</li>
+<li><p>Chain of Responsibility和Decorator具有非常相似的类结构。这两种模式都依赖于递归组合来通过一系列对象传递执行。然而，有几个关键的区别。</p>
+<p>CoR处理程序可以彼此独立地执行任意操作。他们也可以在任何时候停止进一步传递请求。另一方面，各种装饰器可以扩展对象的行为，同时保持它与基接口的一致性。此外，装饰器不允许中断请求流。</p>
+</li>
+</ul>
+<h1 id="Python中的责任链"><a href="#Python中的责任链" class="headerlink" title="Python中的责任链"></a>Python中的责任链</h1><p>责任链是一种行为设计模式，它允许沿着潜在处理程序链传递请求，直到其中一个处理请求。</p>
+<p>该模式允许多个对象处理请求，而无需将发送方类耦合到接收方的具体类。链可以在运行时动态地与遵循标准处理程序接口的任何处理程序组合。</p>
+<h2 id="概念示例"><a href="#概念示例" class="headerlink" title="概念示例"></a>概念示例</h2><p>这个例子说明了责任链设计模式的结构。它侧重于回答这些问题：</p>
+<ul>
+<li>它由哪些类组成？</li>
+<li>这些班级扮演什么角色？</li>
+<li>模式中的元素是以什么方式联系在一起的？</li>
+</ul>
+<h4 id="main-py：概念性示例"><a href="#main-py：概念性示例" class="headerlink" title="main.py：概念性示例"></a>main.py：概念性示例</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> annotations</span><br><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABC, abstractmethod</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Any</span>, <span class="type">Optional</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Handler</span>(<span class="title class_ inherited__">ABC</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The Handler interface declares a method for building the chain of handlers.</span></span><br><span class="line"><span class="string">    It also declares a method for executing a request.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_next</span>(<span class="params">self, handler: Handler</span>) -&gt; Handler:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">handle</span>(<span class="params">self, request</span>) -&gt; <span class="type">Optional</span>[<span class="built_in">str</span>]:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AbstractHandler</span>(<span class="title class_ inherited__">Handler</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The default chaining behavior can be implemented inside a base handler</span></span><br><span class="line"><span class="string">    class.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    _next_handler: Handler = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_next</span>(<span class="params">self, handler: Handler</span>) -&gt; Handler:</span><br><span class="line">        self._next_handler = handler</span><br><span class="line">        <span class="comment"># Returning a handler from here will let us link handlers in a</span></span><br><span class="line">        <span class="comment"># convenient way like this:</span></span><br><span class="line">        <span class="comment"># monkey.set_next(squirrel).set_next(dog)</span></span><br><span class="line">        <span class="keyword">return</span> handler</span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">handle</span>(<span class="params">self, request: <span class="type">Any</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">if</span> self._next_handler:</span><br><span class="line">            <span class="keyword">return</span> self._next_handler.handle(request)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">All Concrete Handlers either handle a request or pass it to the next handler in</span></span><br><span class="line"><span class="string">the chain.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MonkeyHandler</span>(<span class="title class_ inherited__">AbstractHandler</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">handle</span>(<span class="params">self, request: <span class="type">Any</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">if</span> request == <span class="string">&quot;Banana&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">f&quot;Monkey: I&#x27;ll eat the <span class="subst">&#123;request&#125;</span>&quot;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">super</span>().handle(request)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SquirrelHandler</span>(<span class="title class_ inherited__">AbstractHandler</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">handle</span>(<span class="params">self, request: <span class="type">Any</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">if</span> request == <span class="string">&quot;Nut&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">f&quot;Squirrel: I&#x27;ll eat the <span class="subst">&#123;request&#125;</span>&quot;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">super</span>().handle(request)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DogHandler</span>(<span class="title class_ inherited__">AbstractHandler</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">handle</span>(<span class="params">self, request: <span class="type">Any</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">if</span> request == <span class="string">&quot;MeatBall&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">f&quot;Dog: I&#x27;ll eat the <span class="subst">&#123;request&#125;</span>&quot;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">super</span>().handle(request)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">client_code</span>(<span class="params">handler: Handler</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The client code is usually suited to work with a single handler. In most</span></span><br><span class="line"><span class="string">    cases, it is not even aware that the handler is part of a chain.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> food <span class="keyword">in</span> [<span class="string">&quot;Nut&quot;</span>, <span class="string">&quot;Banana&quot;</span>, <span class="string">&quot;Cup of coffee&quot;</span>]:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;\nClient: Who wants a <span class="subst">&#123;food&#125;</span>?&quot;</span>)</span><br><span class="line">        result = handler.handle(food)</span><br><span class="line">        <span class="keyword">if</span> result:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;  <span class="subst">&#123;result&#125;</span>&quot;</span>, end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;  <span class="subst">&#123;food&#125;</span> was left untouched.&quot;</span>, end=<span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    monkey = MonkeyHandler()</span><br><span class="line">    squirrel = SquirrelHandler()</span><br><span class="line">    dog = DogHandler()</span><br><span class="line"></span><br><span class="line">    monkey.set_next(squirrel).set_next(dog)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># The client should be able to send a request to any handler, not just the</span></span><br><span class="line">    <span class="comment"># first one in the chain.</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Chain: Monkey &gt; Squirrel &gt; Dog&quot;</span>)</span><br><span class="line">    client_code(monkey)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Subchain: Squirrel &gt; Dog&quot;</span>)</span><br><span class="line">    client_code(squirrel)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Output-txt：执行结果"><a href="#Output-txt：执行结果" class="headerlink" title="Output.txt：执行结果"></a>Output.txt：执行结果</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Chain: Monkey &gt; Squirrel &gt; Dog</span><br><span class="line"></span><br><span class="line">Client: Who wants a Nut?</span><br><span class="line">  Squirrel: I&#x27;ll eat the Nut</span><br><span class="line">Client: Who wants a Banana?</span><br><span class="line">  Monkey: I&#x27;ll eat the Banana</span><br><span class="line">Client: Who wants a Cup of coffee?</span><br><span class="line">  Cup of coffee was left untouched.</span><br><span class="line"></span><br><span class="line">Subchain: Squirrel &gt; Dog</span><br><span class="line"></span><br><span class="line">Client: Who wants a Nut?</span><br><span class="line">  Squirrel: I&#x27;ll eat the Nut</span><br><span class="line">Client: Who wants a Banana?</span><br><span class="line">  Banana was left untouched.</span><br><span class="line">Client: Who wants a Cup of coffee?</span><br><span class="line">  Cup of coffee was left untouched.</span><br></pre></td></tr></table></figure>
+
+<h1 id="Rust中的责任链"><a href="#Rust中的责任链" class="headerlink" title="Rust中的责任链"></a>Rust中的责任链</h1><p>责任链是一种行为设计模式，它允许沿着潜在处理程序链传递请求，直到其中一个处理请求。</p>
+<p>该模式允许多个对象处理请求，而无需将发送方类耦合到接收方的具体类。链可以在运行时动态地与遵循标准处理程序接口的任何处理程序组合。</p>
+<h2 id="概念示例-1"><a href="#概念示例-1" class="headerlink" title="概念示例"></a>概念示例</h2><p>该示例演示了如何通过一系列部门处理患者。责任链的构成如下：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Patient <span class="punctuation">-&gt;</span> Reception <span class="punctuation">-&gt;</span> Doctor <span class="punctuation">-&gt;</span> Medical <span class="punctuation">-&gt;</span> Cashier</span><br></pre></td></tr></table></figure>
+
+<p>链是使用 链是使用 <code>Box</code> 指针构建的，这意味着在运行时动态分派。为什么？为什么？使用泛型将实现缩小到严格的编译时类型似乎相当困难：为了构造一个完整链的类型，Rust需要完全了解链中的“下一个”链接。因此，它看起来像这样： 指针构建的，这意味着在运行时动态分派。为什么？为什么？使用泛型将实现缩小到严格的编译时类型似乎相当困难：为了构造一个完整链的类型，Rust需要完全了解链中的“下一个”链接。因此，它看起来像这样：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">reception</span> = Reception::&lt;Doctor::&lt;Medical::&lt;Cashier&gt;&gt;&gt;::<span class="title function_ invoke__">new</span>(doctor); <span class="comment">// 😱</span></span><br></pre></td></tr></table></figure>
+
+<p>相反， 相反， <code>Box</code> 允许以任何组合进行链接： 允许以任何组合进行链接：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">reception</span> = Reception::<span class="title function_ invoke__">new</span>(doctor); <span class="comment">// 👍</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">reception</span> = Reception::<span class="title function_ invoke__">new</span>(cashier); <span class="comment">// 🕵️‍♀️</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="patient-rs-Request"><a href="#patient-rs-Request" class="headerlink" title="patient.rs: Request"></a><strong>patient.rs:</strong> Request</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[derive(Default)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Patient</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> name: <span class="type">String</span>,</span><br><span class="line">    <span class="keyword">pub</span> registration_done: <span class="type">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> doctor_check_up_done: <span class="type">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> medicine_done: <span class="type">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> payment_done: <span class="type">bool</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="department-rs-Handlers"><a href="#department-rs-Handlers" class="headerlink" title="department.rs: Handlers"></a><strong>department.rs:</strong> Handlers</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> cashier;</span><br><span class="line"><span class="keyword">mod</span> doctor;</span><br><span class="line"><span class="keyword">mod</span> medical;</span><br><span class="line"><span class="keyword">mod</span> reception;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">use</span> cashier::Cashier;</span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">use</span> doctor::Doctor;</span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">use</span> medical::Medical;</span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">use</span> reception::Reception;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> crate::patient::Patient;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// A single role of objects that make up a chain.</span></span><br><span class="line"><span class="comment">/// A typical trait implementation must have `handle` and `next` methods,</span></span><br><span class="line"><span class="comment">/// while `execute` is implemented by default and contains a proper chaining</span></span><br><span class="line"><span class="comment">/// logic.</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">trait</span> <span class="title class_">Department</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">execute</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, patient: &amp;<span class="keyword">mut</span> Patient) &#123;</span><br><span class="line">        <span class="keyword">self</span>.<span class="title function_ invoke__">handle</span>(patient);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> <span class="variable">Some</span>(next) = &amp;<span class="keyword">mut</span> <span class="keyword">self</span>.<span class="title function_ invoke__">next</span>() &#123;</span><br><span class="line">            next.<span class="title function_ invoke__">execute</span>(patient);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">handle</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, patient: &amp;<span class="keyword">mut</span> Patient);</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">next</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;<span class="keyword">mut</span> <span class="type">Option</span>&lt;<span class="type">Box</span>&lt;<span class="keyword">dyn</span> Department&gt;&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// Helps to wrap an object into a boxed type.</span></span><br><span class="line"><span class="title function_ invoke__">pub</span>(<span class="keyword">self</span>) <span class="keyword">fn</span> <span class="title function_">into_next</span>(</span><br><span class="line">    department: <span class="keyword">impl</span> <span class="title class_">Department</span> + <span class="built_in">Sized</span> + <span class="symbol">&#x27;static</span>,</span><br><span class="line">) <span class="punctuation">-&gt;</span> <span class="type">Option</span>&lt;<span class="type">Box</span>&lt;<span class="keyword">dyn</span> Department&gt;&gt; &#123;</span><br><span class="line">    <span class="title function_ invoke__">Some</span>(<span class="type">Box</span>::<span class="title function_ invoke__">new</span>(department))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="department-cashier-rs"><a href="#department-cashier-rs" class="headerlink" title="department&#x2F;cashier.rs"></a><strong>department&#x2F;cashier.rs</strong></h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> super::&#123;Department, Patient&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Default)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Cashier</span> &#123;</span><br><span class="line">    next: <span class="type">Option</span>&lt;<span class="type">Box</span>&lt;<span class="keyword">dyn</span> Department&gt;&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Department</span> <span class="keyword">for</span> <span class="title class_">Cashier</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">handle</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, patient: &amp;<span class="keyword">mut</span> Patient) &#123;</span><br><span class="line">        <span class="keyword">if</span> patient.payment_done &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;Payment done&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;Cashier getting money from a patient &#123;&#125;&quot;</span>, patient.name);</span><br><span class="line">            patient.payment_done = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">next</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;<span class="keyword">mut</span> <span class="type">Option</span>&lt;<span class="type">Box</span>&lt;<span class="keyword">dyn</span> Department&gt;&gt; &#123;</span><br><span class="line">        &amp;<span class="keyword">mut</span> <span class="keyword">self</span>.next</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="department-doctor-rs"><a href="#department-doctor-rs" class="headerlink" title="department&#x2F;doctor.rs"></a><strong>department&#x2F;doctor.rs</strong></h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> super::&#123;into_next, Department, Patient&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Doctor</span> &#123;</span><br><span class="line">    next: <span class="type">Option</span>&lt;<span class="type">Box</span>&lt;<span class="keyword">dyn</span> Department&gt;&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Doctor</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">new</span>(next: <span class="keyword">impl</span> <span class="title class_">Department</span> + <span class="symbol">&#x27;static</span>) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123;</span><br><span class="line">            next: <span class="title function_ invoke__">into_next</span>(next),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Department</span> <span class="keyword">for</span> <span class="title class_">Doctor</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">handle</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, patient: &amp;<span class="keyword">mut</span> Patient) &#123;</span><br><span class="line">        <span class="keyword">if</span> patient.doctor_check_up_done &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;A doctor checkup is already done&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;Doctor checking a patient &#123;&#125;&quot;</span>, patient.name);</span><br><span class="line">            patient.doctor_check_up_done = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">next</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;<span class="keyword">mut</span> <span class="type">Option</span>&lt;<span class="type">Box</span>&lt;<span class="keyword">dyn</span> Department&gt;&gt; &#123;</span><br><span class="line">        &amp;<span class="keyword">mut</span> <span class="keyword">self</span>.next</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="department-medical-rs"><a href="#department-medical-rs" class="headerlink" title="department&#x2F;medical.rs"></a><strong>department&#x2F;medical.rs</strong></h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> super::&#123;into_next, Department, Patient&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Medical</span> &#123;</span><br><span class="line">    next: <span class="type">Option</span>&lt;<span class="type">Box</span>&lt;<span class="keyword">dyn</span> Department&gt;&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Medical</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">new</span>(next: <span class="keyword">impl</span> <span class="title class_">Department</span> + <span class="symbol">&#x27;static</span>) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123;</span><br><span class="line">            next: <span class="title function_ invoke__">into_next</span>(next),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Department</span> <span class="keyword">for</span> <span class="title class_">Medical</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">handle</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, patient: &amp;<span class="keyword">mut</span> Patient) &#123;</span><br><span class="line">        <span class="keyword">if</span> patient.medicine_done &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;Medicine is already given to a patient&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;Medical giving medicine to a patient &#123;&#125;&quot;</span>, patient.name);</span><br><span class="line">            patient.medicine_done = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">next</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;<span class="keyword">mut</span> <span class="type">Option</span>&lt;<span class="type">Box</span>&lt;<span class="keyword">dyn</span> Department&gt;&gt; &#123;</span><br><span class="line">        &amp;<span class="keyword">mut</span> <span class="keyword">self</span>.next</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="department-reception-rs"><a href="#department-reception-rs" class="headerlink" title="department&#x2F;reception.rs"></a><strong>department&#x2F;reception.rs</strong></h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> super::&#123;into_next, Department, Patient&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Default)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Reception</span> &#123;</span><br><span class="line">    next: <span class="type">Option</span>&lt;<span class="type">Box</span>&lt;<span class="keyword">dyn</span> Department&gt;&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Reception</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">new</span>(next: <span class="keyword">impl</span> <span class="title class_">Department</span> + <span class="symbol">&#x27;static</span>) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123;</span><br><span class="line">            next: <span class="title function_ invoke__">into_next</span>(next),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Department</span> <span class="keyword">for</span> <span class="title class_">Reception</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">handle</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, patient: &amp;<span class="keyword">mut</span> Patient) &#123;</span><br><span class="line">        <span class="keyword">if</span> patient.registration_done &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;Patient registration is already done&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;Reception registering a patient &#123;&#125;&quot;</span>, patient.name);</span><br><span class="line">            patient.registration_done = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">next</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;<span class="keyword">mut</span> <span class="type">Option</span>&lt;<span class="type">Box</span>&lt;<span class="keyword">dyn</span> Department&gt;&gt; &#123;</span><br><span class="line">        &amp;<span class="keyword">mut</span> <span class="keyword">self</span>.next</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="main-rs-Client"><a href="#main-rs-Client" class="headerlink" title="main.rs: Client"></a><strong>main.rs:</strong> Client</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> department;</span><br><span class="line"><span class="keyword">mod</span> patient;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> department::&#123;Cashier, Department, Doctor, Medical, Reception&#125;;</span><br><span class="line"><span class="keyword">use</span> patient::Patient;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">cashier</span> = Cashier::<span class="title function_ invoke__">default</span>();</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">medical</span> = Medical::<span class="title function_ invoke__">new</span>(cashier);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">doctor</span> = Doctor::<span class="title function_ invoke__">new</span>(medical);</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">reception</span> = Reception::<span class="title function_ invoke__">new</span>(doctor);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">patient</span> = Patient &#123;</span><br><span class="line">        name: <span class="string">&quot;John&quot;</span>.<span class="title function_ invoke__">into</span>(),</span><br><span class="line">        ..Patient::<span class="title function_ invoke__">default</span>()</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Reception handles a patient passing him to the next link in the chain.</span></span><br><span class="line">    <span class="comment">// Reception -&gt; Doctor -&gt; Medical -&gt; Cashier.</span></span><br><span class="line">    reception.<span class="title function_ invoke__">execute</span>(&amp;<span class="keyword">mut</span> patient);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;\nThe patient has been already handled:\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    reception.<span class="title function_ invoke__">execute</span>(&amp;<span class="keyword">mut</span> patient);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Reception registering a patient John</span><br><span class="line">Doctor checking a patient John</span><br><span class="line">Medical giving medicine to a patient John</span><br><span class="line">Cashier getting money from a patient John</span><br><span class="line"></span><br><span class="line">The patient has been already handled:</span><br><span class="line"></span><br><span class="line">Patient registration is already done</span><br><span class="line">A doctor checkup is already done</span><br><span class="line">Medicine is already given to a patient</span><br><span class="line">Payment done</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>宇宙山河浪漫，赞赏动力无限</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Ice WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Ice Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.png">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Design-Pattern/" rel="tag"># Design Pattern</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/02/01/design-pattern/structural-patterns/" rel="prev" title="Structural Design Patterns 结构设计模式">
+      <i class="fa fa-chevron-left"></i> Structural Design Patterns 结构设计模式
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%84%8F%E5%9B%BE"><span class="nav-number">1.</span> <span class="nav-text">意图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%B6%E6%B6%B2"><span class="nav-number">3.</span> <span class="nav-text">溶液</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84"><span class="nav-number">4.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E6%80%A7"><span class="nav-number">6.</span> <span class="nav-text">适用性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0"><span class="nav-number">7.</span> <span class="nav-text">如何实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E5%BC%8A"><span class="nav-number">8.</span> <span class="nav-text">利弊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E%E5%85%B6%E4%BB%96%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">9.</span> <span class="nav-text">与其他模式的关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python%E4%B8%AD%E7%9A%84%E8%B4%A3%E4%BB%BB%E9%93%BE"><span class="nav-number"></span> <span class="nav-text">Python中的责任链</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">概念示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#main-py%EF%BC%9A%E6%A6%82%E5%BF%B5%E6%80%A7%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.0.1.</span> <span class="nav-text">main.py：概念性示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output-txt%EF%BC%9A%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">1.0.2.</span> <span class="nav-text">Output.txt：执行结果</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Rust%E4%B8%AD%E7%9A%84%E8%B4%A3%E4%BB%BB%E9%93%BE"><span class="nav-number"></span> <span class="nav-text">Rust中的责任链</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E7%A4%BA%E4%BE%8B-1"><span class="nav-number">1.</span> <span class="nav-text">概念示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#patient-rs-Request"><span class="nav-number">1.0.1.</span> <span class="nav-text">patient.rs: Request</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#department-rs-Handlers"><span class="nav-number">1.0.2.</span> <span class="nav-text">department.rs: Handlers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#department-cashier-rs"><span class="nav-number">1.0.3.</span> <span class="nav-text">department&#x2F;cashier.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#department-doctor-rs"><span class="nav-number">1.0.4.</span> <span class="nav-text">department&#x2F;doctor.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#department-medical-rs"><span class="nav-number">1.0.5.</span> <span class="nav-text">department&#x2F;medical.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#department-reception-rs"><span class="nav-number">1.0.6.</span> <span class="nav-text">department&#x2F;reception.rs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#main-rs-Client"><span class="nav-number">1.0.7.</span> <span class="nav-text">main.rs: Client</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%87%BA"><span class="nav-number">1.1.</span> <span class="nav-text">输出</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ice</p>
+  <div class="site-description" itemprop="description">安静地坐着学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/TonyMistark" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;TonyMistark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/Micestark" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;Micestark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tony_mistark@163.com" title="E-Mail → mailto:tony_mistark@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Tony_Mistark" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Tony_Mistark" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ice</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">126k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">7:38</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '298b6503f44953bd4193',
+      clientSecret: '6756a6cfc10d74976c79256c96ae1c441f3116ac',
+      repo        : 'tonymistark.github.io',
+      owner       : 'TonyMistark',
+      admin       : ['TonyMistark'],
+      id          : '718599210f0f6d6d0282ea3d7305ad6d',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

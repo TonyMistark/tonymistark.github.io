@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2024-02-01T14:55:53.713Z</updated>
+  <updated>2024-02-03T13:14:43.706Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Chain of Responsibility 责任链</title>
+    <link href="https://tonymistark.github.io/2024/02/03/design-pattern/chain-of-responsibility/"/>
+    <id>https://tonymistark.github.io/2024/02/03/design-pattern/chain-of-responsibility/</id>
+    <published>2024-02-03T05:49:38.000Z</published>
+    <updated>2024-02-03T13:14:43.706Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;意图&quot;&gt;&lt;a href=&quot;#意图&quot; class=&quot;headerlink&quot; title=&quot;意图&quot;&gt;&lt;/a&gt;意图&lt;/h2&gt;&lt;p&gt;Chain of</summary>
+        
+      
+    
+    
+    
+    <category term="design-pattern" scheme="https://tonymistark.github.io/categories/design-pattern/"/>
+    
+    
+    <category term="Design Pattern" scheme="https://tonymistark.github.io/tags/Design-Pattern/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Structural Design Patterns 结构设计模式</title>
     <link href="https://tonymistark.github.io/2024/02/01/design-pattern/structural-patterns/"/>
     <id>https://tonymistark.github.io/2024/02/01/design-pattern/structural-patterns/</id>
     <published>2024-02-01T14:27:04.000Z</published>
-    <updated>2024-02-01T14:55:53.713Z</updated>
+    <updated>2024-02-01T14:56:33.740Z</updated>
     
     
       
@@ -34,6 +59,8 @@
       
     
     
+    
+    <category term="design-pattern" scheme="https://tonymistark.github.io/categories/design-pattern/"/>
     
     
   </entry>
@@ -455,31 +482,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;Builder-建造者&quot;&gt;&lt;a href=&quot;#Builder-建造者&quot; class=&quot;headerlink&quot; title=&quot;Builder 建造者&quot;&gt;&lt;/a&gt;Builder 建造者&lt;/h1&gt;&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="design-pattern" scheme="https://tonymistark.github.io/categories/design-pattern/"/>
-    
-    
-    <category term="Design Pattern" scheme="https://tonymistark.github.io/tags/Design-Pattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Abstract Factory</title>
-    <link href="https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/"/>
-    <id>https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/</id>
-    <published>2023-11-20T12:16:29.000Z</published>
-    <updated>2023-11-22T15:21:21.583Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Abstract-Factory-抽象工厂&quot;&gt;&lt;a href=&quot;#Abstract-Factory-抽象工厂&quot; class=&quot;headerlink&quot; title=&quot;Abstract Factory 抽象工厂&quot;&gt;&lt;/a&gt;Abstract Factory</summary>
         
       
     
