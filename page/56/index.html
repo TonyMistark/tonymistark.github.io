@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/20/hexo_categories_tag/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/25/%E4%BA%BA%E7%94%9F%E5%8D%97%E5%8C%97%E5%A4%9A%E6%AD%A7%E8%B7%AF-%E5%90%9B%E5%90%91%E6%BD%87%E6%B9%98%E6%88%91%E5%90%91%E7%A7%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/08/20/hexo_categories_tag/" class="post-title-link" itemprop="url">Hexo 添加分类和标签</a>
+            <a href="/2023/08/25/%E4%BA%BA%E7%94%9F%E5%8D%97%E5%8C%97%E5%A4%9A%E6%AD%A7%E8%B7%AF-%E5%90%9B%E5%90%91%E6%BD%87%E6%B9%98%E6%88%91%E5%90%91%E7%A7%A6/" class="post-title-link" itemprop="url">人生南北多歧路,君向潇湘我向秦</a>
         </h2>
 
         <div class="post-meta">
@@ -207,14 +207,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-08-20 16:02:39" itemprop="dateCreated datePublished" datetime="2023-08-20T16:02:39+08:00">2023-08-20</time>
+              <time title="Created: 2023-08-25 08:53:24" itemprop="dateCreated datePublished" datetime="2023-08-25T08:53:24+08:00">2023-08-25</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-22 10:03:39" itemprop="dateModified" datetime="2023-08-22T10:03:39+08:00">2023-08-22</time>
+                <time title="Modified: 2023-08-31 10:30:41" itemprop="dateModified" datetime="2023-08-31T10:30:41+08:00">2023-08-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -222,7 +222,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/notes/" itemprop="url" rel="index"><span itemprop="name">notes</span></a>
+                  <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
                 </span>
             </span>
 
@@ -232,7 +232,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>370</span>
+              <span>270</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -251,25 +251,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="创建“分类”选项"><a href="#创建“分类”选项" class="headerlink" title="创建“分类”选项"></a>创建“分类”选项</h3><p>生成“分类”页并添加tpye属性,进入博客目录。执行命令下方命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page categories</span><br></pre></td></tr></table></figure>
-<p>categories文件夹下会有index.md这个文件，打开后默认内容是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2023-08-20 15:33:52</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p>添加type: “categories”到内容中，添加后是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2023-08-20 15:33:52</span><br><span class="line">type: categories</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p>保存并关闭文件。<br>打开需要添加分类的文章，为其添加categories属性。下方的categories:Hexo表示这篇文章添加到到“Hexo”这个分类。注意：一篇文章只会添加到一个分类中，如果是多个默认放到第一个分类中。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello Rust</span><br><span class="line">date: 2017-05-26 12:12:57</span><br><span class="line">categories: Rust学习资料</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p>至此，成功给文章添加分类，点击首页的“分类”可以看到该分类下的所有文章。当然，只有添加了categories: xxx的文章才会被收录到首页的“分类”中。</p>
-<h3 id="创建“标签”选项"><a href="#创建“标签”选项" class="headerlink" title="创建“标签”选项"></a>创建“标签”选项</h3><p>生成“标签”页并添加tpye属性</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page tags</span><br></pre></td></tr></table></figure>
-<p>在tags文件夹下，找到index.md这个文件，打开后默认内容是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2023-08-20 15:40:07</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+          <h3 id="人生南北多歧路-君向潇湘我向秦"><a href="#人生南北多歧路-君向潇湘我向秦" class="headerlink" title="人生南北多歧路,君向潇湘我向秦"></a>人生南北多歧路,君向潇湘我向秦</h3><p>这两句诗道尽初遇时的情投意合，最终却南辕北辙，遗憾分开的悲伤结局，有很多人可能并不知道这是被裁缝到一起的。<br>人生南北多歧路清代吴敬梓的《儒林外史》的一首词《秦时月》</p>
+<p>《秦时月》：<br>人生南北多歧路。<br>将相神仙，也要凡人做。<br>百代兴亡朝复暮，<br>江风吹倒前朝树。<br>功名富贵无凭据。<br>费尽心情，总把流光误。<br>浊酒三杯沉醉去，<br>水流花谢知何处。</p>
+<p>而后一句“君向潇湘我向秦”出自唐代诗人郑谷的《淮上与友人别》<br>《淮上与友人别》<br>郑谷<br>扬子江头杨柳春，杨花愁杀渡江人。<br>数声风笛离亭晚，君向潇湘我向秦。</p>
+<p>扬子江边杨柳青青春意正浓，漫天飞扬的杨花使渡江之人非常的愁烦。<br>微风轻拂，笛声幽咽，离亭渐渐染上暮色，你就要南下潇湘我却奔向西秦。</p>
 
-<p>添加type: “tags”到内容中，添加后是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2023-08-20 15:40:07</span><br><span class="line">type: tag</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p>保存并关闭文件。</p>
-<p>给文章添加“tags”属性,打开需要添加标签的文章，为其添加tags属性。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello Rust</span><br><span class="line">date: 2017-05-26 12:12:57</span><br><span class="line">categories: Rust学习资料</span><br><span class="line">tag: Rust</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -287,7 +273,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/55/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><span class="page-number current">56</span><a class="page-number" href="/page/57/">57</a><span class="space">&hellip;</span><a class="page-number" href="/page/95/">95</a><a class="extend next" rel="next" href="/page/57/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/55/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><span class="page-number current">56</span><a class="page-number" href="/page/57/">57</a><span class="space">&hellip;</span><a class="page-number" href="/page/97/">97</a><a class="extend next" rel="next" href="/page/57/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -353,7 +339,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -416,12 +402,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">187k</span>
+    <span title="Symbols count total">190k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">11:20</span>
+    <span title="Reading time total">11:30</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

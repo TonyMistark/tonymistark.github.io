@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_08_02_strings/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_09_00_error_handing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/05/18/rust_docs/ch_08_02_strings/" class="post-title-link" itemprop="url">Ch 08.02:字符串并不简单</a>
+            <a href="/2023/05/18/rust_docs/ch_09_00_error_handing/" class="post-title-link" itemprop="url">Ch 09.00:错误处理</a>
         </h2>
 
         <div class="post-meta">
@@ -207,7 +207,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-05-18 10:32:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:32:00+08:00">2023-05-18</time>
+              <time title="Created: 2023-05-18 10:34:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:34:00+08:00">2023-05-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -232,7 +232,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>235</span>
+              <span>359</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -251,7 +251,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="字符串并不简单"><a href="#字符串并不简单" class="headerlink" title="字符串并不简单"></a>字符串并不简单</h4><p>总之，字符串是很复杂的。不同的语言会有不同的选择如何将这种复杂性呈现给程序员。Rust选择将String数据的正确处理作为所有Rust程序的默认行为,这意味着程序员必须在处理UTF-8数据上花更多的心思。这个权衡在其他编程语言中暴露了更多字符串的复杂性,但它可以防止你在开发生命周期的后期处理涉及非ASCII字符的错误。<br>好消息是标准库基于String和&amp;str类型提供了许多功能来正确处理这些复杂的情况。确保查看文档中有用的方法,比如在字符串中搜索的contains和用另一个字符串替换字符串的一部分replace。<br>让我们切换到略微简单一点的内容:哈希映射!</p>
+          <h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><p>在软件中错误是很常见的事实。当有时候软件运行错误的时候，Rust有很多处理这些场景的特性。在很多情况下，Rust要求你确认每一个错误发生的可能，并在代码编译前就采取相应的行为。这个必要前提会让你的程序更加健壮：确保你会提前发现错误，并处理得当，在你将代码部署到生产环境之前。</p>
+<p>Rust将错误分为两大类：<strong>可恢复的</strong>(<code>recoverable</code>)和<strong>不可恢复的</strong>(<code>unrecoverable</code>)。对于可恢复错误，比如文件未找打错误，我们很可能只是想向用户报告问题并重试操作。不可恢复错误总是系统性bugs，像尝试访问一个超过数组最尾端的位置，此时，我们就会想要程序立刻停止运行。</p>
+<p>大多数编程语言无法区分这两种错误，并且都使用同样的方式，使用如exceptions机制。Rust没有exceptions。而是有一个<code>Result&lt;T, E&gt;</code>的类型来处理可恢复错误。另外，当程序发生一个不可恢复的错误，Rust用<code>panic!</code>宏来中止运行程序。</p>
+<p>这一章，首次讨论<code>panic!宏</code>，然后讨论有关<code>Result&lt;T, E&gt;</code>返回的值。</p>
+<p>另外，我们还要探索如何决定一个错误应该是恢复或者是停止运行。</p>
 
       
     </div>
@@ -270,7 +274,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/63/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/63/">63</a><span class="page-number current">64</span><a class="page-number" href="/page/65/">65</a><span class="space">&hellip;</span><a class="page-number" href="/page/95/">95</a><a class="extend next" rel="next" href="/page/65/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/63/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/63/">63</a><span class="page-number current">64</span><a class="page-number" href="/page/65/">65</a><span class="space">&hellip;</span><a class="page-number" href="/page/97/">97</a><a class="extend next" rel="next" href="/page/65/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -336,7 +340,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -399,12 +403,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">187k</span>
+    <span title="Symbols count total">190k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">11:20</span>
+    <span title="Reading time total">11:30</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

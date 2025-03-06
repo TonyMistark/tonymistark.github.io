@@ -1,3 +1,5 @@
+https://tonymistark.github.io/2025/03/06/understanding_rust_trait/
+https://tonymistark.github.io/2024/10/31/tech_essay/%E7%94%9F%E6%B4%BB%E7%9A%84%E8%89%BA%E6%9C%AF%E5%AE%B6/
 https://tonymistark.github.io/2025/02/13/simple_lua_tutorial/
 https://tonymistark.github.io/2024/10/28/python/notes/with_in_python/
 https://tonymistark.github.io/2024/07/16/notes/overloading-and-overriding/

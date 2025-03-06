@@ -15,8 +15,31 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Thu, 13 Feb 2025 09:53:22 GMT</pubDate>
+    <pubDate>Thu, 06 Mar 2025 10:59:59 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>深入理解 Rust 中的 Trait：定义、实现与应用</title>
+      <link>https://tonymistark.github.io/2025/03/06/understanding_rust_trait/</link>
+      <guid>https://tonymistark.github.io/2025/03/06/understanding_rust_trait/</guid>
+      <pubDate>Thu, 06 Mar 2025 10:58:24 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;在 Rust 中，&lt;code&gt;trait&lt;/code&gt; 是一种定义共享行为的方式。它类似于其他编程语言中的接口（interface），允许你定义一组方法签名，这些方法可以由不同的类型实现。通过</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2025/03/06/understanding_rust_trait/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Lua 简单入门教程</title>
@@ -39,6 +62,31 @@
       
       
       <comments>https://tonymistark.github.io/2025/02/13/simple_lua_tutorial/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>被李小龙“踢”醒：《生活的艺术家》</title>
+      <link>https://tonymistark.github.io/2024/10/31/tech_essay/%E7%94%9F%E6%B4%BB%E7%9A%84%E8%89%BA%E6%9C%AF%E5%AE%B6/</link>
+      <guid>https://tonymistark.github.io/2024/10/31/tech_essay/%E7%94%9F%E6%B4%BB%E7%9A%84%E8%89%BA%E6%9C%AF%E5%AE%B6/</guid>
+      <pubDate>Thu, 31 Oct 2024 14:25:34 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;今天我要跟大家分享一本改变了我生活态度的书——《生活的艺术家》。这本书不仅仅是一本关于武术的书，更是一本关于生活的哲学书。读完这本书，我感觉自己像是被李小龙一脚“踢”醒了，从此对生活有了全新的认识。没错，就是那个用双节棍打飞对手的李小龙，但他可不仅仅是会打架那么简单哦！&lt;/</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/tech-essay/">tech_essay</category>
+      
+      
+      
+      <comments>https://tonymistark.github.io/2024/10/31/tech_essay/%E7%94%9F%E6%B4%BB%E7%9A%84%E8%89%BA%E6%9C%AF%E5%AE%B6/#disqus_thread</comments>
       
     </item>
     
@@ -465,60 +513,6 @@
       
       
       <comments>https://tonymistark.github.io/2024/02/19/design-pattern/iterator/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Command 命令</title>
-      <link>https://tonymistark.github.io/2024/02/05/design-pattern/command/</link>
-      <guid>https://tonymistark.github.io/2024/02/05/design-pattern/command/</guid>
-      <pubDate>Mon, 05 Feb 2024 13:36:28 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;意图&quot;&gt;&lt;a href=&quot;#意图&quot; class=&quot;headerlink&quot;</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
-      
-      
-      <comments>https://tonymistark.github.io/2024/02/05/design-pattern/command/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Chain of Responsibility 责任链</title>
-      <link>https://tonymistark.github.io/2024/02/03/design-pattern/chain-of-responsibility/</link>
-      <guid>https://tonymistark.github.io/2024/02/03/design-pattern/chain-of-responsibility/</guid>
-      <pubDate>Sat, 03 Feb 2024 05:49:38 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;意图&quot;&gt;&lt;a href=&quot;#意图&quot; class=&quot;headerlink&quot; title=&quot;意图&quot;&gt;&lt;/a&gt;意图&lt;/h2&gt;&lt;p&gt;Chain of</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      <category domain="https://tonymistark.github.io/tags/Design-Pattern/">Design Pattern</category>
-      
-      
-      <comments>https://tonymistark.github.io/2024/02/03/design-pattern/chain-of-responsibility/#disqus_thread</comments>
       
     </item>
     

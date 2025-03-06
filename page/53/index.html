@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/29/ubuntu20-04-ubuntu22-04-%E5%AE%89%E8%A3%85%EF%BC%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/31/Life-Advice-From-The-Creator-of-Cpp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/08/29/ubuntu20-04-ubuntu22-04-%E5%AE%89%E8%A3%85%EF%BC%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="post-title-link" itemprop="url">ubuntu20.04/ubuntu22.04 安装，环境配置遇到的问题以及解决方案</a>
+            <a href="/2023/08/31/Life-Advice-From-The-Creator-of-Cpp/" class="post-title-link" itemprop="url">(Life) Advice From The Creator of C++</a>
         </h2>
 
         <div class="post-meta">
@@ -206,17 +206,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-08-29 14:48:08 / Modified: 14:50:26" itemprop="dateCreated datePublished" datetime="2023-08-29T14:48:08+08:00">2023-08-29</time>
+              <time title="Created: 2023-08-31 10:32:17" itemprop="dateCreated datePublished" datetime="2023-08-31T10:32:17+08:00">2023-08-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-10-20 18:06:09" itemprop="dateModified" datetime="2023-10-20T18:06:09+08:00">2023-10-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a>
+                  <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
                 </span>
             </span>
 
@@ -226,14 +232,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>916</span>
+              <span>1k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
+              <span>4 mins.</span>
             </span>
 
         </div>
@@ -245,41 +251,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="build-a-python-env-on-ubuntu20-04"><a href="#build-a-python-env-on-ubuntu20-04" class="headerlink" title="build a python env on ubuntu20.04"></a>build a python env on ubuntu20.04</h3><h4 id="fix-virtualenvwarpper"><a href="#fix-virtualenvwarpper" class="headerlink" title="fix virtualenvwarpper"></a>fix virtualenvwarpper</h4><p>(Ubuntu20.04安装virtualenv方法以及安装过程中遇到的问题处理)[<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42296146/article/details/108291436]">https://blog.csdn.net/qq_42296146/article/details/108291436]</a></p>
-<p>问题：bash: &#x2F;usr&#x2F;local&#x2F;bin&#x2F;virtualenvwrapper.sh: No such file or directory</p>
-<p>ubuntu18及以上版本，virtualenvwrapper.sh被安装到了家目录下的.local&#x2F;bin&#x2F;中，非原来的&#x2F;usr&#x2F;local&#x2F;bin&#x2F;中</p>
-<p>&#x2F;usr&#x2F;share&#x2F;virtualenvwrapper&#x2F;virtualenvwrapper.sh 实际安装的位置，只要把这个地址配置到.brashrc之后就可以正常运行了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export WORKON_HOME=$HOME/.virtualenvs</span><br><span class="line">export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.10</span><br><span class="line">export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv</span><br><span class="line">source /usr/share/virtualenvwrapper/virtualenvwrapper.sh</span><br></pre></td></tr></table></figure>
-<h4 id="install-a-local-git-repo-updata"><a href="#install-a-local-git-repo-updata" class="headerlink" title="install a local git repo updata"></a>install a local git repo updata</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git@bitbucket.org:ginolegaltech/updata.git</span><br><span class="line">$ cd updata</span><br><span class="line">&amp; python3.10 setup.py install</span><br><span class="line">$ rm -rf build/</span><br><span class="line">$ rm -rf updata.egg-info/</span><br></pre></td></tr></table></figure>
-
-<h5 id="fix-ImportError-cannot-import-name-‘html5lib’-from-‘pip-vendor’-home-ice-virtualenvs-310-lib-python3-10-site-packages-pip-vendor-init-py"><a href="#fix-ImportError-cannot-import-name-‘html5lib’-from-‘pip-vendor’-home-ice-virtualenvs-310-lib-python3-10-site-packages-pip-vendor-init-py" class="headerlink" title="fix ImportError: cannot import name ‘html5lib’ from ‘pip._vendor’ (&#x2F;home&#x2F;ice&#x2F;.virtualenvs&#x2F;310&#x2F;lib&#x2F;python3.10&#x2F;site-packages&#x2F;pip&#x2F;_vendor&#x2F;init.py)"></a>fix ImportError: cannot import name ‘html5lib’ from ‘pip._vendor’ (&#x2F;home&#x2F;ice&#x2F;.virtualenvs&#x2F;310&#x2F;lib&#x2F;python3.10&#x2F;site-packages&#x2F;pip&#x2F;_vendor&#x2F;<strong>init</strong>.py)</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="bash-显示当前所在分支"><a href="#bash-显示当前所在分支" class="headerlink" title="bash 显示当前所在分支"></a>bash 显示当前所在分支</h4><p>在.bashrc文件追加如下代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function git_branch &#123;</span><br><span class="line">   branch=&quot;`git branch 2&gt;/dev/null | grep &quot;^\*&quot; | sed -e &quot;s/^\*\ //&quot;`&quot;</span><br><span class="line">   if [ &quot;$&#123;branch&#125;&quot; != &quot;&quot; ];then</span><br><span class="line">       if [ &quot;$&#123;branch&#125;&quot; = &quot;(no branch)&quot; ];then</span><br><span class="line">           branch=&quot;(`git rev-parse --short HEAD`...)&quot;</span><br><span class="line">       fi</span><br><span class="line">       echo &quot; ($branch)&quot;</span><br><span class="line">   fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export PS1=&#x27;\u@\h \[\033[01;36m\]\w\[\033[01;32m\]$(git_branch)\[\033[00m\] \$ &#x27;</span><br></pre></td></tr></table></figure>
-
-<h4 id="install-virtualbox"><a href="#install-virtualbox" class="headerlink" title="install virtualbox"></a>install virtualbox</h4><p><a target="_blank" rel="noopener" href="https://computingforgeeks.com/install-virtualbox-6-on-ubuntu-linux/">https://computingforgeeks.com/install-virtualbox-6-on-ubuntu-linux/</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># step 1</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt -y upgrade</span><br><span class="line">sudo reboot</span><br><span class="line"></span><br><span class="line"># step 2</span><br><span class="line">#Download</span><br><span class="line">curl https://www.virtualbox.org/download/oracle_vbox_2016.asc | gpg --dearmor &gt; oracle_vbox_2016.gpg</span><br><span class="line">curl https://www.virtualbox.org/download/oracle_vbox.asc | gpg --dearmor &gt; oracle_vbox.gpg</span><br><span class="line">#Install on system</span><br><span class="line">sudo install -o root -g root -m 644 oracle_vbox_2016.gpg /etc/apt/trusted.gpg.d/</span><br><span class="line">sudo install -o root -g root -m 644 oracle_vbox.gpg /etc/apt/trusted.gpg.d/</span><br><span class="line"></span><br><span class="line"># step 3</span><br><span class="line"># ubuntu 22.04 </span><br><span class="line">echo &quot;deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian focal contrib&quot; | sudo tee /etc/apt/sources.list.d/virtualbox.list</span><br><span class="line"></span><br><span class="line"># Ubuntu 20.04/18.04:</span><br><span class="line">echo &quot;deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -sc) contrib&quot; | sudo tee /etc/apt/sources.list.d/virtualbox.list</span><br><span class="line"></span><br><span class="line"># step 4</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install linux-headers-$(uname -r) dkms</span><br><span class="line">sudo apt install virtualbox-6.1</span><br></pre></td></tr></table></figure>
-
-<p>virtualbox start error:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /sbin/vboxconfig </span><br><span class="line">[sudo] password for rcrozier:           </span><br><span class="line">vboxdrv.sh: Stopping VirtualBox services.</span><br><span class="line">vboxdrv.sh: Starting VirtualBox services.</span><br><span class="line">vboxdrv.sh: You must sign these kernel modules before using VirtualBox:</span><br><span class="line">  vboxdrv vboxnetflt vboxnetadp</span><br><span class="line">See the documenatation for your Linux distribution..</span><br><span class="line">vboxdrv.sh: Building VirtualBox kernel modules.</span><br><span class="line">debconf: DbDriver &quot;config&quot;: /var/cache/debconf/config.dat is locked by another process: Resource temporarily unavailable</span><br><span class="line">vboxdrv.sh: Failed to enroll secure boot key..</span><br><span class="line">vboxdrv.sh: failed: modprobe vboxdrv failed. Please use &#x27;dmesg&#x27; to find out why.</span><br><span class="line"></span><br><span class="line">There were problems setting up VirtualBox.  To re-start the set-up process, run</span><br><span class="line">  /sbin/vboxconfig</span><br><span class="line">as root.  If your system is using EFI Secure Boot you may need to sign the</span><br><span class="line">kernel modules (vboxdrv, vboxnetflt, vboxnetadp, vboxpci) before you can load</span><br><span class="line">them. Please see your Linux system&#x27;s documentation for more information.</span><br></pre></td></tr></table></figure>
-
-<p>搜索了很多解决方案都无法处理，最后还是仔细看了报错信息，这里其实有一个很重要的提示信息<code>Secure Boot you may need to sign the kernel modules</code></p>
-<p>最后搜到<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/900118/vboxdrv-sh-failed-modprobe-vboxdrv-failed-please-use-dmesg-to-find-out-why">https://askubuntu.com/questions/900118/vboxdrv-sh-failed-modprobe-vboxdrv-failed-please-use-dmesg-to-find-out-why</a> 这个答案最后的以解决答案：</p>
-<p>The above answer probably works fine, but if you want an easier time for it:</p>
-<p>I was able to solve it by</p>
-<p>booting into the BIOS and going &gt; advanced (f7) &gt; boot &gt; scroll down to “secure boot” &gt; change “Windows EUFI mode” to “other OS”</p>
-<p>My virtualbox works perfectly now.</p>
-<p>最后对于为为的解决方案就是进入BIOS系统之后，和这个答案每个硬件平台的BIOS版本会有所不同(我的硬件三HUAWEI MateBook X Pro 2022)找到”secure boot”关键词对应的默认直是enable，为改为disable，第一次修改没有其作用，是应推出的时候没有保存，第二次再修改选择save and exit，再进入ubuntu启动virtualbox就可以正常运作了。</p>
-<p>最近在ubuntu22.04 安装virtualbox的时候遇到另外还有一个报错：</p>
-<h3 id="vboxdrv-sh-failed-Cannot-change-group-vboxusers-for-device-dev-vboxdrv"><a href="#vboxdrv-sh-failed-Cannot-change-group-vboxusers-for-device-dev-vboxdrv" class="headerlink" title="vboxdrv.sh: failed: Cannot change group vboxusers for device &#x2F;dev&#x2F;vboxdrv."></a>vboxdrv.sh: failed: Cannot change group vboxusers for device &#x2F;dev&#x2F;vboxdrv.</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">执行：/sbin/vboxconfig</span><br><span class="line">输出如下报错</span><br><span class="line">root@ice:~# /sbin/vboxconfig</span><br><span class="line">vboxdrv.sh: Stopping VirtualBox services.</span><br><span class="line">vboxdrv.sh: Starting VirtualBox services.</span><br><span class="line">vboxdrv.sh: Building VirtualBox kernel modules.</span><br><span class="line">vboxdrv.sh: failed: Cannot change group vboxusers for device /dev/vboxdrv.</span><br><span class="line"></span><br><span class="line">There were problems setting up VirtualBox.  To re-start the set-up process, run</span><br><span class="line">  /sbin/vboxconfig</span><br><span class="line">as root.  If your system is using EFI Secure Boot you may need to sign the</span><br><span class="line">kernel modules (vboxdrv, vboxnetflt, vboxnetadp, vboxpci) before you can load</span><br><span class="line">them. Please see your Linux system&#x27;s documentation for more information.</span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建vboxusers group<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo groupadd vboxusers</span><br></pre></td></tr></table></figure></li>
-<li>把当前user 加入到这个group， 你替换这里的ice<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo usermod -a -G vboxusers ice</span><br></pre></td></tr></table></figure></li>
-<li>检查是否添加成功<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ grep vboxusers /etc/group</span><br><span class="line"># 输出为:</span><br><span class="line"># vboxusers:x:1003:ice</span><br></pre></td></tr></table></figure></li>
-<li>然后运行<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /sbin/vboxconfig</span><br></pre></td></tr></table></figure></li>
-</ul>
+          <h3 id="C-之父-Bjarne-Stroustrup-分享人生建议"><a href="#C-之父-Bjarne-Stroustrup-分享人生建议" class="headerlink" title="C++ 之父 Bjarne Stroustrup 分享人生建议"></a>C++ 之父 Bjarne Stroustrup 分享人生建议</h3><p>72岁的Bjarne Stroustrup发明了c++(于1985年首次发布)。38年后，他接受了Honeypot.io公司的一次简短<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=-QxI-RP6-HM">采访</a>。提供了自己的人生建议:<br>不要过度专业化。不要太确定你知道未来的情况。要灵活变通,记住职业和工作是长期的事情。太多年轻人认为他们可以优化某些东西,然后发现自己在某些可能不是正确的东西上花费了两三年的时间进行专业化。在这个过程中,他们会感到烧毁,因为他们没有花足够的时间建立友谊和生活中的其他事情。<br>我遇到很多“初级极客”——我不知道该怎么称呼他们——他们认为计算机编程、AI、图形之类的专业知识才是唯一重要的东西。其实不是这样的……如果他们什么也不做,只是编写最好的代码,他们认为可以改变世界。但你必须能够倾听。你必须能够与潜在的用户沟通,并从他们那里学习。你也必须能够向他们传达自己的想法。<br>所以你不能只写代码。你必须做一些关于文化和表达想法的事情。我的意思是,我从来不后悔学习历史和数学所花的时间。数学增强你的思维,历史让你对自己的局限性和世界上正在发生的事情有所了解。所以不要太自信。花时间过平衡的生活。<br>要做好抓住机会的准备。我的意思是,广泛的教育,广泛的技能组合——通过教育建立起来的——意味着当机会出现时你可以抓住它。有时候你可以认识到它。我们有很多机会。但我们中很多人要么无法抓住,要么没有注意到。我相对广泛的教育经历——我学过标准的计算机科学,编译器,多种语言……我当时大概知道二十几种。我还学过机器架构,操作系统。这套技能组合发挥了作用。</p>
+<h3 id="Life-Advice-From-The-Creator-of-C"><a href="#Life-Advice-From-The-Creator-of-C" class="headerlink" title="(Life) Advice From The Creator of C++"></a>(Life) Advice From The Creator of C++</h3><p>72-year-old Bjarne Stroustrup invented C++ (first released in 1985). 38 years later, he gave a <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=-QxI-RP6-HM">short interview</a> for Honeypot.io (which calls itself “Europe’s largest tech-focused job platform”) offering his own advice for life:</p>
+<p>Don’t overspecialize. Don’t be too sure that you know the future. Be flexible, and remember that careers and jobs are a long-term thing. Too many young people think they can optimize something, and then they find they’ve spent a couple of years or more specializing in something that may not have been the right thing. And in the process they burn out, because they haven’t spent enough time building up friendships and having a life outside computing.</p>
+<p>I meet a lot of sort of — I don’t know what you call them, “junior geeks”? — that just think that the only thing that matters is the speciality of computing — programming or AI or graphics or something like that. And — well, it isn’t… And if they do nothing else, well — if you don’t communicate your ideas, you can just as well do Sudoku… You have to communicate. And a lot of sort of caricature nerds forget that. They think that if they can just write the best code, they’ll change the world. But you have to be able to listen. You have to be able to communicate with your would-be users and learn from them. And you have to be able to communicate your ideas to them.</p>
+<p>So you can’t just do code. You have to do something about culture and how to express ideas. I mean, I never regretted the time I spent on history and on math. Math sharpens your mind, history gives you some idea of your limitations and what’s going on in the world. And so don’t be too sure. Take time to have a balanced life.</p>
+<p>And be ready for the opportunity. I mean, a broad-based education, a broad-based skill set — which is what you build up when you educate, you’re basically building a portfolio of skills — means that you can take advantage of an opportunity when it comes along. You can recognize it sometimes. We have lots of opportunities. But a lot of them, we either can’t take advantage of, or we don’t notice. It was my fairly broad education — I’ve done standard computer science, I’ve done compilers, I’ve done multiple languages… I think I knew two dozen at the time. And I have done machine architecture, I’ve done operating systems. And that skill set turned out to be useful.</p>
+<p>At the beginning of the video, Stroustrup jokes that it’s hard to give advice — and that it’s at least as difficult as it is to take advice.</p>
 
       
     </div>
@@ -298,7 +276,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/52/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/52/">52</a><span class="page-number current">53</span><a class="page-number" href="/page/54/">54</a><span class="space">&hellip;</span><a class="page-number" href="/page/95/">95</a><a class="extend next" rel="next" href="/page/54/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/52/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/52/">52</a><span class="page-number current">53</span><a class="page-number" href="/page/54/">54</a><span class="space">&hellip;</span><a class="page-number" href="/page/97/">97</a><a class="extend next" rel="next" href="/page/54/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -364,7 +342,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -427,12 +405,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">187k</span>
+    <span title="Symbols count total">190k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">11:20</span>
+    <span title="Reading time total">11:30</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
