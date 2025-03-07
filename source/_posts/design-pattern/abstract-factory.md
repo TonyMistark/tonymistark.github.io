@@ -1,4 +1,4 @@
---
+---
 title: Abstract Factory
 categories: design-pattern
 tags: Design Pattern

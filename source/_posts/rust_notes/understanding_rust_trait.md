@@ -1,8 +1,11 @@
 ---
 title: 深入理解 Rust 中的 Trait：定义、实现与应用
+tags: rust
+categories:
+  - rust_notes
 date: 2025-03-06 18:58:24
-tags:
 ---
+
 在 Rust 中，`trait` 是一种定义共享行为的方式。它类似于其他编程语言中的接口（interface），允许你定义一组方法签名，这些方法可以由不同的类型实现。通过 `trait`，你可以为不同的类型提供相同的行为，从而实现代码的复用和抽象。
 
 ### 1. 定义 `trait`

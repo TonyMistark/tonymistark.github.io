@@ -1,8 +1,9 @@
 ---
-layout: note-rust
 title: Rust所有权系统：深入剖析
+tags: rust
+categories:
+  - rust_notes
 date: 2024-10-28 16:19:33
-tags:
 ---
 
 ## Rust所有权系统：深入剖析
