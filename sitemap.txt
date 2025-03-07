@@ -1,4 +1,7 @@
-https://tonymistark.github.io/2025/03/06/understanding_rust_trait/
+https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/
+https://tonymistark.github.io/2024/10/28/rust_notes/Rust-ownership-system-details/
+https://tonymistark.github.io/2025/03/07/rust_notes/Understanding-Rust-s-Future-Keyword-A-Comprehensive-Guide/
+https://tonymistark.github.io/2025/03/06/rust_notes/understanding_rust_trait/
 https://tonymistark.github.io/2024/10/31/tech_essay/%E7%94%9F%E6%B4%BB%E7%9A%84%E8%89%BA%E6%9C%AF%E5%AE%B6/
 https://tonymistark.github.io/2025/02/13/simple_lua_tutorial/
 https://tonymistark.github.io/2024/10/28/python/notes/with_in_python/
@@ -6,7 +9,6 @@ https://tonymistark.github.io/2024/07/16/notes/overloading-and-overriding/
 https://tonymistark.github.io/2024/04/27/tech_essay/ConwaysLaw/
 https://tonymistark.github.io/2024/09/22/tech_essay/O0/
 https://tonymistark.github.io/2024/04/27/design-pattern/ConwaysLaw/
-https://tonymistark.github.io/2024/10/28/Rust-ownership-system-details/
 https://tonymistark.github.io/2024/04/21/design-pattern/state/
 https://tonymistark.github.io/2024/04/29/algorithm/algorithm_count_right-angled-triangles/
 https://tonymistark.github.io/2023/12/06/design-pattern/bridge/
@@ -43,7 +45,6 @@ https://tonymistark.github.io/2023/11/22/design-pattern/prototype/
 https://tonymistark.github.io/2023/11/23/design-pattern/singleton/
 https://tonymistark.github.io/2023/11/09/design-pattern/what-is-a-design-pattern/
 https://tonymistark.github.io/2023/11/15/design-pattern/why-should-i-learn-patterns/
-https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/
 https://tonymistark.github.io/2023/11/21/design-pattern/builder/
 https://tonymistark.github.io/2023/11/02/Ollama-%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%90%AF%E5%8A%A8%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/
 https://tonymistark.github.io/2023/11/01/I-am-Grinding-King/
@@ -106,18 +107,20 @@ https://tonymistark.github.io/tags/tools/
 https://tonymistark.github.io/tags/%E5%8E%86%E5%8F%B2%E4%BA%8B%E4%BB%B6/
 https://tonymistark.github.io/tags/ubuntu/
 https://tonymistark.github.io/tags/tags/
-https://tonymistark.github.io/tags/Design-Pattern/
-https://tonymistark.github.io/tags/sam-altman/
-https://tonymistark.github.io/tags/Rust/
 https://tonymistark.github.io/tags/algorithm/
+https://tonymistark.github.io/tags/Design-Pattern/
+https://tonymistark.github.io/tags/rust/
+https://tonymistark.github.io/tags/Rust/
+https://tonymistark.github.io/tags/sam-altman/
 https://tonymistark.github.io/categories/%E9%9A%8F%E7%AC%94/
 https://tonymistark.github.io/categories/writing/
 https://tonymistark.github.io/categories/notes/
 https://tonymistark.github.io/categories/ubuntu/
-https://tonymistark.github.io/categories/design-pattern/
-https://tonymistark.github.io/categories/sam-altman/
-https://tonymistark.github.io/categories/Rust/
 https://tonymistark.github.io/categories/algorithm/
+https://tonymistark.github.io/categories/design-pattern/
+https://tonymistark.github.io/categories/rust-notes/
+https://tonymistark.github.io/categories/Rust/
+https://tonymistark.github.io/categories/sam-altman/
 https://tonymistark.github.io/categories/tech-essay/
 https://tonymistark.github.io/categories/python/
 

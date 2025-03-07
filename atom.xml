@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-03-06T10:59:59.583Z</updated>
+  <updated>2025-03-07T03:46:48.114Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Understanding Rust Future</title>
+    <link href="https://tonymistark.github.io/2025/03/07/rust_notes/Understanding-Rust-s-Future-Keyword-A-Comprehensive-Guide/"/>
+    <id>https://tonymistark.github.io/2025/03/07/rust_notes/Understanding-Rust-s-Future-Keyword-A-Comprehensive-Guide/</id>
+    <published>2025-03-07T03:34:39.000Z</published>
+    <updated>2025-03-07T03:46:48.114Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在 Rust 中，&lt;code&gt;Future&lt;/code&gt; 是一个核心概念，用于表示异步计算。&lt;code&gt;Future&lt;/code&gt; 代表一个尚未完成的计算，它会在未来的某个时刻产生一个结果。Rust 的异步编程模型主要围绕 &lt;code&gt;Future&lt;/code&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="rust_notes" scheme="https://tonymistark.github.io/categories/rust-notes/"/>
+    
+    
+    <category term="rust" scheme="https://tonymistark.github.io/tags/rust/"/>
+    
+  </entry>
+  
+  <entry>
     <title>深入理解 Rust 中的 Trait：定义、实现与应用</title>
-    <link href="https://tonymistark.github.io/2025/03/06/understanding_rust_trait/"/>
-    <id>https://tonymistark.github.io/2025/03/06/understanding_rust_trait/</id>
+    <link href="https://tonymistark.github.io/2025/03/06/rust_notes/understanding_rust_trait/"/>
+    <id>https://tonymistark.github.io/2025/03/06/rust_notes/understanding_rust_trait/</id>
     <published>2025-03-06T10:58:24.000Z</published>
-    <updated>2025-03-06T10:59:59.583Z</updated>
+    <updated>2025-03-07T03:46:48.114Z</updated>
     
     
       
@@ -34,6 +59,10 @@
     
     
     
+    <category term="rust_notes" scheme="https://tonymistark.github.io/categories/rust-notes/"/>
+    
+    
+    <category term="rust" scheme="https://tonymistark.github.io/tags/rust/"/>
     
   </entry>
   
@@ -107,10 +136,10 @@
   
   <entry>
     <title>Rust所有权系统：深入剖析</title>
-    <link href="https://tonymistark.github.io/2024/10/28/Rust-ownership-system-details/"/>
-    <id>https://tonymistark.github.io/2024/10/28/Rust-ownership-system-details/</id>
+    <link href="https://tonymistark.github.io/2024/10/28/rust_notes/Rust-ownership-system-details/"/>
+    <id>https://tonymistark.github.io/2024/10/28/rust_notes/Rust-ownership-system-details/</id>
     <published>2024-10-28T08:19:33.000Z</published>
-    <updated>2024-10-28T09:27:20.738Z</updated>
+    <updated>2025-03-07T03:46:48.114Z</updated>
     
     
       
@@ -123,6 +152,10 @@
     
     
     
+    <category term="rust_notes" scheme="https://tonymistark.github.io/categories/rust-notes/"/>
+    
+    
+    <category term="rust" scheme="https://tonymistark.github.io/tags/rust/"/>
     
   </entry>
   
@@ -363,7 +396,7 @@
     <link href="https://tonymistark.github.io/2024/04/21/design-pattern/state/"/>
     <id>https://tonymistark.github.io/2024/04/21/design-pattern/state/</id>
     <published>2024-04-21T04:54:21.000Z</published>
-    <updated>2024-10-25T07:56:47.469Z</updated>
+    <updated>2024-10-25T08:29:17.078Z</updated>
     
     
       
@@ -433,29 +466,6 @@
     <link href="https://tonymistark.github.io/2024/04/20/design-pattern/mediator/"/>
     <id>https://tonymistark.github.io/2024/04/20/design-pattern/mediator/</id>
     <published>2024-04-20T04:33:40.000Z</published>
-    <updated>2024-04-29T03:33:27.917Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a href=&quot;#Intent-意图&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="design-pattern" scheme="https://tonymistark.github.io/categories/design-pattern/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>iterator 迭代器模式</title>
-    <link href="https://tonymistark.github.io/2024/02/19/design-pattern/iterator/"/>
-    <id>https://tonymistark.github.io/2024/02/19/design-pattern/iterator/</id>
-    <published>2024-02-19T14:43:15.000Z</published>
     <updated>2024-04-29T03:33:27.917Z</updated>
     
     

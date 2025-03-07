@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/29/rust_docs/ch_05_02_example_structs/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/29/rust_docs/ch_05_03_method_syntax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/12/29/rust_docs/ch_05_02_example_structs/" class="post-title-link" itemprop="url">Ch 05.02:An Example Program Using Structs</a>
+            <a href="/2022/12/29/rust_docs/ch_05_03_method_syntax/" class="post-title-link" itemprop="url">Ch 05.03:总结(Summary)</a>
         </h2>
 
         <div class="post-meta">
@@ -207,7 +207,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2022-12-29 15:21:00" itemprop="dateCreated datePublished" datetime="2022-12-29T15:21:00+08:00">2022-12-29</time>
+              <time title="Created: 2022-12-29 15:22:00" itemprop="dateCreated datePublished" datetime="2022-12-29T15:22:00+08:00">2022-12-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -232,14 +232,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>573</span>
+              <span>147</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
+              <span>1 mins.</span>
             </span>
 
         </div>
@@ -251,16 +251,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="An-Example-Program-Using-Structs"><a href="#An-Example-Program-Using-Structs" class="headerlink" title="An Example Program Using Structs"></a>An Example Program Using Structs</h4><p>为了理解何时需要使用结构体，让我们编写一个计算矩形面积的程序。我们将通过使用单个变量开始，然后重构这个程序，直到用结构体替代它。</p>
-<p>让我们用cargo创建一个新的项目叫做<code>rectangles</code>的二进制程序，它获取以像素为单位的矩形的宽度和高度，并计算出矩形的面积。Listing 5-8 展示一个简短的程序：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Rectangle</span> &#123;</span><br><span class="line">    width: <span class="type">u32</span>,</span><br><span class="line">    height: <span class="type">u32</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">scale</span> = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">rect1</span> = Rectangle &#123;</span><br><span class="line">        width: dbg!(<span class="number">30</span> * scale),</span><br><span class="line">        height: <span class="number">50</span>,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    dbg!(&amp;rect1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们可以把<code>dbg!</code>放在表达式放在<code>30 * scale</code>周围，以为你<code>dbg!</code>返回表达式的值的所有权，所以width字段将获得相同的值，就像我们在这里没有<code>dbg!</code>调用一样。我们不希望dbg!拥有rect1的所有权，所以我们在下一次调用dbg!时传递一个引用。下面是这个例子的输出结果：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ cargo run</span><br><span class="line">   Compiling rectangles v0.<span class="number">1.0</span> (file:<span class="comment">///projects/rectangles)</span></span><br><span class="line">    Finished dev [unoptimized + debuginfo] <span class="title function_ invoke__">target</span>(s) <span class="keyword">in</span> <span class="number">0.61</span>s</span><br><span class="line">     Running `target/debug/rectangles`</span><br><span class="line">[src/main.rs:<span class="number">10</span>] <span class="number">30</span> * scale = <span class="number">60</span></span><br><span class="line">[src/main.rs:<span class="number">14</span>] &amp;rect1 = Rectangle &#123;</span><br><span class="line">    width: <span class="number">60</span>,</span><br><span class="line">    height: <span class="number">50</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们可以看到第一条输出来自src&#x2F;main.rs第10行，我们正在调用表达式<code>30 * scale</code>，其结果值是60(为整数实现的Debug格式化是只打印它们的值)。在src&#x2F;main.rs第14行的dbg!调用输出&amp;rect1的值，即<code>Rectangle</code>类型。<code>dbg!</code>宏确实很有用。</p>
-<p>除了<code>Debug</code>trait，Rust还为我们提供了很多通过derive属性来使用的trait，它们可以为我们的自定义类型增加实用的行为。这些trait和行为被列举在附录C(Appendix C)。第十章会介绍如何通过自定义行为来实现这些trait，同时还有如何创建你自己的trait。除了derive之外，还有很多属性；更多信息见”Rust Reference”的Attribute部分。</p>
-<p>我们的<code>area</code>函数是非常特殊的，它只计算长方形的面积。如果这个行为与<code>Rectangle</code>结构体再结合得更紧密一些就更好了，因为它不能用于其他类型。现在让我们看看如何继续重构这些代码，来将<code>area</code>函数协调进<code>Rectangle</code>类型定义的<code>area</code>方法中。</p>
+          <h4 id="总结-Summary"><a href="#总结-Summary" class="headerlink" title="总结(Summary)"></a>总结(Summary)</h4><p>结构体让你创建自定义的类型在你的domain中。通过使用结构体，你可以将数据关联起来，使得它看起来更加清晰。在impl块内，你可以定义函数并关联你的类型，而且方法是一个很好的关联方式，它让你的结构体有了可以指定它特定行为的能力。</p>
+<p>但是结构体不是唯一的方式来创建自定义类型：让我们转到Rust的枚举(enum)特性来，为你的工具箱再添加一个工具。</p>
 
       
     </div>
@@ -279,7 +271,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/79/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/79/">79</a><span class="page-number current">80</span><a class="page-number" href="/page/81/">81</a><span class="space">&hellip;</span><a class="page-number" href="/page/97/">97</a><a class="extend next" rel="next" href="/page/81/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/79/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/79/">79</a><span class="page-number current">80</span><a class="page-number" href="/page/81/">81</a><span class="space">&hellip;</span><a class="page-number" href="/page/98/">98</a><a class="extend next" rel="next" href="/page/81/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -345,20 +337,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-count">98</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -408,12 +400,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">190k</span>
+    <span title="Symbols count total">191k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">11:30</span>
+    <span title="Reading time total">11:33</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

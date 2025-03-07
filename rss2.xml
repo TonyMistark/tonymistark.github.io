@@ -15,13 +15,40 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Thu, 06 Mar 2025 10:59:59 GMT</pubDate>
+    <pubDate>Fri, 07 Mar 2025 03:46:48 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
+      <title>Understanding Rust Future</title>
+      <link>https://tonymistark.github.io/2025/03/07/rust_notes/Understanding-Rust-s-Future-Keyword-A-Comprehensive-Guide/</link>
+      <guid>https://tonymistark.github.io/2025/03/07/rust_notes/Understanding-Rust-s-Future-Keyword-A-Comprehensive-Guide/</guid>
+      <pubDate>Fri, 07 Mar 2025 03:34:39 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;在 Rust 中，&lt;code&gt;Future&lt;/code&gt; 是一个核心概念，用于表示异步计算。&lt;code&gt;Future&lt;/code&gt; 代表一个尚未完成的计算，它会在未来的某个时刻产生一个结果。Rust 的异步编程模型主要围绕 &lt;code&gt;Future&lt;/code&gt;</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/rust-notes/">rust_notes</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/rust/">rust</category>
+      
+      
+      <comments>https://tonymistark.github.io/2025/03/07/rust_notes/Understanding-Rust-s-Future-Keyword-A-Comprehensive-Guide/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
       <title>深入理解 Rust 中的 Trait：定义、实现与应用</title>
-      <link>https://tonymistark.github.io/2025/03/06/understanding_rust_trait/</link>
-      <guid>https://tonymistark.github.io/2025/03/06/understanding_rust_trait/</guid>
+      <link>https://tonymistark.github.io/2025/03/06/rust_notes/understanding_rust_trait/</link>
+      <guid>https://tonymistark.github.io/2025/03/06/rust_notes/understanding_rust_trait/</guid>
       <pubDate>Thu, 06 Mar 2025 10:58:24 GMT</pubDate>
       
         
@@ -35,9 +62,13 @@
       
       
       
+      <category domain="https://tonymistark.github.io/categories/rust-notes/">rust_notes</category>
       
       
-      <comments>https://tonymistark.github.io/2025/03/06/understanding_rust_trait/#disqus_thread</comments>
+      <category domain="https://tonymistark.github.io/tags/rust/">rust</category>
+      
+      
+      <comments>https://tonymistark.github.io/2025/03/06/rust_notes/understanding_rust_trait/#disqus_thread</comments>
       
     </item>
     
@@ -117,8 +148,8 @@
     
     <item>
       <title>Rust所有权系统：深入剖析</title>
-      <link>https://tonymistark.github.io/2024/10/28/Rust-ownership-system-details/</link>
-      <guid>https://tonymistark.github.io/2024/10/28/Rust-ownership-system-details/</guid>
+      <link>https://tonymistark.github.io/2024/10/28/rust_notes/Rust-ownership-system-details/</link>
+      <guid>https://tonymistark.github.io/2024/10/28/rust_notes/Rust-ownership-system-details/</guid>
       <pubDate>Mon, 28 Oct 2024 08:19:33 GMT</pubDate>
       
         
@@ -132,9 +163,13 @@
       
       
       
+      <category domain="https://tonymistark.github.io/categories/rust-notes/">rust_notes</category>
       
       
-      <comments>https://tonymistark.github.io/2024/10/28/Rust-ownership-system-details/#disqus_thread</comments>
+      <category domain="https://tonymistark.github.io/tags/rust/">rust</category>
+      
+      
+      <comments>https://tonymistark.github.io/2024/10/28/rust_notes/Rust-ownership-system-details/#disqus_thread</comments>
       
     </item>
     
@@ -488,31 +523,6 @@
       
       
       <comments>https://tonymistark.github.io/2024/04/20/design-pattern/mediator/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>iterator 迭代器模式</title>
-      <link>https://tonymistark.github.io/2024/02/19/design-pattern/iterator/</link>
-      <guid>https://tonymistark.github.io/2024/02/19/design-pattern/iterator/</guid>
-      <pubDate>Mon, 19 Feb 2024 14:43:15 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a href=&quot;#Intent-意图&quot; class=&quot;headerlink&quot;</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      
-      <comments>https://tonymistark.github.io/2024/02/19/design-pattern/iterator/#disqus_thread</comments>
       
     </item>
     
