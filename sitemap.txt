@@ -1,3 +1,4 @@
+https://tonymistark.github.io/2025/03/11/rust_notes/Understanding-Rust-References/
 https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/
 https://tonymistark.github.io/2024/10/28/rust_notes/Rust-ownership-system-details/
 https://tonymistark.github.io/2025/03/07/rust_notes/Understanding-Rust-s-Future-Keyword-A-Comprehensive-Guide/

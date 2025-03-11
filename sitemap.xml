@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tonymistark.github.io/2025/03/11/rust_notes/Understanding-Rust-References/</loc>
+    
+    <lastmod>2025-03-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/</loc>
     
     <lastmod>2025-03-07</lastmod>
@@ -922,7 +931,7 @@
 
   <url>
     <loc>https://tonymistark.github.io/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -930,77 +939,77 @@
   
   <url>
     <loc>https://tonymistark.github.io/tags/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/%E9%9A%8F%E6%83%B3/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/tools/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/%E5%8E%86%E5%8F%B2%E4%BA%8B%E4%BB%B6/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/ubuntu/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/tags/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/algorithm/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/Design-Pattern/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/rust/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/Rust/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/tags/sam-altman/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -1009,77 +1018,77 @@
   
   <url>
     <loc>https://tonymistark.github.io/categories/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/writing/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/notes/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/ubuntu/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/algorithm/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/design-pattern/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/rust-notes/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/Rust/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/sam-altman/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/tech-essay/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://tonymistark.github.io/categories/python/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

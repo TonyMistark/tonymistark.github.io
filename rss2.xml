@@ -15,8 +15,33 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Fri, 07 Mar 2025 03:46:48 GMT</pubDate>
+    <pubDate>Tue, 11 Mar 2025 03:47:29 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Rust 中的指针详解：引用、裸指针与智能指针</title>
+      <link>https://tonymistark.github.io/2025/03/11/rust_notes/Understanding-Rust-References/</link>
+      <guid>https://tonymistark.github.io/2025/03/11/rust_notes/Understanding-Rust-References/</guid>
+      <pubDate>Tue, 11 Mar 2025 03:44:56 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;A-Comprehensive-Guide-to-Pointers-in-Rust-References-Raw-Pointers-and-Smart-Pointers&quot;&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/rust-notes/">rust_notes</category>
+      
+      
+      
+      <comments>https://tonymistark.github.io/2025/03/11/rust_notes/Understanding-Rust-References/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Understanding Rust Future</title>
@@ -498,31 +523,6 @@
       
       
       <comments>https://tonymistark.github.io/2024/04/21/design-pattern/memento/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Mediator 中介者模式</title>
-      <link>https://tonymistark.github.io/2024/04/20/design-pattern/mediator/</link>
-      <guid>https://tonymistark.github.io/2024/04/20/design-pattern/mediator/</guid>
-      <pubDate>Sat, 20 Apr 2024 04:33:40 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a href=&quot;#Intent-意图&quot; class=&quot;headerlink&quot;</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      
-      <comments>https://tonymistark.github.io/2024/04/20/design-pattern/mediator/#disqus_thread</comments>
       
     </item>
     

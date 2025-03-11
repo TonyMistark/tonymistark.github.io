@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="A Comprehensive Guide to Pointers in Rust: References, Raw Pointers, and Smart Pointers在 Rust 中，指针是用于引用内存地址的类型。Rust 提供了多种指针类型，每种类型都有不同的所有权、借用和生命周期语义。以下是 Rust 中常见的指针类型及其详细讲解： 1. 引用（References）引用是 Rust">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rust 中的指针详解：引用、裸指针与智能指针">
+<meta property="og:url" content="https://tonymistark.github.io/2025/03/11/rust_notes/Understanding-Rust-References/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="A Comprehensive Guide to Pointers in Rust: References, Raw Pointers, and Smart Pointers在 Rust 中，指针是用于引用内存地址的类型。Rust 提供了多种指针类型，每种类型都有不同的所有权、借用和生命周期语义。以下是 Rust 中常见的指针类型及其详细讲解： 1. 引用（References）引用是 Rust">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-03-11T03:44:56.000Z">
+<meta property="article:modified_time" content="2025-03-11T03:47:29.605Z">
+<meta property="article:author" content="Ice">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://tonymistark.github.io/2025/03/11/rust_notes/Understanding-Rust-References/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Rust 中的指针详解：引用、裸指针与智能指针 | BLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6L4L92Z6Z"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W6L4L92Z6Z');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?99c70b2174a7fbe4af476f28bafb19a3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/./atom.xml" title="BLOG" type="application/atom+xml">
+<link rel="alternate" href="/./rss2.xml" title="BLOG" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">用心记录思想</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/03/11/rust_notes/Understanding-Rust-References/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Rust 中的指针详解：引用、裸指针与智能指针
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2025-03-11 11:44:56 / Modified: 11:47:29" itemprop="dateCreated datePublished" datetime="2025-03-11T11:44:56+08:00">2025-03-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/rust-notes/" itemprop="url" rel="index"><span itemprop="name">rust_notes</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="A-Comprehensive-Guide-to-Pointers-in-Rust-References-Raw-Pointers-and-Smart-Pointers"><a href="#A-Comprehensive-Guide-to-Pointers-in-Rust-References-Raw-Pointers-and-Smart-Pointers" class="headerlink" title="A Comprehensive Guide to Pointers in Rust: References, Raw Pointers, and Smart Pointers"></a>A Comprehensive Guide to Pointers in Rust: References, Raw Pointers, and Smart Pointers</h2><p>在 Rust 中，指针是用于引用内存地址的类型。Rust 提供了多种指针类型，每种类型都有不同的所有权、借用和生命周期语义。以下是 Rust 中常见的指针类型及其详细讲解：</p>
+<h3 id="1-引用（References）"><a href="#1-引用（References）" class="headerlink" title="1. 引用（References）"></a>1. 引用（References）</h3><p>引用是 Rust 中最常见的指针类型，分为不可变引用（<code>&amp;T</code>）和可变引用（<code>&amp;mut T</code>）。</p>
+<ul>
+<li><p><strong>不可变引用 (<code>&amp;T</code>)</strong>:</p>
+<ul>
+<li>允许多个不可变引用同时存在。</li>
+<li>不能通过不可变引用修改数据。</li>
+<li>生命周期由编译器自动推断或显式指定。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = &amp;x; <span class="comment">// y 是一个不可变引用</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 解引用 y 获取值</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>可变引用 (<code>&amp;mut T</code>)</strong>:</p>
+<ul>
+<li>同一时间只能有一个可变引用。</li>
+<li>可以通过可变引用修改数据。</li>
+<li>生命周期由编译器自动推断或显式指定。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = &amp;<span class="keyword">mut</span> x; <span class="comment">// y 是一个可变引用</span></span><br><span class="line">*y += <span class="number">1</span>; <span class="comment">// 通过 y 修改 x 的值</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, x); <span class="comment">// 输出 6</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-裸指针（Raw-Pointers）"><a href="#2-裸指针（Raw-Pointers）" class="headerlink" title="2. 裸指针（Raw Pointers）"></a>2. 裸指针（Raw Pointers）</h3><p>裸指针是不安全的指针类型，分为不可变裸指针（<code>*const T</code>）和可变裸指针（<code>*mut T</code>）。</p>
+<ul>
+<li><p><strong>不可变裸指针 (<code>*const T</code>)</strong>:</p>
+<ul>
+<li>不保证指针的有效性。</li>
+<li>不能通过不可变裸指针修改数据。</li>
+<li>通常用于与 C 代码交互或实现底层抽象。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = &amp;x <span class="keyword">as</span> *<span class="keyword">const</span> <span class="type">i32</span>; <span class="comment">// y 是一个不可变裸指针</span></span><br><span class="line"><span class="keyword">unsafe</span> &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 解引用裸指针需要 unsafe 块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>可变裸指针 (<code>*mut T</code>)</strong>:</p>
+<ul>
+<li>不保证指针的有效性。</li>
+<li>可以通过可变裸指针修改数据。</li>
+<li>通常用于与 C 代码交互或实现底层抽象。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = &amp;<span class="keyword">mut</span> x <span class="keyword">as</span> *<span class="keyword">mut</span> <span class="type">i32</span>; <span class="comment">// y 是一个可变裸指针</span></span><br><span class="line"><span class="keyword">unsafe</span> &#123;</span><br><span class="line">    *y += <span class="number">1</span>; <span class="comment">// 通过 y 修改 x 的值</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, x); <span class="comment">// 输出 6</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-智能指针（Smart-Pointers）"><a href="#3-智能指针（Smart-Pointers）" class="headerlink" title="3. 智能指针（Smart Pointers）"></a>3. 智能指针（Smart Pointers）</h3><p>智能指针是 Rust 中提供的一种高级指针类型，它们不仅包含指针，还包含额外的元数据和功能。</p>
+<ul>
+<li><p><strong><code>Box&lt;T&gt;</code></strong>:</p>
+<ul>
+<li>用于在堆上分配内存。</li>
+<li>拥有所有权，当 <code>Box</code> 离开作用域时，会自动释放内存。</li>
+<li>适用于单一所有权场景。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = <span class="type">Box</span>::<span class="title function_ invoke__">new</span>(<span class="number">5</span>); <span class="comment">// x 是一个 Box，指向堆上的整数 5</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *x); <span class="comment">// 解引用 Box 获取值</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>Rc&lt;T&gt;</code></strong>:</p>
+<ul>
+<li>引用计数智能指针，允许多个所有者。</li>
+<li>适用于共享所有权场景。</li>
+<li>只能用于单线程环境。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::rc::Rc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = Rc::<span class="title function_ invoke__">new</span>(<span class="number">5</span>); <span class="comment">// x 是一个 Rc，指向堆上的整数 5</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = Rc::<span class="title function_ invoke__">clone</span>(&amp;x); <span class="comment">// y 是 x 的一个克隆，引用计数增加</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 解引用 Rc 获取值</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>Arc&lt;T&gt;</code></strong>:</p>
+<ul>
+<li>原子引用计数智能指针，允许多个所有者。</li>
+<li>适用于多线程环境。</li>
+<li>类似于 <code>Rc&lt;T&gt;</code>，但使用原子操作保证线程安全。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::sync::Arc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = Arc::<span class="title function_ invoke__">new</span>(<span class="number">5</span>); <span class="comment">// x 是一个 Arc，指向堆上的整数 5</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = Arc::<span class="title function_ invoke__">clone</span>(&amp;x); <span class="comment">// y 是 x 的一个克隆，引用计数增加</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 解引用 Arc 获取值</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>RefCell&lt;T&gt;</code></strong>:</p>
+<ul>
+<li>提供内部可变性，允许在不可变引用的情况下修改数据。</li>
+<li>适用于单线程环境。</li>
+<li>在运行时检查借用规则。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::cell::RefCell;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = RefCell::<span class="title function_ invoke__">new</span>(<span class="number">5</span>); <span class="comment">// x 是一个 RefCell，包含整数 5</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">y</span> = x.<span class="title function_ invoke__">borrow_mut</span>(); <span class="comment">// 获取可变引用</span></span><br><span class="line">*y += <span class="number">1</span>; <span class="comment">// 修改值</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 输出 6</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>Mutex&lt;T&gt;</code></strong>:</p>
+<ul>
+<li>提供线程安全的内部可变性。</li>
+<li>适用于多线程环境。</li>
+<li>在访问数据时加锁，保证线程安全。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::sync::Mutex;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = Mutex::<span class="title function_ invoke__">new</span>(<span class="number">5</span>); <span class="comment">// x 是一个 Mutex，包含整数 5</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">y</span> = x.<span class="title function_ invoke__">lock</span>().<span class="title function_ invoke__">unwrap</span>(); <span class="comment">// 获取锁并修改值</span></span><br><span class="line">*y += <span class="number">1</span>; <span class="comment">// 修改值</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 输出 6</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="4-函数指针（Function-Pointers）"><a href="#4-函数指针（Function-Pointers）" class="headerlink" title="4. 函数指针（Function Pointers）"></a>4. 函数指针（Function Pointers）</h3><p>函数指针是指向函数的指针类型，通常用于将函数作为参数传递或存储在数据结构中。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">add</span>(a: <span class="type">i32</span>, b: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">f</span>: <span class="title function_ invoke__">fn</span>(<span class="type">i32</span>, <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> = add; <span class="comment">// f 是一个函数指针，指向 add 函数</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, <span class="title function_ invoke__">f</span>(<span class="number">1</span>, <span class="number">2</span>)); <span class="comment">// 调用函数指针</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-切片（Slices）"><a href="#5-切片（Slices）" class="headerlink" title="5. 切片（Slices）"></a>5. 切片（Slices）</h3><p>切片是对数组或向量的一部分的引用，包含一个指针和长度信息。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">arr</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> <span class="variable">slice</span> = &amp;arr[<span class="number">1</span>..<span class="number">3</span>]; <span class="comment">// slice 是一个切片，引用 arr 的第 2 和第 3 个元素</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, slice); <span class="comment">// 输出 [2, 3]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Rust 提供了多种指针类型，每种类型都有不同的用途和语义。引用是最常用的指针类型，提供了安全的借用和生命周期管理。裸指针用于底层操作，但需要小心使用。智能指针提供了更高级的内存管理功能，适用于不同的所有权和并发场景。函数指针和切片则用于特定的编程模式。理解这些指针类型及其适用场景是掌握 Rust 内存管理和安全性的关键。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>宇宙山河浪漫，赞赏动力无限</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Ice WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Ice Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.png">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/03/07/rust_notes/Understanding-Rust-s-Future-Keyword-A-Comprehensive-Guide/" rel="prev" title="Understanding Rust Future">
+      <i class="fa fa-chevron-left"></i> Understanding Rust Future
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Comprehensive-Guide-to-Pointers-in-Rust-References-Raw-Pointers-and-Smart-Pointers"><span class="nav-number">1.</span> <span class="nav-text">A Comprehensive Guide to Pointers in Rust: References, Raw Pointers, and Smart Pointers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%BC%95%E7%94%A8%EF%BC%88References%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">1. 引用（References）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%A3%B8%E6%8C%87%E9%92%88%EF%BC%88Raw-Pointers%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">2. 裸指针（Raw Pointers）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88%EF%BC%88Smart-Pointers%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">3. 智能指针（Smart Pointers）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%EF%BC%88Function-Pointers%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">4. 函数指针（Function Pointers）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%88%87%E7%89%87%EF%BC%88Slices%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">5. 切片（Slices）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.6.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ice</p>
+  <div class="site-description" itemprop="description">安静地坐着学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/TonyMistark" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;TonyMistark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/Micestark" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;Micestark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tony_mistark@163.com" title="E-Mail → mailto:tony_mistark@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Tony_Mistark" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Tony_Mistark" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ice</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">192k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">11:38</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '298b6503f44953bd4193',
+      clientSecret: '6756a6cfc10d74976c79256c96ae1c441f3116ac',
+      repo        : 'tonymistark.github.io',
+      owner       : 'TonyMistark',
+      admin       : ['TonyMistark'],
+      id          : '191395cc04bbdf51f4542b8997ca688a',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
