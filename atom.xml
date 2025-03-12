@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-03-11T03:47:29.605Z</updated>
+  <updated>2025-03-12T07:01:34.249Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Go语言面向对象编程详解：结构体、方法与接口的应用</title>
+    <link href="https://tonymistark.github.io/2025/03/12/A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go/"/>
+    <id>https://tonymistark.github.io/2025/03/12/A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go/</id>
+    <published>2025-03-12T07:00:43.000Z</published>
+    <updated>2025-03-12T07:01:34.249Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go&quot;&gt;&lt;a href=&quot;#A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Rust 中的指针详解：引用、裸指针与智能指针</title>
@@ -451,29 +472,6 @@
         
     <summary type="html">&lt;p&gt;也称为：Event-Subscriber、Listener&lt;/p&gt;
 &lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a href=&quot;#Intent-意图&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="design-pattern" scheme="https://tonymistark.github.io/categories/design-pattern/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Memento 备忘录模式</title>
-    <link href="https://tonymistark.github.io/2024/04/21/design-pattern/memento/"/>
-    <id>https://tonymistark.github.io/2024/04/21/design-pattern/memento/</id>
-    <published>2024-04-21T01:59:34.000Z</published>
-    <updated>2024-04-29T03:33:27.917Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a href=&quot;#Intent-意图&quot; class=&quot;headerlink&quot; title=&quot;Intent 意图&quot;&gt;&lt;/a&gt;Intent 意图&lt;/h2&gt;&lt;p&gt;Memento</summary>
         
       
     

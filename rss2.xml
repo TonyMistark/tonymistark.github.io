@@ -15,8 +15,31 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Tue, 11 Mar 2025 03:47:29 GMT</pubDate>
+    <pubDate>Wed, 12 Mar 2025 07:01:34 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Go语言面向对象编程详解：结构体、方法与接口的应用</title>
+      <link>https://tonymistark.github.io/2025/03/12/A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go/</link>
+      <guid>https://tonymistark.github.io/2025/03/12/A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go/</guid>
+      <pubDate>Wed, 12 Mar 2025 07:00:43 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go&quot;&gt;&lt;a href=&quot;#A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2025/03/12/A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Rust 中的指针详解：引用、裸指针与智能指针</title>
@@ -498,31 +521,6 @@
       
       
       <comments>https://tonymistark.github.io/2024/04/21/design-pattern/observer/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Memento 备忘录模式</title>
-      <link>https://tonymistark.github.io/2024/04/21/design-pattern/memento/</link>
-      <guid>https://tonymistark.github.io/2024/04/21/design-pattern/memento/</guid>
-      <pubDate>Sun, 21 Apr 2024 01:59:34 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a href=&quot;#Intent-意图&quot; class=&quot;headerlink&quot; title=&quot;Intent 意图&quot;&gt;&lt;/a&gt;Intent 意图&lt;/h2&gt;&lt;p&gt;Memento</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      
-      <comments>https://tonymistark.github.io/2024/04/21/design-pattern/memento/#disqus_thread</comments>
       
     </item>
     
