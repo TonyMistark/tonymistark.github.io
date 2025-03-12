@@ -1,3 +1,6 @@
+https://tonymistark.github.io/2025/03/12/Deep-Dive-into-Flexible-and-Type-Safe-Abstraction-in-Rust-Using-Traits-and-Generics-Associated-Types-Trait-Bounds-and-Thread-Safety/
+https://tonymistark.github.io/2025/03/12/Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces/
+https://tonymistark.github.io/2025/03/12/Understanding-Zero-cost-Abstraction-in-Rust/
 https://tonymistark.github.io/2025/03/12/A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go/
 https://tonymistark.github.io/2025/03/11/rust_notes/Understanding-Rust-References/
 https://tonymistark.github.io/2023/11/20/design-pattern/abstract-factory/

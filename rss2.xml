@@ -15,8 +15,79 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Wed, 12 Mar 2025 07:01:34 GMT</pubDate>
+    <pubDate>Wed, 12 Mar 2025 10:43:27 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>深入理解 Rust 中通过 trait 和泛型实现灵活且类型安全的抽象：关联类型、trait bound 与线程安全</title>
+      <link>https://tonymistark.github.io/2025/03/12/Deep-Dive-into-Flexible-and-Type-Safe-Abstraction-in-Rust-Using-Traits-and-Generics-Associated-Types-Trait-Bounds-and-Thread-Safety/</link>
+      <guid>https://tonymistark.github.io/2025/03/12/Deep-Dive-into-Flexible-and-Type-Safe-Abstraction-in-Rust-Using-Traits-and-Generics-Associated-Types-Trait-Bounds-and-Thread-Safety/</guid>
+      <pubDate>Wed, 12 Mar 2025 10:37:34 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2025/03/12/Deep-Dive-into-Flexible-and-Type-Safe-Abstraction-in-Rust-Using-Traits-and-Generics-Associated-Types-Trait-Bounds-and-Thread-Safety/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>理解 Go 接口的运行时类型信息（RTTI）及其开销</title>
+      <link>https://tonymistark.github.io/2025/03/12/Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces/</link>
+      <guid>https://tonymistark.github.io/2025/03/12/Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces/</guid>
+      <pubDate>Wed, 12 Mar 2025 08:24:02 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces&quot;&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2025/03/12/Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>深入理解 Rust 的零成本抽象（Zero-cost Abstraction）</title>
+      <link>https://tonymistark.github.io/2025/03/12/Understanding-Zero-cost-Abstraction-in-Rust/</link>
+      <guid>https://tonymistark.github.io/2025/03/12/Understanding-Zero-cost-Abstraction-in-Rust/</guid>
+      <pubDate>Wed, 12 Mar 2025 08:14:19 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Understanding-Zero-cost-Abstraction-in-Rust&quot;&gt;&lt;a href=&quot;#Understanding-Zero-cost-Abstraction-in-Rust&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/tags/rust/">rust</category>
+      
+      
+      <comments>https://tonymistark.github.io/2025/03/12/Understanding-Zero-cost-Abstraction-in-Rust/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Go语言面向对象编程详解：结构体、方法与接口的应用</title>
@@ -445,82 +516,6 @@
       
       
       <comments>https://tonymistark.github.io/2024/04/21/design-pattern/template-method/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Strategy 策略模式</title>
-      <link>https://tonymistark.github.io/2024/04/21/design-pattern/strategy/</link>
-      <guid>https://tonymistark.github.io/2024/04/21/design-pattern/strategy/</guid>
-      <pubDate>Sun, 21 Apr 2024 05:43:14 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a href=&quot;#Intent-意图&quot; class=&quot;headerlink&quot;</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      
-      <comments>https://tonymistark.github.io/2024/04/21/design-pattern/strategy/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>State 状态模式</title>
-      <link>https://tonymistark.github.io/2024/04/21/design-pattern/state/</link>
-      <guid>https://tonymistark.github.io/2024/04/21/design-pattern/state/</guid>
-      <pubDate>Sun, 21 Apr 2024 04:54:21 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a href=&quot;#Intent-意图&quot; class=&quot;headerlink&quot;</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      
-      <comments>https://tonymistark.github.io/2024/04/21/design-pattern/state/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Observer 观察者模式</title>
-      <link>https://tonymistark.github.io/2024/04/21/design-pattern/observer/</link>
-      <guid>https://tonymistark.github.io/2024/04/21/design-pattern/observer/</guid>
-      <pubDate>Sun, 21 Apr 2024 02:53:27 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;p&gt;也称为：Event-Subscriber、Listener&lt;/p&gt;
-&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a href=&quot;#Intent-意图&quot; class=&quot;headerlink&quot;</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      
-      <comments>https://tonymistark.github.io/2024/04/21/design-pattern/observer/#disqus_thread</comments>
       
     </item>
     

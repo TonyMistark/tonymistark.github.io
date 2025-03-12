@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tonymistark.github.io/2025/03/12/Deep-Dive-into-Flexible-and-Type-Safe-Abstraction-in-Rust-Using-Traits-and-Generics-Associated-Types-Trait-Bounds-and-Thread-Safety/</loc>
+    
+    <lastmod>2025-03-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tonymistark.github.io/2025/03/12/Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces/</loc>
+    
+    <lastmod>2025-03-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tonymistark.github.io/2025/03/12/Understanding-Zero-cost-Abstraction-in-Rust/</loc>
+    
+    <lastmod>2025-03-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://tonymistark.github.io/2025/03/12/A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go/</loc>
     
     <lastmod>2025-03-12</lastmod>

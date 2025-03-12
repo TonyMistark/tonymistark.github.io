@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/11/02/Ollama-%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%90%AF%E5%8A%A8%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/11/15/design-pattern/why-should-i-learn-patterns/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/11/02/Ollama-%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%90%AF%E5%8A%A8%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">一键部署 Ollama在本地启动并运行大语言模型</a>
+            <a href="/2023/11/15/design-pattern/why-should-i-learn-patterns/" class="post-title-link" itemprop="url">Why should I learn patterns?</a>
         </h2>
 
         <div class="post-meta">
@@ -206,9 +206,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-11-02 15:13:38 / Modified: 15:21:35" itemprop="dateCreated datePublished" datetime="2023-11-02T15:13:38+08:00">2023-11-02</time>
+              <time title="Created: 2023-11-15 19:54:40" itemprop="dateCreated datePublished" datetime="2023-11-15T19:54:40+08:00">2023-11-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-11-24 11:24:27" itemprop="dateModified" datetime="2023-11-24T11:24:27+08:00">2023-11-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/design-pattern/" itemprop="url" rel="index"><span itemprop="name">design-pattern</span></a>
+                </span>
             </span>
 
           <br>
@@ -217,14 +232,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>781</span>
+              <span>407</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
+              <span>1 mins.</span>
             </span>
 
         </div>
@@ -236,61 +251,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Unable to find image &#x27;ollama/ollama:latest&#x27; locally</span><br><span class="line">latest: Pulling from ollama/ollama</span><br><span class="line">aece8493d397: Pull complete</span><br><span class="line">4eca1ad9be6c: Pull complete</span><br><span class="line">fcd9fc6db2c0: Pull complete</span><br><span class="line">Digest: sha256:871505ffb1050381f75875a645e7b24c37e1436fc51b915fd91a8ed202583e3b</span><br><span class="line">Status: Downloaded newer image for ollama/ollama:latest</span><br><span class="line">e8291c35ef1f8414f9b8ab008bc3c3523cb7881ad96ccf60745fffb5916e2d9e</span><br><span class="line">&gt; docker exec -it ollama ollama run llama2</span><br><span class="line">pulling manifest</span><br><span class="line">pulling 22f7f8ef5f4c... 100% |█████████████████████████████████| (3.8/3.8 GB, 29 MB/s)</span><br><span class="line">pulling 8c17c2ebb0ea... 100% |███████████████████████████████████| (7.0/7.0 kB, 3.2 kB/s)</span><br><span class="line">pulling 7c23fb36d801... 100% |███████████████████████████████████| (4.8/4.8 kB, 2.0 kB/s)</span><br><span class="line">pulling 2e0493f67d0c... 100% |████████████████████████████████████████| (59/59 B, 27 B/s)</span><br><span class="line">pulling 2759286baa87... 100% |██████████████████████████████████████| (105/105 B, 45 B/s)</span><br><span class="line">pulling 5407e3188df9... 100% |█████████████████████████████████████| (529/529 B, 163 B/s)</span><br><span class="line">verifying sha256 digest</span><br><span class="line">writing manifest</span><br><span class="line">removing any unused layers</span><br><span class="line">success</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>what’s your name?</p>
-</blockquote>
-<p>I’m just an AI, I don’t have a personal name. My purpose is to assist and provide information to users like you through text-based conversations. How may I help you today?</p>
-<blockquote>
-<p>你叫什么？</p>
-</blockquote>
-<p>I’m just an AI, I don’t have a personal name. My purpose is to assist and provide information to users like you through text-based conversations. How may I help you today?</p>
-<blockquote>
-<p>请帮我写一段自我介绍，我是一个python     后端程序员</p>
-</blockquote>
-<p>Sure, here’s a simple self-introduction for a Python developer:</p>
-<p>“Hi there! My name is [Your Name], and I’m a Python developer with [Number of Years] years of experience. I specialize in developing web applications, data analysis, and machine learning models using Python. I’m passionate about solving complex problems and creating innovative solutions using my technical skills. In my free time, I enjoy learning new technologies and sharing knowledge with the developer community. Let’s connect and work together on exciting projects!”</p>
-<blockquote>
-<p> &#x2F;?</p>
-</blockquote>
-<p>Available Commands:<br>  &#x2F;set         Set session variables<br>  &#x2F;show        Show model information<br>  &#x2F;bye         Exit<br>  &#x2F;?, &#x2F;help    Help for a command</p>
-<p>Use <code>&quot;&quot;&quot;</code> to begin a multi-line message.</p>
-<blockquote>
-<p>&#x2F;show</p>
-</blockquote>
-<p>Available Commands:<br>  &#x2F;show license      Show model license<br>  &#x2F;show modelfile    Show Modelfile for this model<br>  &#x2F;show parameters   Show parameters for this model<br>  &#x2F;show system       Show system prompt<br>  &#x2F;show template     Show prompt template</p>
-<blockquote>
-<p> 我现在是在命令 行进行输入，怎么才能 输入多行呢？</p>
-</blockquote>
-<p>Great, you want to input multiple lines of text! In the command line, you can input multiple lines by pressing the <code>Enter</code> key after each line. For example:</p>
-<ol>
-<li><code>My name is John.</code></li>
-<li><code>I&#39;m a Python developer with 5 years of experience.</code></li>
-<li><code>I specialize in developing web applications and data analysis using Python.</code></li>
-<li><code>In my free time, I enjoy learning new technologies and sharing knowledge with the developer community.</code></li>
-</ol>
-<p>After each line, press the <code>Enter</code> key to move on to the next line. When you’re finished, you can press <code>Ctrl+D</code> to exit the command prompt.</p>
-<blockquote>
-<p>可以帮我写一个python的冒泡排序吗？&#96;</p>
-</blockquote>
-<p>Of course! Here is an example of a simple bubble sort algorithm written in Python:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">bubble_sort</span>(<span class="params">arr</span>):</span><br><span class="line">    n = <span class="built_in">len</span>(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n-<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, n-i-<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> arr[j] &gt; arr[j+<span class="number">1</span>]:</span><br><span class="line">                arr[j], arr[j+<span class="number">1</span>] = arr[j+<span class="number">1</span>], arr[j]</span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
-<p>This algorithm takes an array as input and sorts it using the bubble sort algorithm. It works by repeatedly iterating over the array, comparing adjacent elements, and swapping them if they are in the wrong order. The <code>range()</code> function is used to generate the loop indices for the iteration.</p>
-<p>Here’s an example of how you could use this function:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">5</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>]</span><br><span class="line"><span class="built_in">print</span>(bubble_sort(arr))</span><br></pre></td></tr></table></figure>
-<p>This would output the sorted array <code>[1, 2, 3, 4, 5, 7]</code>.</p>
-<p>Keep in mind that this is a very basic implementation of bubble sort, and it has a time complexity of O(n^2), which means it can take a long time to sort large arrays. There are more efficient algorithms for sorting large arrays, such as quicksort or mergesort.</p>
-<blockquote>
-<p>你可以用中文回答我吗？</p>
-</blockquote>
-<p>Of course! I can answer in Chinese if you’d like. Here is the same information in Chinese:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">泡沫排序</span>(<span class="params">arr</span>):</span><br><span class="line">    n = <span class="built_in">len</span>(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n-<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, n-i-<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> arr[j] &gt; arr[j+<span class="number">1</span>]:</span><br><span class="line">                arr[j], arr[j+<span class="number">1</span>] = arr[j+<span class="number">1</span>], arr[j]</span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
-<p>请使用以上函数来排序一个数组。例如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">5</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>]</span><br><span class="line"><span class="built_in">print</span>(泡沫排序(arr))</span><br></pre></td></tr></table></figure>
-<p>这将输出排序后的数组 <code>[1, 2, 3, 4, 5, 7]</code>.</p>
+          <h1 id="Why-should-I-learn-patterns"><a href="#Why-should-I-learn-patterns" class="headerlink" title="Why should I learn patterns?"></a>Why should I learn patterns?</h1><h1 id="我为什么要学习模式？"><a href="#我为什么要学习模式？" class="headerlink" title="我为什么要学习模式？"></a>我为什么要学习模式？</h1><p>The truth is that you might manage to work as a programmer for many years without knowing about a single pattern. A lot of people do just that. Even in that case, though, you might be implementing some patterns without even knowing it. So why would you spend time learning them?</p>
+<p>事实是，你可能在不了解单一模式的情况下设法作为程序员工作多年。很多人就是这样做的。但是，即使在这种情况下，您也可能在不知不觉中实现某些模式。那么，你为什么要花时间学习它们呢？</p>
+<ul>
+<li><p>Design patterns are a toolkit of tried and tested solutions to common problems in software design. Even if you never encounter these problems, knowing patterns is still useful because it teaches you how to solve all sorts of problems using principles of object-oriented design.<br>设计模式是软件设计中常见问题的久经考验的解决方案工具包。即使你从未遇到过这些问题，了解模式仍然很有用，因为它教会了你如何使用面向对象设计的原则来解决各种问题。</p>
+</li>
+<li><p>Design patterns define a common language that you and your teammates can use to communicate more efficiently. You can say, “Oh, just use a Singleton for that,” and everyone will understand the idea behind your suggestion. No need to explain what a singleton is if you know the pattern and its name.<br>设计模式定义了一种通用语言，您和您的团队成员可以使用该语言来更有效地进行通信。你可以说，“哦，就用一个单例来做这件事吧”，每个人都会理解你的建议背后的想法。如果您知道模式及其名称，则无需解释什么是单例。</p>
+</li>
+</ul>
 
       
     </div>
@@ -309,7 +277,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/50/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/">50</a><span class="page-number current">51</span><a class="page-number" href="/page/52/">52</a><span class="space">&hellip;</span><a class="page-number" href="/page/100/">100</a><a class="extend next" rel="next" href="/page/52/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/50/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/">50</a><span class="page-number current">51</span><a class="page-number" href="/page/52/">52</a><span class="space">&hellip;</span><a class="page-number" href="/page/103/">103</a><a class="extend next" rel="next" href="/page/52/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -375,7 +343,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">103</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -438,12 +406,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">193k</span>
+    <span title="Symbols count total">196k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">11:42</span>
+    <span title="Reading time total">11:53</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

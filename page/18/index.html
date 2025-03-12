@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2024/04/21/design-pattern/strategy/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2024/04/27/design-pattern/navigating-the-world-of-large-language-models/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/04/21/design-pattern/strategy/" class="post-title-link" itemprop="url">Strategy 策略模式</a>
+            <a href="/2024/04/27/design-pattern/navigating-the-world-of-large-language-models/" class="post-title-link" itemprop="url">探索大型语言模型的世界</a>
         </h2>
 
         <div class="post-meta">
@@ -207,7 +207,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2024-04-21 13:43:14" itemprop="dateCreated datePublished" datetime="2024-04-21T13:43:14+08:00">2024-04-21</time>
+              <time title="Created: 2024-04-27 11:27:15" itemprop="dateCreated datePublished" datetime="2024-04-27T11:27:15+08:00">2024-04-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -232,14 +232,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4.1k</span>
+              <span>3.8k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>15 mins.</span>
+              <span>14 mins.</span>
             </span>
 
         </div>
@@ -251,125 +251,126 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Intent-意图"><a href="#Intent-意图" class="headerlink" title="Intent 意图"></a>Intent 意图</h2><p>策略是一种行为设计模式，可用于定义一系列算法，将每个算法放入单独的类中，并使其对象可互换。</p>
-<div align="center"> <img src="/images/strategy-header.png"/><p style="text-align: center;"></p></div>
-
-
-<h2 id="Problem-问题"><a href="#Problem-问题" class="headerlink" title="Problem 问题"></a>Problem 问题</h2><p>有一天，您决定为休闲旅行者创建一个导航应用程序。该应用程序以一张漂亮的地图为中心，可帮助用户在任何城市快速定位自己。</p>
-<p>该应用程序最需要的功能之一是自动路线规划。用户应该能够输入地址，并查看地图上显示的到达该目的地的最快路线。</p>
-<p>该应用程序的第一个版本只能在道路上构建路线。开车旅行的人们都欢呼雀跃。但显然，并不是每个人都喜欢在度假时开车。因此，在下一次更新中，您添加了一个构建步行路线的选项。在那之后，你添加了另一个选项，让人们在他们的路线中使用公共交通工具。</p>
-<p>然而，这仅仅是个开始。后来，您计划为骑自行车的人添加路线建设。甚至后来，还有另一种选择，可以建造穿越城市所有旅游景点的路线。</p>
-<div align="center"> <img src="/images/strategy-problem1.png"/><p style="text-align: center;">导航器的代码变得臃肿。</p></div>
-
-
-<p>虽然从商业角度来看，该应用程序是成功的，但技术部分却让您头疼不已。每次添加新的路由算法时，导航器的主类大小都会增加一倍。在某些时候，野兽变得太难维护了。</p>
-<p>对其中一种算法的任何更改，无论是简单的错误修复还是街道分数的轻微调整，都会影响整个班级，从而增加在已经工作的代码中产生错误的机会。</p>
-<p>此外，团队合作变得效率低下。你的队友在成功发布后立即被雇用，他们抱怨他们花了太多时间解决合并冲突。实现一个新功能需要你改变同一个巨大的类，与其他人生成的代码冲突。</p>
-<h2 id="Solution-解决方案"><a href="#Solution-解决方案" class="headerlink" title="Solution 解决方案"></a>Solution 解决方案</h2><p>策略模式建议你选择一个以多种不同方式做特定事情的类，并将所有这些算法提取到称为策略的单独类中。</p>
-<p>原始类（称为 context）必须具有一个字段，用于存储对其中一个策略的引用。上下文将工作委托给链接的策略对象，而不是单独执行它。</p>
-<p>上下文不负责为作业选择适当的算法。相反，客户端将所需的策略传递给上下文。事实上，上下文对策略知之甚少。它通过相同的通用接口与所有策略一起工作，该接口仅公开用于触发封装在所选策略中的算法的单一方法。</p>
-<p>这样，上下文就独立于具体策略，因此您可以添加新算法或修改现有算法，而无需更改上下文或其他策略的代码。</p>
-<div align="center"> <img src="/images/strategy-problem1.png"/><p style="text-align: center;">路线规划策略。</p></div>
-
-
-<p>在我们的导航应用程序中，可以使用单个 <code>buildRoute</code> 方法将每个路由算法提取到其自己的类中。该方法接受起点和终点，并返回路由检查点的集合。</p>
-<p>尽管给定相同的参数，每个路由类可能会构建不同的路由，但主导航器类并不真正关心选择哪种算法，因为它的主要工作是在地图上呈现一组检查点。该类具有切换活动路由策略的方法，因此其客户端（如用户界面中的按钮）可以将当前选定的路由行为替换为另一个路由行为。</p>
-<h2 id="Real-World-Analogy-真实世界的类比"><a href="#Real-World-Analogy-真实世界的类比" class="headerlink" title="Real-World Analogy 真实世界的类比"></a>Real-World Analogy 真实世界的类比</h2><div align="center"> <img src="/images/strategy-comic1.png"/><p style="text-align: center;">前往机场的各种策略。</p></div>
-
-
-<p>想象一下，你必须去机场。您可以搭乘公共汽车、叫出租车或骑自行车。这些是您的运输策略。您可以根据预算或时间限制等因素选择其中一种策略。</p>
-<h2 id="Structure-结构"><a href="#Structure-结构" class="headerlink" title="Structure 结构"></a>Structure 结构</h2><div align="center"> <img src="/images/strategy-structure.png"/><p style="text-align: center;"></p></div>
-
-
-<ol>
-<li>上下文维护对其中一个具体策略的引用，并仅通过策略接口与此对象进行通信。</li>
-<li>策略界面是所有具体策略的通用界面。它声明上下文用于执行策略的方法。</li>
-<li>具体策略实现上下文使用的算法的不同变体。</li>
-<li>上下文每次需要运行算法时都会在链接的策略对象上调用执行方法。上下文不知道它使用哪种类型的策略，也不知道算法是如何执行的。</li>
-<li>客户端创建一个特定的策略对象并将其传递给上下文。上下文公开了一个 setter，它允许客户端在运行时替换与上下文关联的策略。</li>
-</ol>
-<h2 id="Pseudocode-伪代码"><a href="#Pseudocode-伪代码" class="headerlink" title="Pseudocode 伪代码"></a>Pseudocode 伪代码</h2><p>在此示例中，上下文使用多种策略来执行各种算术运算。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The strategy interface declares operations common to all</span></span><br><span class="line"><span class="comment">// supported versions of some algorithm. The context uses this</span></span><br><span class="line"><span class="comment">// interface to call the algorithm defined by the concrete</span></span><br><span class="line"><span class="comment">// strategies.</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Strategy</span> is</span><br><span class="line">    method <span class="title function_">execute</span><span class="params">(a, b)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Concrete strategies implement the algorithm while following</span></span><br><span class="line"><span class="comment">// the base strategy interface. The interface makes them</span></span><br><span class="line"><span class="comment">// interchangeable in the context.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteStrategyAdd</span> <span class="keyword">implements</span> <span class="title class_">Strategy</span> is</span><br><span class="line">    method <span class="title function_">execute</span><span class="params">(a, b)</span> is</span><br><span class="line">        <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteStrategySubtract</span> <span class="keyword">implements</span> <span class="title class_">Strategy</span> is</span><br><span class="line">    method <span class="title function_">execute</span><span class="params">(a, b)</span> is</span><br><span class="line">        <span class="keyword">return</span> a - b</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteStrategyMultiply</span> <span class="keyword">implements</span> <span class="title class_">Strategy</span> is</span><br><span class="line">    method <span class="title function_">execute</span><span class="params">(a, b)</span> is</span><br><span class="line">        <span class="keyword">return</span> a * b</span><br><span class="line"></span><br><span class="line"><span class="comment">// The context defines the interface of interest to clients.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Context</span> is</span><br><span class="line">    <span class="comment">// The context maintains a reference to one of the strategy</span></span><br><span class="line">    <span class="comment">// objects. The context doesn&#x27;t know the concrete class of a</span></span><br><span class="line">    <span class="comment">// strategy. It should work with all strategies via the</span></span><br><span class="line">    <span class="comment">// strategy interface.</span></span><br><span class="line">    <span class="keyword">private</span> strategy: Strategy</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Usually the context accepts a strategy through the</span></span><br><span class="line">    <span class="comment">// constructor, and also provides a setter so that the</span></span><br><span class="line">    <span class="comment">// strategy can be switched at runtime.</span></span><br><span class="line">    method <span class="title function_">setStrategy</span><span class="params">(Strategy strategy)</span> is</span><br><span class="line">        <span class="built_in">this</span>.strategy = strategy</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The context delegates some work to the strategy object</span></span><br><span class="line">    <span class="comment">// instead of implementing multiple versions of the</span></span><br><span class="line">    <span class="comment">// algorithm on its own.</span></span><br><span class="line">    method <span class="title function_">executeStrategy</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> is</span><br><span class="line">        <span class="keyword">return</span> strategy.execute(a, b)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// The client code picks a concrete strategy and passes it to</span></span><br><span class="line"><span class="comment">// the context. The client should be aware of the differences</span></span><br><span class="line"><span class="comment">// between strategies in order to make the right choice.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ExampleApplication</span> is</span><br><span class="line">    method <span class="title function_">main</span><span class="params">()</span> is</span><br><span class="line">        Create context object.</span><br><span class="line"></span><br><span class="line">        Read first number.</span><br><span class="line">        Read last number.</span><br><span class="line">        Read the desired action from user input.</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (action == addition) then</span><br><span class="line">            context.setStrategy(<span class="keyword">new</span> <span class="title class_">ConcreteStrategyAdd</span>())</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (action == subtraction) then</span><br><span class="line">            context.setStrategy(<span class="keyword">new</span> <span class="title class_">ConcreteStrategySubtract</span>())</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (action == multiplication) then</span><br><span class="line">            context.setStrategy(<span class="keyword">new</span> <span class="title class_">ConcreteStrategyMultiply</span>())</span><br><span class="line"></span><br><span class="line">        result = context.executeStrategy(First number, Second number)</span><br><span class="line"></span><br><span class="line">        Print result.</span><br></pre></td></tr></table></figure>
-
-<h2 id="Applicability-适用性"><a href="#Applicability-适用性" class="headerlink" title="Applicability 适用性"></a>Applicability 适用性</h2><ul>
-<li>如果要在对象中使用算法的不同变体，并且能够在运行时从一种算法切换到另一种算法，请使用 Strategy 模式。</li>
-<li>策略模式允许您通过将对象与不同的子对象相关联来间接更改对象在运行时的行为，这些子对象可以以不同的方式执行特定的子任务。</li>
-<li>当您有许多相似的类时，请使用策略，这些类仅在执行某些行为的方式上有所不同。</li>
-<li>Strategy 模式允许您将不同的行为提取到单独的类层次结构中，并将原始类合并为一个类，从而减少重复代码。</li>
-<li>使用该模式将类的业务逻辑与算法的实现细节隔离开来，这些算法在该逻辑的上下文中可能不那么重要。</li>
-<li>策略模式允许您将各种算法的代码、内部数据和依赖项与代码的其余部分隔离开来。各种客户端都获得了一个简单的接口来执行算法并在运行时切换它们。</li>
-<li>当您的类具有在同一算法的不同变体之间切换的大量条件语句时，请使用该模式。</li>
-<li>Strategy 模式允许您通过将所有算法提取到单独的类中来消除这种条件，所有这些类都实现相同的接口。原始对象将执行委托给其中一个对象，而不是实现算法的所有变体。</li>
-</ul>
-<h2 id="How-to-Implement-如何实现"><a href="#How-to-Implement-如何实现" class="headerlink" title="How to Implement 如何实现"></a>How to Implement 如何实现</h2><ol>
-<li>在上下文类中，标识容易频繁更改的算法。它也可能是一个大规模条件，在运行时选择并执行同一算法的变体。</li>
-<li>声明算法所有变体通用的策略接口。</li>
-<li>一个接一个地，将所有算法提取到它们自己的类中。他们都应该实现策略接口。</li>
-<li>在上下文类中，添加一个用于存储对策略对象的引用的字段。提供用于替换该字段值的 setter。上下文应仅通过策略接口与策略对象一起使用。上下文可以定义一个接口，让策略访问其数据。</li>
-<li>上下文的客户端必须将其与合适的策略相关联，该策略与他们期望上下文执行其主要工作的方式相匹配。</li>
-</ol>
-<h2 id="Pros-and-Cons-优点和缺点"><a href="#Pros-and-Cons-优点和缺点" class="headerlink" title="Pros and Cons 优点和缺点"></a>Pros and Cons 优点和缺点</h2><table>
-<thead>
-<tr>
-<th>优点√</th>
-<th>缺点×</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>您可以在运行时交换对象内部使用的算法。</td>
-<td>如果你只有几种算法，而且它们很少改变，那么就没有真正的理由用模式附带的新类和接口来使程序过于复杂。</td>
-</tr>
-<tr>
-<td>您可以将算法的实现详细信息与使用它的代码隔离开来。</td>
-<td>客户必须意识到策略之间的差异，以便能够选择合适的策略。</td>
-</tr>
-<tr>
-<td>您可以将继承替换为组合。</td>
-<td>许多现代编程语言都支持函数类型，允许您在一组匿名函数中实现不同版本的算法。然后，您可以像使用策略对象一样使用这些函数，但不会因额外的类和接口而使代码膨胀。</td>
-</tr>
-<tr>
-<td>开&#x2F;闭原则。您可以引入新策略，而无需更改上下文。</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id="Relations-with-Other-Patterns-与其他模式的关系"><a href="#Relations-with-Other-Patterns-与其他模式的关系" class="headerlink" title="Relations with Other Patterns 与其他模式的关系"></a>Relations with Other Patterns 与其他模式的关系</h2><ul>
-<li><p>桥接、状态、策略（在某种程度上还有适配器）具有非常相似的结构。事实上，所有这些模式都是基于构图的，而构图是将工作委托给其他对象。但是，它们都解决了不同的问题。模式不仅仅是以特定方式构建代码的秘诀。它还可以向其他开发人员传达该模式解决的问题。</p>
-</li>
-<li><p>“命令”和“策略”可能看起来很相似，因为您可以使用它们来参数化具有某些操作的对象。但是，他们的意图截然不同。</p>
+          <h4 id="探索大型语言模型的世界"><a href="#探索大型语言模型的世界" class="headerlink" title="探索大型语言模型的世界"></a>探索大型语言模型的世界</h4><p><em>2024年3月21日，由Sherlock Xu撰写</em></p>
+<p>过去一年，AI界因大型语言模型（LLMs）的快速发布而热闹非凡，每个新模型都带来了推动生成性AI可能性边界的进步。新模型层出不穷，令人叹为观止。就在上周末，xAI公司发布了其Grok语言模型，这是一个拥有3140亿参数的巨兽，并在Apache 2.0许可下发布。</p>
+<p>这些模型，由不断增加的参数数量和庞大的数据集训练，提高了我们生成文本和编写（以及理解）复杂代码的效率。然而，可用选项的数量既令人兴奋又令人生畏。做出明智的决策，考虑输出质量、速度和成本，成为了一个问题。</p>
+<p>答案不仅在于规格表或基准测试分数，而且在于全面理解每个模型带来的贡献。在这篇博客文章中，我们精选了过去一年引起轰动的LLMs列表。同时，我们试图回答一些常见问题。</p>
+<h4 id="Llama-2"><a href="#Llama-2" class="headerlink" title="Llama 2"></a>Llama 2</h4><p>Meta AI在LLMs领域取得了重大进展，发布了Llama 2，这是一个预训练的文本生成模型，有7亿、13亿和70亿参数的版本。它可以用于广泛的任务，包括聊天机器人和各种自然语言生成应用。Meta还针对特定用例定制了Llama 2，例如Llama Chat和Code Llama。</p>
+<p><strong>为什么选择Llama 2</strong>：</p>
 <ul>
-<li>您可以使用 Command 将任何操作转换为对象。操作的参数将成为该对象的字段。转换允许您延迟操作的执行、排队、存储命令的历史记录、将命令发送到远程服务等。</li>
-<li>另一方面，Strategy 通常描述执行相同操作的不同方法，允许您在单个上下文类中交换这些算法。</li>
-</ul>
+<li><p><strong>性能</strong>：基于Meta AI的基准测试，Llama 2在理解、推理和一般智能能力方面优于其他开源模型。</p>
 </li>
-<li><p>Decorator 可让您更改对象的皮肤，而 Strategy 可让您更改内脏。</p>
+<li><p><strong>微调</strong>：三种不同大小的Llama 2是广泛专门化应用的理想基础。用户可以微调它们以满足特定任务或行业的独特需求（在Hugging Face模型中心有超过12,000个搜索结果为“Llama2”）。这些微调模型不仅为开发人员节省了大量时间和资源，而且还有力地证明了Llama 2的定制和改进能力。</p>
 </li>
-<li><p>模板方法基于继承：它允许您通过在子类中扩展算法的各个部分来更改这些部分。策略基于组合：您可以通过为对象提供与该行为相对应的不同策略来改变对象的部分行为。Template Method 在类级别工作，因此它是静态的。策略在对象级别工作，允许您在运行时切换行为。</p>
-</li>
-<li><p>状态可以看作是战略的延伸。这两种模式都基于组合：它们通过将一些工作委派给帮助对象来改变上下文的行为。策略使这些对象完全独立，彼此不相知。但是，State 不会限制具体状态之间的依赖关系，而是允许它们随意更改上下文的状态。</p>
+<li><p><strong>安全性</strong>：Llama 2在设计上注重生成安全响应，拒绝不当请求的表现更佳，非常适合企业和面向公众的应用。在Meta的评估中，7B、13B和70B参数的Llama 2模型展示了显著较低的安全违规百分比（3%和4%），超过了Falcon和ChatGPT（7%）。</p>
 </li>
 </ul>
-<h2 id="Code-Examples-代码示例"><a href="#Code-Examples-代码示例" class="headerlink" title="Code Examples 代码示例"></a>Code Examples 代码示例</h2><h1 id="trategy-in-Python"><a href="#trategy-in-Python" class="headerlink" title="trategy in Python"></a><strong>trategy</strong> in Python</h1><p>策略是一种行为设计模式，它将一组行为转换为对象，并使它们在原始上下文对象中可互换。</p>
-<p>原始对象（称为 context）包含对策略对象的引用。将执行行为的上下文委托给链接的策略对象。为了改变上下文执行其工作的方式，其他对象可能会用另一个对象替换当前链接的策略对象。</p>
-<p>使用示例：Strategy 模式在 Python 代码中很常见。它通常用于各种框架中，为用户提供一种在不扩展类的情况下更改类行为的方法。</p>
-<p>标识：策略模式可以通过允许嵌套对象执行实际工作的方法以及允许将该对象替换为其他对象的 setter 来识别。</p>
-<h4 id="main-py：概念示例"><a href="#main-py：概念示例" class="headerlink" title="main.py：概念示例"></a>main.py：概念示例</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> annotations</span><br><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABC, abstractmethod</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Context</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The Context defines the interface of interest to clients.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, strategy: Strategy</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Usually, the Context accepts a strategy through the constructor, but</span></span><br><span class="line"><span class="string">        also provides a setter to change it at runtime.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        self._strategy = strategy</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">strategy</span>(<span class="params">self</span>) -&gt; Strategy:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        The Context maintains a reference to one of the Strategy objects. The</span></span><br><span class="line"><span class="string">        Context does not know the concrete class of a strategy. It should work</span></span><br><span class="line"><span class="string">        with all strategies via the Strategy interface.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> self._strategy</span><br><span class="line"></span><br><span class="line"><span class="meta">    @strategy.setter</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">strategy</span>(<span class="params">self, strategy: Strategy</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Usually, the Context allows replacing a Strategy object at runtime.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        self._strategy = strategy</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">do_some_business_logic</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        The Context delegates some work to the Strategy object instead of</span></span><br><span class="line"><span class="string">        implementing multiple versions of the algorithm on its own.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Context: Sorting data using the strategy (not sure how it&#x27;ll do it)&quot;</span>)</span><br><span class="line">        result = self._strategy.do_algorithm([<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;e&quot;</span>])</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;,&quot;</span>.join(result))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Strategy</span>(<span class="title class_ inherited__">ABC</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    The Strategy interface declares operations common to all supported versions</span></span><br><span class="line"><span class="string">    of some algorithm.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    The Context uses this interface to call the algorithm defined by Concrete</span></span><br><span class="line"><span class="string">    Strategies.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">do_algorithm</span>(<span class="params">self, data: <span class="type">List</span></span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Concrete Strategies implement the algorithm while following the base Strategy</span></span><br><span class="line"><span class="string">interface. The interface makes them interchangeable in the Context.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteStrategyA</span>(<span class="title class_ inherited__">Strategy</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">do_algorithm</span>(<span class="params">self, data: <span class="type">List</span></span>) -&gt; <span class="type">List</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sorted</span>(data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteStrategyB</span>(<span class="title class_ inherited__">Strategy</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">do_algorithm</span>(<span class="params">self, data: <span class="type">List</span></span>) -&gt; <span class="type">List</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">reversed</span>(<span class="built_in">sorted</span>(data))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># The client code picks a concrete strategy and passes it to the context.</span></span><br><span class="line">    <span class="comment"># The client should be aware of the differences between strategies in order</span></span><br><span class="line">    <span class="comment"># to make the right choice.</span></span><br><span class="line"></span><br><span class="line">    context = Context(ConcreteStrategyA())</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Client: Strategy is set to normal sorting.&quot;</span>)</span><br><span class="line">    context.do_some_business_logic()</span><br><span class="line">    <span class="built_in">print</span>()</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Client: Strategy is set to reverse sorting.&quot;</span>)</span><br><span class="line">    context.strategy = ConcreteStrategyB()</span><br><span class="line">    context.do_some_business_logic()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>Llama 2的挑战</strong>：</p>
+<ul>
+<li><p><strong>编码能力</strong>：Llama 2在编码任务上的能力不如一些专门化的模型，如Code Llama，特别是在复杂的编程任务上。</p>
+</li>
+<li><p><strong>预防机制</strong>：如上所述，Llama 2可能因安全考虑而比其他模型更为保守，这种内容生成的立场有时可能过于限制性，限制了动态交互。</p>
+</li>
+<li><p><strong>多语言限制</strong>：主要在英语数据上训练，Llama 2在处理非英语语言的任务上显示出有限的能力，这可能影响其在多语言环境中的使用。</p>
+</li>
+</ul>
+<h4 id="Mixtral-8x7B"><a href="#Mixtral-8x7B" class="headerlink" title="Mixtral 8x7B"></a>Mixtral 8x7B</h4><p>由Mistral AI在2023年12月发布的Mixtral 8x7B，使用了一个稀疏的专家混合架构。简单来说，它使用许多小型网络，每个网络都专门处理不同的事情。每次任务只有少数这些“专家”工作，使过程高效，而不是每次都使用整个模型的全部能力，从而控制成本和延迟。</p>
+<p>Mixtral 8x7B在商业使用下获得Apache 2.0许可，展示了在各种文本生成任务中的卓越多功能性，包括代码生成，并具有针对聊天应用优化的微调变体Mixtral 8x7B Instruct。</p>
+<p><strong>为什么选择Mixtral 8x7B</strong>：</p>
+<ul>
+<li><p><strong>最先进的性能</strong>：Mixtral 8x7B在许多基准测试中超越了像Llama 2 70B和GPT-3.5这样的领先模型。</p>
+</li>
+<li><p><strong>长上下文窗口</strong>：Mixtral 8x7B的32k令牌上下文窗口显著增强了其处理长对话和复杂文档的能力。这使模型能够处理从详细内容创建到复杂的检索增强生成的各种任务，使其非常适合研究和商业应用。</p>
+</li>
+<li><p><strong>优化效率</strong>：尽管参数数量大，但它提供了成本效益的推理，与更小的模型相当。</p>
+</li>
+<li><p><strong>多功能语言支持</strong>：Mixtral 8x7B处理多种语言（法语、德语、西班牙语、意大利语和英语），使其成为全球应用的理想选择。</p>
+</li>
+</ul>
+<p><strong>Mixtral 8x7B的挑战</strong>：</p>
+<ul>
+<li><p><strong>缺乏内置的监管机制</strong>：没有本地监管，可能存在生成不当或有害内容的风险，特别是当模型被提示敏感或有争议的输入时。打算在内容控制和安全性重要的环境部署此模型的企业应该小心这一点。</p>
+</li>
+<li><p><strong>硬件要求</strong>：整个参数集需要大量的RAM才能运行，这可能限制了它在低端系统上的应用。</p>
+</li>
+</ul>
+<h4 id="Zephyr-7B"><a href="#Zephyr-7B" class="headerlink" title="Zephyr 7B"></a>Zephyr 7B</h4><p>基于Mistral 7B构建并经过微调的Zephyr 7B，实现了与人类意图更好的对齐，在特定任务和基准测试中超越了其同类。在其发布时，Zephyr-7B-β是MT-Bench和AlpacaEval基准测试中排名最高的7B聊天模型。</p>
+<p>Zephyr 7B的训练涉及通过接触大量语言模式和上下文来改进其能力。这个过程使它能够理解复杂查询并生成连贯、与上下文相关的文本，使其成为内容创建、客户支持等多功能工具。</p>
+<p><strong>为什么选择Zephyr 7B</strong>：</p>
+<ul>
+<li><p><strong>效率和性能</strong>：尽管相对于像GPT-3.5或Llama-2-70B这样的巨头来说体积较小，但Zephyr 7B在需要深入理解人类意图的任务中提供可比或更好的性能。</p>
+</li>
+<li><p><strong>多语言能力</strong>：在多样化的数据集上训练，Zephyr 7B支持多种语言的文本生成和理解，包括但不限于英语、西班牙语、法语、德语、意大利语、葡萄牙语、荷兰语、俄语、中文、日语和韩语。</p>
+</li>
+<li><p><strong>任务灵活性</strong>：Zephyr 7B擅长执行广泛的语言相关任务，从文本生成和摘要到翻译和情感分析。这使其成为众多应用中高度适应性的工具。</p>
+</li>
+</ul>
+<p><strong>Zephyr 7B的挑战</strong>：</p>
+<ul>
+<li><p><strong>意图对齐</strong>：虽然Zephyr 7B在与人类意图对齐方面取得了一些进展，但可能需要持续评估和调整以确保其输出满足特定用户需求或道德准则。</p>
+</li>
+<li><p><strong>适应专业任务</strong>：根据应用情况，可能需要额外的微调来优化Zephyr 7B在专业任务中的性能，如推理、数学和编码。</p>
+</li>
+</ul>
+<h4 id="SOLAR-10-7B"><a href="#SOLAR-10-7B" class="headerlink" title="SOLAR 10.7B"></a>SOLAR 10.7B</h4><p>SOLAR 10.7B是一个拥有107亿参数的大型语言模型，使用称为深度上扩展（DUS）的扩展技术。这简化了扩展过程，无需复杂的训练或推理调整。</p>
+<p>SOLAR 10.7B经历了两个微调阶段：指令调整和对齐调整。指令调整增强了其遵循QA格式指令的能力。对齐调整进一步细化了模型，使其更紧密地与人类偏好或强AI输出对齐，利用开源数据集和合成的数学重点对齐数据集。</p>
+<p><strong>为什么选择SOLAR 10.7B</strong>：</p>
+<ul>
+<li><p><strong>多功能性</strong>：像SOLAR 10.7B-Instruct这样的微调变体提供了增强的指令遵循能力，使模型能够用于广泛的应用。</p>
+</li>
+<li><p><strong>卓越的NLP性能</strong>：SOLAR 10.7B在NLP任务中表现出色，超越了其他预训练模型，如Llama 2和Mistral 7B。</p>
+</li>
+<li><p><strong>微调</strong>：SOLAR 10.7B是一个理想的微调模型，具有坚实的基线能力。</p>
+</li>
+</ul>
+<p><strong>SOLAR 10.7B的挑战</strong>：</p>
+<ul>
+<li><p><strong>资源需求</strong>：该模型可能需要大量的计算资源来进行训练和微调。</p>
+</li>
+<li><p><strong>偏见问题</strong>：模型的输出可能不总是与道德或公平使用原则一致。</p>
+</li>
+</ul>
+<h4 id="Code-Llama"><a href="#Code-Llama" class="headerlink" title="Code Llama"></a>Code Llama</h4><p>在Llama 2上微调的Code Llama是专门为编程任务微调的高级大型语言模型。它被设计为理解并生成多种流行编程语言的代码，包括Python、C++、Java、PHP、Typescript（Javascript）、C#和Bash，使其成为开发人员的理想工具。</p>
+<p>该模型有四种大小（7B、13B、34B和70B参数）以适应各种用例，从像实时代码完成这样的低延迟应用使用7B和13B模型，到由34B和70B模型提供的更全面的代码协助。</p>
+<p><strong>为什么选择Code Llama</strong>：</p>
+<ul>
+<li><p><strong>大输入上下文</strong>：Code Llama可以处理高达100,000个令牌的输入，允许更好地理解和操作大型代码库。</p>
+</li>
+<li><p><strong>多样化的应用</strong>：它被设计用于一系列应用，如代码生成、代码完成、调试，甚至讨论代码，满足软件开发生命周期内的不同需求。</p>
+</li>
+<li><p><strong>性能</strong>：在大量数据集（70B模型高达1万亿个令牌）上训练的模型，可以提供更准确和与上下文相关的代码建议。Code Llama - Instruct 70B模型甚至在HumanEval测试中得分67.8，高于GPT 4（67.0）。</p>
+</li>
+</ul>
+<p><strong>Code Llama的挑战</strong></p>
+<ul>
+<li><strong>硬件要求</strong>：较大的模型（34B 和 70B）可能需要大量计算资源才能获得最佳性能，这可能会限制硬件有限的个人或组织的访问。</li>
+<li><strong>潜在的错位</strong>：虽然它已经过微调以提高安全性并符合人类意图，但如果监督不当，总是存在生成不适当或恶意代码的风险。</li>
+<li><strong>不适用于一般的自然语言任务</strong>：Code Llama 针对编码任务进行了优化，不建议用于更广泛的自然语言处理应用程序。请注意，只有 Code Llama Instruct 经过专门微调，以更好地响应自然语言提示。</li>
+</ul>
+<h4 id="为什么我应该选择开源模型而不是商业模型？"><a href="#为什么我应该选择开源模型而不是商业模型？" class="headerlink" title="为什么我应该选择开源模型而不是商业模型？"></a>为什么我应该选择开源模型而不是商业模型？</h4><p>这篇博文中列出的所有语言模型都是开源的，所以我相信这是第一个要回答的问题。事实上，开源模式和商业模式之间的选择往往取决于特定的需求和考虑，但前者在以下几个方面可能是更好的选择：</p>
+<ul>
+<li><strong>高可控性</strong> ：开源模型提供高度的控制，因为用户可以根据需要访问和微调模型。这允许定制和适应特定任务或要求，而这在商业模式中可能无法实现。</li>
+<li><strong>数据安全</strong>：开源模型可以在本地运行，也可以在私有云基础设施中运行，使用户能够更好地控制数据安全。对于商业模式，可能会担心数据隐私，因为数据通常需要发送到提供商的服务器进行处理。</li>
+<li><strong>成本效益</strong>：利用开源模型可能更具成本效益，尤其是在考虑商业产品所需的 API 调用或令牌的成本时。开源模型可以在没有这些经常性成本的情况下部署，尽管可能需要在基础设施和维护方面进行投资。</li>
+<li><strong>社区和协作</strong>：开源模型受益于社区的集体专业知识，从而在协作开发推动下实现快速改进、错误修复和新功能。</li>
+<li><strong>无供应商锁定</strong>：依靠开源模型消除了对特定供应商路线图、定价变化或服务可用性的依赖。</li>
+</ul>
+<h4 id="专用LLMs模型与通用模型相比如何？"><a href="#专用LLMs模型与通用模型相比如何？" class="headerlink" title="专用LLMs模型与通用模型相比如何？"></a>专用LLMs模型与通用模型相比如何？</h4><p>像 Code Llama 这样的专业LLMs公司在其专业领域提供集中的绩效提升。它们旨在在特定任务中表现出色，为这些特定应用程序提供更准确、更相关和更有用的输出。</p>
+<p>相比之下，像 Llama 2 这样的通用模型是为了处理各种任务而构建的。虽然它们可能与专用模型的任务特定精度不匹配，但它们广泛的知识库和适应性使它们成为各种应用的有用工具。</p>
+<p>专业和通用之间的选择LLMs取决于任务的具体要求。对于精度更重要的高风险或利基任务，专用模型更可取，而通用模型则提供更好的灵活性和广泛的实用性。</p>
+<h4 id="LLMs大规模部署时有哪些道德考虑因素？"><a href="#LLMs大规模部署时有哪些道德考虑因素？" class="headerlink" title="LLMs大规模部署时有哪些道德考虑因素？"></a>LLMs大规模部署时有哪些道德考虑因素？</h4><p>道德部署LLMs需要仔细检查偏见、透明度、问责制和滥用的可能性等问题。确保LLMs其训练数据中不存在的现有偏见是一项重大挑战，需要持续保持警惕并改进训练方法。关于如何LLMs做出决策以及他们接受培训的数据的透明度对于建立信任和问责制至关重要，尤其是在高风险应用程序中。</p>
+<h4 id="LLMs在生产环境中部署时应考虑什么？"><a href="#LLMs在生产环境中部署时应考虑什么？" class="headerlink" title="LLMs在生产环境中部署时应考虑什么？"></a>LLMs在生产环境中部署时应考虑什么？</h4><p>在生产环境中部署LLMs可能是一个微妙的过程。以下是一些需要考虑的策略：</p>
+<ol>
+<li>选择正确的模型大小：平衡模型大小与应用程序的延迟和吞吐量要求至关重要。较小的模型可以提供更快的响应并降低计算成本，而较大的模型可以提供更准确和细致的输出。</li>
+<li>基础结构注意事项：确保基础结构可以处理计算负载。使用支持 GPU 的云服务或使用量化和修剪技术优化模型有助于管理资源需求。对于没有基础架构专业知识的团队来说，具有自动缩放功能的无服务器平台可能是一个不错的选择。</li>
+<li>规划可伸缩性：部署策略应允许根据需要纵向扩展或缩减。使用 Docker 等技术进行容器化和 Kubernetes 编排可以支持可扩展的部署。</li>
+<li>构建强大的日志记录和可观测性：实施全面的日志记录和可观测性工具将有助于监控系统的运行状况，并在出现问题时快速诊断问题。</li>
+<li>使用 API 实现模块化：API 可以抽象化模型托管、扩展和管理的复杂性。它们还可以促进与现有系统的集成，并允许更轻松的更新和维护。</li>
+<li>考虑模型服务框架：BentoML、TensorFlow Serving、TorchServe 或 ONNX Runtime 等框架可以简化部署、提供版本控制并处理请求批处理以提高效率。</li>
+</ol>
+<h4 id="最后的思考"><a href="#最后的思考" class="headerlink" title="最后的思考"></a>最后的思考</h4><p>当我们在不断扩大的大型语言模型领域中航行时，很明显，它们的潜力才刚刚开始被挖掘。这一领域的快速创新预示着人工智能可以为我们的工作和创造性努力做出更深远的贡献。</p>
+<p>展望未来，我认为继续在开源社区中推广 AI 模型、推动造福所有人的进步并确保负责任地使用这些强大工具至关重要。当我们这样做时，希望我们能找到适当的平衡点，在降低风险的同时最大限度地LLMs为社会带来利益。</p>
 
-<h4 id="Output-txt-Execution-result"><a href="#Output-txt-Execution-result" class="headerlink" title="Output.txt: Execution result"></a><strong>Output.txt:</strong> Execution result</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Client: Strategy is set to normal sorting.</span><br><span class="line">Context: Sorting data using the strategy (not sure how it&#x27;ll do it)</span><br><span class="line">a,b,c,d,e</span><br><span class="line"></span><br><span class="line">Client: Strategy is set to reverse sorting.</span><br><span class="line">Context: Sorting data using the strategy (not sure how it&#x27;ll do it)</span><br><span class="line">e,d,c,b,a</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="Strategy-in-Rust"><a href="#Strategy-in-Rust" class="headerlink" title="Strategy in Rust"></a><strong>Strategy</strong> in Rust</h1><p>策略是一种行为设计模式，它将一组行为转换为对象，并使它们在原始上下文对象中可互换。</p>
-<p>原始对象（称为 context）包含对策略对象的引用。将执行行为的上下文委托给链接的策略对象。为了改变上下文执行其工作的方式，其他对象可能会用另一个对象替换当前链接的策略对象。</p>
-<h2 id="Conceptual-Example-概念示例"><a href="#Conceptual-Example-概念示例" class="headerlink" title="Conceptual Example 概念示例"></a>Conceptual Example 概念示例</h2><p>通过特征的概念策略示例。</p>
-<h4 id="conceptual-rs"><a href="#conceptual-rs" class="headerlink" title="conceptual.rs"></a><strong>conceptual.rs</strong></h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// Defines an injectable strategy for building routes.</span></span><br><span class="line"><span class="keyword">trait</span> <span class="title class_">RouteStrategy</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">build_route</span>(&amp;<span class="keyword">self</span>, from: &amp;<span class="type">str</span>, to: &amp;<span class="type">str</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">WalkingStrategy</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">RouteStrategy</span> <span class="keyword">for</span> <span class="title class_">WalkingStrategy</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">build_route</span>(&amp;<span class="keyword">self</span>, from: &amp;<span class="type">str</span>, to: &amp;<span class="type">str</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Walking route from &#123;&#125; to &#123;&#125;: 4 km, 30 min&quot;</span>, from, to);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">PublicTransportStrategy</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">RouteStrategy</span> <span class="keyword">for</span> <span class="title class_">PublicTransportStrategy</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">build_route</span>(&amp;<span class="keyword">self</span>, from: &amp;<span class="type">str</span>, to: &amp;<span class="type">str</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(</span><br><span class="line">            <span class="string">&quot;Public transport route from &#123;&#125; to &#123;&#125;: 3 km, 5 min&quot;</span>,</span><br><span class="line">            from, to</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Navigator</span>&lt;T: RouteStrategy&gt; &#123;</span><br><span class="line">    route_strategy: T,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;T: RouteStrategy&gt; Navigator&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">new</span>(route_strategy: T) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123; route_strategy &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">route</span>(&amp;<span class="keyword">self</span>, from: &amp;<span class="type">str</span>, to: &amp;<span class="type">str</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.route_strategy.<span class="title function_ invoke__">build_route</span>(from, to);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">navigator</span> = Navigator::<span class="title function_ invoke__">new</span>(WalkingStrategy);</span><br><span class="line">    navigator.<span class="title function_ invoke__">route</span>(<span class="string">&quot;Home&quot;</span>, <span class="string">&quot;Club&quot;</span>);</span><br><span class="line">    navigator.<span class="title function_ invoke__">route</span>(<span class="string">&quot;Club&quot;</span>, <span class="string">&quot;Work&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">navigator</span> = Navigator::<span class="title function_ invoke__">new</span>(PublicTransportStrategy);</span><br><span class="line">    navigator.<span class="title function_ invoke__">route</span>(<span class="string">&quot;Home&quot;</span>, <span class="string">&quot;Club&quot;</span>);</span><br><span class="line">    navigator.<span class="title function_ invoke__">route</span>(<span class="string">&quot;Club&quot;</span>, <span class="string">&quot;Work&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="Output-输出"><a href="#Output-输出" class="headerlink" title="Output 输出"></a>Output 输出</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Walking route from Home to Club: 4 km, 30 min</span><br><span class="line">Walking route from Club to Work: 4 km, 30 min</span><br><span class="line">Public transport route from Home to Club: 3 km, 5 min</span><br><span class="line">Public transport route from Club to Work: 3 km, 5 min</span><br></pre></td></tr></table></figure>
-
-<h2 id="Functional-approach-功能方法"><a href="#Functional-approach-功能方法" class="headerlink" title="Functional approach 功能方法"></a>Functional approach 功能方法</h2><p>函数和闭包简化了策略实现，因为您可以将行为直接注入到对象中，而无需复杂的接口定义。</p>
-<p>似乎 Strategy 在 Rust 的现代开发中经常被隐式和广泛地使用，例如，它就像迭代器一样工作：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">a</span> = [<span class="number">0i32</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">iter</span> = a.<span class="title function_ invoke__">iter</span>().<span class="title function_ invoke__">filter</span>(|x| x.<span class="title function_ invoke__">is_positive</span>());</span><br></pre></td></tr></table></figure>
-
-<h4 id="functional-rs"><a href="#functional-rs" class="headerlink" title="functional.rs"></a><strong>functional.rs</strong></h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="title class_">RouteStrategy</span> = <span class="title function_ invoke__">fn</span>(from: &amp;<span class="type">str</span>, to: &amp;<span class="type">str</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">walking_strategy</span>(from: &amp;<span class="type">str</span>, to: &amp;<span class="type">str</span>) &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Walking route from &#123;&#125; to &#123;&#125;: 4 km, 30 min&quot;</span>, from, to);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">public_transport_strategy</span>(from: &amp;<span class="type">str</span>, to: &amp;<span class="type">str</span>) &#123;</span><br><span class="line">    <span class="built_in">println!</span>(</span><br><span class="line">        <span class="string">&quot;Public transport route from &#123;&#125; to &#123;&#125;: 3 km, 5 min&quot;</span>,</span><br><span class="line">        from, to</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Navigator</span> &#123;</span><br><span class="line">    route_strategy: RouteStrategy,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Navigator</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">new</span>(route_strategy: RouteStrategy) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123; route_strategy &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">route</span>(&amp;<span class="keyword">self</span>, from: &amp;<span class="type">str</span>, to: &amp;<span class="type">str</span>) &#123;</span><br><span class="line">        (<span class="keyword">self</span>.route_strategy)(from, to);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">navigator</span> = Navigator::<span class="title function_ invoke__">new</span>(walking_strategy);</span><br><span class="line">    navigator.<span class="title function_ invoke__">route</span>(<span class="string">&quot;Home&quot;</span>, <span class="string">&quot;Club&quot;</span>);</span><br><span class="line">    navigator.<span class="title function_ invoke__">route</span>(<span class="string">&quot;Club&quot;</span>, <span class="string">&quot;Work&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">navigator</span> = Navigator::<span class="title function_ invoke__">new</span>(public_transport_strategy);</span><br><span class="line">    navigator.<span class="title function_ invoke__">route</span>(<span class="string">&quot;Home&quot;</span>, <span class="string">&quot;Club&quot;</span>);</span><br><span class="line">    navigator.<span class="title function_ invoke__">route</span>(<span class="string">&quot;Club&quot;</span>, <span class="string">&quot;Work&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">navigator</span> = Navigator::<span class="title function_ invoke__">new</span>(|from, to| <span class="built_in">println!</span>(<span class="string">&quot;Specific route from &#123;&#125; to &#123;&#125;&quot;</span>, from, to));</span><br><span class="line">    navigator.<span class="title function_ invoke__">route</span>(<span class="string">&quot;Home&quot;</span>, <span class="string">&quot;Club&quot;</span>);</span><br><span class="line">    navigator.<span class="title function_ invoke__">route</span>(<span class="string">&quot;Club&quot;</span>, <span class="string">&quot;Work&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="Output-输出-1"><a href="#Output-输出-1" class="headerlink" title="Output 输出"></a>Output 输出</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Walking route from Home to Club: 4 km, 30 min</span><br><span class="line">Walking route from Club to Work: 4 km, 30 min</span><br><span class="line">Public transport route from Home to Club: 3 km, 5 min</span><br><span class="line">Public transport route from Club to Work: 3 km, 5 min</span><br><span class="line">Specific route from Home to Club</span><br><span class="line">Specific route from Club to Work</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -387,7 +388,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/100/">100</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/103/">103</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -453,7 +454,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">103</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -516,12 +517,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">193k</span>
+    <span title="Symbols count total">196k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">11:42</span>
+    <span title="Reading time total">11:53</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
