@@ -15,8 +15,33 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Wed, 12 Mar 2025 10:43:27 GMT</pubDate>
+    <pubDate>Thu, 13 Mar 2025 03:27:38 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Rust 中关联类型与泛型的区别详解：特性、使用场景与设计目的</title>
+      <link>https://tonymistark.github.io/2025/03/13/Detailed-Comparison-Between-Associated-Types-and-Generics-in-Rust-Features-Use-Cases-and-Design-Goals/</link>
+      <guid>https://tonymistark.github.io/2025/03/13/Detailed-Comparison-Between-Associated-Types-and-Generics-in-Rust-Features-Use-Cases-and-Design-Goals/</guid>
+      <pubDate>Thu, 13 Mar 2025 03:26:37 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Detailed-Comparison-Between-Associated-Types-and-Generics-in-Rust-Features-Use-Cases-and-Design-Goals&quot;&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/tags/rust/">rust</category>
+      
+      
+      <comments>https://tonymistark.github.io/2025/03/13/Detailed-Comparison-Between-Associated-Types-and-Generics-in-Rust-Features-Use-Cases-and-Design-Goals/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>深入理解 Rust 中通过 trait 和泛型实现灵活且类型安全的抽象：关联类型、trait bound 与线程安全</title>
@@ -491,31 +516,6 @@
       
       
       <comments>https://tonymistark.github.io/2024/04/21/design-pattern/visitor/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Template Method 模版方法模式</title>
-      <link>https://tonymistark.github.io/2024/04/21/design-pattern/template-method/</link>
-      <guid>https://tonymistark.github.io/2024/04/21/design-pattern/template-method/</guid>
-      <pubDate>Sun, 21 Apr 2024 06:12:56 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a href=&quot;#Intent-意图&quot; class=&quot;headerlink&quot;</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      
-      <comments>https://tonymistark.github.io/2024/04/21/design-pattern/template-method/#disqus_thread</comments>
       
     </item>
     

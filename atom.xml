@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-03-12T10:43:27.833Z</updated>
+  <updated>2025-03-13T03:27:38.698Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Rust 中关联类型与泛型的区别详解：特性、使用场景与设计目的</title>
+    <link href="https://tonymistark.github.io/2025/03/13/Detailed-Comparison-Between-Associated-Types-and-Generics-in-Rust-Features-Use-Cases-and-Design-Goals/"/>
+    <id>https://tonymistark.github.io/2025/03/13/Detailed-Comparison-Between-Associated-Types-and-Generics-in-Rust-Features-Use-Cases-and-Design-Goals/</id>
+    <published>2025-03-13T03:26:37.000Z</published>
+    <updated>2025-03-13T03:27:38.698Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Detailed-Comparison-Between-Associated-Types-and-Generics-in-Rust-Features-Use-Cases-and-Design-Goals&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="rust" scheme="https://tonymistark.github.io/tags/rust/"/>
+    
+  </entry>
   
   <entry>
     <title>深入理解 Rust 中通过 trait 和泛型实现灵活且类型安全的抽象：关联类型、trait bound 与线程安全</title>
@@ -444,29 +467,6 @@
         
         
     <summary type="html">&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a href=&quot;#Intent-意图&quot; class=&quot;headerlink&quot; title=&quot;Intent 意图&quot;&gt;&lt;/a&gt;Intent 意图&lt;/h2&gt;&lt;p&gt;Visitor</summary>
-        
-      
-    
-    
-    
-    <category term="design-pattern" scheme="https://tonymistark.github.io/categories/design-pattern/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Template Method 模版方法模式</title>
-    <link href="https://tonymistark.github.io/2024/04/21/design-pattern/template-method/"/>
-    <id>https://tonymistark.github.io/2024/04/21/design-pattern/template-method/</id>
-    <published>2024-04-21T06:12:56.000Z</published>
-    <updated>2024-04-29T03:33:27.917Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a href=&quot;#Intent-意图&quot; class=&quot;headerlink&quot;</summary>
         
       
     

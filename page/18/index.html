@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2024/04/27/design-pattern/navigating-the-world-of-large-language-models/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2024/04/27/design-pattern/java-comments-reduce-technical-debt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/04/27/design-pattern/navigating-the-world-of-large-language-models/" class="post-title-link" itemprop="url">探索大型语言模型的世界</a>
+            <a href="/2024/04/27/design-pattern/java-comments-reduce-technical-debt/" class="post-title-link" itemprop="url">通过重视注释和代码来减少技术债务</a>
         </h2>
 
         <div class="post-meta">
@@ -207,7 +207,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2024-04-27 11:27:15" itemprop="dateCreated datePublished" datetime="2024-04-27T11:27:15+08:00">2024-04-27</time>
+              <time title="Created: 2024-04-27 13:37:14" itemprop="dateCreated datePublished" datetime="2024-04-27T13:37:14+08:00">2024-04-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -232,14 +232,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3.8k</span>
+              <span>3k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>14 mins.</span>
+              <span>11 mins.</span>
             </span>
 
         </div>
@@ -251,125 +251,49 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="探索大型语言模型的世界"><a href="#探索大型语言模型的世界" class="headerlink" title="探索大型语言模型的世界"></a>探索大型语言模型的世界</h4><p><em>2024年3月21日，由Sherlock Xu撰写</em></p>
-<p>过去一年，AI界因大型语言模型（LLMs）的快速发布而热闹非凡，每个新模型都带来了推动生成性AI可能性边界的进步。新模型层出不穷，令人叹为观止。就在上周末，xAI公司发布了其Grok语言模型，这是一个拥有3140亿参数的巨兽，并在Apache 2.0许可下发布。</p>
-<p>这些模型，由不断增加的参数数量和庞大的数据集训练，提高了我们生成文本和编写（以及理解）复杂代码的效率。然而，可用选项的数量既令人兴奋又令人生畏。做出明智的决策，考虑输出质量、速度和成本，成为了一个问题。</p>
-<p>答案不仅在于规格表或基准测试分数，而且在于全面理解每个模型带来的贡献。在这篇博客文章中，我们精选了过去一年引起轰动的LLMs列表。同时，我们试图回答一些常见问题。</p>
-<h4 id="Llama-2"><a href="#Llama-2" class="headerlink" title="Llama 2"></a>Llama 2</h4><p>Meta AI在LLMs领域取得了重大进展，发布了Llama 2，这是一个预训练的文本生成模型，有7亿、13亿和70亿参数的版本。它可以用于广泛的任务，包括聊天机器人和各种自然语言生成应用。Meta还针对特定用例定制了Llama 2，例如Llama Chat和Code Llama。</p>
-<p><strong>为什么选择Llama 2</strong>：</p>
+          <h1 id="通过重视注释和代码来减少技术债务"><a href="#通过重视注释和代码来减少技术债务" class="headerlink" title="通过重视注释和代码来减少技术债务"></a>通过重视注释和代码来减少技术债务</h1><h2 id="好的代码注释可以帮助维护者理解你的编码决策。"><a href="#好的代码注释可以帮助维护者理解你的编码决策。" class="headerlink" title="好的代码注释可以帮助维护者理解你的编码决策。"></a>好的代码注释可以帮助维护者理解你的编码决策。</h2><p>长期以来，注释在开发人员的输出中一直占据着明显的次要位置。注释是如此次要，而且被如此低估，以至于在今天的代码中，它们很少出现，除了作为文件顶部的常规版权和许可标头。这是一个错失的机会，因为积极维护的良好注释是减少技术债务的最有效方法之一，也就是说，它们减轻了未来将处理代码的程序员的工作量。</p>
+<p>由于许多开发组织的文化低估了注释的价值，因此团队领导（和经理）允许注释与代码不同步，从而增加而不是减少技术债务。</p>
+<p>而且，由于低估是常态，开发人员学会了责怪注释，而不是允许他们与代码不同步的文化。Bob Martin 断言，每条注释都代表着“未能在代码中表达自己”（见图 1），从而表达了这种消极观点。请注意，Martin 在他的《Clean Code》一书中发表了这个奇怪的声明，然后用了 15 页的篇幅列举了注释非常有用的许多例子。</p>
+<h2 id="为什么要写注释？"><a href="#为什么要写注释？" class="headerlink" title="为什么要写注释？"></a>为什么要写注释？</h2><p>注释以多种方式消除了技术债务。</p>
+<p>注释解释了代码的用途。文件开头的注释解释了代码中可以找到的功能，无需通读所有方法来收集对文件的理解。如果您正在寻找特定文件，能够阅读描述其内容的单个句子可以大大加快搜索速度。出于这个原因，大多数编码标准都敦促在每个文件中只包含这样的注释。</p>
+<p>在文件级注释中使用关键字可以进一步方便在大型代码库中搜索特定功能。</p>
+<p>类开始时的 Javadoc 注释可以替代文件级注释。如果注释描述了该类在更大项目中的角色，它们将进一步帮助读者。描述为什么需要该类（如果不明显）有助于其他人理解该类的作用。这些注释对于在类的 API 中呈现任何异常信息特别有用。</p>
+<p><strong>注释对代码进行说明。</strong>许多开发人员有一种堂吉诃德式的信念，即如果代码足够清晰，他们就不需要使用注释。这就是 Bob Martin 在图 1 中断言的内容。这是一个可爱的前提，根本不成立。第一个问题是，大多数开发人员都承受着巨大的时间压力，没有时间使代码变得如此清晰，以至于不需要进一步的代码注释。事实上，程序员更常见的经历是看着他们六个月前写的代码，然后想“我简直不敢相信是我写的！不要自欺欺人地认为你可以写得如此清晰，以至于不需要注释就能理解。</p>
+<p>明码异议的另一个局限性是，代码只解释了一件事是如何完成的，而不是为什么这样做的，尤其是在有明显的替代方案的情况下;如果原因不明显和明显，那么在没有解释的情况下就会产生技术债务。请注意，如果没有这样的解释性注释，代码可能非常难以维护，因为没有人敢碰它，而这正是技术债务的定义。</p>
+<p><strong>代码注释突出显示了潜在的陷阱。</strong>例如，Google 的 Java 指南要求每当 switch 中的 case 语句进入下一个 case 时都要添加注释。同样，该指南要求注意和解释一个空的异常捕获块，以及所有其他可能被忽略的、非常规的或不受欢迎但偶尔必要的步骤的项目。</p>
+<p><strong>代码注释为未来的工作提供了里程碑。</strong>术语“自我承认的技术债务”是指代码库中经常遇到的 TODO 和 FIXME 注释。从表面上看，这些看起来像是好心的程序员留下的碎屑，他们随后被其他任务所占据。然而，一项关于维护良好的开源项目的有趣研究，“关于消除自我承认的技术债务的实证研究”发现，74%的此类条目在180天内被删除，最常见的是将它们放在那里的开发人员。换言之，这些代码注释往往代表了未来工作的有用里程碑，而不是碎屑。</p>
+<p>虽然不是专门针对技术债务的对策，但我使用第三个标记 CURR 来表示“当前”。这是一个面包屑，它告诉我我从哪里开始编码。我经常包括几行代码注释，其中包含恢复工作时可能需要的信息。我在一个代码库中只允许一个 CURR，所以如果我在其他地方恢复工作，我会将现有的 CURR 转换为 TODO。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Create a string object with EMBSTR encoding if it is smaller than</span></span><br><span class="line"><span class="comment"> * OBJ_ENCODING_EMBSTR_SIZE_LIMIT, otherwise =the RAW encoding is used.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * The current limit of 44 is chosen so that the biggest string object</span></span><br><span class="line"><span class="comment"> * we allocate as EMBSTR will still fit into the 64 byte arena of jemalloc. </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> #define OBJ_ENCODING_EMBSTR_SIZE_LIMIT <span class="number">44</span></span><br><span class="line"> robj *CreateStringObject(const <span class="type">char</span> *ptr, size_t len) &#123;</span><br><span class="line">     <span class="keyword">if</span> (len &lt;= OBJ_ENCODING_EMBSTR_SIZE_LIMIT)</span><br><span class="line">         <span class="keyword">return</span> CreateEmbeddedStringObject(ptr, len);</span><br><span class="line">     <span class="keyword">else</span></span><br><span class="line">         <span class="keyword">return</span> CreateRawStringObject(ptr, len);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Same as CreateRawStringObject, can return NULL if allocation fails */</span></span><br><span class="line">robj *tryCreateRawStringObject(const <span class="type">char</span> *ptr, size_t len) &#123;</span><br><span class="line">    <span class="type">sds</span> <span class="variable">str</span> <span class="operator">=</span> sdstrynewlen(ptr, len);</span><br><span class="line">    <span class="keyword">if</span> (!str) <span class="keyword">return</span> NULL;</span><br><span class="line">    <span class="keyword">return</span> CreateObject(OBJ_STRING, str); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Same as CreateRawStringObject, can return NULL if allocation fails */</span></span><br><span class="line">robj *tryCreateRawStringObject(const <span class="type">char</span> *ptr, size_t len) &#123;</span><br><span class="line">    <span class="keyword">if</span> (len &lt;= OBJ_ENCODING_EMBSTR_SIZE_LIMIT)</span><br><span class="line">        <span class="keyword">return</span> CreateEmbeddedStringObject(ptr, len);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> CreateRawStringObject(ptr, len);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Ousterhout-的注释方法"><a href="#Ousterhout-的注释方法" class="headerlink" title="Ousterhout 的注释方法"></a>Ousterhout 的注释方法</h2><p>在前面的方案中，注释的好处是不可否认的。它们减少了技术债务，维护良好的注释也使新团队成员更容易理解代码库，而无需花费数小时在死胡同中摸索或向现有员工提出数百个问题。</p>
+<p>然而，重视代码注释的文化可以鼓励它们用于远远超出技术债务的补救。</p>
+<p>John Ousterhout 的优秀著作《软件设计哲学》（A Philosophy of Software Design）描述了大型代码库的最佳实践;它接续了马丁离开的地方，更倾向于现实世界的情况。Ousterhout 是 Tcl 语言的设计者和实现者;后来，他与他人共同创立了Electric Cloud，这是一家专门从事大规模代码库（即代码行超过100万行的代码库）的DevOps工具的公司。</p>
+<p>虽然 Ousterhout 的书只有 175 页，但它用了整整两章来讲代码注释。第一章回答了对撰写和重视代码注释的最常见反对意见;第二个重点是提高代码注释的质量。</p>
+<p>Ousterhout 的一般格言是，代码中的注释应该传达程序员脑海中无法准确反映在代码本身中的任何内容。这是一个很好的指导方针，它直接反驳了“每条代码注释都是失败的”的论点。真正的失败是省略了后续编码人员可能需要的澄清和上下文信息。</p>
+<p>代码注释还可以帮助您理清自己的想法。不止一次，当我为一段代码编写注释时，我意识到我的实现存在缺陷。这与向同事描述问题并在解释问题时出现解决方案的感觉大致相同——这是一种常见的体验。在之前的文章中，我描述了这种优势在混合方法中的扩展，该方法从Ousterhout的书中获取了元素。</p>
+<p>创建类时，请考虑使用以下有用的步骤，这些步骤是对注释使用的重大扩展：</p>
 <ul>
-<li><p><strong>性能</strong>：基于Meta AI的基准测试，Llama 2在理解、推理和一般智能能力方面优于其他开源模型。</p>
-</li>
-<li><p><strong>微调</strong>：三种不同大小的Llama 2是广泛专门化应用的理想基础。用户可以微调它们以满足特定任务或行业的独特需求（在Hugging Face模型中心有超过12,000个搜索结果为“Llama2”）。这些微调模型不仅为开发人员节省了大量时间和资源，而且还有力地证明了Llama 2的定制和改进能力。</p>
-</li>
-<li><p><strong>安全性</strong>：Llama 2在设计上注重生成安全响应，拒绝不当请求的表现更佳，非常适合企业和面向公众的应用。在Meta的评估中，7B、13B和70B参数的Llama 2模型展示了显著较低的安全违规百分比（3%和4%），超过了Falcon和ChatGPT（7%）。</p>
-</li>
+<li>首先编写类接口注释。</li>
+<li>编写最重要的公共方法的接口注释和签名，但将方法主体留空。</li>
+<li>为最重要的实例变量编写注释和声明。</li>
+<li>填写方法的正文，并在进行时添加实现注释。</li>
+<li>当您发现需要更多方法时，请在正文之前写下注释。</li>
+<li>根据 Ousterhout 的经验，这些步骤的好处是三方面的。</li>
+<li>代码完成后，会正确注释，并且注释完全是最新的。</li>
+<li>注释优先的方法使您能够专注于抽象，而不是被实现分散注意力。</li>
+<li>注释揭示了代码的复杂性 - 如果方法或变量需要冗长而复杂的注释，则可能需要重新考虑和简化。</li>
 </ul>
-<p><strong>Llama 2的挑战</strong>：</p>
-<ul>
-<li><p><strong>编码能力</strong>：Llama 2在编码任务上的能力不如一些专门化的模型，如Code Llama，特别是在复杂的编程任务上。</p>
-</li>
-<li><p><strong>预防机制</strong>：如上所述，Llama 2可能因安全考虑而比其他模型更为保守，这种内容生成的立场有时可能过于限制性，限制了动态交互。</p>
-</li>
-<li><p><strong>多语言限制</strong>：主要在英语数据上训练，Llama 2在处理非英语语言的任务上显示出有限的能力，这可能影响其在多语言环境中的使用。</p>
-</li>
-</ul>
-<h4 id="Mixtral-8x7B"><a href="#Mixtral-8x7B" class="headerlink" title="Mixtral 8x7B"></a>Mixtral 8x7B</h4><p>由Mistral AI在2023年12月发布的Mixtral 8x7B，使用了一个稀疏的专家混合架构。简单来说，它使用许多小型网络，每个网络都专门处理不同的事情。每次任务只有少数这些“专家”工作，使过程高效，而不是每次都使用整个模型的全部能力，从而控制成本和延迟。</p>
-<p>Mixtral 8x7B在商业使用下获得Apache 2.0许可，展示了在各种文本生成任务中的卓越多功能性，包括代码生成，并具有针对聊天应用优化的微调变体Mixtral 8x7B Instruct。</p>
-<p><strong>为什么选择Mixtral 8x7B</strong>：</p>
-<ul>
-<li><p><strong>最先进的性能</strong>：Mixtral 8x7B在许多基准测试中超越了像Llama 2 70B和GPT-3.5这样的领先模型。</p>
-</li>
-<li><p><strong>长上下文窗口</strong>：Mixtral 8x7B的32k令牌上下文窗口显著增强了其处理长对话和复杂文档的能力。这使模型能够处理从详细内容创建到复杂的检索增强生成的各种任务，使其非常适合研究和商业应用。</p>
-</li>
-<li><p><strong>优化效率</strong>：尽管参数数量大，但它提供了成本效益的推理，与更小的模型相当。</p>
-</li>
-<li><p><strong>多功能语言支持</strong>：Mixtral 8x7B处理多种语言（法语、德语、西班牙语、意大利语和英语），使其成为全球应用的理想选择。</p>
-</li>
-</ul>
-<p><strong>Mixtral 8x7B的挑战</strong>：</p>
-<ul>
-<li><p><strong>缺乏内置的监管机制</strong>：没有本地监管，可能存在生成不当或有害内容的风险，特别是当模型被提示敏感或有争议的输入时。打算在内容控制和安全性重要的环境部署此模型的企业应该小心这一点。</p>
-</li>
-<li><p><strong>硬件要求</strong>：整个参数集需要大量的RAM才能运行，这可能限制了它在低端系统上的应用。</p>
-</li>
-</ul>
-<h4 id="Zephyr-7B"><a href="#Zephyr-7B" class="headerlink" title="Zephyr 7B"></a>Zephyr 7B</h4><p>基于Mistral 7B构建并经过微调的Zephyr 7B，实现了与人类意图更好的对齐，在特定任务和基准测试中超越了其同类。在其发布时，Zephyr-7B-β是MT-Bench和AlpacaEval基准测试中排名最高的7B聊天模型。</p>
-<p>Zephyr 7B的训练涉及通过接触大量语言模式和上下文来改进其能力。这个过程使它能够理解复杂查询并生成连贯、与上下文相关的文本，使其成为内容创建、客户支持等多功能工具。</p>
-<p><strong>为什么选择Zephyr 7B</strong>：</p>
-<ul>
-<li><p><strong>效率和性能</strong>：尽管相对于像GPT-3.5或Llama-2-70B这样的巨头来说体积较小，但Zephyr 7B在需要深入理解人类意图的任务中提供可比或更好的性能。</p>
-</li>
-<li><p><strong>多语言能力</strong>：在多样化的数据集上训练，Zephyr 7B支持多种语言的文本生成和理解，包括但不限于英语、西班牙语、法语、德语、意大利语、葡萄牙语、荷兰语、俄语、中文、日语和韩语。</p>
-</li>
-<li><p><strong>任务灵活性</strong>：Zephyr 7B擅长执行广泛的语言相关任务，从文本生成和摘要到翻译和情感分析。这使其成为众多应用中高度适应性的工具。</p>
-</li>
-</ul>
-<p><strong>Zephyr 7B的挑战</strong>：</p>
-<ul>
-<li><p><strong>意图对齐</strong>：虽然Zephyr 7B在与人类意图对齐方面取得了一些进展，但可能需要持续评估和调整以确保其输出满足特定用户需求或道德准则。</p>
-</li>
-<li><p><strong>适应专业任务</strong>：根据应用情况，可能需要额外的微调来优化Zephyr 7B在专业任务中的性能，如推理、数学和编码。</p>
-</li>
-</ul>
-<h4 id="SOLAR-10-7B"><a href="#SOLAR-10-7B" class="headerlink" title="SOLAR 10.7B"></a>SOLAR 10.7B</h4><p>SOLAR 10.7B是一个拥有107亿参数的大型语言模型，使用称为深度上扩展（DUS）的扩展技术。这简化了扩展过程，无需复杂的训练或推理调整。</p>
-<p>SOLAR 10.7B经历了两个微调阶段：指令调整和对齐调整。指令调整增强了其遵循QA格式指令的能力。对齐调整进一步细化了模型，使其更紧密地与人类偏好或强AI输出对齐，利用开源数据集和合成的数学重点对齐数据集。</p>
-<p><strong>为什么选择SOLAR 10.7B</strong>：</p>
-<ul>
-<li><p><strong>多功能性</strong>：像SOLAR 10.7B-Instruct这样的微调变体提供了增强的指令遵循能力，使模型能够用于广泛的应用。</p>
-</li>
-<li><p><strong>卓越的NLP性能</strong>：SOLAR 10.7B在NLP任务中表现出色，超越了其他预训练模型，如Llama 2和Mistral 7B。</p>
-</li>
-<li><p><strong>微调</strong>：SOLAR 10.7B是一个理想的微调模型，具有坚实的基线能力。</p>
-</li>
-</ul>
-<p><strong>SOLAR 10.7B的挑战</strong>：</p>
-<ul>
-<li><p><strong>资源需求</strong>：该模型可能需要大量的计算资源来进行训练和微调。</p>
-</li>
-<li><p><strong>偏见问题</strong>：模型的输出可能不总是与道德或公平使用原则一致。</p>
-</li>
-</ul>
-<h4 id="Code-Llama"><a href="#Code-Llama" class="headerlink" title="Code Llama"></a>Code Llama</h4><p>在Llama 2上微调的Code Llama是专门为编程任务微调的高级大型语言模型。它被设计为理解并生成多种流行编程语言的代码，包括Python、C++、Java、PHP、Typescript（Javascript）、C#和Bash，使其成为开发人员的理想工具。</p>
-<p>该模型有四种大小（7B、13B、34B和70B参数）以适应各种用例，从像实时代码完成这样的低延迟应用使用7B和13B模型，到由34B和70B模型提供的更全面的代码协助。</p>
-<p><strong>为什么选择Code Llama</strong>：</p>
-<ul>
-<li><p><strong>大输入上下文</strong>：Code Llama可以处理高达100,000个令牌的输入，允许更好地理解和操作大型代码库。</p>
-</li>
-<li><p><strong>多样化的应用</strong>：它被设计用于一系列应用，如代码生成、代码完成、调试，甚至讨论代码，满足软件开发生命周期内的不同需求。</p>
-</li>
-<li><p><strong>性能</strong>：在大量数据集（70B模型高达1万亿个令牌）上训练的模型，可以提供更准确和与上下文相关的代码建议。Code Llama - Instruct 70B模型甚至在HumanEval测试中得分67.8，高于GPT 4（67.0）。</p>
-</li>
-</ul>
-<p><strong>Code Llama的挑战</strong></p>
-<ul>
-<li><strong>硬件要求</strong>：较大的模型（34B 和 70B）可能需要大量计算资源才能获得最佳性能，这可能会限制硬件有限的个人或组织的访问。</li>
-<li><strong>潜在的错位</strong>：虽然它已经过微调以提高安全性并符合人类意图，但如果监督不当，总是存在生成不适当或恶意代码的风险。</li>
-<li><strong>不适用于一般的自然语言任务</strong>：Code Llama 针对编码任务进行了优化，不建议用于更广泛的自然语言处理应用程序。请注意，只有 Code Llama Instruct 经过专门微调，以更好地响应自然语言提示。</li>
-</ul>
-<h4 id="为什么我应该选择开源模型而不是商业模型？"><a href="#为什么我应该选择开源模型而不是商业模型？" class="headerlink" title="为什么我应该选择开源模型而不是商业模型？"></a>为什么我应该选择开源模型而不是商业模型？</h4><p>这篇博文中列出的所有语言模型都是开源的，所以我相信这是第一个要回答的问题。事实上，开源模式和商业模式之间的选择往往取决于特定的需求和考虑，但前者在以下几个方面可能是更好的选择：</p>
-<ul>
-<li><strong>高可控性</strong> ：开源模型提供高度的控制，因为用户可以根据需要访问和微调模型。这允许定制和适应特定任务或要求，而这在商业模式中可能无法实现。</li>
-<li><strong>数据安全</strong>：开源模型可以在本地运行，也可以在私有云基础设施中运行，使用户能够更好地控制数据安全。对于商业模式，可能会担心数据隐私，因为数据通常需要发送到提供商的服务器进行处理。</li>
-<li><strong>成本效益</strong>：利用开源模型可能更具成本效益，尤其是在考虑商业产品所需的 API 调用或令牌的成本时。开源模型可以在没有这些经常性成本的情况下部署，尽管可能需要在基础设施和维护方面进行投资。</li>
-<li><strong>社区和协作</strong>：开源模型受益于社区的集体专业知识，从而在协作开发推动下实现快速改进、错误修复和新功能。</li>
-<li><strong>无供应商锁定</strong>：依靠开源模型消除了对特定供应商路线图、定价变化或服务可用性的依赖。</li>
-</ul>
-<h4 id="专用LLMs模型与通用模型相比如何？"><a href="#专用LLMs模型与通用模型相比如何？" class="headerlink" title="专用LLMs模型与通用模型相比如何？"></a>专用LLMs模型与通用模型相比如何？</h4><p>像 Code Llama 这样的专业LLMs公司在其专业领域提供集中的绩效提升。它们旨在在特定任务中表现出色，为这些特定应用程序提供更准确、更相关和更有用的输出。</p>
-<p>相比之下，像 Llama 2 这样的通用模型是为了处理各种任务而构建的。虽然它们可能与专用模型的任务特定精度不匹配，但它们广泛的知识库和适应性使它们成为各种应用的有用工具。</p>
-<p>专业和通用之间的选择LLMs取决于任务的具体要求。对于精度更重要的高风险或利基任务，专用模型更可取，而通用模型则提供更好的灵活性和广泛的实用性。</p>
-<h4 id="LLMs大规模部署时有哪些道德考虑因素？"><a href="#LLMs大规模部署时有哪些道德考虑因素？" class="headerlink" title="LLMs大规模部署时有哪些道德考虑因素？"></a>LLMs大规模部署时有哪些道德考虑因素？</h4><p>道德部署LLMs需要仔细检查偏见、透明度、问责制和滥用的可能性等问题。确保LLMs其训练数据中不存在的现有偏见是一项重大挑战，需要持续保持警惕并改进训练方法。关于如何LLMs做出决策以及他们接受培训的数据的透明度对于建立信任和问责制至关重要，尤其是在高风险应用程序中。</p>
-<h4 id="LLMs在生产环境中部署时应考虑什么？"><a href="#LLMs在生产环境中部署时应考虑什么？" class="headerlink" title="LLMs在生产环境中部署时应考虑什么？"></a>LLMs在生产环境中部署时应考虑什么？</h4><p>在生产环境中部署LLMs可能是一个微妙的过程。以下是一些需要考虑的策略：</p>
-<ol>
-<li>选择正确的模型大小：平衡模型大小与应用程序的延迟和吞吐量要求至关重要。较小的模型可以提供更快的响应并降低计算成本，而较大的模型可以提供更准确和细致的输出。</li>
-<li>基础结构注意事项：确保基础结构可以处理计算负载。使用支持 GPU 的云服务或使用量化和修剪技术优化模型有助于管理资源需求。对于没有基础架构专业知识的团队来说，具有自动缩放功能的无服务器平台可能是一个不错的选择。</li>
-<li>规划可伸缩性：部署策略应允许根据需要纵向扩展或缩减。使用 Docker 等技术进行容器化和 Kubernetes 编排可以支持可扩展的部署。</li>
-<li>构建强大的日志记录和可观测性：实施全面的日志记录和可观测性工具将有助于监控系统的运行状况，并在出现问题时快速诊断问题。</li>
-<li>使用 API 实现模块化：API 可以抽象化模型托管、扩展和管理的复杂性。它们还可以促进与现有系统的集成，并允许更轻松的更新和维护。</li>
-<li>考虑模型服务框架：BentoML、TensorFlow Serving、TorchServe 或 ONNX Runtime 等框架可以简化部署、提供版本控制并处理请求批处理以提高效率。</li>
-</ol>
-<h4 id="最后的思考"><a href="#最后的思考" class="headerlink" title="最后的思考"></a>最后的思考</h4><p>当我们在不断扩大的大型语言模型领域中航行时，很明显，它们的潜力才刚刚开始被挖掘。这一领域的快速创新预示着人工智能可以为我们的工作和创造性努力做出更深远的贡献。</p>
-<p>展望未来，我认为继续在开源社区中推广 AI 模型、推动造福所有人的进步并确保负责任地使用这些强大工具至关重要。当我们这样做时，希望我们能找到适当的平衡点，在降低风险的同时最大限度地LLMs为社会带来利益。</p>
+<p>这有很多好处！</p>
+<p>在Ousterhout看来，最重要的内容是抽象（很难通过阅读实现代码来梳理）和对代码存在原因的解释。总之，第一次处理代码的开发人员应该能够扫描类的注释，并很好地了解类的作用并理解最重要的实现方面。</p>
+<p>如果这种方法对你有吸引力——就像它对我一样——Ousterhout 建议你使用它，直到你习惯了以这种方式编写代码。他争辩说，我同意，这样做会通过提供更干净、更清晰的代码来改变你。</p>
+<h2 id="Javadoc-的奢华"><a href="#Javadoc-的奢华" class="headerlink" title="Javadoc 的奢华"></a>Javadoc 的奢华</h2><p>Java 开发人员有一个很好的工具来追求这种更深入的方法：Javadoc 注解。如果你用一种以上的语言编写代码，你很快就会意识到注释选项在其他语言中是多么微不足道。大多数语言没有任何内置的 Javadoc 对应物。或者，就像 Go 和其他一些语言一样，如果它们有对应的语言，相比之下，它就很无聊了。</p>
+<p>Javadoc 允许您将注释转换为优雅、格式良好且可用的文档。从JDK发行版的优秀文档中可以看出，Java团队在深思熟虑、认真的纪律中充分利用了该工具。（顺便说一句，JVM 本身存在广泛的代码注释。</p>
+<h2 id="开源项目中的注释"><a href="#开源项目中的注释" class="headerlink" title="开源项目中的注释"></a>开源项目中的注释</h2><p>最后一点：如果你正在为一个开源项目做贡献，你应该非常重视代码注释。潜在合作者在考虑加入项目时遇到的最大障碍之一是学习代码库的困难——最常见的原因是它不包含任何注释（在许可证标头之外）。</p>
+<p>优秀的开源项目负责人会努力提供易于理解的文档和注释良好的代码，以便潜在的贡献者可以轻松快速地摸索代码，而无需付出太多努力来修复一个小错误。那些以良好的文档和大量代码注释为荣的项目，如Redis，会得到良好的参与。</p>
+<p>在我参与的一个项目 Jacobin 中，这是一个用 Go 编写的 JVM，贡献者广泛使用注释。还为潜在的贡献者提供了额外的资源：代码库的概述，使人们能够轻松理解项目的整体架构以及它如何映射到代码布局。</p>
+<p>这些步骤需要时间，但它们对项目的贡献者和项目的目标受众一样有帮助，因为它们迫使雅各宾的开发人员明确我们的假设，清晰地思考我们的思维，并在工作中遵守纪律。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>维护不善的代码注释是技术债务的明显来源。若要避免此问题，请像重视代码一样重视注释。例如，在进行代码审查时，不仅要特别注意围绕新代码的注释，还要特别注意文件中的更高级别的注释是否仍然正确。</p>
+<p>由于 JDK 捆绑了 Javadoc，因此您有独特的机会从对注释的严格赞赏中彻底受益，从而消除了技术债务。</p>
 
       
     </div>
@@ -388,7 +312,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/103/">103</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/104/">104</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -454,7 +378,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -517,12 +441,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">196k</span>
+    <span title="Symbols count total">197k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">11:53</span>
+    <span title="Reading time total">11:57</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
