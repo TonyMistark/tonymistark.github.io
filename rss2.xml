@@ -15,8 +15,35 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Thu, 13 Mar 2025 03:27:38 GMT</pubDate>
+    <pubDate>Wed, 02 Apr 2025 08:42:57 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Q1:为何选择使用 str 而非 String？</title>
+      <link>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_01/</link>
+      <guid>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_01/</guid>
+      <pubDate>Wed, 02 Apr 2025 08:40:33 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;为何选择使用-str-而非-String？&quot;&gt;&lt;a href=&quot;#为何选择使用-str-而非-String？&quot; class=&quot;headerlink&quot; title=&quot;为何选择使用 str 而非 String？&quot;&gt;&lt;/a&gt;为何选择使用 str 而非</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/1000-rust-questions/">1000 rust questions</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/rust/">rust</category>
+      
+      
+      <comments>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_01/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Rust 中关联类型与泛型的区别详解：特性、使用场景与设计目的</title>
@@ -491,31 +518,6 @@
       
       
       <comments>https://tonymistark.github.io/2024/04/27/design-pattern/navigating-the-world-of-large-language-models/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Visitor 访问者模式</title>
-      <link>https://tonymistark.github.io/2024/04/21/design-pattern/visitor/</link>
-      <guid>https://tonymistark.github.io/2024/04/21/design-pattern/visitor/</guid>
-      <pubDate>Sun, 21 Apr 2024 06:38:18 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a href=&quot;#Intent-意图&quot; class=&quot;headerlink&quot; title=&quot;Intent 意图&quot;&gt;&lt;/a&gt;Intent 意图&lt;/h2&gt;&lt;p&gt;Visitor</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      
-      <comments>https://tonymistark.github.io/2024/04/21/design-pattern/visitor/#disqus_thread</comments>
       
     </item>
     

@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-03-13T03:27:38.698Z</updated>
+  <updated>2025-04-02T08:42:57.612Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Q1:为何选择使用 str 而非 String？</title>
+    <link href="https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_01/"/>
+    <id>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_01/</id>
+    <published>2025-04-02T08:40:33.000Z</published>
+    <updated>2025-04-02T08:42:57.612Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;为何选择使用-str-而非-String？&quot;&gt;&lt;a href=&quot;#为何选择使用-str-而非-String？&quot; class=&quot;headerlink&quot; title=&quot;为何选择使用 str 而非 String？&quot;&gt;&lt;/a&gt;为何选择使用 str 而非</summary>
+        
+      
+    
+    
+    
+    <category term="1000 rust questions" scheme="https://tonymistark.github.io/categories/1000-rust-questions/"/>
+    
+    
+    <category term="rust" scheme="https://tonymistark.github.io/tags/rust/"/>
+    
+  </entry>
   
   <entry>
     <title>Rust 中关联类型与泛型的区别详解：特性、使用场景与设计目的</title>
@@ -444,29 +469,6 @@
         
         
     <summary type="html">&lt;h4 id=&quot;探索大型语言模型的世界&quot;&gt;&lt;a href=&quot;#探索大型语言模型的世界&quot; class=&quot;headerlink&quot; title=&quot;探索大型语言模型的世界&quot;&gt;&lt;/a&gt;探索大型语言模型的世界&lt;/h4&gt;&lt;p&gt;&lt;em&gt;2024年3月21日，由Sherlock</summary>
-        
-      
-    
-    
-    
-    <category term="design-pattern" scheme="https://tonymistark.github.io/categories/design-pattern/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Visitor 访问者模式</title>
-    <link href="https://tonymistark.github.io/2024/04/21/design-pattern/visitor/"/>
-    <id>https://tonymistark.github.io/2024/04/21/design-pattern/visitor/</id>
-    <published>2024-04-21T06:38:18.000Z</published>
-    <updated>2024-04-29T03:33:27.917Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Intent-意图&quot;&gt;&lt;a href=&quot;#Intent-意图&quot; class=&quot;headerlink&quot; title=&quot;Intent 意图&quot;&gt;&lt;/a&gt;Intent 意图&lt;/h2&gt;&lt;p&gt;Visitor</summary>
         
       
     

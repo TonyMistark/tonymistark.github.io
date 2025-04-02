@@ -6001,4 +6001,32 @@ All of that said, in absolute sense I’d much rather live in the world of today
         <tag>rust</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Q1:为何选择使用 str 而非 String？</title>
+    <url>/2025/04/02/1000_rust_questions/1000_rust_questions_01/</url>
+    <content><![CDATA[<h2 id="为何选择使用-str-而非-String？"><a href="#为何选择使用-str-而非-String？" class="headerlink" title="为何选择使用 str 而非 String？"></a>为何选择使用 str 而非 String？</h2><p>在 Rust 中，选择使用 <code>str</code> 而非 <code>String</code> 主要取决于以下几个方面：</p>
+<h3 id="1-内存效率"><a href="#1-内存效率" class="headerlink" title="1. 内存效率"></a>1. <strong>内存效率</strong></h3><ul>
+<li><code>str</code> 是一个切片，表示对字符串数据的引用，而 <code>String</code> 是一个拥有所有权的动态字符串。使用 <code>str</code> 可以避免不必要的内存分配，尤其在只需要读取字符串数据而不需要修改它的情况下。</li>
+</ul>
+<h3 id="2-性能"><a href="#2-性能" class="headerlink" title="2. 性能"></a>2. <strong>性能</strong></h3><ul>
+<li><code>str</code> 的使用可以减少内存分配和复制的开销。在处理大型字符串时，使用 <code>&amp;str</code> 可以提高性能，因为它只需要引用现有数据，而不需要创建新的字符串实例。</li>
+</ul>
+<h3 id="3-不可变性"><a href="#3-不可变性" class="headerlink" title="3. 不可变性"></a>3. <strong>不可变性</strong></h3><ul>
+<li><code>str</code> 是不可变的，意味着它的内容在创建后不能被更改。这提高了代码的安全性，特别是在多线程环境中，避免了竞争条件。</li>
+</ul>
+<h3 id="4-借用与生命周期"><a href="#4-借用与生命周期" class="headerlink" title="4. 借用与生命周期"></a>4. <strong>借用与生命周期</strong></h3><ul>
+<li>使用 <code>&amp;str</code> 可以更好地利用 Rust 的借用检查器，确保在使用字符串时遵循生命周期规则。这有助于避免悬垂引用和内存泄漏。</li>
+</ul>
+<h3 id="5-接口兼容性"><a href="#5-接口兼容性" class="headerlink" title="5. 接口兼容性"></a>5. <strong>接口兼容性</strong></h3><ul>
+<li>在许多情况下，Rust 的标准库和其他库函数接受 <code>&amp;str</code> 作为参数，因此使用 <code>str</code> 可以使得代码更具通用性和兼容性。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>在选择使用 <code>str</code> 还是 <code>String</code> 时，考虑你的需求：如果你只需要读取字符串并且不需要修改，使用 <code>&amp;str</code> 更加高效和安全；如果需要动态修改字符串，则使用 <code>String</code> 更为合适。</p>
+]]></content>
+      <categories>
+        <category>1000 rust questions</category>
+      </categories>
+      <tags>
+        <tag>rust</tag>
+      </tags>
+  </entry>
 </search>
