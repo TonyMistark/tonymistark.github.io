@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-04-02T08:46:50.264Z</updated>
+  <updated>2025-04-02T08:52:52.471Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Q3:为什么Vec&lt;i32&gt; 不能直接作为 &amp;[i32] ?</title>
+    <link href="https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_03/"/>
+    <id>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_03/</id>
+    <published>2025-04-02T08:52:17.000Z</published>
+    <updated>2025-04-02T08:52:52.471Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;为什么Vec-不能直接作为-i32&quot;&gt;&lt;a href=&quot;#为什么Vec-不能直接作为-i32&quot; class=&quot;headerlink&quot; title=&quot;为什么Vec 不能直接作为 &amp;amp;[i32] ?&quot;&gt;&lt;/a&gt;为什么Vec&lt;i32&gt; 不能直接作为</summary>
+        
+      
+    
+    
+    
+    <category term="1000_rust_questions" scheme="https://tonymistark.github.io/categories/1000-rust-questions/"/>
+    
+    
+    <category term="rust" scheme="https://tonymistark.github.io/tags/rust/"/>
+    
+  </entry>
   
   <entry>
     <title>Q2:为何倾向于使用 AsRef&lt;T&gt; 而非 &amp;[T]？</title>
@@ -448,29 +473,6 @@
         
         
     <summary type="html">&lt;p&gt;几乎所有我所青睐的软件架构从业者都对这个领域的任何一种一般法则都深表怀疑。好的软件架构是非常特定于上下文的，分析在各种环境中以不同方式解决的权衡。但是，如果他们都同意一件事，那就是康威定律的重要性和力量。它足够重要，足以影响我遇到的每个系统，也足够强大，如果你试图对抗它，你</summary>
-        
-      
-    
-    
-    
-    <category term="design-pattern" scheme="https://tonymistark.github.io/categories/design-pattern/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>通过重视注释和代码来减少技术债务</title>
-    <link href="https://tonymistark.github.io/2024/04/27/design-pattern/java-comments-reduce-technical-debt/"/>
-    <id>https://tonymistark.github.io/2024/04/27/design-pattern/java-comments-reduce-technical-debt/</id>
-    <published>2024-04-27T05:37:14.000Z</published>
-    <updated>2024-04-29T03:33:27.917Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;通过重视注释和代码来减少技术债务&quot;&gt;&lt;a href=&quot;#通过重视注释和代码来减少技术债务&quot; class=&quot;headerlink&quot; title=&quot;通过重视注释和代码来减少技术债务&quot;&gt;&lt;/a&gt;通过重视注释和代码来减少技术债务&lt;/h1&gt;&lt;h2</summary>
         
       
     

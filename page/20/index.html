@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2024/04/27/design-pattern/java-comments-reduce-technical-debt/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2024/04/27/design-pattern/ConwaysLaw/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/04/27/design-pattern/java-comments-reduce-technical-debt/" class="post-title-link" itemprop="url">通过重视注释和代码来减少技术债务</a>
+            <a href="/2024/04/27/design-pattern/ConwaysLaw/" class="post-title-link" itemprop="url">康威定律</a>
         </h2>
 
         <div class="post-meta">
@@ -207,14 +207,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2024-04-27 13:37:14" itemprop="dateCreated datePublished" datetime="2024-04-27T13:37:14+08:00">2024-04-27</time>
+              <time title="Created: 2024-04-27 17:43:21" itemprop="dateCreated datePublished" datetime="2024-04-27T17:43:21+08:00">2024-04-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-04-29 11:33:27" itemprop="dateModified" datetime="2024-04-29T11:33:27+08:00">2024-04-29</time>
+                <time title="Modified: 2024-10-28 17:32:13" itemprop="dateModified" datetime="2024-10-28T17:32:13+08:00">2024-10-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,14 +232,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3k</span>
+              <span>1.7k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>11 mins.</span>
+              <span>6 mins.</span>
             </span>
 
         </div>
@@ -251,49 +251,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="通过重视注释和代码来减少技术债务"><a href="#通过重视注释和代码来减少技术债务" class="headerlink" title="通过重视注释和代码来减少技术债务"></a>通过重视注释和代码来减少技术债务</h1><h2 id="好的代码注释可以帮助维护者理解你的编码决策。"><a href="#好的代码注释可以帮助维护者理解你的编码决策。" class="headerlink" title="好的代码注释可以帮助维护者理解你的编码决策。"></a>好的代码注释可以帮助维护者理解你的编码决策。</h2><p>长期以来，注释在开发人员的输出中一直占据着明显的次要位置。注释是如此次要，而且被如此低估，以至于在今天的代码中，它们很少出现，除了作为文件顶部的常规版权和许可标头。这是一个错失的机会，因为积极维护的良好注释是减少技术债务的最有效方法之一，也就是说，它们减轻了未来将处理代码的程序员的工作量。</p>
-<p>由于许多开发组织的文化低估了注释的价值，因此团队领导（和经理）允许注释与代码不同步，从而增加而不是减少技术债务。</p>
-<p>而且，由于低估是常态，开发人员学会了责怪注释，而不是允许他们与代码不同步的文化。Bob Martin 断言，每条注释都代表着“未能在代码中表达自己”（见图 1），从而表达了这种消极观点。请注意，Martin 在他的《Clean Code》一书中发表了这个奇怪的声明，然后用了 15 页的篇幅列举了注释非常有用的许多例子。</p>
-<h2 id="为什么要写注释？"><a href="#为什么要写注释？" class="headerlink" title="为什么要写注释？"></a>为什么要写注释？</h2><p>注释以多种方式消除了技术债务。</p>
-<p>注释解释了代码的用途。文件开头的注释解释了代码中可以找到的功能，无需通读所有方法来收集对文件的理解。如果您正在寻找特定文件，能够阅读描述其内容的单个句子可以大大加快搜索速度。出于这个原因，大多数编码标准都敦促在每个文件中只包含这样的注释。</p>
-<p>在文件级注释中使用关键字可以进一步方便在大型代码库中搜索特定功能。</p>
-<p>类开始时的 Javadoc 注释可以替代文件级注释。如果注释描述了该类在更大项目中的角色，它们将进一步帮助读者。描述为什么需要该类（如果不明显）有助于其他人理解该类的作用。这些注释对于在类的 API 中呈现任何异常信息特别有用。</p>
-<p><strong>注释对代码进行说明。</strong>许多开发人员有一种堂吉诃德式的信念，即如果代码足够清晰，他们就不需要使用注释。这就是 Bob Martin 在图 1 中断言的内容。这是一个可爱的前提，根本不成立。第一个问题是，大多数开发人员都承受着巨大的时间压力，没有时间使代码变得如此清晰，以至于不需要进一步的代码注释。事实上，程序员更常见的经历是看着他们六个月前写的代码，然后想“我简直不敢相信是我写的！不要自欺欺人地认为你可以写得如此清晰，以至于不需要注释就能理解。</p>
-<p>明码异议的另一个局限性是，代码只解释了一件事是如何完成的，而不是为什么这样做的，尤其是在有明显的替代方案的情况下;如果原因不明显和明显，那么在没有解释的情况下就会产生技术债务。请注意，如果没有这样的解释性注释，代码可能非常难以维护，因为没有人敢碰它，而这正是技术债务的定义。</p>
-<p><strong>代码注释突出显示了潜在的陷阱。</strong>例如，Google 的 Java 指南要求每当 switch 中的 case 语句进入下一个 case 时都要添加注释。同样，该指南要求注意和解释一个空的异常捕获块，以及所有其他可能被忽略的、非常规的或不受欢迎但偶尔必要的步骤的项目。</p>
-<p><strong>代码注释为未来的工作提供了里程碑。</strong>术语“自我承认的技术债务”是指代码库中经常遇到的 TODO 和 FIXME 注释。从表面上看，这些看起来像是好心的程序员留下的碎屑，他们随后被其他任务所占据。然而，一项关于维护良好的开源项目的有趣研究，“关于消除自我承认的技术债务的实证研究”发现，74%的此类条目在180天内被删除，最常见的是将它们放在那里的开发人员。换言之，这些代码注释往往代表了未来工作的有用里程碑，而不是碎屑。</p>
-<p>虽然不是专门针对技术债务的对策，但我使用第三个标记 CURR 来表示“当前”。这是一个面包屑，它告诉我我从哪里开始编码。我经常包括几行代码注释，其中包含恢复工作时可能需要的信息。我在一个代码库中只允许一个 CURR，所以如果我在其他地方恢复工作，我会将现有的 CURR 转换为 TODO。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Create a string object with EMBSTR encoding if it is smaller than</span></span><br><span class="line"><span class="comment"> * OBJ_ENCODING_EMBSTR_SIZE_LIMIT, otherwise =the RAW encoding is used.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * The current limit of 44 is chosen so that the biggest string object</span></span><br><span class="line"><span class="comment"> * we allocate as EMBSTR will still fit into the 64 byte arena of jemalloc. </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> #define OBJ_ENCODING_EMBSTR_SIZE_LIMIT <span class="number">44</span></span><br><span class="line"> robj *CreateStringObject(const <span class="type">char</span> *ptr, size_t len) &#123;</span><br><span class="line">     <span class="keyword">if</span> (len &lt;= OBJ_ENCODING_EMBSTR_SIZE_LIMIT)</span><br><span class="line">         <span class="keyword">return</span> CreateEmbeddedStringObject(ptr, len);</span><br><span class="line">     <span class="keyword">else</span></span><br><span class="line">         <span class="keyword">return</span> CreateRawStringObject(ptr, len);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Same as CreateRawStringObject, can return NULL if allocation fails */</span></span><br><span class="line">robj *tryCreateRawStringObject(const <span class="type">char</span> *ptr, size_t len) &#123;</span><br><span class="line">    <span class="type">sds</span> <span class="variable">str</span> <span class="operator">=</span> sdstrynewlen(ptr, len);</span><br><span class="line">    <span class="keyword">if</span> (!str) <span class="keyword">return</span> NULL;</span><br><span class="line">    <span class="keyword">return</span> CreateObject(OBJ_STRING, str); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Same as CreateRawStringObject, can return NULL if allocation fails */</span></span><br><span class="line">robj *tryCreateRawStringObject(const <span class="type">char</span> *ptr, size_t len) &#123;</span><br><span class="line">    <span class="keyword">if</span> (len &lt;= OBJ_ENCODING_EMBSTR_SIZE_LIMIT)</span><br><span class="line">        <span class="keyword">return</span> CreateEmbeddedStringObject(ptr, len);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> CreateRawStringObject(ptr, len);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Ousterhout-的注释方法"><a href="#Ousterhout-的注释方法" class="headerlink" title="Ousterhout 的注释方法"></a>Ousterhout 的注释方法</h2><p>在前面的方案中，注释的好处是不可否认的。它们减少了技术债务，维护良好的注释也使新团队成员更容易理解代码库，而无需花费数小时在死胡同中摸索或向现有员工提出数百个问题。</p>
-<p>然而，重视代码注释的文化可以鼓励它们用于远远超出技术债务的补救。</p>
-<p>John Ousterhout 的优秀著作《软件设计哲学》（A Philosophy of Software Design）描述了大型代码库的最佳实践;它接续了马丁离开的地方，更倾向于现实世界的情况。Ousterhout 是 Tcl 语言的设计者和实现者;后来，他与他人共同创立了Electric Cloud，这是一家专门从事大规模代码库（即代码行超过100万行的代码库）的DevOps工具的公司。</p>
-<p>虽然 Ousterhout 的书只有 175 页，但它用了整整两章来讲代码注释。第一章回答了对撰写和重视代码注释的最常见反对意见;第二个重点是提高代码注释的质量。</p>
-<p>Ousterhout 的一般格言是，代码中的注释应该传达程序员脑海中无法准确反映在代码本身中的任何内容。这是一个很好的指导方针，它直接反驳了“每条代码注释都是失败的”的论点。真正的失败是省略了后续编码人员可能需要的澄清和上下文信息。</p>
-<p>代码注释还可以帮助您理清自己的想法。不止一次，当我为一段代码编写注释时，我意识到我的实现存在缺陷。这与向同事描述问题并在解释问题时出现解决方案的感觉大致相同——这是一种常见的体验。在之前的文章中，我描述了这种优势在混合方法中的扩展，该方法从Ousterhout的书中获取了元素。</p>
-<p>创建类时，请考虑使用以下有用的步骤，这些步骤是对注释使用的重大扩展：</p>
-<ul>
-<li>首先编写类接口注释。</li>
-<li>编写最重要的公共方法的接口注释和签名，但将方法主体留空。</li>
-<li>为最重要的实例变量编写注释和声明。</li>
-<li>填写方法的正文，并在进行时添加实现注释。</li>
-<li>当您发现需要更多方法时，请在正文之前写下注释。</li>
-<li>根据 Ousterhout 的经验，这些步骤的好处是三方面的。</li>
-<li>代码完成后，会正确注释，并且注释完全是最新的。</li>
-<li>注释优先的方法使您能够专注于抽象，而不是被实现分散注意力。</li>
-<li>注释揭示了代码的复杂性 - 如果方法或变量需要冗长而复杂的注释，则可能需要重新考虑和简化。</li>
-</ul>
-<p>这有很多好处！</p>
-<p>在Ousterhout看来，最重要的内容是抽象（很难通过阅读实现代码来梳理）和对代码存在原因的解释。总之，第一次处理代码的开发人员应该能够扫描类的注释，并很好地了解类的作用并理解最重要的实现方面。</p>
-<p>如果这种方法对你有吸引力——就像它对我一样——Ousterhout 建议你使用它，直到你习惯了以这种方式编写代码。他争辩说，我同意，这样做会通过提供更干净、更清晰的代码来改变你。</p>
-<h2 id="Javadoc-的奢华"><a href="#Javadoc-的奢华" class="headerlink" title="Javadoc 的奢华"></a>Javadoc 的奢华</h2><p>Java 开发人员有一个很好的工具来追求这种更深入的方法：Javadoc 注解。如果你用一种以上的语言编写代码，你很快就会意识到注释选项在其他语言中是多么微不足道。大多数语言没有任何内置的 Javadoc 对应物。或者，就像 Go 和其他一些语言一样，如果它们有对应的语言，相比之下，它就很无聊了。</p>
-<p>Javadoc 允许您将注释转换为优雅、格式良好且可用的文档。从JDK发行版的优秀文档中可以看出，Java团队在深思熟虑、认真的纪律中充分利用了该工具。（顺便说一句，JVM 本身存在广泛的代码注释。</p>
-<h2 id="开源项目中的注释"><a href="#开源项目中的注释" class="headerlink" title="开源项目中的注释"></a>开源项目中的注释</h2><p>最后一点：如果你正在为一个开源项目做贡献，你应该非常重视代码注释。潜在合作者在考虑加入项目时遇到的最大障碍之一是学习代码库的困难——最常见的原因是它不包含任何注释（在许可证标头之外）。</p>
-<p>优秀的开源项目负责人会努力提供易于理解的文档和注释良好的代码，以便潜在的贡献者可以轻松快速地摸索代码，而无需付出太多努力来修复一个小错误。那些以良好的文档和大量代码注释为荣的项目，如Redis，会得到良好的参与。</p>
-<p>在我参与的一个项目 Jacobin 中，这是一个用 Go 编写的 JVM，贡献者广泛使用注释。还为潜在的贡献者提供了额外的资源：代码库的概述，使人们能够轻松理解项目的整体架构以及它如何映射到代码布局。</p>
-<p>这些步骤需要时间，但它们对项目的贡献者和项目的目标受众一样有帮助，因为它们迫使雅各宾的开发人员明确我们的假设，清晰地思考我们的思维，并在工作中遵守纪律。</p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>维护不善的代码注释是技术债务的明显来源。若要避免此问题，请像重视代码一样重视注释。例如，在进行代码审查时，不仅要特别注意围绕新代码的注释，还要特别注意文件中的更高级别的注释是否仍然正确。</p>
-<p>由于 JDK 捆绑了 Javadoc，因此您有独特的机会从对注释的严格赞赏中彻底受益，从而消除了技术债务。</p>
+          <p>几乎所有我所青睐的软件架构从业者都对这个领域的任何一种一般法则都深表怀疑。好的软件架构是非常特定于上下文的，分析在各种环境中以不同方式解决的权衡。但是，如果他们都同意一件事，那就是康威定律的重要性和力量。它足够重要，足以影响我遇到的每个系统，也足够强大，如果你试图对抗它，你注定要失败。</p>
+<p>该法律的作者可能最好将其表述为：</p>
+<blockquote>
+<p>Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization’s communication structure.<br>任何设计系统（广义定义）的组织都会产生一个设计，其结构是组织通信结构的副本。</p>
+<p> ——梅尔文·康威</p>
+</blockquote>
+<p>康威定律本质上是这样一种观察，即软件系统的架构看起来与构建它的开发团队的组织非常相似。最初有人向我描述说，如果一个团队编写一个编译器，它将是一个单遍编译器，但如果团队分为两个，那么它将是一个双遍编译器。虽然我们通常在软件方面讨论它，但这种观察结果广泛适用于一般的系统。</p>
+<p>正如我的同事克里斯·福特（Chris Ford）对我说的那样：“康威明白，软件耦合是由人类交流实现和鼓励的。如果我能轻松地与一些代码的作者交谈，那么我就更容易建立对该代码的丰富理解。这使我的代码更容易与该代码进行交互，从而与该代码耦合。不仅在显式函数调用方面，而且在隐含的共享假设和对问题域的思考方式方面。</p>
+<p>我们经常看到对法律的忽视会扭曲系统架构。如果架构的设计与开发组织的结构不一致，那么软件结构中就会出现紧张关系。设计为简单明了的模块交互变得复杂，因为负责它们的团队不能很好地协同工作。甚至没有考虑有益的设计替代方案，因为必要的开发团队没有相互交流。</p>
+<p>十几个人可以进行深入和非正式的交流，因此康威律师事务所表示他们将创建一个整体。这很好，所以康威定律不会影响我们对小型团队的思考。当人类需要组织时，康威定律应该影响决策。</p>
+<p>处理康威定律的第一步是知道不要与之抗争。我还记得一位敏锐的技术领导者，他刚刚被任命为一个大型新项目的建筑师，该项目由世界各地不同城市的六个团队组成。“我做出了我的第一个建筑决定，”他告诉我。“将有六个主要的子系统。我不知道它们会是什么，但会有六个。</p>
+<p>这个例子认识到了位置对人类交流的巨大影响。将团队放在同一栋楼的不同楼层足以大大减少沟通。将团队放在不同的城市和时区，进一步妨碍了常规对话。建筑师认识到了这一点，并意识到他需要从一开始就在技术设计中考虑到这一点。在不同时区开发的组件需要具有明确定义且有限的交互，因为它们的创建者无法轻松交谈。</p>
+<p>与康威定律的一个常见不匹配是，面向活动的团队组织在跨目的下工作以进行功能开发。按软件层（例如前端、后端和数据库）组织的团队会导致占主导地位的 PresentationDomainDataLayering 结构，这是有问题的，因为每个功能都需要层之间的密切合作。同样，按照生命周期活动（分析、设计、编码、测试）划分人员意味着要获得从想法到生产的大量交接。</p>
+<p>接受康威定律比忽视它要好，在过去的十年里，我们看到了第三种回应康威定律的方式。在这里，我们特意改变开发团队的组织结构，以鼓励所需的软件架构，这种方法被称为逆康威机动[4]。这种方法在微服务领域经常被谈论，倡导者建议建立小型的、长期存在的以业务能力为中心的团队，其中包含交付客户价值所需的所有技能。通过以这种方式组织自治团队，我们采用康威定律来鼓励类似的自治服务，这些服务可以相互独立地增强和部署。事实上，这就是为什么我将微服务描述为主要构建开发组织的工具。</p>
+<p>|  |<br>|  |<br>| Ignore | Don’t take Conway’s Law into account, because you’ve never heard of it, or you don’t think it applies (narrator: it does)<br>不要考虑康威定律，因为你从未听说过它，或者你认为它不适用（旁白：确实如此） |<br>| Accept | Recognize the impact of Conway’s Law, and ensure your architecture doesn’t clash with designers’ communication patterns.<br>认识到康威定律的影响，并确保你的架构不会与设计师的沟通模式发生冲突。 |<br>| Inverse Conway Maneuver 逆康威机动 | Change the communication patterns of the designers to encourage the desired software architecture.<br>改变设计人员的沟通模式，以鼓励所需的软件架构。 |</p>
+<p>虽然逆康威机动是一个有用的工具，但它并不是万能的。如果您有一个具有僵化架构的现有系统，并且想要更改，那么更改开发组织不会立即解决。相反，它更有可能导致开发人员和代码之间的不匹配，从而为进一步增强增加摩擦。对于这样的现有系统，康威定律的要点是，我们需要在更改组织和代码库时考虑它的存在。像往常一样，我建议采取一些小步骤，同时对反馈保持警惕。</p>
+<p>领域驱动设计在康威定律中发挥着帮助定义组织结构的作用，因为 DDD 的一个关键部分是识别 BoundedContexts。边界上下文的一个关键特征是它有自己的 UbiquitousLanguage，由在该上下文中工作的一群人定义和理解。这样的背景形成了围绕一个主题对人们进行分组的方式，然后可以与价值流保持一致。</p>
+<p>关于康威定律，要记住的关键是，系统的模块化分解和开发组织的分解必须一起完成。这不仅仅是在开始，架构的演变和人类组织的重组必须在企业的整个生命周期中齐头并进。</p>
 
       
     </div>
@@ -312,7 +287,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/19/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/106/">106</a><a class="extend next" rel="next" href="/page/21/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/19/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/107/">107</a><a class="extend next" rel="next" href="/page/21/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -378,7 +353,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">106</span>
+          <span class="site-state-item-count">107</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -446,7 +421,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:01</span>
+    <span title="Reading time total">12:02</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

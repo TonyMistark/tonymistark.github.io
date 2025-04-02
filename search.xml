@@ -6060,4 +6060,30 @@ All of that said, in absolute sense I’d much rather live in the world of today
         <tag>rust</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Q3:为什么Vec&lt;i32&gt; 不能直接作为 &amp;[i32] ?</title>
+    <url>/2025/04/02/1000_rust_questions/1000_rust_questions_03/</url>
+    <content><![CDATA[<h2 id="为什么Vec-不能直接作为-i32"><a href="#为什么Vec-不能直接作为-i32" class="headerlink" title="为什么Vec 不能直接作为 &amp;[i32] ?"></a>为什么Vec<i32> 不能直接作为 &amp;[i32] ?</h2><p>在 Rust 中，<code>Vec&lt;i32&gt;</code> 不能直接作为 <code>&amp;[i32]</code> 的原因主要与 Rust 的所有权和借用机制有关。以下是详细的解释：</p>
+<h3 id="1-所有权与借用"><a href="#1-所有权与借用" class="headerlink" title="1. 所有权与借用"></a>1. <strong>所有权与借用</strong></h3><ul>
+<li><code>Vec&lt;i32&gt;</code> 是一个拥有所有权的动态数组，包含了自己的数据和内存管理。</li>
+<li><code>&amp;[i32]</code> 是一个切片，它是对某个数组或向量的引用，不拥有数据的所有权。</li>
+</ul>
+<h3 id="2-自动解引用"><a href="#2-自动解引用" class="headerlink" title="2. 自动解引用"></a>2. <strong>自动解引用</strong></h3><p>Rust 提供了自动解引用的功能，允许在某些情况下自动将 <code>&amp;Vec&lt;i32&gt;</code> 转换为 <code>&amp;[i32]</code>。但是，<code>Vec&lt;i32&gt;</code> 本身不能直接作为 <code>&amp;[i32]</code>，因为它不是一个切片，而是一个具体的类型。</p>
+<h3 id="3-需要借用"><a href="#3-需要借用" class="headerlink" title="3. 需要借用"></a>3. <strong>需要借用</strong></h3><p>为了将 <code>Vec&lt;i32&gt;</code> 作为 <code>&amp;[i32]</code> 使用，你需要首先借用它。借用会创建一个指向 <code>Vec&lt;i32&gt;</code> 中数据的切片引用。可以通过以下方式实现：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">print_slice</span>(slice: &amp;[<span class="type">i32</span>]) &#123;</span><br><span class="line">    <span class="keyword">for</span> &amp;item <span class="keyword">in</span> slice &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, item);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">vec</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通过借用将 &amp;Vec&lt;i32&gt; 转换为 &amp;[i32]</span></span><br><span class="line">    <span class="title function_ invoke__">print_slice</span>(&amp;vec); <span class="comment">// 这里的 &amp;vec 会被自动转换为 &amp;[i32]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-借用检查"><a href="#4-借用检查" class="headerlink" title="4. 借用检查"></a>4. <strong>借用检查</strong></h3><p>Rust 的借用检查器确保在使用引用时遵循所有权规则。这意味着你不能直接将一个拥有所有权的类型（如 <code>Vec&lt;i32&gt;</code>）传递给一个只接受引用的函数（如 <code>&amp;[i32]</code>），因为这会违反所有权原则。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><strong>Vec<i32></strong> 是一个拥有所有权的动态数组，而 <strong>&amp;[i32]</strong> 是一个对数组或向量的引用。</li>
+<li>你需要借用 <code>Vec&lt;i32&gt;</code>（通过 <code>&amp;vec</code>）来将其作为 <code>&amp;[i32]</code> 传递。</li>
+<li>Rust 的所有权和借用机制确保了内存安全和避免数据竞争，因此不允许直接将拥有所有权的类型传递给只接受引用的函数。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>1000_rust_questions</category>
+      </categories>
+      <tags>
+        <tag>rust</tag>
+      </tags>
+  </entry>
 </search>

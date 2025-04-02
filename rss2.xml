@@ -15,8 +15,35 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Wed, 02 Apr 2025 08:46:50 GMT</pubDate>
+    <pubDate>Wed, 02 Apr 2025 08:52:52 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Q3:为什么Vec&lt;i32&gt; 不能直接作为 &amp;[i32] ?</title>
+      <link>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_03/</link>
+      <guid>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_03/</guid>
+      <pubDate>Wed, 02 Apr 2025 08:52:17 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;为什么Vec-不能直接作为-i32&quot;&gt;&lt;a href=&quot;#为什么Vec-不能直接作为-i32&quot; class=&quot;headerlink&quot; title=&quot;为什么Vec 不能直接作为 &amp;amp;[i32] ?&quot;&gt;&lt;/a&gt;为什么Vec&lt;i32&gt; 不能直接作为</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/1000-rust-questions/">1000_rust_questions</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/rust/">rust</category>
+      
+      
+      <comments>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_03/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Q2:为何倾向于使用 AsRef&lt;T&gt; 而非 &amp;[T]？</title>
@@ -495,31 +522,6 @@
       
       
       <comments>https://tonymistark.github.io/2024/04/27/design-pattern/ConwaysLaw/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>通过重视注释和代码来减少技术债务</title>
-      <link>https://tonymistark.github.io/2024/04/27/design-pattern/java-comments-reduce-technical-debt/</link>
-      <guid>https://tonymistark.github.io/2024/04/27/design-pattern/java-comments-reduce-technical-debt/</guid>
-      <pubDate>Sat, 27 Apr 2024 05:37:14 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h1 id=&quot;通过重视注释和代码来减少技术债务&quot;&gt;&lt;a href=&quot;#通过重视注释和代码来减少技术债务&quot; class=&quot;headerlink&quot; title=&quot;通过重视注释和代码来减少技术债务&quot;&gt;&lt;/a&gt;通过重视注释和代码来减少技术债务&lt;/h1&gt;&lt;h2</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      
-      <comments>https://tonymistark.github.io/2024/04/27/design-pattern/java-comments-reduce-technical-debt/#disqus_thread</comments>
       
     </item>
     
