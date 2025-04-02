@@ -1,3 +1,4 @@
+https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_02/
 https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_01/
 https://tonymistark.github.io/2025/03/13/Detailed-Comparison-Between-Associated-Types-and-Generics-in-Rust-Features-Use-Cases-and-Design-Goals/
 https://tonymistark.github.io/2025/03/12/Deep-Dive-into-Flexible-and-Type-Safe-Abstraction-in-Rust-Using-Traits-and-Generics-Associated-Types-Trait-Bounds-and-Thread-Safety/

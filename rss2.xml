@@ -15,8 +15,35 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Wed, 02 Apr 2025 08:42:57 GMT</pubDate>
+    <pubDate>Wed, 02 Apr 2025 08:46:50 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Q2:为何倾向于使用 AsRef&lt;T&gt; 而非 &amp;[T]？</title>
+      <link>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_02/</link>
+      <guid>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_02/</guid>
+      <pubDate>Wed, 02 Apr 2025 08:46:16 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;为何倾向于使用-AsRef-而非-T-？&quot;&gt;&lt;a href=&quot;#为何倾向于使用-AsRef-而非-T-？&quot; class=&quot;headerlink&quot; title=&quot;为何倾向于使用 AsRef 而非 &amp;amp;[T]？&quot;&gt;&lt;/a&gt;为何倾向于使用 AsRef&lt;T&gt; 而非</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/1000-rust-questions/">1000_rust_questions</category>
+      
+      
+      <category domain="https://tonymistark.github.io/tags/rust/">rust</category>
+      
+      
+      <comments>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_02/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Q1:为何选择使用 str 而非 String？</title>
@@ -35,7 +62,7 @@
       
       
       
-      <category domain="https://tonymistark.github.io/categories/1000-rust-questions/">1000 rust questions</category>
+      <category domain="https://tonymistark.github.io/categories/1000-rust-questions/">1000_rust_questions</category>
       
       
       <category domain="https://tonymistark.github.io/tags/rust/">rust</category>
@@ -493,31 +520,6 @@
       
       
       <comments>https://tonymistark.github.io/2024/04/27/design-pattern/java-comments-reduce-technical-debt/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>探索大型语言模型的世界</title>
-      <link>https://tonymistark.github.io/2024/04/27/design-pattern/navigating-the-world-of-large-language-models/</link>
-      <guid>https://tonymistark.github.io/2024/04/27/design-pattern/navigating-the-world-of-large-language-models/</guid>
-      <pubDate>Sat, 27 Apr 2024 03:27:15 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h4 id=&quot;探索大型语言模型的世界&quot;&gt;&lt;a href=&quot;#探索大型语言模型的世界&quot; class=&quot;headerlink&quot; title=&quot;探索大型语言模型的世界&quot;&gt;&lt;/a&gt;探索大型语言模型的世界&lt;/h4&gt;&lt;p&gt;&lt;em&gt;2024年3月21日，由Sherlock</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      
-      <comments>https://tonymistark.github.io/2024/04/27/design-pattern/navigating-the-world-of-large-language-models/#disqus_thread</comments>
       
     </item>
     

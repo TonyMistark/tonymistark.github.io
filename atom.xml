@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-04-02T08:42:57.612Z</updated>
+  <updated>2025-04-02T08:46:50.264Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Q2:为何倾向于使用 AsRef&lt;T&gt; 而非 &amp;[T]？</title>
+    <link href="https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_02/"/>
+    <id>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_02/</id>
+    <published>2025-04-02T08:46:16.000Z</published>
+    <updated>2025-04-02T08:46:50.264Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;为何倾向于使用-AsRef-而非-T-？&quot;&gt;&lt;a href=&quot;#为何倾向于使用-AsRef-而非-T-？&quot; class=&quot;headerlink&quot; title=&quot;为何倾向于使用 AsRef 而非 &amp;amp;[T]？&quot;&gt;&lt;/a&gt;为何倾向于使用 AsRef&lt;T&gt; 而非</summary>
+        
+      
+    
+    
+    
+    <category term="1000_rust_questions" scheme="https://tonymistark.github.io/categories/1000-rust-questions/"/>
+    
+    
+    <category term="rust" scheme="https://tonymistark.github.io/tags/rust/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Q1:为何选择使用 str 而非 String？</title>
     <link href="https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_01/"/>
     <id>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_01/</id>
     <published>2025-04-02T08:40:33.000Z</published>
-    <updated>2025-04-02T08:42:57.612Z</updated>
+    <updated>2025-04-02T08:43:01.474Z</updated>
     
     
       
@@ -34,7 +59,7 @@
     
     
     
-    <category term="1000 rust questions" scheme="https://tonymistark.github.io/categories/1000-rust-questions/"/>
+    <category term="1000_rust_questions" scheme="https://tonymistark.github.io/categories/1000-rust-questions/"/>
     
     
     <category term="rust" scheme="https://tonymistark.github.io/tags/rust/"/>
@@ -446,29 +471,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;通过重视注释和代码来减少技术债务&quot;&gt;&lt;a href=&quot;#通过重视注释和代码来减少技术债务&quot; class=&quot;headerlink&quot; title=&quot;通过重视注释和代码来减少技术债务&quot;&gt;&lt;/a&gt;通过重视注释和代码来减少技术债务&lt;/h1&gt;&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="design-pattern" scheme="https://tonymistark.github.io/categories/design-pattern/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>探索大型语言模型的世界</title>
-    <link href="https://tonymistark.github.io/2024/04/27/design-pattern/navigating-the-world-of-large-language-models/"/>
-    <id>https://tonymistark.github.io/2024/04/27/design-pattern/navigating-the-world-of-large-language-models/</id>
-    <published>2024-04-27T03:27:15.000Z</published>
-    <updated>2024-04-29T03:33:27.917Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;探索大型语言模型的世界&quot;&gt;&lt;a href=&quot;#探索大型语言模型的世界&quot; class=&quot;headerlink&quot; title=&quot;探索大型语言模型的世界&quot;&gt;&lt;/a&gt;探索大型语言模型的世界&lt;/h4&gt;&lt;p&gt;&lt;em&gt;2024年3月21日，由Sherlock</summary>
         
       
     
