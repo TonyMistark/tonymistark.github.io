@@ -15,11 +15,11 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Wed, 02 Apr 2025 08:52:52 GMT</pubDate>
+    <pubDate>Wed, 02 Apr 2025 08:58:02 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>Q3:为什么Vec&lt;i32&gt; 不能直接作为 &amp;[i32] ?</title>
+      <title>Q3:为什么`Vec&lt;i32&gt;` 不能直接作为 &amp;[i32] ?</title>
       <link>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_03/</link>
       <guid>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_03/</guid>
       <pubDate>Wed, 02 Apr 2025 08:52:17 GMT</pubDate>
@@ -28,7 +28,7 @@
         
           
           
-      <description>&lt;h2 id=&quot;为什么Vec-不能直接作为-i32&quot;&gt;&lt;a href=&quot;#为什么Vec-不能直接作为-i32&quot; class=&quot;headerlink&quot; title=&quot;为什么Vec 不能直接作为 &amp;amp;[i32] ?&quot;&gt;&lt;/a&gt;为什么Vec&lt;i32&gt; 不能直接作为</description>
+      <description>&lt;h2 id=&quot;为什么Vec-不能直接作为-i32&quot;&gt;&lt;a href=&quot;#为什么Vec-不能直接作为-i32&quot; class=&quot;headerlink&quot; title=&quot;为什么Vec&amp;lt;i32&amp;gt; 不能直接作为 &amp;amp;[i32]</description>
           
         
       

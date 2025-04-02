@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-04-02T08:52:52.471Z</updated>
+  <updated>2025-04-02T08:58:02.612Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -17,18 +17,18 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Q3:为什么Vec&lt;i32&gt; 不能直接作为 &amp;[i32] ?</title>
+    <title>Q3:为什么`Vec&lt;i32&gt;` 不能直接作为 &amp;[i32] ?</title>
     <link href="https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_03/"/>
     <id>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_03/</id>
     <published>2025-04-02T08:52:17.000Z</published>
-    <updated>2025-04-02T08:52:52.471Z</updated>
+    <updated>2025-04-02T08:58:02.612Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;为什么Vec-不能直接作为-i32&quot;&gt;&lt;a href=&quot;#为什么Vec-不能直接作为-i32&quot; class=&quot;headerlink&quot; title=&quot;为什么Vec 不能直接作为 &amp;amp;[i32] ?&quot;&gt;&lt;/a&gt;为什么Vec&lt;i32&gt; 不能直接作为</summary>
+    <summary type="html">&lt;h2 id=&quot;为什么Vec-不能直接作为-i32&quot;&gt;&lt;a href=&quot;#为什么Vec-不能直接作为-i32&quot; class=&quot;headerlink&quot; title=&quot;为什么Vec&amp;lt;i32&amp;gt; 不能直接作为 &amp;amp;[i32]</summary>
         
       
     

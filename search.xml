@@ -6061,9 +6061,9 @@ All of that said, in absolute sense I’d much rather live in the world of today
       </tags>
   </entry>
   <entry>
-    <title>Q3:为什么Vec&lt;i32&gt; 不能直接作为 &amp;[i32] ?</title>
+    <title>Q3:为什么`Vec&lt;i32&gt;` 不能直接作为 &amp;[i32] ?</title>
     <url>/2025/04/02/1000_rust_questions/1000_rust_questions_03/</url>
-    <content><![CDATA[<h2 id="为什么Vec-不能直接作为-i32"><a href="#为什么Vec-不能直接作为-i32" class="headerlink" title="为什么Vec 不能直接作为 &amp;[i32] ?"></a>为什么Vec<i32> 不能直接作为 &amp;[i32] ?</h2><p>在 Rust 中，<code>Vec&lt;i32&gt;</code> 不能直接作为 <code>&amp;[i32]</code> 的原因主要与 Rust 的所有权和借用机制有关。以下是详细的解释：</p>
+    <content><![CDATA[<h2 id="为什么Vec-不能直接作为-i32"><a href="#为什么Vec-不能直接作为-i32" class="headerlink" title="为什么Vec&lt;i32&gt; 不能直接作为 &amp;[i32] ?"></a>为什么<code>Vec&lt;i32&gt;</code> 不能直接作为 <code>&amp;[i32]</code> ?</h2><p>在 Rust 中，<code>Vec&lt;i32&gt;</code> 不能直接作为 <code>&amp;[i32]</code> 的原因主要与 Rust 的所有权和借用机制有关。以下是详细的解释：</p>
 <h3 id="1-所有权与借用"><a href="#1-所有权与借用" class="headerlink" title="1. 所有权与借用"></a>1. <strong>所有权与借用</strong></h3><ul>
 <li><code>Vec&lt;i32&gt;</code> 是一个拥有所有权的动态数组，包含了自己的数据和内存管理。</li>
 <li><code>&amp;[i32]</code> 是一个切片，它是对某个数组或向量的引用，不拥有数据的所有权。</li>
