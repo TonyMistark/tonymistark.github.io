@@ -22,13 +22,13 @@
 
   <meta name="description" content="为什么Vec&lt;i32&gt; 不能直接作为 &amp;[i32] ?在 Rust 中，Vec&lt;i32&gt; 不能直接作为 &amp;[i32] 的原因主要与 Rust 的所有权和借用机制有关。以下是详细的解释： 1. 所有权与借用 Vec&lt;i32&gt; 是一个拥有所有权的动态数组，包含了自己的数据和内存管理。 &amp;[i32] 是一个切片，它是对某个数组或向量的引用，不拥">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Q3:为什么&#96;Vec&lt;i32&gt;&#96; 不能直接作为 &amp;[i32] ?">
+<meta property="og:title" content="Q3:为什么Vec&lt;i32&gt; 不能直接作为 &amp;[i32] ?">
 <meta property="og:url" content="https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_03/index.html">
 <meta property="og:site_name" content="BLOG">
 <meta property="og:description" content="为什么Vec&lt;i32&gt; 不能直接作为 &amp;[i32] ?在 Rust 中，Vec&lt;i32&gt; 不能直接作为 &amp;[i32] 的原因主要与 Rust 的所有权和借用机制有关。以下是详细的解释： 1. 所有权与借用 Vec&lt;i32&gt; 是一个拥有所有权的动态数组，包含了自己的数据和内存管理。 &amp;[i32] 是一个切片，它是对某个数组或向量的引用，不拥">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-04-02T08:52:17.000Z">
-<meta property="article:modified_time" content="2025-04-02T08:58:02.612Z">
+<meta property="article:modified_time" content="2025-04-02T08:58:30.359Z">
 <meta property="article:author" content="Ice">
 <meta property="article:tag" content="rust">
 <meta name="twitter:card" content="summary">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Q3:为什么`Vec<i32>` 不能直接作为 &[i32] ? | BLOG</title>
+  <title>Q3:为什么Vec<i32> 不能直接作为 &[i32] ? | BLOG</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6L4L92Z6Z"></script>
     <script>
@@ -200,7 +200,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Q3:为什么`Vec<i32>` 不能直接作为 &[i32] ?
+          Q3:为什么Vec<i32> 不能直接作为 &[i32] ?
         </h1>
 
         <div class="post-meta">
@@ -211,7 +211,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-04-02 16:52:17 / Modified: 16:58:02" itemprop="dateCreated datePublished" datetime="2025-04-02T16:52:17+08:00">2025-04-02</time>
+              <time title="Created: 2025-04-02 16:52:17 / Modified: 16:58:30" itemprop="dateCreated datePublished" datetime="2025-04-02T16:52:17+08:00">2025-04-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -340,7 +340,10 @@
     <a href="/2025/04/02/1000_rust_questions/1000_rust_questions_02/" rel="prev" title="Q2:为何倾向于使用 AsRef<T> 而非 &[T]？">
       <i class="fa fa-chevron-left"></i> Q2:为何倾向于使用 AsRef<T> 而非 &[T]？
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2025/04/09/Doesn-t-Trump-understand-that-their-tariffs-will-increase-the-price-of-things-that-Americans-need/" rel="next" title="特朗普难道不明白加关税会抬高美国老百姓的生活成本吗？">
+      特朗普难道不明白加关税会抬高美国老百姓的生活成本吗？ <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -414,7 +417,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">107</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -477,12 +480,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">198k</span>
+    <span title="Symbols count total">199k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:02</span>
+    <span title="Reading time total">12:04</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

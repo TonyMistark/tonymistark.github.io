@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_04_bringing_paths_into_scope_with_the_use_key_word/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/05/18/rust_docs/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/" class="post-title-link" itemprop="url">Ch 07.03:创建公有的结构体和枚举(Making Structs and Enums Public)</a>
+            <a href="/2023/05/18/rust_docs/ch_07_04_bringing_paths_into_scope_with_the_use_key_word/" class="post-title-link" itemprop="url">Ch 07.04:全局操作符(The Glob Operator)</a>
         </h2>
 
         <div class="post-meta">
@@ -207,7 +207,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-05-18 10:20:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:20:00+08:00">2023-05-18</time>
+              <time title="Created: 2023-05-18 10:21:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:21:00+08:00">2023-05-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -232,14 +232,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>808</span>
+              <span>198</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
+              <span>1 mins.</span>
             </span>
 
         </div>
@@ -251,21 +251,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="创建公有的结构体和枚举-Making-Structs-and-Enums-Public"><a href="#创建公有的结构体和枚举-Making-Structs-and-Enums-Public" class="headerlink" title="创建公有的结构体和枚举(Making Structs and Enums Public)"></a>创建公有的结构体和枚举(Making Structs and Enums Public)</h4><p>我们也可以使用<code>pub</code>来指定结构体和枚举为公有，但是这里有一些额外的使用详情需要注意。如果我们在使用<code>pub</code>定义一个结构体，我们使得这个结构体为公有，但是结构体的字段将仍是私有的。我们可以视情况而定让每一个字段成为公有或者私有。在Listing 7-9中，我们定义了一个公有的<code>back_of_house::Breakfast</code>结构体并且<code>toast</code>为公有字段，而<code>seasonal_fruit</code>为私有字段。该模型以餐厅为例，顾客可以选择随餐面包的类型，但是主厨会根据当季水果和库存来搭配什么水果。可选择的水果变化很快，所以顾客不能选择水果，甚至不能看到他们能得到的水果。</p>
-<p>src&#x2F;lib.rs</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> back_of_house &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Breakfast</span> &#123;</span><br><span class="line">        <span class="keyword">pub</span> toast: <span class="type">String</span>,</span><br><span class="line">        seasonal_fruit: <span class="type">String</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">impl</span> <span class="title class_">Breakfast</span> &#123;</span><br><span class="line">        <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">summer</span>(toast: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> Breakfast &#123;</span><br><span class="line">            Breakfast &#123;</span><br><span class="line">                toast: <span class="type">String</span>::<span class="title function_ invoke__">from</span>(toast),</span><br><span class="line">                seasonal_fruit: <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;peaches&quot;</span>),</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">eat_at_restaurant</span>() &#123;</span><br><span class="line">    <span class="comment">// Order a breakfast in the summer with Rye toast</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">meal</span> = back_of_house::Breakfast::<span class="title function_ invoke__">summer</span>(<span class="string">&quot;Rye&quot;</span>);</span><br><span class="line">    <span class="comment">// Change our mind about what bread we&#x27;d like</span></span><br><span class="line">    meal.toast = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;Wheat&quot;</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;I&#x27;d like &#123;&#125; toast please&quot;</span>, meal.toast);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The next line won&#x27;t compile if we uncomment it; we&#x27;re not allowed</span></span><br><span class="line">    <span class="comment">// to see or modify the seasonal fruit that comes with the meal</span></span><br><span class="line">    <span class="comment">// meal.seasonal_fruit = String::from(&quot;blueberries&quot;);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h4 id="全局操作符-The-Glob-Operator"><a href="#全局操作符-The-Glob-Operator" class="headerlink" title="全局操作符(The Glob Operator)"></a>全局操作符(The Glob Operator)</h4><p>如果想将一个路径下所有公有项引入作用域，可以使用指定路径后跟<code>*</code>，glob操作符:</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::collections::*;</span><br></pre></td></tr></table></figure>
 
-<p>Listing 7-9: A struct with some public fields and some private fields</p>
-<p>因为<code>toast</code>字段在<code>back_of_house::Breakfast</code>结构体内是公有的，在<code>eat_at_restaurant</code>中我们可以编写并且读到<code>toast</code>字段使用点(.)号。注意，我们不能在<code>eat_at_restaurant</code>中使用<code>seasonal_fruit</code>字段，因为<code>seasonal_fruit</code>字段是私有的。尝试取消注释修改季节水果字段的值，看看会得到什么错误。</p>
-<p>同样，注意因为<code>back_of_house::Breakfast</code>有一个私有字段，这个结构体需要提供一个公有的关联函数来构造一个<code>Breakfast</code>实例(这里是名为<code>summer</code>的函数)。如果<code>Breakfast</code>没有这样一个函数，我们就不能在<code>eat_at_restaurant</code>中创建<code>Breakfast</code>实例，因为我们不能在<code>eat_at_rest_aurant</code>中给<code>seasonal_fruit</code>私有字段设置值。</p>
-<p>相反地，如果我们设置枚举为公有，它所有的字段都是公有的。我们只需要在<code>enum</code>关键字前面加上<code>pub</code>即可，如Listing 7-10所示：</p>
-<p>src&#x2F;lib.rs</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> back_of_house &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">enum</span> <span class="title class_">Appetizer</span> &#123;</span><br><span class="line">        Soup,</span><br><span class="line">        Salad,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">eat_at_restaurant</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">order1</span> = back_of_house::Appetizer::Soup;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">order2</span> = back_of_house::Appetizer::Salad;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Listing 7-10: Designating an enum as public makes all its variants public</p>
-<p>因为我们设置了<code>Appetizer</code>为公有枚举，我们可以在<code>eat_at_restaurant</code>中使用<code>Soup</code>和<code>Salad</code>成员变量。</p>
-<p>除非设置枚举的变量为公开的，否则枚举就没什么用了；在每种情况下都必须使用<code>pub</code>来声明所有枚举变量，这将是很恼人的设计，所以默认情况下枚举的所有变量都是公有的。结构体在字段为私有的情况通常是有用的，所以结构体字段默认遵循所有内容为私有的普遍规则，除非使用<code>pub</code>声明公有。</p>
-<p>这里还涉及<code>pub</code>另外一个情况我们没有讨论到，那就是我们最后要讲的模块功能：<code>use</code>关键字。我们将单独介绍<code>use</code>，然后展示如何结合<code>pub</code>和<code>use</code>起来使用。</p>
+<p>这个<code>use</code>语句会将<code>std::collections</code>中定义的所有的公有项引入到当前作用域。使用全局操作符时一定要多加小心！全局操作符会使得我们难以推导作用域中有什么名称和它们是定义在何处。</p>
+<p>全局操作符经常用于测试模块<code>tests</code>中，这时会将所有内容引入作用域；我们将在第十一章”How to Write Tests”部分中讲解。全局操作符有时也用于preclude模式；查看”标准库文档”(<a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/prelude/index.html#other-preludes)%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E7%BB%86%E8%8A%82%E3%80%82">https://doc.rust-lang.org/std/prelude/index.html#other-preludes)了解更多细节。</a></p>
 
       
     </div>
@@ -284,7 +274,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/80/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/80/">80</a><span class="page-number current">81</span><a class="page-number" href="/page/82/">82</a><span class="space">&hellip;</span><a class="page-number" href="/page/107/">107</a><a class="extend next" rel="next" href="/page/82/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/80/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/80/">80</a><span class="page-number current">81</span><a class="page-number" href="/page/82/">82</a><span class="space">&hellip;</span><a class="page-number" href="/page/108/">108</a><a class="extend next" rel="next" href="/page/82/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -350,7 +340,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">107</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -413,12 +403,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">198k</span>
+    <span title="Symbols count total">199k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:02</span>
+    <span title="Reading time total">12:04</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

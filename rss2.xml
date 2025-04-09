@@ -15,11 +15,35 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Wed, 02 Apr 2025 08:58:02 GMT</pubDate>
+    <pubDate>Wed, 09 Apr 2025 03:53:30 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>Q3:为什么`Vec&lt;i32&gt;` 不能直接作为 &amp;[i32] ?</title>
+      <title>特朗普难道不明白加关税会抬高美国老百姓的生活成本吗？</title>
+      <link>https://tonymistark.github.io/2025/04/09/Doesn-t-Trump-understand-that-their-tariffs-will-increase-the-price-of-things-that-Americans-need/</link>
+      <guid>https://tonymistark.github.io/2025/04/09/Doesn-t-Trump-understand-that-their-tariffs-will-increase-the-price-of-things-that-Americans-need/</guid>
+      <pubDate>Wed, 09 Apr 2025 03:43:35 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;我觉得他其实很清楚。最近《金融时报》有篇挺有意思的文章，作者是个对经济史特别有研究的专栏作家。她的观点挺有意思——大家之所以看不懂（甚至害怕）特朗普的关税政策，是因为还在用凯恩斯、弗里德曼那套20世纪的经济理论来理解。&lt;/p&gt;
+&lt;p&gt;这篇文章提到，现在最该被重视的经济学家其</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2025/04/09/Doesn-t-Trump-understand-that-their-tariffs-will-increase-the-price-of-things-that-Americans-need/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Q3:为什么Vec&lt;i32&gt; 不能直接作为 &amp;[i32] ?</title>
       <link>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_03/</link>
       <guid>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_03/</guid>
       <pubDate>Wed, 02 Apr 2025 08:52:17 GMT</pubDate>
@@ -497,31 +521,6 @@
       
       
       <comments>https://tonymistark.github.io/2024/04/27/tech_essay/ConwaysLaw/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>康威定律</title>
-      <link>https://tonymistark.github.io/2024/04/27/design-pattern/ConwaysLaw/</link>
-      <guid>https://tonymistark.github.io/2024/04/27/design-pattern/ConwaysLaw/</guid>
-      <pubDate>Sat, 27 Apr 2024 09:43:21 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;p&gt;几乎所有我所青睐的软件架构从业者都对这个领域的任何一种一般法则都深表怀疑。好的软件架构是非常特定于上下文的，分析在各种环境中以不同方式解决的权衡。但是，如果他们都同意一件事，那就是康威定律的重要性和力量。它足够重要，足以影响我遇到的每个系统，也足够强大，如果你试图对抗它，你</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/design-pattern/">design-pattern</category>
-      
-      
-      
-      <comments>https://tonymistark.github.io/2024/04/27/design-pattern/ConwaysLaw/#disqus_thread</comments>
       
     </item>
     
