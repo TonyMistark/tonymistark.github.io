@@ -1,3 +1,4 @@
+https://tonymistark.github.io/2025/04/14/1000_rust_questions/Rayon-vs-Crossbeam-in-Rust-Concurrency-Models-Performance-Trade-offs-and-Practical-Use-Cases/
 https://tonymistark.github.io/2025/04/14/1000_rust_questions/Scoped-Threads-vs-Message-Passing-in-Rust-Performance-and-Ownership-Tradeoffs/
 https://tonymistark.github.io/2025/04/09/Doesn-t-Trump-understand-that-their-tariffs-will-increase-the-price-of-things-that-Americans-need/
 https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_03/

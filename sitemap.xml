@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tonymistark.github.io/2025/04/14/1000_rust_questions/Rayon-vs-Crossbeam-in-Rust-Concurrency-Models-Performance-Trade-offs-and-Practical-Use-Cases/</loc>
+    
+    <lastmod>2025-04-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://tonymistark.github.io/2025/04/14/1000_rust_questions/Scoped-Threads-vs-Message-Passing-in-Rust-Performance-and-Ownership-Tradeoffs/</loc>
     
     <lastmod>2025-04-14</lastmod>

@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-04-14T10:36:42.626Z</updated>
+  <updated>2025-04-14T10:46:18.993Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Rust中的Rayon与Crossbeam：并发模型、性能权衡和实际用例</title>
+    <link href="https://tonymistark.github.io/2025/04/14/1000_rust_questions/Rayon-vs-Crossbeam-in-Rust-Concurrency-Models-Performance-Trade-offs-and-Practical-Use-Cases/"/>
+    <id>https://tonymistark.github.io/2025/04/14/1000_rust_questions/Rayon-vs-Crossbeam-in-Rust-Concurrency-Models-Performance-Trade-offs-and-Practical-Use-Cases/</id>
+    <published>2025-04-14T10:42:52.000Z</published>
+    <updated>2025-04-14T10:46:18.993Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在 Rust 中，&lt;code&gt;rayon&lt;/code&gt; 和 &lt;code&gt;crossbeam&lt;/code&gt; 是两个常用于并发编程的库，但它们的定位和使用场景有所不同。以下是它们的详细对比和核心机制解析：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3</summary>
+        
+      
+    
+    
+    
+    <category term="1000_rust_questions" scheme="https://tonymistark.github.io/categories/1000-rust-questions/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Rust 何种场景下选择作用域线程参数（如 rayon/crossbeam）而非消息传递？</title>
     <link href="https://tonymistark.github.io/2025/04/14/1000_rust_questions/Scoped-Threads-vs-Message-Passing-in-Rust-Performance-and-Ownership-Tradeoffs/"/>
     <id>https://tonymistark.github.io/2025/04/14/1000_rust_questions/Scoped-Threads-vs-Message-Passing-in-Rust-Performance-and-Ownership-Tradeoffs/</id>
     <published>2025-04-14T10:32:12.000Z</published>
-    <updated>2025-04-14T10:36:42.626Z</updated>
+    <updated>2025-04-14T10:36:48.362Z</updated>
     
     
       
@@ -33,6 +58,8 @@
       
     
     
+    
+    <category term="1000_rust_questions" scheme="https://tonymistark.github.io/categories/1000-rust-questions/"/>
     
     
   </entry>
@@ -452,31 +479,6 @@
     
     <category term="notes" scheme="https://tonymistark.github.io/categories/notes/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>计算边长200以内的直角三角形有那些？</title>
-    <link href="https://tonymistark.github.io/2024/04/29/algorithm/algorithm_count_right-angled-triangles/"/>
-    <id>https://tonymistark.github.io/2024/04/29/algorithm/algorithm_count_right-angled-triangles/</id>
-    <published>2024-04-29T03:44:51.000Z</published>
-    <updated>2024-04-29T08:40:39.452Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;计算边长200以内的直角三角形有那些？用python，java，go，rust，haskell，c，c-实现&quot;&gt;&lt;a href=&quot;#计算边长200以内的直角三角形有那些？用python，java，go，rust，haskell，c，c-实现&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="algorithm" scheme="https://tonymistark.github.io/categories/algorithm/"/>
-    
-    
-    <category term="algorithm" scheme="https://tonymistark.github.io/tags/algorithm/"/>
     
   </entry>
   

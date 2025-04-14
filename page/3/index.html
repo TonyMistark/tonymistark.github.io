@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_03/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/09/Doesn-t-Trump-understand-that-their-tariffs-will-increase-the-price-of-things-that-Americans-need/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/04/02/1000_rust_questions/1000_rust_questions_03/" class="post-title-link" itemprop="url">Q3:为什么Vec<i32> 不能直接作为 &[i32] ?</a>
+            <a href="/2025/04/09/Doesn-t-Trump-understand-that-their-tariffs-will-increase-the-price-of-things-that-Americans-need/" class="post-title-link" itemprop="url">特朗普难道不明白加关税会抬高美国老百姓的生活成本吗？</a>
         </h2>
 
         <div class="post-meta">
@@ -208,16 +208,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-04-02 16:52:17 / Modified: 16:58:30" itemprop="dateCreated datePublished" datetime="2025-04-02T16:52:17+08:00">2025-04-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/1000-rust-questions/" itemprop="url" rel="index"><span itemprop="name">1000_rust_questions</span></a>
-                </span>
+              <time title="Created: 2025-04-09 11:43:35 / Modified: 12:05:21" itemprop="dateCreated datePublished" datetime="2025-04-09T11:43:35+08:00">2025-04-09</time>
             </span>
 
           <br>
@@ -226,7 +217,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>451</span>
+              <span>653</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -245,21 +236,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="为什么Vec-不能直接作为-i32"><a href="#为什么Vec-不能直接作为-i32" class="headerlink" title="为什么Vec&lt;i32&gt; 不能直接作为 &amp;[i32] ?"></a>为什么<code>Vec&lt;i32&gt;</code> 不能直接作为 <code>&amp;[i32]</code> ?</h2><p>在 Rust 中，<code>Vec&lt;i32&gt;</code> 不能直接作为 <code>&amp;[i32]</code> 的原因主要与 Rust 的所有权和借用机制有关。以下是详细的解释：</p>
-<h3 id="1-所有权与借用"><a href="#1-所有权与借用" class="headerlink" title="1. 所有权与借用"></a>1. <strong>所有权与借用</strong></h3><ul>
-<li><code>Vec&lt;i32&gt;</code> 是一个拥有所有权的动态数组，包含了自己的数据和内存管理。</li>
-<li><code>&amp;[i32]</code> 是一个切片，它是对某个数组或向量的引用，不拥有数据的所有权。</li>
-</ul>
-<h3 id="2-自动解引用"><a href="#2-自动解引用" class="headerlink" title="2. 自动解引用"></a>2. <strong>自动解引用</strong></h3><p>Rust 提供了自动解引用的功能，允许在某些情况下自动将 <code>&amp;Vec&lt;i32&gt;</code> 转换为 <code>&amp;[i32]</code>。但是，<code>Vec&lt;i32&gt;</code> 本身不能直接作为 <code>&amp;[i32]</code>，因为它不是一个切片，而是一个具体的类型。</p>
-<h3 id="3-需要借用"><a href="#3-需要借用" class="headerlink" title="3. 需要借用"></a>3. <strong>需要借用</strong></h3><p>为了将 <code>Vec&lt;i32&gt;</code> 作为 <code>&amp;[i32]</code> 使用，你需要首先借用它。借用会创建一个指向 <code>Vec&lt;i32&gt;</code> 中数据的切片引用。可以通过以下方式实现：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">print_slice</span>(slice: &amp;[<span class="type">i32</span>]) &#123;</span><br><span class="line">    <span class="keyword">for</span> &amp;item <span class="keyword">in</span> slice &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, item);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">vec</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通过借用将 &amp;Vec&lt;i32&gt; 转换为 &amp;[i32]</span></span><br><span class="line">    <span class="title function_ invoke__">print_slice</span>(&amp;vec); <span class="comment">// 这里的 &amp;vec 会被自动转换为 &amp;[i32]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-借用检查"><a href="#4-借用检查" class="headerlink" title="4. 借用检查"></a>4. <strong>借用检查</strong></h3><p>Rust 的借用检查器确保在使用引用时遵循所有权规则。这意味着你不能直接将一个拥有所有权的类型（如 <code>Vec&lt;i32&gt;</code>）传递给一个只接受引用的函数（如 <code>&amp;[i32]</code>），因为这会违反所有权原则。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li><strong>Vec<i32></strong> 是一个拥有所有权的动态数组，而 <strong>&amp;[i32]</strong> 是一个对数组或向量的引用。</li>
-<li>你需要借用 <code>Vec&lt;i32&gt;</code>（通过 <code>&amp;vec</code>）来将其作为 <code>&amp;[i32]</code> 传递。</li>
-<li>Rust 的所有权和借用机制确保了内存安全和避免数据竞争，因此不允许直接将拥有所有权的类型传递给只接受引用的函数。</li>
-</ul>
+          <p>我觉得他其实很清楚。最近《金融时报》有篇挺有意思的文章，作者是个对经济史特别有研究的专栏作家。她的观点挺有意思——大家之所以看不懂（甚至害怕）特朗普的关税政策，是因为还在用凯恩斯、弗里德曼那套20世纪的经济理论来理解。</p>
+<p>这篇文章提到，现在最该被重视的经济学家其实是个冷门人物：阿尔伯特·赫希曼。这位德国犹太经济学家可能你没听过很正常，毕竟他1930年代的研究长期被忽视——当时他的观点和后来流行的自由市场理论完全不对路。他经历过西班牙内战和纳粹统治，这些创伤深刻影响了他的思考。</p>
+<p>赫希曼的核心观点很犀利：经济从来都是政治的附属品，而不是反过来（这和多数经济学家的认知完全颠倒）。他早在80多年前就预言过类似特朗普关税的情况：”只要主权国家能随时掐断贸易，国际贸易本质上就是权力争夺战”。他把贸易比作”不用真刀真枪的殖民手段”，这不正是特朗普团队现在在做的事吗？他们根本不在乎什么贸易顺差逆差，要的就是压制对手的实力。哪怕经济增速受影响，只要能保住霸权地位，这代价他们觉得值。</p>
+<p>赫希曼的理论的关键点在于：霸权控制力不是线性下降的。比如当某国占据80%市场份额时，控制权接近绝对；但一旦跌破70%，权威就会加速崩溃——因为其他玩家发现替代选项变多了。现在美国的经济主导地位正滑向这个危险临界点，所以才会不顾吃相地打关税牌，说白了就是想抓住正在流失的全球金融控制权。</p>
+<p>照这个逻辑推演，贸易战恐怕还要继续升级。毕竟当大哥发现小弟们开始找新靠山时，第一反应肯定是把拳头握得更紧。本能地在郧落前夕拼死一搏。但历史告诉我们，越是这种时候，越努力挣扎原有体系的崩塌速度反而会加快。但是不挣扎又能做什么呢？作为一个强人性格的老人，最后一搏又是必然的路径。看似很强势，实则并无他法。</p>
 
       
     </div>
@@ -278,7 +259,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/109/">109</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -344,7 +325,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">109</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -407,12 +388,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">200k</span>
+    <span title="Symbols count total">201k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:07</span>
+    <span title="Reading time total">12:12</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

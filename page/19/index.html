@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2024/07/16/notes/overloading-and-overriding/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2024/09/22/tech_essay/O0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/07/16/notes/overloading-and-overriding/" class="post-title-link" itemprop="url">Overloading And Overriding</a>
+            <a href="/2024/09/22/tech_essay/O0/" class="post-title-link" itemprop="url">O(0)算法复杂度的终极目标：这个需求能不能不做？？？</a>
         </h2>
 
         <div class="post-meta">
@@ -207,14 +207,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2024-07-16 11:20:09" itemprop="dateCreated datePublished" datetime="2024-07-16T11:20:09+08:00">2024-07-16</time>
+              <time title="Created: 2024-09-22 11:55:26" itemprop="dateCreated datePublished" datetime="2024-09-22T11:55:26+08:00">2024-09-22</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-10-28 17:34:11" itemprop="dateModified" datetime="2024-10-28T17:34:11+08:00">2024-10-28</time>
+                <time title="Modified: 2024-10-28 17:32:13" itemprop="dateModified" datetime="2024-10-28T17:32:13+08:00">2024-10-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -222,7 +222,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/notes/" itemprop="url" rel="index"><span itemprop="name">notes</span></a>
+                  <a href="/categories/tech-essay/" itemprop="url" rel="index"><span itemprop="name">tech_essay</span></a>
                 </span>
             </span>
 
@@ -232,14 +232,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1k</span>
+              <span>631</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -251,61 +251,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Overloading-Or-Overriding-That-is-a-Question"><a href="#Overloading-Or-Overriding-That-is-a-Question" class="headerlink" title="Overloading Or Overriding, That is a Question"></a>Overloading Or Overriding, That is a Question</h2><h3 id="重载和重写在面向对象编程中有什么区别"><a href="#重载和重写在面向对象编程中有什么区别" class="headerlink" title="重载和重写在面向对象编程中有什么区别?"></a>重载和重写在面向对象编程中有什么区别?</h3><p>在面向对象编程中,重载(overloading)和重写(overriding)是两个不同的概念:</p>
-<ol>
-<li><p>重载(Overloading):</p>
-<ul>
-<li>重载是在同一个类中定义多个同名的方法,但它们的参数列表不同(参数个数、参数类型或参数顺序不同)。</li>
-<li>当调用这个类的方法时,根据实际传入的参数,系统会自动选择与之匹配的方法执行。</li>
-<li>示例:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Math</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">self, a, b</span>):</span><br><span class="line">        <span class="keyword">return</span> a + b</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">self, a, b, c</span>):</span><br><span class="line">        <span class="keyword">return</span> a + b + c</span><br><span class="line"></span><br><span class="line">m = Math()</span><br><span class="line"><span class="built_in">print</span>(m.add(<span class="number">1</span>, <span class="number">2</span>))       <span class="comment"># 输出: 3</span></span><br><span class="line"><span class="built_in">print</span>(m.add(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))    <span class="comment"># 输出: 6</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>重写(Overriding):</p>
-<ul>
-<li>重写是在子类中定义一个与父类中方法名、参数列表完全相同的方法。</li>
-<li>当通过子类的对象调用这个方法时,将会执行子类中重写后的方法,而不是父类中的方法。</li>
-<li>示例:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">speak</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;动物发出声音&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>(<span class="title class_ inherited__">Animal</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">speak</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;狗狗汪汪叫&quot;</span>)</span><br><span class="line"></span><br><span class="line">d = Dog()</span><br><span class="line">d.speak()  <span class="comment"># 输出: 狗狗汪汪叫</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ol>
-<p>总的来说,重载是在同一个类中定义多个同名方法,而重写是在子类中定义与父类中方法完全相同的方法。重载是编译时行为,重写是运行时行为。</p>
-<h3 id="Python是否支持重载"><a href="#Python是否支持重载" class="headerlink" title="Python是否支持重载?"></a>Python是否支持重载?</h3><p>Python 中确实没有像 Java 或 C++ 那样原生支持方法重载的功能。</p>
-<p>在 Python 中,我们通常使用以下技术来实现类似重载的效果:</p>
-<ol>
-<li><p>使用默认参数:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">a, b, c=<span class="number">0</span></span>):</span><br><span class="line">    <span class="keyword">return</span> a + b + c</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(add(<span class="number">1</span>, <span class="number">2</span>))     <span class="comment"># 输出: 3</span></span><br><span class="line"><span class="built_in">print</span>(add(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))  <span class="comment"># 输出: 6</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用可变长参数列表:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">*args</span>):</span><br><span class="line">    total = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> arg <span class="keyword">in</span> args:</span><br><span class="line">        total += arg</span><br><span class="line">    <span class="keyword">return</span> total</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(add(<span class="number">1</span>, <span class="number">2</span>))     <span class="comment"># 输出: 3</span></span><br><span class="line"><span class="built_in">print</span>(add(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))  <span class="comment"># 输出: 6</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用关键字参数:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">*, a, b, c=<span class="number">0</span></span>):</span><br><span class="line">    <span class="keyword">return</span> a + b + c</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(add(a=<span class="number">1</span>, b=<span class="number">2</span>))     <span class="comment"># 输出: 3</span></span><br><span class="line"><span class="built_in">print</span>(add(a=<span class="number">1</span>, b=<span class="number">2</span>, c=<span class="number">3</span>)) <span class="comment"># 输出: 6</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>尽管 Python 没有像 Java 或 C++ 那样的原生重载支持,但通过上述技术,我们仍然可以实现类似的功能。这种方式更加灵活,可以根据需求进行选择。</p>
-<h3 id="那么重载是否是有意义的呢？-重写就可以完成这些任务？"><a href="#那么重载是否是有意义的呢？-重写就可以完成这些任务？" class="headerlink" title="那么重载是否是有意义的呢？ 重写就可以完成这些任务？"></a>那么重载是否是有意义的呢？ 重写就可以完成这些任务？</h3><p>重载和重写在某种程度上确实可以实现相似的功能,那么重载是否真的有意义呢?</p>
-<p>这个问题没有一个标准答案,主要取决于具体的应用场景和编程风格。但是,我们可以从以下几个方面来分析重载的意义:</p>
-<ol>
-<li><p>代码可读性和可维护性:</p>
-<ul>
-<li>重载可以让代码更加直观和易于理解。使用相同的方法名,但根据参数的不同执行不同的逻辑,可以让代码更加语义化。</li>
-<li>这有助于提高代码的可维护性,因为开发人员不需要记住多个不同名称的方法,只需要记住一个方法名即可。</li>
-</ul>
-</li>
-<li><p>灵活性和扩展性:</p>
-<ul>
-<li>重载可以让类具有更强的灵活性和扩展性。当需求发生变化时,可以通过添加新的重载方法来满足需求,而不需要修改原有的代码。</li>
-<li>这在一些大型项目中尤其有用,可以更好地应对需求的变化。</li>
-</ul>
-</li>
-<li><p>代码复用:</p>
-<ul>
-<li>通过重载,可以在一个方法中实现多种功能,减少代码重复。</li>
-<li>这有助于提高代码的复用性,降低开发和维护的成本。</li>
-</ul>
-</li>
-</ol>
-<p>相比之下,重写主要是为了实现多态性,即子类对父类方法的特殊化实现。它更多地体现在继承关系中,而重载则更多地体现在同一个类中。</p>
-<p>所以,重载和重写都有其独特的用途和优点。在实际开发中,根据具体需求,合理地使用这两种技术可以让代码更加优雅、可读性更强、扩展性更好。</p>
+          <p>算法复杂度(Algorithmic complexity) – 所有人对它都有这样的一个概念就是要乐此不疲尽我所能地压缩以提高算法的性能。</p>
+<p>你有个问题需要解决，并且得出一个解决方案，它是O(n^2)。你觉得做的不够好，需要做得更好。然后稍微调整一下，得到线性复杂度O(n)。你很高兴，因为事情看起来明朗起来了。</p>
+<p>然而，你脑子里还绷着弦儿，晚上睡一觉醒来忽然又顿悟了，将算法的复杂度降低到对数O(log(n))，你自我感觉很好。在本周晚些时候，你读到一篇论文，并意识到你可以把它归结为恒定时间O(1)。你觉得现在就两个字：完美。你认为没有比这更好的方案了。</p>
+<p>大错特错！<br>你还没尝试过O(0)。</p>
+<div align="center"> <img src="/images/o-zero.webp"/></br></div>
+
+<p>shong么？0时间复杂度？</p>
+<div align="center"> <img src="/images/meitingshuoguo.webp"/>于谦：没听说过！</br></div>
+<div align="center"> <img src="/images/bukeneng.jpeg"/>陈建斌：不可能！绝对不可能！</br></div>
+ 
+<p>你的硬件计算机教授说过，恒定时间复杂度是最好的。在你的整个职业生涯都只听说过最佳的时间复杂度是O(1)。</p>
+<p>它一直在那里，但它被称为其他东西。</p>
+<p>有些代码根本不需要执行。有些工具可以扔掉。有些事情根本不需要做，如果你调整其他东西，你仍然能获得类似更好的结果。</p>
+<p>你可能听过这样一句话：最快的代码是根本不被调用的代码？这不就是O(0)么！</p>
+<p>作为一个合格的工程师你需要做到吾日三省吾身：”有没有办法不做这项工作的情况下完成某项工作？”。令人惊讶的答案是肯定的!</p>
+<p>有时候，我们会做一些冗长又复杂的事情，什么都不做可能才是一个比较好的解决方案。有时候我们每分钟运行一次，然而实际上可能只需要每月运行一次就足够了。有时候我们会构建复杂的机制，这些机会会被使用，但也许这些复杂机制带来的好处并不是我们真正需要的。</p>
+<p>你想成为一个10倍效率的工程师吗？有时候，决定不做某些事反而比做无用的事情会高效100倍。</p>
 
       
     </div>
@@ -324,7 +286,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/109/">109</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/">110</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -390,7 +352,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">109</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -453,12 +415,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">200k</span>
+    <span title="Symbols count total">201k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:07</span>
+    <span title="Reading time total">12:12</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

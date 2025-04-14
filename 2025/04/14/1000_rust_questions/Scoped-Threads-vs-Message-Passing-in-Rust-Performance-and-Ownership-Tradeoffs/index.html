@@ -28,7 +28,7 @@
 <meta property="og:description" content="在 Rust 中选择作用域线程（如 rayon&#x2F;crossbeam）还是消息传递（如通道），需结合性能需求、数据共享模式和所有权管理综合判断。以下是具体场景和建议：  1. 优先选择作用域线程的场景🔑 共享不可变数据或受控的可变数据 场景：多个线程需要高效共享只读数据（如大型数组、配置参数）或通过安全方式共享受控的可变数据（如分片写入）。 优势： 避免数据拷贝：通过借用（&amp;T）">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-04-14T10:32:12.000Z">
-<meta property="article:modified_time" content="2025-04-14T10:36:42.626Z">
+<meta property="article:modified_time" content="2025-04-14T10:36:48.362Z">
 <meta property="article:author" content="Ice">
 <meta name="twitter:card" content="summary">
 
@@ -210,7 +210,16 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-04-14 18:32:12 / Modified: 18:36:42" itemprop="dateCreated datePublished" datetime="2025-04-14T18:32:12+08:00">2025-04-14</time>
+              <time title="Created: 2025-04-14 18:32:12 / Modified: 18:36:48" itemprop="dateCreated datePublished" datetime="2025-04-14T18:32:12+08:00">2025-04-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/1000-rust-questions/" itemprop="url" rel="index"><span itemprop="name">1000_rust_questions</span></a>
+                </span>
             </span>
 
           
@@ -409,7 +418,10 @@
     <a href="/2025/04/09/Doesn-t-Trump-understand-that-their-tariffs-will-increase-the-price-of-things-that-Americans-need/" rel="prev" title="特朗普难道不明白加关税会抬高美国老百姓的生活成本吗？">
       <i class="fa fa-chevron-left"></i> 特朗普难道不明白加关税会抬高美国老百姓的生活成本吗？
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2025/04/14/1000_rust_questions/Rayon-vs-Crossbeam-in-Rust-Concurrency-Models-Performance-Trade-offs-and-Practical-Use-Cases/" rel="next" title="Rust中的Rayon与Crossbeam：并发模型、性能权衡和实际用例">
+      Rust中的Rayon与Crossbeam：并发模型、性能权衡和实际用例 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -483,7 +495,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">109</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -546,12 +558,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">200k</span>
+    <span title="Symbols count total">201k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:07</span>
+    <span title="Reading time total">12:12</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
