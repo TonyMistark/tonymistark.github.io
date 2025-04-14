@@ -15,8 +15,31 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Wed, 09 Apr 2025 03:53:30 GMT</pubDate>
+    <pubDate>Mon, 14 Apr 2025 10:36:42 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Rust 何种场景下选择作用域线程参数（如 rayon/crossbeam）而非消息传递？</title>
+      <link>https://tonymistark.github.io/2025/04/14/1000_rust_questions/Scoped-Threads-vs-Message-Passing-in-Rust-Performance-and-Ownership-Tradeoffs/</link>
+      <guid>https://tonymistark.github.io/2025/04/14/1000_rust_questions/Scoped-Threads-vs-Message-Passing-in-Rust-Performance-and-Ownership-Tradeoffs/</guid>
+      <pubDate>Mon, 14 Apr 2025 10:32:12 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;在 Rust 中选择作用域线程（如</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2025/04/14/1000_rust_questions/Scoped-Threads-vs-Message-Passing-in-Rust-Performance-and-Ownership-Tradeoffs/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>特朗普难道不明白加关税会抬高美国老百姓的生活成本吗？</title>
@@ -496,31 +519,6 @@
       
       
       <comments>https://tonymistark.github.io/2024/04/29/algorithm/algorithm_count_right-angled-triangles/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>康威定律</title>
-      <link>https://tonymistark.github.io/2024/04/27/tech_essay/ConwaysLaw/</link>
-      <guid>https://tonymistark.github.io/2024/04/27/tech_essay/ConwaysLaw/</guid>
-      <pubDate>Sat, 27 Apr 2024 09:46:50 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;p&gt;几乎所有我所青睐的软件架构从业者都对这个领域的任何一种一般法则都深表怀疑。好的软件架构是非常特定于上下文的，分析在各种环境中以不同方式解决的权衡。但是，如果他们都同意一件事，那就是康威定律的重要性和力量。它足够重要，足以影响我遇到的每个系统，也足够强大，如果你试图对抗它，你</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/tech-essay/">tech_essay</category>
-      
-      
-      
-      <comments>https://tonymistark.github.io/2024/04/27/tech_essay/ConwaysLaw/#disqus_thread</comments>
       
     </item>
     

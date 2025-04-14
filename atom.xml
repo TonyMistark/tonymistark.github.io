@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-04-09T03:53:30.002Z</updated>
+  <updated>2025-04-14T10:36:42.626Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -17,11 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Rust 何种场景下选择作用域线程参数（如 rayon/crossbeam）而非消息传递？</title>
+    <link href="https://tonymistark.github.io/2025/04/14/1000_rust_questions/Scoped-Threads-vs-Message-Passing-in-Rust-Performance-and-Ownership-Tradeoffs/"/>
+    <id>https://tonymistark.github.io/2025/04/14/1000_rust_questions/Scoped-Threads-vs-Message-Passing-in-Rust-Performance-and-Ownership-Tradeoffs/</id>
+    <published>2025-04-14T10:32:12.000Z</published>
+    <updated>2025-04-14T10:36:42.626Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在 Rust 中选择作用域线程（如</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>特朗普难道不明白加关税会抬高美国老百姓的生活成本吗？</title>
     <link href="https://tonymistark.github.io/2025/04/09/Doesn-t-Trump-understand-that-their-tariffs-will-increase-the-price-of-things-that-Americans-need/"/>
     <id>https://tonymistark.github.io/2025/04/09/Doesn-t-Trump-understand-that-their-tariffs-will-increase-the-price-of-things-that-Americans-need/</id>
     <published>2025-04-09T03:43:35.000Z</published>
-    <updated>2025-04-09T03:53:30.002Z</updated>
+    <updated>2025-04-09T04:05:21.841Z</updated>
     
     
       
@@ -456,29 +477,6 @@
     
     
     <category term="algorithm" scheme="https://tonymistark.github.io/tags/algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>康威定律</title>
-    <link href="https://tonymistark.github.io/2024/04/27/tech_essay/ConwaysLaw/"/>
-    <id>https://tonymistark.github.io/2024/04/27/tech_essay/ConwaysLaw/</id>
-    <published>2024-04-27T09:46:50.000Z</published>
-    <updated>2024-10-28T09:32:13.804Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;几乎所有我所青睐的软件架构从业者都对这个领域的任何一种一般法则都深表怀疑。好的软件架构是非常特定于上下文的，分析在各种环境中以不同方式解决的权衡。但是，如果他们都同意一件事，那就是康威定律的重要性和力量。它足够重要，足以影响我遇到的每个系统，也足够强大，如果你试图对抗它，你</summary>
-        
-      
-    
-    
-    
-    <category term="tech_essay" scheme="https://tonymistark.github.io/categories/tech-essay/"/>
-    
     
   </entry>
   
