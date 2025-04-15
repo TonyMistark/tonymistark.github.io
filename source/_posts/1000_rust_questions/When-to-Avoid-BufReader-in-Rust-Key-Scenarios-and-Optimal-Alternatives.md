@@ -1,5 +1,7 @@
 ---
 title: Rust 中应避免使用 BufReader 的场景与高效替代方案
+categories:
+  - 1000_rust_questions
 date: 2025-04-15 12:12:35
 tags:
 ---

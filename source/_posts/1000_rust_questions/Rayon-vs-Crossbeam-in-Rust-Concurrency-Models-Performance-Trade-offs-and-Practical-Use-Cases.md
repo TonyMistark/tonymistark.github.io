@@ -1,5 +1,7 @@
 ---
 title: Rust中的Rayon与Crossbeam：并发模型、性能权衡和实际用例
+categories:
+  - 1000_rust_questions
 date: 2025-04-14 18:42:52
 tags:
 ---
