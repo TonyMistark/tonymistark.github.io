@@ -6,13 +6,6 @@ date: 2025-04-15 14:38:23
 tags:
 ---
 
-### 英文标题  
-**"Why Rayon's Parallel Quicksort Outperforms Mergesort in Rust? Trade-offs and When to Choose Each"**  
-
-### 中文标题  
-**"Rust 中 Rayon 并行快速排序为何优于归并排序？适用场景与取舍分析"**  
-
----
 
 ### **核心原因：并行化效率差异**
 1. **快速排序的天然并行性**  
