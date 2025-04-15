@@ -15,8 +15,31 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Mon, 14 Apr 2025 10:46:18 GMT</pubDate>
+    <pubDate>Tue, 15 Apr 2025 04:13:21 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Rust 中应避免使用 BufReader 的场景与高效替代方案</title>
+      <link>https://tonymistark.github.io/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/</link>
+      <guid>https://tonymistark.github.io/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/</guid>
+      <pubDate>Tue, 15 Apr 2025 04:12:35 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;在 Rust 中，&lt;code&gt;BufReader&lt;/code&gt; 的主要作用是&lt;strong&gt;通过缓冲减少系统调用次数&lt;/strong&gt;，提高读取效率。然而，并非所有场景都适合使用它。以下是应避免使用 &lt;code&gt;BufReader&lt;/code&gt;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Rust中的Rayon与Crossbeam：并发模型、性能权衡和实际用例</title>
@@ -36,8 +59,6 @@
       
       
       
-      
-      <category domain="https://tonymistark.github.io/categories/1000-rust-questions/">1000_rust_questions</category>
       
       
       
@@ -496,31 +517,6 @@
       
       
       <comments>https://tonymistark.github.io/2024/09/22/tech_essay/O0/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Overloading And Overriding</title>
-      <link>https://tonymistark.github.io/2024/07/16/notes/overloading-and-overriding/</link>
-      <guid>https://tonymistark.github.io/2024/07/16/notes/overloading-and-overriding/</guid>
-      <pubDate>Tue, 16 Jul 2024 03:20:09 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;Overloading-Or-Overriding-That-is-a-Question&quot;&gt;&lt;a href=&quot;#Overloading-Or-Overriding-That-is-a-Question&quot; class=&quot;headerlink&quot;</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/notes/">notes</category>
-      
-      
-      
-      <comments>https://tonymistark.github.io/2024/07/16/notes/overloading-and-overriding/#disqus_thread</comments>
       
     </item>
     

@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-04-14T10:46:18.993Z</updated>
+  <updated>2025-04-15T04:13:21.331Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -17,11 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Rust 中应避免使用 BufReader 的场景与高效替代方案</title>
+    <link href="https://tonymistark.github.io/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/"/>
+    <id>https://tonymistark.github.io/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/</id>
+    <published>2025-04-15T04:12:35.000Z</published>
+    <updated>2025-04-15T04:13:21.331Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在 Rust 中，&lt;code&gt;BufReader&lt;/code&gt; 的主要作用是&lt;strong&gt;通过缓冲减少系统调用次数&lt;/strong&gt;，提高读取效率。然而，并非所有场景都适合使用它。以下是应避免使用 &lt;code&gt;BufReader&lt;/code&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>Rust中的Rayon与Crossbeam：并发模型、性能权衡和实际用例</title>
     <link href="https://tonymistark.github.io/2025/04/14/1000_rust_questions/Rayon-vs-Crossbeam-in-Rust-Concurrency-Models-Performance-Trade-offs-and-Practical-Use-Cases/"/>
     <id>https://tonymistark.github.io/2025/04/14/1000_rust_questions/Rayon-vs-Crossbeam-in-Rust-Concurrency-Models-Performance-Trade-offs-and-Practical-Use-Cases/</id>
     <published>2025-04-14T10:42:52.000Z</published>
-    <updated>2025-04-14T10:46:18.993Z</updated>
+    <updated>2025-04-14T10:46:54.048Z</updated>
     
     
       
@@ -35,8 +56,6 @@
       
     
     
-    
-    <category term="1000_rust_questions" scheme="https://tonymistark.github.io/categories/1000-rust-questions/"/>
     
     
   </entry>
@@ -455,29 +474,6 @@
     
     
     <category term="tech_essay" scheme="https://tonymistark.github.io/categories/tech-essay/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Overloading And Overriding</title>
-    <link href="https://tonymistark.github.io/2024/07/16/notes/overloading-and-overriding/"/>
-    <id>https://tonymistark.github.io/2024/07/16/notes/overloading-and-overriding/</id>
-    <published>2024-07-16T03:20:09.000Z</published>
-    <updated>2024-10-28T09:34:11.489Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Overloading-Or-Overriding-That-is-a-Question&quot;&gt;&lt;a href=&quot;#Overloading-Or-Overriding-That-is-a-Question&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="notes" scheme="https://tonymistark.github.io/categories/notes/"/>
     
     
   </entry>
