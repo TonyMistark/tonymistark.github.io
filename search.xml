@@ -6384,10 +6384,7 @@ All of that said, in absolute sense I’d much rather live in the world of today
   <entry>
     <title>Rust 中 Rayon 并行快速排序为何优于归并排序？适用场景与取舍分析</title>
     <url>/2025/04/15/1000_rust_questions/Why-Rayon-s-Parallel-Quicksort-Outperforms-Mergesort-in-Rust-Trade-offs-and-When-to-Choose-Each/</url>
-    <content><![CDATA[<h3 id="英文标题"><a href="#英文标题" class="headerlink" title="英文标题"></a>英文标题</h3><p><strong>“Why Rayon’s Parallel Quicksort Outperforms Mergesort in Rust? Trade-offs and When to Choose Each”</strong>  </p>
-<h3 id="中文标题"><a href="#中文标题" class="headerlink" title="中文标题"></a>中文标题</h3><p><strong>“Rust 中 Rayon 并行快速排序为何优于归并排序？适用场景与取舍分析”</strong>  </p>
-<hr>
-<h3 id="核心原因：并行化效率差异"><a href="#核心原因：并行化效率差异" class="headerlink" title="核心原因：并行化效率差异"></a><strong>核心原因：并行化效率差异</strong></h3><ol>
+    <content><![CDATA[<h3 id="核心原因：并行化效率差异"><a href="#核心原因：并行化效率差异" class="headerlink" title="核心原因：并行化效率差异"></a><strong>核心原因：并行化效率差异</strong></h3><ol>
 <li><p><strong>快速排序的天然并行性</strong>  </p>
 <ul>
 <li><strong>分治独立性</strong>：快速排序的每轮分区（<code>partition</code>）会将数据分为左右两部分，<strong>左右子任务完全独立</strong>，适合 Rayon 的 <code>par_iter</code> 并行分治。  </li>
@@ -6467,5 +6464,8 @@ All of that said, in absolute sense I’d much rather live in the world of today
 <li><strong>Rayon 的优化</strong>：通过 <code>par_sort_unstable</code> 和 <code>par_sort</code> 封装了底层差异，根据需求一键选择。</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>1000_rust_questions</category>
+      </categories>
   </entry>
 </search>

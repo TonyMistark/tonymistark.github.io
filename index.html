@@ -208,7 +208,16 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-04-15 14:38:23 / Modified: 14:39:12" itemprop="dateCreated datePublished" datetime="2025-04-15T14:38:23+08:00">2025-04-15</time>
+              <time title="Created: 2025-04-15 14:38:23 / Modified: 14:41:27" itemprop="dateCreated datePublished" datetime="2025-04-15T14:38:23+08:00">2025-04-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/1000-rust-questions/" itemprop="url" rel="index"><span itemprop="name">1000_rust_questions</span></a>
+                </span>
             </span>
 
           <br>
@@ -217,7 +226,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>742</span>
+              <span>693</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -236,10 +245,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="英文标题"><a href="#英文标题" class="headerlink" title="英文标题"></a>英文标题</h3><p><strong>“Why Rayon’s Parallel Quicksort Outperforms Mergesort in Rust? Trade-offs and When to Choose Each”</strong>  </p>
-<h3 id="中文标题"><a href="#中文标题" class="headerlink" title="中文标题"></a>中文标题</h3><p><strong>“Rust 中 Rayon 并行快速排序为何优于归并排序？适用场景与取舍分析”</strong>  </p>
-<hr>
-<h3 id="核心原因：并行化效率差异"><a href="#核心原因：并行化效率差异" class="headerlink" title="核心原因：并行化效率差异"></a><strong>核心原因：并行化效率差异</strong></h3><ol>
+          <h3 id="核心原因：并行化效率差异"><a href="#核心原因：并行化效率差异" class="headerlink" title="核心原因：并行化效率差异"></a><strong>核心原因：并行化效率差异</strong></h3><ol>
 <li><p><strong>快速排序的天然并行性</strong>  </p>
 <ul>
 <li><strong>分治独立性</strong>：快速排序的每轮分区（<code>partition</code>）会将数据分为左右两部分，<strong>左右子任务完全独立</strong>，适合 Rayon 的 <code>par_iter</code> 并行分治。  </li>

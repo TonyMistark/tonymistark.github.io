@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-04-15T06:39:12.460Z</updated>
+  <updated>2025-04-15T06:41:27.520Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -21,18 +21,20 @@
     <link href="https://tonymistark.github.io/2025/04/15/1000_rust_questions/Why-Rayon-s-Parallel-Quicksort-Outperforms-Mergesort-in-Rust-Trade-offs-and-When-to-Choose-Each/"/>
     <id>https://tonymistark.github.io/2025/04/15/1000_rust_questions/Why-Rayon-s-Parallel-Quicksort-Outperforms-Mergesort-in-Rust-Trade-offs-and-When-to-Choose-Each/</id>
     <published>2025-04-15T06:38:23.000Z</published>
-    <updated>2025-04-15T06:39:12.460Z</updated>
+    <updated>2025-04-15T06:41:27.520Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h3 id=&quot;英文标题&quot;&gt;&lt;a href=&quot;#英文标题&quot; class=&quot;headerlink&quot; title=&quot;英文标题&quot;&gt;&lt;/a&gt;英文标题&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;“Why Rayon’s Parallel Quicksort Outperforms Mergesort</summary>
+    <summary type="html">&lt;h3 id=&quot;核心原因：并行化效率差异&quot;&gt;&lt;a href=&quot;#核心原因：并行化效率差异&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
+    
+    <category term="1000_rust_questions" scheme="https://tonymistark.github.io/categories/1000-rust-questions/"/>
     
     
   </entry>
