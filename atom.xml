@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-04-15T04:13:21.331Z</updated>
+  <updated>2025-04-15T06:39:12.460Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -17,11 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Rust 中 Rayon 并行快速排序为何优于归并排序？适用场景与取舍分析</title>
+    <link href="https://tonymistark.github.io/2025/04/15/1000_rust_questions/Why-Rayon-s-Parallel-Quicksort-Outperforms-Mergesort-in-Rust-Trade-offs-and-When-to-Choose-Each/"/>
+    <id>https://tonymistark.github.io/2025/04/15/1000_rust_questions/Why-Rayon-s-Parallel-Quicksort-Outperforms-Mergesort-in-Rust-Trade-offs-and-When-to-Choose-Each/</id>
+    <published>2025-04-15T06:38:23.000Z</published>
+    <updated>2025-04-15T06:39:12.460Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;英文标题&quot;&gt;&lt;a href=&quot;#英文标题&quot; class=&quot;headerlink&quot; title=&quot;英文标题&quot;&gt;&lt;/a&gt;英文标题&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;“Why Rayon’s Parallel Quicksort Outperforms Mergesort</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>Rust 中应避免使用 BufReader 的场景与高效替代方案</title>
     <link href="https://tonymistark.github.io/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/"/>
     <id>https://tonymistark.github.io/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/</id>
     <published>2025-04-15T04:12:35.000Z</published>
-    <updated>2025-04-15T04:13:21.331Z</updated>
+    <updated>2025-04-15T04:14:10.003Z</updated>
     
     
       
@@ -34,6 +55,8 @@
     
     
     
+    <category term="1000_rust_questions" scheme="https://tonymistark.github.io/categories/1000-rust-questions/"/>
+    
     
   </entry>
   
@@ -42,7 +65,7 @@
     <link href="https://tonymistark.github.io/2025/04/14/1000_rust_questions/Rayon-vs-Crossbeam-in-Rust-Concurrency-Models-Performance-Trade-offs-and-Practical-Use-Cases/"/>
     <id>https://tonymistark.github.io/2025/04/14/1000_rust_questions/Rayon-vs-Crossbeam-in-Rust-Concurrency-Models-Performance-Trade-offs-and-Practical-Use-Cases/</id>
     <published>2025-04-14T10:42:52.000Z</published>
-    <updated>2025-04-14T10:46:54.048Z</updated>
+    <updated>2025-04-15T04:14:10.003Z</updated>
     
     
       
@@ -56,6 +79,8 @@
       
     
     
+    
+    <category term="1000_rust_questions" scheme="https://tonymistark.github.io/categories/1000-rust-questions/"/>
     
     
   </entry>
@@ -452,29 +477,6 @@
     
     
     <category term="rust" scheme="https://tonymistark.github.io/tags/rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>O(0)算法复杂度的终极目标：这个需求能不能不做？？？</title>
-    <link href="https://tonymistark.github.io/2024/09/22/tech_essay/O0/"/>
-    <id>https://tonymistark.github.io/2024/09/22/tech_essay/O0/</id>
-    <published>2024-09-22T03:55:26.000Z</published>
-    <updated>2024-10-28T09:32:13.804Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;算法复杂度(Algorithmic complexity) –</summary>
-        
-      
-    
-    
-    
-    <category term="tech_essay" scheme="https://tonymistark.github.io/categories/tech-essay/"/>
-    
     
   </entry>
   

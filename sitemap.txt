@@ -1,5 +1,6 @@
-https://tonymistark.github.io/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/
+https://tonymistark.github.io/2025/04/15/1000_rust_questions/Why-Rayon-s-Parallel-Quicksort-Outperforms-Mergesort-in-Rust-Trade-offs-and-When-to-Choose-Each/
 https://tonymistark.github.io/2025/04/14/1000_rust_questions/Rayon-vs-Crossbeam-in-Rust-Concurrency-Models-Performance-Trade-offs-and-Practical-Use-Cases/
+https://tonymistark.github.io/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/
 https://tonymistark.github.io/2025/04/14/1000_rust_questions/Scoped-Threads-vs-Message-Passing-in-Rust-Performance-and-Ownership-Tradeoffs/
 https://tonymistark.github.io/2025/04/09/Doesn-t-Trump-understand-that-their-tariffs-will-increase-the-price-of-things-that-Americans-need/
 https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_03/

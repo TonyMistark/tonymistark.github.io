@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://tonymistark.github.io/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/</loc>
+    <loc>https://tonymistark.github.io/2025/04/15/1000_rust_questions/Why-Rayon-s-Parallel-Quicksort-Outperforms-Mergesort-in-Rust-Trade-offs-and-When-to-Choose-Each/</loc>
     
     <lastmod>2025-04-15</lastmod>
     
@@ -13,7 +13,16 @@
   <url>
     <loc>https://tonymistark.github.io/2025/04/14/1000_rust_questions/Rayon-vs-Crossbeam-in-Rust-Concurrency-Models-Performance-Trade-offs-and-Practical-Use-Cases/</loc>
     
-    <lastmod>2025-04-14</lastmod>
+    <lastmod>2025-04-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tonymistark.github.io/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/</loc>
+    
+    <lastmod>2025-04-15</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

@@ -15,8 +15,31 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Tue, 15 Apr 2025 04:13:21 GMT</pubDate>
+    <pubDate>Tue, 15 Apr 2025 06:39:12 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Rust 中 Rayon 并行快速排序为何优于归并排序？适用场景与取舍分析</title>
+      <link>https://tonymistark.github.io/2025/04/15/1000_rust_questions/Why-Rayon-s-Parallel-Quicksort-Outperforms-Mergesort-in-Rust-Trade-offs-and-When-to-Choose-Each/</link>
+      <guid>https://tonymistark.github.io/2025/04/15/1000_rust_questions/Why-Rayon-s-Parallel-Quicksort-Outperforms-Mergesort-in-Rust-Trade-offs-and-When-to-Choose-Each/</guid>
+      <pubDate>Tue, 15 Apr 2025 06:38:23 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;英文标题&quot;&gt;&lt;a href=&quot;#英文标题&quot; class=&quot;headerlink&quot; title=&quot;英文标题&quot;&gt;&lt;/a&gt;英文标题&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;“Why Rayon’s Parallel Quicksort Outperforms Mergesort</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2025/04/15/1000_rust_questions/Why-Rayon-s-Parallel-Quicksort-Outperforms-Mergesort-in-Rust-Trade-offs-and-When-to-Choose-Each/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Rust 中应避免使用 BufReader 的场景与高效替代方案</title>
@@ -34,6 +57,8 @@
       
       
       
+      
+      <category domain="https://tonymistark.github.io/categories/1000-rust-questions/">1000_rust_questions</category>
       
       
       
@@ -59,6 +84,8 @@
       
       
       
+      
+      <category domain="https://tonymistark.github.io/categories/1000-rust-questions/">1000_rust_questions</category>
       
       
       
@@ -492,31 +519,6 @@
       
       
       <comments>https://tonymistark.github.io/2024/10/28/rust_notes/Rust-ownership-system-details/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>O(0)算法复杂度的终极目标：这个需求能不能不做？？？</title>
-      <link>https://tonymistark.github.io/2024/09/22/tech_essay/O0/</link>
-      <guid>https://tonymistark.github.io/2024/09/22/tech_essay/O0/</guid>
-      <pubDate>Sun, 22 Sep 2024 03:55:26 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;p&gt;算法复杂度(Algorithmic complexity) –</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/tech-essay/">tech_essay</category>
-      
-      
-      
-      <comments>https://tonymistark.github.io/2024/09/22/tech_essay/O0/#disqus_thread</comments>
       
     </item>
     

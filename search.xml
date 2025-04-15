@@ -6335,6 +6335,9 @@ All of that said, in absolute sense I’d much rather live in the world of today
 </ul>
 <p>两者可以互补使用：用 <code>rayon</code> 处理计算密集型任务，用 <code>crossbeam</code> 管理线程和协调任务。</p>
 ]]></content>
+      <categories>
+        <category>1000_rust_questions</category>
+      </categories>
   </entry>
   <entry>
     <title>Rust 中应避免使用 BufReader 的场景与高效替代方案</title>
@@ -6373,6 +6376,96 @@ All of that said, in absolute sense I’d much rather live in the world of today
 </ul>
 <hr>
 <p><strong>总结</strong>：<code>BufReader</code> 的核心优势在于<strong>减少系统调用</strong>，但在数据量小、需精确控制读取或内存敏感的场景中，直接操作可能更高效。根据实际需求权衡缓冲带来的收益与开销。</p>
+]]></content>
+      <categories>
+        <category>1000_rust_questions</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Rust 中 Rayon 并行快速排序为何优于归并排序？适用场景与取舍分析</title>
+    <url>/2025/04/15/1000_rust_questions/Why-Rayon-s-Parallel-Quicksort-Outperforms-Mergesort-in-Rust-Trade-offs-and-When-to-Choose-Each/</url>
+    <content><![CDATA[<h3 id="英文标题"><a href="#英文标题" class="headerlink" title="英文标题"></a>英文标题</h3><p><strong>“Why Rayon’s Parallel Quicksort Outperforms Mergesort in Rust? Trade-offs and When to Choose Each”</strong>  </p>
+<h3 id="中文标题"><a href="#中文标题" class="headerlink" title="中文标题"></a>中文标题</h3><p><strong>“Rust 中 Rayon 并行快速排序为何优于归并排序？适用场景与取舍分析”</strong>  </p>
+<hr>
+<h3 id="核心原因：并行化效率差异"><a href="#核心原因：并行化效率差异" class="headerlink" title="核心原因：并行化效率差异"></a><strong>核心原因：并行化效率差异</strong></h3><ol>
+<li><p><strong>快速排序的天然并行性</strong>  </p>
+<ul>
+<li><strong>分治独立性</strong>：快速排序的每轮分区（<code>partition</code>）会将数据分为左右两部分，<strong>左右子任务完全独立</strong>，适合 Rayon 的 <code>par_iter</code> 并行分治。  </li>
+<li><strong>原地操作</strong>：无需额外内存，并行任务间的缓存局部性更好。  </li>
+<li><strong>负载均衡</strong>：Rayon 的工作窃取（Work Stealing）机制能动态分配不均匀的分区任务（如分区后的左右大小差异）。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> rayon::prelude::*;</span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">parallel_quicksort</span>&lt;T: <span class="built_in">Send</span> + <span class="built_in">Ord</span>&gt;(arr: &amp;<span class="keyword">mut</span> [T]) &#123;</span><br><span class="line">    <span class="keyword">if</span> arr.<span class="title function_ invoke__">len</span>() &lt;= <span class="number">1</span> &#123; <span class="keyword">return</span>; &#125;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">pivot</span> = <span class="title function_ invoke__">partition</span>(arr); <span class="comment">// 分区逻辑</span></span><br><span class="line">    <span class="keyword">let</span> (left, right) = arr.<span class="title function_ invoke__">split_at_mut</span>(pivot);</span><br><span class="line">    rayon::<span class="title function_ invoke__">join</span>(|| <span class="title function_ invoke__">parallel_quicksort</span>(left),</span><br><span class="line">                || <span class="title function_ invoke__">parallel_quicksort</span>(right));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>归并排序的并行瓶颈</strong>  </p>
+<ul>
+<li><strong>合并阶段串行化</strong>：归并排序的最终合并（<code>merge</code>）需要严格顺序处理，<strong>难以有效并行化</strong>（需跨线程同步合并指针）。  </li>
+<li><strong>内存开销</strong>：归并排序需要额外内存空间（O(n)），并行化时多线程的内存分配可能成为瓶颈。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="何时选择归并排序？"><a href="#何时选择归并排序？" class="headerlink" title="何时选择归并排序？"></a><strong>何时选择归并排序？</strong></h3><ol>
+<li><p><strong>稳定性需求</strong>  </p>
+<ul>
+<li>归并排序是<strong>稳定排序</strong>（相等元素顺序不变），而快速排序不稳定。  </li>
+<li>若业务逻辑依赖稳定性（如按多字段排序），需选择稳定算法。</li>
+</ul>
+</li>
+<li><p><strong>数据特性适配</strong>  </p>
+<ul>
+<li><strong>近乎有序的数据</strong>：归并排序对部分有序数据更高效（合并阶段减少比较）。  </li>
+<li><strong>内存充足场景</strong>：若可接受 O(n) 额外内存，归并排序能保证最坏 O(n log n) 时间复杂度（快速排序最坏 O(n²)）。</li>
+</ul>
+</li>
+<li><p><strong>单线程环境</strong>  </p>
+<ul>
+<li>标准库的 <code>sort</code>（稳定）和 <code>sort_unstable</code>（快速排序变种）在单线程下可能更优，<strong>避免并行调度开销</strong>。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="Rayon-的实践选择"><a href="#Rayon-的实践选择" class="headerlink" title="Rayon 的实践选择"></a><strong>Rayon 的实践选择</strong></h3><ul>
+<li><strong><code>par_sort_unstable</code><strong>：基于并行快速排序，</strong>默认推荐</strong>（牺牲稳定性换取速度和低内存）。  </li>
+<li><strong><code>par_sort</code><strong>：稳定排序，内部可能结合归并和插入排序，</strong>适合需要稳定性的场景</strong>。</li>
+</ul>
+<hr>
+<h3 id="性能对比示例"><a href="#性能对比示例" class="headerlink" title="性能对比示例"></a><strong>性能对比示例</strong></h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> rayon::prelude::*;</span><br><span class="line"><span class="keyword">use</span> rand::Rng;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">data</span>: <span class="type">Vec</span>&lt;<span class="type">u32</span>&gt; = rand::<span class="title function_ invoke__">thread_rng</span>().<span class="title function_ invoke__">gen_iter</span>().<span class="title function_ invoke__">take</span>(<span class="number">10_000_000</span>).<span class="title function_ invoke__">collect</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 并行快速排序（不稳定）</span></span><br><span class="line">data.<span class="title function_ invoke__">par_sort_unstable</span>(); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 并行归并排序（稳定）</span></span><br><span class="line">data.<span class="title function_ invoke__">par_sort</span>(); </span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>快速排序优势</th>
+<th>归并排序优势</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>大规模随机数据</td>
+<td>✅ 并行效率高，内存低</td>
+<td>❌ 合并阶段慢</td>
+</tr>
+<tr>
+<td>小规模数据</td>
+<td>❌ 并行开销大</td>
+<td>✅ 单线程更优</td>
+</tr>
+<tr>
+<td>需要稳定性</td>
+<td>❌ 无法保证</td>
+<td>✅ 必须选择</td>
+</tr>
+<tr>
+<td>数据部分有序</td>
+<td>❌ 分区可能不均匀</td>
+<td>✅ 合并阶段高效</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><ul>
+<li><strong>选择快速排序</strong>：追求极致速度、可接受不稳定、数据量大且随机。  </li>
+<li><strong>选择归并排序</strong>：需稳定性、数据部分有序、或规避快速排序的最坏情况。  </li>
+<li><strong>Rayon 的优化</strong>：通过 <code>par_sort_unstable</code> 和 <code>par_sort</code> 封装了底层差异，根据需求一键选择。</li>
+</ul>
 ]]></content>
   </entry>
 </search>
