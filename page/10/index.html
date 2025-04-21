@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/03/12/Deep-Dive-into-Flexible-and-Type-Safe-Abstraction-in-Rust-Using-Traits-and-Generics-Associated-Types-Trait-Bounds-and-Thread-Safety/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/09/Doesn-t-Trump-understand-that-their-tariffs-will-increase-the-price-of-things-that-Americans-need/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/03/12/Deep-Dive-into-Flexible-and-Type-Safe-Abstraction-in-Rust-Using-Traits-and-Generics-Associated-Types-Trait-Bounds-and-Thread-Safety/" class="post-title-link" itemprop="url">深入理解 Rust 中通过 trait 和泛型实现灵活且类型安全的抽象：关联类型、trait bound 与线程安全</a>
+            <a href="/2025/04/09/Doesn-t-Trump-understand-that-their-tariffs-will-increase-the-price-of-things-that-Americans-need/" class="post-title-link" itemprop="url">特朗普难道不明白加关税会抬高美国老百姓的生活成本吗？</a>
         </h2>
 
         <div class="post-meta">
@@ -208,7 +208,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-03-12 18:37:34 / Modified: 18:43:27" itemprop="dateCreated datePublished" datetime="2025-03-12T18:37:34+08:00">2025-03-12</time>
+              <time title="Created: 2025-04-09 11:43:35 / Modified: 12:05:21" itemprop="dateCreated datePublished" datetime="2025-04-09T11:43:35+08:00">2025-04-09</time>
             </span>
 
           <br>
@@ -217,14 +217,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1k</span>
+              <span>653</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -236,64 +236,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Deep-Dive-into-Flexible-and-Type-Safe-Abstraction-in-Rust-Using-Traits-and-Generics-Associated-Types-Trait-Bounds-and-Thread-Safety"><a href="#Deep-Dive-into-Flexible-and-Type-Safe-Abstraction-in-Rust-Using-Traits-and-Generics-Associated-Types-Trait-Bounds-and-Thread-Safety" class="headerlink" title="Deep Dive into Flexible and Type-Safe Abstraction in Rust Using Traits and Generics: Associated Types, Trait Bounds, and Thread Safety"></a>Deep Dive into Flexible and Type-Safe Abstraction in Rust Using Traits and Generics: Associated Types, Trait Bounds, and Thread Safety</h2><hr>
-<h3 id="1-Rust-的-trait-和泛型"><a href="#1-Rust-的-trait-和泛型" class="headerlink" title="1. Rust 的 trait 和泛型"></a>1. <strong>Rust 的 trait 和泛型</strong></h3><p>Rust 的 trait 和泛型是实现灵活且类型安全抽象的核心工具。通过它们，可以编写通用的代码，同时确保类型安全和性能。</p>
-<h4 id="（1）trait-的作用"><a href="#（1）trait-的作用" class="headerlink" title="（1）trait 的作用"></a>（1）<strong>trait 的作用</strong></h4><p>trait 是 Rust 中定义共享行为的机制。它类似于其他语言中的接口（interface），但更强大。trait 可以定义方法、关联类型和默认实现。</p>
-<h4 id="（2）泛型的作用"><a href="#（2）泛型的作用" class="headerlink" title="（2）泛型的作用"></a>（2）<strong>泛型的作用</strong></h4><p>泛型允许编写适用于多种类型的代码，而无需重复实现。通过泛型，可以实现代码复用和类型安全。</p>
-<hr>
-<h3 id="2-关联类型（Associated-Types）"><a href="#2-关联类型（Associated-Types）" class="headerlink" title="2. 关联类型（Associated Types）"></a>2. <strong>关联类型（Associated Types）</strong></h3><p>关联类型是 trait 中的一种机制，用于在 trait 中定义一个类型别名，并在实现 trait 时具体化。</p>
-<h4 id="（1）关联类型的定义"><a href="#（1）关联类型的定义" class="headerlink" title="（1）关联类型的定义"></a>（1）<strong>关联类型的定义</strong></h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">trait</span> <span class="title class_">Iterator</span> &#123;</span><br><span class="line">    <span class="keyword">type</span> <span class="title class_">Item</span>;  <span class="comment">// 关联类型</span></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">next</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">Option</span>&lt;<span class="keyword">Self</span>::Item&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>type Item</code>：定义了一个关联类型 <code>Item</code>。</li>
-<li><code>next</code> 方法返回 <code>Option&lt;Self::Item&gt;</code>，表示迭代器的下一个元素。</li>
-</ul>
-<h4 id="（2）关联类型的使用"><a href="#（2）关联类型的使用" class="headerlink" title="（2）关联类型的使用"></a>（2）<strong>关联类型的使用</strong></h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Counter</span> &#123;</span><br><span class="line">    count: <span class="type">u32</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Iterator</span> <span class="keyword">for</span> <span class="title class_">Counter</span> &#123;</span><br><span class="line">    <span class="keyword">type</span> <span class="title class_">Item</span> = <span class="type">u32</span>;  <span class="comment">// 具体化关联类型</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">next</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">Option</span>&lt;<span class="keyword">Self</span>::Item&gt; &#123;</span><br><span class="line">        <span class="keyword">self</span>.count += <span class="number">1</span>;</span><br><span class="line">        <span class="title function_ invoke__">Some</span>(<span class="keyword">self</span>.count)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在实现 <code>Iterator</code> trait 时，将 <code>Item</code> 具体化为 <code>u32</code>。</li>
-</ul>
-<h4 id="（3）关联类型的优势"><a href="#（3）关联类型的优势" class="headerlink" title="（3）关联类型的优势"></a>（3）<strong>关联类型的优势</strong></h4><ul>
-<li><strong>类型安全</strong>：关联类型允许在 trait 中定义与实现相关的类型，避免了运行时类型检查。</li>
-<li><strong>灵活性</strong>：不同的实现可以为关联类型指定不同的具体类型。</li>
-</ul>
-<hr>
-<h3 id="3-trait-bound"><a href="#3-trait-bound" class="headerlink" title="3. trait bound"></a>3. <strong>trait bound</strong></h3><p>trait bound 是 Rust 中用于约束泛型类型的机制，它确保泛型类型实现了特定的 trait。</p>
-<h4 id="（1）trait-bound-的语法"><a href="#（1）trait-bound-的语法" class="headerlink" title="（1）trait bound 的语法"></a>（1）<strong>trait bound 的语法</strong></h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">print_debug</span>&lt;T: std::fmt::<span class="built_in">Debug</span>&gt;(value: T) &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>T: std::fmt::Debug</code>：表示 <code>T</code> 必须实现 <code>Debug</code> trait。</li>
-</ul>
-<h4 id="（2）多个-trait-bound"><a href="#（2）多个-trait-bound" class="headerlink" title="（2）多个 trait bound"></a>（2）<strong>多个 trait bound</strong></h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">my_function</span>&lt;T: MyTrait + AnotherTrait&gt;(value: T) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>使用 <code>+</code> 符号指定多个 trait bound。</li>
-</ul>
-<h4 id="（3）where-子句"><a href="#（3）where-子句" class="headerlink" title="（3）where 子句"></a>（3）<code>where</code> 子句</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">my_function</span>&lt;T&gt;(value: T)</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">    T: MyTrait + AnotherTrait,</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>where</code> 子句使代码更清晰，尤其是当 trait bound 较多时。</li>
-</ul>
-<hr>
-<h3 id="4-线程安全与共享"><a href="#4-线程安全与共享" class="headerlink" title="4. 线程安全与共享"></a>4. 线程安全与共享</h3><p>Rust 通过 <code>Send</code> 和 <code>Sync</code> trait 来确保线程安全。</p>
-<h4 id="（1）Send-trait"><a href="#（1）Send-trait" class="headerlink" title="（1）Send trait"></a>（1）<code>Send</code> trait</h4><ul>
-<li>表示类型可以安全地跨线程发送（即所有权可以转移到另一个线程）。</li>
-<li>例如，<code>Arc&lt;T&gt;</code> 是 <code>Send</code> 的，因为它的引用计数是线程安全的。</li>
-</ul>
-<h4 id="（2）Sync-trait"><a href="#（2）Sync-trait" class="headerlink" title="（2）Sync trait"></a>（2）<code>Sync</code> trait</h4><ul>
-<li>表示类型可以安全地跨线程共享（即多个线程可以同时持有对它的引用）。</li>
-<li>例如，<code>Mutex&lt;T&gt;</code> 是 <code>Sync</code> 的，因为它提供了内部的可变性和线程安全的访问。</li>
-</ul>
-<h4 id="（3）线程安全的-trait-bound"><a href="#（3）线程安全的-trait-bound" class="headerlink" title="（3）线程安全的 trait bound"></a>（3）<strong>线程安全的 trait bound</strong></h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">HTTPWriter</span>&lt;W: Writer + <span class="built_in">Send</span> + <span class="built_in">Sync</span>&gt; &#123;</span><br><span class="line">    inner: W,</span><br><span class="line">    buffer: <span class="type">Vec</span>&lt;<span class="type">u8</span>&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>W: Writer + Send + Sync</code>：表示 <code>W</code> 必须实现 <code>Writer</code>、<code>Send</code> 和 <code>Sync</code> trait，确保 <code>HTTPWriter</code> 可以在多线程环境中安全使用。</li>
-</ul>
-<hr>
-<h3 id="5-代码示例：带缓冲区的-HTTP-写入器"><a href="#5-代码示例：带缓冲区的-HTTP-写入器" class="headerlink" title="5. 代码示例：带缓冲区的 HTTP 写入器"></a>5. <strong>代码示例：带缓冲区的 HTTP 写入器</strong></h3><p>以下是一个完整的示例，展示了如何通过 trait 和泛型实现一个带缓冲区的 HTTP 写入器，并确保线程安全。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::io::&#123;<span class="keyword">self</span>, Write&#125;;</span><br><span class="line"><span class="keyword">use</span> std::sync::&#123;Arc, Mutex&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义 Writer trait</span></span><br><span class="line"><span class="keyword">trait</span> <span class="title class_">Writer</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">write</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, data: &amp;[<span class="type">u8</span>]) <span class="punctuation">-&gt;</span> io::<span class="type">Result</span>&lt;()&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义 Buffering trait</span></span><br><span class="line"><span class="keyword">trait</span> <span class="title class_">Buffering</span> &#123;</span><br><span class="line">    <span class="keyword">type</span> <span class="title class_">Buffer</span>: <span class="built_in">AsMut</span>&lt;<span class="type">Vec</span>&lt;<span class="type">u8</span>&gt;&gt; + <span class="built_in">Send</span> + <span class="built_in">Sync</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">buffer</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;<span class="keyword">mut</span> <span class="keyword">Self</span>::Buffer;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">flush</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) <span class="punctuation">-&gt;</span> io::<span class="type">Result</span>&lt;()&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">buffered_write</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, data: &amp;[<span class="type">u8</span>]) <span class="punctuation">-&gt;</span> io::<span class="type">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">buffer</span> = <span class="keyword">self</span>.<span class="title function_ invoke__">buffer</span>();</span><br><span class="line">        buffer.<span class="title function_ invoke__">as_mut</span>().<span class="title function_ invoke__">extend_from_slice</span>(data);</span><br><span class="line">        <span class="keyword">self</span>.<span class="title function_ invoke__">flush</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现 HTTPWriter</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">HTTPWriter</span>&lt;W: Writer + <span class="built_in">Send</span> + <span class="built_in">Sync</span>&gt; &#123;</span><br><span class="line">    inner: W,</span><br><span class="line">    buffer: <span class="type">Vec</span>&lt;<span class="type">u8</span>&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;W: Writer + <span class="built_in">Send</span> + <span class="built_in">Sync</span>&gt; Buffering <span class="keyword">for</span> <span class="title class_">HTTPWriter</span>&lt;W&gt; &#123;</span><br><span class="line">    <span class="keyword">type</span> <span class="title class_">Buffer</span> = <span class="type">Vec</span>&lt;<span class="type">u8</span>&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">buffer</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;<span class="keyword">mut</span> <span class="keyword">Self</span>::Buffer &#123;</span><br><span class="line">        &amp;<span class="keyword">mut</span> <span class="keyword">self</span>.buffer</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">flush</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) <span class="punctuation">-&gt;</span> io::<span class="type">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        <span class="keyword">self</span>.inner.<span class="title function_ invoke__">write</span>(&amp;<span class="keyword">self</span>.buffer)?;</span><br><span class="line">        <span class="keyword">self</span>.buffer.<span class="title function_ invoke__">clear</span>();</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现 Writer trait 示例</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">ConsoleWriter</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Writer</span> <span class="keyword">for</span> <span class="title class_">ConsoleWriter</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">write</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, data: &amp;[<span class="type">u8</span>]) <span class="punctuation">-&gt;</span> io::<span class="type">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        io::<span class="title function_ invoke__">stdout</span>().<span class="title function_ invoke__">write_all</span>(data)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 多线程使用示例</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">writer</span> = Arc::<span class="title function_ invoke__">new</span>(Mutex::<span class="title function_ invoke__">new</span>(HTTPWriter &#123;</span><br><span class="line">        inner: ConsoleWriter,</span><br><span class="line">        buffer: <span class="type">Vec</span>::<span class="title function_ invoke__">new</span>(),</span><br><span class="line">    &#125;));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">writer_clone</span> = Arc::<span class="title function_ invoke__">clone</span>(&amp;writer);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">handle</span> = std::thread::<span class="title function_ invoke__">spawn</span>(<span class="keyword">move</span> || &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">writer</span> = writer_clone.<span class="title function_ invoke__">lock</span>().<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">        writer.<span class="title function_ invoke__">buffered_write</span>(<span class="string">b&quot;Hello, world!&quot;</span>).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    handle.<span class="title function_ invoke__">join</span>().<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. <strong>总结</strong></h3><ul>
-<li><strong>trait 和泛型</strong>：提供了灵活且类型安全的抽象机制。</li>
-<li><strong>关联类型</strong>：允许在 trait 中定义与实现相关的类型。</li>
-<li><strong>trait bound</strong>：约束泛型类型的行为，确保类型安全。</li>
-<li><strong>线程安全</strong>：通过 <code>Send</code> 和 <code>Sync</code> trait 确保多线程环境中的安全性。</li>
-</ul>
+          <p>我觉得他其实很清楚。最近《金融时报》有篇挺有意思的文章，作者是个对经济史特别有研究的专栏作家。她的观点挺有意思——大家之所以看不懂（甚至害怕）特朗普的关税政策，是因为还在用凯恩斯、弗里德曼那套20世纪的经济理论来理解。</p>
+<p>这篇文章提到，现在最该被重视的经济学家其实是个冷门人物：阿尔伯特·赫希曼。这位德国犹太经济学家可能你没听过很正常，毕竟他1930年代的研究长期被忽视——当时他的观点和后来流行的自由市场理论完全不对路。他经历过西班牙内战和纳粹统治，这些创伤深刻影响了他的思考。</p>
+<p>赫希曼的核心观点很犀利：经济从来都是政治的附属品，而不是反过来（这和多数经济学家的认知完全颠倒）。他早在80多年前就预言过类似特朗普关税的情况：”只要主权国家能随时掐断贸易，国际贸易本质上就是权力争夺战”。他把贸易比作”不用真刀真枪的殖民手段”，这不正是特朗普团队现在在做的事吗？他们根本不在乎什么贸易顺差逆差，要的就是压制对手的实力。哪怕经济增速受影响，只要能保住霸权地位，这代价他们觉得值。</p>
+<p>赫希曼的理论的关键点在于：霸权控制力不是线性下降的。比如当某国占据80%市场份额时，控制权接近绝对；但一旦跌破70%，权威就会加速崩溃——因为其他玩家发现替代选项变多了。现在美国的经济主导地位正滑向这个危险临界点，所以才会不顾吃相地打关税牌，说白了就是想抓住正在流失的全球金融控制权。</p>
+<p>照这个逻辑推演，贸易战恐怕还要继续升级。毕竟当大哥发现小弟们开始找新靠山时，第一反应肯定是把拳头握得更紧。本能地在郧落前夕拼死一搏。但历史告诉我们，越是这种时候，越努力挣扎原有体系的崩塌速度反而会加快。但是不挣扎又能做什么呢？作为一个强人性格的老人，最后一搏又是必然的路径。看似很强势，实则并无他法。</p>
 
       
     </div>
@@ -312,7 +259,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/112/">112</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/117/">117</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -378,14 +325,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-count">117</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -441,12 +388,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">203k</span>
+    <span title="Symbols count total">207k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:17</span>
+    <span title="Reading time total">12:34</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

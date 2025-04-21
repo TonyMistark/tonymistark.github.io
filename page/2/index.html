@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/22/refactoring_folder_tree_structure/Performance-Analysis-of-Moving-Folders/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/" class="post-title-link" itemprop="url">Rust 中应避免使用 BufReader 的场景与高效替代方案</a>
+            <a href="/2025/04/22/refactoring_folder_tree_structure/Performance-Analysis-of-Moving-Folders/" class="post-title-link" itemprop="url">Untitled</a>
         </h2>
 
         <div class="post-meta">
@@ -208,7 +208,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-04-15 12:12:35 / Modified: 12:14:10" itemprop="dateCreated datePublished" datetime="2025-04-15T12:12:35+08:00">2025-04-15</time>
+              <time title="Created: 2025-04-22 00:31:12 / Modified: 00:57:03" itemprop="dateCreated datePublished" datetime="2025-04-22T00:31:12+08:00">2025-04-22</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -216,7 +216,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/1000-rust-questions/" itemprop="url" rel="index"><span itemprop="name">1000_rust_questions</span></a>
+                  <a href="/categories/%E7%A7%BB%E5%8A%A8%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90-refactoring-folder-tree-structure/" itemprop="url" rel="index"><span itemprop="name">移动文件夹的性能问题分析 - refactoring_folder_tree_structure</span></a>
                 </span>
             </span>
 
@@ -226,14 +226,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>636</span>
+              <span>888</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
+              <span>3 mins.</span>
             </span>
 
         </div>
@@ -245,40 +245,92 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在 Rust 中，<code>BufReader</code> 的主要作用是<strong>通过缓冲减少系统调用次数</strong>，提高读取效率。然而，并非所有场景都适合使用它。以下是应避免使用 <code>BufReader</code> 的典型场景：</p>
-<hr>
-<h3 id="1-读取小文件时"><a href="#1-读取小文件时" class="headerlink" title="1. 读取小文件时"></a>1. <strong>读取小文件时</strong></h3><ul>
-<li><strong>原因</strong>：对于非常小的文件（例如几 KB），直接一次性读取到内存（如 <code>std::fs::read_to_string</code>）通常更高效。<code>BufReader</code> 的缓冲机制（默认 8KB）反而会引入额外的内存管理和分块处理开销。</li>
-<li><strong>替代方案</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::fs;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">content</span> = fs::<span class="title function_ invoke__">read_to_string</span>(<span class="string">&quot;small_file.txt&quot;</span>)?;</span><br></pre></td></tr></table></figure></li>
+          <h2 id="当前方案的问题"><a href="#当前方案的问题" class="headerlink" title="当前方案的问题"></a>当前方案的问题</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">move_folder</span>(<span class="params">folder_id, new_parent_id</span>):</span><br><span class="line">    folder = Folder.objects.get(<span class="built_in">id</span>=folder_id)</span><br><span class="line">    new_parent = Folder.objects.get(<span class="built_in">id</span>=new_parent_id)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 更新路径</span></span><br><span class="line">    new_path = <span class="string">f&quot;<span class="subst">&#123;new_parent.path&#125;</span><span class="subst">&#123;folder.name&#125;</span>/&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 递归更新所有子文件夹路径</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">update_children_paths</span>(<span class="params">parent_folder, old_base, new_base</span>):</span><br><span class="line">        children = Folder.objects(parent=parent_folder)</span><br><span class="line">        <span class="keyword">for</span> child <span class="keyword">in</span> children:</span><br><span class="line">            child.path = child.path.replace(old_base, new_base, <span class="number">1</span>)</span><br><span class="line">            child.save()</span><br><span class="line">            update_children_paths(child, old_base, new_base)</span><br><span class="line">    </span><br><span class="line">    old_path = folder.path</span><br><span class="line">    folder.parent = new_parent</span><br><span class="line">    folder.path = new_path</span><br><span class="line">    folder.save()</span><br><span class="line">    </span><br><span class="line">    update_children_paths(folder, old_path, new_path)</span><br></pre></td></tr></table></figure>
+
+<h3 id="性能瓶颈点："><a href="#性能瓶颈点：" class="headerlink" title="性能瓶颈点："></a>性能瓶颈点：</h3><ol>
+<li><strong>递归查询和更新</strong>：对于大型子树，会产生大量数据库操作</li>
+<li><strong>逐个文档更新</strong>：<code>save()</code> 操作是逐个执行的，不是批量操作</li>
+<li><strong>路径重建</strong>：每个子文件夹都需要重新构建完整路径</li>
+</ol>
+<h2 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h2><h3 id="方案1：延迟路径更新-动态路径计算"><a href="#方案1：延迟路径更新-动态路径计算" class="headerlink" title="方案1：延迟路径更新 + 动态路径计算"></a>方案1：延迟路径更新 + 动态路径计算</h3><p><strong>核心思想</strong>：不立即更新子文件夹路径，而是在查询时动态计算</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Folder</span>(<span class="title class_ inherited__">Document</span>):</span><br><span class="line">    <span class="comment"># ... 其他字段不变</span></span><br><span class="line">    path_modified = BooleanField(default=<span class="literal">False</span>)  <span class="comment"># 标记路径是否需要重新计算</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">move_folder</span>(<span class="params">folder_id, new_parent_id</span>):</span><br><span class="line">    folder = Folder.objects.get(<span class="built_in">id</span>=folder_id)</span><br><span class="line">    new_parent = Folder.objects.get(<span class="built_in">id</span>=new_parent_id)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 只更新直接父引用，不更新路径</span></span><br><span class="line">    folder.parent = new_parent</span><br><span class="line">    folder.path_modified = <span class="literal">True</span>  <span class="comment"># 标记路径已修改</span></span><br><span class="line">    folder.save()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 批量标记所有子文件夹需要更新路径</span></span><br><span class="line">    Folder.objects(parent=folder).update(set__path_modified=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_path</span>(<span class="params">folder_id</span>):</span><br><span class="line">    folder = Folder.objects.get(<span class="built_in">id</span>=folder_id)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> folder.path_modified:</span><br><span class="line">        <span class="keyword">return</span> folder.path.split(<span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 动态计算路径</span></span><br><span class="line">    path = []</span><br><span class="line">    current = folder</span><br><span class="line">    <span class="keyword">while</span> current:</span><br><span class="line">        path.insert(<span class="number">0</span>, current.name)</span><br><span class="line">        current = current.parent</span><br><span class="line">    <span class="keyword">return</span> path</span><br></pre></td></tr></table></figure>
+
+<p><strong>优点</strong>：</p>
+<ul>
+<li>移动操作变为O(1)复杂度</li>
+<li>避免了大规模更新</li>
 </ul>
-<hr>
-<h3 id="2-需要逐行处理但已全量读取"><a href="#2-需要逐行处理但已全量读取" class="headerlink" title="2. 需要逐行处理但已全量读取"></a>2. <strong>需要逐行处理但已全量读取</strong></h3><ul>
-<li><strong>原因</strong>：如果文件已被完整读入内存（例如通过 <code>read_to_string</code>），直接按行分割字符串（如 <code>split(&#39;\n&#39;)</code>）会比逐行缓冲读取更高效，因为避免了缓冲区的重复检查。</li>
-<li><strong>替代方案</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">content</span> = fs::<span class="title function_ invoke__">read_to_string</span>(<span class="string">&quot;data.txt&quot;</span>)?;</span><br><span class="line"><span class="keyword">for</span> <span class="variable">line</span> <span class="keyword">in</span> content.<span class="title function_ invoke__">lines</span>() &#123;</span><br><span class="line">    <span class="comment">// 直接处理每行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>读取路径时可能需要额外计算</li>
+<li>需要后台任务定期修复路径</li>
 </ul>
-<hr>
-<h3 id="3-需要严格逐字节或精确控制读取时"><a href="#3-需要严格逐字节或精确控制读取时" class="headerlink" title="3. 需要严格逐字节或精确控制读取时"></a>3. <strong>需要严格逐字节或精确控制读取时</strong></h3><ul>
-<li><strong>原因</strong>：<code>BufReader</code> 的缓冲机制会预读数据到内存，可能干扰需要精确控制读取位置或逐字节处理的场景（例如解析二进制协议）。</li>
-<li><strong>替代方案</strong>：直接使用原始 <code>File</code> 对象：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::fs::File;</span><br><span class="line"><span class="keyword">use</span> std::io::Read;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">file</span> = File::<span class="title function_ invoke__">open</span>(<span class="string">&quot;data.bin&quot;</span>)?;</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">byte</span> = [<span class="number">0u8</span>; <span class="number">1</span>];</span><br><span class="line">file.<span class="title function_ invoke__">read_exact</span>(&amp;<span class="keyword">mut</span> byte)?; <span class="comment">// 精确读取单个字节</span></span><br></pre></td></tr></table></figure></li>
+<h3 id="方案2：批量更新优化"><a href="#方案2：批量更新优化" class="headerlink" title="方案2：批量更新优化"></a>方案2：批量更新优化</h3><p>如果必须保持路径实时准确，可以使用更高效的批量更新：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">move_folder</span>(<span class="params">folder_id, new_parent_id</span>):</span><br><span class="line">    folder = Folder.objects.get(<span class="built_in">id</span>=folder_id)</span><br><span class="line">    new_parent = Folder.objects.get(<span class="built_in">id</span>=new_parent_id)</span><br><span class="line">    </span><br><span class="line">    old_path = folder.path</span><br><span class="line">    new_path = <span class="string">f&quot;<span class="subst">&#123;new_parent.path&#125;</span><span class="subst">&#123;folder.name&#125;</span>/&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 1. 更新移动的文件夹本身</span></span><br><span class="line">    folder.parent = new_parent</span><br><span class="line">    folder.path = new_path</span><br><span class="line">    folder.save()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 2. 批量更新所有子文件夹路径</span></span><br><span class="line">    <span class="comment"># 使用MongoDB的$regex查找所有以old_path开头的路径</span></span><br><span class="line">    Folder.objects(path__startswith=old_path).update(</span><br><span class="line">        path=<span class="keyword">lambda</span> f: new_path + f.path[<span class="built_in">len</span>(old_path):]</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<p><strong>优点</strong>：</p>
+<ul>
+<li>使用单个批量更新操作</li>
+<li>利用了MongoDB的更新操作符</li>
 </ul>
-<hr>
-<h3 id="4-内存敏感环境"><a href="#4-内存敏感环境" class="headerlink" title="4. 内存敏感环境"></a>4. <strong>内存敏感环境</strong></h3><ul>
-<li><strong>原因</strong>：<code>BufReader</code> 默认使用 8KB 缓冲区，在极端内存受限的环境（如嵌入式系统）中可能需避免额外开销。</li>
-<li><strong>替代方案</strong>：手动调整缓冲区大小或直接无缓冲读取：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::io::BufReader;</span><br><span class="line"><span class="keyword">use</span> std::fs::File;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">file</span> = File::<span class="title function_ invoke__">open</span>(<span class="string">&quot;data.txt&quot;</span>)?;</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">reader</span> = BufReader::<span class="title function_ invoke__">with_capacity</span>(<span class="number">512</span>, file); <span class="comment">// 使用更小的缓冲区</span></span><br></pre></td></tr></table></figure></li>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>仍然需要更新大量文档</li>
+<li>对于非常大的子树可能有性能问题</li>
 </ul>
-<hr>
-<h3 id="5-需要随机访问或复杂定位时"><a href="#5-需要随机访问或复杂定位时" class="headerlink" title="5. 需要随机访问或复杂定位时"></a>5. <strong>需要随机访问或复杂定位时</strong></h3><ul>
-<li><strong>原因</strong>：<code>BufReader</code> 的缓冲会缓存部分数据，频繁的 <code>seek</code> 操作可能导致缓冲区失效，增加复杂度。</li>
-<li><strong>替代方案</strong>：直接操作 <code>File</code> 并手动管理位置：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">file</span> = File::<span class="title function_ invoke__">open</span>(<span class="string">&quot;data.txt&quot;</span>)?;</span><br><span class="line">file.<span class="title function_ invoke__">seek</span>(SeekFrom::<span class="title function_ invoke__">Start</span>(<span class="number">100</span>))?; <span class="comment">// 直接跳转到指定位置</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h3 id="何时仍应使用-BufReader？"><a href="#何时仍应使用-BufReader？" class="headerlink" title="何时仍应使用 BufReader？"></a>何时仍应使用 <code>BufReader</code>？</h3><ul>
-<li><strong>大文件读取</strong>：减少频繁的系统调用。</li>
-<li><strong>逐行处理大文件</strong>：<code>reader.lines()</code> 是高效逐行读取的标准方法。</li>
-<li><strong>网络流处理</strong>：缓冲可有效应对数据分块到达的情况。</li>
-</ul>
-<hr>
-<p><strong>总结</strong>：<code>BufReader</code> 的核心优势在于<strong>减少系统调用</strong>，但在数据量小、需精确控制读取或内存敏感的场景中，直接操作可能更高效。根据实际需求权衡缓冲带来的收益与开销。</p>
+<h3 id="方案3：混合方案（推荐）"><a href="#方案3：混合方案（推荐）" class="headerlink" title="方案3：混合方案（推荐）"></a>方案3：混合方案（推荐）</h3><p>结合前两种方案的优点：</p>
+<ol>
+<li>移动时只更新直接父引用</li>
+<li>添加一个后台任务异步更新路径</li>
+<li>查询时优先使用存储的路径，如果标记为已修改则动态计算</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">move_folder</span>(<span class="params">folder_id, new_parent_id</span>):</span><br><span class="line">    <span class="comment"># 快速移动操作</span></span><br><span class="line">    Folder.objects(<span class="built_in">id</span>=folder_id).update(</span><br><span class="line">        set__parent=new_parent_id,</span><br><span class="line">        set__path_modified=<span class="literal">True</span></span><br><span class="line">    )</span><br><span class="line">    <span class="comment"># 触发异步任务更新路径</span></span><br><span class="line">    start_background_path_update(folder_id)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 后台任务</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update_paths_in_background</span>(<span class="params">folder_id</span>):</span><br><span class="line">    folder = Folder.objects.get(<span class="built_in">id</span>=folder_id)</span><br><span class="line">    new_parent = folder.parent</span><br><span class="line">    new_path = <span class="string">f&quot;<span class="subst">&#123;new_parent.path&#125;</span><span class="subst">&#123;folder.name&#125;</span>/&quot;</span> <span class="keyword">if</span> new_parent <span class="keyword">else</span> <span class="string">f&quot;/<span class="subst">&#123;folder.name&#125;</span>/&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 批量更新路径</span></span><br><span class="line">    Folder.objects(path__startswith=folder.old_path).update(</span><br><span class="line">        path=<span class="keyword">lambda</span> f: new_path + f.path[<span class="built_in">len</span>(folder.old_path):],</span><br><span class="line">        set__path_modified=<span class="literal">False</span></span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<h2 id="性能对比"><a href="#性能对比" class="headerlink" title="性能对比"></a>性能对比</h2><table>
+<thead>
+<tr>
+<th>方案</th>
+<th>移动操作复杂度</th>
+<th>读取复杂度</th>
+<th>数据一致性</th>
+<th>实现复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原始方案</td>
+<td>O(n) - 递归更新所有子项</td>
+<td>O(1)</td>
+<td>强一致</td>
+<td>简单</td>
+</tr>
+<tr>
+<td>延迟更新</td>
+<td>O(1)</td>
+<td>O(d) - d为目录深度</td>
+<td>最终一致</td>
+<td>中等</td>
+</tr>
+<tr>
+<td>批量更新</td>
+<td>O(n) - 但单次批量操作</td>
+<td>O(1)</td>
+<td>强一致</td>
+<td>中等</td>
+</tr>
+<tr>
+<td>混合方案</td>
+<td>O(1)</td>
+<td>O(1)或O(d)</td>
+<td>最终一致</td>
+<td>复杂</td>
+</tr>
+</tbody></table>
+<h2 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h2><ol>
+<li><strong>对于小型系统</strong>：使用原始方案足够，简单可靠</li>
+<li><strong>对于中型系统</strong>：使用批量更新方案</li>
+<li><strong>对于大型系统</strong>：采用混合方案，结合异步更新和动态计算</li>
+</ol>
+<p>您可以根据实际业务需求和数据规模选择合适的方案。如果移动大型文件夹不是高频操作，原始方案可能已经足够；如果是高频操作且性能关键，则推荐混合方案。</p>
 
       
     </div>
@@ -297,7 +349,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/112/">112</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/117/">117</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -363,14 +415,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-count">117</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -426,12 +478,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">203k</span>
+    <span title="Symbols count total">207k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:17</span>
+    <span title="Reading time total">12:34</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

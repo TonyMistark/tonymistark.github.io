@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2024/09/22/tech_essay/O0/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/03/06/rust_notes/understanding_rust_trait/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/09/22/tech_essay/O0/" class="post-title-link" itemprop="url">O(0)算法复杂度的终极目标：这个需求能不能不做？？？</a>
+            <a href="/2025/03/06/rust_notes/understanding_rust_trait/" class="post-title-link" itemprop="url">深入理解 Rust 中的 Trait：定义、实现与应用</a>
         </h2>
 
         <div class="post-meta">
@@ -207,14 +207,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2024-09-22 11:55:26" itemprop="dateCreated datePublished" datetime="2024-09-22T11:55:26+08:00">2024-09-22</time>
+              <time title="Created: 2025-03-06 18:58:24" itemprop="dateCreated datePublished" datetime="2025-03-06T18:58:24+08:00">2025-03-06</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-10-28 17:32:13" itemprop="dateModified" datetime="2024-10-28T17:32:13+08:00">2024-10-28</time>
+                <time title="Modified: 2025-03-07 11:46:48" itemprop="dateModified" datetime="2025-03-07T11:46:48+08:00">2025-03-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -222,7 +222,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tech-essay/" itemprop="url" rel="index"><span itemprop="name">tech_essay</span></a>
+                  <a href="/categories/rust-notes/" itemprop="url" rel="index"><span itemprop="name">rust_notes</span></a>
                 </span>
             </span>
 
@@ -232,14 +232,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>631</span>
+              <span>864</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
+              <span>3 mins.</span>
             </span>
 
         </div>
@@ -251,23 +251,41 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>算法复杂度(Algorithmic complexity) – 所有人对它都有这样的一个概念就是要乐此不疲尽我所能地压缩以提高算法的性能。</p>
-<p>你有个问题需要解决，并且得出一个解决方案，它是O(n^2)。你觉得做的不够好，需要做得更好。然后稍微调整一下，得到线性复杂度O(n)。你很高兴，因为事情看起来明朗起来了。</p>
-<p>然而，你脑子里还绷着弦儿，晚上睡一觉醒来忽然又顿悟了，将算法的复杂度降低到对数O(log(n))，你自我感觉很好。在本周晚些时候，你读到一篇论文，并意识到你可以把它归结为恒定时间O(1)。你觉得现在就两个字：完美。你认为没有比这更好的方案了。</p>
-<p>大错特错！<br>你还没尝试过O(0)。</p>
-<div align="center"> <img src="/images/o-zero.webp"/></br></div>
+          <p>在 Rust 中，<code>trait</code> 是一种定义共享行为的方式。它类似于其他编程语言中的接口（interface），允许你定义一组方法签名，这些方法可以由不同的类型实现。通过 <code>trait</code>，你可以为不同的类型提供相同的行为，从而实现代码的复用和抽象。</p>
+<h3 id="1-定义-trait"><a href="#1-定义-trait" class="headerlink" title="1. 定义 trait"></a>1. 定义 <code>trait</code></h3><p>你可以使用 <code>trait</code> 关键字来定义一个 <code>trait</code>，并在其中声明方法的签名。方法可以有默认实现，也可以没有。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">trait</span> <span class="title class_">Speak</span> &#123;</span><br><span class="line">    <span class="comment">// 方法签名，没有默认实现</span></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">speak</span>(&amp;<span class="keyword">self</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 方法签名，带有默认实现</span></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">greet</span>(&amp;<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Hello!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>shong么？0时间复杂度？</p>
-<div align="center"> <img src="/images/meitingshuoguo.webp"/>于谦：没听说过！</br></div>
-<div align="center"> <img src="/images/bukeneng.jpeg"/>陈建斌：不可能！绝对不可能！</br></div>
- 
-<p>你的硬件计算机教授说过，恒定时间复杂度是最好的。在你的整个职业生涯都只听说过最佳的时间复杂度是O(1)。</p>
-<p>它一直在那里，但它被称为其他东西。</p>
-<p>有些代码根本不需要执行。有些工具可以扔掉。有些事情根本不需要做，如果你调整其他东西，你仍然能获得类似更好的结果。</p>
-<p>你可能听过这样一句话：最快的代码是根本不被调用的代码？这不就是O(0)么！</p>
-<p>作为一个合格的工程师你需要做到吾日三省吾身：”有没有办法不做这项工作的情况下完成某项工作？”。令人惊讶的答案是肯定的!</p>
-<p>有时候，我们会做一些冗长又复杂的事情，什么都不做可能才是一个比较好的解决方案。有时候我们每分钟运行一次，然而实际上可能只需要每月运行一次就足够了。有时候我们会构建复杂的机制，这些机会会被使用，但也许这些复杂机制带来的好处并不是我们真正需要的。</p>
-<p>你想成为一个10倍效率的工程师吗？有时候，决定不做某些事反而比做无用的事情会高效100倍。</p>
+<h3 id="2-实现-trait"><a href="#2-实现-trait" class="headerlink" title="2. 实现 trait"></a>2. 实现 <code>trait</code></h3><p>你可以为任何类型实现一个 <code>trait</code>。实现 <code>trait</code> 时，你需要为 <code>trait</code> 中的所有方法提供具体的实现（除非方法有默认实现）。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Dog</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Speak</span> <span class="keyword">for</span> <span class="title class_">Dog</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">speak</span>(&amp;<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Woof!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Cat</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Speak</span> <span class="keyword">for</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">speak</span>(&amp;<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Meow!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重写默认实现</span></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">greet</span>(&amp;<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Purr!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-使用-trait"><a href="#3-使用-trait" class="headerlink" title="3. 使用 trait"></a>3. 使用 <code>trait</code></h3><p>你可以使用 <code>trait</code> 来约束泛型类型，或者通过 <code>trait</code> 对象来实现动态分发。</p>
+<h4 id="3-1-泛型约束"><a href="#3-1-泛型约束" class="headerlink" title="3.1 泛型约束"></a>3.1 泛型约束</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">animal_speak</span>&lt;T: Speak&gt;(animal: T) &#123;</span><br><span class="line">    animal.<span class="title function_ invoke__">speak</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dog</span> = Dog;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">cat</span> = Cat;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">animal_speak</span>(dog); <span class="comment">// 输出: Woof!</span></span><br><span class="line">    <span class="title function_ invoke__">animal_speak</span>(cat); <span class="comment">// 输出: Meow!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-trait-对象"><a href="#3-2-trait-对象" class="headerlink" title="3.2 trait 对象"></a>3.2 <code>trait</code> 对象</h4><p><code>trait</code> 对象允许你在运行时动态地选择不同的类型。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">animal_speak_dyn</span>(animal: &amp;<span class="keyword">dyn</span> Speak) &#123;</span><br><span class="line">    animal.<span class="title function_ invoke__">speak</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dog</span> = Dog;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">cat</span> = Cat;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">animal_speak_dyn</span>(&amp;dog); <span class="comment">// 输出: Woof!</span></span><br><span class="line">    <span class="title function_ invoke__">animal_speak_dyn</span>(&amp;cat); <span class="comment">// 输出: Meow!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-trait-的继承"><a href="#4-trait-的继承" class="headerlink" title="4. trait 的继承"></a>4. <code>trait</code> 的继承</h3><p><code>trait</code> 可以继承其他 <code>trait</code>，这意味着一个 <code>trait</code> 可以要求实现它的类型也必须实现另一个 <code>trait</code>。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">trait</span> <span class="title class_">Animal</span>: Speak &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">name</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;<span class="type">str</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Bird</span> &#123;</span><br><span class="line">    name: <span class="type">String</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Speak</span> <span class="keyword">for</span> <span class="title class_">Bird</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">speak</span>(&amp;<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Chirp!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Animal</span> <span class="keyword">for</span> <span class="title class_">Bird</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">name</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;<span class="type">str</span> &#123;</span><br><span class="line">        &amp;<span class="keyword">self</span>.name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-关联类型"><a href="#5-关联类型" class="headerlink" title="5. 关联类型"></a>5. 关联类型</h3><p><code>trait</code> 可以定义关联类型，这些类型在实现 <code>trait</code> 时指定。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">trait</span> <span class="title class_">Container</span> &#123;</span><br><span class="line">    <span class="keyword">type</span> <span class="title class_">Item</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">add</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, item: <span class="keyword">Self</span>::Item);</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">get</span>(&amp;<span class="keyword">self</span>, index: <span class="type">usize</span>) <span class="punctuation">-&gt;</span> <span class="type">Option</span>&lt;&amp;<span class="keyword">Self</span>::Item&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">MyVec</span>&lt;T&gt; &#123;</span><br><span class="line">    items: <span class="type">Vec</span>&lt;T&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;T&gt; Container <span class="keyword">for</span> <span class="title class_">MyVec</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">type</span> <span class="title class_">Item</span> = T;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">add</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, item: T) &#123;</span><br><span class="line">        <span class="keyword">self</span>.items.<span class="title function_ invoke__">push</span>(item);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">get</span>(&amp;<span class="keyword">self</span>, index: <span class="type">usize</span>) <span class="punctuation">-&gt;</span> <span class="type">Option</span>&lt;&amp;T&gt; &#123;</span><br><span class="line">        <span class="keyword">self</span>.items.<span class="title function_ invoke__">get</span>(index)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-trait-的默认实现"><a href="#6-trait-的默认实现" class="headerlink" title="6. trait 的默认实现"></a>6. <code>trait</code> 的默认实现</h3><p><code>trait</code> 中的方法可以有默认实现，这样在实现 <code>trait</code> 时可以选择是否重写这些方法。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">trait</span> <span class="title class_">Greet</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">greet</span>(&amp;<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Person</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Greet</span> <span class="keyword">for</span> <span class="title class_">Person</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">person</span> = Person;</span><br><span class="line">    person.<span class="title function_ invoke__">greet</span>(); <span class="comment">// 输出: Hello, world!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-trait-的-where-子句"><a href="#7-trait-的-where-子句" class="headerlink" title="7. trait 的 where 子句"></a>7. <code>trait</code> 的 <code>where</code> 子句</h3><p><code>where</code> 子句可以用于更复杂的泛型约束。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">print_speak</span>&lt;T&gt;(animal: T)</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">    T: Speak,</span><br><span class="line">&#123;</span><br><span class="line">    animal.<span class="title function_ invoke__">speak</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dog</span> = Dog;</span><br><span class="line">    <span class="title function_ invoke__">print_speak</span>(dog); <span class="comment">// 输出: Woof!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-trait-的-Self-类型"><a href="#8-trait-的-Self-类型" class="headerlink" title="8. trait 的 Self 类型"></a>8. <code>trait</code> 的 <code>Self</code> 类型</h3><p><code>trait</code> 中的方法可以使用 <code>Self</code> 类型来表示实现该 <code>trait</code> 的具体类型。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">trait</span> <span class="title class_">Clone</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">clone</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Sheep</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Clone</span> <span class="keyword">for</span> <span class="title class_">Sheep</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">clone</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        Sheep</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-trait-的-dyn-关键字"><a href="#9-trait-的-dyn-关键字" class="headerlink" title="9. trait 的 dyn 关键字"></a>9. <code>trait</code> 的 <code>dyn</code> 关键字</h3><p><code>dyn</code> 关键字用于创建 <code>trait</code> 对象，允许在运行时进行动态分发。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">animal_speak_dyn</span>(animal: &amp;<span class="keyword">dyn</span> Speak) &#123;</span><br><span class="line">    animal.<span class="title function_ invoke__">speak</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dog</span> = Dog;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">cat</span> = Cat;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">animal_speak_dyn</span>(&amp;dog); <span class="comment">// 输出: Woof!</span></span><br><span class="line">    <span class="title function_ invoke__">animal_speak_dyn</span>(&amp;cat); <span class="comment">// 输出: Meow!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-trait-的-impl-Trait-语法"><a href="#10-trait-的-impl-Trait-语法" class="headerlink" title="10. trait 的 impl Trait 语法"></a>10. <code>trait</code> 的 <code>impl Trait</code> 语法</h3><p><code>impl Trait</code> 语法可以用于函数返回类型或参数类型，表示返回或接受一个实现了特定 <code>trait</code> 的类型。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">get_animal</span>() <span class="punctuation">-&gt;</span> <span class="keyword">impl</span> <span class="title class_">Speak</span> &#123;</span><br><span class="line">    Dog</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">animal</span> = <span class="title function_ invoke__">get_animal</span>();</span><br><span class="line">    animal.<span class="title function_ invoke__">speak</span>(); <span class="comment">// 输出: Woof!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><code>trait</code> 是 Rust 中非常强大的特性，它允许你定义共享行为并为不同的类型提供相同的接口。通过 <code>trait</code>，你可以实现代码的复用、抽象和动态分发。<code>trait</code> 还可以与其他 Rust 特性（如泛型、关联类型、<code>where</code> 子句等）结合使用，以构建更加灵活和强大的代码结构。</p>
 
       
     </div>
@@ -286,7 +304,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/112/">112</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/117/">117</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -352,14 +370,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-count">117</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -415,12 +433,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">203k</span>
+    <span title="Symbols count total">207k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:17</span>
+    <span title="Reading time total">12:34</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/03/06/rust_notes/understanding_rust_trait/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/03/12/Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/03/06/rust_notes/understanding_rust_trait/" class="post-title-link" itemprop="url">深入理解 Rust 中的 Trait：定义、实现与应用</a>
+            <a href="/2025/03/12/Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces/" class="post-title-link" itemprop="url">理解 Go 接口的运行时类型信息（RTTI）及其开销</a>
         </h2>
 
         <div class="post-meta">
@@ -206,24 +206,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2025-03-06 18:58:24" itemprop="dateCreated datePublished" datetime="2025-03-06T18:58:24+08:00">2025-03-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-03-07 11:46:48" itemprop="dateModified" datetime="2025-03-07T11:46:48+08:00">2025-03-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/rust-notes/" itemprop="url" rel="index"><span itemprop="name">rust_notes</span></a>
-                </span>
+              <time title="Created: 2025-03-12 16:24:02 / Modified: 16:25:26" itemprop="dateCreated datePublished" datetime="2025-03-12T16:24:02+08:00">2025-03-12</time>
             </span>
 
           <br>
@@ -232,14 +217,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>864</span>
+              <span>988</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
+              <span>4 mins.</span>
             </span>
 
         </div>
@@ -251,41 +236,51 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在 Rust 中，<code>trait</code> 是一种定义共享行为的方式。它类似于其他编程语言中的接口（interface），允许你定义一组方法签名，这些方法可以由不同的类型实现。通过 <code>trait</code>，你可以为不同的类型提供相同的行为，从而实现代码的复用和抽象。</p>
-<h3 id="1-定义-trait"><a href="#1-定义-trait" class="headerlink" title="1. 定义 trait"></a>1. 定义 <code>trait</code></h3><p>你可以使用 <code>trait</code> 关键字来定义一个 <code>trait</code>，并在其中声明方法的签名。方法可以有默认实现，也可以没有。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">trait</span> <span class="title class_">Speak</span> &#123;</span><br><span class="line">    <span class="comment">// 方法签名，没有默认实现</span></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">speak</span>(&amp;<span class="keyword">self</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 方法签名，带有默认实现</span></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">greet</span>(&amp;<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Hello!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces"><a href="#Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces" class="headerlink" title="Understanding Runtime Type Information (RTTI) and Overhead in Go Interfaces"></a>Understanding Runtime Type Information (RTTI) and Overhead in Go Interfaces</h2><p>理解Go 语言中接口（<code>interface</code>）的实现机制及其带来的运行时开销。我们需要从以下几个方面展开：</p>
+<hr>
+<h3 id="1-Go-的接口是什么？"><a href="#1-Go-的接口是什么？" class="headerlink" title="1. Go 的接口是什么？"></a>1. <strong>Go 的接口是什么？</strong></h3><p>在 Go 中，接口是一种类型，它定义了一组方法签名。任何实现了这些方法的类型都隐式地实现了该接口。例如：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Writer <span class="keyword">interface</span> &#123;</span><br><span class="line">    Write([]<span class="type">byte</span>) (<span class="type">int</span>, <span class="type">error</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-实现-trait"><a href="#2-实现-trait" class="headerlink" title="2. 实现 trait"></a>2. 实现 <code>trait</code></h3><p>你可以为任何类型实现一个 <code>trait</code>。实现 <code>trait</code> 时，你需要为 <code>trait</code> 中的所有方法提供具体的实现（除非方法有默认实现）。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Dog</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Speak</span> <span class="keyword">for</span> <span class="title class_">Dog</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">speak</span>(&amp;<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Woof!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Cat</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Speak</span> <span class="keyword">for</span> <span class="title class_">Cat</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">speak</span>(&amp;<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Meow!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重写默认实现</span></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">greet</span>(&amp;<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Purr!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>任何实现了 <code>Write</code> 方法的类型都可以被赋值给 <code>Writer</code> 接口变量。</p>
+<hr>
+<h3 id="2-Go-接口的底层实现"><a href="#2-Go-接口的底层实现" class="headerlink" title="2. Go 接口的底层实现"></a>2. <strong>Go 接口的底层实现</strong></h3><p>Go 的接口在底层是由两个部分组成的：</p>
+<ul>
+<li><strong>动态类型信息</strong>：存储接口变量所持有的具体类型。</li>
+<li><strong>动态值</strong>：存储接口变量所持有的具体值。</li>
+</ul>
+<p>这种设计使得接口能够支持多态性，即在运行时动态决定调用哪个具体类型的方法。</p>
+<hr>
+<h3 id="3-运行时类型信息（RTTI）"><a href="#3-运行时类型信息（RTTI）" class="headerlink" title="3. 运行时类型信息（RTTI）"></a>3. <strong>运行时类型信息（RTTI）</strong></h3><p>RTTI（Run-Time Type Information）是指在程序运行时获取和操作类型信息的机制。Go 的接口需要在运行时存储和检查类型信息，以便：</p>
+<ul>
+<li>确定接口变量所持有的具体类型。</li>
+<li>在调用接口方法时，动态分派到具体类型的方法。</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> w Writer</span><br><span class="line">w = os.Stdout  <span class="comment">// w 的动态类型是 *os.File，动态值是 os.Stdout</span></span><br><span class="line">w.Write([]<span class="type">byte</span>(<span class="string">&quot;hello&quot;</span>))  <span class="comment">// 运行时根据动态类型调用 *os.File 的 Write 方法</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="3-使用-trait"><a href="#3-使用-trait" class="headerlink" title="3. 使用 trait"></a>3. 使用 <code>trait</code></h3><p>你可以使用 <code>trait</code> 来约束泛型类型，或者通过 <code>trait</code> 对象来实现动态分发。</p>
-<h4 id="3-1-泛型约束"><a href="#3-1-泛型约束" class="headerlink" title="3.1 泛型约束"></a>3.1 泛型约束</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">animal_speak</span>&lt;T: Speak&gt;(animal: T) &#123;</span><br><span class="line">    animal.<span class="title function_ invoke__">speak</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dog</span> = Dog;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">cat</span> = Cat;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">animal_speak</span>(dog); <span class="comment">// 输出: Woof!</span></span><br><span class="line">    <span class="title function_ invoke__">animal_speak</span>(cat); <span class="comment">// 输出: Meow!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-2-trait-对象"><a href="#3-2-trait-对象" class="headerlink" title="3.2 trait 对象"></a>3.2 <code>trait</code> 对象</h4><p><code>trait</code> 对象允许你在运行时动态地选择不同的类型。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">animal_speak_dyn</span>(animal: &amp;<span class="keyword">dyn</span> Speak) &#123;</span><br><span class="line">    animal.<span class="title function_ invoke__">speak</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dog</span> = Dog;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">cat</span> = Cat;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">animal_speak_dyn</span>(&amp;dog); <span class="comment">// 输出: Woof!</span></span><br><span class="line">    <span class="title function_ invoke__">animal_speak_dyn</span>(&amp;cat); <span class="comment">// 输出: Meow!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-trait-的继承"><a href="#4-trait-的继承" class="headerlink" title="4. trait 的继承"></a>4. <code>trait</code> 的继承</h3><p><code>trait</code> 可以继承其他 <code>trait</code>，这意味着一个 <code>trait</code> 可以要求实现它的类型也必须实现另一个 <code>trait</code>。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">trait</span> <span class="title class_">Animal</span>: Speak &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">name</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;<span class="type">str</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Bird</span> &#123;</span><br><span class="line">    name: <span class="type">String</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Speak</span> <span class="keyword">for</span> <span class="title class_">Bird</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">speak</span>(&amp;<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Chirp!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Animal</span> <span class="keyword">for</span> <span class="title class_">Bird</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">name</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> &amp;<span class="type">str</span> &#123;</span><br><span class="line">        &amp;<span class="keyword">self</span>.name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-关联类型"><a href="#5-关联类型" class="headerlink" title="5. 关联类型"></a>5. 关联类型</h3><p><code>trait</code> 可以定义关联类型，这些类型在实现 <code>trait</code> 时指定。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">trait</span> <span class="title class_">Container</span> &#123;</span><br><span class="line">    <span class="keyword">type</span> <span class="title class_">Item</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">add</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, item: <span class="keyword">Self</span>::Item);</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">get</span>(&amp;<span class="keyword">self</span>, index: <span class="type">usize</span>) <span class="punctuation">-&gt;</span> <span class="type">Option</span>&lt;&amp;<span class="keyword">Self</span>::Item&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">MyVec</span>&lt;T&gt; &#123;</span><br><span class="line">    items: <span class="type">Vec</span>&lt;T&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;T&gt; Container <span class="keyword">for</span> <span class="title class_">MyVec</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">type</span> <span class="title class_">Item</span> = T;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">add</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, item: T) &#123;</span><br><span class="line">        <span class="keyword">self</span>.items.<span class="title function_ invoke__">push</span>(item);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">get</span>(&amp;<span class="keyword">self</span>, index: <span class="type">usize</span>) <span class="punctuation">-&gt;</span> <span class="type">Option</span>&lt;&amp;T&gt; &#123;</span><br><span class="line">        <span class="keyword">self</span>.items.<span class="title function_ invoke__">get</span>(index)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-trait-的默认实现"><a href="#6-trait-的默认实现" class="headerlink" title="6. trait 的默认实现"></a>6. <code>trait</code> 的默认实现</h3><p><code>trait</code> 中的方法可以有默认实现，这样在实现 <code>trait</code> 时可以选择是否重写这些方法。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">trait</span> <span class="title class_">Greet</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">greet</span>(&amp;<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Person</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Greet</span> <span class="keyword">for</span> <span class="title class_">Person</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">person</span> = Person;</span><br><span class="line">    person.<span class="title function_ invoke__">greet</span>(); <span class="comment">// 输出: Hello, world!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="7-trait-的-where-子句"><a href="#7-trait-的-where-子句" class="headerlink" title="7. trait 的 where 子句"></a>7. <code>trait</code> 的 <code>where</code> 子句</h3><p><code>where</code> 子句可以用于更复杂的泛型约束。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">print_speak</span>&lt;T&gt;(animal: T)</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">    T: Speak,</span><br><span class="line">&#123;</span><br><span class="line">    animal.<span class="title function_ invoke__">speak</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dog</span> = Dog;</span><br><span class="line">    <span class="title function_ invoke__">print_speak</span>(dog); <span class="comment">// 输出: Woof!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="8-trait-的-Self-类型"><a href="#8-trait-的-Self-类型" class="headerlink" title="8. trait 的 Self 类型"></a>8. <code>trait</code> 的 <code>Self</code> 类型</h3><p><code>trait</code> 中的方法可以使用 <code>Self</code> 类型来表示实现该 <code>trait</code> 的具体类型。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">trait</span> <span class="title class_">Clone</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">clone</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Sheep</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Clone</span> <span class="keyword">for</span> <span class="title class_">Sheep</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">clone</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        Sheep</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="9-trait-的-dyn-关键字"><a href="#9-trait-的-dyn-关键字" class="headerlink" title="9. trait 的 dyn 关键字"></a>9. <code>trait</code> 的 <code>dyn</code> 关键字</h3><p><code>dyn</code> 关键字用于创建 <code>trait</code> 对象，允许在运行时进行动态分发。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">animal_speak_dyn</span>(animal: &amp;<span class="keyword">dyn</span> Speak) &#123;</span><br><span class="line">    animal.<span class="title function_ invoke__">speak</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dog</span> = Dog;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">cat</span> = Cat;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">animal_speak_dyn</span>(&amp;dog); <span class="comment">// 输出: Woof!</span></span><br><span class="line">    <span class="title function_ invoke__">animal_speak_dyn</span>(&amp;cat); <span class="comment">// 输出: Meow!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="10-trait-的-impl-Trait-语法"><a href="#10-trait-的-impl-Trait-语法" class="headerlink" title="10. trait 的 impl Trait 语法"></a>10. <code>trait</code> 的 <code>impl Trait</code> 语法</h3><p><code>impl Trait</code> 语法可以用于函数返回类型或参数类型，表示返回或接受一个实现了特定 <code>trait</code> 的类型。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">get_animal</span>() <span class="punctuation">-&gt;</span> <span class="keyword">impl</span> <span class="title class_">Speak</span> &#123;</span><br><span class="line">    Dog</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">animal</span> = <span class="title function_ invoke__">get_animal</span>();</span><br><span class="line">    animal.<span class="title function_ invoke__">speak</span>(); <span class="comment">// 输出: Woof!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><code>trait</code> 是 Rust 中非常强大的特性，它允许你定义共享行为并为不同的类型提供相同的接口。通过 <code>trait</code>，你可以实现代码的复用、抽象和动态分发。<code>trait</code> 还可以与其他 Rust 特性（如泛型、关联类型、<code>where</code> 子句等）结合使用，以构建更加灵活和强大的代码结构。</p>
+<p>这种动态分派机制需要额外的类型信息，因此会引入运行时开销。</p>
+<hr>
+<h3 id="4-开销的来源"><a href="#4-开销的来源" class="headerlink" title="4. 开销的来源"></a>4. <strong>开销的来源</strong></h3><p>Go 接口的开销主要体现在以下几个方面：</p>
+<ul>
+<li><strong>内存开销</strong>：接口变量需要存储动态类型信息和动态值，这比直接使用具体类型占用更多内存。</li>
+<li><strong>性能开销</strong>：在调用接口方法时，Go 需要在运行时查找具体类型的方法表（方法分派），这比直接调用具体类型的方法稍慢。</li>
+<li><strong>类型断言的开销</strong>：在使用类型断言（如 <code>v, ok := i.(T)</code>）时，Go 需要在运行时检查接口的动态类型是否与目标类型匹配。</li>
+</ul>
+<hr>
+<h3 id="5-与-Rust-的对比"><a href="#5-与-Rust-的对比" class="headerlink" title="5. 与 Rust 的对比"></a>5. <strong>与 Rust 的对比</strong></h3><p>与 Go 不同，Rust 的 trait 对象（类似于接口）虽然也支持动态分派，但 Rust 的设计更注重零成本抽象。Rust 的 trait 对象通过虚表（vtable）实现动态分派，但 Rust 的编译器会尽可能优化，减少运行时开销。此外，Rust 的泛型和单态化机制可以在编译时消除动态分派的需求，从而避免运行时开销。</p>
+<hr>
+<h3 id="6-如何理解“轻微开销”？"><a href="#6-如何理解“轻微开销”？" class="headerlink" title="6. 如何理解“轻微开销”？"></a>6. <strong>如何理解“轻微开销”？</strong></h3><ul>
+<li><strong>“轻微”</strong>：Go 的接口设计非常高效，开销通常很小，尤其是在现代硬件上。对于大多数应用场景，这种开销可以忽略不计。</li>
+<li><strong>“开销”</strong>：相比于直接使用具体类型，接口的动态分派和类型信息存储确实会带来额外的性能损失。</li>
+</ul>
+<hr>
+<h3 id="7-实际影响"><a href="#7-实际影响" class="headerlink" title="7. 实际影响"></a>7. <strong>实际影响</strong></h3><ul>
+<li><strong>性能敏感场景</strong>：在性能要求极高的场景中，频繁使用接口可能会导致性能瓶颈。此时，可以考虑使用具体类型或代码生成工具（如 <code>go:generate</code>）来减少接口的使用。</li>
+<li><strong>一般场景</strong>：在大多数应用中，接口的灵活性和代码的可维护性远远超过其带来的轻微性能开销。</li>
+</ul>
+<hr>
+<h3 id="8-总结"><a href="#8-总结" class="headerlink" title="8. 总结"></a>8. <strong>总结</strong></h3><p>Go 的接口通过运行时类型信息（RTTI）实现动态分派和多态性，这确实会引入轻微的开销。这种开销主要体现在内存占用和动态方法查找上，但对于大多数应用场景来说是可以接受的。理解这一点有助于我们在编写 Go 代码时，根据实际需求权衡接口的使用。</p>
+<p>如果你对 Go 接口的具体实现细节（如虚表、方法分派）感兴趣，可以进一步深入探讨！</p>
 
       
     </div>
@@ -304,7 +299,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/112/">112</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/117/">117</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -370,14 +365,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-count">117</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -433,12 +428,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">203k</span>
+    <span title="Symbols count total">207k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:17</span>
+    <span title="Reading time total">12:34</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

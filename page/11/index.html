@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/03/12/Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/03/12/Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces/" class="post-title-link" itemprop="url">理解 Go 接口的运行时类型信息（RTTI）及其开销</a>
+            <a href="/2025/04/02/1000_rust_questions/1000_rust_questions_03/" class="post-title-link" itemprop="url">Q3:为什么Vec<i32> 不能直接作为 &[i32] ?</a>
         </h2>
 
         <div class="post-meta">
@@ -208,7 +208,16 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-03-12 16:24:02 / Modified: 16:25:26" itemprop="dateCreated datePublished" datetime="2025-03-12T16:24:02+08:00">2025-03-12</time>
+              <time title="Created: 2025-04-02 16:52:17 / Modified: 16:58:30" itemprop="dateCreated datePublished" datetime="2025-04-02T16:52:17+08:00">2025-04-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/1000-rust-questions/" itemprop="url" rel="index"><span itemprop="name">1000_rust_questions</span></a>
+                </span>
             </span>
 
           <br>
@@ -217,14 +226,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>988</span>
+              <span>451</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -236,51 +245,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces"><a href="#Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces" class="headerlink" title="Understanding Runtime Type Information (RTTI) and Overhead in Go Interfaces"></a>Understanding Runtime Type Information (RTTI) and Overhead in Go Interfaces</h2><p>理解Go 语言中接口（<code>interface</code>）的实现机制及其带来的运行时开销。我们需要从以下几个方面展开：</p>
-<hr>
-<h3 id="1-Go-的接口是什么？"><a href="#1-Go-的接口是什么？" class="headerlink" title="1. Go 的接口是什么？"></a>1. <strong>Go 的接口是什么？</strong></h3><p>在 Go 中，接口是一种类型，它定义了一组方法签名。任何实现了这些方法的类型都隐式地实现了该接口。例如：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Writer <span class="keyword">interface</span> &#123;</span><br><span class="line">    Write([]<span class="type">byte</span>) (<span class="type">int</span>, <span class="type">error</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="为什么Vec-不能直接作为-i32"><a href="#为什么Vec-不能直接作为-i32" class="headerlink" title="为什么Vec&lt;i32&gt; 不能直接作为 &amp;[i32] ?"></a>为什么<code>Vec&lt;i32&gt;</code> 不能直接作为 <code>&amp;[i32]</code> ?</h2><p>在 Rust 中，<code>Vec&lt;i32&gt;</code> 不能直接作为 <code>&amp;[i32]</code> 的原因主要与 Rust 的所有权和借用机制有关。以下是详细的解释：</p>
+<h3 id="1-所有权与借用"><a href="#1-所有权与借用" class="headerlink" title="1. 所有权与借用"></a>1. <strong>所有权与借用</strong></h3><ul>
+<li><code>Vec&lt;i32&gt;</code> 是一个拥有所有权的动态数组，包含了自己的数据和内存管理。</li>
+<li><code>&amp;[i32]</code> 是一个切片，它是对某个数组或向量的引用，不拥有数据的所有权。</li>
+</ul>
+<h3 id="2-自动解引用"><a href="#2-自动解引用" class="headerlink" title="2. 自动解引用"></a>2. <strong>自动解引用</strong></h3><p>Rust 提供了自动解引用的功能，允许在某些情况下自动将 <code>&amp;Vec&lt;i32&gt;</code> 转换为 <code>&amp;[i32]</code>。但是，<code>Vec&lt;i32&gt;</code> 本身不能直接作为 <code>&amp;[i32]</code>，因为它不是一个切片，而是一个具体的类型。</p>
+<h3 id="3-需要借用"><a href="#3-需要借用" class="headerlink" title="3. 需要借用"></a>3. <strong>需要借用</strong></h3><p>为了将 <code>Vec&lt;i32&gt;</code> 作为 <code>&amp;[i32]</code> 使用，你需要首先借用它。借用会创建一个指向 <code>Vec&lt;i32&gt;</code> 中数据的切片引用。可以通过以下方式实现：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">print_slice</span>(slice: &amp;[<span class="type">i32</span>]) &#123;</span><br><span class="line">    <span class="keyword">for</span> &amp;item <span class="keyword">in</span> slice &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, item);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">vec</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通过借用将 &amp;Vec&lt;i32&gt; 转换为 &amp;[i32]</span></span><br><span class="line">    <span class="title function_ invoke__">print_slice</span>(&amp;vec); <span class="comment">// 这里的 &amp;vec 会被自动转换为 &amp;[i32]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>任何实现了 <code>Write</code> 方法的类型都可以被赋值给 <code>Writer</code> 接口变量。</p>
-<hr>
-<h3 id="2-Go-接口的底层实现"><a href="#2-Go-接口的底层实现" class="headerlink" title="2. Go 接口的底层实现"></a>2. <strong>Go 接口的底层实现</strong></h3><p>Go 的接口在底层是由两个部分组成的：</p>
-<ul>
-<li><strong>动态类型信息</strong>：存储接口变量所持有的具体类型。</li>
-<li><strong>动态值</strong>：存储接口变量所持有的具体值。</li>
+<h3 id="4-借用检查"><a href="#4-借用检查" class="headerlink" title="4. 借用检查"></a>4. <strong>借用检查</strong></h3><p>Rust 的借用检查器确保在使用引用时遵循所有权规则。这意味着你不能直接将一个拥有所有权的类型（如 <code>Vec&lt;i32&gt;</code>）传递给一个只接受引用的函数（如 <code>&amp;[i32]</code>），因为这会违反所有权原则。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><strong>Vec<i32></strong> 是一个拥有所有权的动态数组，而 <strong>&amp;[i32]</strong> 是一个对数组或向量的引用。</li>
+<li>你需要借用 <code>Vec&lt;i32&gt;</code>（通过 <code>&amp;vec</code>）来将其作为 <code>&amp;[i32]</code> 传递。</li>
+<li>Rust 的所有权和借用机制确保了内存安全和避免数据竞争，因此不允许直接将拥有所有权的类型传递给只接受引用的函数。</li>
 </ul>
-<p>这种设计使得接口能够支持多态性，即在运行时动态决定调用哪个具体类型的方法。</p>
-<hr>
-<h3 id="3-运行时类型信息（RTTI）"><a href="#3-运行时类型信息（RTTI）" class="headerlink" title="3. 运行时类型信息（RTTI）"></a>3. <strong>运行时类型信息（RTTI）</strong></h3><p>RTTI（Run-Time Type Information）是指在程序运行时获取和操作类型信息的机制。Go 的接口需要在运行时存储和检查类型信息，以便：</p>
-<ul>
-<li>确定接口变量所持有的具体类型。</li>
-<li>在调用接口方法时，动态分派到具体类型的方法。</li>
-</ul>
-<p>例如：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> w Writer</span><br><span class="line">w = os.Stdout  <span class="comment">// w 的动态类型是 *os.File，动态值是 os.Stdout</span></span><br><span class="line">w.Write([]<span class="type">byte</span>(<span class="string">&quot;hello&quot;</span>))  <span class="comment">// 运行时根据动态类型调用 *os.File 的 Write 方法</span></span><br></pre></td></tr></table></figure>
-
-<p>这种动态分派机制需要额外的类型信息，因此会引入运行时开销。</p>
-<hr>
-<h3 id="4-开销的来源"><a href="#4-开销的来源" class="headerlink" title="4. 开销的来源"></a>4. <strong>开销的来源</strong></h3><p>Go 接口的开销主要体现在以下几个方面：</p>
-<ul>
-<li><strong>内存开销</strong>：接口变量需要存储动态类型信息和动态值，这比直接使用具体类型占用更多内存。</li>
-<li><strong>性能开销</strong>：在调用接口方法时，Go 需要在运行时查找具体类型的方法表（方法分派），这比直接调用具体类型的方法稍慢。</li>
-<li><strong>类型断言的开销</strong>：在使用类型断言（如 <code>v, ok := i.(T)</code>）时，Go 需要在运行时检查接口的动态类型是否与目标类型匹配。</li>
-</ul>
-<hr>
-<h3 id="5-与-Rust-的对比"><a href="#5-与-Rust-的对比" class="headerlink" title="5. 与 Rust 的对比"></a>5. <strong>与 Rust 的对比</strong></h3><p>与 Go 不同，Rust 的 trait 对象（类似于接口）虽然也支持动态分派，但 Rust 的设计更注重零成本抽象。Rust 的 trait 对象通过虚表（vtable）实现动态分派，但 Rust 的编译器会尽可能优化，减少运行时开销。此外，Rust 的泛型和单态化机制可以在编译时消除动态分派的需求，从而避免运行时开销。</p>
-<hr>
-<h3 id="6-如何理解“轻微开销”？"><a href="#6-如何理解“轻微开销”？" class="headerlink" title="6. 如何理解“轻微开销”？"></a>6. <strong>如何理解“轻微开销”？</strong></h3><ul>
-<li><strong>“轻微”</strong>：Go 的接口设计非常高效，开销通常很小，尤其是在现代硬件上。对于大多数应用场景，这种开销可以忽略不计。</li>
-<li><strong>“开销”</strong>：相比于直接使用具体类型，接口的动态分派和类型信息存储确实会带来额外的性能损失。</li>
-</ul>
-<hr>
-<h3 id="7-实际影响"><a href="#7-实际影响" class="headerlink" title="7. 实际影响"></a>7. <strong>实际影响</strong></h3><ul>
-<li><strong>性能敏感场景</strong>：在性能要求极高的场景中，频繁使用接口可能会导致性能瓶颈。此时，可以考虑使用具体类型或代码生成工具（如 <code>go:generate</code>）来减少接口的使用。</li>
-<li><strong>一般场景</strong>：在大多数应用中，接口的灵活性和代码的可维护性远远超过其带来的轻微性能开销。</li>
-</ul>
-<hr>
-<h3 id="8-总结"><a href="#8-总结" class="headerlink" title="8. 总结"></a>8. <strong>总结</strong></h3><p>Go 的接口通过运行时类型信息（RTTI）实现动态分派和多态性，这确实会引入轻微的开销。这种开销主要体现在内存占用和动态方法查找上，但对于大多数应用场景来说是可以接受的。理解这一点有助于我们在编写 Go 代码时，根据实际需求权衡接口的使用。</p>
-<p>如果你对 Go 接口的具体实现细节（如虚表、方法分派）感兴趣，可以进一步深入探讨！</p>
 
       
     </div>
@@ -299,7 +278,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/112/">112</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/117/">117</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -365,14 +344,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-count">117</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -428,12 +407,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">203k</span>
+    <span title="Symbols count total">207k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:17</span>
+    <span title="Reading time total">12:34</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

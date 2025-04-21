@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/02/13/simple_lua_tutorial/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/03/12/Understanding-Zero-cost-Abstraction-in-Rust/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/02/13/simple_lua_tutorial/" class="post-title-link" itemprop="url">Lua 简单入门教程</a>
+            <a href="/2025/03/12/Understanding-Zero-cost-Abstraction-in-Rust/" class="post-title-link" itemprop="url">深入理解 Rust 的零成本抽象（Zero-cost Abstraction）</a>
         </h2>
 
         <div class="post-meta">
@@ -208,7 +208,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-02-13 17:49:57 / Modified: 17:53:22" itemprop="dateCreated datePublished" datetime="2025-02-13T17:49:57+08:00">2025-02-13</time>
+              <time title="Created: 2025-03-12 16:14:19 / Modified: 16:15:08" itemprop="dateCreated datePublished" datetime="2025-03-12T16:14:19+08:00">2025-03-12</time>
             </span>
 
           <br>
@@ -217,14 +217,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>791</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
+              <span>4 mins.</span>
             </span>
 
         </div>
@@ -236,112 +236,42 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Lua 是一种轻量级、高效、可嵌入的脚本语言，广泛应用于游戏开发（如《魔兽世界》、《愤怒的小鸟》）、嵌入式系统和其他需要脚本扩展的场景。以下是一个 Lua 的入门教程，帮助你快速掌握 Lua 的基础知识。</p>
-<h2 id="1-Lua-环境搭建"><a href="#1-Lua-环境搭建" class="headerlink" title="1. Lua 环境搭建"></a><strong>1. Lua 环境搭建</strong></h2><h3 id="安装-Lua"><a href="#安装-Lua" class="headerlink" title="安装 Lua"></a><strong>安装 Lua</strong></h3><ul>
-<li><strong>Windows</strong>:<ol>
-<li>下载 Lua 安装包：访问 <a target="_blank" rel="noopener" href="https://www.lua.org/download.html">Lua 官方网站</a>。</li>
-<li>解压并配置环境变量。</li>
-</ol>
-</li>
-<li><strong>Linux&#x2F;macOS</strong>:<br>使用包管理器安装：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install lua5.3  <span class="comment"># Ubuntu/Debian</span></span><br><span class="line">brew install lua             <span class="comment"># macOS</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="运行-Lua-代码"><a href="#运行-Lua-代码" class="headerlink" title="运行 Lua 代码"></a><strong>运行 Lua 代码</strong></h3><ul>
-<li>在终端中输入 <code>lua</code> 进入交互式解释器。</li>
-<li>也可以将代码保存为 <code>.lua</code> 文件，然后运行：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lua filename.lua</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="2-Lua-基础语法"><a href="#2-Lua-基础语法" class="headerlink" title="2. Lua 基础语法"></a><strong>2. Lua 基础语法</strong></h2><h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a><strong>注释</strong></h3><ul>
-<li>单行注释：<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 这是单行注释</span></span><br></pre></td></tr></table></figure></li>
-<li>多行注释：<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--[[</span></span><br><span class="line"><span class="comment">  这是多行注释</span></span><br><span class="line"><span class="comment">  可以写多行内容</span></span><br><span class="line"><span class="comment">]]</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a><strong>变量</strong></h3><ul>
-<li>Lua 是动态类型语言，变量无需声明类型。</li>
-<li>变量默认是全局的，除非用 <code>local</code> 声明为局部变量。<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">10</span>          <span class="comment">-- 全局变量</span></span><br><span class="line"><span class="keyword">local</span> b = <span class="number">20</span>    <span class="comment">-- 局部变量</span></span><br><span class="line"><span class="built_in">print</span>(a, b)     <span class="comment">-- 输出: 10 20</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a><strong>数据类型</strong></h3><p>Lua 支持以下基本数据类型：</p>
+          <h2 id="Understanding-Zero-cost-Abstraction-in-Rust"><a href="#Understanding-Zero-cost-Abstraction-in-Rust" class="headerlink" title="Understanding Zero-cost Abstraction in Rust"></a>Understanding Zero-cost Abstraction in Rust</h2><p>Rust 的零成本抽象（Zero-cost abstraction）是其设计哲学中的核心概念之一，旨在提供高级抽象的同时，不引入运行时性能开销。理解零成本抽象的关键在于以下几个方面：</p>
+<h3 id="1-什么是零成本抽象？"><a href="#1-什么是零成本抽象？" class="headerlink" title="1. 什么是零成本抽象？"></a>1. <strong>什么是零成本抽象？</strong></h3><p>零成本抽象意味着使用高级编程特性（如泛型、迭代器、闭包等）不会带来额外的运行时开销。换句话说，高级抽象在编译后生成的代码与手写的底层代码性能相当。</p>
 <ul>
-<li><strong>nil</strong>: 表示空值或未定义。</li>
-<li><strong>boolean</strong>: <code>true</code> 或 <code>false</code>。</li>
-<li><strong>number</strong>: 整数或浮点数。</li>
-<li><strong>string</strong>: 字符串，用单引号或双引号包裹。</li>
-<li><strong>table</strong>: 表（类似数组或字典）。</li>
-<li><strong>function</strong>: 函数。</li>
-<li><strong>userdata</strong>: 用户自定义数据。</li>
-<li><strong>thread</strong>: 协程。</li>
+<li><strong>高级抽象</strong>：让开发者能够以更简洁、更安全的方式表达逻辑。</li>
+<li><strong>零成本</strong>：这些抽象在运行时不会带来额外的性能损失。</li>
 </ul>
-<p>示例：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(<span class="string">&quot;Hello&quot;</span>))  <span class="comment">-- 输出: string</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(<span class="number">3.14</span>))     <span class="comment">-- 输出: number</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(<span class="literal">true</span>))     <span class="comment">-- 输出: boolean</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(<span class="literal">nil</span>))      <span class="comment">-- 输出: nil</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-Rust-如何实现零成本抽象？"><a href="#2-Rust-如何实现零成本抽象？" class="headerlink" title="2. Rust 如何实现零成本抽象？"></a>2. <strong>Rust 如何实现零成本抽象？</strong></h3><p>Rust 通过以下机制实现零成本抽象：</p>
+<h4 id="（1）编译时多态（泛型与单态化）"><a href="#（1）编译时多态（泛型与单态化）" class="headerlink" title="（1）编译时多态（泛型与单态化）"></a>（1）<strong>编译时多态（泛型与单态化）</strong></h4><p>Rust 的泛型是通过单态化（Monomorphization）实现的。编译器会为每个具体类型生成专门的代码，从而消除运行时的类型检查开销。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">add</span>&lt;T: std::ops::Add&lt;Output = T&gt;&gt;(a: T, b: T) <span class="punctuation">-&gt;</span> T &#123;</span><br><span class="line">    a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, <span class="title function_ invoke__">add</span>(<span class="number">1</span>, <span class="number">2</span>));       <span class="comment">// 生成 add&lt;i32&gt; 的代码</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, <span class="title function_ invoke__">add</span>(<span class="number">1.0</span>, <span class="number">2.0</span>));   <span class="comment">// 生成 add&lt;f64&gt; 的代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="3-控制结构"><a href="#3-控制结构" class="headerlink" title="3. 控制结构"></a><strong>3. 控制结构</strong></h2><h3 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a><strong>条件语句</strong></h3><ul>
-<li><p><code>if</code> 语句：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> age = <span class="number">18</span></span><br><span class="line"><span class="keyword">if</span> age &gt;= <span class="number">18</span> <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;You are an adult.&quot;</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;You are a minor.&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>elseif</code>：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> score = <span class="number">85</span></span><br><span class="line"><span class="keyword">if</span> score &gt;= <span class="number">90</span> <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;A&quot;</span>)</span><br><span class="line"><span class="keyword">elseif</span> score &gt;= <span class="number">80</span> <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;B&quot;</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;C&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a><strong>循环</strong></h3><ul>
-<li><p><code>while</code> 循环：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> i = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> i &lt;= <span class="number">5</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    i = i + <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>for</code> 循环：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>, <span class="number">5</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>repeat...until</code> 循环：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> i = <span class="number">1</span></span><br><span class="line"><span class="keyword">repeat</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    i = i + <span class="number">1</span></span><br><span class="line"><span class="keyword">until</span> i &gt; <span class="number">5</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="4-函数"><a href="#4-函数" class="headerlink" title="4. 函数"></a><strong>4. 函数</strong></h2><ul>
-<li><p>定义函数：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(a, b)</span></span></span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">print</span>(add(<span class="number">3</span>, <span class="number">5</span>))  <span class="comment">-- 输出: 8</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>匿名函数：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> mul = <span class="function"><span class="keyword">function</span><span class="params">(a, b)</span></span></span><br><span class="line">    <span class="keyword">return</span> a * b</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">print</span>(mul(<span class="number">3</span>, <span class="number">5</span>))  <span class="comment">-- 输出: 15</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="5-表（Table）"><a href="#5-表（Table）" class="headerlink" title="5. 表（Table）"></a><strong>5. 表（Table）</strong></h2><p>表是 Lua 中唯一的数据结构，可以用作数组、字典或对象。</p>
-<ul>
-<li><p>数组：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> arr = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(arr[<span class="number">1</span>])  <span class="comment">-- 输出: 1（Lua 索引从 1 开始）</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>字典：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> dict = &#123;name = <span class="string">&quot;Lua&quot;</span>, version = <span class="string">&quot;5.3&quot;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(dict[<span class="string">&quot;name&quot;</span>])  <span class="comment">-- 输出: Lua</span></span><br><span class="line"><span class="built_in">print</span>(dict.version)  <span class="comment">-- 输出: 5.3</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="6-模块与包"><a href="#6-模块与包" class="headerlink" title="6. 模块与包"></a><strong>6. 模块与包</strong></h2><ul>
-<li><p>定义模块：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- mymodule.lua</span></span><br><span class="line"><span class="keyword">local</span> M = &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.add</span><span class="params">(a, b)</span></span></span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">return</span> M</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用模块：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> mymodule = <span class="built_in">require</span>(<span class="string">&quot;mymodule&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(mymodule.add(<span class="number">3</span>, <span class="number">5</span>))  <span class="comment">-- 输出: 8</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="7-文件操作"><a href="#7-文件操作" class="headerlink" title="7. 文件操作"></a><strong>7. 文件操作</strong></h2><ul>
-<li><p>读取文件：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> file = <span class="built_in">io</span>.<span class="built_in">open</span>(<span class="string">&quot;test.txt&quot;</span>, <span class="string">&quot;r&quot;</span>)</span><br><span class="line"><span class="keyword">local</span> content = file:<span class="built_in">read</span>(<span class="string">&quot;*a&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(content)</span><br><span class="line">file:<span class="built_in">close</span>()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>写入文件：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> file = <span class="built_in">io</span>.<span class="built_in">open</span>(<span class="string">&quot;test.txt&quot;</span>, <span class="string">&quot;w&quot;</span>)</span><br><span class="line">file:<span class="built_in">write</span>(<span class="string">&quot;Hello, Lua!&quot;</span>)</span><br><span class="line">file:<span class="built_in">close</span>()</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="8-错误处理"><a href="#8-错误处理" class="headerlink" title="8. 错误处理"></a><strong>8. 错误处理</strong></h2><ul>
-<li>使用 <code>pcall</code> 捕获错误：<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="built_in">status</span>, err = <span class="built_in">pcall</span>(<span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">error</span>(<span class="string">&quot;Something went wrong!&quot;</span>)</span><br><span class="line"><span class="keyword">end</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">status</span> <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Error:&quot;</span>, err)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="9-协程"><a href="#9-协程" class="headerlink" title="9. 协程"></a><strong>9. 协程</strong></h2><p>Lua 支持协程（coroutine），用于实现协作式多任务。</p>
-<ul>
-<li>示例：<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> co = <span class="built_in">coroutine</span>.<span class="built_in">create</span>(<span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hello&quot;</span>)</span><br><span class="line">    <span class="built_in">coroutine</span>.<span class="built_in">yield</span>()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;World&quot;</span>)</span><br><span class="line"><span class="keyword">end</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">coroutine</span>.<span class="built_in">resume</span>(co)  <span class="comment">-- 输出: Hello</span></span><br><span class="line"><span class="built_in">coroutine</span>.<span class="built_in">resume</span>(co)  <span class="comment">-- 输出: World</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="10-实战示例"><a href="#10-实战示例" class="headerlink" title="10. 实战示例"></a><strong>10. 实战示例</strong></h2><h3 id="计算斐波那契数列"><a href="#计算斐波那契数列" class="headerlink" title="计算斐波那契数列"></a><strong>计算斐波那契数列</strong></h3><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fibonacci</span><span class="params">(n)</span></span></span><br><span class="line">    <span class="keyword">if</span> n &lt;= <span class="number">1</span> <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">return</span> n</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> fibonacci(n - <span class="number">1</span>) + fibonacci(n - <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i = <span class="number">0</span>, <span class="number">10</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(fibonacci(i))</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>在上面的例子中，编译器会为 <code>add</code> 函数生成两个版本：一个用于 <code>i32</code>，另一个用于 <code>f64</code>。这样，运行时就无需动态分发，性能与手写代码一致。</p>
+<h4 id="（2）迭代器的零成本"><a href="#（2）迭代器的零成本" class="headerlink" title="（2）迭代器的零成本"></a>（2）<strong>迭代器的零成本</strong></h4><p>Rust 的迭代器是惰性的，只有在调用消费方法（如 <code>collect</code> 或 <code>for</code> 循环）时才会执行。迭代器的链式调用（如 <code>map</code>、<code>filter</code>）会被优化为高效的循环，而不会引入额外的中间数据结构。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">v</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> <span class="variable">sum</span>: <span class="type">i32</span> = v.<span class="title function_ invoke__">iter</span>()</span><br><span class="line">               .<span class="title function_ invoke__">map</span>(|x| x * <span class="number">2</span>)</span><br><span class="line">               .<span class="title function_ invoke__">filter</span>(|x| *x &gt; <span class="number">3</span>)</span><br><span class="line">               .<span class="title function_ invoke__">sum</span>();</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="11-学习资源"><a href="#11-学习资源" class="headerlink" title="11. 学习资源"></a><strong>11. 学习资源</strong></h2><ul>
-<li><a target="_blank" rel="noopener" href="https://www.lua.org/docs.html">Lua 官方文档</a></li>
-<li>《Programming in Lua》（Lua 编程指南）</li>
-<li><a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/lua/index.htm">Lua Tutorial on TutorialsPoint</a></li>
+<p>编译器会将上述代码优化为一个简单的循环，避免了额外的堆分配或函数调用开销。</p>
+<h4 id="（3）闭包的零成本"><a href="#（3）闭包的零成本" class="headerlink" title="（3）闭包的零成本"></a>（3）<strong>闭包的零成本</strong></h4><p>Rust 的闭包会被编译为匿名结构体，捕获的环境变量会被存储在该结构体中。闭包的调用会被内联优化，性能与直接调用函数相当。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">add_x</span> = |y| y + x;</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, <span class="title function_ invoke__">add_x</span>(<span class="number">5</span>));  <span class="comment">// 闭包调用被优化为直接代码</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="（4）所有权与生命周期"><a href="#（4）所有权与生命周期" class="headerlink" title="（4）所有权与生命周期"></a>（4）<strong>所有权与生命周期</strong></h4><p>Rust 的所有权和生命周期系统在编译时检查内存安全问题，而不会引入运行时开销。例如，借用检查器会在编译时确保没有数据竞争或悬空指针，而无需运行时的垃圾回收或引用计数。</p>
+<h3 id="3-零成本抽象的优势"><a href="#3-零成本抽象的优势" class="headerlink" title="3. 零成本抽象的优势"></a>3. <strong>零成本抽象的优势</strong></h3><ul>
+<li><strong>性能</strong>：与手写底层代码性能相当。</li>
+<li><strong>安全性</strong>：通过编译时检查避免内存错误和数据竞争。</li>
+<li><strong>表达力</strong>：允许开发者使用高级抽象编写清晰、简洁的代码。</li>
 </ul>
-<hr>
+<h3 id="4-零成本抽象的代价"><a href="#4-零成本抽象的代价" class="headerlink" title="4. 零成本抽象的代价"></a>4. <strong>零成本抽象的代价</strong></h3><p>尽管零成本抽象在运行时没有开销，但它可能会增加编译时间和生成的二进制文件大小（例如，单态化会生成多个版本的函数）。然而，这些代价通常被认为是值得的，因为它们换来了更高的运行时性能。</p>
+<h3 id="5-与其他语言的对比"><a href="#5-与其他语言的对比" class="headerlink" title="5. 与其他语言的对比"></a>5. <strong>与其他语言的对比</strong></h3><ul>
+<li>**C++**：C++ 也支持零成本抽象（如模板），但 Rust 的所有权系统使其在内存安全方面更具优势。</li>
+<li>**Java&#x2F;C#**：这些语言的抽象（如泛型、虚函数）通常会引入运行时开销（如类型擦除、动态分发）。</li>
+<li><strong>Python&#x2F;JavaScript</strong>：这些语言的抽象（如高阶函数、动态类型）会带来显著的运行时开销。</li>
+</ul>
+<h3 id="6-实际应用中的零成本抽象"><a href="#6-实际应用中的零成本抽象" class="headerlink" title="6. 实际应用中的零成本抽象"></a>6. <strong>实际应用中的零成本抽象</strong></h3><ul>
+<li><strong>标准库</strong>：Rust 的标准库（如 <code>Vec</code>、<code>Option</code>、<code>Result</code>）都实现了零成本抽象。</li>
+<li><strong>生态系统</strong>：许多 Rust 库（如 <code>serde</code>、<code>tokio</code>）也充分利用了零成本抽象，提供了高性能的 API。</li>
+</ul>
+<h3 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. <strong>总结</strong></h3><p>Rust 的零成本抽象是其强大性能和安全性的基石。通过编译时优化（如单态化、内联、生命周期检查），Rust 能够在提供高级抽象的同时，保持与底层代码相当的性能。这使得 Rust 成为系统编程和高性能应用的理想选择。</p>
+<p>如果你对某个具体特性（如泛型、迭代器、闭包）的零成本实现感兴趣，可以进一步深入探讨！</p>
 
       
     </div>
@@ -360,7 +290,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/112/">112</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/117/">117</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -426,14 +356,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-count">117</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -489,12 +419,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">203k</span>
+    <span title="Symbols count total">207k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:17</span>
+    <span title="Reading time total">12:34</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

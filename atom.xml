@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-04-15T06:41:27.520Z</updated>
+  <updated>2025-04-21T16:33:23.392Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -15,6 +15,122 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用图形数据库处理树形结构的深度解析</title>
+    <link href="https://tonymistark.github.io/2025/04/22/refactoring_folder_tree_structure/Deep-Analysis-of-Using-Graph-Databases-to-Handle-Tree-Structures/"/>
+    <id>https://tonymistark.github.io/2025/04/22/refactoring_folder_tree_structure/Deep-Analysis-of-Using-Graph-Databases-to-Handle-Tree-Structures/</id>
+    <published>2025-04-21T16:32:34.000Z</published>
+    <updated>2025-04-21T16:33:23.392Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;使用图形数据库处理树形结构的深度解析&quot;&gt;&lt;a href=&quot;#使用图形数据库处理树形结构的深度解析&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="refactoring_folder_tree_structure" scheme="https://tonymistark.github.io/categories/refactoring-folder-tree-structure/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://tonymistark.github.io/2025/04/22/refactoring_folder_tree_structure/Performance-Analysis-of-Moving-Folders/"/>
+    <id>https://tonymistark.github.io/2025/04/22/refactoring_folder_tree_structure/Performance-Analysis-of-Moving-Folders/</id>
+    <published>2025-04-21T16:31:12.000Z</published>
+    <updated>2025-04-21T16:57:03.773Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;当前方案的问题&quot;&gt;&lt;a href=&quot;#当前方案的问题&quot; class=&quot;headerlink&quot; title=&quot;当前方案的问题&quot;&gt;&lt;/a&gt;当前方案的问题&lt;/h2&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    <category term="移动文件夹的性能问题分析 - refactoring_folder_tree_structure" scheme="https://tonymistark.github.io/categories/%E7%A7%BB%E5%8A%A8%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90-refactoring-folder-tree-structure/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MongoDB 外键(ReferenceField)深度解析</title>
+    <link href="https://tonymistark.github.io/2025/04/22/refactoring_folder_tree_structure/Deep-Dive-into-MongoDB-Foreign-Keys-ReferenceField/"/>
+    <id>https://tonymistark.github.io/2025/04/22/refactoring_folder_tree_structure/Deep-Dive-into-MongoDB-Foreign-Keys-ReferenceField/</id>
+    <published>2025-04-21T16:31:12.000Z</published>
+    <updated>2025-04-21T16:45:20.357Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;MongoDB-中的”外键”概念&quot;&gt;&lt;a href=&quot;#MongoDB-中的”外键”概念&quot; class=&quot;headerlink&quot; title=&quot;MongoDB 中的”外键”概念&quot;&gt;&lt;/a&gt;MongoDB 中的”外键”概念&lt;/h2&gt;&lt;p&gt;MongoDB</summary>
+        
+      
+    
+    
+    
+    <category term="refactoring_folder_tree_structure" scheme="https://tonymistark.github.io/categories/refactoring-folder-tree-structure/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>深入理解 MongoDB $graphLookup</title>
+    <link href="https://tonymistark.github.io/2025/04/22/refactoring_folder_tree_structure/Deep-Understanding-of-MongoDB-graphLookup/"/>
+    <id>https://tonymistark.github.io/2025/04/22/refactoring_folder_tree_structure/Deep-Understanding-of-MongoDB-graphLookup/</id>
+    <published>2025-04-21T16:29:10.000Z</published>
+    <updated>2025-04-21T16:33:23.392Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;让我们通过一个具体的例子来详细解释 &lt;code&gt;get_subtree&lt;/code&gt; 函数如何使用 MongoDB 的 &lt;code&gt;$graphLookup&lt;/code&gt; 操作来查询文件夹子树。&lt;/p&gt;
+&lt;h2 id=&quot;示例数据&quot;&gt;&lt;a href=&quot;#示例数据&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="refactoring_folder_tree_structure" scheme="https://tonymistark.github.io/categories/refactoring-folder-tree-structure/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MongoDB 文件夹树结构重构技术方案</title>
+    <link href="https://tonymistark.github.io/2025/04/22/refactoring_folder_tree_structure/technical_plan_for_refactoring_folder_tree_structure/"/>
+    <id>https://tonymistark.github.io/2025/04/22/refactoring_folder_tree_structure/technical_plan_for_refactoring_folder_tree_structure/</id>
+    <published>2025-04-21T16:24:57.000Z</published>
+    <updated>2025-04-21T16:33:23.392Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;MongoDB-文件夹树结构重构技术方案&quot;&gt;&lt;a href=&quot;#MongoDB-文件夹树结构重构技术方案&quot; class=&quot;headerlink&quot; title=&quot;MongoDB 文件夹树结构重构技术方案&quot;&gt;&lt;/a&gt;MongoDB</summary>
+        
+      
+    
+    
+    
+    <category term="refactoring_folder_tree_structure" scheme="https://tonymistark.github.io/categories/refactoring-folder-tree-structure/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Rust 中 Rayon 并行快速排序为何优于归并排序？适用场景与取舍分析</title>
@@ -352,124 +468,6 @@
         
         
     <summary type="html">&lt;p&gt;在 Rust 中，&lt;code&gt;Future&lt;/code&gt; 是一个核心概念，用于表示异步计算。&lt;code&gt;Future&lt;/code&gt; 代表一个尚未完成的计算，它会在未来的某个时刻产生一个结果。Rust 的异步编程模型主要围绕 &lt;code&gt;Future&lt;/code&gt;</summary>
-        
-      
-    
-    
-    
-    <category term="rust_notes" scheme="https://tonymistark.github.io/categories/rust-notes/"/>
-    
-    
-    <category term="rust" scheme="https://tonymistark.github.io/tags/rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>深入理解 Rust 中的 Trait：定义、实现与应用</title>
-    <link href="https://tonymistark.github.io/2025/03/06/rust_notes/understanding_rust_trait/"/>
-    <id>https://tonymistark.github.io/2025/03/06/rust_notes/understanding_rust_trait/</id>
-    <published>2025-03-06T10:58:24.000Z</published>
-    <updated>2025-03-07T03:46:48.114Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;在 Rust 中，&lt;code&gt;trait&lt;/code&gt; 是一种定义共享行为的方式。它类似于其他编程语言中的接口（interface），允许你定义一组方法签名，这些方法可以由不同的类型实现。通过</summary>
-        
-      
-    
-    
-    
-    <category term="rust_notes" scheme="https://tonymistark.github.io/categories/rust-notes/"/>
-    
-    
-    <category term="rust" scheme="https://tonymistark.github.io/tags/rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Lua 简单入门教程</title>
-    <link href="https://tonymistark.github.io/2025/02/13/simple_lua_tutorial/"/>
-    <id>https://tonymistark.github.io/2025/02/13/simple_lua_tutorial/</id>
-    <published>2025-02-13T09:49:57.000Z</published>
-    <updated>2025-02-13T09:53:22.382Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Lua 是一种轻量级、高效、可嵌入的脚本语言，广泛应用于游戏开发（如《魔兽世界》、《愤怒的小鸟》）、嵌入式系统和其他需要脚本扩展的场景。以下是一个 Lua 的入门教程，帮助你快速掌握 Lua 的基础知识。&lt;/p&gt;
-&lt;h2 id=&quot;1-Lua-环境搭建&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>被李小龙“踢”醒：《生活的艺术家》</title>
-    <link href="https://tonymistark.github.io/2024/10/31/tech_essay/%E7%94%9F%E6%B4%BB%E7%9A%84%E8%89%BA%E6%9C%AF%E5%AE%B6/"/>
-    <id>https://tonymistark.github.io/2024/10/31/tech_essay/%E7%94%9F%E6%B4%BB%E7%9A%84%E8%89%BA%E6%9C%AF%E5%AE%B6/</id>
-    <published>2024-10-31T14:25:34.000Z</published>
-    <updated>2025-02-13T09:54:40.564Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;今天我要跟大家分享一本改变了我生活态度的书——《生活的艺术家》。这本书不仅仅是一本关于武术的书，更是一本关于生活的哲学书。读完这本书，我感觉自己像是被李小龙一脚“踢”醒了，从此对生活有了全新的认识。没错，就是那个用双节棍打飞对手的李小龙，但他可不仅仅是会打架那么简单哦！&lt;/</summary>
-        
-      
-    
-    
-    
-    <category term="tech_essay" scheme="https://tonymistark.github.io/categories/tech-essay/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>详解：python中的with</title>
-    <link href="https://tonymistark.github.io/2024/10/28/python/notes/with_in_python/"/>
-    <id>https://tonymistark.github.io/2024/10/28/python/notes/with_in_python/</id>
-    <published>2024-10-28T10:49:46.000Z</published>
-    <updated>2024-10-30T06:55:47.841Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;详解-python中的with&quot;&gt;&lt;a href=&quot;#详解-python中的with&quot; class=&quot;headerlink&quot; title=&quot;详解: python中的with&quot;&gt;&lt;/a&gt;详解:</summary>
-        
-      
-    
-    
-    
-    <category term="python" scheme="https://tonymistark.github.io/categories/python/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Rust所有权系统：深入剖析</title>
-    <link href="https://tonymistark.github.io/2024/10/28/rust_notes/Rust-ownership-system-details/"/>
-    <id>https://tonymistark.github.io/2024/10/28/rust_notes/Rust-ownership-system-details/</id>
-    <published>2024-10-28T08:19:33.000Z</published>
-    <updated>2025-03-07T03:46:48.114Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Rust所有权系统：深入剖析&quot;&gt;&lt;a href=&quot;#Rust所有权系统：深入剖析&quot; class=&quot;headerlink&quot; title=&quot;Rust所有权系统：深入剖析&quot;&gt;&lt;/a&gt;Rust所有权系统：深入剖析&lt;/h2&gt;&lt;h3</summary>
         
       
     

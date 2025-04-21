@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/03/12/Understanding-Zero-cost-Abstraction-in-Rust/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/03/12/Understanding-Zero-cost-Abstraction-in-Rust/" class="post-title-link" itemprop="url">深入理解 Rust 的零成本抽象（Zero-cost Abstraction）</a>
+            <a href="/2025/04/02/1000_rust_questions/1000_rust_questions_02/" class="post-title-link" itemprop="url">Q2:为何倾向于使用 AsRef<T> 而非 &[T]？</a>
         </h2>
 
         <div class="post-meta">
@@ -208,7 +208,16 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-03-12 16:14:19 / Modified: 16:15:08" itemprop="dateCreated datePublished" datetime="2025-03-12T16:14:19+08:00">2025-03-12</time>
+              <time title="Created: 2025-04-02 16:46:16 / Modified: 16:46:50" itemprop="dateCreated datePublished" datetime="2025-04-02T16:46:16+08:00">2025-04-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/1000-rust-questions/" itemprop="url" rel="index"><span itemprop="name">1000_rust_questions</span></a>
+                </span>
             </span>
 
           <br>
@@ -217,14 +226,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.1k</span>
+              <span>451</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -236,42 +245,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Understanding-Zero-cost-Abstraction-in-Rust"><a href="#Understanding-Zero-cost-Abstraction-in-Rust" class="headerlink" title="Understanding Zero-cost Abstraction in Rust"></a>Understanding Zero-cost Abstraction in Rust</h2><p>Rust 的零成本抽象（Zero-cost abstraction）是其设计哲学中的核心概念之一，旨在提供高级抽象的同时，不引入运行时性能开销。理解零成本抽象的关键在于以下几个方面：</p>
-<h3 id="1-什么是零成本抽象？"><a href="#1-什么是零成本抽象？" class="headerlink" title="1. 什么是零成本抽象？"></a>1. <strong>什么是零成本抽象？</strong></h3><p>零成本抽象意味着使用高级编程特性（如泛型、迭代器、闭包等）不会带来额外的运行时开销。换句话说，高级抽象在编译后生成的代码与手写的底层代码性能相当。</p>
-<ul>
-<li><strong>高级抽象</strong>：让开发者能够以更简洁、更安全的方式表达逻辑。</li>
-<li><strong>零成本</strong>：这些抽象在运行时不会带来额外的性能损失。</li>
+          <h2 id="为何倾向于使用-AsRef-而非-T-？"><a href="#为何倾向于使用-AsRef-而非-T-？" class="headerlink" title="为何倾向于使用 AsRef 而非 &amp;[T]？"></a>为何倾向于使用 AsRef<T> 而非 &amp;[T]？</h2><p>在 Rust 中，倾向于使用 <code>AsRef&lt;T&gt;</code> 而非 <code>&amp;[T]</code> 主要是基于以下几个理由：</p>
+<h3 id="1-灵活性"><a href="#1-灵活性" class="headerlink" title="1. 灵活性"></a>1. <strong>灵活性</strong></h3><ul>
+<li><code>AsRef&lt;T&gt;</code> 是一个 trait，它允许你在不同类型之间进行转换。它可以将多种类型（如 <code>String</code>、<code>&amp;str</code>、<code>Vec&lt;T&gt;</code> 和 <code>&amp;[T]</code>）转换为引用类型。这种灵活性使得函数可以接受更广泛的参数类型，而不仅限于切片。</li>
 </ul>
-<h3 id="2-Rust-如何实现零成本抽象？"><a href="#2-Rust-如何实现零成本抽象？" class="headerlink" title="2. Rust 如何实现零成本抽象？"></a>2. <strong>Rust 如何实现零成本抽象？</strong></h3><p>Rust 通过以下机制实现零成本抽象：</p>
-<h4 id="（1）编译时多态（泛型与单态化）"><a href="#（1）编译时多态（泛型与单态化）" class="headerlink" title="（1）编译时多态（泛型与单态化）"></a>（1）<strong>编译时多态（泛型与单态化）</strong></h4><p>Rust 的泛型是通过单态化（Monomorphization）实现的。编译器会为每个具体类型生成专门的代码，从而消除运行时的类型检查开销。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">add</span>&lt;T: std::ops::Add&lt;Output = T&gt;&gt;(a: T, b: T) <span class="punctuation">-&gt;</span> T &#123;</span><br><span class="line">    a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, <span class="title function_ invoke__">add</span>(<span class="number">1</span>, <span class="number">2</span>));       <span class="comment">// 生成 add&lt;i32&gt; 的代码</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, <span class="title function_ invoke__">add</span>(<span class="number">1.0</span>, <span class="number">2.0</span>));   <span class="comment">// 生成 add&lt;f64&gt; 的代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-减少代码重复"><a href="#2-减少代码重复" class="headerlink" title="2. 减少代码重复"></a>2. <strong>减少代码重复</strong></h3><ul>
+<li>使用 <code>AsRef&lt;T&gt;</code> 可以避免为不同的输入类型编写重复的函数。你只需定义一个接受 <code>AsRef&lt;T&gt;</code> 的函数，Rust 会自动处理不同类型的转换。</li>
+</ul>
+<h3 id="3-性能"><a href="#3-性能" class="headerlink" title="3. 性能"></a>3. <strong>性能</strong></h3><ul>
+<li><code>AsRef&lt;T&gt;</code> 通常只会生成一个引用，而不需要进行数据的复制或分配。这在处理大型数据时可以提高性能，因为它避免了不必要的内存开销。</li>
+</ul>
+<h3 id="4-更好的抽象"><a href="#4-更好的抽象" class="headerlink" title="4. 更好的抽象"></a>4. <strong>更好的抽象</strong></h3><ul>
+<li><code>AsRef&lt;T&gt;</code> 提供了一种更高层次的抽象，使得代码更加通用和可重用。它允许你编写更具通用性的 API，使得不同的数据结构可以在同一上下文中使用。</li>
+</ul>
+<h3 id="5-类型安全"><a href="#5-类型安全" class="headerlink" title="5. 类型安全"></a>5. <strong>类型安全</strong></h3><ul>
+<li><code>AsRef&lt;T&gt;</code> 提供了类型安全的转换，确保只有兼容的类型可以被转换。这减少了运行时错误的可能性。</li>
+</ul>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>以下是一个使用 <code>AsRef&lt;[T]&gt;</code> 的示例：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">print_slice</span>&lt;T: <span class="built_in">AsRef</span>&lt;[<span class="type">i32</span>]&gt;&gt;(slice: T) &#123;</span><br><span class="line">    <span class="keyword">for</span> &amp;item <span class="keyword">in</span> slice.<span class="title function_ invoke__">as_ref</span>() &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, item);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">vec</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">arr</span> = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">print_slice</span>(&amp;vec); <span class="comment">// 传递 &amp;Vec&lt;i32&gt;</span></span><br><span class="line">    <span class="title function_ invoke__">print_slice</span>(&amp;arr); <span class="comment">// 传递 &amp;[i32]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>在上面的例子中，编译器会为 <code>add</code> 函数生成两个版本：一个用于 <code>i32</code>，另一个用于 <code>f64</code>。这样，运行时就无需动态分发，性能与手写代码一致。</p>
-<h4 id="（2）迭代器的零成本"><a href="#（2）迭代器的零成本" class="headerlink" title="（2）迭代器的零成本"></a>（2）<strong>迭代器的零成本</strong></h4><p>Rust 的迭代器是惰性的，只有在调用消费方法（如 <code>collect</code> 或 <code>for</code> 循环）时才会执行。迭代器的链式调用（如 <code>map</code>、<code>filter</code>）会被优化为高效的循环，而不会引入额外的中间数据结构。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">v</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> <span class="variable">sum</span>: <span class="type">i32</span> = v.<span class="title function_ invoke__">iter</span>()</span><br><span class="line">               .<span class="title function_ invoke__">map</span>(|x| x * <span class="number">2</span>)</span><br><span class="line">               .<span class="title function_ invoke__">filter</span>(|x| *x &gt; <span class="number">3</span>)</span><br><span class="line">               .<span class="title function_ invoke__">sum</span>();</span><br></pre></td></tr></table></figure>
-
-<p>编译器会将上述代码优化为一个简单的循环，避免了额外的堆分配或函数调用开销。</p>
-<h4 id="（3）闭包的零成本"><a href="#（3）闭包的零成本" class="headerlink" title="（3）闭包的零成本"></a>（3）<strong>闭包的零成本</strong></h4><p>Rust 的闭包会被编译为匿名结构体，捕获的环境变量会被存储在该结构体中。闭包的调用会被内联优化，性能与直接调用函数相当。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">add_x</span> = |y| y + x;</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, <span class="title function_ invoke__">add_x</span>(<span class="number">5</span>));  <span class="comment">// 闭包调用被优化为直接代码</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="（4）所有权与生命周期"><a href="#（4）所有权与生命周期" class="headerlink" title="（4）所有权与生命周期"></a>（4）<strong>所有权与生命周期</strong></h4><p>Rust 的所有权和生命周期系统在编译时检查内存安全问题，而不会引入运行时开销。例如，借用检查器会在编译时确保没有数据竞争或悬空指针，而无需运行时的垃圾回收或引用计数。</p>
-<h3 id="3-零成本抽象的优势"><a href="#3-零成本抽象的优势" class="headerlink" title="3. 零成本抽象的优势"></a>3. <strong>零成本抽象的优势</strong></h3><ul>
-<li><strong>性能</strong>：与手写底层代码性能相当。</li>
-<li><strong>安全性</strong>：通过编译时检查避免内存错误和数据竞争。</li>
-<li><strong>表达力</strong>：允许开发者使用高级抽象编写清晰、简洁的代码。</li>
-</ul>
-<h3 id="4-零成本抽象的代价"><a href="#4-零成本抽象的代价" class="headerlink" title="4. 零成本抽象的代价"></a>4. <strong>零成本抽象的代价</strong></h3><p>尽管零成本抽象在运行时没有开销，但它可能会增加编译时间和生成的二进制文件大小（例如，单态化会生成多个版本的函数）。然而，这些代价通常被认为是值得的，因为它们换来了更高的运行时性能。</p>
-<h3 id="5-与其他语言的对比"><a href="#5-与其他语言的对比" class="headerlink" title="5. 与其他语言的对比"></a>5. <strong>与其他语言的对比</strong></h3><ul>
-<li>**C++**：C++ 也支持零成本抽象（如模板），但 Rust 的所有权系统使其在内存安全方面更具优势。</li>
-<li>**Java&#x2F;C#**：这些语言的抽象（如泛型、虚函数）通常会引入运行时开销（如类型擦除、动态分发）。</li>
-<li><strong>Python&#x2F;JavaScript</strong>：这些语言的抽象（如高阶函数、动态类型）会带来显著的运行时开销。</li>
-</ul>
-<h3 id="6-实际应用中的零成本抽象"><a href="#6-实际应用中的零成本抽象" class="headerlink" title="6. 实际应用中的零成本抽象"></a>6. <strong>实际应用中的零成本抽象</strong></h3><ul>
-<li><strong>标准库</strong>：Rust 的标准库（如 <code>Vec</code>、<code>Option</code>、<code>Result</code>）都实现了零成本抽象。</li>
-<li><strong>生态系统</strong>：许多 Rust 库（如 <code>serde</code>、<code>tokio</code>）也充分利用了零成本抽象，提供了高性能的 API。</li>
-</ul>
-<h3 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. <strong>总结</strong></h3><p>Rust 的零成本抽象是其强大性能和安全性的基石。通过编译时优化（如单态化、内联、生命周期检查），Rust 能够在提供高级抽象的同时，保持与底层代码相当的性能。这使得 Rust 成为系统编程和高性能应用的理想选择。</p>
-<p>如果你对某个具体特性（如泛型、迭代器、闭包）的零成本实现感兴趣，可以进一步深入探讨！</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>使用 <code>AsRef&lt;T&gt;</code> 提供了更好的灵活性、性能和类型安全，使得代码更具可读性和可维护性。相比之下，直接使用 <code>&amp;[T]</code> 会限制函数的输入类型，降低了代码的通用性。</p>
 
       
     </div>
@@ -290,7 +283,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/112/">112</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/117/">117</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -356,14 +349,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-count">117</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -419,12 +412,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">203k</span>
+    <span title="Symbols count total">207k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:17</span>
+    <span title="Reading time total">12:34</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
