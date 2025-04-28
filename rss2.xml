@@ -15,8 +15,32 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Mon, 21 Apr 2025 16:33:23 GMT</pubDate>
+    <pubDate>Mon, 28 Apr 2025 09:07:08 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>面向对象最佳实践深入解析</title>
+      <link>https://tonymistark.github.io/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices/</link>
+      <guid>https://tonymistark.github.io/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices/</guid>
+      <pubDate>Mon, 28 Apr 2025 09:06:02 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;面向对象编程的最佳实践是多年软件开发经验的结晶，遵循这些原则可以显著提高代码质量、可维护性和可扩展性。下面我将对这些最佳实践进行深入讲解。&lt;/p&gt;
+&lt;h2 id=&quot;一、优先使用组合而非继承&quot;&gt;&lt;a href=&quot;#一、优先使用组合而非继承&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>使用图形数据库处理树形结构的深度解析</title>
@@ -60,7 +84,7 @@
       
       
       
-      <category domain="https://tonymistark.github.io/categories/%E7%A7%BB%E5%8A%A8%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90-refactoring-folder-tree-structure/">移动文件夹的性能问题分析 - refactoring_folder_tree_structure</category>
+      <category domain="https://tonymistark.github.io/categories/refactoring-folder-tree-structure/">refactoring_folder_tree_structure</category>
       
       
       
@@ -492,33 +516,6 @@
       
       
       <comments>https://tonymistark.github.io/2025/03/11/rust_notes/Understanding-Rust-References/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Understanding Rust Future</title>
-      <link>https://tonymistark.github.io/2025/03/07/rust_notes/Understanding-Rust-s-Future-Keyword-A-Comprehensive-Guide/</link>
-      <guid>https://tonymistark.github.io/2025/03/07/rust_notes/Understanding-Rust-s-Future-Keyword-A-Comprehensive-Guide/</guid>
-      <pubDate>Fri, 07 Mar 2025 03:34:39 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;p&gt;在 Rust 中，&lt;code&gt;Future&lt;/code&gt; 是一个核心概念，用于表示异步计算。&lt;code&gt;Future&lt;/code&gt; 代表一个尚未完成的计算，它会在未来的某个时刻产生一个结果。Rust 的异步编程模型主要围绕 &lt;code&gt;Future&lt;/code&gt;</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/rust-notes/">rust_notes</category>
-      
-      
-      <category domain="https://tonymistark.github.io/tags/rust/">rust</category>
-      
-      
-      <comments>https://tonymistark.github.io/2025/03/07/rust_notes/Understanding-Rust-s-Future-Keyword-A-Comprehensive-Guide/#disqus_thread</comments>
       
     </item>
     

@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/29/rust_docs/ch_05_03_method_syntax/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2022/12/29/rust_docs/ch_06_00_enums_and_pattern_matching/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/12/29/rust_docs/ch_05_03_method_syntax/" class="post-title-link" itemprop="url">Ch 05.03:总结(Summary)</a>
+            <a href="/2022/12/29/rust_docs/ch_06_00_enums_and_pattern_matching/" class="post-title-link" itemprop="url">Ch 06.00:Enums and Pattern Matching</a>
         </h2>
 
         <div class="post-meta">
@@ -207,7 +207,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2022-12-29 15:22:00" itemprop="dateCreated datePublished" datetime="2022-12-29T15:22:00+08:00">2022-12-29</time>
+              <time title="Created: 2022-12-29 15:23:00" itemprop="dateCreated datePublished" datetime="2022-12-29T15:23:00+08:00">2022-12-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -232,7 +232,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>147</span>
+              <span>232</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -251,8 +251,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="总结-Summary"><a href="#总结-Summary" class="headerlink" title="总结(Summary)"></a>总结(Summary)</h4><p>结构体让你创建自定义的类型在你的domain中。通过使用结构体，你可以将数据关联起来，使得它看起来更加清晰。在impl块内，你可以定义函数并关联你的类型，而且方法是一个很好的关联方式，它让你的结构体有了可以指定它特定行为的能力。</p>
-<p>但是结构体不是唯一的方式来创建自定义类型：让我们转到Rust的枚举(enum)特性来，为你的工具箱再添加一个工具。</p>
+          <h4 id="Enums-and-Pattern-Matching"><a href="#Enums-and-Pattern-Matching" class="headerlink" title="Enums and Pattern Matching"></a>Enums and Pattern Matching</h4><p>本章中，我们讲述枚举(enumerations)，也称作enums。枚举允许你通过列举可能的成员(variants)来定义一个类型。首先，我们会定义并使用一个枚举来展示它是如何连同数据一起编码信息的。接下来，我们会探索一个特别有用的枚举，叫做<code>Option</code>，它代表一个值，要么是某个值要么是什么都不是。然后会讲到<code>match</code>表达式中使用模式匹配，针对不同的枚举值编写相应要执行的代码。然后会介绍<code>if let</code>，另一个简洁方便处理代码中枚举的结构。</p>
+<p>枚举是一个很多语言都有的功能，不过不同语言中其功能各不相同。Rust的枚举与F#，OCaml和Haskell这样的函数式编程语言中的代数数据类型(olgebraic data types)最为相似。</p>
 
       
     </div>
@@ -271,7 +271,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/98/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/98/">98</a><span class="page-number current">99</span><a class="page-number" href="/page/100/">100</a><span class="space">&hellip;</span><a class="page-number" href="/page/117/">117</a><a class="extend next" rel="next" href="/page/100/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/98/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/98/">98</a><span class="page-number current">99</span><a class="page-number" href="/page/100/">100</a><span class="space">&hellip;</span><a class="page-number" href="/page/118/">118</a><a class="extend next" rel="next" href="/page/100/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -337,14 +337,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">117</span>
+          <span class="site-state-item-count">118</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -400,12 +400,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">207k</span>
+    <span title="Symbols count total">209k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:34</span>
+    <span title="Reading time total">12:40</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

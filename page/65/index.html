@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/11/15/design-pattern/why-should-i-learn-patterns/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/11/15/design-pattern/classification-of-patterns/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/11/15/design-pattern/why-should-i-learn-patterns/" class="post-title-link" itemprop="url">Why should I learn patterns?</a>
+            <a href="/2023/11/15/design-pattern/classification-of-patterns/" class="post-title-link" itemprop="url">classification of patterns</a>
         </h2>
 
         <div class="post-meta">
@@ -207,7 +207,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-11-15 19:54:40" itemprop="dateCreated datePublished" datetime="2023-11-15T19:54:40+08:00">2023-11-15</time>
+              <time title="Created: 2023-11-15 23:02:50" itemprop="dateCreated datePublished" datetime="2023-11-15T23:02:50+08:00">2023-11-15</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -232,14 +232,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>407</span>
+              <span>465</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -251,12 +251,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Why-should-I-learn-patterns"><a href="#Why-should-I-learn-patterns" class="headerlink" title="Why should I learn patterns?"></a>Why should I learn patterns?</h1><h1 id="我为什么要学习模式？"><a href="#我为什么要学习模式？" class="headerlink" title="我为什么要学习模式？"></a>我为什么要学习模式？</h1><p>The truth is that you might manage to work as a programmer for many years without knowing about a single pattern. A lot of people do just that. Even in that case, though, you might be implementing some patterns without even knowing it. So why would you spend time learning them?</p>
-<p>事实是，你可能在不了解单一模式的情况下设法作为程序员工作多年。很多人就是这样做的。但是，即使在这种情况下，您也可能在不知不觉中实现某些模式。那么，你为什么要花时间学习它们呢？</p>
+          <h1 id="Classification-of-patterns"><a href="#Classification-of-patterns" class="headerlink" title="Classification of patterns"></a>Classification of patterns</h1><h1 id="模式分类"><a href="#模式分类" class="headerlink" title="模式分类"></a>模式分类</h1><p>Design patterns differ by their complexity, level of detail and scale of applicability to the entire system being designed. I like the analogy to road construction: you can make an intersection safer by either installing some traffic lights or building an entire multi-level interchange with underground passages for pedestrians.</p>
+<p>设计模式的复杂性、详细程度和对整个设计的系统的适用范围各不相同。我喜欢与道路建设的类比：你可以通过安装一些交通信号灯或建造一个完整的多层立交桥和地下通道来使十字路口更安全。</p>
+<p>The most basic and low-level patterns are often called idioms. They usually apply only to a single programming language.</p>
+<p>最基本和最底层的模式通常被称为成语。它们通常仅适用于一种编程语言。</p>
+<p>The most universal and high-level patterns are architectural patterns. Developers can implement these patterns in virtually any language. Unlike other patterns, they can be used to design the architecture of an entire application.</p>
+<p>最通用和高级的模式是体系结构模式。开发人员几乎可以用任何语言实现这些模式。与其他模式不同，它们可用于设计整个应用程序的体系结构。</p>
+<p>In addition, all patterns can be categorized by their intent, or purpose. This book covers three main groups of patterns:</p>
+<p>此外，所有模式都可以按其意图或目的进行分类。本书涵盖三大类模式：</p>
 <ul>
-<li><p>Design patterns are a toolkit of tried and tested solutions to common problems in software design. Even if you never encounter these problems, knowing patterns is still useful because it teaches you how to solve all sorts of problems using principles of object-oriented design.<br>设计模式是软件设计中常见问题的久经考验的解决方案工具包。即使你从未遇到过这些问题，了解模式仍然很有用，因为它教会了你如何使用面向对象设计的原则来解决各种问题。</p>
+<li><p>Creational patterns provide object creation mechanisms that increase flexibility and reuse of existing code.<br>创建模式提供了对象创建机制，可提高现有代码的灵活性和重用性。</p>
 </li>
-<li><p>Design patterns define a common language that you and your teammates can use to communicate more efficiently. You can say, “Oh, just use a Singleton for that,” and everyone will understand the idea behind your suggestion. No need to explain what a singleton is if you know the pattern and its name.<br>设计模式定义了一种通用语言，您和您的团队成员可以使用该语言来更有效地进行通信。你可以说，“哦，就用一个单例来做这件事吧”，每个人都会理解你的建议背后的想法。如果您知道模式及其名称，则无需解释什么是单例。</p>
+<li><p>Structural patterns explain how to assemble objects and classes into larger structures, while keeping these structures flexible and efficient.<br>结构模式解释了如何将对象和类组合成更大的结构，同时保持这些结构的灵活性和效率。</p>
+</li>
+<li><p>Behavioral patterns take care of effective communication and the assignment of responsibilities between objects.<br>行为模式负责对象之间的有效沟通和责任分配。</p>
 </li>
 </ul>
 
@@ -277,7 +285,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/64/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/64/">64</a><span class="page-number current">65</span><a class="page-number" href="/page/66/">66</a><span class="space">&hellip;</span><a class="page-number" href="/page/117/">117</a><a class="extend next" rel="next" href="/page/66/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/64/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/64/">64</a><span class="page-number current">65</span><a class="page-number" href="/page/66/">66</a><span class="space">&hellip;</span><a class="page-number" href="/page/118/">118</a><a class="extend next" rel="next" href="/page/66/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -343,14 +351,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">117</span>
+          <span class="site-state-item-count">118</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -406,12 +414,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">207k</span>
+    <span title="Symbols count total">209k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:34</span>
+    <span title="Reading time total">12:40</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

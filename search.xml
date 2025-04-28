@@ -6812,7 +6812,7 @@ All of that said, in absolute sense I’d much rather live in the world of today
 <p>您可以根据实际业务需求和数据规模选择合适的方案。如果移动大型文件夹不是高频操作，原始方案可能已经足够；如果是高频操作且性能关键，则推荐混合方案。</p>
 ]]></content>
       <categories>
-        <category>移动文件夹的性能问题分析 - refactoring_folder_tree_structure</category>
+        <category>refactoring_folder_tree_structure</category>
       </categories>
   </entry>
   <entry>
@@ -7079,5 +7079,215 @@ All of that said, in absolute sense I’d much rather live in the world of today
       <categories>
         <category>refactoring_folder_tree_structure</category>
       </categories>
+  </entry>
+  <entry>
+    <title>面向对象最佳实践深入解析</title>
+    <url>/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices/</url>
+    <content><![CDATA[<p>面向对象编程的最佳实践是多年软件开发经验的结晶，遵循这些原则可以显著提高代码质量、可维护性和可扩展性。下面我将对这些最佳实践进行深入讲解。</p>
+<h2 id="一、优先使用组合而非继承"><a href="#一、优先使用组合而非继承" class="headerlink" title="一、优先使用组合而非继承"></a>一、优先使用组合而非继承</h2><h3 id="概念解析"><a href="#概念解析" class="headerlink" title="概念解析"></a>概念解析</h3><p>组合(Composition)是指一个类包含另一个类的实例作为其成员变量，通过委托来使用其功能，而不是通过继承获得父类的功能。</p>
+<h3 id="为什么优先使用组合？"><a href="#为什么优先使用组合？" class="headerlink" title="为什么优先使用组合？"></a>为什么优先使用组合？</h3><ol>
+<li><strong>更松散的耦合</strong>：组合对象可以在运行时动态更换</li>
+<li><strong>更好的封装</strong>：内部实现细节被隐藏</li>
+<li><strong>避免继承层次过深</strong>：继承链过长会导致”脆弱基类问题”</li>
+<li><strong>更灵活</strong>：可以组合多个不同类的功能</li>
+</ol>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用继承（不推荐）</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Engine</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">start</span><span class="params">()</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> <span class="keyword">extends</span> <span class="title class_">Engine</span> &#123;  <span class="comment">// Car不是Engine的一种，这是不好的设计</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用组合（推荐）</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Engine engine;  <span class="comment">// Car有一个Engine</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Car</span><span class="params">(Engine engine)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.engine = engine;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">start</span><span class="params">()</span> &#123;</span><br><span class="line">        engine.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="何时使用继承？"><a href="#何时使用继承？" class="headerlink" title="何时使用继承？"></a>何时使用继承？</h3><ul>
+<li>当确实是”is-a”关系时（如Dog是Animal）</li>
+<li>需要多态行为时</li>
+<li>子类确实是父类的特殊化</li>
+</ul>
+<h2 id="二、遵循最小知识原则-迪米特法则"><a href="#二、遵循最小知识原则-迪米特法则" class="headerlink" title="二、遵循最小知识原则(迪米特法则)"></a>二、遵循最小知识原则(迪米特法则)</h2><h3 id="概念解析-1"><a href="#概念解析-1" class="headerlink" title="概念解析"></a>概念解析</h3><p>迪米特法则(Law of Demeter)规定：</p>
+<ol>
+<li>每个单元只应该了解与它密切相关的单元</li>
+<li>只与直接朋友交谈</li>
+<li>不要与陌生人交谈</li>
+</ol>
+<h3 id="具体表现"><a href="#具体表现" class="headerlink" title="具体表现"></a>具体表现</h3><ul>
+<li>对象O的方法M只能调用以下对象的方法：<ol>
+<li>O本身</li>
+<li>M的参数</li>
+<li>O直接包含的对象</li>
+<li>M中创建的对象</li>
+</ol>
+</li>
+</ul>
+<h3 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 违反迪米特法则</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Customer</span> &#123;</span><br><span class="line">    Wallet wallet;</span><br><span class="line">    </span><br><span class="line">    Wallet <span class="title function_">getWallet</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> wallet;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 客户端代码</span></span><br><span class="line"><span class="type">float</span> <span class="variable">money</span> <span class="operator">=</span> customer.getWallet().getMoney();  <span class="comment">// 与Wallet这个&quot;陌生人&quot;交谈</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 遵循迪米特法则</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Customer</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Wallet wallet;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">float</span> <span class="title function_">getPayment</span><span class="params">(<span class="type">float</span> amount)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (wallet != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> wallet.withdraw(amount);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 客户端代码</span></span><br><span class="line"><span class="type">float</span> <span class="variable">money</span> <span class="operator">=</span> customer.getPayment(<span class="number">100</span>);  <span class="comment">// 只与Customer交谈</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>减少类之间的耦合</li>
+<li>提高模块化程度</li>
+<li>更易于维护和修改</li>
+</ul>
+<h2 id="三、保持类和方法的小型化"><a href="#三、保持类和方法的小型化" class="headerlink" title="三、保持类和方法的小型化"></a>三、保持类和方法的小型化</h2><h3 id="类的大小原则"><a href="#类的大小原则" class="headerlink" title="类的大小原则"></a>类的大小原则</h3><ul>
+<li><strong>单一职责原则</strong>：一个类应该只有一个引起它变化的原因</li>
+<li>经验法则：<ul>
+<li>行数：通常不超过200-300行</li>
+<li>方法数：通常不超过10-20个</li>
+<li>属性数：通常不超过10个</li>
+</ul>
+</li>
+</ul>
+<h3 id="方法的大小原则"><a href="#方法的大小原则" class="headerlink" title="方法的大小原则"></a>方法的大小原则</h3><ul>
+<li>一个方法应该只做一件事</li>
+<li>经验法则：<ul>
+<li>行数：通常不超过屏幕高度(20-30行)</li>
+<li>嵌套层级：不超过2-3层</li>
+<li>参数个数：不超过3-4个</li>
+</ul>
+</li>
+</ul>
+<h3 id="重构技巧"><a href="#重构技巧" class="headerlink" title="重构技巧"></a>重构技巧</h3><ol>
+<li><strong>提取方法</strong>：将大方法中的代码块提取为独立方法</li>
+<li><strong>提取类</strong>：将大类中的相关功能提取到新类中</li>
+<li><strong>使用策略模式</strong>：将复杂逻辑委托给专门的策略类</li>
+</ol>
+<h2 id="四、使用有意义的名字"><a href="#四、使用有意义的名字" class="headerlink" title="四、使用有意义的名字"></a>四、使用有意义的名字</h2><h3 id="命名原则"><a href="#命名原则" class="headerlink" title="命名原则"></a>命名原则</h3><ol>
+<li><p><strong>类名</strong>：名词或名词短语，明确表示职责</p>
+<ul>
+<li>好例子：<code>Customer</code>, <code>OrderProcessor</code></li>
+<li>坏例子：<code>Data</code>, <code>Manager</code>, <code>Processor</code></li>
+</ul>
+</li>
+<li><p><strong>方法名</strong>：动词或动词短语，描述操作</p>
+<ul>
+<li>好例子：<code>calculateTotal()</code>, <code>saveToDatabase()</code></li>
+<li>坏例子：<code>process()</code>, <code>doWork()</code></li>
+</ul>
+</li>
+<li><p><strong>变量名</strong>：名词，描述存储内容</p>
+<ul>
+<li>好例子：<code>customerCount</code>, <code>isValid</code></li>
+<li>坏例子：<code>temp</code>, <code>data</code>, <code>flag</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="命名技巧"><a href="#命名技巧" class="headerlink" title="命名技巧"></a>命名技巧</h3><ul>
+<li>避免缩写（除非是广泛接受的）</li>
+<li>使用领域术语</li>
+<li>保持一致性（如全部使用<code>get</code>或全部使用<code>retrieve</code>）</li>
+<li>长度与作用域成正比（局部变量可以短，成员变量应该更详细）</li>
+</ul>
+<h2 id="五、合理使用访问修饰符"><a href="#五、合理使用访问修饰符" class="headerlink" title="五、合理使用访问修饰符"></a>五、合理使用访问修饰符</h2><h3 id="访问控制原则"><a href="#访问控制原则" class="headerlink" title="访问控制原则"></a>访问控制原则</h3><ol>
+<li><strong>私有(private)优先</strong>：除非有充分理由，否则字段和方法都应该是private的</li>
+<li><strong>逐步放宽</strong>：从最严格开始，只在必要时放宽限制</li>
+<li><strong>封装不变性</strong>：确保对象的不变量不被破坏</li>
+</ol>
+<h3 id="各语言访问修饰符对比"><a href="#各语言访问修饰符对比" class="headerlink" title="各语言访问修饰符对比"></a>各语言访问修饰符对比</h3><table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>Java&#x2F;C#&#x2F;C++</th>
+<th>Python</th>
+<th>JavaScript</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>私有</td>
+<td>private</td>
+<td><code>__prefix</code></td>
+<td>无(约定用_)</td>
+</tr>
+<tr>
+<td>保护</td>
+<td>protected</td>
+<td>无</td>
+<td>无</td>
+</tr>
+<tr>
+<td>包私有</td>
+<td>(default)</td>
+<td>无</td>
+<td>无</td>
+</tr>
+<tr>
+<td>公开</td>
+<td>public</td>
+<td>无前缀</td>
+<td>无</td>
+</tr>
+</tbody></table>
+<h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BankAccount</span> &#123;</span><br><span class="line">    <span class="comment">// 字段私有</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">float</span> balance;</span><br><span class="line">    <span class="keyword">private</span> String owner;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 通过公开方法访问</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">float</span> <span class="title function_">getBalance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> balance;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 修改方法可以添加验证</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deposit</span><span class="params">(<span class="type">float</span> amount)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (amount &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            balance += amount;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、避免上帝对象-God-Object"><a href="#六、避免上帝对象-God-Object" class="headerlink" title="六、避免上帝对象(God Object)"></a>六、避免上帝对象(God Object)</h2><h3 id="上帝对象的特征"><a href="#上帝对象的特征" class="headerlink" title="上帝对象的特征"></a>上帝对象的特征</h3><ol>
+<li>知道太多信息</li>
+<li>做太多事情</li>
+<li>与系统中太多其他对象耦合</li>
+<li>通常有数百甚至上千行代码</li>
+</ol>
+<h3 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h3><ul>
+<li>难以理解和维护</li>
+<li>难以测试</li>
+<li>修改影响范围大</li>
+<li>阻碍并行开发</li>
+</ul>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ol>
+<li><strong>职责分解</strong>：识别可以分离的职责</li>
+<li><strong>领域驱动设计</strong>：按照业务领域划分模块</li>
+<li><strong>设计模式应用</strong>：如策略模式、外观模式等</li>
+</ol>
+<h3 id="示例重构"><a href="#示例重构" class="headerlink" title="示例重构"></a>示例重构</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 上帝对象</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderProcessor</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">process</span><span class="params">(Order order)</span> &#123;</span><br><span class="line">        <span class="comment">// 验证订单</span></span><br><span class="line">        <span class="comment">// 计算价格</span></span><br><span class="line">        <span class="comment">// 检查库存</span></span><br><span class="line">        <span class="comment">// 创建发票</span></span><br><span class="line">        <span class="comment">// 发送通知</span></span><br><span class="line">        <span class="comment">// 更新数据库</span></span><br><span class="line">        <span class="comment">// ... 1000行代码</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重构后</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderValidator</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PriceCalculator</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InventoryChecker</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InvoiceGenerator</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NotificationSender</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderRepository</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderProcessor</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> OrderValidator validator;</span><br><span class="line">    <span class="keyword">private</span> PriceCalculator calculator;</span><br><span class="line">    <span class="comment">// 其他依赖...</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">process</span><span class="params">(Order order)</span> &#123;</span><br><span class="line">        validator.validate(order);</span><br><span class="line">        calculator.calculate(order);</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、合理使用接口和抽象类"><a href="#七、合理使用接口和抽象类" class="headerlink" title="七、合理使用接口和抽象类"></a>七、合理使用接口和抽象类</h2><h3 id="接口-vs-抽象类"><a href="#接口-vs-抽象类" class="headerlink" title="接口 vs 抽象类"></a>接口 vs 抽象类</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>接口(Interface)</th>
+<th>抽象类(Abstract Class)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>实例化</td>
+<td>不能</td>
+<td>不能</td>
+</tr>
+<tr>
+<td>方法实现</td>
+<td>Java8+可以有默认方法</td>
+<td>可以有具体方法</td>
+</tr>
+<tr>
+<td>字段</td>
+<td>只能有常量</td>
+<td>可以有各种字段</td>
+</tr>
+<tr>
+<td>多继承</td>
+<td>一个类可实现多个接口</td>
+<td>只能继承一个抽象类</td>
+</tr>
+<tr>
+<td>设计目的</td>
+<td>定义契约</td>
+<td>提供部分实现</td>
+</tr>
+</tbody></table>
+<h3 id="使用原则"><a href="#使用原则" class="headerlink" title="使用原则"></a>使用原则</h3><ol>
+<li><p><strong>接口用于</strong>：</p>
+<ul>
+<li>定义跨继承层次的能力</li>
+<li>需要多重继承时</li>
+<li>定义服务契约</li>
+</ul>
+</li>
+<li><p><strong>抽象类用于</strong>：</p>
+<ul>
+<li>提供部分实现</li>
+<li>有共同基类逻辑时</li>
+<li>希望控制子类如何扩展时</li>
+</ul>
+</li>
+</ol>
+<h3 id="代码示例-2"><a href="#代码示例-2" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 接口定义能力</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Flyable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Swimmable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">swim</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象类提供部分实现</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Bird</span> &#123;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">makeSound</span><span class="params">()</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">breathe</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Breathing...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Duck</span> <span class="keyword">extends</span> <span class="title class_">Bird</span> <span class="keyword">implements</span> <span class="title class_">Flyable</span>, Swimmable &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">makeSound</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Quack&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Duck flying&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swim</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Duck swimming&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="接口隔离原则-ISP"><a href="#接口隔离原则-ISP" class="headerlink" title="接口隔离原则(ISP)"></a>接口隔离原则(ISP)</h3><ul>
+<li>客户端不应该被迫依赖它们不使用的接口</li>
+<li>应该将大接口拆分为更小、更具体的接口</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 违反ISP</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Worker</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">work</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">sleep</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遵循ISP</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Workable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">work</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Eatable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Sleepable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">sleep</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过遵循这些面向对象的最佳实践，可以创建出更健壮、更灵活、更易于维护的软件系统。记住，这些原则不是铁律，而是指导方针，在实际应用中需要根据具体情况进行权衡。</p>
+]]></content>
   </entry>
 </search>

@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="面向对象编程的最佳实践是多年软件开发经验的结晶，遵循这些原则可以显著提高代码质量、可维护性和可扩展性。下面我将对这些最佳实践进行深入讲解。 一、优先使用组合而非继承概念解析组合(Composition)是指一个类包含另一个类的实例作为其成员变量，通过委托来使用其功能，而不是通过继承获得父类的功能。 为什么优先使用组合？ 更松散的耦合：组合对象可以在运行时动态更换 更好的封装：内部实现细节被隐藏 避">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向对象最佳实践深入解析">
+<meta property="og:url" content="https://tonymistark.github.io/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="面向对象编程的最佳实践是多年软件开发经验的结晶，遵循这些原则可以显著提高代码质量、可维护性和可扩展性。下面我将对这些最佳实践进行深入讲解。 一、优先使用组合而非继承概念解析组合(Composition)是指一个类包含另一个类的实例作为其成员变量，通过委托来使用其功能，而不是通过继承获得父类的功能。 为什么优先使用组合？ 更松散的耦合：组合对象可以在运行时动态更换 更好的封装：内部实现细节被隐藏 避">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-04-28T09:06:02.000Z">
+<meta property="article:modified_time" content="2025-04-28T09:07:08.876Z">
+<meta property="article:author" content="Ice">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://tonymistark.github.io/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>面向对象最佳实践深入解析 | BLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6L4L92Z6Z"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W6L4L92Z6Z');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?99c70b2174a7fbe4af476f28bafb19a3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/./atom.xml" title="BLOG" type="application/atom+xml">
+<link rel="alternate" href="/./rss2.xml" title="BLOG" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">用心记录思想</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          面向对象最佳实践深入解析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2025-04-28 17:06:02 / Modified: 17:07:08" itemprop="dateCreated datePublished" datetime="2025-04-28T17:06:02+08:00">2025-04-28</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>6 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>面向对象编程的最佳实践是多年软件开发经验的结晶，遵循这些原则可以显著提高代码质量、可维护性和可扩展性。下面我将对这些最佳实践进行深入讲解。</p>
+<h2 id="一、优先使用组合而非继承"><a href="#一、优先使用组合而非继承" class="headerlink" title="一、优先使用组合而非继承"></a>一、优先使用组合而非继承</h2><h3 id="概念解析"><a href="#概念解析" class="headerlink" title="概念解析"></a>概念解析</h3><p>组合(Composition)是指一个类包含另一个类的实例作为其成员变量，通过委托来使用其功能，而不是通过继承获得父类的功能。</p>
+<h3 id="为什么优先使用组合？"><a href="#为什么优先使用组合？" class="headerlink" title="为什么优先使用组合？"></a>为什么优先使用组合？</h3><ol>
+<li><strong>更松散的耦合</strong>：组合对象可以在运行时动态更换</li>
+<li><strong>更好的封装</strong>：内部实现细节被隐藏</li>
+<li><strong>避免继承层次过深</strong>：继承链过长会导致”脆弱基类问题”</li>
+<li><strong>更灵活</strong>：可以组合多个不同类的功能</li>
+</ol>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用继承（不推荐）</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Engine</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">start</span><span class="params">()</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> <span class="keyword">extends</span> <span class="title class_">Engine</span> &#123;  <span class="comment">// Car不是Engine的一种，这是不好的设计</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用组合（推荐）</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Engine engine;  <span class="comment">// Car有一个Engine</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Car</span><span class="params">(Engine engine)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.engine = engine;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">start</span><span class="params">()</span> &#123;</span><br><span class="line">        engine.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="何时使用继承？"><a href="#何时使用继承？" class="headerlink" title="何时使用继承？"></a>何时使用继承？</h3><ul>
+<li>当确实是”is-a”关系时（如Dog是Animal）</li>
+<li>需要多态行为时</li>
+<li>子类确实是父类的特殊化</li>
+</ul>
+<h2 id="二、遵循最小知识原则-迪米特法则"><a href="#二、遵循最小知识原则-迪米特法则" class="headerlink" title="二、遵循最小知识原则(迪米特法则)"></a>二、遵循最小知识原则(迪米特法则)</h2><h3 id="概念解析-1"><a href="#概念解析-1" class="headerlink" title="概念解析"></a>概念解析</h3><p>迪米特法则(Law of Demeter)规定：</p>
+<ol>
+<li>每个单元只应该了解与它密切相关的单元</li>
+<li>只与直接朋友交谈</li>
+<li>不要与陌生人交谈</li>
+</ol>
+<h3 id="具体表现"><a href="#具体表现" class="headerlink" title="具体表现"></a>具体表现</h3><ul>
+<li>对象O的方法M只能调用以下对象的方法：<ol>
+<li>O本身</li>
+<li>M的参数</li>
+<li>O直接包含的对象</li>
+<li>M中创建的对象</li>
+</ol>
+</li>
+</ul>
+<h3 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 违反迪米特法则</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Customer</span> &#123;</span><br><span class="line">    Wallet wallet;</span><br><span class="line">    </span><br><span class="line">    Wallet <span class="title function_">getWallet</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> wallet;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 客户端代码</span></span><br><span class="line"><span class="type">float</span> <span class="variable">money</span> <span class="operator">=</span> customer.getWallet().getMoney();  <span class="comment">// 与Wallet这个&quot;陌生人&quot;交谈</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 遵循迪米特法则</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Customer</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Wallet wallet;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">float</span> <span class="title function_">getPayment</span><span class="params">(<span class="type">float</span> amount)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (wallet != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> wallet.withdraw(amount);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 客户端代码</span></span><br><span class="line"><span class="type">float</span> <span class="variable">money</span> <span class="operator">=</span> customer.getPayment(<span class="number">100</span>);  <span class="comment">// 只与Customer交谈</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>减少类之间的耦合</li>
+<li>提高模块化程度</li>
+<li>更易于维护和修改</li>
+</ul>
+<h2 id="三、保持类和方法的小型化"><a href="#三、保持类和方法的小型化" class="headerlink" title="三、保持类和方法的小型化"></a>三、保持类和方法的小型化</h2><h3 id="类的大小原则"><a href="#类的大小原则" class="headerlink" title="类的大小原则"></a>类的大小原则</h3><ul>
+<li><strong>单一职责原则</strong>：一个类应该只有一个引起它变化的原因</li>
+<li>经验法则：<ul>
+<li>行数：通常不超过200-300行</li>
+<li>方法数：通常不超过10-20个</li>
+<li>属性数：通常不超过10个</li>
+</ul>
+</li>
+</ul>
+<h3 id="方法的大小原则"><a href="#方法的大小原则" class="headerlink" title="方法的大小原则"></a>方法的大小原则</h3><ul>
+<li>一个方法应该只做一件事</li>
+<li>经验法则：<ul>
+<li>行数：通常不超过屏幕高度(20-30行)</li>
+<li>嵌套层级：不超过2-3层</li>
+<li>参数个数：不超过3-4个</li>
+</ul>
+</li>
+</ul>
+<h3 id="重构技巧"><a href="#重构技巧" class="headerlink" title="重构技巧"></a>重构技巧</h3><ol>
+<li><strong>提取方法</strong>：将大方法中的代码块提取为独立方法</li>
+<li><strong>提取类</strong>：将大类中的相关功能提取到新类中</li>
+<li><strong>使用策略模式</strong>：将复杂逻辑委托给专门的策略类</li>
+</ol>
+<h2 id="四、使用有意义的名字"><a href="#四、使用有意义的名字" class="headerlink" title="四、使用有意义的名字"></a>四、使用有意义的名字</h2><h3 id="命名原则"><a href="#命名原则" class="headerlink" title="命名原则"></a>命名原则</h3><ol>
+<li><p><strong>类名</strong>：名词或名词短语，明确表示职责</p>
+<ul>
+<li>好例子：<code>Customer</code>, <code>OrderProcessor</code></li>
+<li>坏例子：<code>Data</code>, <code>Manager</code>, <code>Processor</code></li>
+</ul>
+</li>
+<li><p><strong>方法名</strong>：动词或动词短语，描述操作</p>
+<ul>
+<li>好例子：<code>calculateTotal()</code>, <code>saveToDatabase()</code></li>
+<li>坏例子：<code>process()</code>, <code>doWork()</code></li>
+</ul>
+</li>
+<li><p><strong>变量名</strong>：名词，描述存储内容</p>
+<ul>
+<li>好例子：<code>customerCount</code>, <code>isValid</code></li>
+<li>坏例子：<code>temp</code>, <code>data</code>, <code>flag</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="命名技巧"><a href="#命名技巧" class="headerlink" title="命名技巧"></a>命名技巧</h3><ul>
+<li>避免缩写（除非是广泛接受的）</li>
+<li>使用领域术语</li>
+<li>保持一致性（如全部使用<code>get</code>或全部使用<code>retrieve</code>）</li>
+<li>长度与作用域成正比（局部变量可以短，成员变量应该更详细）</li>
+</ul>
+<h2 id="五、合理使用访问修饰符"><a href="#五、合理使用访问修饰符" class="headerlink" title="五、合理使用访问修饰符"></a>五、合理使用访问修饰符</h2><h3 id="访问控制原则"><a href="#访问控制原则" class="headerlink" title="访问控制原则"></a>访问控制原则</h3><ol>
+<li><strong>私有(private)优先</strong>：除非有充分理由，否则字段和方法都应该是private的</li>
+<li><strong>逐步放宽</strong>：从最严格开始，只在必要时放宽限制</li>
+<li><strong>封装不变性</strong>：确保对象的不变量不被破坏</li>
+</ol>
+<h3 id="各语言访问修饰符对比"><a href="#各语言访问修饰符对比" class="headerlink" title="各语言访问修饰符对比"></a>各语言访问修饰符对比</h3><table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>Java&#x2F;C#&#x2F;C++</th>
+<th>Python</th>
+<th>JavaScript</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>私有</td>
+<td>private</td>
+<td><code>__prefix</code></td>
+<td>无(约定用_)</td>
+</tr>
+<tr>
+<td>保护</td>
+<td>protected</td>
+<td>无</td>
+<td>无</td>
+</tr>
+<tr>
+<td>包私有</td>
+<td>(default)</td>
+<td>无</td>
+<td>无</td>
+</tr>
+<tr>
+<td>公开</td>
+<td>public</td>
+<td>无前缀</td>
+<td>无</td>
+</tr>
+</tbody></table>
+<h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BankAccount</span> &#123;</span><br><span class="line">    <span class="comment">// 字段私有</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">float</span> balance;</span><br><span class="line">    <span class="keyword">private</span> String owner;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 通过公开方法访问</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">float</span> <span class="title function_">getBalance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> balance;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 修改方法可以添加验证</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deposit</span><span class="params">(<span class="type">float</span> amount)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (amount &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            balance += amount;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、避免上帝对象-God-Object"><a href="#六、避免上帝对象-God-Object" class="headerlink" title="六、避免上帝对象(God Object)"></a>六、避免上帝对象(God Object)</h2><h3 id="上帝对象的特征"><a href="#上帝对象的特征" class="headerlink" title="上帝对象的特征"></a>上帝对象的特征</h3><ol>
+<li>知道太多信息</li>
+<li>做太多事情</li>
+<li>与系统中太多其他对象耦合</li>
+<li>通常有数百甚至上千行代码</li>
+</ol>
+<h3 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h3><ul>
+<li>难以理解和维护</li>
+<li>难以测试</li>
+<li>修改影响范围大</li>
+<li>阻碍并行开发</li>
+</ul>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ol>
+<li><strong>职责分解</strong>：识别可以分离的职责</li>
+<li><strong>领域驱动设计</strong>：按照业务领域划分模块</li>
+<li><strong>设计模式应用</strong>：如策略模式、外观模式等</li>
+</ol>
+<h3 id="示例重构"><a href="#示例重构" class="headerlink" title="示例重构"></a>示例重构</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 上帝对象</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderProcessor</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">process</span><span class="params">(Order order)</span> &#123;</span><br><span class="line">        <span class="comment">// 验证订单</span></span><br><span class="line">        <span class="comment">// 计算价格</span></span><br><span class="line">        <span class="comment">// 检查库存</span></span><br><span class="line">        <span class="comment">// 创建发票</span></span><br><span class="line">        <span class="comment">// 发送通知</span></span><br><span class="line">        <span class="comment">// 更新数据库</span></span><br><span class="line">        <span class="comment">// ... 1000行代码</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重构后</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderValidator</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PriceCalculator</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InventoryChecker</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InvoiceGenerator</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NotificationSender</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderRepository</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderProcessor</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> OrderValidator validator;</span><br><span class="line">    <span class="keyword">private</span> PriceCalculator calculator;</span><br><span class="line">    <span class="comment">// 其他依赖...</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">process</span><span class="params">(Order order)</span> &#123;</span><br><span class="line">        validator.validate(order);</span><br><span class="line">        calculator.calculate(order);</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、合理使用接口和抽象类"><a href="#七、合理使用接口和抽象类" class="headerlink" title="七、合理使用接口和抽象类"></a>七、合理使用接口和抽象类</h2><h3 id="接口-vs-抽象类"><a href="#接口-vs-抽象类" class="headerlink" title="接口 vs 抽象类"></a>接口 vs 抽象类</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>接口(Interface)</th>
+<th>抽象类(Abstract Class)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>实例化</td>
+<td>不能</td>
+<td>不能</td>
+</tr>
+<tr>
+<td>方法实现</td>
+<td>Java8+可以有默认方法</td>
+<td>可以有具体方法</td>
+</tr>
+<tr>
+<td>字段</td>
+<td>只能有常量</td>
+<td>可以有各种字段</td>
+</tr>
+<tr>
+<td>多继承</td>
+<td>一个类可实现多个接口</td>
+<td>只能继承一个抽象类</td>
+</tr>
+<tr>
+<td>设计目的</td>
+<td>定义契约</td>
+<td>提供部分实现</td>
+</tr>
+</tbody></table>
+<h3 id="使用原则"><a href="#使用原则" class="headerlink" title="使用原则"></a>使用原则</h3><ol>
+<li><p><strong>接口用于</strong>：</p>
+<ul>
+<li>定义跨继承层次的能力</li>
+<li>需要多重继承时</li>
+<li>定义服务契约</li>
+</ul>
+</li>
+<li><p><strong>抽象类用于</strong>：</p>
+<ul>
+<li>提供部分实现</li>
+<li>有共同基类逻辑时</li>
+<li>希望控制子类如何扩展时</li>
+</ul>
+</li>
+</ol>
+<h3 id="代码示例-2"><a href="#代码示例-2" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 接口定义能力</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Flyable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Swimmable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">swim</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象类提供部分实现</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Bird</span> &#123;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">makeSound</span><span class="params">()</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">breathe</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Breathing...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Duck</span> <span class="keyword">extends</span> <span class="title class_">Bird</span> <span class="keyword">implements</span> <span class="title class_">Flyable</span>, Swimmable &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">makeSound</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Quack&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Duck flying&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swim</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Duck swimming&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="接口隔离原则-ISP"><a href="#接口隔离原则-ISP" class="headerlink" title="接口隔离原则(ISP)"></a>接口隔离原则(ISP)</h3><ul>
+<li>客户端不应该被迫依赖它们不使用的接口</li>
+<li>应该将大接口拆分为更小、更具体的接口</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 违反ISP</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Worker</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">work</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">sleep</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遵循ISP</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Workable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">work</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Eatable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Sleepable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">sleep</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过遵循这些面向对象的最佳实践，可以创建出更健壮、更灵活、更易于维护的软件系统。记住，这些原则不是铁律，而是指导方针，在实际应用中需要根据具体情况进行权衡。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>宇宙山河浪漫，赞赏动力无限</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Ice WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Ice Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.png">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/04/22/refactoring_folder_tree_structure/Deep-Analysis-of-Using-Graph-Databases-to-Handle-Tree-Structures/" rel="prev" title="使用图形数据库处理树形结构的深度解析">
+      <i class="fa fa-chevron-left"></i> 使用图形数据库处理树形结构的深度解析
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BC%98%E5%85%88%E4%BD%BF%E7%94%A8%E7%BB%84%E5%90%88%E8%80%8C%E9%9D%9E%E7%BB%A7%E6%89%BF"><span class="nav-number">1.</span> <span class="nav-text">一、优先使用组合而非继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E8%A7%A3%E6%9E%90"><span class="nav-number">1.1.</span> <span class="nav-text">概念解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%98%E5%85%88%E4%BD%BF%E7%94%A8%E7%BB%84%E5%90%88%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">为什么优先使用组合？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.3.</span> <span class="nav-text">代码示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8%E7%BB%A7%E6%89%BF%EF%BC%9F"><span class="nav-number">1.4.</span> <span class="nav-text">何时使用继承？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%81%B5%E5%BE%AA%E6%9C%80%E5%B0%8F%E7%9F%A5%E8%AF%86%E5%8E%9F%E5%88%99-%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99"><span class="nav-number">2.</span> <span class="nav-text">二、遵循最小知识原则(迪米特法则)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E8%A7%A3%E6%9E%90-1"><span class="nav-number">2.1.</span> <span class="nav-text">概念解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E8%A1%A8%E7%8E%B0"><span class="nav-number">2.2.</span> <span class="nav-text">具体表现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B-1"><span class="nav-number">2.3.</span> <span class="nav-text">代码示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">2.4.</span> <span class="nav-text">优点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BF%9D%E6%8C%81%E7%B1%BB%E5%92%8C%E6%96%B9%E6%B3%95%E7%9A%84%E5%B0%8F%E5%9E%8B%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">三、保持类和方法的小型化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%8E%9F%E5%88%99"><span class="nav-number">3.1.</span> <span class="nav-text">类的大小原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%8E%9F%E5%88%99"><span class="nav-number">3.2.</span> <span class="nav-text">方法的大小原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E6%9E%84%E6%8A%80%E5%B7%A7"><span class="nav-number">3.3.</span> <span class="nav-text">重构技巧</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8%E6%9C%89%E6%84%8F%E4%B9%89%E7%9A%84%E5%90%8D%E5%AD%97"><span class="nav-number">4.</span> <span class="nav-text">四、使用有意义的名字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E5%90%8D%E5%8E%9F%E5%88%99"><span class="nav-number">4.1.</span> <span class="nav-text">命名原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E5%90%8D%E6%8A%80%E5%B7%A7"><span class="nav-number">4.2.</span> <span class="nav-text">命名技巧</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%90%88%E7%90%86%E4%BD%BF%E7%94%A8%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">5.</span> <span class="nav-text">五、合理使用访问修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%8E%9F%E5%88%99"><span class="nav-number">5.1.</span> <span class="nav-text">访问控制原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%84%E8%AF%AD%E8%A8%80%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6%E5%AF%B9%E6%AF%94"><span class="nav-number">5.2.</span> <span class="nav-text">各语言访问修饰符对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">5.3.</span> <span class="nav-text">最佳实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E9%81%BF%E5%85%8D%E4%B8%8A%E5%B8%9D%E5%AF%B9%E8%B1%A1-God-Object"><span class="nav-number">6.</span> <span class="nav-text">六、避免上帝对象(God Object)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E5%B8%9D%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%89%B9%E5%BE%81"><span class="nav-number">6.1.</span> <span class="nav-text">上帝对象的特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B1%E5%AE%B3"><span class="nav-number">6.2.</span> <span class="nav-text">危害</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">6.3.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E9%87%8D%E6%9E%84"><span class="nav-number">6.4.</span> <span class="nav-text">示例重构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%90%88%E7%90%86%E4%BD%BF%E7%94%A8%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="nav-number">7.</span> <span class="nav-text">七、合理使用接口和抽象类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3-vs-%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="nav-number">7.1.</span> <span class="nav-text">接口 vs 抽象类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%8E%9F%E5%88%99"><span class="nav-number">7.2.</span> <span class="nav-text">使用原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B-2"><span class="nav-number">7.3.</span> <span class="nav-text">代码示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99-ISP"><span class="nav-number">7.4.</span> <span class="nav-text">接口隔离原则(ISP)</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ice</p>
+  <div class="site-description" itemprop="description">安静地坐着学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/TonyMistark" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;TonyMistark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/Micestark" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;Micestark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tony_mistark@163.com" title="E-Mail → mailto:tony_mistark@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Tony_Mistark" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Tony_Mistark" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ice</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">209k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">12:40</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '298b6503f44953bd4193',
+      clientSecret: '6756a6cfc10d74976c79256c96ae1c441f3116ac',
+      repo        : 'tonymistark.github.io',
+      owner       : 'TonyMistark',
+      admin       : ['TonyMistark'],
+      id          : '8ba2e7882112db24cf6579c725c65171',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
