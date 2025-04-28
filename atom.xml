@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-04-28T09:07:08.876Z</updated>
+  <updated>2025-04-28T09:25:37.409Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>面向对象最佳实践 Python 深入解析</title>
+    <link href="https://tonymistark.github.io/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices-python/"/>
+    <id>https://tonymistark.github.io/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices-python/</id>
+    <published>2025-04-28T09:24:50.000Z</published>
+    <updated>2025-04-28T09:25:37.409Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;下面我将通过详细的 Python 代码示例，深入讲解每个面向对象的最佳实践原则。&lt;/p&gt;
+&lt;h2 id=&quot;1-优先使用组合而非继承&quot;&gt;&lt;a href=&quot;#1-优先使用组合而非继承&quot; class=&quot;headerlink&quot; title=&quot;1.</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>面向对象最佳实践深入解析</title>
@@ -450,29 +472,6 @@
       
     
     
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Rust 中的指针详解：引用、裸指针与智能指针</title>
-    <link href="https://tonymistark.github.io/2025/03/11/rust_notes/Understanding-Rust-References/"/>
-    <id>https://tonymistark.github.io/2025/03/11/rust_notes/Understanding-Rust-References/</id>
-    <published>2025-03-11T03:44:56.000Z</published>
-    <updated>2025-03-11T03:47:29.605Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;A-Comprehensive-Guide-to-Pointers-in-Rust-References-Raw-Pointers-and-Smart-Pointers&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="rust_notes" scheme="https://tonymistark.github.io/categories/rust-notes/"/>
     
     
   </entry>

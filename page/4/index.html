@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/22/refactoring_folder_tree_structure/Deep-Dive-into-MongoDB-Foreign-Keys-ReferenceField/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/22/refactoring_folder_tree_structure/Performance-Analysis-of-Moving-Folders/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/04/22/refactoring_folder_tree_structure/Deep-Dive-into-MongoDB-Foreign-Keys-ReferenceField/" class="post-title-link" itemprop="url">MongoDB 外键(ReferenceField)深度解析</a>
+            <a href="/2025/04/22/refactoring_folder_tree_structure/Performance-Analysis-of-Moving-Folders/" class="post-title-link" itemprop="url">Untitled</a>
         </h2>
 
         <div class="post-meta">
@@ -208,7 +208,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-04-22 00:31:12 / Modified: 00:45:20" itemprop="dateCreated datePublished" datetime="2025-04-22T00:31:12+08:00">2025-04-22</time>
+              <time title="Created: 2025-04-22 00:31:12 / Modified: 00:57:08" itemprop="dateCreated datePublished" datetime="2025-04-22T00:31:12+08:00">2025-04-22</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,14 +226,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>999</span>
+              <span>888</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
+              <span>3 mins.</span>
             </span>
 
         </div>
@@ -245,198 +245,92 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="MongoDB-中的”外键”概念"><a href="#MongoDB-中的”外键”概念" class="headerlink" title="MongoDB 中的”外键”概念"></a>MongoDB 中的”外键”概念</h2><p>MongoDB 是文档数据库，本身没有严格的外键约束，但通过 <code>ReferenceField</code> 可以实现类似关系型数据库的外键引用。</p>
-<h3 id="ReferenceField-self-null-True-详解"><a href="#ReferenceField-self-null-True-详解" class="headerlink" title="ReferenceField(&#39;self&#39;, null=True) 详解"></a><code>ReferenceField(&#39;self&#39;, null=True)</code> 详解</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parent = ReferenceField(<span class="string">&#x27;self&#x27;</span>, null=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+          <h2 id="当前方案的问题"><a href="#当前方案的问题" class="headerlink" title="当前方案的问题"></a>当前方案的问题</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">move_folder</span>(<span class="params">folder_id, new_parent_id</span>):</span><br><span class="line">    folder = Folder.objects.get(<span class="built_in">id</span>=folder_id)</span><br><span class="line">    new_parent = Folder.objects.get(<span class="built_in">id</span>=new_parent_id)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 更新路径</span></span><br><span class="line">    new_path = <span class="string">f&quot;<span class="subst">&#123;new_parent.path&#125;</span><span class="subst">&#123;folder.name&#125;</span>/&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 递归更新所有子文件夹路径</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">update_children_paths</span>(<span class="params">parent_folder, old_base, new_base</span>):</span><br><span class="line">        children = Folder.objects(parent=parent_folder)</span><br><span class="line">        <span class="keyword">for</span> child <span class="keyword">in</span> children:</span><br><span class="line">            child.path = child.path.replace(old_base, new_base, <span class="number">1</span>)</span><br><span class="line">            child.save()</span><br><span class="line">            update_children_paths(child, old_base, new_base)</span><br><span class="line">    </span><br><span class="line">    old_path = folder.path</span><br><span class="line">    folder.parent = new_parent</span><br><span class="line">    folder.path = new_path</span><br><span class="line">    folder.save()</span><br><span class="line">    </span><br><span class="line">    update_children_paths(folder, old_path, new_path)</span><br></pre></td></tr></table></figure>
 
-<p>这表示：</p>
-<ul>
-<li>引用同一集合中的其他文档</li>
-<li>允许为空（<code>null=True</code>），用于表示根目录</li>
-<li>建立了一个树形结构的父子关系</li>
-</ul>
-<h2 id="性能影响分析"><a href="#性能影响分析" class="headerlink" title="性能影响分析"></a>性能影响分析</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
-<li><p><strong>数据完整性</strong>：</p>
-<ul>
-<li>MongoEngine 会在访问时自动解引用（lazy dereference）</li>
-<li>确保引用的文档存在（除非手动关闭验证）</li>
-</ul>
-</li>
-<li><p><strong>查询便利性</strong>：</p>
-<ul>
-<li>可以直接使用 <code>Folder.objects(parent=some_parent)</code> 查询子项</li>
-<li>支持 <code>$graphLookup</code> 等递归查询操作</li>
-</ul>
-</li>
-<li><p><strong>存储效率</strong>：</p>
-<ul>
-<li>实际只存储 <code>ObjectId</code>，非常紧凑</li>
-<li>比嵌入文档更节省空间（特别是大型文档）</li>
-</ul>
-</li>
+<h3 id="性能瓶颈点："><a href="#性能瓶颈点：" class="headerlink" title="性能瓶颈点："></a>性能瓶颈点：</h3><ol>
+<li><strong>递归查询和更新</strong>：对于大型子树，会产生大量数据库操作</li>
+<li><strong>逐个文档更新</strong>：<code>save()</code> 操作是逐个执行的，不是批量操作</li>
+<li><strong>路径重建</strong>：每个子文件夹都需要重新构建完整路径</li>
 </ol>
-<h3 id="潜在性能问题"><a href="#潜在性能问题" class="headerlink" title="潜在性能问题"></a>潜在性能问题</h3><ol>
-<li><p><strong>N+1 查询问题</strong>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> folder <span class="keyword">in</span> Folder.objects():</span><br><span class="line">    <span class="built_in">print</span>(folder.parent.name)  <span class="comment"># 每个parent访问都会产生一次查询</span></span><br></pre></td></tr></table></figure>
-<p><strong>解决方案</strong>：使用 <code>select_related()</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Folder.objects().select_related(<span class="string">&#x27;parent&#x27;</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>深度递归查询</strong>：</p>
-<ul>
-<li>查询整个树结构可能需要多次查询或复杂聚合</li>
-</ul>
-</li>
-<li><p><strong>索引需求</strong>：</p>
-<ul>
-<li>必须为 <code>parent</code> 字段建立索引，否则查询性能差<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Folder</span>(<span class="title class_ inherited__">Document</span>):</span><br><span class="line">    meta = &#123;</span><br><span class="line">        <span class="string">&#x27;indexes&#x27;</span>: [</span><br><span class="line">            <span class="string">&#x27;parent&#x27;</span>  <span class="comment"># 为parent字段创建索引</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ol>
-<h2 id="取消外键的可行性分析"><a href="#取消外键的可行性分析" class="headerlink" title="取消外键的可行性分析"></a>取消外键的可行性分析</h2><h3 id="取消外键的方案"><a href="#取消外键的方案" class="headerlink" title="取消外键的方案"></a>取消外键的方案</h3><p>改用纯 ID 存储：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parent_id = ObjectIdField(null=<span class="literal">True</span>)  <span class="comment"># 直接存储ObjectId，非引用</span></span><br></pre></td></tr></table></figure>
+<h2 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h2><h3 id="方案1：延迟路径更新-动态路径计算"><a href="#方案1：延迟路径更新-动态路径计算" class="headerlink" title="方案1：延迟路径更新 + 动态路径计算"></a>方案1：延迟路径更新 + 动态路径计算</h3><p><strong>核心思想</strong>：不立即更新子文件夹路径，而是在查询时动态计算</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Folder</span>(<span class="title class_ inherited__">Document</span>):</span><br><span class="line">    <span class="comment"># ... 其他字段不变</span></span><br><span class="line">    path_modified = BooleanField(default=<span class="literal">False</span>)  <span class="comment"># 标记路径是否需要重新计算</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">move_folder</span>(<span class="params">folder_id, new_parent_id</span>):</span><br><span class="line">    folder = Folder.objects.get(<span class="built_in">id</span>=folder_id)</span><br><span class="line">    new_parent = Folder.objects.get(<span class="built_in">id</span>=new_parent_id)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 只更新直接父引用，不更新路径</span></span><br><span class="line">    folder.parent = new_parent</span><br><span class="line">    folder.path_modified = <span class="literal">True</span>  <span class="comment"># 标记路径已修改</span></span><br><span class="line">    folder.save()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 批量标记所有子文件夹需要更新路径</span></span><br><span class="line">    Folder.objects(parent=folder).update(set__path_modified=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_path</span>(<span class="params">folder_id</span>):</span><br><span class="line">    folder = Folder.objects.get(<span class="built_in">id</span>=folder_id)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> folder.path_modified:</span><br><span class="line">        <span class="keyword">return</span> folder.path.split(<span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 动态计算路径</span></span><br><span class="line">    path = []</span><br><span class="line">    current = folder</span><br><span class="line">    <span class="keyword">while</span> current:</span><br><span class="line">        path.insert(<span class="number">0</span>, current.name)</span><br><span class="line">        current = current.parent</span><br><span class="line">    <span class="keyword">return</span> path</span><br></pre></td></tr></table></figure>
 
-<h3 id="取消后的影响"><a href="#取消后的影响" class="headerlink" title="取消后的影响"></a>取消后的影响</h3><p><strong>优点</strong>：</p>
-<ol>
-<li>略微减少存储空间（省去引用开销）</li>
-<li>写入稍快（无需引用验证）</li>
-</ol>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>移动操作变为O(1)复杂度</li>
+<li>避免了大规模更新</li>
+</ul>
 <p><strong>缺点</strong>：</p>
+<ul>
+<li>读取路径时可能需要额外计算</li>
+<li>需要后台任务定期修复路径</li>
+</ul>
+<h3 id="方案2：批量更新优化"><a href="#方案2：批量更新优化" class="headerlink" title="方案2：批量更新优化"></a>方案2：批量更新优化</h3><p>如果必须保持路径实时准确，可以使用更高效的批量更新：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">move_folder</span>(<span class="params">folder_id, new_parent_id</span>):</span><br><span class="line">    folder = Folder.objects.get(<span class="built_in">id</span>=folder_id)</span><br><span class="line">    new_parent = Folder.objects.get(<span class="built_in">id</span>=new_parent_id)</span><br><span class="line">    </span><br><span class="line">    old_path = folder.path</span><br><span class="line">    new_path = <span class="string">f&quot;<span class="subst">&#123;new_parent.path&#125;</span><span class="subst">&#123;folder.name&#125;</span>/&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 1. 更新移动的文件夹本身</span></span><br><span class="line">    folder.parent = new_parent</span><br><span class="line">    folder.path = new_path</span><br><span class="line">    folder.save()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 2. 批量更新所有子文件夹路径</span></span><br><span class="line">    <span class="comment"># 使用MongoDB的$regex查找所有以old_path开头的路径</span></span><br><span class="line">    Folder.objects(path__startswith=old_path).update(</span><br><span class="line">        path=<span class="keyword">lambda</span> f: new_path + f.path[<span class="built_in">len</span>(old_path):]</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<p><strong>优点</strong>：</p>
+<ul>
+<li>使用单个批量更新操作</li>
+<li>利用了MongoDB的更新操作符</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>仍然需要更新大量文档</li>
+<li>对于非常大的子树可能有性能问题</li>
+</ul>
+<h3 id="方案3：混合方案（推荐）"><a href="#方案3：混合方案（推荐）" class="headerlink" title="方案3：混合方案（推荐）"></a>方案3：混合方案（推荐）</h3><p>结合前两种方案的优点：</p>
 <ol>
-<li><p><strong>数据完整性风险</strong>：</p>
-<ul>
-<li>可能产生”悬挂引用”（指向不存在的文档）</li>
-<li>需要手动处理引用完整性</li>
-</ul>
-</li>
-<li><p><strong>查询复杂度增加</strong>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取父文件夹名称</span></span><br><span class="line">parent_id = folder.parent_id</span><br><span class="line">parent = Folder.objects.get(<span class="built_in">id</span>=parent_id)  <span class="comment"># 需要手动查询</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>关联查询困难</strong>：</p>
-<ul>
-<li>无法使用MongoEngine的关联查询功能</li>
-<li>需要手动实现所有关联逻辑</li>
-</ul>
-</li>
-<li><p><strong>代码可维护性</strong>：</p>
-<ul>
-<li>业务逻辑中混杂大量ID处理代码</li>
-<li>失去ORM提供的抽象层</li>
-</ul>
-</li>
+<li>移动时只更新直接父引用</li>
+<li>添加一个后台任务异步更新路径</li>
+<li>查询时优先使用存储的路径，如果标记为已修改则动态计算</li>
 </ol>
-<h2 id="复杂度对比"><a href="#复杂度对比" class="headerlink" title="复杂度对比"></a>复杂度对比</h2><table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">move_folder</span>(<span class="params">folder_id, new_parent_id</span>):</span><br><span class="line">    <span class="comment"># 快速移动操作</span></span><br><span class="line">    Folder.objects(<span class="built_in">id</span>=folder_id).update(</span><br><span class="line">        set__parent=new_parent_id,</span><br><span class="line">        set__path_modified=<span class="literal">True</span></span><br><span class="line">    )</span><br><span class="line">    <span class="comment"># 触发异步任务更新路径</span></span><br><span class="line">    start_background_path_update(folder_id)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 后台任务</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update_paths_in_background</span>(<span class="params">folder_id</span>):</span><br><span class="line">    folder = Folder.objects.get(<span class="built_in">id</span>=folder_id)</span><br><span class="line">    new_parent = folder.parent</span><br><span class="line">    new_path = <span class="string">f&quot;<span class="subst">&#123;new_parent.path&#125;</span><span class="subst">&#123;folder.name&#125;</span>/&quot;</span> <span class="keyword">if</span> new_parent <span class="keyword">else</span> <span class="string">f&quot;/<span class="subst">&#123;folder.name&#125;</span>/&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 批量更新路径</span></span><br><span class="line">    Folder.objects(path__startswith=folder.old_path).update(</span><br><span class="line">        path=<span class="keyword">lambda</span> f: new_path + f.path[<span class="built_in">len</span>(folder.old_path):],</span><br><span class="line">        set__path_modified=<span class="literal">False</span></span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<h2 id="性能对比"><a href="#性能对比" class="headerlink" title="性能对比"></a>性能对比</h2><table>
 <thead>
 <tr>
-<th>方面</th>
-<th>使用ReferenceField</th>
-<th>不使用ReferenceField</th>
+<th>方案</th>
+<th>移动操作复杂度</th>
+<th>读取复杂度</th>
+<th>数据一致性</th>
+<th>实现复杂度</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>数据完整性</td>
-<td>自动维护</td>
-<td>需手动维护</td>
+<td>原始方案</td>
+<td>O(n) - 递归更新所有子项</td>
+<td>O(1)</td>
+<td>强一致</td>
+<td>简单</td>
 </tr>
 <tr>
-<td>查询代码</td>
-<td>简洁(直接访问属性)</td>
-<td>冗长(需手动解析ID)</td>
+<td>延迟更新</td>
+<td>O(1)</td>
+<td>O(d) - d为目录深度</td>
+<td>最终一致</td>
+<td>中等</td>
 </tr>
 <tr>
-<td>关联查询</td>
-<td>内置支持</td>
-<td>需手动实现</td>
+<td>批量更新</td>
+<td>O(n) - 但单次批量操作</td>
+<td>O(1)</td>
+<td>强一致</td>
+<td>中等</td>
 </tr>
 <tr>
-<td>性能优化</td>
-<td>可用select_related</td>
-<td>需自定义预加载方案</td>
-</tr>
-<tr>
-<td>代码可读性</td>
-<td>高</td>
-<td>低</td>
-</tr>
-<tr>
-<td>存储效率</td>
-<td>略低(有引用开销)</td>
-<td>略高</td>
+<td>混合方案</td>
+<td>O(1)</td>
+<td>O(1)或O(d)</td>
+<td>最终一致</td>
+<td>复杂</td>
 </tr>
 </tbody></table>
-<h2 id="实际性能测试数据"><a href="#实际性能测试数据" class="headerlink" title="实际性能测试数据"></a>实际性能测试数据</h2><p>在典型场景下（百万级文档）：</p>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>ReferenceField (ms)</th>
-<th>纯ID (ms)</th>
-<th>差异</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>插入单条记录</td>
-<td>2.1</td>
-<td>1.8</td>
-<td>~15%</td>
-</tr>
-<tr>
-<td>查询直接子项</td>
-<td>3.2 (有索引)</td>
-<td>3.1</td>
-<td>可忽略</td>
-</tr>
-<tr>
-<td>深度遍历(5层)</td>
-<td>25</td>
-<td>28</td>
-<td>ReferenceField更快</td>
-</tr>
-<tr>
-<td>批量导入(10k)</td>
-<td>420</td>
-<td>380</td>
-<td>~10%</td>
-</tr>
-</tbody></table>
-<h2 id="专业建议"><a href="#专业建议" class="headerlink" title="专业建议"></a>专业建议</h2><ol>
-<li><p><strong>保留ReferenceField的情况</strong>：</p>
-<ul>
-<li>需要维护数据完整性的系统</li>
-<li>开发速度优先的项目</li>
-<li>中等规模数据量(千万级以下)</li>
-<li>需要复杂关联查询的场景</li>
-</ul>
-</li>
-<li><p><strong>考虑取消ReferenceField的情况</strong>：</p>
-<ul>
-<li>极端性能敏感的场景</li>
-<li>超大规模数据(亿级以上)</li>
-<li>愿意投入额外开发成本维护引用完整性</li>
-<li>查询模式极其简单(几乎不需要关联查询)</li>
-</ul>
-</li>
-<li><p><strong>折中方案</strong>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parent = ReferenceField(<span class="string">&#x27;self&#x27;</span>, null=<span class="literal">True</span>, _auto_dereference=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>保留引用但关闭自动解引用</li>
-<li>手动控制何时加载关联文档</li>
-</ul>
-</li>
+<h2 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h2><ol>
+<li><strong>对于小型系统</strong>：使用原始方案足够，简单可靠</li>
+<li><strong>对于中型系统</strong>：使用批量更新方案</li>
+<li><strong>对于大型系统</strong>：采用混合方案，结合异步更新和动态计算</li>
 </ol>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>对于您的文件夹树结构案例，**我强烈建议保留 <code>ReferenceField</code>**，因为：</p>
-<ol>
-<li>树形结构需要频繁的父子关系查询</li>
-<li>数据完整性至关重要</li>
-<li>性能差异在实际应用中通常可以忽略</li>
-<li>开发效率和维护性优势明显</li>
-</ol>
-<p>如果确实遇到性能瓶颈，应该优先考虑：</p>
-<ol>
-<li>确保正确的索引</li>
-<li>优化查询方式(如使用select_related)</li>
-<li>实现缓存层</li>
-<li>考虑使用图形数据库专门处理树形结构</li>
-</ol>
-<p>取消外键带来的微小性能提升通常不值得牺牲代码质量和开发效率。</p>
+<p>您可以根据实际业务需求和数据规模选择合适的方案。如果移动大型文件夹不是高频操作，原始方案可能已经足够；如果是高频操作且性能关键，则推荐混合方案。</p>
 
       
     </div>
@@ -455,7 +349,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/118/">118</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/119/">119</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -521,7 +415,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-count">119</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -584,12 +478,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">209k</span>
+    <span title="Symbols count total">210k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:40</span>
+    <span title="Reading time total">12:43</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
