@@ -4,6 +4,8 @@ date: 2025-06-13 09:38:38
 tags: 
 ---
 
+[原文](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+
 <div align="center"> <img src="/images/CleanArchitecture.jpg"/></div>
 近年来，我们见证了许多关于系统架构的理念，包括：
 
