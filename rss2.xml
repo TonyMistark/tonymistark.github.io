@@ -15,7 +15,7 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Fri, 13 Jun 2025 10:03:13 GMT</pubDate>
+    <pubDate>Fri, 13 Jun 2025 10:13:06 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -28,11 +28,8 @@
         
           
           
-      <description>&lt;div align=&quot;center&quot;&gt; &lt;img src=&quot;/images/CleanArchitecture.jpg&quot;/&gt;&lt;/div&gt;
-近年来，我们见证了许多关于系统架构的理念，包括：
-
-&lt;ul&gt;
-&lt;li&gt;六边形架构（Hexagonal</description>
+      <description>&lt;p&gt;&lt;a href=&quot;https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html&quot;&gt;原文&lt;/a&gt;&lt;/p&gt;
+&lt;div align=&quot;center&quot;&gt; &lt;img</description>
           
         
       

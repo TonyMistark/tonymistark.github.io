@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-06-13T10:03:13.700Z</updated>
+  <updated>2025-06-13T10:13:06.410Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -21,18 +21,15 @@
     <link href="https://tonymistark.github.io/2025/06/13/The-Clean-Architecture/"/>
     <id>https://tonymistark.github.io/2025/06/13/The-Clean-Architecture/</id>
     <published>2025-06-13T01:38:38.000Z</published>
-    <updated>2025-06-13T10:03:13.700Z</updated>
+    <updated>2025-06-13T10:13:06.410Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;div align=&quot;center&quot;&gt; &lt;img src=&quot;/images/CleanArchitecture.jpg&quot;/&gt;&lt;/div&gt;
-近年来，我们见证了许多关于系统架构的理念，包括：
-
-&lt;ul&gt;
-&lt;li&gt;六边形架构（Hexagonal</summary>
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html&quot;&gt;原文&lt;/a&gt;&lt;/p&gt;
+&lt;div align=&quot;center&quot;&gt; &lt;img</summary>
         
       
     

@@ -7326,7 +7326,8 @@ All of that said, in absolute sense I’d much rather live in the world of today
   <entry>
     <title>The Clean Architecture</title>
     <url>/2025/06/13/The-Clean-Architecture/</url>
-    <content><![CDATA[<div align="center"> <img src="/images/CleanArchitecture.jpg"/></div>
+    <content><![CDATA[<p><a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html">原文</a></p>
+<div align="center"> <img src="/images/CleanArchitecture.jpg"/></div>
 近年来，我们见证了许多关于系统架构的理念，包括：
 
 <ul>
