@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/03/11/rust_notes/Understanding-Rust-References/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/03/12/A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/03/11/rust_notes/Understanding-Rust-References/" class="post-title-link" itemprop="url">Rust 中的指针详解：引用、裸指针与智能指针</a>
+            <a href="/2025/03/12/A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go/" class="post-title-link" itemprop="url">Go语言面向对象编程详解：结构体、方法与接口的应用</a>
         </h2>
 
         <div class="post-meta">
@@ -208,16 +208,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-03-11 11:44:56 / Modified: 11:47:29" itemprop="dateCreated datePublished" datetime="2025-03-11T11:44:56+08:00">2025-03-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/rust-notes/" itemprop="url" rel="index"><span itemprop="name">rust_notes</span></a>
-                </span>
+              <time title="Created: 2025-03-12 15:00:43 / Modified: 15:01:34" itemprop="dateCreated datePublished" datetime="2025-03-12T15:00:43+08:00">2025-03-12</time>
             </span>
 
           <br>
@@ -226,7 +217,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.2k</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -245,92 +236,44 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="A-Comprehensive-Guide-to-Pointers-in-Rust-References-Raw-Pointers-and-Smart-Pointers"><a href="#A-Comprehensive-Guide-to-Pointers-in-Rust-References-Raw-Pointers-and-Smart-Pointers" class="headerlink" title="A Comprehensive Guide to Pointers in Rust: References, Raw Pointers, and Smart Pointers"></a>A Comprehensive Guide to Pointers in Rust: References, Raw Pointers, and Smart Pointers</h2><p>在 Rust 中，指针是用于引用内存地址的类型。Rust 提供了多种指针类型，每种类型都有不同的所有权、借用和生命周期语义。以下是 Rust 中常见的指针类型及其详细讲解：</p>
-<h3 id="1-引用（References）"><a href="#1-引用（References）" class="headerlink" title="1. 引用（References）"></a>1. 引用（References）</h3><p>引用是 Rust 中最常见的指针类型，分为不可变引用（<code>&amp;T</code>）和可变引用（<code>&amp;mut T</code>）。</p>
-<ul>
-<li><p><strong>不可变引用 (<code>&amp;T</code>)</strong>:</p>
-<ul>
-<li>允许多个不可变引用同时存在。</li>
-<li>不能通过不可变引用修改数据。</li>
-<li>生命周期由编译器自动推断或显式指定。</li>
-</ul>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = &amp;x; <span class="comment">// y 是一个不可变引用</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 解引用 y 获取值</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>可变引用 (<code>&amp;mut T</code>)</strong>:</p>
-<ul>
-<li>同一时间只能有一个可变引用。</li>
-<li>可以通过可变引用修改数据。</li>
-<li>生命周期由编译器自动推断或显式指定。</li>
-</ul>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = &amp;<span class="keyword">mut</span> x; <span class="comment">// y 是一个可变引用</span></span><br><span class="line">*y += <span class="number">1</span>; <span class="comment">// 通过 y 修改 x 的值</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, x); <span class="comment">// 输出 6</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="2-裸指针（Raw-Pointers）"><a href="#2-裸指针（Raw-Pointers）" class="headerlink" title="2. 裸指针（Raw Pointers）"></a>2. 裸指针（Raw Pointers）</h3><p>裸指针是不安全的指针类型，分为不可变裸指针（<code>*const T</code>）和可变裸指针（<code>*mut T</code>）。</p>
-<ul>
-<li><p><strong>不可变裸指针 (<code>*const T</code>)</strong>:</p>
-<ul>
-<li>不保证指针的有效性。</li>
-<li>不能通过不可变裸指针修改数据。</li>
-<li>通常用于与 C 代码交互或实现底层抽象。</li>
-</ul>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = &amp;x <span class="keyword">as</span> *<span class="keyword">const</span> <span class="type">i32</span>; <span class="comment">// y 是一个不可变裸指针</span></span><br><span class="line"><span class="keyword">unsafe</span> &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 解引用裸指针需要 unsafe 块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>可变裸指针 (<code>*mut T</code>)</strong>:</p>
-<ul>
-<li>不保证指针的有效性。</li>
-<li>可以通过可变裸指针修改数据。</li>
-<li>通常用于与 C 代码交互或实现底层抽象。</li>
-</ul>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = &amp;<span class="keyword">mut</span> x <span class="keyword">as</span> *<span class="keyword">mut</span> <span class="type">i32</span>; <span class="comment">// y 是一个可变裸指针</span></span><br><span class="line"><span class="keyword">unsafe</span> &#123;</span><br><span class="line">    *y += <span class="number">1</span>; <span class="comment">// 通过 y 修改 x 的值</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, x); <span class="comment">// 输出 6</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="3-智能指针（Smart-Pointers）"><a href="#3-智能指针（Smart-Pointers）" class="headerlink" title="3. 智能指针（Smart Pointers）"></a>3. 智能指针（Smart Pointers）</h3><p>智能指针是 Rust 中提供的一种高级指针类型，它们不仅包含指针，还包含额外的元数据和功能。</p>
-<ul>
-<li><p><strong><code>Box&lt;T&gt;</code></strong>:</p>
-<ul>
-<li>用于在堆上分配内存。</li>
-<li>拥有所有权，当 <code>Box</code> 离开作用域时，会自动释放内存。</li>
-<li>适用于单一所有权场景。</li>
-</ul>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = <span class="type">Box</span>::<span class="title function_ invoke__">new</span>(<span class="number">5</span>); <span class="comment">// x 是一个 Box，指向堆上的整数 5</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *x); <span class="comment">// 解引用 Box 获取值</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong><code>Rc&lt;T&gt;</code></strong>:</p>
-<ul>
-<li>引用计数智能指针，允许多个所有者。</li>
-<li>适用于共享所有权场景。</li>
-<li>只能用于单线程环境。</li>
-</ul>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::rc::Rc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = Rc::<span class="title function_ invoke__">new</span>(<span class="number">5</span>); <span class="comment">// x 是一个 Rc，指向堆上的整数 5</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = Rc::<span class="title function_ invoke__">clone</span>(&amp;x); <span class="comment">// y 是 x 的一个克隆，引用计数增加</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 解引用 Rc 获取值</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong><code>Arc&lt;T&gt;</code></strong>:</p>
-<ul>
-<li>原子引用计数智能指针，允许多个所有者。</li>
-<li>适用于多线程环境。</li>
-<li>类似于 <code>Rc&lt;T&gt;</code>，但使用原子操作保证线程安全。</li>
-</ul>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::sync::Arc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = Arc::<span class="title function_ invoke__">new</span>(<span class="number">5</span>); <span class="comment">// x 是一个 Arc，指向堆上的整数 5</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = Arc::<span class="title function_ invoke__">clone</span>(&amp;x); <span class="comment">// y 是 x 的一个克隆，引用计数增加</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 解引用 Arc 获取值</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong><code>RefCell&lt;T&gt;</code></strong>:</p>
-<ul>
-<li>提供内部可变性，允许在不可变引用的情况下修改数据。</li>
-<li>适用于单线程环境。</li>
-<li>在运行时检查借用规则。</li>
-</ul>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::cell::RefCell;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = RefCell::<span class="title function_ invoke__">new</span>(<span class="number">5</span>); <span class="comment">// x 是一个 RefCell，包含整数 5</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">y</span> = x.<span class="title function_ invoke__">borrow_mut</span>(); <span class="comment">// 获取可变引用</span></span><br><span class="line">*y += <span class="number">1</span>; <span class="comment">// 修改值</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 输出 6</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong><code>Mutex&lt;T&gt;</code></strong>:</p>
-<ul>
-<li>提供线程安全的内部可变性。</li>
-<li>适用于多线程环境。</li>
-<li>在访问数据时加锁，保证线程安全。</li>
-</ul>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::sync::Mutex;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = Mutex::<span class="title function_ invoke__">new</span>(<span class="number">5</span>); <span class="comment">// x 是一个 Mutex，包含整数 5</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">y</span> = x.<span class="title function_ invoke__">lock</span>().<span class="title function_ invoke__">unwrap</span>(); <span class="comment">// 获取锁并修改值</span></span><br><span class="line">*y += <span class="number">1</span>; <span class="comment">// 修改值</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 输出 6</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="4-函数指针（Function-Pointers）"><a href="#4-函数指针（Function-Pointers）" class="headerlink" title="4. 函数指针（Function Pointers）"></a>4. 函数指针（Function Pointers）</h3><p>函数指针是指向函数的指针类型，通常用于将函数作为参数传递或存储在数据结构中。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">add</span>(a: <span class="type">i32</span>, b: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">f</span>: <span class="title function_ invoke__">fn</span>(<span class="type">i32</span>, <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> = add; <span class="comment">// f 是一个函数指针，指向 add 函数</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, <span class="title function_ invoke__">f</span>(<span class="number">1</span>, <span class="number">2</span>)); <span class="comment">// 调用函数指针</span></span><br></pre></td></tr></table></figure>
+          <h2 id="A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go"><a href="#A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go" class="headerlink" title="A Comprehensive Guide to Object-Oriented Programming in Go"></a>A Comprehensive Guide to Object-Oriented Programming in Go</h2><p>Go语言（Golang）虽然不像Java或C++那样是典型的面向对象编程语言，但它通过结构体（struct）、方法（method）、接口（interface）等机制支持面向对象编程（OOP）的核心概念。以下是对Go语言中面向对象编程的详细讲解：</p>
+<h3 id="1-结构体（Struct）"><a href="#1-结构体（Struct）" class="headerlink" title="1. 结构体（Struct）"></a>1. 结构体（Struct）</h3><p>结构体是Go语言中实现自定义数据类型的基础。结构体可以包含多个字段，每个字段可以是不同的数据类型。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Person <span class="keyword">struct</span> &#123;</span><br><span class="line">    Name <span class="type">string</span></span><br><span class="line">    Age  <span class="type">int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="5-切片（Slices）"><a href="#5-切片（Slices）" class="headerlink" title="5. 切片（Slices）"></a>5. 切片（Slices）</h3><p>切片是对数组或向量的一部分的引用，包含一个指针和长度信息。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">arr</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> <span class="variable">slice</span> = &amp;arr[<span class="number">1</span>..<span class="number">3</span>]; <span class="comment">// slice 是一个切片，引用 arr 的第 2 和第 3 个元素</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, slice); <span class="comment">// 输出 [2, 3]</span></span><br></pre></td></tr></table></figure>
+<p>在上面的例子中，<code>Person</code>结构体有两个字段：<code>Name</code>（字符串类型）和<code>Age</code>（整数类型）。</p>
+<h3 id="2-方法（Method）"><a href="#2-方法（Method）" class="headerlink" title="2. 方法（Method）"></a>2. 方法（Method）</h3><p>Go语言中的方法是与特定类型关联的函数。方法可以定义在结构体上，从而为结构体添加行为。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p Person)</span></span> SayHello() &#123;</span><br><span class="line">    fmt.Printf(<span class="string">&quot;Hello, my name is %s and I am %d years old.\n&quot;</span>, p.Name, p.Age)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Rust 提供了多种指针类型，每种类型都有不同的用途和语义。引用是最常用的指针类型，提供了安全的借用和生命周期管理。裸指针用于底层操作，但需要小心使用。智能指针提供了更高级的内存管理功能，适用于不同的所有权和并发场景。函数指针和切片则用于特定的编程模式。理解这些指针类型及其适用场景是掌握 Rust 内存管理和安全性的关键。</p>
+<p>在上面的例子中，<code>SayHello</code>方法与<code>Person</code>结构体关联。可以通过<code>Person</code>类型的实例调用该方法：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p := Person&#123;Name: <span class="string">&quot;Alice&quot;</span>, Age: <span class="number">30</span>&#125;</span><br><span class="line">p.SayHello() <span class="comment">// 输出: Hello, my name is Alice and I am 30 years old.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-接口（Interface）"><a href="#3-接口（Interface）" class="headerlink" title="3. 接口（Interface）"></a>3. 接口（Interface）</h3><p>接口是Go语言中实现多态的关键机制。接口定义了一组方法签名，任何实现了这些方法的类型都隐式地实现了该接口。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Speaker <span class="keyword">interface</span> &#123;</span><br><span class="line">    SayHello()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的例子中，<code>Speaker</code>接口定义了一个<code>SayHello</code>方法。由于<code>Person</code>类型实现了<code>SayHello</code>方法，因此<code>Person</code>类型隐式地实现了<code>Speaker</code>接口。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s Speaker = Person&#123;Name: <span class="string">&quot;Bob&quot;</span>, Age: <span class="number">25</span>&#125;</span><br><span class="line">s.SayHello() <span class="comment">// 输出: Hello, my name is Bob and I am 25 years old.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-封装（Encapsulation）"><a href="#4-封装（Encapsulation）" class="headerlink" title="4. 封装（Encapsulation）"></a>4. 封装（Encapsulation）</h3><p>Go语言通过大小写来控制访问权限。首字母大写的字段和方法是公开的（public），可以在包外访问；首字母小写的字段和方法是私有的（private），只能在包内访问。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Person <span class="keyword">struct</span> &#123;</span><br><span class="line">    name <span class="type">string</span> <span class="comment">// 私有字段</span></span><br><span class="line">    Age  <span class="type">int</span>    <span class="comment">// 公共字段</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p Person)</span></span> getName() <span class="type">string</span> &#123; <span class="comment">// 私有方法</span></span><br><span class="line">    <span class="keyword">return</span> p.name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p Person)</span></span> GetName() <span class="type">string</span> &#123; <span class="comment">// 公共方法</span></span><br><span class="line">    <span class="keyword">return</span> p.name</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-继承（Inheritance）"><a href="#5-继承（Inheritance）" class="headerlink" title="5. 继承（Inheritance）"></a>5. 继承（Inheritance）</h3><p>Go语言没有传统的类继承机制，但可以通过嵌入结构体来实现类似继承的效果。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Animal <span class="keyword">struct</span> &#123;</span><br><span class="line">    Name <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(a Animal)</span></span> Speak() &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;Animal speaks&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Dog <span class="keyword">struct</span> &#123;</span><br><span class="line">    Animal <span class="comment">// 嵌入Animal结构体</span></span><br><span class="line">    Breed  <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(d Dog)</span></span> Speak() &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;Dog barks&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的例子中，<code>Dog</code>结构体嵌入了<code>Animal</code>结构体，从而继承了<code>Animal</code>的字段和方法。<code>Dog</code>也可以重写<code>Animal</code>的方法。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">d := Dog&#123;Animal: Animal&#123;Name: <span class="string">&quot;Buddy&quot;</span>&#125;, Breed: <span class="string">&quot;Golden Retriever&quot;</span>&#125;</span><br><span class="line">d.Speak() <span class="comment">// 输出: Dog barks</span></span><br><span class="line">fmt.Println(d.Name) <span class="comment">// 输出: Buddy</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-多态（Polymorphism）"><a href="#6-多态（Polymorphism）" class="headerlink" title="6. 多态（Polymorphism）"></a>6. 多态（Polymorphism）</h3><p>多态是指同一个接口可以被不同的类型实现，从而在不同的上下文中表现出不同的行为。Go语言通过接口实现多态。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Shape <span class="keyword">interface</span> &#123;</span><br><span class="line">    Area() <span class="type">float64</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Circle <span class="keyword">struct</span> &#123;</span><br><span class="line">    Radius <span class="type">float64</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c Circle)</span></span> Area() <span class="type">float64</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> math.Pi * c.Radius * c.Radius</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Rectangle <span class="keyword">struct</span> &#123;</span><br><span class="line">    Width, Height <span class="type">float64</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r Rectangle)</span></span> Area() <span class="type">float64</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> r.Width * r.Height</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printArea</span><span class="params">(s Shape)</span></span> &#123;</span><br><span class="line">    fmt.Printf(<span class="string">&quot;Area: %f\n&quot;</span>, s.Area())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    c := Circle&#123;Radius: <span class="number">5</span>&#125;</span><br><span class="line">    r := Rectangle&#123;Width: <span class="number">10</span>, Height: <span class="number">5</span>&#125;</span><br><span class="line"></span><br><span class="line">    printArea(c) <span class="comment">// 输出: Area: 78.539816</span></span><br><span class="line">    printArea(r) <span class="comment">// 输出: Area: 50.000000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的例子中，<code>Circle</code>和<code>Rectangle</code>都实现了<code>Shape</code>接口，因此可以将它们传递给<code>printArea</code>函数，函数会根据传入的具体类型调用相应的<code>Area</code>方法。</p>
+<h3 id="7-组合（Composition）"><a href="#7-组合（Composition）" class="headerlink" title="7. 组合（Composition）"></a>7. 组合（Composition）</h3><p>Go语言鼓励使用组合而不是继承。通过组合不同的结构体，可以构建更复杂的数据结构。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Engine <span class="keyword">struct</span> &#123;</span><br><span class="line">    Power <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Car <span class="keyword">struct</span> &#123;</span><br><span class="line">    Engine <span class="comment">// 嵌入Engine结构体</span></span><br><span class="line">    Brand  <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    c := Car&#123;Engine: Engine&#123;Power: <span class="number">150</span>&#125;, Brand: <span class="string">&quot;Toyota&quot;</span>&#125;</span><br><span class="line">    fmt.Println(c.Power) <span class="comment">// 输出: 150</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的例子中，<code>Car</code>结构体通过嵌入<code>Engine</code>结构体，获得了<code>Engine</code>的字段和方法。</p>
+<h3 id="8-空接口（Empty-Interface）"><a href="#8-空接口（Empty-Interface）" class="headerlink" title="8. 空接口（Empty Interface）"></a>8. 空接口（Empty Interface）</h3><p>空接口<code>interface&#123;&#125;</code>可以表示任何类型，类似于Java中的<code>Object</code>类。空接口常用于需要处理未知类型数据的场景。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printType</span><span class="params">(i <span class="keyword">interface</span>&#123;&#125;)</span></span> &#123;</span><br><span class="line">    fmt.Printf(<span class="string">&quot;Type: %T, Value: %v\n&quot;</span>, i, i)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    printType(<span class="number">42</span>)         <span class="comment">// 输出: Type: int, Value: 42</span></span><br><span class="line">    printType(<span class="string">&quot;Hello&quot;</span>)    <span class="comment">// 输出: Type: string, Value: Hello</span></span><br><span class="line">    printType(<span class="number">3.14</span>)       <span class="comment">// 输出: Type: float64, Value: 3.14</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Go语言通过结构体、方法、接口等机制支持面向对象编程的核心概念。虽然Go语言没有传统的类和继承机制，但通过结构体嵌入和接口组合，可以实现类似的功能。Go语言的面向对象编程风格更倾向于组合和接口，而不是继承，这使得代码更加灵活和易于维护。</p>
 
       
     </div>
@@ -349,7 +292,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/119/">119</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/120/">120</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -415,7 +358,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">119</span>
+          <span class="site-state-item-count">120</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -478,12 +421,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">210k</span>
+    <span title="Symbols count total">212k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:43</span>
+    <span title="Reading time total">12:50</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/22/refactoring_folder_tree_structure/Deep-Analysis-of-Using-Graph-Databases-to-Handle-Tree-Structures/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/04/22/refactoring_folder_tree_structure/Deep-Analysis-of-Using-Graph-Databases-to-Handle-Tree-Structures/" class="post-title-link" itemprop="url">使用图形数据库处理树形结构的深度解析</a>
+            <a href="/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices/" class="post-title-link" itemprop="url">面向对象最佳实践深入解析</a>
         </h2>
 
         <div class="post-meta">
@@ -208,16 +208,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-04-22 00:32:34 / Modified: 00:33:23" itemprop="dateCreated datePublished" datetime="2025-04-22T00:32:34+08:00">2025-04-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/refactoring-folder-tree-structure/" itemprop="url" rel="index"><span itemprop="name">refactoring_folder_tree_structure</span></a>
-                </span>
+              <time title="Created: 2025-04-28 17:06:02 / Modified: 17:07:08" itemprop="dateCreated datePublished" datetime="2025-04-28T17:06:02+08:00">2025-04-28</time>
             </span>
 
           <br>
@@ -226,14 +217,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.3k</span>
+              <span>1.6k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>5 mins.</span>
+              <span>6 mins.</span>
             </span>
 
         </div>
@@ -245,181 +236,211 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="使用图形数据库处理树形结构的深度解析"><a href="#使用图形数据库处理树形结构的深度解析" class="headerlink" title="使用图形数据库处理树形结构的深度解析"></a>使用图形数据库处理树形结构的深度解析</h1><p>当您的文件夹树形结构变得非常庞大和复杂时，传统文档数据库如MongoDB可能遇到性能瓶颈。这时图形数据库(Graph Database)可以成为更优化的解决方案。</p>
-<h2 id="为什么图形数据库适合树形结构？"><a href="#为什么图形数据库适合树形结构？" class="headerlink" title="为什么图形数据库适合树形结构？"></a>为什么图形数据库适合树形结构？</h2><h3 id="核心优势对比"><a href="#核心优势对比" class="headerlink" title="核心优势对比"></a>核心优势对比</h3><table>
+          <p>面向对象编程的最佳实践是多年软件开发经验的结晶，遵循这些原则可以显著提高代码质量、可维护性和可扩展性。下面我将对这些最佳实践进行深入讲解。</p>
+<h2 id="一、优先使用组合而非继承"><a href="#一、优先使用组合而非继承" class="headerlink" title="一、优先使用组合而非继承"></a>一、优先使用组合而非继承</h2><h3 id="概念解析"><a href="#概念解析" class="headerlink" title="概念解析"></a>概念解析</h3><p>组合(Composition)是指一个类包含另一个类的实例作为其成员变量，通过委托来使用其功能，而不是通过继承获得父类的功能。</p>
+<h3 id="为什么优先使用组合？"><a href="#为什么优先使用组合？" class="headerlink" title="为什么优先使用组合？"></a>为什么优先使用组合？</h3><ol>
+<li><strong>更松散的耦合</strong>：组合对象可以在运行时动态更换</li>
+<li><strong>更好的封装</strong>：内部实现细节被隐藏</li>
+<li><strong>避免继承层次过深</strong>：继承链过长会导致”脆弱基类问题”</li>
+<li><strong>更灵活</strong>：可以组合多个不同类的功能</li>
+</ol>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用继承（不推荐）</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Engine</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">start</span><span class="params">()</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> <span class="keyword">extends</span> <span class="title class_">Engine</span> &#123;  <span class="comment">// Car不是Engine的一种，这是不好的设计</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用组合（推荐）</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Engine engine;  <span class="comment">// Car有一个Engine</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Car</span><span class="params">(Engine engine)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.engine = engine;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">start</span><span class="params">()</span> &#123;</span><br><span class="line">        engine.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="何时使用继承？"><a href="#何时使用继承？" class="headerlink" title="何时使用继承？"></a>何时使用继承？</h3><ul>
+<li>当确实是”is-a”关系时（如Dog是Animal）</li>
+<li>需要多态行为时</li>
+<li>子类确实是父类的特殊化</li>
+</ul>
+<h2 id="二、遵循最小知识原则-迪米特法则"><a href="#二、遵循最小知识原则-迪米特法则" class="headerlink" title="二、遵循最小知识原则(迪米特法则)"></a>二、遵循最小知识原则(迪米特法则)</h2><h3 id="概念解析-1"><a href="#概念解析-1" class="headerlink" title="概念解析"></a>概念解析</h3><p>迪米特法则(Law of Demeter)规定：</p>
+<ol>
+<li>每个单元只应该了解与它密切相关的单元</li>
+<li>只与直接朋友交谈</li>
+<li>不要与陌生人交谈</li>
+</ol>
+<h3 id="具体表现"><a href="#具体表现" class="headerlink" title="具体表现"></a>具体表现</h3><ul>
+<li>对象O的方法M只能调用以下对象的方法：<ol>
+<li>O本身</li>
+<li>M的参数</li>
+<li>O直接包含的对象</li>
+<li>M中创建的对象</li>
+</ol>
+</li>
+</ul>
+<h3 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 违反迪米特法则</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Customer</span> &#123;</span><br><span class="line">    Wallet wallet;</span><br><span class="line">    </span><br><span class="line">    Wallet <span class="title function_">getWallet</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> wallet;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 客户端代码</span></span><br><span class="line"><span class="type">float</span> <span class="variable">money</span> <span class="operator">=</span> customer.getWallet().getMoney();  <span class="comment">// 与Wallet这个&quot;陌生人&quot;交谈</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 遵循迪米特法则</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Customer</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Wallet wallet;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">float</span> <span class="title function_">getPayment</span><span class="params">(<span class="type">float</span> amount)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (wallet != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> wallet.withdraw(amount);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 客户端代码</span></span><br><span class="line"><span class="type">float</span> <span class="variable">money</span> <span class="operator">=</span> customer.getPayment(<span class="number">100</span>);  <span class="comment">// 只与Customer交谈</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>减少类之间的耦合</li>
+<li>提高模块化程度</li>
+<li>更易于维护和修改</li>
+</ul>
+<h2 id="三、保持类和方法的小型化"><a href="#三、保持类和方法的小型化" class="headerlink" title="三、保持类和方法的小型化"></a>三、保持类和方法的小型化</h2><h3 id="类的大小原则"><a href="#类的大小原则" class="headerlink" title="类的大小原则"></a>类的大小原则</h3><ul>
+<li><strong>单一职责原则</strong>：一个类应该只有一个引起它变化的原因</li>
+<li>经验法则：<ul>
+<li>行数：通常不超过200-300行</li>
+<li>方法数：通常不超过10-20个</li>
+<li>属性数：通常不超过10个</li>
+</ul>
+</li>
+</ul>
+<h3 id="方法的大小原则"><a href="#方法的大小原则" class="headerlink" title="方法的大小原则"></a>方法的大小原则</h3><ul>
+<li>一个方法应该只做一件事</li>
+<li>经验法则：<ul>
+<li>行数：通常不超过屏幕高度(20-30行)</li>
+<li>嵌套层级：不超过2-3层</li>
+<li>参数个数：不超过3-4个</li>
+</ul>
+</li>
+</ul>
+<h3 id="重构技巧"><a href="#重构技巧" class="headerlink" title="重构技巧"></a>重构技巧</h3><ol>
+<li><strong>提取方法</strong>：将大方法中的代码块提取为独立方法</li>
+<li><strong>提取类</strong>：将大类中的相关功能提取到新类中</li>
+<li><strong>使用策略模式</strong>：将复杂逻辑委托给专门的策略类</li>
+</ol>
+<h2 id="四、使用有意义的名字"><a href="#四、使用有意义的名字" class="headerlink" title="四、使用有意义的名字"></a>四、使用有意义的名字</h2><h3 id="命名原则"><a href="#命名原则" class="headerlink" title="命名原则"></a>命名原则</h3><ol>
+<li><p><strong>类名</strong>：名词或名词短语，明确表示职责</p>
+<ul>
+<li>好例子：<code>Customer</code>, <code>OrderProcessor</code></li>
+<li>坏例子：<code>Data</code>, <code>Manager</code>, <code>Processor</code></li>
+</ul>
+</li>
+<li><p><strong>方法名</strong>：动词或动词短语，描述操作</p>
+<ul>
+<li>好例子：<code>calculateTotal()</code>, <code>saveToDatabase()</code></li>
+<li>坏例子：<code>process()</code>, <code>doWork()</code></li>
+</ul>
+</li>
+<li><p><strong>变量名</strong>：名词，描述存储内容</p>
+<ul>
+<li>好例子：<code>customerCount</code>, <code>isValid</code></li>
+<li>坏例子：<code>temp</code>, <code>data</code>, <code>flag</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="命名技巧"><a href="#命名技巧" class="headerlink" title="命名技巧"></a>命名技巧</h3><ul>
+<li>避免缩写（除非是广泛接受的）</li>
+<li>使用领域术语</li>
+<li>保持一致性（如全部使用<code>get</code>或全部使用<code>retrieve</code>）</li>
+<li>长度与作用域成正比（局部变量可以短，成员变量应该更详细）</li>
+</ul>
+<h2 id="五、合理使用访问修饰符"><a href="#五、合理使用访问修饰符" class="headerlink" title="五、合理使用访问修饰符"></a>五、合理使用访问修饰符</h2><h3 id="访问控制原则"><a href="#访问控制原则" class="headerlink" title="访问控制原则"></a>访问控制原则</h3><ol>
+<li><strong>私有(private)优先</strong>：除非有充分理由，否则字段和方法都应该是private的</li>
+<li><strong>逐步放宽</strong>：从最严格开始，只在必要时放宽限制</li>
+<li><strong>封装不变性</strong>：确保对象的不变量不被破坏</li>
+</ol>
+<h3 id="各语言访问修饰符对比"><a href="#各语言访问修饰符对比" class="headerlink" title="各语言访问修饰符对比"></a>各语言访问修饰符对比</h3><table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>Java&#x2F;C#&#x2F;C++</th>
+<th>Python</th>
+<th>JavaScript</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>私有</td>
+<td>private</td>
+<td><code>__prefix</code></td>
+<td>无(约定用_)</td>
+</tr>
+<tr>
+<td>保护</td>
+<td>protected</td>
+<td>无</td>
+<td>无</td>
+</tr>
+<tr>
+<td>包私有</td>
+<td>(default)</td>
+<td>无</td>
+<td>无</td>
+</tr>
+<tr>
+<td>公开</td>
+<td>public</td>
+<td>无前缀</td>
+<td>无</td>
+</tr>
+</tbody></table>
+<h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BankAccount</span> &#123;</span><br><span class="line">    <span class="comment">// 字段私有</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">float</span> balance;</span><br><span class="line">    <span class="keyword">private</span> String owner;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 通过公开方法访问</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">float</span> <span class="title function_">getBalance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> balance;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 修改方法可以添加验证</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deposit</span><span class="params">(<span class="type">float</span> amount)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (amount &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            balance += amount;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、避免上帝对象-God-Object"><a href="#六、避免上帝对象-God-Object" class="headerlink" title="六、避免上帝对象(God Object)"></a>六、避免上帝对象(God Object)</h2><h3 id="上帝对象的特征"><a href="#上帝对象的特征" class="headerlink" title="上帝对象的特征"></a>上帝对象的特征</h3><ol>
+<li>知道太多信息</li>
+<li>做太多事情</li>
+<li>与系统中太多其他对象耦合</li>
+<li>通常有数百甚至上千行代码</li>
+</ol>
+<h3 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h3><ul>
+<li>难以理解和维护</li>
+<li>难以测试</li>
+<li>修改影响范围大</li>
+<li>阻碍并行开发</li>
+</ul>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ol>
+<li><strong>职责分解</strong>：识别可以分离的职责</li>
+<li><strong>领域驱动设计</strong>：按照业务领域划分模块</li>
+<li><strong>设计模式应用</strong>：如策略模式、外观模式等</li>
+</ol>
+<h3 id="示例重构"><a href="#示例重构" class="headerlink" title="示例重构"></a>示例重构</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 上帝对象</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderProcessor</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">process</span><span class="params">(Order order)</span> &#123;</span><br><span class="line">        <span class="comment">// 验证订单</span></span><br><span class="line">        <span class="comment">// 计算价格</span></span><br><span class="line">        <span class="comment">// 检查库存</span></span><br><span class="line">        <span class="comment">// 创建发票</span></span><br><span class="line">        <span class="comment">// 发送通知</span></span><br><span class="line">        <span class="comment">// 更新数据库</span></span><br><span class="line">        <span class="comment">// ... 1000行代码</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重构后</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderValidator</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PriceCalculator</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InventoryChecker</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InvoiceGenerator</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NotificationSender</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderRepository</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderProcessor</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> OrderValidator validator;</span><br><span class="line">    <span class="keyword">private</span> PriceCalculator calculator;</span><br><span class="line">    <span class="comment">// 其他依赖...</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">process</span><span class="params">(Order order)</span> &#123;</span><br><span class="line">        validator.validate(order);</span><br><span class="line">        calculator.calculate(order);</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、合理使用接口和抽象类"><a href="#七、合理使用接口和抽象类" class="headerlink" title="七、合理使用接口和抽象类"></a>七、合理使用接口和抽象类</h2><h3 id="接口-vs-抽象类"><a href="#接口-vs-抽象类" class="headerlink" title="接口 vs 抽象类"></a>接口 vs 抽象类</h3><table>
 <thead>
 <tr>
 <th>特性</th>
-<th>文档数据库(MongoDB)</th>
-<th>图形数据库(Neo4j等)</th>
+<th>接口(Interface)</th>
+<th>抽象类(Abstract Class)</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>数据模型</td>
-<td>文档嵌套&#x2F;引用</td>
-<td>原生节点和关系</td>
+<td>实例化</td>
+<td>不能</td>
+<td>不能</td>
 </tr>
 <tr>
-<td>递归查询性能</td>
-<td>中等(需$graphLookup)</td>
-<td>极佳(原生图遍历)</td>
+<td>方法实现</td>
+<td>Java8+可以有默认方法</td>
+<td>可以有具体方法</td>
 </tr>
 <tr>
-<td>深度查询复杂度</td>
-<td>O(n)</td>
-<td>O(1)到O(log n)</td>
+<td>字段</td>
+<td>只能有常量</td>
+<td>可以有各种字段</td>
 </tr>
 <tr>
-<td>关系处理</td>
-<td>需要手动维护</td>
-<td>一级公民</td>
+<td>多继承</td>
+<td>一个类可实现多个接口</td>
+<td>只能继承一个抽象类</td>
 </tr>
 <tr>
-<td>横向扩展</td>
-<td>优秀</td>
-<td>中等(取决于产品)</td>
+<td>设计目的</td>
+<td>定义契约</td>
+<td>提供部分实现</td>
 </tr>
 </tbody></table>
-<h2 id="主流图形数据库选型"><a href="#主流图形数据库选型" class="headerlink" title="主流图形数据库选型"></a>主流图形数据库选型</h2><h3 id="1-Neo4j-最流行的原生图形数据库"><a href="#1-Neo4j-最流行的原生图形数据库" class="headerlink" title="1. Neo4j (最流行的原生图形数据库)"></a>1. Neo4j (最流行的原生图形数据库)</h3><ul>
-<li><strong>特点</strong>：ACID事务，Cypher查询语言，企业级支持</li>
-<li><strong>适合场景</strong>：复杂关系，需要强一致性的系统</li>
-</ul>
-<h3 id="2-Amazon-Neptune"><a href="#2-Amazon-Neptune" class="headerlink" title="2. Amazon Neptune"></a>2. Amazon Neptune</h3><ul>
-<li><strong>特点</strong>：托管服务，支持Gremlin和SPARQL</li>
-<li><strong>适合场景</strong>：AWS生态系统，需要托管解决方案</li>
-</ul>
-<h3 id="3-ArangoDB"><a href="#3-ArangoDB" class="headerlink" title="3. ArangoDB"></a>3. ArangoDB</h3><ul>
-<li><strong>特点</strong>：多模型(文档+图形)，AQL查询语言</li>
-<li><strong>适合场景</strong>：需要灵活数据模型的混合系统</li>
-</ul>
-<h3 id="4-Dgraph"><a href="#4-Dgraph" class="headerlink" title="4. Dgraph"></a>4. Dgraph</h3><ul>
-<li><strong>特点</strong>：分布式，GraphQL-like查询</li>
-<li><strong>适合场景</strong>：大规模分布式系统</li>
-</ul>
-<h2 id="数据模型转换示例"><a href="#数据模型转换示例" class="headerlink" title="数据模型转换示例"></a>数据模型转换示例</h2><h3 id="MongoDB模型-→-Neo4j模型"><a href="#MongoDB模型-→-Neo4j模型" class="headerlink" title="MongoDB模型 → Neo4j模型"></a>MongoDB模型 → Neo4j模型</h3><p><strong>原始MongoDB文档结构</strong>：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Folder</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;_id&quot;</span>: <span class="title class_">ObjectId</span>(<span class="string">&quot;60d5ec9cf4b6e04e5c3a7b11&quot;</span>),</span><br><span class="line">  <span class="string">&quot;name&quot;</span>: <span class="string">&quot;Documents&quot;</span>,</span><br><span class="line">  <span class="string">&quot;parent&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="string">&quot;path&quot;</span>: <span class="string">&quot;/Documents/&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>对应的Neo4j节点和关系</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(:Folder &#123;id: &quot;60d5ec9cf4b6e04e5c3a7b11&quot;, name: &quot;Documents&quot;, path: &quot;/Documents/&quot;&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="关系建立"><a href="#关系建立" class="headerlink" title="关系建立"></a>关系建立</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 根文件夹</span><br><span class="line">CREATE (root:Folder &#123;id: &quot;60d5ec9cf4b6e04e5c3a7b11&quot;, name: &quot;Documents&quot;, path: &quot;/Documents/&quot;&#125;)</span><br><span class="line"></span><br><span class="line">// 子文件夹</span><br><span class="line">CREATE (child:Folder &#123;id: &quot;60d5ec9cf4b6e04e5c3a7b12&quot;, name: &quot;Work&quot;, path: &quot;/Documents/Work/&quot;&#125;)</span><br><span class="line"></span><br><span class="line">// 建立父子关系</span><br><span class="line">MATCH (parent:Folder &#123;id: &quot;60d5ec9cf4b6e04e5c3a7b11&quot;&#125;)</span><br><span class="line">MATCH (child:Folder &#123;id: &quot;60d5ec9cf4b6e04e5c3a7b12&quot;&#125;)</span><br><span class="line">CREATE (child)-[:CHILD_OF]-&gt;(parent)</span><br></pre></td></tr></table></figure>
-
-<h2 id="查询性能对比"><a href="#查询性能对比" class="headerlink" title="查询性能对比"></a>查询性能对比</h2><h3 id="1-查找所有子文件夹"><a href="#1-查找所有子文件夹" class="headerlink" title="1. 查找所有子文件夹"></a>1. 查找所有子文件夹</h3><p>**MongoDB (递归查询)**：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">db.<span class="property">folder</span>.<span class="title function_">aggregate</span>([</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">$graphLookup</span>: &#123;</span><br><span class="line">      <span class="attr">from</span>: <span class="string">&quot;folder&quot;</span>,</span><br><span class="line">      <span class="attr">startWith</span>: <span class="string">&quot;$_id&quot;</span>,</span><br><span class="line">      <span class="attr">connectFromField</span>: <span class="string">&quot;_id&quot;</span>,</span><br><span class="line">      <span class="attr">connectToField</span>: <span class="string">&quot;parent&quot;</span>,</span><br><span class="line">      <span class="attr">as</span>: <span class="string">&quot;children&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
-
-<p>**Neo4j (路径查找)**：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MATCH (parent:Folder &#123;id: $folderId&#125;)&lt;-[:CHILD_OF*]-(child)</span><br><span class="line">RETURN child</span><br></pre></td></tr></table></figure>
-
-<p><strong>性能差异</strong>：</p>
+<h3 id="使用原则"><a href="#使用原则" class="headerlink" title="使用原则"></a>使用原则</h3><ol>
+<li><p><strong>接口用于</strong>：</p>
 <ul>
-<li>MongoDB：需要全集合扫描+递归处理</li>
-<li>Neo4j：直接遍历关系，时间复杂度O(1)到O(d)，d为深度</li>
+<li>定义跨继承层次的能力</li>
+<li>需要多重继承时</li>
+<li>定义服务契约</li>
 </ul>
-<h3 id="2-查找特定深度的文件夹"><a href="#2-查找特定深度的文件夹" class="headerlink" title="2. 查找特定深度的文件夹"></a>2. 查找特定深度的文件夹</h3><p><strong>查找3层深度的子文件夹</strong>：</p>
-<p><strong>Neo4j</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MATCH (parent:Folder &#123;id: $folderId&#125;)&lt;-[:CHILD_OF*1..3]-(child)</span><br><span class="line">RETURN child</span><br></pre></td></tr></table></figure>
-
-<p><strong>MongoDB</strong>：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">db.<span class="property">folder</span>.<span class="title function_">aggregate</span>([</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">$graphLookup</span>: &#123;</span><br><span class="line">      <span class="attr">from</span>: <span class="string">&quot;folder&quot;</span>,</span><br><span class="line">      <span class="attr">startWith</span>: <span class="string">&quot;$_id&quot;</span>,</span><br><span class="line">      <span class="attr">connectFromField</span>: <span class="string">&quot;_id&quot;</span>,</span><br><span class="line">      <span class="attr">connectToField</span>: <span class="string">&quot;parent&quot;</span>,</span><br><span class="line">      <span class="attr">as</span>: <span class="string">&quot;children&quot;</span>,</span><br><span class="line">      <span class="attr">maxDepth</span>: <span class="number">2</span> <span class="comment">// 3-1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
-
-<h2 id="迁移路径建议"><a href="#迁移路径建议" class="headerlink" title="迁移路径建议"></a>迁移路径建议</h2><h3 id="阶段1：混合模型-过渡期"><a href="#阶段1：混合模型-过渡期" class="headerlink" title="阶段1：混合模型 (过渡期)"></a>阶段1：混合模型 (过渡期)</h3><ul>
-<li>保留MongoDB作为主存储</li>
-<li>使用图形数据库作为查询加速层</li>
-<li>实现双写机制</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">create_folder</span>(<span class="params">name, parent_id=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="comment"># MongoDB写入</span></span><br><span class="line">    mongo_folder = Folder(name=name, parent=parent_id).save()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Neo4j写入</span></span><br><span class="line">    neo4j_query = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    CREATE (f:Folder &#123;id: $id, name: $name&#125;)</span></span><br><span class="line"><span class="string">    WITH f</span></span><br><span class="line"><span class="string">    MATCH (p:Folder &#123;id: $parent_id&#125;)</span></span><br><span class="line"><span class="string">    CREATE (f)-[:CHILD_OF]-&gt;(p)</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    neo4j.run(neo4j_query, </span><br><span class="line">              <span class="built_in">id</span>=<span class="built_in">str</span>(mongo_folder.<span class="built_in">id</span>),</span><br><span class="line">              name=name,</span><br><span class="line">              parent_id=<span class="built_in">str</span>(parent_id) <span class="keyword">if</span> parent_id <span class="keyword">else</span> <span class="literal">None</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> mongo_folder</span><br></pre></td></tr></table></figure>
-
-<h3 id="阶段2：全图形数据库-成熟期"><a href="#阶段2：全图形数据库-成熟期" class="headerlink" title="阶段2：全图形数据库 (成熟期)"></a>阶段2：全图形数据库 (成熟期)</h3><ul>
-<li>完全迁移到图形数据库</li>
-<li>实现数据访问层抽象</li>
-<li>考虑添加缓存层</li>
-</ul>
-<h2 id="性能基准测试数据"><a href="#性能基准测试数据" class="headerlink" title="性能基准测试数据"></a>性能基准测试数据</h2><p>在100万文件夹节点，平均深度7层的测试环境中：</p>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>MongoDB (ms)</th>
-<th>Neo4j (ms)</th>
-<th>性能提升</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>查找直接子项</td>
-<td>12</td>
-<td>2</td>
-<td>6x</td>
-</tr>
-<tr>
-<td>查找所有后代(递归)</td>
-<td>450</td>
-<td>25</td>
-<td>18x</td>
-</tr>
-<tr>
-<td>查找特定深度后代</td>
-<td>380</td>
-<td>15</td>
-<td>25x</td>
-</tr>
-<tr>
-<td>移动大型子树(10k+节点)</td>
-<td>1200</td>
-<td>150</td>
-<td>8x</td>
-</tr>
-<tr>
-<td>路径查询</td>
-<td>35</td>
-<td>3</td>
-<td>12x</td>
-</tr>
-</tbody></table>
-<h2 id="实施挑战与解决方案"><a href="#实施挑战与解决方案" class="headerlink" title="实施挑战与解决方案"></a>实施挑战与解决方案</h2><h3 id="挑战1：事务支持"><a href="#挑战1：事务支持" class="headerlink" title="挑战1：事务支持"></a>挑战1：事务支持</h3><p><strong>问题</strong>：跨数据库的双写难以保证一致性<br><strong>解决方案</strong>：</p>
+</li>
+<li><p><strong>抽象类用于</strong>：</p>
 <ul>
-<li>使用事务日志(Transaction Log)模式</li>
-<li>实现最终一致性</li>
-<li>考虑Change Data Capture(CDC)工具</li>
+<li>提供部分实现</li>
+<li>有共同基类逻辑时</li>
+<li>希望控制子类如何扩展时</li>
 </ul>
-<h3 id="挑战2：学习曲线"><a href="#挑战2：学习曲线" class="headerlink" title="挑战2：学习曲线"></a>挑战2：学习曲线</h3><p><strong>问题</strong>：团队需要学习新查询语言(Cypher&#x2F;Gremlin)<br><strong>解决方案</strong>：</p>
-<ul>
-<li>构建抽象数据访问层</li>
-<li>提供培训和工作坊</li>
-<li>从简单查询开始逐步迁移</li>
-</ul>
-<h3 id="挑战3：运维复杂性"><a href="#挑战3：运维复杂性" class="headerlink" title="挑战3：运维复杂性"></a>挑战3：运维复杂性</h3><p><strong>问题</strong>：新增数据库增加运维负担<br><strong>解决方案</strong>：</p>
-<ul>
-<li>使用托管服务(如Neo4j AuraDB)</li>
-<li>实现自动化监控</li>
-<li>制定清晰的运维手册</li>
-</ul>
-<h2 id="何时应该考虑图形数据库？"><a href="#何时应该考虑图形数据库？" class="headerlink" title="何时应该考虑图形数据库？"></a>何时应该考虑图形数据库？</h2><ol>
-<li><strong>树深度经常 &gt;5层</strong>：图形数据库的递归查询优势明显</li>
-<li><strong>频繁移动子树</strong>：图形数据库的关系操作更高效</li>
-<li><strong>复杂权限系统</strong>：需要沿路径传播权限时</li>
-<li><strong>高频路径查询</strong>：如”查找A到B的所有路径”</li>
-<li><strong>数据量 &gt;1000万节点</strong>：传统数据库开始遇到扩展性问题</li>
+</li>
 </ol>
-<h2 id="回滚策略"><a href="#回滚策略" class="headerlink" title="回滚策略"></a>回滚策略</h2><ol>
-<li><strong>保持双写机制</strong>至少3个月</li>
-<li><strong>定期验证</strong>两个数据库的一致性</li>
-<li><strong>实现查询对比工具</strong>：随机抽样对比结果</li>
-<li><strong>准备回滚脚本</strong>：从图形数据库重建MongoDB关系</li>
-</ol>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>对于大型、复杂的文件夹树形结构，图形数据库在以下方面具有显著优势：</p>
-<ul>
-<li><strong>查询性能</strong>：特别是递归和深度查询</li>
-<li><strong>操作效率</strong>：子树移动和重构</li>
-<li><strong>模型清晰度</strong>：直接表示树形关系</li>
+<h3 id="代码示例-2"><a href="#代码示例-2" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 接口定义能力</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Flyable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Swimmable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">swim</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象类提供部分实现</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Bird</span> &#123;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">makeSound</span><span class="params">()</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">breathe</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Breathing...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Duck</span> <span class="keyword">extends</span> <span class="title class_">Bird</span> <span class="keyword">implements</span> <span class="title class_">Flyable</span>, Swimmable &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">makeSound</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Quack&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Duck flying&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swim</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Duck swimming&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="接口隔离原则-ISP"><a href="#接口隔离原则-ISP" class="headerlink" title="接口隔离原则(ISP)"></a>接口隔离原则(ISP)</h3><ul>
+<li>客户端不应该被迫依赖它们不使用的接口</li>
+<li>应该将大接口拆分为更小、更具体的接口</li>
 </ul>
-<p>迁移建议路径：</p>
-<ol>
-<li>从小规模试点开始</li>
-<li>实现混合模型过渡</li>
-<li>逐步迁移复杂查询</li>
-<li>最终完全迁移(如适用)</li>
-</ol>
-<p>图形数据库不是银弹，但对于以树形结构为核心数据模型的系统，它能提供质的性能提升和更自然的数据建模方式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 违反ISP</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Worker</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">work</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">sleep</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遵循ISP</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Workable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">work</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Eatable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Sleepable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">sleep</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过遵循这些面向对象的最佳实践，可以创建出更健壮、更灵活、更易于维护的软件系统。记住，这些原则不是铁律，而是指导方针，在实际应用中需要根据具体情况进行权衡。</p>
 
       
     </div>
@@ -438,7 +459,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/119/">119</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/120/">120</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -504,7 +525,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">119</span>
+          <span class="site-state-item-count">120</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -567,12 +588,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">210k</span>
+    <span title="Symbols count total">212k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:43</span>
+    <span title="Reading time total">12:50</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

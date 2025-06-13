@@ -15,8 +15,35 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Mon, 28 Apr 2025 09:25:37 GMT</pubDate>
+    <pubDate>Fri, 13 Jun 2025 01:41:10 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>The Clean Architecture</title>
+      <link>https://tonymistark.github.io/2025/06/13/The-Clean-Architecture/</link>
+      <guid>https://tonymistark.github.io/2025/06/13/The-Clean-Architecture/</guid>
+      <pubDate>Fri, 13 Jun 2025 01:38:38 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;div align=&quot;center&quot;&gt; &lt;img src=&quot;/images/CleanArchitecture.jpg&quot;/&gt;&lt;/div&gt;
+近年来，我们见证了许多关于系统架构的理念，包括：
+
+&lt;ul&gt;
+&lt;li&gt;六边形架构（Hexagonal</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2025/06/13/The-Clean-Architecture/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>面向对象最佳实践 Python 深入解析</title>
@@ -492,29 +519,6 @@
       
       
       <comments>https://tonymistark.github.io/2025/03/12/Understanding-Zero-cost-Abstraction-in-Rust/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Go语言面向对象编程详解：结构体、方法与接口的应用</title>
-      <link>https://tonymistark.github.io/2025/03/12/A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go/</link>
-      <guid>https://tonymistark.github.io/2025/03/12/A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go/</guid>
-      <pubDate>Wed, 12 Mar 2025 07:00:43 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go&quot;&gt;&lt;a href=&quot;#A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go&quot;</description>
-          
-        
-      
-      
-      
-      
-      
-      
-      <comments>https://tonymistark.github.io/2025/03/12/A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go/#disqus_thread</comments>
       
     </item>
     

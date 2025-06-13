@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/15/1000_rust_questions/Why-Rayon-s-Parallel-Quicksort-Outperforms-Mergesort-in-Rust-Trade-offs-and-When-to-Choose-Each/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/" class="post-title-link" itemprop="url">Rust 中应避免使用 BufReader 的场景与高效替代方案</a>
+            <a href="/2025/04/15/1000_rust_questions/Why-Rayon-s-Parallel-Quicksort-Outperforms-Mergesort-in-Rust-Trade-offs-and-When-to-Choose-Each/" class="post-title-link" itemprop="url">Rust 中 Rayon 并行快速排序为何优于归并排序？适用场景与取舍分析</a>
         </h2>
 
         <div class="post-meta">
@@ -208,7 +208,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-04-15 12:12:35 / Modified: 12:14:10" itemprop="dateCreated datePublished" datetime="2025-04-15T12:12:35+08:00">2025-04-15</time>
+              <time title="Created: 2025-04-15 14:38:23 / Modified: 14:41:27" itemprop="dateCreated datePublished" datetime="2025-04-15T14:38:23+08:00">2025-04-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,14 +226,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>636</span>
+              <span>693</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
+              <span>3 mins.</span>
             </span>
 
         </div>
@@ -245,40 +245,85 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在 Rust 中，<code>BufReader</code> 的主要作用是<strong>通过缓冲减少系统调用次数</strong>，提高读取效率。然而，并非所有场景都适合使用它。以下是应避免使用 <code>BufReader</code> 的典型场景：</p>
+          <h3 id="核心原因：并行化效率差异"><a href="#核心原因：并行化效率差异" class="headerlink" title="核心原因：并行化效率差异"></a><strong>核心原因：并行化效率差异</strong></h3><ol>
+<li><p><strong>快速排序的天然并行性</strong>  </p>
+<ul>
+<li><strong>分治独立性</strong>：快速排序的每轮分区（<code>partition</code>）会将数据分为左右两部分，<strong>左右子任务完全独立</strong>，适合 Rayon 的 <code>par_iter</code> 并行分治。  </li>
+<li><strong>原地操作</strong>：无需额外内存，并行任务间的缓存局部性更好。  </li>
+<li><strong>负载均衡</strong>：Rayon 的工作窃取（Work Stealing）机制能动态分配不均匀的分区任务（如分区后的左右大小差异）。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> rayon::prelude::*;</span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">parallel_quicksort</span>&lt;T: <span class="built_in">Send</span> + <span class="built_in">Ord</span>&gt;(arr: &amp;<span class="keyword">mut</span> [T]) &#123;</span><br><span class="line">    <span class="keyword">if</span> arr.<span class="title function_ invoke__">len</span>() &lt;= <span class="number">1</span> &#123; <span class="keyword">return</span>; &#125;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">pivot</span> = <span class="title function_ invoke__">partition</span>(arr); <span class="comment">// 分区逻辑</span></span><br><span class="line">    <span class="keyword">let</span> (left, right) = arr.<span class="title function_ invoke__">split_at_mut</span>(pivot);</span><br><span class="line">    rayon::<span class="title function_ invoke__">join</span>(|| <span class="title function_ invoke__">parallel_quicksort</span>(left),</span><br><span class="line">                || <span class="title function_ invoke__">parallel_quicksort</span>(right));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>归并排序的并行瓶颈</strong>  </p>
+<ul>
+<li><strong>合并阶段串行化</strong>：归并排序的最终合并（<code>merge</code>）需要严格顺序处理，<strong>难以有效并行化</strong>（需跨线程同步合并指针）。  </li>
+<li><strong>内存开销</strong>：归并排序需要额外内存空间（O(n)），并行化时多线程的内存分配可能成为瓶颈。</li>
+</ul>
+</li>
+</ol>
 <hr>
-<h3 id="1-读取小文件时"><a href="#1-读取小文件时" class="headerlink" title="1. 读取小文件时"></a>1. <strong>读取小文件时</strong></h3><ul>
-<li><strong>原因</strong>：对于非常小的文件（例如几 KB），直接一次性读取到内存（如 <code>std::fs::read_to_string</code>）通常更高效。<code>BufReader</code> 的缓冲机制（默认 8KB）反而会引入额外的内存管理和分块处理开销。</li>
-<li><strong>替代方案</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::fs;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">content</span> = fs::<span class="title function_ invoke__">read_to_string</span>(<span class="string">&quot;small_file.txt&quot;</span>)?;</span><br></pre></td></tr></table></figure></li>
+<h3 id="何时选择归并排序？"><a href="#何时选择归并排序？" class="headerlink" title="何时选择归并排序？"></a><strong>何时选择归并排序？</strong></h3><ol>
+<li><p><strong>稳定性需求</strong>  </p>
+<ul>
+<li>归并排序是<strong>稳定排序</strong>（相等元素顺序不变），而快速排序不稳定。  </li>
+<li>若业务逻辑依赖稳定性（如按多字段排序），需选择稳定算法。</li>
+</ul>
+</li>
+<li><p><strong>数据特性适配</strong>  </p>
+<ul>
+<li><strong>近乎有序的数据</strong>：归并排序对部分有序数据更高效（合并阶段减少比较）。  </li>
+<li><strong>内存充足场景</strong>：若可接受 O(n) 额外内存，归并排序能保证最坏 O(n log n) 时间复杂度（快速排序最坏 O(n²)）。</li>
+</ul>
+</li>
+<li><p><strong>单线程环境</strong>  </p>
+<ul>
+<li>标准库的 <code>sort</code>（稳定）和 <code>sort_unstable</code>（快速排序变种）在单线程下可能更优，<strong>避免并行调度开销</strong>。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="Rayon-的实践选择"><a href="#Rayon-的实践选择" class="headerlink" title="Rayon 的实践选择"></a><strong>Rayon 的实践选择</strong></h3><ul>
+<li><strong><code>par_sort_unstable</code><strong>：基于并行快速排序，</strong>默认推荐</strong>（牺牲稳定性换取速度和低内存）。  </li>
+<li><strong><code>par_sort</code><strong>：稳定排序，内部可能结合归并和插入排序，</strong>适合需要稳定性的场景</strong>。</li>
 </ul>
 <hr>
-<h3 id="2-需要逐行处理但已全量读取"><a href="#2-需要逐行处理但已全量读取" class="headerlink" title="2. 需要逐行处理但已全量读取"></a>2. <strong>需要逐行处理但已全量读取</strong></h3><ul>
-<li><strong>原因</strong>：如果文件已被完整读入内存（例如通过 <code>read_to_string</code>），直接按行分割字符串（如 <code>split(&#39;\n&#39;)</code>）会比逐行缓冲读取更高效，因为避免了缓冲区的重复检查。</li>
-<li><strong>替代方案</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">content</span> = fs::<span class="title function_ invoke__">read_to_string</span>(<span class="string">&quot;data.txt&quot;</span>)?;</span><br><span class="line"><span class="keyword">for</span> <span class="variable">line</span> <span class="keyword">in</span> content.<span class="title function_ invoke__">lines</span>() &#123;</span><br><span class="line">    <span class="comment">// 直接处理每行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
+<h3 id="性能对比示例"><a href="#性能对比示例" class="headerlink" title="性能对比示例"></a><strong>性能对比示例</strong></h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> rayon::prelude::*;</span><br><span class="line"><span class="keyword">use</span> rand::Rng;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">data</span>: <span class="type">Vec</span>&lt;<span class="type">u32</span>&gt; = rand::<span class="title function_ invoke__">thread_rng</span>().<span class="title function_ invoke__">gen_iter</span>().<span class="title function_ invoke__">take</span>(<span class="number">10_000_000</span>).<span class="title function_ invoke__">collect</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 并行快速排序（不稳定）</span></span><br><span class="line">data.<span class="title function_ invoke__">par_sort_unstable</span>(); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 并行归并排序（稳定）</span></span><br><span class="line">data.<span class="title function_ invoke__">par_sort</span>(); </span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>快速排序优势</th>
+<th>归并排序优势</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>大规模随机数据</td>
+<td>✅ 并行效率高，内存低</td>
+<td>❌ 合并阶段慢</td>
+</tr>
+<tr>
+<td>小规模数据</td>
+<td>❌ 并行开销大</td>
+<td>✅ 单线程更优</td>
+</tr>
+<tr>
+<td>需要稳定性</td>
+<td>❌ 无法保证</td>
+<td>✅ 必须选择</td>
+</tr>
+<tr>
+<td>数据部分有序</td>
+<td>❌ 分区可能不均匀</td>
+<td>✅ 合并阶段高效</td>
+</tr>
+</tbody></table>
 <hr>
-<h3 id="3-需要严格逐字节或精确控制读取时"><a href="#3-需要严格逐字节或精确控制读取时" class="headerlink" title="3. 需要严格逐字节或精确控制读取时"></a>3. <strong>需要严格逐字节或精确控制读取时</strong></h3><ul>
-<li><strong>原因</strong>：<code>BufReader</code> 的缓冲机制会预读数据到内存，可能干扰需要精确控制读取位置或逐字节处理的场景（例如解析二进制协议）。</li>
-<li><strong>替代方案</strong>：直接使用原始 <code>File</code> 对象：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::fs::File;</span><br><span class="line"><span class="keyword">use</span> std::io::Read;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">file</span> = File::<span class="title function_ invoke__">open</span>(<span class="string">&quot;data.bin&quot;</span>)?;</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">byte</span> = [<span class="number">0u8</span>; <span class="number">1</span>];</span><br><span class="line">file.<span class="title function_ invoke__">read_exact</span>(&amp;<span class="keyword">mut</span> byte)?; <span class="comment">// 精确读取单个字节</span></span><br></pre></td></tr></table></figure></li>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><ul>
+<li><strong>选择快速排序</strong>：追求极致速度、可接受不稳定、数据量大且随机。  </li>
+<li><strong>选择归并排序</strong>：需稳定性、数据部分有序、或规避快速排序的最坏情况。  </li>
+<li><strong>Rayon 的优化</strong>：通过 <code>par_sort_unstable</code> 和 <code>par_sort</code> 封装了底层差异，根据需求一键选择。</li>
 </ul>
-<hr>
-<h3 id="4-内存敏感环境"><a href="#4-内存敏感环境" class="headerlink" title="4. 内存敏感环境"></a>4. <strong>内存敏感环境</strong></h3><ul>
-<li><strong>原因</strong>：<code>BufReader</code> 默认使用 8KB 缓冲区，在极端内存受限的环境（如嵌入式系统）中可能需避免额外开销。</li>
-<li><strong>替代方案</strong>：手动调整缓冲区大小或直接无缓冲读取：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::io::BufReader;</span><br><span class="line"><span class="keyword">use</span> std::fs::File;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">file</span> = File::<span class="title function_ invoke__">open</span>(<span class="string">&quot;data.txt&quot;</span>)?;</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">reader</span> = BufReader::<span class="title function_ invoke__">with_capacity</span>(<span class="number">512</span>, file); <span class="comment">// 使用更小的缓冲区</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h3 id="5-需要随机访问或复杂定位时"><a href="#5-需要随机访问或复杂定位时" class="headerlink" title="5. 需要随机访问或复杂定位时"></a>5. <strong>需要随机访问或复杂定位时</strong></h3><ul>
-<li><strong>原因</strong>：<code>BufReader</code> 的缓冲会缓存部分数据，频繁的 <code>seek</code> 操作可能导致缓冲区失效，增加复杂度。</li>
-<li><strong>替代方案</strong>：直接操作 <code>File</code> 并手动管理位置：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">file</span> = File::<span class="title function_ invoke__">open</span>(<span class="string">&quot;data.txt&quot;</span>)?;</span><br><span class="line">file.<span class="title function_ invoke__">seek</span>(SeekFrom::<span class="title function_ invoke__">Start</span>(<span class="number">100</span>))?; <span class="comment">// 直接跳转到指定位置</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h3 id="何时仍应使用-BufReader？"><a href="#何时仍应使用-BufReader？" class="headerlink" title="何时仍应使用 BufReader？"></a>何时仍应使用 <code>BufReader</code>？</h3><ul>
-<li><strong>大文件读取</strong>：减少频繁的系统调用。</li>
-<li><strong>逐行处理大文件</strong>：<code>reader.lines()</code> 是高效逐行读取的标准方法。</li>
-<li><strong>网络流处理</strong>：缓冲可有效应对数据分块到达的情况。</li>
-</ul>
-<hr>
-<p><strong>总结</strong>：<code>BufReader</code> 的核心优势在于<strong>减少系统调用</strong>，但在数据量小、需精确控制读取或内存敏感的场景中，直接操作可能更高效。根据实际需求权衡缓冲带来的收益与开销。</p>
 
       
     </div>
@@ -297,7 +342,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/119/">119</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/120/">120</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -363,7 +408,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">119</span>
+          <span class="site-state-item-count">120</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -426,12 +471,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">210k</span>
+    <span title="Symbols count total">212k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:43</span>
+    <span title="Reading time total">12:50</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

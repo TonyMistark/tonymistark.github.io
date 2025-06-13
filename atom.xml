@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-04-28T09:25:37.409Z</updated>
+  <updated>2025-06-13T01:41:10.903Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>The Clean Architecture</title>
+    <link href="https://tonymistark.github.io/2025/06/13/The-Clean-Architecture/"/>
+    <id>https://tonymistark.github.io/2025/06/13/The-Clean-Architecture/</id>
+    <published>2025-06-13T01:38:38.000Z</published>
+    <updated>2025-06-13T01:41:10.903Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div align=&quot;center&quot;&gt; &lt;img src=&quot;/images/CleanArchitecture.jpg&quot;/&gt;&lt;/div&gt;
+近年来，我们见证了许多关于系统架构的理念，包括：
+
+&lt;ul&gt;
+&lt;li&gt;六边形架构（Hexagonal</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>面向对象最佳实践 Python 深入解析</title>
@@ -452,27 +477,6 @@
     
     
     <category term="rust" scheme="https://tonymistark.github.io/tags/rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Go语言面向对象编程详解：结构体、方法与接口的应用</title>
-    <link href="https://tonymistark.github.io/2025/03/12/A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go/"/>
-    <id>https://tonymistark.github.io/2025/03/12/A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go/</id>
-    <published>2025-03-12T07:00:43.000Z</published>
-    <updated>2025-03-12T07:01:34.249Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go&quot;&gt;&lt;a href=&quot;#A-Comprehensive-Guide-to-Object-Oriented-Programming-in-Go&quot;</summary>
-        
-      
-    
-    
-    
     
   </entry>
   

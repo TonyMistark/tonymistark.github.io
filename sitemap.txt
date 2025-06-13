@@ -1,3 +1,4 @@
+https://tonymistark.github.io/2025/06/13/The-Clean-Architecture/
 https://tonymistark.github.io/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices-python/
 https://tonymistark.github.io/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices/
 https://tonymistark.github.io/2025/04/22/refactoring_folder_tree_structure/Performance-Analysis-of-Moving-Folders/

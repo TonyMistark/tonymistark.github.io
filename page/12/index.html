@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/09/Doesn-t-Trump-understand-that-their-tariffs-will-increase-the-price-of-things-that-Americans-need/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/14/1000_rust_questions/Scoped-Threads-vs-Message-Passing-in-Rust-Performance-and-Ownership-Tradeoffs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/04/09/Doesn-t-Trump-understand-that-their-tariffs-will-increase-the-price-of-things-that-Americans-need/" class="post-title-link" itemprop="url">特朗普难道不明白加关税会抬高美国老百姓的生活成本吗？</a>
+            <a href="/2025/04/14/1000_rust_questions/Scoped-Threads-vs-Message-Passing-in-Rust-Performance-and-Ownership-Tradeoffs/" class="post-title-link" itemprop="url">Rust 何种场景下选择作用域线程参数（如 rayon/crossbeam）而非消息传递？</a>
         </h2>
 
         <div class="post-meta">
@@ -208,7 +208,16 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-04-09 11:43:35 / Modified: 12:05:21" itemprop="dateCreated datePublished" datetime="2025-04-09T11:43:35+08:00">2025-04-09</time>
+              <time title="Created: 2025-04-14 18:32:12 / Modified: 18:36:48" itemprop="dateCreated datePublished" datetime="2025-04-14T18:32:12+08:00">2025-04-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/1000-rust-questions/" itemprop="url" rel="index"><span itemprop="name">1000_rust_questions</span></a>
+                </span>
             </span>
 
           <br>
@@ -217,14 +226,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>653</span>
+              <span>985</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
+              <span>4 mins.</span>
             </span>
 
         </div>
@@ -236,11 +245,103 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>我觉得他其实很清楚。最近《金融时报》有篇挺有意思的文章，作者是个对经济史特别有研究的专栏作家。她的观点挺有意思——大家之所以看不懂（甚至害怕）特朗普的关税政策，是因为还在用凯恩斯、弗里德曼那套20世纪的经济理论来理解。</p>
-<p>这篇文章提到，现在最该被重视的经济学家其实是个冷门人物：阿尔伯特·赫希曼。这位德国犹太经济学家可能你没听过很正常，毕竟他1930年代的研究长期被忽视——当时他的观点和后来流行的自由市场理论完全不对路。他经历过西班牙内战和纳粹统治，这些创伤深刻影响了他的思考。</p>
-<p>赫希曼的核心观点很犀利：经济从来都是政治的附属品，而不是反过来（这和多数经济学家的认知完全颠倒）。他早在80多年前就预言过类似特朗普关税的情况：”只要主权国家能随时掐断贸易，国际贸易本质上就是权力争夺战”。他把贸易比作”不用真刀真枪的殖民手段”，这不正是特朗普团队现在在做的事吗？他们根本不在乎什么贸易顺差逆差，要的就是压制对手的实力。哪怕经济增速受影响，只要能保住霸权地位，这代价他们觉得值。</p>
-<p>赫希曼的理论的关键点在于：霸权控制力不是线性下降的。比如当某国占据80%市场份额时，控制权接近绝对；但一旦跌破70%，权威就会加速崩溃——因为其他玩家发现替代选项变多了。现在美国的经济主导地位正滑向这个危险临界点，所以才会不顾吃相地打关税牌，说白了就是想抓住正在流失的全球金融控制权。</p>
-<p>照这个逻辑推演，贸易战恐怕还要继续升级。毕竟当大哥发现小弟们开始找新靠山时，第一反应肯定是把拳头握得更紧。本能地在郧落前夕拼死一搏。但历史告诉我们，越是这种时候，越努力挣扎原有体系的崩塌速度反而会加快。但是不挣扎又能做什么呢？作为一个强人性格的老人，最后一搏又是必然的路径。看似很强势，实则并无他法。</p>
+          <p>在 Rust 中选择作用域线程（如 <code>rayon</code>&#x2F;<code>crossbeam</code>）还是消息传递（如通道），需结合<strong>性能需求</strong>、<strong>数据共享模式</strong>和<strong>所有权管理</strong>综合判断。以下是具体场景和建议：</p>
+<hr>
+<h3 id="1-优先选择作用域线程的场景"><a href="#1-优先选择作用域线程的场景" class="headerlink" title="1. 优先选择作用域线程的场景"></a>1. <strong>优先选择作用域线程的场景</strong></h3><h4 id="🔑-共享不可变数据或受控的可变数据"><a href="#🔑-共享不可变数据或受控的可变数据" class="headerlink" title="🔑 共享不可变数据或受控的可变数据"></a>🔑 <strong>共享不可变数据或受控的可变数据</strong></h4><ul>
+<li><strong>场景</strong>：多个线程需要高效共享<strong>只读数据</strong>（如大型数组、配置参数）或通过安全方式共享<strong>受控的可变数据</strong>（如分片写入）。</li>
+<li><strong>优势</strong>：<ul>
+<li>避免数据拷贝：通过借用（<code>&amp;T</code>）直接访问父线程栈上的数据，无需 <code>Arc</code> 或通道传输。</li>
+<li>天然的生命周期管理：作用域确保子线程在父线程释放数据前结束。</li>
+</ul>
+</li>
+<li><strong>示例</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crossbeam::scope;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">data</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line">    <span class="title function_ invoke__">scope</span>(|s| &#123;</span><br><span class="line">        <span class="keyword">for</span> <span class="variable">x</span> <span class="keyword">in</span> &amp;data &#123;</span><br><span class="line">            s.<span class="title function_ invoke__">spawn</span>(<span class="keyword">move</span> |_| &#123;</span><br><span class="line">                <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, x); <span class="comment">// 直接借用父线程的 data</span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="⚡-计算密集型并行任务"><a href="#⚡-计算密集型并行任务" class="headerlink" title="⚡ 计算密集型并行任务"></a>⚡ <strong>计算密集型并行任务</strong></h4><ul>
+<li><strong>场景</strong>：需要将任务拆分为多个子任务并行执行（如并行排序、图像处理）。</li>
+<li><strong>优势</strong>：<ul>
+<li><code>rayon</code> 的并行迭代器（如 <code>par_iter</code>）自动利用线程池，简化并行化。</li>
+<li>避免通道通信开销，直接共享数据。</li>
+</ul>
+</li>
+<li><strong>示例</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> rayon::prelude::*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">data</span> = <span class="built_in">vec!</span>[<span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">5</span>];</span><br><span class="line">    data.<span class="title function_ invoke__">par_iter_mut</span>().<span class="title function_ invoke__">for_each</span>(|x| *x *= <span class="number">2</span>); <span class="comment">// 并行修改数据</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, data); <span class="comment">// [6, 2, 8, 2, 10]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="🛠️-需要同步执行结果"><a href="#🛠️-需要同步执行结果" class="headerlink" title="🛠️ 需要同步执行结果"></a>🛠️ <strong>需要同步执行结果</strong></h4><ul>
+<li><strong>场景</strong>：子任务的结果需要立即汇总到父线程（如 <code>MapReduce</code> 模型）。</li>
+<li><strong>优势</strong>：<ul>
+<li>通过作用域内的变量直接收集结果，无需通道同步。</li>
+<li>天然的错误传播：通过 <code>Result</code> 集中处理错误。</li>
+</ul>
+</li>
+<li><strong>示例</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crossbeam::scope;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;(), <span class="type">Box</span>&lt;<span class="keyword">dyn</span> std::error::Error&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">results</span> = <span class="built_in">vec!</span>[<span class="number">0</span>; <span class="number">4</span>];</span><br><span class="line">    <span class="title function_ invoke__">scope</span>(|s| &#123;</span><br><span class="line">        <span class="title function_ invoke__">for</span> (i, res) <span class="keyword">in</span> results.<span class="title function_ invoke__">iter_mut</span>().<span class="title function_ invoke__">enumerate</span>() &#123;</span><br><span class="line">            s.<span class="title function_ invoke__">spawn</span>(<span class="keyword">move</span> |_| &#123;</span><br><span class="line">                *res = i * <span class="number">2</span>; <span class="comment">// 直接写入父线程的 results</span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, results); <span class="comment">// [0, 2, 4, 6]</span></span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="2-优先选择消息传递的场景"><a href="#2-优先选择消息传递的场景" class="headerlink" title="2. 优先选择消息传递的场景"></a>2. <strong>优先选择消息传递的场景</strong></h3><h4 id="📨-解耦生产者和消费者"><a href="#📨-解耦生产者和消费者" class="headerlink" title="📨 解耦生产者和消费者"></a>📨 <strong>解耦生产者和消费者</strong></h4><ul>
+<li><strong>场景</strong>：任务需要异步执行，生产者生成数据，消费者处理数据（如日志处理、事件驱动架构）。</li>
+<li><strong>优势</strong>：<ul>
+<li>通过通道（如 <code>std::sync::mpsc</code> 或 <code>crossbeam-channel</code>）解耦线程间逻辑。</li>
+<li>避免共享状态，减少锁的使用。</li>
+</ul>
+</li>
+<li><strong>示例</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::sync::mpsc;</span><br><span class="line"><span class="keyword">use</span> std::thread;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> (tx, rx) = mpsc::<span class="title function_ invoke__">channel</span>();</span><br><span class="line">    thread::<span class="title function_ invoke__">spawn</span>(<span class="keyword">move</span> || &#123;</span><br><span class="line">        tx.<span class="title function_ invoke__">send</span>(<span class="number">42</span>).<span class="title function_ invoke__">unwrap</span>(); <span class="comment">// 发送数据到主线程</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Received: &#123;&#125;&quot;</span>, rx.<span class="title function_ invoke__">recv</span>().<span class="title function_ invoke__">unwrap</span>()); <span class="comment">// 主线程接收数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="🔄-动态任务分配"><a href="#🔄-动态任务分配" class="headerlink" title="🔄 动态任务分配"></a>🔄 <strong>动态任务分配</strong></h4><ul>
+<li><strong>场景</strong>：任务数量或大小不确定，需要动态调度（如工作队列）。</li>
+<li><strong>优势</strong>：<ul>
+<li>使用通道作为任务队列，灵活分配任务。</li>
+<li>支持负载均衡和弹性伸缩。</li>
+</ul>
+</li>
+<li><strong>示例</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crossbeam_channel::unbounded;</span><br><span class="line"><span class="keyword">use</span> std::thread;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> (tx, rx) = <span class="title function_ invoke__">unbounded</span>();</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">_</span> <span class="keyword">in</span> <span class="number">0</span>..<span class="number">4</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">rx</span> = rx.<span class="title function_ invoke__">clone</span>();</span><br><span class="line">        thread::<span class="title function_ invoke__">spawn</span>(<span class="keyword">move</span> || &#123;</span><br><span class="line">            <span class="keyword">while</span> <span class="keyword">let</span> <span class="variable">Ok</span>(task) = rx.<span class="title function_ invoke__">recv</span>() &#123;</span><br><span class="line">                <span class="built_in">println!</span>(<span class="string">&quot;Processing task: &#123;&#125;&quot;</span>, task);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">task</span> <span class="keyword">in</span> <span class="number">0</span>..<span class="number">10</span> &#123;</span><br><span class="line">        tx.<span class="title function_ invoke__">send</span>(task).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="🚫-避免共享可变状态"><a href="#🚫-避免共享可变状态" class="headerlink" title="🚫 避免共享可变状态"></a>🚫 <strong>避免共享可变状态</strong></h4><ul>
+<li><strong>场景</strong>：需要完全避免数据竞争（如无锁设计）。</li>
+<li><strong>优势</strong>：<ul>
+<li>每个数据仅由一个线程持有，通过通道转移所有权。</li>
+<li>无需 <code>Mutex</code> 或 <code>RwLock</code>，简化代码逻辑。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="3-关键权衡点"><a href="#3-关键权衡点" class="headerlink" title="3. 关键权衡点"></a>3. <strong>关键权衡点</strong></h3><table>
+<thead>
+<tr>
+<th><strong>维度</strong></th>
+<th><strong>作用域线程</strong></th>
+<th><strong>消息传递</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>数据共享</strong></td>
+<td>直接借用栈数据，高效</td>
+<td>需移动或克隆数据，可能引入 <code>Arc</code></td>
+</tr>
+<tr>
+<td><strong>性能</strong></td>
+<td>低开销（无通道通信）</td>
+<td>通道传输可能成为瓶颈</td>
+</tr>
+<tr>
+<td><strong>代码简洁性</strong></td>
+<td>适合固定任务拆分（如 <code>rayon</code> 迭代器）</td>
+<td>适合动态任务调度</td>
+</tr>
+<tr>
+<td><strong>错误处理</strong></td>
+<td>通过 <code>Result</code> 集中处理</td>
+<td>需在消息中传递错误</td>
+</tr>
+<tr>
+<td><strong>生命周期安全</strong></td>
+<td>由作用域自动管理</td>
+<td>需手动确保数据有效性</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="总结建议"><a href="#总结建议" class="headerlink" title="总结建议"></a>总结建议</h3><ul>
+<li><strong>选择作用域线程</strong>：当需要高效共享数据、任务结构固定（如并行计算），且生命周期可控时。</li>
+<li><strong>选择消息传递</strong>：当任务需要解耦、数据需跨线程转移所有权，或避免共享可变状态时。</li>
+</ul>
+<p>根据实际场景混合使用两者（如用 <code>rayon</code> 处理计算密集型部分，用通道协调任务）可能是更优解。</p>
 
       
     </div>
@@ -259,7 +360,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/119/">119</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/120/">120</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -325,7 +426,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">119</span>
+          <span class="site-state-item-count">120</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -388,12 +489,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">210k</span>
+    <span title="Symbols count total">212k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:43</span>
+    <span title="Reading time total">12:50</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

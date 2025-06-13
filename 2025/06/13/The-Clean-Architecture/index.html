@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="近年来，我们见证了许多关于系统架构的理念，包括：   六边形架构（Hexagonal Architecture，也称端口与适配器架构），由Alistair Cockburn提出，Steve Freeman和Nat Pryce在他们的著作《Growing Object Oriented Software》中采用和推广； 洋葱架构（Onion Architecture），由Jeffrey Pale">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Clean Architecture">
+<meta property="og:url" content="https://tonymistark.github.io/2025/06/13/The-Clean-Architecture/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="近年来，我们见证了许多关于系统架构的理念，包括：   六边形架构（Hexagonal Architecture，也称端口与适配器架构），由Alistair Cockburn提出，Steve Freeman和Nat Pryce在他们的著作《Growing Object Oriented Software》中采用和推广； 洋葱架构（Onion Architecture），由Jeffrey Pale">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://tonymistark.github.io/images/CleanArchitecture.jpg">
+<meta property="article:published_time" content="2025-06-13T01:38:38.000Z">
+<meta property="article:modified_time" content="2025-06-13T01:41:10.903Z">
+<meta property="article:author" content="Ice">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tonymistark.github.io/images/CleanArchitecture.jpg">
+
+<link rel="canonical" href="https://tonymistark.github.io/2025/06/13/The-Clean-Architecture/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>The Clean Architecture | BLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6L4L92Z6Z"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W6L4L92Z6Z');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?99c70b2174a7fbe4af476f28bafb19a3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/./atom.xml" title="BLOG" type="application/atom+xml">
+<link rel="alternate" href="/./rss2.xml" title="BLOG" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">用心记录思想</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/06/13/The-Clean-Architecture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ice">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          The Clean Architecture
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2025-06-13 09:38:38 / Modified: 09:41:10" itemprop="dateCreated datePublished" datetime="2025-06-13T09:38:38+08:00">2025-06-13</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>7 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div align="center"> <img src="/images/CleanArchitecture.jpg"/></div>
+近年来，我们见证了许多关于系统架构的理念，包括：
+
+<ul>
+<li>六边形架构（Hexagonal Architecture，也称端口与适配器架构），由Alistair Cockburn提出，Steve Freeman和Nat Pryce在他们的著作《Growing Object Oriented Software》中采用和推广；</li>
+<li>洋葱架构（Onion Architecture），由Jeffrey Palermo提出；</li>
+<li>“尖叫架构”（Screaming Architecture），来自我去年写的一篇博客；</li>
+<li>DCI架构，由James Coplien和Trygve Reenskaug提出；</li>
+<li>BCE架构，由Ivar Jacobson在其著作《面向对象软件工程：以用例驱动的方法》中提出。</li>
+</ul>
+<p>虽然这些架构在细节上各有不同，但它们非常相似。它们的共同目标是实现关注点分离，都是通过将软件划分为多个层次来实现的。每个架构至少包含一层业务规则层和一层接口层。</p>
+<p>这些架构设计出来的系统具有以下特性：</p>
+<ul>
+<li><strong>独立于框架</strong>。架构不依赖于某个功能繁多的库或框架，这使得你可以将框架作为工具使用，而不是被迫将系统限制在框架的局限之中。</li>
+<li><strong>可测试性强</strong>。业务规则可以在没有UI、数据库、Web服务器或任何外部元素的情况下进行测试。</li>
+<li><strong>独立于UI</strong>。UI可以轻松更换，而不影响系统的其他部分。例如，可以用控制台UI替换Web UI，而无需改动业务规则。</li>
+<li><strong>独立于数据库</strong>。可以随意替换Oracle、SQL Server、Mongo、BigTable、CouchDB等数据库，业务规则不受数据库的限制。</li>
+<li><strong>独立于任何外部机构</strong>。业务规则本身对外部世界毫不知情。</li>
+</ul>
+<p>本文开头的图示试图将上述所有架构整合成一个可操作的统一理念。</p>
+<hr>
+<h3 id="依赖规则（The-Dependency-Rule）"><a href="#依赖规则（The-Dependency-Rule）" class="headerlink" title="依赖规则（The Dependency Rule）"></a>依赖规则（The Dependency Rule）</h3><p>同心圆表示软件的不同区域。一般来说，越往内层，软件的抽象层级越高；外层是机制层，内层是策略层。</p>
+<p>使该架构得以运作的核心规则是“依赖规则”：源码依赖只能指向内层。内层代码绝不能知道外层的任何东西，尤其不能引用外层声明的任何名称（函数、类、变量或其他命名的软件实体）。</p>
+<p>同样，外层使用的数据格式不应被内层使用，尤其是那些由外层框架生成的数据格式。我们不希望外层的任何东西影响内层。</p>
+<hr>
+<h3 id="实体（Entities）"><a href="#实体（Entities）" class="headerlink" title="实体（Entities）"></a>实体（Entities）</h3><p>实体封装企业范围内的业务规则。实体可以是带有方法的对象，也可以是一组数据结构和函数，只要这些实体能被企业中的多个应用程序使用即可。</p>
+<p>如果你没有企业背景，只是写一个单独的应用，那么这些实体就是应用的业务对象。它们封装最通用、最高层次的规则，最不容易因外部变化而变化。例如页面导航或安全性变动，不应影响实体层。</p>
+<hr>
+<h3 id="用例（Use-Cases）"><a href="#用例（Use-Cases）" class="headerlink" title="用例（Use Cases）"></a>用例（Use Cases）</h3><p>这一层的软件包含应用特定的业务规则，封装并实现系统的所有用例。用例负责协调数据在实体之间的流动，并指挥实体利用企业级业务规则完成用例目标。</p>
+<p>预期这一层的变动不会影响实体层，也不会因数据库、UI或任何常用框架的变化而受影响。此层与这些外部因素隔离。</p>
+<p>然而，应用操作的变更会影响用例层的代码。如果用例细节发生变化，这层代码必然需要相应调整。</p>
+<hr>
+<h3 id="接口适配器（Interface-Adapters）"><a href="#接口适配器（Interface-Adapters）" class="headerlink" title="接口适配器（Interface Adapters）"></a>接口适配器（Interface Adapters）</h3><p>这一层是一组适配器，将数据从用例和实体最方便的格式转换为外部机构（如数据库或Web）最方便的格式。</p>
+<p>例如，MVC架构中的控制器、视图和展示器都属于这一层。模型通常是控制器传递给用例，再由用例传给展示器和视图的数据结构。</p>
+<p>同样，数据从实体和用例的格式转换为数据库所用的格式（如SQL）也在这里完成。内层代码绝不应知道数据库细节，所有SQL代码应限制在此层中与数据库相关的部分。</p>
+<p>此外，任何将外部服务数据转换为内部用例和实体格式的适配器也在此层。</p>
+<hr>
+<h3 id="框架与驱动（Frameworks-and-Drivers）"><a href="#框架与驱动（Frameworks-and-Drivers）" class="headerlink" title="框架与驱动（Frameworks and Drivers）"></a>框架与驱动（Frameworks and Drivers）</h3><p>最外层通常由数据库、Web框架等工具和框架组成。通常你只需在这一层写少量“胶水代码”，用于与内层通信。</p>
+<p>这一层是所有具体细节所在。Web、数据库都是细节，我们将它们放在外层，以减少对系统核心的影响。</p>
+<hr>
+<h3 id="只有四层吗？"><a href="#只有四层吗？" class="headerlink" title="只有四层吗？"></a>只有四层吗？</h3><p>不一定，这些同心圆只是示意图。你可能需要比这更多的层。没有规定必须只有这四层。</p>
+<p>但“依赖规则”始终适用：源码依赖永远指向内层。向内层越深，抽象层级越高。最外层是低层次的具体细节，最内层是最通用的高层策略。</p>
+<hr>
+<h3 id="跨越边界"><a href="#跨越边界" class="headerlink" title="跨越边界"></a>跨越边界</h3><p>图右下角展示了如何跨越层级边界。控制器和展示器与用例层通信，控制流从控制器开始，通过用例，最终执行展示器。</p>
+<p>注意源码依赖方向，始终指向内层。</p>
+<p>这看似矛盾，我们通常利用依赖倒置原则解决。在Java等语言中，通过接口和继承关系，使源码依赖方向与控制流方向相反，从而满足依赖规则。</p>
+<p>例如，用例需要调用展示器，但不能直接调用（否则违反依赖规则）。解决方式是用例调用内层接口（用例输出端口），由外层的展示器实现该接口。</p>
+<p>所有层级边界的跨越都采用类似技术，利用动态多态实现依赖方向与控制流方向的反向，从而无论控制流如何，都能遵守依赖规则。</p>
+<hr>
+<h3 id="通过边界传递的数据"><a href="#通过边界传递的数据" class="headerlink" title="通过边界传递的数据"></a>通过边界传递的数据</h3><p>通常跨层传递的是简单数据结构。可以是基本结构体、简单的数据传输对象（DTO），也可以是函数参数，或者封装在哈希表、对象中。</p>
+<p>关键是传递的结构必须是孤立且简单的，不能传递实体或数据库行对象，避免违反依赖规则。</p>
+<p>例如，许多数据库框架返回方便的查询结果格式（如行结构RowStructure），我们不应将其传递到内层，否则内层代码就会依赖外层，实现依赖规则被破坏。</p>
+<p>跨层传递的数据应始终采用对内层最方便的形式。</p>
+<hr>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>遵守这些简单规则并不难，却能为你今后的开发省去大量麻烦。通过分层设计，遵守依赖规则，你将构建一个天生可测试的系统，带来诸多好处。</p>
+<p>当系统的外部部分（如数据库或Web框架）过时时，你可以轻松替换它们，几乎不影响系统其他部分。</p>
+<hr>
+<p>如果你需要，我可以帮你绘制这套架构的示意图，或者进一步解释其中的某个部分。需要请告诉我！</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>宇宙山河浪漫，赞赏动力无限</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Ice WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Ice Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.png">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices-python/" rel="prev" title="面向对象最佳实践 Python 深入解析">
+      <i class="fa fa-chevron-left"></i> 面向对象最佳实践 Python 深入解析
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E8%A7%84%E5%88%99%EF%BC%88The-Dependency-Rule%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">依赖规则（The Dependency Rule）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%EF%BC%88Entities%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">实体（Entities）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E4%BE%8B%EF%BC%88Use-Cases%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">用例（Use Cases）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E9%80%82%E9%85%8D%E5%99%A8%EF%BC%88Interface-Adapters%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">接口适配器（Interface Adapters）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%A9%B1%E5%8A%A8%EF%BC%88Frameworks-and-Drivers%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">框架与驱动（Frameworks and Drivers）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AA%E6%9C%89%E5%9B%9B%E5%B1%82%E5%90%97%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">只有四层吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%A8%E8%B6%8A%E8%BE%B9%E7%95%8C"><span class="nav-number">7.</span> <span class="nav-text">跨越边界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E8%BE%B9%E7%95%8C%E4%BC%A0%E9%80%92%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">8.</span> <span class="nav-text">通过边界传递的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">9.</span> <span class="nav-text">结语</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ice</p>
+  <div class="site-description" itemprop="description">安静地坐着学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">120</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/TonyMistark" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;TonyMistark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/Micestark" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;Micestark" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tony_mistark@163.com" title="E-Mail → mailto:tony_mistark@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Tony_Mistark" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Tony_Mistark" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ice</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">212k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">12:50</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '298b6503f44953bd4193',
+      clientSecret: '6756a6cfc10d74976c79256c96ae1c441f3116ac',
+      repo        : 'tonymistark.github.io',
+      owner       : 'TonyMistark',
+      admin       : ['TonyMistark'],
+      id          : '342b8e4ede604d932b11797dfaeddb9b',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
