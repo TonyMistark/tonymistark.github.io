@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/14/1000_rust_questions/Rayon-vs-Crossbeam-in-Rust-Concurrency-Models-Performance-Trade-offs-and-Practical-Use-Cases/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/04/14/1000_rust_questions/Rayon-vs-Crossbeam-in-Rust-Concurrency-Models-Performance-Trade-offs-and-Practical-Use-Cases/" class="post-title-link" itemprop="url">Rust中的Rayon与Crossbeam：并发模型、性能权衡和实际用例</a>
+            <a href="/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/" class="post-title-link" itemprop="url">Rust 中应避免使用 BufReader 的场景与高效替代方案</a>
         </h2>
 
         <div class="post-meta">
@@ -206,16 +206,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2025-04-14 18:42:52" itemprop="dateCreated datePublished" datetime="2025-04-14T18:42:52+08:00">2025-04-14</time>
+              <time title="Created: 2025-04-15 12:12:35 / Modified: 12:14:10" itemprop="dateCreated datePublished" datetime="2025-04-15T12:12:35+08:00">2025-04-15</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-04-15 12:14:10" itemprop="dateModified" datetime="2025-04-15T12:14:10+08:00">2025-04-15</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -232,14 +226,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.2k</span>
+              <span>636</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -251,136 +245,40 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在 Rust 中，<code>rayon</code> 和 <code>crossbeam</code> 是两个常用于并发编程的库，但它们的定位和使用场景有所不同。以下是它们的详细对比和核心机制解析：</p>
+          <p>在 Rust 中，<code>BufReader</code> 的主要作用是<strong>通过缓冲减少系统调用次数</strong>，提高读取效率。然而，并非所有场景都适合使用它。以下是应避免使用 <code>BufReader</code> 的典型场景：</p>
 <hr>
-<h3 id="1-Rayon：数据并行与工作窃取"><a href="#1-Rayon：数据并行与工作窃取" class="headerlink" title="1. Rayon：数据并行与工作窃取"></a>1. <strong>Rayon：数据并行与工作窃取</strong></h3><h4 id="定位"><a href="#定位" class="headerlink" title="定位"></a><strong>定位</strong></h4><ul>
-<li><strong>数据并行</strong>：通过并行迭代器（如 <code>par_iter</code>）简化数据并行任务，自动将顺序操作并行化。</li>
-<li><strong>隐式线程池</strong>：内置全局线程池，通过 <strong>work-stealing</strong>（工作窃取）算法高效分配任务。</li>
-</ul>
-<h4 id="核心特性"><a href="#核心特性" class="headerlink" title="核心特性"></a><strong>核心特性</strong></h4><ol>
-<li><p><strong>并行迭代器</strong>：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> rayon::prelude::*;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 并行处理数组</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">data</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line">data.<span class="title function_ invoke__">par_iter_mut</span>().<span class="title function_ invoke__">for_each</span>(|x| *x *= <span class="number">2</span>);</span><br><span class="line"><span class="comment">// data 变为 [2, 4, 6, 8]</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>支持 <code>par_iter</code>（不可变遍历）、<code>par_iter_mut</code>（可变遍历）、<code>par_extend</code> 等操作。</li>
-<li>自动将任务拆分为多个子任务，分配到线程池中。</li>
-</ul>
-</li>
-<li><p><strong>工作窃取（Work-Stealing）</strong>：</p>
-<ul>
-<li>每个线程维护一个任务队列。</li>
-<li>空闲线程从其他线程的队列尾部“窃取”任务，减少任务分配不均的问题。</li>
-<li>适合任务粒度不均匀的场景（如递归分治算法）。</li>
-</ul>
-</li>
-<li><p><strong>隐式错误处理</strong>：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">result</span>: <span class="type">Result</span>&lt;<span class="type">Vec</span>&lt;_&gt;, _&gt; = (<span class="number">0</span>..<span class="number">100</span>)</span><br><span class="line">    .<span class="title function_ invoke__">into_par_iter</span>()</span><br><span class="line">    .<span class="title function_ invoke__">map</span>(|x| <span class="keyword">if</span> x == <span class="number">42</span> &#123; <span class="title function_ invoke__">Err</span>(<span class="string">&quot;error&quot;</span>) &#125; <span class="keyword">else</span> &#123; <span class="title function_ invoke__">Ok</span>(x) &#125;)</span><br><span class="line">    .<span class="title function_ invoke__">collect</span>();</span><br></pre></td></tr></table></figure>
-<ul>
-<li>通过 <code>try_reduce</code> 或 <code>collect</code> 收集错误，并行任务中的错误会传播到主线程。</li>
-</ul>
-</li>
-<li><p><strong>性能优化</strong>：</p>
-<ul>
-<li><strong>自动批处理</strong>：对小任务合并处理，减少线程调度开销。</li>
-<li><strong>无数据竞争</strong>：通过类型系统保证并行迭代的安全性（如 <code>par_iter_mut</code> 要求独占引用）。</li>
-</ul>
-</li>
-</ol>
-<h4 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a><strong>适用场景</strong></h4><ul>
-<li>计算密集型任务（如矩阵运算、图像处理）。</li>
-<li>需要对集合（<code>Vec</code>、数组等）进行并行遍历或转换。</li>
-<li>需要简单的 <code>MapReduce</code> 模式（如 <code>map</code> + <code>reduce</code>）。</li>
+<h3 id="1-读取小文件时"><a href="#1-读取小文件时" class="headerlink" title="1. 读取小文件时"></a>1. <strong>读取小文件时</strong></h3><ul>
+<li><strong>原因</strong>：对于非常小的文件（例如几 KB），直接一次性读取到内存（如 <code>std::fs::read_to_string</code>）通常更高效。<code>BufReader</code> 的缓冲机制（默认 8KB）反而会引入额外的内存管理和分块处理开销。</li>
+<li><strong>替代方案</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::fs;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">content</span> = fs::<span class="title function_ invoke__">read_to_string</span>(<span class="string">&quot;small_file.txt&quot;</span>)?;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
-<h3 id="2-Crossbeam：作用域线程与并发原语"><a href="#2-Crossbeam：作用域线程与并发原语" class="headerlink" title="2. Crossbeam：作用域线程与并发原语"></a>2. <strong>Crossbeam：作用域线程与并发原语</strong></h3><h4 id="定位-1"><a href="#定位-1" class="headerlink" title="定位"></a><strong>定位</strong></h4><ul>
-<li><strong>显式线程管理</strong>：提供作用域线程（<code>scoped threads</code>）和并发数据结构（如无锁队列、通道）。</li>
-<li><strong>细粒度控制</strong>：适合需要手动管理线程生命周期和共享状态的场景。</li>
-</ul>
-<h4 id="核心特性-1"><a href="#核心特性-1" class="headerlink" title="核心特性"></a><strong>核心特性</strong></h4><ol>
-<li><p><strong>作用域线程（Scoped Threads）</strong>：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crossbeam::scope;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">data</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="title function_ invoke__">scope</span>(|s| &#123;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">x</span> <span class="keyword">in</span> &amp;data &#123;</span><br><span class="line">        s.<span class="title function_ invoke__">spawn</span>(<span class="keyword">move</span> |_| &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, x); <span class="comment">// 直接借用父线程的 data</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).<span class="title function_ invoke__">unwrap</span>();</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>生命周期安全</strong>：子线程被限制在作用域内，确保父线程的数据在子线程结束后才释放。</li>
-<li><strong>共享栈数据</strong>：允许子线程直接借用父线程栈上的数据（无需 <code>Arc</code>）。</li>
-</ul>
-</li>
-<li><p><strong>并发数据结构</strong>：</p>
-<ul>
-<li><strong>无锁队列（<code>SegQueue</code>）</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crossbeam::queue::SegQueue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">queue</span> = SegQueue::<span class="title function_ invoke__">new</span>();</span><br><span class="line">queue.<span class="title function_ invoke__">push</span>(<span class="number">42</span>);</span><br><span class="line"><span class="keyword">let</span> <span class="variable">value</span> = queue.<span class="title function_ invoke__">pop</span>().<span class="title function_ invoke__">unwrap</span>(); <span class="comment">// 42</span></span><br></pre></td></tr></table></figure></li>
-<li><strong>通道（<code>crossbeam-channel</code>）</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crossbeam_channel::unbounded;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> (tx, rx) = <span class="title function_ invoke__">unbounded</span>();</span><br><span class="line">tx.<span class="title function_ invoke__">send</span>(<span class="number">42</span>).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line"><span class="keyword">let</span> <span class="variable">value</span> = rx.<span class="title function_ invoke__">recv</span>().<span class="title function_ invoke__">unwrap</span>(); <span class="comment">// 42</span></span><br></pre></td></tr></table></figure></li>
-<li>支持多生产者和多消费者（MPMC）模式。</li>
-</ul>
-</li>
-<li><p><strong>原子操作与内存管理</strong>：</p>
-<ul>
-<li>**<code>AtomicCell</code>**：提供原子操作的包装类型。</li>
-<li>**<code>epoch-based GC</code>**：通过内存回收机制避免无锁数据结构中的内存泄漏。</li>
-</ul>
-</li>
-</ol>
-<h4 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a><strong>适用场景</strong></h4><ul>
-<li>需要手动生成多个线程并共享数据（如分治算法）。</li>
-<li>使用无锁数据结构（如自定义线程池、任务队列）。</li>
-<li>需要精确控制线程的生命周期和同步。</li>
+<h3 id="2-需要逐行处理但已全量读取"><a href="#2-需要逐行处理但已全量读取" class="headerlink" title="2. 需要逐行处理但已全量读取"></a>2. <strong>需要逐行处理但已全量读取</strong></h3><ul>
+<li><strong>原因</strong>：如果文件已被完整读入内存（例如通过 <code>read_to_string</code>），直接按行分割字符串（如 <code>split(&#39;\n&#39;)</code>）会比逐行缓冲读取更高效，因为避免了缓冲区的重复检查。</li>
+<li><strong>替代方案</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">content</span> = fs::<span class="title function_ invoke__">read_to_string</span>(<span class="string">&quot;data.txt&quot;</span>)?;</span><br><span class="line"><span class="keyword">for</span> <span class="variable">line</span> <span class="keyword">in</span> content.<span class="title function_ invoke__">lines</span>() &#123;</span><br><span class="line">    <span class="comment">// 直接处理每行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
-<h3 id="3-对比与选择"><a href="#3-对比与选择" class="headerlink" title="3. 对比与选择"></a>3. <strong>对比与选择</strong></h3><table>
-<thead>
-<tr>
-<th><strong>维度</strong></th>
-<th><strong>Rayon</strong></th>
-<th><strong>Crossbeam</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>抽象层级</strong></td>
-<td>高级（并行迭代器、隐式线程池）</td>
-<td>中级（作用域线程、显式并发原语）</td>
-</tr>
-<tr>
-<td><strong>数据共享</strong></td>
-<td>通过并行迭代器隐式共享</td>
-<td>显式借用或使用并发数据结构</td>
-</tr>
-<tr>
-<td><strong>任务调度</strong></td>
-<td>自动工作窃取</td>
-<td>手动控制（需自行实现任务分配）</td>
-</tr>
-<tr>
-<td><strong>适用场景</strong></td>
-<td>数据并行、计算密集型任务</td>
-<td>细粒度线程控制、无锁数据结构</td>
-</tr>
-<tr>
-<td><strong>学习曲线</strong></td>
-<td>简单（只需替换 <code>iter</code> 为 <code>par_iter</code>）</td>
-<td>较高（需理解作用域和并发原语）</td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="4-混合使用示例"><a href="#4-混合使用示例" class="headerlink" title="4. 混合使用示例"></a>4. <strong>混合使用示例</strong></h3><p>结合 <code>rayon</code> 和 <code>crossbeam-channel</code> 实现动态任务分配：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crossbeam_channel::unbounded;</span><br><span class="line"><span class="keyword">use</span> rayon::prelude::*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> (tx, rx) = <span class="title function_ invoke__">unbounded</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 生产者线程（使用 crossbeam 生成作用域线程）</span></span><br><span class="line">    crossbeam::<span class="title function_ invoke__">scope</span>(|s| &#123;</span><br><span class="line">        s.<span class="title function_ invoke__">spawn</span>(|_| &#123;</span><br><span class="line">            (<span class="number">0</span>..<span class="number">10</span>).<span class="title function_ invoke__">for_each</span>(|x| tx.<span class="title function_ invoke__">send</span>(x).<span class="title function_ invoke__">unwrap</span>());</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 消费者线程池（使用 rayon 处理任务）</span></span><br><span class="line">        rx.<span class="title function_ invoke__">into_iter</span>().<span class="title function_ invoke__">par_bridge</span>().<span class="title function_ invoke__">for_each</span>(|x| &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;Processed: &#123;&#125;&quot;</span>, x * <span class="number">2</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>**<code>par_bridge</code>**：将通道的同步迭代器转换为并行迭代器，利用 <code>rayon</code> 的线程池处理任务。</li>
+<h3 id="3-需要严格逐字节或精确控制读取时"><a href="#3-需要严格逐字节或精确控制读取时" class="headerlink" title="3. 需要严格逐字节或精确控制读取时"></a>3. <strong>需要严格逐字节或精确控制读取时</strong></h3><ul>
+<li><strong>原因</strong>：<code>BufReader</code> 的缓冲机制会预读数据到内存，可能干扰需要精确控制读取位置或逐字节处理的场景（例如解析二进制协议）。</li>
+<li><strong>替代方案</strong>：直接使用原始 <code>File</code> 对象：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::fs::File;</span><br><span class="line"><span class="keyword">use</span> std::io::Read;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">file</span> = File::<span class="title function_ invoke__">open</span>(<span class="string">&quot;data.bin&quot;</span>)?;</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">byte</span> = [<span class="number">0u8</span>; <span class="number">1</span>];</span><br><span class="line">file.<span class="title function_ invoke__">read_exact</span>(&amp;<span class="keyword">mut</span> byte)?; <span class="comment">// 精确读取单个字节</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
-<h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. <strong>总结</strong></h3><ul>
-<li><p>**选择 <code>rayon</code>**：</p>
-<ul>
-<li>当需要快速将顺序代码并行化（如循环、迭代器链）。</li>
-<li>当任务适合自动拆分（如均匀的数据块）。</li>
-<li>当希望减少手动线程管理的复杂性。</li>
+<h3 id="4-内存敏感环境"><a href="#4-内存敏感环境" class="headerlink" title="4. 内存敏感环境"></a>4. <strong>内存敏感环境</strong></h3><ul>
+<li><strong>原因</strong>：<code>BufReader</code> 默认使用 8KB 缓冲区，在极端内存受限的环境（如嵌入式系统）中可能需避免额外开销。</li>
+<li><strong>替代方案</strong>：手动调整缓冲区大小或直接无缓冲读取：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::io::BufReader;</span><br><span class="line"><span class="keyword">use</span> std::fs::File;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">file</span> = File::<span class="title function_ invoke__">open</span>(<span class="string">&quot;data.txt&quot;</span>)?;</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">reader</span> = BufReader::<span class="title function_ invoke__">with_capacity</span>(<span class="number">512</span>, file); <span class="comment">// 使用更小的缓冲区</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-</li>
-<li><p>**选择 <code>crossbeam</code>**：</p>
-<ul>
-<li>当需要直接共享栈数据（避免 <code>Arc</code>）。</li>
-<li>当需要手动控制线程的生命周期。</li>
-<li>当使用无锁数据结构或自定义并发模式（如事件驱动）。</li>
+<hr>
+<h3 id="5-需要随机访问或复杂定位时"><a href="#5-需要随机访问或复杂定位时" class="headerlink" title="5. 需要随机访问或复杂定位时"></a>5. <strong>需要随机访问或复杂定位时</strong></h3><ul>
+<li><strong>原因</strong>：<code>BufReader</code> 的缓冲会缓存部分数据，频繁的 <code>seek</code> 操作可能导致缓冲区失效，增加复杂度。</li>
+<li><strong>替代方案</strong>：直接操作 <code>File</code> 并手动管理位置：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">file</span> = File::<span class="title function_ invoke__">open</span>(<span class="string">&quot;data.txt&quot;</span>)?;</span><br><span class="line">file.<span class="title function_ invoke__">seek</span>(SeekFrom::<span class="title function_ invoke__">Start</span>(<span class="number">100</span>))?; <span class="comment">// 直接跳转到指定位置</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-</li>
+<hr>
+<h3 id="何时仍应使用-BufReader？"><a href="#何时仍应使用-BufReader？" class="headerlink" title="何时仍应使用 BufReader？"></a>何时仍应使用 <code>BufReader</code>？</h3><ul>
+<li><strong>大文件读取</strong>：减少频繁的系统调用。</li>
+<li><strong>逐行处理大文件</strong>：<code>reader.lines()</code> 是高效逐行读取的标准方法。</li>
+<li><strong>网络流处理</strong>：缓冲可有效应对数据分块到达的情况。</li>
 </ul>
-<p>两者可以互补使用：用 <code>rayon</code> 处理计算密集型任务，用 <code>crossbeam</code> 管理线程和协调任务。</p>
+<hr>
+<p><strong>总结</strong>：<code>BufReader</code> 的核心优势在于<strong>减少系统调用</strong>，但在数据量小、需精确控制读取或内存敏感的场景中，直接操作可能更高效。根据实际需求权衡缓冲带来的收益与开销。</p>
 
       
     </div>
@@ -399,7 +297,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/121/">121</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/122/">122</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -465,7 +363,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-count">122</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -528,12 +426,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">213k</span>
+    <span title="Symbols count total">214k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:54</span>
+    <span title="Reading time total">12:58</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

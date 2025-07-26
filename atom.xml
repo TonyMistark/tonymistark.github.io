@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-07-26T03:31:23.506Z</updated>
+  <updated>2025-07-26T08:47:44.056Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Rust 内存布局全解：从基础类型到动态大小的深度剖析与优化策略</title>
+    <link href="https://tonymistark.github.io/2025/07/26/rust_notes/Comprehensive-Guide-to-Rust-Memory-Layout-From-Primitives-to-DSTs-with-Optimization-Insights/"/>
+    <id>https://tonymistark.github.io/2025/07/26/rust_notes/Comprehensive-Guide-to-Rust-Memory-Layout-From-Primitives-to-DSTs-with-Optimization-Insights/</id>
+    <published>2025-07-26T08:46:24.000Z</published>
+    <updated>2025-07-26T08:47:44.056Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Rust 的内存布局设计强调效率、安全性和明确性，其布局规则由类型定义和编译器优化共同决定。以下是对 Rust 各类对象内存布局的详细分析：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;一、基础类型布局&quot;&gt;&lt;a href=&quot;#一、基础类型布局&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="rust_notes" scheme="https://tonymistark.github.io/categories/rust-notes/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>错误处理范式之争：Rust 的 Result 机制 vs 传统语言的 try-catch 设计哲学深度解析</title>
@@ -448,27 +473,6 @@
         
         
     <summary type="html">&lt;h2</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>理解 Go 接口的运行时类型信息（RTTI）及其开销</title>
-    <link href="https://tonymistark.github.io/2025/03/12/Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces/"/>
-    <id>https://tonymistark.github.io/2025/03/12/Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces/</id>
-    <published>2025-03-12T08:24:02.000Z</published>
-    <updated>2025-03-12T08:25:26.710Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces&quot;&gt;&lt;a</summary>
         
       
     

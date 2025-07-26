@@ -15,8 +15,35 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Sat, 26 Jul 2025 03:31:23 GMT</pubDate>
+    <pubDate>Sat, 26 Jul 2025 08:47:44 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Rust 内存布局全解：从基础类型到动态大小的深度剖析与优化策略</title>
+      <link>https://tonymistark.github.io/2025/07/26/rust_notes/Comprehensive-Guide-to-Rust-Memory-Layout-From-Primitives-to-DSTs-with-Optimization-Insights/</link>
+      <guid>https://tonymistark.github.io/2025/07/26/rust_notes/Comprehensive-Guide-to-Rust-Memory-Layout-From-Primitives-to-DSTs-with-Optimization-Insights/</guid>
+      <pubDate>Sat, 26 Jul 2025 08:46:24 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;Rust 的内存布局设计强调效率、安全性和明确性，其布局规则由类型定义和编译器优化共同决定。以下是对 Rust 各类对象内存布局的详细分析：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;一、基础类型布局&quot;&gt;&lt;a href=&quot;#一、基础类型布局&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/categories/rust-notes/">rust_notes</category>
+      
+      
+      
+      <comments>https://tonymistark.github.io/2025/07/26/rust_notes/Comprehensive-Guide-to-Rust-Memory-Layout-From-Primitives-to-DSTs-with-Optimization-Insights/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>错误处理范式之争：Rust 的 Result 机制 vs 传统语言的 try-catch 设计哲学深度解析</title>
@@ -493,29 +520,6 @@
       
       
       <comments>https://tonymistark.github.io/2025/03/12/Deep-Dive-into-Flexible-and-Type-Safe-Abstraction-in-Rust-Using-Traits-and-Generics-Associated-Types-Trait-Bounds-and-Thread-Safety/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>理解 Go 接口的运行时类型信息（RTTI）及其开销</title>
-      <link>https://tonymistark.github.io/2025/03/12/Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces/</link>
-      <guid>https://tonymistark.github.io/2025/03/12/Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces/</guid>
-      <pubDate>Wed, 12 Mar 2025 08:24:02 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces&quot;&gt;&lt;a</description>
-          
-        
-      
-      
-      
-      
-      
-      
-      <comments>https://tonymistark.github.io/2025/03/12/Understanding-Runtime-Type-Information-RTTI-and-Overhead-in-Go-Interfaces/#disqus_thread</comments>
       
     </item>
     

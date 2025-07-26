@@ -1,3 +1,4 @@
+https://tonymistark.github.io/2025/07/26/rust_notes/Comprehensive-Guide-to-Rust-Memory-Layout-From-Primitives-to-DSTs-with-Optimization-Insights/
 https://tonymistark.github.io/2025/07/26/rust_notes/Error-Handling-Paradigms-A-Deep-Dive-into-Rust-s-Result-vs-Traditional-try-catch-in-Java-Python-JS/
 https://tonymistark.github.io/2025/06/13/The-Clean-Architecture/
 https://tonymistark.github.io/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices-python/
