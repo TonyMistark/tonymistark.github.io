@@ -15,8 +15,56 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Sat, 26 Jul 2025 08:47:44 GMT</pubDate>
+    <pubDate>Tue, 09 Sep 2025 02:12:19 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>空杯心态：保持谦逊与开放的学习心态</title>
+      <link>https://tonymistark.github.io/2025/09/09/The-Empty-Cup-Mindset-Staying-Humble-and-Open-to-Learning/</link>
+      <guid>https://tonymistark.github.io/2025/09/09/The-Empty-Cup-Mindset-Staying-Humble-and-Open-to-Learning/</guid>
+      <pubDate>Tue, 09 Sep 2025 02:10:55 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;空杯心态（有时称为“空杯心态态度”）是一种学习或做人处事的心态，意思是像一只空杯子那样，保持谦逊、开放和愿意接纳新事物的态度。主要特点和含义如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;谦逊：承认自己并非全知，对自己的知识和能力保有适度怀疑，不把已有认知当作终点。 </description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2025/09/09/The-Empty-Cup-Mindset-Staying-Humble-and-Open-to-Learning/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Clean Architecture vs. Hexagonal Architecture: A Deep Dive into Their Similarities and Differences</title>
+      <link>https://tonymistark.github.io/2025/09/03/Clean-Architecture-vs-Hexagonal-Architecture-A-Deep-Dive-into-Their-Similarities-and-Differences/</link>
+      <guid>https://tonymistark.github.io/2025/09/03/Clean-Architecture-vs-Hexagonal-Architecture-A-Deep-Dive-into-Their-Similarities-and-Differences/</guid>
+      <pubDate>Wed, 03 Sep 2025 07:30:16 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;好的，这是一个非常棒的架构问题。简洁架构（Clean Architecture）和六边形架构（Hexagonal</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://tonymistark.github.io/2025/09/03/Clean-Architecture-vs-Hexagonal-Architecture-A-Deep-Dive-into-Their-Similarities-and-Differences/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Rust 内存布局全解：从基础类型到动态大小的深度剖析与优化策略</title>
@@ -472,54 +520,6 @@
       
       
       <comments>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_01/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Rust 中关联类型与泛型的区别详解：特性、使用场景与设计目的</title>
-      <link>https://tonymistark.github.io/2025/03/13/Detailed-Comparison-Between-Associated-Types-and-Generics-in-Rust-Features-Use-Cases-and-Design-Goals/</link>
-      <guid>https://tonymistark.github.io/2025/03/13/Detailed-Comparison-Between-Associated-Types-and-Generics-in-Rust-Features-Use-Cases-and-Design-Goals/</guid>
-      <pubDate>Thu, 13 Mar 2025 03:26:37 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;Detailed-Comparison-Between-Associated-Types-and-Generics-in-Rust-Features-Use-Cases-and-Design-Goals&quot;&gt;&lt;a</description>
-          
-        
-      
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/tags/rust/">rust</category>
-      
-      
-      <comments>https://tonymistark.github.io/2025/03/13/Detailed-Comparison-Between-Associated-Types-and-Generics-in-Rust-Features-Use-Cases-and-Design-Goals/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>深入理解 Rust 中通过 trait 和泛型实现灵活且类型安全的抽象：关联类型、trait bound 与线程安全</title>
-      <link>https://tonymistark.github.io/2025/03/12/Deep-Dive-into-Flexible-and-Type-Safe-Abstraction-in-Rust-Using-Traits-and-Generics-Associated-Types-Trait-Bounds-and-Thread-Safety/</link>
-      <guid>https://tonymistark.github.io/2025/03/12/Deep-Dive-into-Flexible-and-Type-Safe-Abstraction-in-Rust-Using-Traits-and-Generics-Associated-Types-Trait-Bounds-and-Thread-Safety/</guid>
-      <pubDate>Wed, 12 Mar 2025 10:37:34 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2</description>
-          
-        
-      
-      
-      
-      
-      
-      
-      <comments>https://tonymistark.github.io/2025/03/12/Deep-Dive-into-Flexible-and-Type-Safe-Abstraction-in-Rust-Using-Traits-and-Generics-Associated-Types-Trait-Bounds-and-Thread-Safety/#disqus_thread</comments>
       
     </item>
     

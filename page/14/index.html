@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/14/1000_rust_questions/Scoped-Threads-vs-Message-Passing-in-Rust-Performance-and-Ownership-Tradeoffs/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/04/14/1000_rust_questions/Scoped-Threads-vs-Message-Passing-in-Rust-Performance-and-Ownership-Tradeoffs/" class="post-title-link" itemprop="url">Rust 何种场景下选择作用域线程参数（如 rayon/crossbeam）而非消息传递？</a>
+            <a href="/2025/04/15/1000_rust_questions/When-to-Avoid-BufReader-in-Rust-Key-Scenarios-and-Optimal-Alternatives/" class="post-title-link" itemprop="url">Rust 中应避免使用 BufReader 的场景与高效替代方案</a>
         </h2>
 
         <div class="post-meta">
@@ -208,7 +208,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-04-14 18:32:12 / Modified: 18:36:48" itemprop="dateCreated datePublished" datetime="2025-04-14T18:32:12+08:00">2025-04-14</time>
+              <time title="Created: 2025-04-15 12:12:35 / Modified: 12:14:10" itemprop="dateCreated datePublished" datetime="2025-04-15T12:12:35+08:00">2025-04-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,14 +226,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>985</span>
+              <span>636</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -245,103 +245,40 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在 Rust 中选择作用域线程（如 <code>rayon</code>&#x2F;<code>crossbeam</code>）还是消息传递（如通道），需结合<strong>性能需求</strong>、<strong>数据共享模式</strong>和<strong>所有权管理</strong>综合判断。以下是具体场景和建议：</p>
+          <p>在 Rust 中，<code>BufReader</code> 的主要作用是<strong>通过缓冲减少系统调用次数</strong>，提高读取效率。然而，并非所有场景都适合使用它。以下是应避免使用 <code>BufReader</code> 的典型场景：</p>
 <hr>
-<h3 id="1-优先选择作用域线程的场景"><a href="#1-优先选择作用域线程的场景" class="headerlink" title="1. 优先选择作用域线程的场景"></a>1. <strong>优先选择作用域线程的场景</strong></h3><h4 id="🔑-共享不可变数据或受控的可变数据"><a href="#🔑-共享不可变数据或受控的可变数据" class="headerlink" title="🔑 共享不可变数据或受控的可变数据"></a>🔑 <strong>共享不可变数据或受控的可变数据</strong></h4><ul>
-<li><strong>场景</strong>：多个线程需要高效共享<strong>只读数据</strong>（如大型数组、配置参数）或通过安全方式共享<strong>受控的可变数据</strong>（如分片写入）。</li>
-<li><strong>优势</strong>：<ul>
-<li>避免数据拷贝：通过借用（<code>&amp;T</code>）直接访问父线程栈上的数据，无需 <code>Arc</code> 或通道传输。</li>
-<li>天然的生命周期管理：作用域确保子线程在父线程释放数据前结束。</li>
-</ul>
-</li>
-<li><strong>示例</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crossbeam::scope;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">data</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line">    <span class="title function_ invoke__">scope</span>(|s| &#123;</span><br><span class="line">        <span class="keyword">for</span> <span class="variable">x</span> <span class="keyword">in</span> &amp;data &#123;</span><br><span class="line">            s.<span class="title function_ invoke__">spawn</span>(<span class="keyword">move</span> |_| &#123;</span><br><span class="line">                <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, x); <span class="comment">// 直接借用父线程的 data</span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="⚡-计算密集型并行任务"><a href="#⚡-计算密集型并行任务" class="headerlink" title="⚡ 计算密集型并行任务"></a>⚡ <strong>计算密集型并行任务</strong></h4><ul>
-<li><strong>场景</strong>：需要将任务拆分为多个子任务并行执行（如并行排序、图像处理）。</li>
-<li><strong>优势</strong>：<ul>
-<li><code>rayon</code> 的并行迭代器（如 <code>par_iter</code>）自动利用线程池，简化并行化。</li>
-<li>避免通道通信开销，直接共享数据。</li>
-</ul>
-</li>
-<li><strong>示例</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> rayon::prelude::*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">data</span> = <span class="built_in">vec!</span>[<span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">5</span>];</span><br><span class="line">    data.<span class="title function_ invoke__">par_iter_mut</span>().<span class="title function_ invoke__">for_each</span>(|x| *x *= <span class="number">2</span>); <span class="comment">// 并行修改数据</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, data); <span class="comment">// [6, 2, 8, 2, 10]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="🛠️-需要同步执行结果"><a href="#🛠️-需要同步执行结果" class="headerlink" title="🛠️ 需要同步执行结果"></a>🛠️ <strong>需要同步执行结果</strong></h4><ul>
-<li><strong>场景</strong>：子任务的结果需要立即汇总到父线程（如 <code>MapReduce</code> 模型）。</li>
-<li><strong>优势</strong>：<ul>
-<li>通过作用域内的变量直接收集结果，无需通道同步。</li>
-<li>天然的错误传播：通过 <code>Result</code> 集中处理错误。</li>
-</ul>
-</li>
-<li><strong>示例</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crossbeam::scope;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;(), <span class="type">Box</span>&lt;<span class="keyword">dyn</span> std::error::Error&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">results</span> = <span class="built_in">vec!</span>[<span class="number">0</span>; <span class="number">4</span>];</span><br><span class="line">    <span class="title function_ invoke__">scope</span>(|s| &#123;</span><br><span class="line">        <span class="title function_ invoke__">for</span> (i, res) <span class="keyword">in</span> results.<span class="title function_ invoke__">iter_mut</span>().<span class="title function_ invoke__">enumerate</span>() &#123;</span><br><span class="line">            s.<span class="title function_ invoke__">spawn</span>(<span class="keyword">move</span> |_| &#123;</span><br><span class="line">                *res = i * <span class="number">2</span>; <span class="comment">// 直接写入父线程的 results</span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, results); <span class="comment">// [0, 2, 4, 6]</span></span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<h3 id="1-读取小文件时"><a href="#1-读取小文件时" class="headerlink" title="1. 读取小文件时"></a>1. <strong>读取小文件时</strong></h3><ul>
+<li><strong>原因</strong>：对于非常小的文件（例如几 KB），直接一次性读取到内存（如 <code>std::fs::read_to_string</code>）通常更高效。<code>BufReader</code> 的缓冲机制（默认 8KB）反而会引入额外的内存管理和分块处理开销。</li>
+<li><strong>替代方案</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::fs;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">content</span> = fs::<span class="title function_ invoke__">read_to_string</span>(<span class="string">&quot;small_file.txt&quot;</span>)?;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
-<h3 id="2-优先选择消息传递的场景"><a href="#2-优先选择消息传递的场景" class="headerlink" title="2. 优先选择消息传递的场景"></a>2. <strong>优先选择消息传递的场景</strong></h3><h4 id="📨-解耦生产者和消费者"><a href="#📨-解耦生产者和消费者" class="headerlink" title="📨 解耦生产者和消费者"></a>📨 <strong>解耦生产者和消费者</strong></h4><ul>
-<li><strong>场景</strong>：任务需要异步执行，生产者生成数据，消费者处理数据（如日志处理、事件驱动架构）。</li>
-<li><strong>优势</strong>：<ul>
-<li>通过通道（如 <code>std::sync::mpsc</code> 或 <code>crossbeam-channel</code>）解耦线程间逻辑。</li>
-<li>避免共享状态，减少锁的使用。</li>
-</ul>
-</li>
-<li><strong>示例</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::sync::mpsc;</span><br><span class="line"><span class="keyword">use</span> std::thread;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> (tx, rx) = mpsc::<span class="title function_ invoke__">channel</span>();</span><br><span class="line">    thread::<span class="title function_ invoke__">spawn</span>(<span class="keyword">move</span> || &#123;</span><br><span class="line">        tx.<span class="title function_ invoke__">send</span>(<span class="number">42</span>).<span class="title function_ invoke__">unwrap</span>(); <span class="comment">// 发送数据到主线程</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Received: &#123;&#125;&quot;</span>, rx.<span class="title function_ invoke__">recv</span>().<span class="title function_ invoke__">unwrap</span>()); <span class="comment">// 主线程接收数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="🔄-动态任务分配"><a href="#🔄-动态任务分配" class="headerlink" title="🔄 动态任务分配"></a>🔄 <strong>动态任务分配</strong></h4><ul>
-<li><strong>场景</strong>：任务数量或大小不确定，需要动态调度（如工作队列）。</li>
-<li><strong>优势</strong>：<ul>
-<li>使用通道作为任务队列，灵活分配任务。</li>
-<li>支持负载均衡和弹性伸缩。</li>
-</ul>
-</li>
-<li><strong>示例</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crossbeam_channel::unbounded;</span><br><span class="line"><span class="keyword">use</span> std::thread;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> (tx, rx) = <span class="title function_ invoke__">unbounded</span>();</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">_</span> <span class="keyword">in</span> <span class="number">0</span>..<span class="number">4</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">rx</span> = rx.<span class="title function_ invoke__">clone</span>();</span><br><span class="line">        thread::<span class="title function_ invoke__">spawn</span>(<span class="keyword">move</span> || &#123;</span><br><span class="line">            <span class="keyword">while</span> <span class="keyword">let</span> <span class="variable">Ok</span>(task) = rx.<span class="title function_ invoke__">recv</span>() &#123;</span><br><span class="line">                <span class="built_in">println!</span>(<span class="string">&quot;Processing task: &#123;&#125;&quot;</span>, task);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">task</span> <span class="keyword">in</span> <span class="number">0</span>..<span class="number">10</span> &#123;</span><br><span class="line">        tx.<span class="title function_ invoke__">send</span>(task).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="🚫-避免共享可变状态"><a href="#🚫-避免共享可变状态" class="headerlink" title="🚫 避免共享可变状态"></a>🚫 <strong>避免共享可变状态</strong></h4><ul>
-<li><strong>场景</strong>：需要完全避免数据竞争（如无锁设计）。</li>
-<li><strong>优势</strong>：<ul>
-<li>每个数据仅由一个线程持有，通过通道转移所有权。</li>
-<li>无需 <code>Mutex</code> 或 <code>RwLock</code>，简化代码逻辑。</li>
-</ul>
-</li>
+<h3 id="2-需要逐行处理但已全量读取"><a href="#2-需要逐行处理但已全量读取" class="headerlink" title="2. 需要逐行处理但已全量读取"></a>2. <strong>需要逐行处理但已全量读取</strong></h3><ul>
+<li><strong>原因</strong>：如果文件已被完整读入内存（例如通过 <code>read_to_string</code>），直接按行分割字符串（如 <code>split(&#39;\n&#39;)</code>）会比逐行缓冲读取更高效，因为避免了缓冲区的重复检查。</li>
+<li><strong>替代方案</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">content</span> = fs::<span class="title function_ invoke__">read_to_string</span>(<span class="string">&quot;data.txt&quot;</span>)?;</span><br><span class="line"><span class="keyword">for</span> <span class="variable">line</span> <span class="keyword">in</span> content.<span class="title function_ invoke__">lines</span>() &#123;</span><br><span class="line">    <span class="comment">// 直接处理每行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
-<h3 id="3-关键权衡点"><a href="#3-关键权衡点" class="headerlink" title="3. 关键权衡点"></a>3. <strong>关键权衡点</strong></h3><table>
-<thead>
-<tr>
-<th><strong>维度</strong></th>
-<th><strong>作用域线程</strong></th>
-<th><strong>消息传递</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>数据共享</strong></td>
-<td>直接借用栈数据，高效</td>
-<td>需移动或克隆数据，可能引入 <code>Arc</code></td>
-</tr>
-<tr>
-<td><strong>性能</strong></td>
-<td>低开销（无通道通信）</td>
-<td>通道传输可能成为瓶颈</td>
-</tr>
-<tr>
-<td><strong>代码简洁性</strong></td>
-<td>适合固定任务拆分（如 <code>rayon</code> 迭代器）</td>
-<td>适合动态任务调度</td>
-</tr>
-<tr>
-<td><strong>错误处理</strong></td>
-<td>通过 <code>Result</code> 集中处理</td>
-<td>需在消息中传递错误</td>
-</tr>
-<tr>
-<td><strong>生命周期安全</strong></td>
-<td>由作用域自动管理</td>
-<td>需手动确保数据有效性</td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="总结建议"><a href="#总结建议" class="headerlink" title="总结建议"></a>总结建议</h3><ul>
-<li><strong>选择作用域线程</strong>：当需要高效共享数据、任务结构固定（如并行计算），且生命周期可控时。</li>
-<li><strong>选择消息传递</strong>：当任务需要解耦、数据需跨线程转移所有权，或避免共享可变状态时。</li>
+<h3 id="3-需要严格逐字节或精确控制读取时"><a href="#3-需要严格逐字节或精确控制读取时" class="headerlink" title="3. 需要严格逐字节或精确控制读取时"></a>3. <strong>需要严格逐字节或精确控制读取时</strong></h3><ul>
+<li><strong>原因</strong>：<code>BufReader</code> 的缓冲机制会预读数据到内存，可能干扰需要精确控制读取位置或逐字节处理的场景（例如解析二进制协议）。</li>
+<li><strong>替代方案</strong>：直接使用原始 <code>File</code> 对象：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::fs::File;</span><br><span class="line"><span class="keyword">use</span> std::io::Read;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">file</span> = File::<span class="title function_ invoke__">open</span>(<span class="string">&quot;data.bin&quot;</span>)?;</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">byte</span> = [<span class="number">0u8</span>; <span class="number">1</span>];</span><br><span class="line">file.<span class="title function_ invoke__">read_exact</span>(&amp;<span class="keyword">mut</span> byte)?; <span class="comment">// 精确读取单个字节</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<p>根据实际场景混合使用两者（如用 <code>rayon</code> 处理计算密集型部分，用通道协调任务）可能是更优解。</p>
+<hr>
+<h3 id="4-内存敏感环境"><a href="#4-内存敏感环境" class="headerlink" title="4. 内存敏感环境"></a>4. <strong>内存敏感环境</strong></h3><ul>
+<li><strong>原因</strong>：<code>BufReader</code> 默认使用 8KB 缓冲区，在极端内存受限的环境（如嵌入式系统）中可能需避免额外开销。</li>
+<li><strong>替代方案</strong>：手动调整缓冲区大小或直接无缓冲读取：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::io::BufReader;</span><br><span class="line"><span class="keyword">use</span> std::fs::File;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">file</span> = File::<span class="title function_ invoke__">open</span>(<span class="string">&quot;data.txt&quot;</span>)?;</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">reader</span> = BufReader::<span class="title function_ invoke__">with_capacity</span>(<span class="number">512</span>, file); <span class="comment">// 使用更小的缓冲区</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="5-需要随机访问或复杂定位时"><a href="#5-需要随机访问或复杂定位时" class="headerlink" title="5. 需要随机访问或复杂定位时"></a>5. <strong>需要随机访问或复杂定位时</strong></h3><ul>
+<li><strong>原因</strong>：<code>BufReader</code> 的缓冲会缓存部分数据，频繁的 <code>seek</code> 操作可能导致缓冲区失效，增加复杂度。</li>
+<li><strong>替代方案</strong>：直接操作 <code>File</code> 并手动管理位置：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">file</span> = File::<span class="title function_ invoke__">open</span>(<span class="string">&quot;data.txt&quot;</span>)?;</span><br><span class="line">file.<span class="title function_ invoke__">seek</span>(SeekFrom::<span class="title function_ invoke__">Start</span>(<span class="number">100</span>))?; <span class="comment">// 直接跳转到指定位置</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="何时仍应使用-BufReader？"><a href="#何时仍应使用-BufReader？" class="headerlink" title="何时仍应使用 BufReader？"></a>何时仍应使用 <code>BufReader</code>？</h3><ul>
+<li><strong>大文件读取</strong>：减少频繁的系统调用。</li>
+<li><strong>逐行处理大文件</strong>：<code>reader.lines()</code> 是高效逐行读取的标准方法。</li>
+<li><strong>网络流处理</strong>：缓冲可有效应对数据分块到达的情况。</li>
+</ul>
+<hr>
+<p><strong>总结</strong>：<code>BufReader</code> 的核心优势在于<strong>减少系统调用</strong>，但在数据量小、需精确控制读取或内存敏感的场景中，直接操作可能更高效。根据实际需求权衡缓冲带来的收益与开销。</p>
 
       
     </div>
@@ -360,7 +297,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/122/">122</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/124/">124</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -426,7 +363,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-count">124</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -489,12 +426,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">214k</span>
+    <span title="Symbols count total">216k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:58</span>
+    <span title="Reading time total">13:06</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

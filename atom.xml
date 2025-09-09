@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-07-26T08:47:44.056Z</updated>
+  <updated>2025-09-09T02:12:19.359Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>空杯心态：保持谦逊与开放的学习心态</title>
+    <link href="https://tonymistark.github.io/2025/09/09/The-Empty-Cup-Mindset-Staying-Humble-and-Open-to-Learning/"/>
+    <id>https://tonymistark.github.io/2025/09/09/The-Empty-Cup-Mindset-Staying-Humble-and-Open-to-Learning/</id>
+    <published>2025-09-09T02:10:55.000Z</published>
+    <updated>2025-09-09T02:12:19.359Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;空杯心态（有时称为“空杯心态态度”）是一种学习或做人处事的心态，意思是像一只空杯子那样，保持谦逊、开放和愿意接纳新事物的态度。主要特点和含义如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;谦逊：承认自己并非全知，对自己的知识和能力保有适度怀疑，不把已有认知当作终点。 </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Clean Architecture vs. Hexagonal Architecture: A Deep Dive into Their Similarities and Differences</title>
+    <link href="https://tonymistark.github.io/2025/09/03/Clean-Architecture-vs-Hexagonal-Architecture-A-Deep-Dive-into-Their-Similarities-and-Differences/"/>
+    <id>https://tonymistark.github.io/2025/09/03/Clean-Architecture-vs-Hexagonal-Architecture-A-Deep-Dive-into-Their-Similarities-and-Differences/</id>
+    <published>2025-09-03T07:30:16.000Z</published>
+    <updated>2025-09-03T07:39:08.271Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;好的，这是一个非常棒的架构问题。简洁架构（Clean Architecture）和六边形架构（Hexagonal</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Rust 内存布局全解：从基础类型到动态大小的深度剖析与优化策略</title>
@@ -434,50 +478,6 @@
     
     
     <category term="rust" scheme="https://tonymistark.github.io/tags/rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Rust 中关联类型与泛型的区别详解：特性、使用场景与设计目的</title>
-    <link href="https://tonymistark.github.io/2025/03/13/Detailed-Comparison-Between-Associated-Types-and-Generics-in-Rust-Features-Use-Cases-and-Design-Goals/"/>
-    <id>https://tonymistark.github.io/2025/03/13/Detailed-Comparison-Between-Associated-Types-and-Generics-in-Rust-Features-Use-Cases-and-Design-Goals/</id>
-    <published>2025-03-13T03:26:37.000Z</published>
-    <updated>2025-03-13T03:27:38.698Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Detailed-Comparison-Between-Associated-Types-and-Generics-in-Rust-Features-Use-Cases-and-Design-Goals&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="rust" scheme="https://tonymistark.github.io/tags/rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>深入理解 Rust 中通过 trait 和泛型实现灵活且类型安全的抽象：关联类型、trait bound 与线程安全</title>
-    <link href="https://tonymistark.github.io/2025/03/12/Deep-Dive-into-Flexible-and-Type-Safe-Abstraction-in-Rust-Using-Traits-and-Generics-Associated-Types-Trait-Bounds-and-Thread-Safety/"/>
-    <id>https://tonymistark.github.io/2025/03/12/Deep-Dive-into-Flexible-and-Type-Safe-Abstraction-in-Rust-Using-Traits-and-Generics-Associated-Types-Trait-Bounds-and-Thread-Safety/</id>
-    <published>2025-03-12T10:37:34.000Z</published>
-    <updated>2025-03-12T10:43:27.833Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2</summary>
-        
-      
-    
-    
-    
     
   </entry>
   

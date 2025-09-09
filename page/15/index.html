@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/09/Doesn-t-Trump-understand-that-their-tariffs-will-increase-the-price-of-things-that-Americans-need/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/14/1000_rust_questions/Rayon-vs-Crossbeam-in-Rust-Concurrency-Models-Performance-Trade-offs-and-Practical-Use-Cases/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/04/09/Doesn-t-Trump-understand-that-their-tariffs-will-increase-the-price-of-things-that-Americans-need/" class="post-title-link" itemprop="url">特朗普难道不明白加关税会抬高美国老百姓的生活成本吗？</a>
+            <a href="/2025/04/14/1000_rust_questions/Rayon-vs-Crossbeam-in-Rust-Concurrency-Models-Performance-Trade-offs-and-Practical-Use-Cases/" class="post-title-link" itemprop="url">Rust中的Rayon与Crossbeam：并发模型、性能权衡和实际用例</a>
         </h2>
 
         <div class="post-meta">
@@ -206,9 +206,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2025-04-09 11:43:35 / Modified: 12:05:21" itemprop="dateCreated datePublished" datetime="2025-04-09T11:43:35+08:00">2025-04-09</time>
+              <time title="Created: 2025-04-14 18:42:52" itemprop="dateCreated datePublished" datetime="2025-04-14T18:42:52+08:00">2025-04-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-15 12:14:10" itemprop="dateModified" datetime="2025-04-15T12:14:10+08:00">2025-04-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/1000-rust-questions/" itemprop="url" rel="index"><span itemprop="name">1000_rust_questions</span></a>
+                </span>
             </span>
 
           <br>
@@ -217,14 +232,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>653</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
+              <span>4 mins.</span>
             </span>
 
         </div>
@@ -236,11 +251,136 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>我觉得他其实很清楚。最近《金融时报》有篇挺有意思的文章，作者是个对经济史特别有研究的专栏作家。她的观点挺有意思——大家之所以看不懂（甚至害怕）特朗普的关税政策，是因为还在用凯恩斯、弗里德曼那套20世纪的经济理论来理解。</p>
-<p>这篇文章提到，现在最该被重视的经济学家其实是个冷门人物：阿尔伯特·赫希曼。这位德国犹太经济学家可能你没听过很正常，毕竟他1930年代的研究长期被忽视——当时他的观点和后来流行的自由市场理论完全不对路。他经历过西班牙内战和纳粹统治，这些创伤深刻影响了他的思考。</p>
-<p>赫希曼的核心观点很犀利：经济从来都是政治的附属品，而不是反过来（这和多数经济学家的认知完全颠倒）。他早在80多年前就预言过类似特朗普关税的情况：”只要主权国家能随时掐断贸易，国际贸易本质上就是权力争夺战”。他把贸易比作”不用真刀真枪的殖民手段”，这不正是特朗普团队现在在做的事吗？他们根本不在乎什么贸易顺差逆差，要的就是压制对手的实力。哪怕经济增速受影响，只要能保住霸权地位，这代价他们觉得值。</p>
-<p>赫希曼的理论的关键点在于：霸权控制力不是线性下降的。比如当某国占据80%市场份额时，控制权接近绝对；但一旦跌破70%，权威就会加速崩溃——因为其他玩家发现替代选项变多了。现在美国的经济主导地位正滑向这个危险临界点，所以才会不顾吃相地打关税牌，说白了就是想抓住正在流失的全球金融控制权。</p>
-<p>照这个逻辑推演，贸易战恐怕还要继续升级。毕竟当大哥发现小弟们开始找新靠山时，第一反应肯定是把拳头握得更紧。本能地在郧落前夕拼死一搏。但历史告诉我们，越是这种时候，越努力挣扎原有体系的崩塌速度反而会加快。但是不挣扎又能做什么呢？作为一个强人性格的老人，最后一搏又是必然的路径。看似很强势，实则并无他法。</p>
+          <p>在 Rust 中，<code>rayon</code> 和 <code>crossbeam</code> 是两个常用于并发编程的库，但它们的定位和使用场景有所不同。以下是它们的详细对比和核心机制解析：</p>
+<hr>
+<h3 id="1-Rayon：数据并行与工作窃取"><a href="#1-Rayon：数据并行与工作窃取" class="headerlink" title="1. Rayon：数据并行与工作窃取"></a>1. <strong>Rayon：数据并行与工作窃取</strong></h3><h4 id="定位"><a href="#定位" class="headerlink" title="定位"></a><strong>定位</strong></h4><ul>
+<li><strong>数据并行</strong>：通过并行迭代器（如 <code>par_iter</code>）简化数据并行任务，自动将顺序操作并行化。</li>
+<li><strong>隐式线程池</strong>：内置全局线程池，通过 <strong>work-stealing</strong>（工作窃取）算法高效分配任务。</li>
+</ul>
+<h4 id="核心特性"><a href="#核心特性" class="headerlink" title="核心特性"></a><strong>核心特性</strong></h4><ol>
+<li><p><strong>并行迭代器</strong>：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> rayon::prelude::*;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 并行处理数组</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">data</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line">data.<span class="title function_ invoke__">par_iter_mut</span>().<span class="title function_ invoke__">for_each</span>(|x| *x *= <span class="number">2</span>);</span><br><span class="line"><span class="comment">// data 变为 [2, 4, 6, 8]</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>支持 <code>par_iter</code>（不可变遍历）、<code>par_iter_mut</code>（可变遍历）、<code>par_extend</code> 等操作。</li>
+<li>自动将任务拆分为多个子任务，分配到线程池中。</li>
+</ul>
+</li>
+<li><p><strong>工作窃取（Work-Stealing）</strong>：</p>
+<ul>
+<li>每个线程维护一个任务队列。</li>
+<li>空闲线程从其他线程的队列尾部“窃取”任务，减少任务分配不均的问题。</li>
+<li>适合任务粒度不均匀的场景（如递归分治算法）。</li>
+</ul>
+</li>
+<li><p><strong>隐式错误处理</strong>：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">result</span>: <span class="type">Result</span>&lt;<span class="type">Vec</span>&lt;_&gt;, _&gt; = (<span class="number">0</span>..<span class="number">100</span>)</span><br><span class="line">    .<span class="title function_ invoke__">into_par_iter</span>()</span><br><span class="line">    .<span class="title function_ invoke__">map</span>(|x| <span class="keyword">if</span> x == <span class="number">42</span> &#123; <span class="title function_ invoke__">Err</span>(<span class="string">&quot;error&quot;</span>) &#125; <span class="keyword">else</span> &#123; <span class="title function_ invoke__">Ok</span>(x) &#125;)</span><br><span class="line">    .<span class="title function_ invoke__">collect</span>();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过 <code>try_reduce</code> 或 <code>collect</code> 收集错误，并行任务中的错误会传播到主线程。</li>
+</ul>
+</li>
+<li><p><strong>性能优化</strong>：</p>
+<ul>
+<li><strong>自动批处理</strong>：对小任务合并处理，减少线程调度开销。</li>
+<li><strong>无数据竞争</strong>：通过类型系统保证并行迭代的安全性（如 <code>par_iter_mut</code> 要求独占引用）。</li>
+</ul>
+</li>
+</ol>
+<h4 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a><strong>适用场景</strong></h4><ul>
+<li>计算密集型任务（如矩阵运算、图像处理）。</li>
+<li>需要对集合（<code>Vec</code>、数组等）进行并行遍历或转换。</li>
+<li>需要简单的 <code>MapReduce</code> 模式（如 <code>map</code> + <code>reduce</code>）。</li>
+</ul>
+<hr>
+<h3 id="2-Crossbeam：作用域线程与并发原语"><a href="#2-Crossbeam：作用域线程与并发原语" class="headerlink" title="2. Crossbeam：作用域线程与并发原语"></a>2. <strong>Crossbeam：作用域线程与并发原语</strong></h3><h4 id="定位-1"><a href="#定位-1" class="headerlink" title="定位"></a><strong>定位</strong></h4><ul>
+<li><strong>显式线程管理</strong>：提供作用域线程（<code>scoped threads</code>）和并发数据结构（如无锁队列、通道）。</li>
+<li><strong>细粒度控制</strong>：适合需要手动管理线程生命周期和共享状态的场景。</li>
+</ul>
+<h4 id="核心特性-1"><a href="#核心特性-1" class="headerlink" title="核心特性"></a><strong>核心特性</strong></h4><ol>
+<li><p><strong>作用域线程（Scoped Threads）</strong>：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crossbeam::scope;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">data</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="title function_ invoke__">scope</span>(|s| &#123;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">x</span> <span class="keyword">in</span> &amp;data &#123;</span><br><span class="line">        s.<span class="title function_ invoke__">spawn</span>(<span class="keyword">move</span> |_| &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, x); <span class="comment">// 直接借用父线程的 data</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).<span class="title function_ invoke__">unwrap</span>();</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>生命周期安全</strong>：子线程被限制在作用域内，确保父线程的数据在子线程结束后才释放。</li>
+<li><strong>共享栈数据</strong>：允许子线程直接借用父线程栈上的数据（无需 <code>Arc</code>）。</li>
+</ul>
+</li>
+<li><p><strong>并发数据结构</strong>：</p>
+<ul>
+<li><strong>无锁队列（<code>SegQueue</code>）</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crossbeam::queue::SegQueue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">queue</span> = SegQueue::<span class="title function_ invoke__">new</span>();</span><br><span class="line">queue.<span class="title function_ invoke__">push</span>(<span class="number">42</span>);</span><br><span class="line"><span class="keyword">let</span> <span class="variable">value</span> = queue.<span class="title function_ invoke__">pop</span>().<span class="title function_ invoke__">unwrap</span>(); <span class="comment">// 42</span></span><br></pre></td></tr></table></figure></li>
+<li><strong>通道（<code>crossbeam-channel</code>）</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crossbeam_channel::unbounded;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> (tx, rx) = <span class="title function_ invoke__">unbounded</span>();</span><br><span class="line">tx.<span class="title function_ invoke__">send</span>(<span class="number">42</span>).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line"><span class="keyword">let</span> <span class="variable">value</span> = rx.<span class="title function_ invoke__">recv</span>().<span class="title function_ invoke__">unwrap</span>(); <span class="comment">// 42</span></span><br></pre></td></tr></table></figure></li>
+<li>支持多生产者和多消费者（MPMC）模式。</li>
+</ul>
+</li>
+<li><p><strong>原子操作与内存管理</strong>：</p>
+<ul>
+<li>**<code>AtomicCell</code>**：提供原子操作的包装类型。</li>
+<li>**<code>epoch-based GC</code>**：通过内存回收机制避免无锁数据结构中的内存泄漏。</li>
+</ul>
+</li>
+</ol>
+<h4 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a><strong>适用场景</strong></h4><ul>
+<li>需要手动生成多个线程并共享数据（如分治算法）。</li>
+<li>使用无锁数据结构（如自定义线程池、任务队列）。</li>
+<li>需要精确控制线程的生命周期和同步。</li>
+</ul>
+<hr>
+<h3 id="3-对比与选择"><a href="#3-对比与选择" class="headerlink" title="3. 对比与选择"></a>3. <strong>对比与选择</strong></h3><table>
+<thead>
+<tr>
+<th><strong>维度</strong></th>
+<th><strong>Rayon</strong></th>
+<th><strong>Crossbeam</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>抽象层级</strong></td>
+<td>高级（并行迭代器、隐式线程池）</td>
+<td>中级（作用域线程、显式并发原语）</td>
+</tr>
+<tr>
+<td><strong>数据共享</strong></td>
+<td>通过并行迭代器隐式共享</td>
+<td>显式借用或使用并发数据结构</td>
+</tr>
+<tr>
+<td><strong>任务调度</strong></td>
+<td>自动工作窃取</td>
+<td>手动控制（需自行实现任务分配）</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>数据并行、计算密集型任务</td>
+<td>细粒度线程控制、无锁数据结构</td>
+</tr>
+<tr>
+<td><strong>学习曲线</strong></td>
+<td>简单（只需替换 <code>iter</code> 为 <code>par_iter</code>）</td>
+<td>较高（需理解作用域和并发原语）</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="4-混合使用示例"><a href="#4-混合使用示例" class="headerlink" title="4. 混合使用示例"></a>4. <strong>混合使用示例</strong></h3><p>结合 <code>rayon</code> 和 <code>crossbeam-channel</code> 实现动态任务分配：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crossbeam_channel::unbounded;</span><br><span class="line"><span class="keyword">use</span> rayon::prelude::*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> (tx, rx) = <span class="title function_ invoke__">unbounded</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 生产者线程（使用 crossbeam 生成作用域线程）</span></span><br><span class="line">    crossbeam::<span class="title function_ invoke__">scope</span>(|s| &#123;</span><br><span class="line">        s.<span class="title function_ invoke__">spawn</span>(|_| &#123;</span><br><span class="line">            (<span class="number">0</span>..<span class="number">10</span>).<span class="title function_ invoke__">for_each</span>(|x| tx.<span class="title function_ invoke__">send</span>(x).<span class="title function_ invoke__">unwrap</span>());</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 消费者线程池（使用 rayon 处理任务）</span></span><br><span class="line">        rx.<span class="title function_ invoke__">into_iter</span>().<span class="title function_ invoke__">par_bridge</span>().<span class="title function_ invoke__">for_each</span>(|x| &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;Processed: &#123;&#125;&quot;</span>, x * <span class="number">2</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>**<code>par_bridge</code>**：将通道的同步迭代器转换为并行迭代器，利用 <code>rayon</code> 的线程池处理任务。</li>
+</ul>
+<hr>
+<h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. <strong>总结</strong></h3><ul>
+<li><p>**选择 <code>rayon</code>**：</p>
+<ul>
+<li>当需要快速将顺序代码并行化（如循环、迭代器链）。</li>
+<li>当任务适合自动拆分（如均匀的数据块）。</li>
+<li>当希望减少手动线程管理的复杂性。</li>
+</ul>
+</li>
+<li><p>**选择 <code>crossbeam</code>**：</p>
+<ul>
+<li>当需要直接共享栈数据（避免 <code>Arc</code>）。</li>
+<li>当需要手动控制线程的生命周期。</li>
+<li>当使用无锁数据结构或自定义并发模式（如事件驱动）。</li>
+</ul>
+</li>
+</ul>
+<p>两者可以互补使用：用 <code>rayon</code> 处理计算密集型任务，用 <code>crossbeam</code> 管理线程和协调任务。</p>
 
       
     </div>
@@ -259,7 +399,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/122/">122</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/124/">124</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -325,7 +465,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-count">124</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -388,12 +528,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">214k</span>
+    <span title="Symbols count total">216k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:58</span>
+    <span title="Reading time total">13:06</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

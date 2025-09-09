@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/02/13/simple_lua_tutorial/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/03/07/rust_notes/Understanding-Rust-s-Future-Keyword-A-Comprehensive-Guide/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/02/13/simple_lua_tutorial/" class="post-title-link" itemprop="url">Lua 简单入门教程</a>
+            <a href="/2025/03/07/rust_notes/Understanding-Rust-s-Future-Keyword-A-Comprehensive-Guide/" class="post-title-link" itemprop="url">Understanding Rust Future</a>
         </h2>
 
         <div class="post-meta">
@@ -208,7 +208,16 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-02-13 17:49:57 / Modified: 17:53:22" itemprop="dateCreated datePublished" datetime="2025-02-13T17:49:57+08:00">2025-02-13</time>
+              <time title="Created: 2025-03-07 11:34:39 / Modified: 11:46:48" itemprop="dateCreated datePublished" datetime="2025-03-07T11:34:39+08:00">2025-03-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/rust-notes/" itemprop="url" rel="index"><span itemprop="name">rust_notes</span></a>
+                </span>
             </span>
 
           <br>
@@ -217,7 +226,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>791</span>
+              <span>953</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -236,112 +245,44 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Lua 是一种轻量级、高效、可嵌入的脚本语言，广泛应用于游戏开发（如《魔兽世界》、《愤怒的小鸟》）、嵌入式系统和其他需要脚本扩展的场景。以下是一个 Lua 的入门教程，帮助你快速掌握 Lua 的基础知识。</p>
-<h2 id="1-Lua-环境搭建"><a href="#1-Lua-环境搭建" class="headerlink" title="1. Lua 环境搭建"></a><strong>1. Lua 环境搭建</strong></h2><h3 id="安装-Lua"><a href="#安装-Lua" class="headerlink" title="安装 Lua"></a><strong>安装 Lua</strong></h3><ul>
-<li><strong>Windows</strong>:<ol>
-<li>下载 Lua 安装包：访问 <a target="_blank" rel="noopener" href="https://www.lua.org/download.html">Lua 官方网站</a>。</li>
-<li>解压并配置环境变量。</li>
-</ol>
-</li>
-<li><strong>Linux&#x2F;macOS</strong>:<br>使用包管理器安装：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install lua5.3  <span class="comment"># Ubuntu/Debian</span></span><br><span class="line">brew install lua             <span class="comment"># macOS</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="运行-Lua-代码"><a href="#运行-Lua-代码" class="headerlink" title="运行 Lua 代码"></a><strong>运行 Lua 代码</strong></h3><ul>
-<li>在终端中输入 <code>lua</code> 进入交互式解释器。</li>
-<li>也可以将代码保存为 <code>.lua</code> 文件，然后运行：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lua filename.lua</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="2-Lua-基础语法"><a href="#2-Lua-基础语法" class="headerlink" title="2. Lua 基础语法"></a><strong>2. Lua 基础语法</strong></h2><h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a><strong>注释</strong></h3><ul>
-<li>单行注释：<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 这是单行注释</span></span><br></pre></td></tr></table></figure></li>
-<li>多行注释：<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--[[</span></span><br><span class="line"><span class="comment">  这是多行注释</span></span><br><span class="line"><span class="comment">  可以写多行内容</span></span><br><span class="line"><span class="comment">]]</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a><strong>变量</strong></h3><ul>
-<li>Lua 是动态类型语言，变量无需声明类型。</li>
-<li>变量默认是全局的，除非用 <code>local</code> 声明为局部变量。<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">10</span>          <span class="comment">-- 全局变量</span></span><br><span class="line"><span class="keyword">local</span> b = <span class="number">20</span>    <span class="comment">-- 局部变量</span></span><br><span class="line"><span class="built_in">print</span>(a, b)     <span class="comment">-- 输出: 10 20</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a><strong>数据类型</strong></h3><p>Lua 支持以下基本数据类型：</p>
-<ul>
-<li><strong>nil</strong>: 表示空值或未定义。</li>
-<li><strong>boolean</strong>: <code>true</code> 或 <code>false</code>。</li>
-<li><strong>number</strong>: 整数或浮点数。</li>
-<li><strong>string</strong>: 字符串，用单引号或双引号包裹。</li>
-<li><strong>table</strong>: 表（类似数组或字典）。</li>
-<li><strong>function</strong>: 函数。</li>
-<li><strong>userdata</strong>: 用户自定义数据。</li>
-<li><strong>thread</strong>: 协程。</li>
-</ul>
-<p>示例：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(<span class="string">&quot;Hello&quot;</span>))  <span class="comment">-- 输出: string</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(<span class="number">3.14</span>))     <span class="comment">-- 输出: number</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(<span class="literal">true</span>))     <span class="comment">-- 输出: boolean</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(<span class="literal">nil</span>))      <span class="comment">-- 输出: nil</span></span><br></pre></td></tr></table></figure>
+          <p>在 Rust 中，<code>Future</code> 是一个核心概念，用于表示异步计算。<code>Future</code> 代表一个尚未完成的计算，它会在未来的某个时刻产生一个结果。Rust 的异步编程模型主要围绕 <code>Future</code> 展开，允许你编写非阻塞的、高效的并发代码。</p>
+<h3 id="1-Future-的定义"><a href="#1-Future-的定义" class="headerlink" title="1. Future 的定义"></a>1. <code>Future</code> 的定义</h3><p><code>Future</code> 是一个 trait，定义在 <code>std::future</code> 模块中。它的定义如下：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="keyword">trait</span> <span class="title class_">Future</span> &#123;</span><br><span class="line">    <span class="keyword">type</span> <span class="title class_">Output</span>;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">poll</span>(<span class="keyword">self</span>: Pin&lt;&amp;<span class="keyword">mut</span> <span class="keyword">Self</span>&gt;, cx: &amp;<span class="keyword">mut</span> Context&lt;<span class="symbol">&#x27;_</span>&gt;) <span class="punctuation">-&gt;</span> Poll&lt;<span class="keyword">Self</span>::Output&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="3-控制结构"><a href="#3-控制结构" class="headerlink" title="3. 控制结构"></a><strong>3. 控制结构</strong></h2><h3 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a><strong>条件语句</strong></h3><ul>
-<li><p><code>if</code> 语句：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> age = <span class="number">18</span></span><br><span class="line"><span class="keyword">if</span> age &gt;= <span class="number">18</span> <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;You are an adult.&quot;</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;You are a minor.&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>elseif</code>：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> score = <span class="number">85</span></span><br><span class="line"><span class="keyword">if</span> score &gt;= <span class="number">90</span> <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;A&quot;</span>)</span><br><span class="line"><span class="keyword">elseif</span> score &gt;= <span class="number">80</span> <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;B&quot;</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;C&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a><strong>循环</strong></h3><ul>
-<li><p><code>while</code> 循环：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> i = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> i &lt;= <span class="number">5</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    i = i + <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>for</code> 循环：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>, <span class="number">5</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>repeat...until</code> 循环：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> i = <span class="number">1</span></span><br><span class="line"><span class="keyword">repeat</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    i = i + <span class="number">1</span></span><br><span class="line"><span class="keyword">until</span> i &gt; <span class="number">5</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="4-函数"><a href="#4-函数" class="headerlink" title="4. 函数"></a><strong>4. 函数</strong></h2><ul>
-<li><p>定义函数：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(a, b)</span></span></span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">print</span>(add(<span class="number">3</span>, <span class="number">5</span>))  <span class="comment">-- 输出: 8</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>匿名函数：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> mul = <span class="function"><span class="keyword">function</span><span class="params">(a, b)</span></span></span><br><span class="line">    <span class="keyword">return</span> a * b</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">print</span>(mul(<span class="number">3</span>, <span class="number">5</span>))  <span class="comment">-- 输出: 15</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="5-表（Table）"><a href="#5-表（Table）" class="headerlink" title="5. 表（Table）"></a><strong>5. 表（Table）</strong></h2><p>表是 Lua 中唯一的数据结构，可以用作数组、字典或对象。</p>
 <ul>
-<li><p>数组：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> arr = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(arr[<span class="number">1</span>])  <span class="comment">-- 输出: 1（Lua 索引从 1 开始）</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>字典：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> dict = &#123;name = <span class="string">&quot;Lua&quot;</span>, version = <span class="string">&quot;5.3&quot;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(dict[<span class="string">&quot;name&quot;</span>])  <span class="comment">-- 输出: Lua</span></span><br><span class="line"><span class="built_in">print</span>(dict.version)  <span class="comment">-- 输出: 5.3</span></span><br></pre></td></tr></table></figure></li>
+<li><code>Output</code>：<code>Future</code> 完成时产生的值的类型。</li>
+<li><code>poll</code>：用于检查 <code>Future</code> 是否已经完成。如果完成，返回 <code>Poll::Ready(result)</code>，否则返回 <code>Poll::Pending</code>。</li>
 </ul>
-<hr>
-<h2 id="6-模块与包"><a href="#6-模块与包" class="headerlink" title="6. 模块与包"></a><strong>6. 模块与包</strong></h2><ul>
-<li><p>定义模块：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- mymodule.lua</span></span><br><span class="line"><span class="keyword">local</span> M = &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.add</span><span class="params">(a, b)</span></span></span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">return</span> M</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用模块：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> mymodule = <span class="built_in">require</span>(<span class="string">&quot;mymodule&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(mymodule.add(<span class="number">3</span>, <span class="number">5</span>))  <span class="comment">-- 输出: 8</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="7-文件操作"><a href="#7-文件操作" class="headerlink" title="7. 文件操作"></a><strong>7. 文件操作</strong></h2><ul>
-<li><p>读取文件：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> file = <span class="built_in">io</span>.<span class="built_in">open</span>(<span class="string">&quot;test.txt&quot;</span>, <span class="string">&quot;r&quot;</span>)</span><br><span class="line"><span class="keyword">local</span> content = file:<span class="built_in">read</span>(<span class="string">&quot;*a&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(content)</span><br><span class="line">file:<span class="built_in">close</span>()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>写入文件：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> file = <span class="built_in">io</span>.<span class="built_in">open</span>(<span class="string">&quot;test.txt&quot;</span>, <span class="string">&quot;w&quot;</span>)</span><br><span class="line">file:<span class="built_in">write</span>(<span class="string">&quot;Hello, Lua!&quot;</span>)</span><br><span class="line">file:<span class="built_in">close</span>()</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="8-错误处理"><a href="#8-错误处理" class="headerlink" title="8. 错误处理"></a><strong>8. 错误处理</strong></h2><ul>
-<li>使用 <code>pcall</code> 捕获错误：<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="built_in">status</span>, err = <span class="built_in">pcall</span>(<span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">error</span>(<span class="string">&quot;Something went wrong!&quot;</span>)</span><br><span class="line"><span class="keyword">end</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">status</span> <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Error:&quot;</span>, err)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="9-协程"><a href="#9-协程" class="headerlink" title="9. 协程"></a><strong>9. 协程</strong></h2><p>Lua 支持协程（coroutine），用于实现协作式多任务。</p>
-<ul>
-<li>示例：<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> co = <span class="built_in">coroutine</span>.<span class="built_in">create</span>(<span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hello&quot;</span>)</span><br><span class="line">    <span class="built_in">coroutine</span>.<span class="built_in">yield</span>()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;World&quot;</span>)</span><br><span class="line"><span class="keyword">end</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">coroutine</span>.<span class="built_in">resume</span>(co)  <span class="comment">-- 输出: Hello</span></span><br><span class="line"><span class="built_in">coroutine</span>.<span class="built_in">resume</span>(co)  <span class="comment">-- 输出: World</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="10-实战示例"><a href="#10-实战示例" class="headerlink" title="10. 实战示例"></a><strong>10. 实战示例</strong></h2><h3 id="计算斐波那契数列"><a href="#计算斐波那契数列" class="headerlink" title="计算斐波那契数列"></a><strong>计算斐波那契数列</strong></h3><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fibonacci</span><span class="params">(n)</span></span></span><br><span class="line">    <span class="keyword">if</span> n &lt;= <span class="number">1</span> <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">return</span> n</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> fibonacci(n - <span class="number">1</span>) + fibonacci(n - <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i = <span class="number">0</span>, <span class="number">10</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(fibonacci(i))</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-Poll-枚举"><a href="#2-Poll-枚举" class="headerlink" title="2. Poll 枚举"></a>2. <code>Poll</code> 枚举</h3><p><code>Poll</code> 是一个枚举，表示 <code>Future</code> 的当前状态：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="keyword">enum</span> <span class="title class_">Poll</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="title function_ invoke__">Ready</span>(T),</span><br><span class="line">    Pending,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="11-学习资源"><a href="#11-学习资源" class="headerlink" title="11. 学习资源"></a><strong>11. 学习资源</strong></h2><ul>
-<li><a target="_blank" rel="noopener" href="https://www.lua.org/docs.html">Lua 官方文档</a></li>
-<li>《Programming in Lua》（Lua 编程指南）</li>
-<li><a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/lua/index.htm">Lua Tutorial on TutorialsPoint</a></li>
+<ul>
+<li><code>Ready(T)</code>：表示 <code>Future</code> 已经完成，并返回结果 <code>T</code>。</li>
+<li><code>Pending</code>：表示 <code>Future</code> 尚未完成，需要等待。</li>
 </ul>
-<hr>
+<h3 id="3-Future-的工作原理"><a href="#3-Future-的工作原理" class="headerlink" title="3. Future 的工作原理"></a>3. <code>Future</code> 的工作原理</h3><p><code>Future</code> 的核心在于 <code>poll</code> 方法。当你调用 <code>poll</code> 时，<code>Future</code> 会尝试推进其内部状态。如果 <code>Future</code> 已经完成，<code>poll</code> 会返回 <code>Poll::Ready(result)</code>；如果 <code>Future</code> 尚未完成，<code>poll</code> 会返回 <code>Poll::Pending</code>，并且通常会安排在当前 <code>Future</code> 可以继续执行时唤醒它。</p>
+<h3 id="4-async-和-await"><a href="#4-async-和-await" class="headerlink" title="4. async 和 await"></a>4. <code>async</code> 和 <code>await</code></h3><p>Rust 提供了 <code>async</code> 和 <code>await</code> 语法糖来简化 <code>Future</code> 的使用。<code>async</code> 关键字用于定义一个异步函数或块，它会返回一个 <code>Future</code>。<code>await</code> 关键字用于等待一个 <code>Future</code> 完成。</p>
+<p>例如：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">fetch_data</span>() <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123;</span><br><span class="line">    <span class="comment">// 模拟异步操作</span></span><br><span class="line">    <span class="string">&quot;data&quot;</span>.<span class="title function_ invoke__">to_string</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">data</span> = <span class="title function_ invoke__">fetch_data</span>().<span class="keyword">await</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>fetch_data</code> 是一个异步函数，返回一个 <code>Future</code>。<code>await</code> 关键字用于等待 <code>fetch_data</code> 完成，并获取其结果。</p>
+<h3 id="5-Future-的执行"><a href="#5-Future-的执行" class="headerlink" title="5. Future 的执行"></a>5. <code>Future</code> 的执行</h3><p><code>Future</code> 本身是惰性的，它不会自动执行。要执行一个 <code>Future</code>，你需要将它交给一个执行器（executor）。Rust 标准库中没有提供默认的执行器，但社区中有许多流行的执行器，如 <code>tokio</code> 和 <code>async-std</code>。</p>
+<p>例如，使用 <code>tokio</code> 执行器：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[tokio::main]</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">data</span> = <span class="title function_ invoke__">fetch_data</span>().<span class="keyword">await</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-Future-的组合"><a href="#6-Future-的组合" class="headerlink" title="6. Future 的组合"></a>6. <code>Future</code> 的组合</h3><p><code>Future</code> 可以通过组合多个 <code>Future</code> 来实现复杂的异步逻辑。Rust 提供了许多组合器（combinators）来帮助组合 <code>Future</code>，例如 <code>then</code>、<code>and_then</code>、<code>join</code>、<code>select</code> 等。</p>
+<p>例如，使用 <code>join</code> 来等待多个 <code>Future</code> 完成：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> futures::future::join;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">fetch_data1</span>() <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123;</span><br><span class="line">    <span class="string">&quot;data1&quot;</span>.<span class="title function_ invoke__">to_string</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">fetch_data2</span>() <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123;</span><br><span class="line">    <span class="string">&quot;data2&quot;</span>.<span class="title function_ invoke__">to_string</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> (data1, data2) = <span class="title function_ invoke__">join</span>(<span class="title function_ invoke__">fetch_data1</span>(), <span class="title function_ invoke__">fetch_data2</span>()).<span class="keyword">await</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;, &#123;&#125;&quot;</span>, data1, data2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-Future-的取消"><a href="#7-Future-的取消" class="headerlink" title="7. Future 的取消"></a>7. <code>Future</code> 的取消</h3><p><code>Future</code> 可以被取消，取消后它将不再继续执行。取消通常通过丢弃 <code>Future</code> 来实现。例如，如果你不再需要某个 <code>Future</code> 的结果，可以直接丢弃它：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">future</span> = <span class="title function_ invoke__">fetch_data</span>();</span><br><span class="line"><span class="comment">// 不再需要 future，直接丢弃</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8-Future-的错误处理"><a href="#8-Future-的错误处理" class="headerlink" title="8. Future 的错误处理"></a>8. <code>Future</code> 的错误处理</h3><p><code>Future</code> 可以通过 <code>Result</code> 类型来处理错误。例如：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">fetch_data</span>() <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;<span class="type">String</span>, std::io::Error&gt; &#123;</span><br><span class="line">    <span class="comment">// 模拟异步操作</span></span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(<span class="string">&quot;data&quot;</span>.<span class="title function_ invoke__">to_string</span>())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">match</span> <span class="title function_ invoke__">fetch_data</span>().<span class="keyword">await</span> &#123;</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(data) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, data),</span><br><span class="line">        <span class="title function_ invoke__">Err</span>(e) =&gt; eprintln!(<span class="string">&quot;Error: &#123;&#125;&quot;</span>, e),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-Future-的底层实现"><a href="#9-Future-的底层实现" class="headerlink" title="9. Future 的底层实现"></a>9. <code>Future</code> 的底层实现</h3><p><code>Future</code> 的底层实现通常涉及到状态机和事件循环。<code>Future</code> 的状态机会在每次 <code>poll</code> 时推进，直到完成。事件循环负责调度和唤醒 <code>Future</code>，以便在适当的时候继续执行。</p>
+<h3 id="10-Future-的性能"><a href="#10-Future-的性能" class="headerlink" title="10. Future 的性能"></a>10. <code>Future</code> 的性能</h3><p>Rust 的 <code>Future</code> 是零成本的抽象，意味着它的运行时开销非常低。<code>Future</code> 的调度和执行通常由执行器负责，执行器会尽可能地优化任务的调度和执行。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><code>Future</code> 是 Rust 异步编程的核心概念，它代表一个尚未完成的计算。通过 <code>async</code> 和 <code>await</code> 语法糖，Rust 使得异步编程更加直观和易于使用。<code>Future</code> 的执行需要依赖执行器，如 <code>tokio</code> 或 <code>async-std</code>。<code>Future</code> 可以通过组合器进行组合，实现复杂的异步逻辑。Rust 的 <code>Future</code> 是零成本的抽象，具有高性能和低开销的特点。</p>
 
       
     </div>
@@ -360,7 +301,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/26/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/122/">122</a><a class="extend next" rel="next" href="/page/28/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/26/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/124/">124</a><a class="extend next" rel="next" href="/page/28/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -426,7 +367,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-count">124</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -489,12 +430,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">214k</span>
+    <span title="Symbols count total">216k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">12:58</span>
+    <span title="Reading time total">13:06</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

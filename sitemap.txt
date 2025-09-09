@@ -1,3 +1,5 @@
+https://tonymistark.github.io/2025/09/09/The-Empty-Cup-Mindset-Staying-Humble-and-Open-to-Learning/
+https://tonymistark.github.io/2025/09/03/Clean-Architecture-vs-Hexagonal-Architecture-A-Deep-Dive-into-Their-Similarities-and-Differences/
 https://tonymistark.github.io/2025/07/26/rust_notes/Comprehensive-Guide-to-Rust-Memory-Layout-From-Primitives-to-DSTs-with-Optimization-Insights/
 https://tonymistark.github.io/2025/07/26/rust_notes/Error-Handling-Paradigms-A-Deep-Dive-into-Rust-s-Result-vs-Traditional-try-catch-in-Java-Python-JS/
 https://tonymistark.github.io/2025/06/13/The-Clean-Architecture/
