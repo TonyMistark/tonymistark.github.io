@@ -1,3 +1,4 @@
+https://tonymistark.github.io/2025/11/11/Python-Exception-Handling-Mechanisms-and-Design-Principles-Explained/
 https://tonymistark.github.io/2025/09/09/The-Empty-Cup-Mindset-Staying-Humble-and-Open-to-Learning/
 https://tonymistark.github.io/2025/09/03/Clean-Architecture-vs-Hexagonal-Architecture-A-Deep-Dive-into-Their-Similarities-and-Differences/
 https://tonymistark.github.io/2025/07/26/rust_notes/Comprehensive-Guide-to-Rust-Memory-Layout-From-Primitives-to-DSTs-with-Optimization-Insights/
@@ -138,6 +139,7 @@ https://tonymistark.github.io/tags/Design-Pattern/
 https://tonymistark.github.io/tags/rust/
 https://tonymistark.github.io/tags/Rust/
 https://tonymistark.github.io/tags/sam-altman/
+https://tonymistark.github.io/tags/python/
 https://tonymistark.github.io/categories/%E9%9A%8F%E7%AC%94/
 https://tonymistark.github.io/categories/writing/
 https://tonymistark.github.io/categories/notes/

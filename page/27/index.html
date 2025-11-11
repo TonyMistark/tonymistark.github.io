@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/03/07/rust_notes/Understanding-Rust-s-Future-Keyword-A-Comprehensive-Guide/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/03/11/rust_notes/Understanding-Rust-References/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/03/07/rust_notes/Understanding-Rust-s-Future-Keyword-A-Comprehensive-Guide/" class="post-title-link" itemprop="url">Understanding Rust Future</a>
+            <a href="/2025/03/11/rust_notes/Understanding-Rust-References/" class="post-title-link" itemprop="url">Rust 中的指针详解：引用、裸指针与智能指针</a>
         </h2>
 
         <div class="post-meta">
@@ -208,7 +208,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-03-07 11:34:39 / Modified: 11:46:48" itemprop="dateCreated datePublished" datetime="2025-03-07T11:34:39+08:00">2025-03-07</time>
+              <time title="Created: 2025-03-11 11:44:56 / Modified: 11:47:29" itemprop="dateCreated datePublished" datetime="2025-03-11T11:44:56+08:00">2025-03-11</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,14 +226,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>953</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
+              <span>4 mins.</span>
             </span>
 
         </div>
@@ -245,44 +245,92 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在 Rust 中，<code>Future</code> 是一个核心概念，用于表示异步计算。<code>Future</code> 代表一个尚未完成的计算，它会在未来的某个时刻产生一个结果。Rust 的异步编程模型主要围绕 <code>Future</code> 展开，允许你编写非阻塞的、高效的并发代码。</p>
-<h3 id="1-Future-的定义"><a href="#1-Future-的定义" class="headerlink" title="1. Future 的定义"></a>1. <code>Future</code> 的定义</h3><p><code>Future</code> 是一个 trait，定义在 <code>std::future</code> 模块中。它的定义如下：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="keyword">trait</span> <span class="title class_">Future</span> &#123;</span><br><span class="line">    <span class="keyword">type</span> <span class="title class_">Output</span>;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">poll</span>(<span class="keyword">self</span>: Pin&lt;&amp;<span class="keyword">mut</span> <span class="keyword">Self</span>&gt;, cx: &amp;<span class="keyword">mut</span> Context&lt;<span class="symbol">&#x27;_</span>&gt;) <span class="punctuation">-&gt;</span> Poll&lt;<span class="keyword">Self</span>::Output&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+          <h2 id="A-Comprehensive-Guide-to-Pointers-in-Rust-References-Raw-Pointers-and-Smart-Pointers"><a href="#A-Comprehensive-Guide-to-Pointers-in-Rust-References-Raw-Pointers-and-Smart-Pointers" class="headerlink" title="A Comprehensive Guide to Pointers in Rust: References, Raw Pointers, and Smart Pointers"></a>A Comprehensive Guide to Pointers in Rust: References, Raw Pointers, and Smart Pointers</h2><p>在 Rust 中，指针是用于引用内存地址的类型。Rust 提供了多种指针类型，每种类型都有不同的所有权、借用和生命周期语义。以下是 Rust 中常见的指针类型及其详细讲解：</p>
+<h3 id="1-引用（References）"><a href="#1-引用（References）" class="headerlink" title="1. 引用（References）"></a>1. 引用（References）</h3><p>引用是 Rust 中最常见的指针类型，分为不可变引用（<code>&amp;T</code>）和可变引用（<code>&amp;mut T</code>）。</p>
 <ul>
-<li><code>Output</code>：<code>Future</code> 完成时产生的值的类型。</li>
-<li><code>poll</code>：用于检查 <code>Future</code> 是否已经完成。如果完成，返回 <code>Poll::Ready(result)</code>，否则返回 <code>Poll::Pending</code>。</li>
-</ul>
-<h3 id="2-Poll-枚举"><a href="#2-Poll-枚举" class="headerlink" title="2. Poll 枚举"></a>2. <code>Poll</code> 枚举</h3><p><code>Poll</code> 是一个枚举，表示 <code>Future</code> 的当前状态：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="keyword">enum</span> <span class="title class_">Poll</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="title function_ invoke__">Ready</span>(T),</span><br><span class="line">    Pending,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<li><p><strong>不可变引用 (<code>&amp;T</code>)</strong>:</p>
 <ul>
-<li><code>Ready(T)</code>：表示 <code>Future</code> 已经完成，并返回结果 <code>T</code>。</li>
-<li><code>Pending</code>：表示 <code>Future</code> 尚未完成，需要等待。</li>
+<li>允许多个不可变引用同时存在。</li>
+<li>不能通过不可变引用修改数据。</li>
+<li>生命周期由编译器自动推断或显式指定。</li>
 </ul>
-<h3 id="3-Future-的工作原理"><a href="#3-Future-的工作原理" class="headerlink" title="3. Future 的工作原理"></a>3. <code>Future</code> 的工作原理</h3><p><code>Future</code> 的核心在于 <code>poll</code> 方法。当你调用 <code>poll</code> 时，<code>Future</code> 会尝试推进其内部状态。如果 <code>Future</code> 已经完成，<code>poll</code> 会返回 <code>Poll::Ready(result)</code>；如果 <code>Future</code> 尚未完成，<code>poll</code> 会返回 <code>Poll::Pending</code>，并且通常会安排在当前 <code>Future</code> 可以继续执行时唤醒它。</p>
-<h3 id="4-async-和-await"><a href="#4-async-和-await" class="headerlink" title="4. async 和 await"></a>4. <code>async</code> 和 <code>await</code></h3><p>Rust 提供了 <code>async</code> 和 <code>await</code> 语法糖来简化 <code>Future</code> 的使用。<code>async</code> 关键字用于定义一个异步函数或块，它会返回一个 <code>Future</code>。<code>await</code> 关键字用于等待一个 <code>Future</code> 完成。</p>
-<p>例如：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">fetch_data</span>() <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123;</span><br><span class="line">    <span class="comment">// 模拟异步操作</span></span><br><span class="line">    <span class="string">&quot;data&quot;</span>.<span class="title function_ invoke__">to_string</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">data</span> = <span class="title function_ invoke__">fetch_data</span>().<span class="keyword">await</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = &amp;x; <span class="comment">// y 是一个不可变引用</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 解引用 y 获取值</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>可变引用 (<code>&amp;mut T</code>)</strong>:</p>
+<ul>
+<li>同一时间只能有一个可变引用。</li>
+<li>可以通过可变引用修改数据。</li>
+<li>生命周期由编译器自动推断或显式指定。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = &amp;<span class="keyword">mut</span> x; <span class="comment">// y 是一个可变引用</span></span><br><span class="line">*y += <span class="number">1</span>; <span class="comment">// 通过 y 修改 x 的值</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, x); <span class="comment">// 输出 6</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-裸指针（Raw-Pointers）"><a href="#2-裸指针（Raw-Pointers）" class="headerlink" title="2. 裸指针（Raw Pointers）"></a>2. 裸指针（Raw Pointers）</h3><p>裸指针是不安全的指针类型，分为不可变裸指针（<code>*const T</code>）和可变裸指针（<code>*mut T</code>）。</p>
+<ul>
+<li><p><strong>不可变裸指针 (<code>*const T</code>)</strong>:</p>
+<ul>
+<li>不保证指针的有效性。</li>
+<li>不能通过不可变裸指针修改数据。</li>
+<li>通常用于与 C 代码交互或实现底层抽象。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = &amp;x <span class="keyword">as</span> *<span class="keyword">const</span> <span class="type">i32</span>; <span class="comment">// y 是一个不可变裸指针</span></span><br><span class="line"><span class="keyword">unsafe</span> &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 解引用裸指针需要 unsafe 块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>可变裸指针 (<code>*mut T</code>)</strong>:</p>
+<ul>
+<li>不保证指针的有效性。</li>
+<li>可以通过可变裸指针修改数据。</li>
+<li>通常用于与 C 代码交互或实现底层抽象。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = &amp;<span class="keyword">mut</span> x <span class="keyword">as</span> *<span class="keyword">mut</span> <span class="type">i32</span>; <span class="comment">// y 是一个可变裸指针</span></span><br><span class="line"><span class="keyword">unsafe</span> &#123;</span><br><span class="line">    *y += <span class="number">1</span>; <span class="comment">// 通过 y 修改 x 的值</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, x); <span class="comment">// 输出 6</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-智能指针（Smart-Pointers）"><a href="#3-智能指针（Smart-Pointers）" class="headerlink" title="3. 智能指针（Smart Pointers）"></a>3. 智能指针（Smart Pointers）</h3><p>智能指针是 Rust 中提供的一种高级指针类型，它们不仅包含指针，还包含额外的元数据和功能。</p>
+<ul>
+<li><p><strong><code>Box&lt;T&gt;</code></strong>:</p>
+<ul>
+<li>用于在堆上分配内存。</li>
+<li>拥有所有权，当 <code>Box</code> 离开作用域时，会自动释放内存。</li>
+<li>适用于单一所有权场景。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = <span class="type">Box</span>::<span class="title function_ invoke__">new</span>(<span class="number">5</span>); <span class="comment">// x 是一个 Box，指向堆上的整数 5</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *x); <span class="comment">// 解引用 Box 获取值</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>Rc&lt;T&gt;</code></strong>:</p>
+<ul>
+<li>引用计数智能指针，允许多个所有者。</li>
+<li>适用于共享所有权场景。</li>
+<li>只能用于单线程环境。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::rc::Rc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = Rc::<span class="title function_ invoke__">new</span>(<span class="number">5</span>); <span class="comment">// x 是一个 Rc，指向堆上的整数 5</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = Rc::<span class="title function_ invoke__">clone</span>(&amp;x); <span class="comment">// y 是 x 的一个克隆，引用计数增加</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 解引用 Rc 获取值</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>Arc&lt;T&gt;</code></strong>:</p>
+<ul>
+<li>原子引用计数智能指针，允许多个所有者。</li>
+<li>适用于多线程环境。</li>
+<li>类似于 <code>Rc&lt;T&gt;</code>，但使用原子操作保证线程安全。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::sync::Arc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = Arc::<span class="title function_ invoke__">new</span>(<span class="number">5</span>); <span class="comment">// x 是一个 Arc，指向堆上的整数 5</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = Arc::<span class="title function_ invoke__">clone</span>(&amp;x); <span class="comment">// y 是 x 的一个克隆，引用计数增加</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 解引用 Arc 获取值</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>RefCell&lt;T&gt;</code></strong>:</p>
+<ul>
+<li>提供内部可变性，允许在不可变引用的情况下修改数据。</li>
+<li>适用于单线程环境。</li>
+<li>在运行时检查借用规则。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::cell::RefCell;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = RefCell::<span class="title function_ invoke__">new</span>(<span class="number">5</span>); <span class="comment">// x 是一个 RefCell，包含整数 5</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">y</span> = x.<span class="title function_ invoke__">borrow_mut</span>(); <span class="comment">// 获取可变引用</span></span><br><span class="line">*y += <span class="number">1</span>; <span class="comment">// 修改值</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 输出 6</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>Mutex&lt;T&gt;</code></strong>:</p>
+<ul>
+<li>提供线程安全的内部可变性。</li>
+<li>适用于多线程环境。</li>
+<li>在访问数据时加锁，保证线程安全。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::sync::Mutex;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = Mutex::<span class="title function_ invoke__">new</span>(<span class="number">5</span>); <span class="comment">// x 是一个 Mutex，包含整数 5</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">y</span> = x.<span class="title function_ invoke__">lock</span>().<span class="title function_ invoke__">unwrap</span>(); <span class="comment">// 获取锁并修改值</span></span><br><span class="line">*y += <span class="number">1</span>; <span class="comment">// 修改值</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, *y); <span class="comment">// 输出 6</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="4-函数指针（Function-Pointers）"><a href="#4-函数指针（Function-Pointers）" class="headerlink" title="4. 函数指针（Function Pointers）"></a>4. 函数指针（Function Pointers）</h3><p>函数指针是指向函数的指针类型，通常用于将函数作为参数传递或存储在数据结构中。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">add</span>(a: <span class="type">i32</span>, b: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">    a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">f</span>: <span class="title function_ invoke__">fn</span>(<span class="type">i32</span>, <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> = add; <span class="comment">// f 是一个函数指针，指向 add 函数</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, <span class="title function_ invoke__">f</span>(<span class="number">1</span>, <span class="number">2</span>)); <span class="comment">// 调用函数指针</span></span><br></pre></td></tr></table></figure>
 
-<p>在这个例子中，<code>fetch_data</code> 是一个异步函数，返回一个 <code>Future</code>。<code>await</code> 关键字用于等待 <code>fetch_data</code> 完成，并获取其结果。</p>
-<h3 id="5-Future-的执行"><a href="#5-Future-的执行" class="headerlink" title="5. Future 的执行"></a>5. <code>Future</code> 的执行</h3><p><code>Future</code> 本身是惰性的，它不会自动执行。要执行一个 <code>Future</code>，你需要将它交给一个执行器（executor）。Rust 标准库中没有提供默认的执行器，但社区中有许多流行的执行器，如 <code>tokio</code> 和 <code>async-std</code>。</p>
-<p>例如，使用 <code>tokio</code> 执行器：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[tokio::main]</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">data</span> = <span class="title function_ invoke__">fetch_data</span>().<span class="keyword">await</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-切片（Slices）"><a href="#5-切片（Slices）" class="headerlink" title="5. 切片（Slices）"></a>5. 切片（Slices）</h3><p>切片是对数组或向量的一部分的引用，包含一个指针和长度信息。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">arr</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> <span class="variable">slice</span> = &amp;arr[<span class="number">1</span>..<span class="number">3</span>]; <span class="comment">// slice 是一个切片，引用 arr 的第 2 和第 3 个元素</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, slice); <span class="comment">// 输出 [2, 3]</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="6-Future-的组合"><a href="#6-Future-的组合" class="headerlink" title="6. Future 的组合"></a>6. <code>Future</code> 的组合</h3><p><code>Future</code> 可以通过组合多个 <code>Future</code> 来实现复杂的异步逻辑。Rust 提供了许多组合器（combinators）来帮助组合 <code>Future</code>，例如 <code>then</code>、<code>and_then</code>、<code>join</code>、<code>select</code> 等。</p>
-<p>例如，使用 <code>join</code> 来等待多个 <code>Future</code> 完成：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> futures::future::join;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">fetch_data1</span>() <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123;</span><br><span class="line">    <span class="string">&quot;data1&quot;</span>.<span class="title function_ invoke__">to_string</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">fetch_data2</span>() <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123;</span><br><span class="line">    <span class="string">&quot;data2&quot;</span>.<span class="title function_ invoke__">to_string</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> (data1, data2) = <span class="title function_ invoke__">join</span>(<span class="title function_ invoke__">fetch_data1</span>(), <span class="title function_ invoke__">fetch_data2</span>()).<span class="keyword">await</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;, &#123;&#125;&quot;</span>, data1, data2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="7-Future-的取消"><a href="#7-Future-的取消" class="headerlink" title="7. Future 的取消"></a>7. <code>Future</code> 的取消</h3><p><code>Future</code> 可以被取消，取消后它将不再继续执行。取消通常通过丢弃 <code>Future</code> 来实现。例如，如果你不再需要某个 <code>Future</code> 的结果，可以直接丢弃它：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">future</span> = <span class="title function_ invoke__">fetch_data</span>();</span><br><span class="line"><span class="comment">// 不再需要 future，直接丢弃</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="8-Future-的错误处理"><a href="#8-Future-的错误处理" class="headerlink" title="8. Future 的错误处理"></a>8. <code>Future</code> 的错误处理</h3><p><code>Future</code> 可以通过 <code>Result</code> 类型来处理错误。例如：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">fetch_data</span>() <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;<span class="type">String</span>, std::io::Error&gt; &#123;</span><br><span class="line">    <span class="comment">// 模拟异步操作</span></span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(<span class="string">&quot;data&quot;</span>.<span class="title function_ invoke__">to_string</span>())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">match</span> <span class="title function_ invoke__">fetch_data</span>().<span class="keyword">await</span> &#123;</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(data) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, data),</span><br><span class="line">        <span class="title function_ invoke__">Err</span>(e) =&gt; eprintln!(<span class="string">&quot;Error: &#123;&#125;&quot;</span>, e),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="9-Future-的底层实现"><a href="#9-Future-的底层实现" class="headerlink" title="9. Future 的底层实现"></a>9. <code>Future</code> 的底层实现</h3><p><code>Future</code> 的底层实现通常涉及到状态机和事件循环。<code>Future</code> 的状态机会在每次 <code>poll</code> 时推进，直到完成。事件循环负责调度和唤醒 <code>Future</code>，以便在适当的时候继续执行。</p>
-<h3 id="10-Future-的性能"><a href="#10-Future-的性能" class="headerlink" title="10. Future 的性能"></a>10. <code>Future</code> 的性能</h3><p>Rust 的 <code>Future</code> 是零成本的抽象，意味着它的运行时开销非常低。<code>Future</code> 的调度和执行通常由执行器负责，执行器会尽可能地优化任务的调度和执行。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><code>Future</code> 是 Rust 异步编程的核心概念，它代表一个尚未完成的计算。通过 <code>async</code> 和 <code>await</code> 语法糖，Rust 使得异步编程更加直观和易于使用。<code>Future</code> 的执行需要依赖执行器，如 <code>tokio</code> 或 <code>async-std</code>。<code>Future</code> 可以通过组合器进行组合，实现复杂的异步逻辑。Rust 的 <code>Future</code> 是零成本的抽象，具有高性能和低开销的特点。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Rust 提供了多种指针类型，每种类型都有不同的用途和语义。引用是最常用的指针类型，提供了安全的借用和生命周期管理。裸指针用于底层操作，但需要小心使用。智能指针提供了更高级的内存管理功能，适用于不同的所有权和并发场景。函数指针和切片则用于特定的编程模式。理解这些指针类型及其适用场景是掌握 Rust 内存管理和安全性的关键。</p>
 
       
     </div>
@@ -301,7 +349,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/26/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/124/">124</a><a class="extend next" rel="next" href="/page/28/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/26/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/125/">125</a><a class="extend next" rel="next" href="/page/28/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -367,7 +415,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">124</span>
+          <span class="site-state-item-count">125</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -380,7 +428,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -430,12 +478,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">216k</span>
+    <span title="Symbols count total">219k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">13:06</span>
+    <span title="Reading time total">13:16</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

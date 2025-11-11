@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/06/13/The-Clean-Architecture/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/07/26/rust_notes/Error-Handling-Paradigms-A-Deep-Dive-into-Rust-s-Result-vs-Traditional-try-catch-in-Java-Python-JS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/06/13/The-Clean-Architecture/" class="post-title-link" itemprop="url">The Clean Architecture</a>
+            <a href="/2025/07/26/rust_notes/Error-Handling-Paradigms-A-Deep-Dive-into-Rust-s-Result-vs-Traditional-try-catch-in-Java-Python-JS/" class="post-title-link" itemprop="url">错误处理范式之争：Rust 的 Result 机制 vs 传统语言的 try-catch 设计哲学深度解析</a>
         </h2>
 
         <div class="post-meta">
@@ -208,7 +208,16 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-06-13 09:38:38 / Modified: 18:13:06" itemprop="dateCreated datePublished" datetime="2025-06-13T09:38:38+08:00">2025-06-13</time>
+              <time title="Created: 2025-07-26 11:28:57 / Modified: 11:31:23" itemprop="dateCreated datePublished" datetime="2025-07-26T11:28:57+08:00">2025-07-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/rust-notes/" itemprop="url" rel="index"><span itemprop="name">rust_notes</span></a>
+                </span>
             </span>
 
           <br>
@@ -217,14 +226,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.8k</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>7 mins.</span>
+              <span>4 mins.</span>
             </span>
 
         </div>
@@ -236,64 +245,123 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html">原文</a></p>
-<div align="center"> <img src="/images/CleanArchitecture.jpg"/></div>
-近年来，我们见证了许多关于系统架构的理念，包括：
+          <p>Rust 的错误处理机制与其他主流语言（如 Java、JavaScript、Python）的 <code>try-catch</code>（或 <code>try-except</code>）模式存在根本性差异，体现了不同的设计哲学。本文从核心机制、设计理念、实际影响等维度进行详细对比：</p>
+<hr>
+<h3 id="⚙️-一、核心机制对比"><a href="#⚙️-一、核心机制对比" class="headerlink" title="⚙️ 一、核心机制对比"></a>⚙️ 一、<strong>核心机制对比</strong></h3><table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>Rust</strong></th>
+<th><strong>Java&#x2F;JS&#x2F;Python 等（try-catch 范式）</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>错误类型</strong></td>
+<td>分层处理：<br>- <code>Option</code>：可选值<br>- <code>Result&lt;T, E&gt;</code>：可恢复错误<br>- <code>panic!</code>：不可恢复错误</td>
+<td>统一异常类型（如 <code>Exception</code> 或派生类）</td>
+</tr>
+<tr>
+<td><strong>错误传播</strong></td>
+<td>显式使用 <code>?</code> 操作符返回 <code>Result</code>，强制调用者处理</td>
+<td>隐式抛出异常（<code>throw</code>），自动向上冒泡直到被 <code>catch</code></td>
+</tr>
+<tr>
+<td><strong>处理方式</strong></td>
+<td>模式匹配（<code>match</code>）或组合子（<code>.map()</code>, <code>.and_then()</code>）处理 <code>Result</code></td>
+<td><code>try-catch-finally</code> 块捕获并处理异常</td>
+</tr>
+<tr>
+<td><strong>终止行为</strong></td>
+<td><code>panic!</code> 触发线程级栈展开（unwind）或直接中止（abort）</td>
+<td>异常未被捕获时终止线程&#x2F;进程</td>
+</tr>
+<tr>
+<td><strong>语法支持</strong></td>
+<td>无传统 <code>try-catch</code>，但可通过闭包或 <code>try_blocks</code>（实验特性）模拟</td>
+<td>原生 <code>try-catch</code> 语法</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🧠-二、设计哲学差异"><a href="#🧠-二、设计哲学差异" class="headerlink" title="🧠 二、设计哲学差异"></a>🧠 二、<strong>设计哲学差异</strong></h3><ol>
+<li><p><strong>显式 vs 隐式</strong>  </p>
+<ul>
+<li><strong>Rust</strong>：要求错误作为值显式返回（<code>Result</code>类型），调用者<strong>必须处理</strong>可能的错误路径（通过 <code>match</code> 或 <code>?</code>）。这符合其“内存安全”和“零抽象开销”原则，确保错误路径在编译期可见 。  </li>
+<li><strong>其他语言</strong>：异常隐式跳出函数，调用者可能忽略处理，导致运行时崩溃（如 Python 的 <code>Unhandled Exception</code>）。虽然方便，但降低了错误路径的可预测性 。</li>
+</ul>
+</li>
+<li><p><strong>可恢复 vs 不可恢复的界限</strong>  </p>
+<ul>
+<li><strong>Rust</strong>：严格区分：  <ul>
+<li>可恢复错误（<code>Result</code>）：如文件未找到、网络超时，应由逻辑处理。  </li>
+<li>不可恢复错误（<code>panic!</code>）：如数组越界、契约违反，表示程序逻辑错误 。</li>
+</ul>
+</li>
+<li><strong>其他语言</strong>：异常机制混合处理两类错误，需开发者自行约定（如 Java 中 <code>IOException</code> 可恢复，<code>NullPointerException</code> 不可恢复）。</li>
+</ul>
+</li>
+<li><p><strong>性能与开销</strong>  </p>
+<ul>
+<li><strong>Rust</strong>：  <ul>
+<li>无错误时：<code>Result</code> 是零成本抽象（仅内存布局差异，无运行时开销）。  </li>
+<li>发生 <code>panic</code>：栈展开（unwind）开销<strong>大于</strong>传统异常，因其需调用析构函数保证资源安全 。</li>
+</ul>
+</li>
+<li><strong>其他语言</strong>：  <ul>
+<li>异常处理常依赖运行时开销（如 JVM&#x2F;JS 引擎需维护异常表），即使未抛出异常也有成本 。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>错误类型系统</strong>  </p>
+<ul>
+<li><strong>Rust</strong>：支持自定义错误类型（实现 <code>std::error::Error</code>），结合 <code>?</code> 自动转换错误类型（如通过 <code>From</code> trait），实现错误链的灵活组合 。  </li>
+<li><strong>其他语言</strong>：依赖异常类继承体系（如 Java 的 <code>Throwable</code>），需手动包装异常（<code>catch</code> 中抛出新异常）。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="⚡️-三、实际使用场景对比"><a href="#⚡️-三、实际使用场景对比" class="headerlink" title="⚡️ 三、实际使用场景对比"></a>⚡️ 三、<strong>实际使用场景对比</strong></h3><h4 id="🔄-错误传播代码示例"><a href="#🔄-错误传播代码示例" class="headerlink" title="🔄 错误传播代码示例"></a>🔄 错误传播代码示例</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Rust：显式传播 + 自动转换错误类型</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">read_config</span>() <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;Config, MyError&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">file</span> = File::<span class="title function_ invoke__">open</span>(<span class="string">&quot;config.toml&quot;</span>)?;  <span class="comment">// ? 自动将 std::io::Error 转换为 MyError</span></span><br><span class="line">    <span class="title function_ invoke__">parse_config</span>(file)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>六边形架构（Hexagonal Architecture，也称端口与适配器架构），由Alistair Cockburn提出，Steve Freeman和Nat Pryce在他们的著作《Growing Object Oriented Software》中采用和推广；</li>
-<li>洋葱架构（Onion Architecture），由Jeffrey Palermo提出；</li>
-<li>“尖叫架构”（Screaming Architecture），来自我去年写的一篇博客；</li>
-<li>DCI架构，由James Coplien和Trygve Reenskaug提出；</li>
-<li>BCE架构，由Ivar Jacobson在其著作《面向对象软件工程：以用例驱动的方法》中提出。</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Java：隐式抛出 + 显式捕获</span></span><br><span class="line"><span class="keyword">public</span> Config <span class="title function_">readConfig</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;config.toml&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> parseConfig(file);  <span class="comment">// 可能抛出 IOException，需声明或捕获</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="🛠-集中处理多个可能失败的操作"><a href="#🛠-集中处理多个可能失败的操作" class="headerlink" title="🛠 集中处理多个可能失败的操作"></a>🛠 集中处理多个可能失败的操作</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Rust：闭包模拟 try-catch 作用域</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">result</span>: <span class="type">Result</span>&lt;(), Error&gt; = (|| &#123;</span><br><span class="line">    <span class="title function_ invoke__">step1</span>()?;</span><br><span class="line">    <span class="title function_ invoke__">step2</span>()?;  <span class="comment">// 任一失败则整体返回 Err</span></span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> <span class="variable">Err</span>(e) = result &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Python：原生 try-catch</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    step1()</span><br><span class="line">    step2()</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:  <span class="comment"># 捕获所有异常</span></span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="⚠️-四、跨语言互操作（FFI）的挑战"><a href="#⚠️-四、跨语言互操作（FFI）的挑战" class="headerlink" title="⚠️ 四、跨语言互操作（FFI）的挑战"></a>⚠️ 四、<strong>跨语言互操作（FFI）的挑战</strong></h3><ul>
+<li><strong>Rust</strong>：<code>panic!</code> <strong>跨 FFI 边界是未定义行为</strong>（如从 C&#x2F;Python 调用 Rust 函数）。必须用 <code>catch_unwind</code> 捕获所有 panic，避免栈展开破坏外部运行时 。  <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// PyO3 示例：防止 panic 破坏 Python 解释器</span></span><br><span class="line"><span class="meta">#[pyfunction]</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">safe_call</span>() <span class="punctuation">-&gt;</span> PyResult&lt;()&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">result</span> = std::panic::<span class="title function_ invoke__">catch_unwind</span>(|| <span class="title function_ invoke__">risky_op</span>());</span><br><span class="line">    result.<span class="title function_ invoke__">map_err</span>(|_| PyErr::new::&lt;PyRuntimeError, _&gt;(<span class="string">&quot;Rust panic!&quot;</span>))?</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><strong>其他语言</strong>：异常通常可通过 FFI 机制转换（如 JNI 的 <code>ThrowNew()</code>），但需手动映射错误码 。</li>
 </ul>
-<p>虽然这些架构在细节上各有不同，但它们非常相似。它们的共同目标是实现关注点分离，都是通过将软件划分为多个层次来实现的。每个架构至少包含一层业务规则层和一层接口层。</p>
-<p>这些架构设计出来的系统具有以下特性：</p>
-<ul>
-<li><strong>独立于框架</strong>。架构不依赖于某个功能繁多的库或框架，这使得你可以将框架作为工具使用，而不是被迫将系统限制在框架的局限之中。</li>
-<li><strong>可测试性强</strong>。业务规则可以在没有UI、数据库、Web服务器或任何外部元素的情况下进行测试。</li>
-<li><strong>独立于UI</strong>。UI可以轻松更换，而不影响系统的其他部分。例如，可以用控制台UI替换Web UI，而无需改动业务规则。</li>
-<li><strong>独立于数据库</strong>。可以随意替换Oracle、SQL Server、Mongo、BigTable、CouchDB等数据库，业务规则不受数据库的限制。</li>
-<li><strong>独立于任何外部机构</strong>。业务规则本身对外部世界毫不知情。</li>
-</ul>
-<p>本文开头的图示试图将上述所有架构整合成一个可操作的统一理念。</p>
 <hr>
-<h3 id="依赖规则（The-Dependency-Rule）"><a href="#依赖规则（The-Dependency-Rule）" class="headerlink" title="依赖规则（The Dependency Rule）"></a>依赖规则（The Dependency Rule）</h3><p>同心圆表示软件的不同区域。一般来说，越往内层，软件的抽象层级越高；外层是机制层，内层是策略层。</p>
-<p>使该架构得以运作的核心规则是“依赖规则”：源码依赖只能指向内层。内层代码绝不能知道外层的任何东西，尤其不能引用外层声明的任何名称（函数、类、变量或其他命名的软件实体）。</p>
-<p>同样，外层使用的数据格式不应被内层使用，尤其是那些由外层框架生成的数据格式。我们不希望外层的任何东西影响内层。</p>
-<hr>
-<h3 id="实体（Entities）"><a href="#实体（Entities）" class="headerlink" title="实体（Entities）"></a>实体（Entities）</h3><p>实体封装企业范围内的业务规则。实体可以是带有方法的对象，也可以是一组数据结构和函数，只要这些实体能被企业中的多个应用程序使用即可。</p>
-<p>如果你没有企业背景，只是写一个单独的应用，那么这些实体就是应用的业务对象。它们封装最通用、最高层次的规则，最不容易因外部变化而变化。例如页面导航或安全性变动，不应影响实体层。</p>
-<hr>
-<h3 id="用例（Use-Cases）"><a href="#用例（Use-Cases）" class="headerlink" title="用例（Use Cases）"></a>用例（Use Cases）</h3><p>这一层的软件包含应用特定的业务规则，封装并实现系统的所有用例。用例负责协调数据在实体之间的流动，并指挥实体利用企业级业务规则完成用例目标。</p>
-<p>预期这一层的变动不会影响实体层，也不会因数据库、UI或任何常用框架的变化而受影响。此层与这些外部因素隔离。</p>
-<p>然而，应用操作的变更会影响用例层的代码。如果用例细节发生变化，这层代码必然需要相应调整。</p>
-<hr>
-<h3 id="接口适配器（Interface-Adapters）"><a href="#接口适配器（Interface-Adapters）" class="headerlink" title="接口适配器（Interface Adapters）"></a>接口适配器（Interface Adapters）</h3><p>这一层是一组适配器，将数据从用例和实体最方便的格式转换为外部机构（如数据库或Web）最方便的格式。</p>
-<p>例如，MVC架构中的控制器、视图和展示器都属于这一层。模型通常是控制器传递给用例，再由用例传给展示器和视图的数据结构。</p>
-<p>同样，数据从实体和用例的格式转换为数据库所用的格式（如SQL）也在这里完成。内层代码绝不应知道数据库细节，所有SQL代码应限制在此层中与数据库相关的部分。</p>
-<p>此外，任何将外部服务数据转换为内部用例和实体格式的适配器也在此层。</p>
-<hr>
-<h3 id="框架与驱动（Frameworks-and-Drivers）"><a href="#框架与驱动（Frameworks-and-Drivers）" class="headerlink" title="框架与驱动（Frameworks and Drivers）"></a>框架与驱动（Frameworks and Drivers）</h3><p>最外层通常由数据库、Web框架等工具和框架组成。通常你只需在这一层写少量“胶水代码”，用于与内层通信。</p>
-<p>这一层是所有具体细节所在。Web、数据库都是细节，我们将它们放在外层，以减少对系统核心的影响。</p>
-<hr>
-<h3 id="只有四层吗？"><a href="#只有四层吗？" class="headerlink" title="只有四层吗？"></a>只有四层吗？</h3><p>不一定，这些同心圆只是示意图。你可能需要比这更多的层。没有规定必须只有这四层。</p>
-<p>但“依赖规则”始终适用：源码依赖永远指向内层。向内层越深，抽象层级越高。最外层是低层次的具体细节，最内层是最通用的高层策略。</p>
-<hr>
-<h3 id="跨越边界"><a href="#跨越边界" class="headerlink" title="跨越边界"></a>跨越边界</h3><p>图右下角展示了如何跨越层级边界。控制器和展示器与用例层通信，控制流从控制器开始，通过用例，最终执行展示器。</p>
-<p>注意源码依赖方向，始终指向内层。</p>
-<p>这看似矛盾，我们通常利用依赖倒置原则解决。在Java等语言中，通过接口和继承关系，使源码依赖方向与控制流方向相反，从而满足依赖规则。</p>
-<p>例如，用例需要调用展示器，但不能直接调用（否则违反依赖规则）。解决方式是用例调用内层接口（用例输出端口），由外层的展示器实现该接口。</p>
-<p>所有层级边界的跨越都采用类似技术，利用动态多态实现依赖方向与控制流方向的反向，从而无论控制流如何，都能遵守依赖规则。</p>
-<hr>
-<h3 id="通过边界传递的数据"><a href="#通过边界传递的数据" class="headerlink" title="通过边界传递的数据"></a>通过边界传递的数据</h3><p>通常跨层传递的是简单数据结构。可以是基本结构体、简单的数据传输对象（DTO），也可以是函数参数，或者封装在哈希表、对象中。</p>
-<p>关键是传递的结构必须是孤立且简单的，不能传递实体或数据库行对象，避免违反依赖规则。</p>
-<p>例如，许多数据库框架返回方便的查询结果格式（如行结构RowStructure），我们不应将其传递到内层，否则内层代码就会依赖外层，实现依赖规则被破坏。</p>
-<p>跨层传递的数据应始终采用对内层最方便的形式。</p>
-<hr>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>遵守这些简单规则并不难，却能为你今后的开发省去大量麻烦。通过分层设计，遵守依赖规则，你将构建一个天生可测试的系统，带来诸多好处。</p>
-<p>当系统的外部部分（如数据库或Web框架）过时时，你可以轻松替换它们，几乎不影响系统其他部分。</p>
-<hr>
+<h3 id="💎-五、总结：范式选择的本质"><a href="#💎-五、总结：范式选择的本质" class="headerlink" title="💎 五、总结：范式选择的本质"></a>💎 五、<strong>总结：范式选择的本质</strong></h3><table>
+<thead>
+<tr>
+<th><strong>维度</strong></th>
+<th><strong>Rust（Result&#x2F;panic）</strong></th>
+<th><strong>传统语言（try-catch）</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>设计目标</strong></td>
+<td>编译期安全、零成本抽象、资源确定性释放</td>
+<td>代码简洁、异常路径集中处理</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>系统编程、高性能服务、资源受限环境</td>
+<td>应用层开发、快速迭代、脚本逻辑</td>
+</tr>
+<tr>
+<td><strong>代价</strong></td>
+<td>开发时需显式处理错误，学习曲线陡峭</td>
+<td>运行时开销大，错误路径易被忽略</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>💡 <strong>哲学核心</strong>：Rust 将错误视为<strong>数据</strong>（data），用类型系统约束行为；其他语言将错误视为<strong>控制流</strong>（control flow），用语法结构跳转。前者追求“正确性证明”，后者追求“编写效率” 。</p>
+</blockquote>
+<p>两种范式各有优劣：Rust 适合对可靠性和性能要求高的场景，而 <code>try-catch</code> 在快速开发中更直观。理解差异可帮助开发者根据需求选择合适工具，或在混合系统中安全桥接（如通过 <code>catch_unwind</code> 或自定义错误转换）。</p>
 
       
     </div>
@@ -312,7 +380,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/124/">124</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/125/">125</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -378,7 +446,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">124</span>
+          <span class="site-state-item-count">125</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -391,7 +459,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -441,12 +509,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">216k</span>
+    <span title="Symbols count total">219k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">13:06</span>
+    <span title="Reading time total">13:16</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

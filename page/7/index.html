@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices-python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices/" class="post-title-link" itemprop="url">面向对象最佳实践深入解析</a>
+            <a href="/2025/04/28/In-Depth-Analysis-of-Object-Oriented-Best-Practices-python/" class="post-title-link" itemprop="url">面向对象最佳实践 Python 深入解析</a>
         </h2>
 
         <div class="post-meta">
@@ -208,7 +208,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-04-28 17:06:02 / Modified: 17:07:08" itemprop="dateCreated datePublished" datetime="2025-04-28T17:06:02+08:00">2025-04-28</time>
+              <time title="Created: 2025-04-28 17:24:50 / Modified: 17:25:37" itemprop="dateCreated datePublished" datetime="2025-04-28T17:24:50+08:00">2025-04-28</time>
             </span>
 
           <br>
@@ -217,14 +217,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.6k</span>
+              <span>973</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>6 mins.</span>
+              <span>4 mins.</span>
             </span>
 
         </div>
@@ -236,211 +236,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>面向对象编程的最佳实践是多年软件开发经验的结晶，遵循这些原则可以显著提高代码质量、可维护性和可扩展性。下面我将对这些最佳实践进行深入讲解。</p>
-<h2 id="一、优先使用组合而非继承"><a href="#一、优先使用组合而非继承" class="headerlink" title="一、优先使用组合而非继承"></a>一、优先使用组合而非继承</h2><h3 id="概念解析"><a href="#概念解析" class="headerlink" title="概念解析"></a>概念解析</h3><p>组合(Composition)是指一个类包含另一个类的实例作为其成员变量，通过委托来使用其功能，而不是通过继承获得父类的功能。</p>
-<h3 id="为什么优先使用组合？"><a href="#为什么优先使用组合？" class="headerlink" title="为什么优先使用组合？"></a>为什么优先使用组合？</h3><ol>
-<li><strong>更松散的耦合</strong>：组合对象可以在运行时动态更换</li>
-<li><strong>更好的封装</strong>：内部实现细节被隐藏</li>
-<li><strong>避免继承层次过深</strong>：继承链过长会导致”脆弱基类问题”</li>
-<li><strong>更灵活</strong>：可以组合多个不同类的功能</li>
-</ol>
-<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用继承（不推荐）</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Engine</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">start</span><span class="params">()</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> <span class="keyword">extends</span> <span class="title class_">Engine</span> &#123;  <span class="comment">// Car不是Engine的一种，这是不好的设计</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用组合（推荐）</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Engine engine;  <span class="comment">// Car有一个Engine</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Car</span><span class="params">(Engine engine)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.engine = engine;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">start</span><span class="params">()</span> &#123;</span><br><span class="line">        engine.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <p>下面我将通过详细的 Python 代码示例，深入讲解每个面向对象的最佳实践原则。</p>
+<h2 id="1-优先使用组合而非继承"><a href="#1-优先使用组合而非继承" class="headerlink" title="1. 优先使用组合而非继承"></a>1. 优先使用组合而非继承</h2><h3 id="问题示例（使用继承）"><a href="#问题示例（使用继承）" class="headerlink" title="问题示例（使用继承）"></a>问题示例（使用继承）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name, salary</span>):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.salary = salary</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">calculate_bonus</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.salary * <span class="number">0.1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 不恰当使用继承 - Manager &quot;是一个&quot; Employee，但添加了团队管理功能</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Manager</span>(<span class="title class_ inherited__">Employee</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name, salary, team_size</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__(name, salary)</span><br><span class="line">        self.team_size = team_size</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">manage_team</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;self.name&#125;</span> is managing a team of <span class="subst">&#123;self.team_size&#125;</span> people&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 问题：当需要添加不同行为时，继承层次会变得复杂</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="何时使用继承？"><a href="#何时使用继承？" class="headerlink" title="何时使用继承？"></a>何时使用继承？</h3><ul>
-<li>当确实是”is-a”关系时（如Dog是Animal）</li>
-<li>需要多态行为时</li>
-<li>子类确实是父类的特殊化</li>
-</ul>
-<h2 id="二、遵循最小知识原则-迪米特法则"><a href="#二、遵循最小知识原则-迪米特法则" class="headerlink" title="二、遵循最小知识原则(迪米特法则)"></a>二、遵循最小知识原则(迪米特法则)</h2><h3 id="概念解析-1"><a href="#概念解析-1" class="headerlink" title="概念解析"></a>概念解析</h3><p>迪米特法则(Law of Demeter)规定：</p>
-<ol>
-<li>每个单元只应该了解与它密切相关的单元</li>
-<li>只与直接朋友交谈</li>
-<li>不要与陌生人交谈</li>
-</ol>
-<h3 id="具体表现"><a href="#具体表现" class="headerlink" title="具体表现"></a>具体表现</h3><ul>
-<li>对象O的方法M只能调用以下对象的方法：<ol>
-<li>O本身</li>
-<li>M的参数</li>
-<li>O直接包含的对象</li>
-<li>M中创建的对象</li>
-</ol>
-</li>
-</ul>
-<h3 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 违反迪米特法则</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Customer</span> &#123;</span><br><span class="line">    Wallet wallet;</span><br><span class="line">    </span><br><span class="line">    Wallet <span class="title function_">getWallet</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> wallet;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 客户端代码</span></span><br><span class="line"><span class="type">float</span> <span class="variable">money</span> <span class="operator">=</span> customer.getWallet().getMoney();  <span class="comment">// 与Wallet这个&quot;陌生人&quot;交谈</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 遵循迪米特法则</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Customer</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Wallet wallet;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">float</span> <span class="title function_">getPayment</span><span class="params">(<span class="type">float</span> amount)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (wallet != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> wallet.withdraw(amount);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 客户端代码</span></span><br><span class="line"><span class="type">float</span> <span class="variable">money</span> <span class="operator">=</span> customer.getPayment(<span class="number">100</span>);  <span class="comment">// 只与Customer交谈</span></span><br></pre></td></tr></table></figure>
+<h3 id="解决方案（使用组合）"><a href="#解决方案（使用组合）" class="headerlink" title="解决方案（使用组合）"></a>解决方案（使用组合）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">BonusCalculator</span>:</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">calculate</span>(<span class="params">salary</span>):</span><br><span class="line">        <span class="keyword">return</span> salary * <span class="number">0.1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TeamManager</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, team_size</span>):</span><br><span class="line">        self.team_size = team_size</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">manage</span>(<span class="params">self, name</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;name&#125;</span> is managing a team of <span class="subst">&#123;self.team_size&#125;</span> people&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name, salary, bonus_calculator=<span class="literal">None</span></span>):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.salary = salary</span><br><span class="line">        self.bonus_calculator = bonus_calculator <span class="keyword">or</span> BonusCalculator()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">calculate_bonus</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.bonus_calculator.calculate(self.salary)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Manager</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name, salary, team_size</span>):</span><br><span class="line">        self.employee = Employee(name, salary)</span><br><span class="line">        self.team_manager = TeamManager(team_size)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">calculate_bonus</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.employee.calculate_bonus()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">manage_team</span>(<span class="params">self</span>):</span><br><span class="line">        self.team_manager.manage(self.employee.name)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更灵活，可以动态更换组件</span></span><br><span class="line">manager = Manager(<span class="string">&quot;Alice&quot;</span>, <span class="number">80000</span>, <span class="number">5</span>)</span><br><span class="line">manager.manage_team()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Bonus: <span class="subst">&#123;manager.calculate_bonus()&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
 
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>减少类之间的耦合</li>
-<li>提高模块化程度</li>
-<li>更易于维护和修改</li>
-</ul>
-<h2 id="三、保持类和方法的小型化"><a href="#三、保持类和方法的小型化" class="headerlink" title="三、保持类和方法的小型化"></a>三、保持类和方法的小型化</h2><h3 id="类的大小原则"><a href="#类的大小原则" class="headerlink" title="类的大小原则"></a>类的大小原则</h3><ul>
-<li><strong>单一职责原则</strong>：一个类应该只有一个引起它变化的原因</li>
-<li>经验法则：<ul>
-<li>行数：通常不超过200-300行</li>
-<li>方法数：通常不超过10-20个</li>
-<li>属性数：通常不超过10个</li>
-</ul>
-</li>
-</ul>
-<h3 id="方法的大小原则"><a href="#方法的大小原则" class="headerlink" title="方法的大小原则"></a>方法的大小原则</h3><ul>
-<li>一个方法应该只做一件事</li>
-<li>经验法则：<ul>
-<li>行数：通常不超过屏幕高度(20-30行)</li>
-<li>嵌套层级：不超过2-3层</li>
-<li>参数个数：不超过3-4个</li>
-</ul>
-</li>
-</ul>
-<h3 id="重构技巧"><a href="#重构技巧" class="headerlink" title="重构技巧"></a>重构技巧</h3><ol>
-<li><strong>提取方法</strong>：将大方法中的代码块提取为独立方法</li>
-<li><strong>提取类</strong>：将大类中的相关功能提取到新类中</li>
-<li><strong>使用策略模式</strong>：将复杂逻辑委托给专门的策略类</li>
-</ol>
-<h2 id="四、使用有意义的名字"><a href="#四、使用有意义的名字" class="headerlink" title="四、使用有意义的名字"></a>四、使用有意义的名字</h2><h3 id="命名原则"><a href="#命名原则" class="headerlink" title="命名原则"></a>命名原则</h3><ol>
-<li><p><strong>类名</strong>：名词或名词短语，明确表示职责</p>
-<ul>
-<li>好例子：<code>Customer</code>, <code>OrderProcessor</code></li>
-<li>坏例子：<code>Data</code>, <code>Manager</code>, <code>Processor</code></li>
-</ul>
-</li>
-<li><p><strong>方法名</strong>：动词或动词短语，描述操作</p>
-<ul>
-<li>好例子：<code>calculateTotal()</code>, <code>saveToDatabase()</code></li>
-<li>坏例子：<code>process()</code>, <code>doWork()</code></li>
-</ul>
-</li>
-<li><p><strong>变量名</strong>：名词，描述存储内容</p>
-<ul>
-<li>好例子：<code>customerCount</code>, <code>isValid</code></li>
-<li>坏例子：<code>temp</code>, <code>data</code>, <code>flag</code></li>
-</ul>
-</li>
-</ol>
-<h3 id="命名技巧"><a href="#命名技巧" class="headerlink" title="命名技巧"></a>命名技巧</h3><ul>
-<li>避免缩写（除非是广泛接受的）</li>
-<li>使用领域术语</li>
-<li>保持一致性（如全部使用<code>get</code>或全部使用<code>retrieve</code>）</li>
-<li>长度与作用域成正比（局部变量可以短，成员变量应该更详细）</li>
-</ul>
-<h2 id="五、合理使用访问修饰符"><a href="#五、合理使用访问修饰符" class="headerlink" title="五、合理使用访问修饰符"></a>五、合理使用访问修饰符</h2><h3 id="访问控制原则"><a href="#访问控制原则" class="headerlink" title="访问控制原则"></a>访问控制原则</h3><ol>
-<li><strong>私有(private)优先</strong>：除非有充分理由，否则字段和方法都应该是private的</li>
-<li><strong>逐步放宽</strong>：从最严格开始，只在必要时放宽限制</li>
-<li><strong>封装不变性</strong>：确保对象的不变量不被破坏</li>
-</ol>
-<h3 id="各语言访问修饰符对比"><a href="#各语言访问修饰符对比" class="headerlink" title="各语言访问修饰符对比"></a>各语言访问修饰符对比</h3><table>
-<thead>
-<tr>
-<th>修饰符</th>
-<th>Java&#x2F;C#&#x2F;C++</th>
-<th>Python</th>
-<th>JavaScript</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>私有</td>
-<td>private</td>
-<td><code>__prefix</code></td>
-<td>无(约定用_)</td>
-</tr>
-<tr>
-<td>保护</td>
-<td>protected</td>
-<td>无</td>
-<td>无</td>
-</tr>
-<tr>
-<td>包私有</td>
-<td>(default)</td>
-<td>无</td>
-<td>无</td>
-</tr>
-<tr>
-<td>公开</td>
-<td>public</td>
-<td>无前缀</td>
-<td>无</td>
-</tr>
-</tbody></table>
-<h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BankAccount</span> &#123;</span><br><span class="line">    <span class="comment">// 字段私有</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">float</span> balance;</span><br><span class="line">    <span class="keyword">private</span> String owner;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 通过公开方法访问</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">float</span> <span class="title function_">getBalance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> balance;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 修改方法可以添加验证</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deposit</span><span class="params">(<span class="type">float</span> amount)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (amount &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            balance += amount;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-遵循最小知识原则（迪米特法则）"><a href="#2-遵循最小知识原则（迪米特法则）" class="headerlink" title="2. 遵循最小知识原则（迪米特法则）"></a>2. 遵循最小知识原则（迪米特法则）</h2><h3 id="问题示例"><a href="#问题示例" class="headerlink" title="问题示例"></a>问题示例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Address</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, city, street</span>):</span><br><span class="line">        self.city = city</span><br><span class="line">        self.street = street</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name, address</span>):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.address = address</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_address</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.address</span><br><span class="line"></span><br><span class="line"><span class="comment"># 违反迪米特法则</span></span><br><span class="line">person = Person(<span class="string">&quot;Bob&quot;</span>, Address(<span class="string">&quot;Beijing&quot;</span>, <span class="string">&quot;Main St&quot;</span>))</span><br><span class="line"><span class="built_in">print</span>(person.get_address().city)  <span class="comment"># 直接访问Address的属性</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="六、避免上帝对象-God-Object"><a href="#六、避免上帝对象-God-Object" class="headerlink" title="六、避免上帝对象(God Object)"></a>六、避免上帝对象(God Object)</h2><h3 id="上帝对象的特征"><a href="#上帝对象的特征" class="headerlink" title="上帝对象的特征"></a>上帝对象的特征</h3><ol>
-<li>知道太多信息</li>
-<li>做太多事情</li>
-<li>与系统中太多其他对象耦合</li>
-<li>通常有数百甚至上千行代码</li>
-</ol>
-<h3 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h3><ul>
-<li>难以理解和维护</li>
-<li>难以测试</li>
-<li>修改影响范围大</li>
-<li>阻碍并行开发</li>
-</ul>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ol>
-<li><strong>职责分解</strong>：识别可以分离的职责</li>
-<li><strong>领域驱动设计</strong>：按照业务领域划分模块</li>
-<li><strong>设计模式应用</strong>：如策略模式、外观模式等</li>
-</ol>
-<h3 id="示例重构"><a href="#示例重构" class="headerlink" title="示例重构"></a>示例重构</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 上帝对象</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderProcessor</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">process</span><span class="params">(Order order)</span> &#123;</span><br><span class="line">        <span class="comment">// 验证订单</span></span><br><span class="line">        <span class="comment">// 计算价格</span></span><br><span class="line">        <span class="comment">// 检查库存</span></span><br><span class="line">        <span class="comment">// 创建发票</span></span><br><span class="line">        <span class="comment">// 发送通知</span></span><br><span class="line">        <span class="comment">// 更新数据库</span></span><br><span class="line">        <span class="comment">// ... 1000行代码</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重构后</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderValidator</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PriceCalculator</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InventoryChecker</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InvoiceGenerator</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NotificationSender</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderRepository</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderProcessor</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> OrderValidator validator;</span><br><span class="line">    <span class="keyword">private</span> PriceCalculator calculator;</span><br><span class="line">    <span class="comment">// 其他依赖...</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">process</span><span class="params">(Order order)</span> &#123;</span><br><span class="line">        validator.validate(order);</span><br><span class="line">        calculator.calculate(order);</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name, address</span>):</span><br><span class="line">        self.name = name</span><br><span class="line">        self._address = address  <span class="comment"># 设为私有</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_city</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self._address.city</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_street</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self._address.street</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端代码</span></span><br><span class="line">person = Person(<span class="string">&quot;Bob&quot;</span>, Address(<span class="string">&quot;Beijing&quot;</span>, <span class="string">&quot;Main St&quot;</span>))</span><br><span class="line"><span class="built_in">print</span>(person.get_city())  <span class="comment"># 只与Person交互</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="七、合理使用接口和抽象类"><a href="#七、合理使用接口和抽象类" class="headerlink" title="七、合理使用接口和抽象类"></a>七、合理使用接口和抽象类</h2><h3 id="接口-vs-抽象类"><a href="#接口-vs-抽象类" class="headerlink" title="接口 vs 抽象类"></a>接口 vs 抽象类</h3><table>
-<thead>
-<tr>
-<th>特性</th>
-<th>接口(Interface)</th>
-<th>抽象类(Abstract Class)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>实例化</td>
-<td>不能</td>
-<td>不能</td>
-</tr>
-<tr>
-<td>方法实现</td>
-<td>Java8+可以有默认方法</td>
-<td>可以有具体方法</td>
-</tr>
-<tr>
-<td>字段</td>
-<td>只能有常量</td>
-<td>可以有各种字段</td>
-</tr>
-<tr>
-<td>多继承</td>
-<td>一个类可实现多个接口</td>
-<td>只能继承一个抽象类</td>
-</tr>
-<tr>
-<td>设计目的</td>
-<td>定义契约</td>
-<td>提供部分实现</td>
-</tr>
-</tbody></table>
-<h3 id="使用原则"><a href="#使用原则" class="headerlink" title="使用原则"></a>使用原则</h3><ol>
-<li><p><strong>接口用于</strong>：</p>
-<ul>
-<li>定义跨继承层次的能力</li>
-<li>需要多重继承时</li>
-<li>定义服务契约</li>
-</ul>
-</li>
-<li><p><strong>抽象类用于</strong>：</p>
-<ul>
-<li>提供部分实现</li>
-<li>有共同基类逻辑时</li>
-<li>希望控制子类如何扩展时</li>
-</ul>
-</li>
-</ol>
-<h3 id="代码示例-2"><a href="#代码示例-2" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 接口定义能力</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Flyable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Swimmable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">swim</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象类提供部分实现</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Bird</span> &#123;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">makeSound</span><span class="params">()</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">breathe</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Breathing...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Duck</span> <span class="keyword">extends</span> <span class="title class_">Bird</span> <span class="keyword">implements</span> <span class="title class_">Flyable</span>, Swimmable &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">makeSound</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Quack&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Duck flying&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swim</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Duck swimming&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-保持类和方法的小型化"><a href="#3-保持类和方法的小型化" class="headerlink" title="3. 保持类和方法的小型化"></a>3. 保持类和方法的小型化</h2><h3 id="问题示例（大类）"><a href="#问题示例（大类）" class="headerlink" title="问题示例（大类）"></a>问题示例（大类）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ReportGenerator</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generate_report</span>(<span class="params">self, data</span>):</span><br><span class="line">        <span class="comment"># 步骤1: 验证数据 (20行代码)</span></span><br><span class="line">        <span class="comment"># 步骤2: 处理数据 (50行代码)</span></span><br><span class="line">        <span class="comment"># 步骤3: 生成报告 (40行代码)</span></span><br><span class="line">        <span class="comment"># 步骤4: 保存报告 (30行代码)</span></span><br><span class="line">        <span class="comment"># 总计: 140+行代码</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="接口隔离原则-ISP"><a href="#接口隔离原则-ISP" class="headerlink" title="接口隔离原则(ISP)"></a>接口隔离原则(ISP)</h3><ul>
-<li>客户端不应该被迫依赖它们不使用的接口</li>
-<li>应该将大接口拆分为更小、更具体的接口</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 违反ISP</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Worker</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">work</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">sleep</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遵循ISP</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Workable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">work</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Eatable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Sleepable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">sleep</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解决方案（分解）"><a href="#解决方案（分解）" class="headerlink" title="解决方案（分解）"></a>解决方案（分解）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">DataValidator</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">validate</span>(<span class="params">self, data</span>): <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DataProcessor</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">process</span>(<span class="params">self, data</span>): <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ReportBuilder</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">build</span>(<span class="params">self, processed_data</span>): <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ReportSaver</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">save</span>(<span class="params">self, report</span>): <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ReportGenerator</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.validator = DataValidator()</span><br><span class="line">        self.processor = DataProcessor()</span><br><span class="line">        self.builder = ReportBuilder()</span><br><span class="line">        self.saver = ReportSaver()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generate_report</span>(<span class="params">self, data</span>):</span><br><span class="line">        self.validator.validate(data)</span><br><span class="line">        processed_data = self.processor.process(data)</span><br><span class="line">        report = self.builder.build(processed_data)</span><br><span class="line">        self.saver.save(report)</span><br></pre></td></tr></table></figure>
 
-<p>通过遵循这些面向对象的最佳实践，可以创建出更健壮、更灵活、更易于维护的软件系统。记住，这些原则不是铁律，而是指导方针，在实际应用中需要根据具体情况进行权衡。</p>
+<h2 id="4-使用有意义的名字"><a href="#4-使用有意义的名字" class="headerlink" title="4. 使用有意义的名字"></a>4. 使用有意义的名字</h2><h3 id="差的名字"><a href="#差的名字" class="headerlink" title="差的名字"></a>差的名字</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">p</span>(<span class="params">d</span>):  <span class="comment"># 无意义缩写</span></span><br><span class="line">    <span class="keyword">return</span> d * <span class="number">1.1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">M</span>:  <span class="comment"># 含糊不清</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">c</span>(<span class="params">self, x</span>):  <span class="comment"># 不知道是计算什么</span></span><br><span class="line">        <span class="keyword">return</span> x * <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="好的名字"><a href="#好的名字" class="headerlink" title="好的名字"></a>好的名字</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">calculate_price_with_tax</span>(<span class="params">price</span>):</span><br><span class="line">    <span class="keyword">return</span> price * <span class="number">1.1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ShoppingCart</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">calculate_total</span>(<span class="params">self, items</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(item.price <span class="keyword">for</span> item <span class="keyword">in</span> items)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-合理使用访问修饰符"><a href="#5-合理使用访问修饰符" class="headerlink" title="5. 合理使用访问修饰符"></a>5. 合理使用访问修饰符</h2><p>Python 使用命名约定实现访问控制：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">BankAccount</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, owner, balance</span>):</span><br><span class="line">        self.owner = owner       <span class="comment"># 公开属性</span></span><br><span class="line">        self._balance = balance   <span class="comment"># 保护属性 (约定)</span></span><br><span class="line">        self.__secret_code = <span class="number">123</span>  <span class="comment"># 私有属性 (名称修饰)</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 公开方法</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deposit</span>(<span class="params">self, amount</span>):</span><br><span class="line">        <span class="keyword">if</span> amount &gt; <span class="number">0</span>:</span><br><span class="line">            self._balance += amount</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 保护方法</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_validate_amount</span>(<span class="params">self, amount</span>):</span><br><span class="line">        <span class="keyword">return</span> amount &gt; <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 私有方法</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__generate_statement</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&quot;Statement for <span class="subst">&#123;self.owner&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line">account = BankAccount(<span class="string">&quot;Alice&quot;</span>, <span class="number">1000</span>)</span><br><span class="line"><span class="built_in">print</span>(account.owner)      <span class="comment"># 可以访问</span></span><br><span class="line"><span class="built_in">print</span>(account._balance)   <span class="comment"># 可以访问但不应该</span></span><br><span class="line"><span class="comment"># print(account.__secret_code)  # 会报错</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6-避免上帝对象"><a href="#6-避免上帝对象" class="headerlink" title="6. 避免上帝对象"></a>6. 避免上帝对象</h2><h3 id="问题示例-1"><a href="#问题示例-1" class="headerlink" title="问题示例"></a>问题示例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">GodObject</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.users = []</span><br><span class="line">        self.products = []</span><br><span class="line">        self.orders = []</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_user</span>(<span class="params">self, user</span>): <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">delete_user</span>(<span class="params">self, user_id</span>): <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_product</span>(<span class="params">self, product</span>): <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">process_order</span>(<span class="params">self, order</span>): <span class="keyword">pass</span></span><br><span class="line">    <span class="comment"># ... 50多个方法</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="解决方案（分解责任）"><a href="#解决方案（分解责任）" class="headerlink" title="解决方案（分解责任）"></a>解决方案（分解责任）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">UserManager</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.users = []</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_user</span>(<span class="params">self, user</span>): <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">delete_user</span>(<span class="params">self, user_id</span>): <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ProductCatalog</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.products = []</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_product</span>(<span class="params">self, product</span>): <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OrderProcessor</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">process_order</span>(<span class="params">self, order</span>): <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用组合</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ECommerceSystem</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.user_manager = UserManager()</span><br><span class="line">        self.product_catalog = ProductCatalog()</span><br><span class="line">        self.order_processor = OrderProcessor()</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-合理使用接口和抽象类"><a href="#7-合理使用接口和抽象类" class="headerlink" title="7. 合理使用接口和抽象类"></a>7. 合理使用接口和抽象类</h2><p>Python 使用 <code>abc</code> 模块实现抽象基类：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABC, abstractmethod</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接口</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Renderable</span>(<span class="title class_ inherited__">ABC</span>):</span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">render</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 抽象类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Shape</span>(<span class="title class_ inherited__">ABC</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, color</span>):</span><br><span class="line">        self.color = color</span><br><span class="line">    </span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">area</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">describe</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;This is a <span class="subst">&#123;self.color&#125;</span> shape&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 具体类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Circle</span>(Shape, Renderable):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, color, radius</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__(color)</span><br><span class="line">        self.radius = radius</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">area</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="number">3.14</span> * self.radius ** <span class="number">2</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">render</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Rendering a <span class="subst">&#123;self.color&#125;</span> circle with radius <span class="subst">&#123;self.radius&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用</span></span><br><span class="line">circle = Circle(<span class="string">&quot;red&quot;</span>, <span class="number">5</span>)</span><br><span class="line">circle.describe()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Area:&quot;</span>, circle.area())</span><br><span class="line">circle.render()</span><br></pre></td></tr></table></figure>
+
+<p>这些最佳实践结合起来，可以帮助你编写出更健壮、更易维护的面向对象 Python 代码。记住要根据具体情况灵活应用这些原则，而不是机械地遵循。</p>
 
       
     </div>
@@ -459,7 +282,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/124/">124</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/125/">125</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -525,7 +348,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">124</span>
+          <span class="site-state-item-count">125</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -538,7 +361,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -588,12 +411,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">216k</span>
+    <span title="Symbols count total">219k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">13:06</span>
+    <span title="Reading time total">13:16</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

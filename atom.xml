@@ -6,7 +6,7 @@
   <link href="https://tonymistark.github.io/atom.xml" rel="self"/>
   
   <link href="https://tonymistark.github.io/"/>
-  <updated>2025-09-09T02:12:19.359Z</updated>
+  <updated>2025-11-11T08:49:39.139Z</updated>
   <id>https://tonymistark.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python Exception Handling Mechanisms and Design Principles Explained</title>
+    <link href="https://tonymistark.github.io/2025/11/11/Python-Exception-Handling-Mechanisms-and-Design-Principles-Explained/"/>
+    <id>https://tonymistark.github.io/2025/11/11/Python-Exception-Handling-Mechanisms-and-Design-Principles-Explained/</id>
+    <published>2025-11-11T08:49:09.000Z</published>
+    <updated>2025-11-11T08:49:39.139Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Python异常处理设计原则详解&quot;&gt;&lt;a href=&quot;#Python异常处理设计原则详解&quot; class=&quot;headerlink&quot; title=&quot;Python异常处理设计原则详解&quot;&gt;&lt;/a&gt;Python异常处理设计原则详解&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    
+    <category term="python" scheme="https://tonymistark.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>空杯心态：保持谦逊与开放的学习心态</title>
@@ -444,31 +467,6 @@
         
         
     <summary type="html">&lt;h2 id=&quot;为何倾向于使用-AsRef-而非-T-？&quot;&gt;&lt;a href=&quot;#为何倾向于使用-AsRef-而非-T-？&quot; class=&quot;headerlink&quot; title=&quot;为何倾向于使用 AsRef 而非 &amp;amp;[T]？&quot;&gt;&lt;/a&gt;为何倾向于使用 AsRef&lt;T&gt; 而非</summary>
-        
-      
-    
-    
-    
-    <category term="1000_rust_questions" scheme="https://tonymistark.github.io/categories/1000-rust-questions/"/>
-    
-    
-    <category term="rust" scheme="https://tonymistark.github.io/tags/rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Q1:为何选择使用 str 而非 String？</title>
-    <link href="https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_01/"/>
-    <id>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_01/</id>
-    <published>2025-04-02T08:40:33.000Z</published>
-    <updated>2025-04-02T08:43:01.474Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;为何选择使用-str-而非-String？&quot;&gt;&lt;a href=&quot;#为何选择使用-str-而非-String？&quot; class=&quot;headerlink&quot; title=&quot;为何选择使用 str 而非 String？&quot;&gt;&lt;/a&gt;为何选择使用 str 而非</summary>
         
       
     

@@ -15,8 +15,33 @@
     <atom:link href="https://tonymistark.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>安静地坐着学习</description>
-    <pubDate>Tue, 09 Sep 2025 02:12:19 GMT</pubDate>
+    <pubDate>Tue, 11 Nov 2025 08:49:39 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Python Exception Handling Mechanisms and Design Principles Explained</title>
+      <link>https://tonymistark.github.io/2025/11/11/Python-Exception-Handling-Mechanisms-and-Design-Principles-Explained/</link>
+      <guid>https://tonymistark.github.io/2025/11/11/Python-Exception-Handling-Mechanisms-and-Design-Principles-Explained/</guid>
+      <pubDate>Tue, 11 Nov 2025 08:49:09 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Python异常处理设计原则详解&quot;&gt;&lt;a href=&quot;#Python异常处理设计原则详解&quot; class=&quot;headerlink&quot; title=&quot;Python异常处理设计原则详解&quot;&gt;&lt;/a&gt;Python异常处理设计原则详解&lt;/h1&gt;&lt;h2</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://tonymistark.github.io/tags/python/">python</category>
+      
+      
+      <comments>https://tonymistark.github.io/2025/11/11/Python-Exception-Handling-Mechanisms-and-Design-Principles-Explained/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>空杯心态：保持谦逊与开放的学习心态</title>
@@ -493,33 +518,6 @@
       
       
       <comments>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_02/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Q1:为何选择使用 str 而非 String？</title>
-      <link>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_01/</link>
-      <guid>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_01/</guid>
-      <pubDate>Wed, 02 Apr 2025 08:40:33 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;为何选择使用-str-而非-String？&quot;&gt;&lt;a href=&quot;#为何选择使用-str-而非-String？&quot; class=&quot;headerlink&quot; title=&quot;为何选择使用 str 而非 String？&quot;&gt;&lt;/a&gt;为何选择使用 str 而非</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://tonymistark.github.io/categories/1000-rust-questions/">1000_rust_questions</category>
-      
-      
-      <category domain="https://tonymistark.github.io/tags/rust/">rust</category>
-      
-      
-      <comments>https://tonymistark.github.io/2025/04/02/1000_rust_questions/1000_rust_questions_01/#disqus_thread</comments>
       
     </item>
     

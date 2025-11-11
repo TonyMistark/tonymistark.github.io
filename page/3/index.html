@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/07/26/rust_notes/Comprehensive-Guide-to-Rust-Memory-Layout-From-Primitives-to-DSTs-with-Optimization-Insights/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2025/09/03/Clean-Architecture-vs-Hexagonal-Architecture-A-Deep-Dive-into-Their-Similarities-and-Differences/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/07/26/rust_notes/Comprehensive-Guide-to-Rust-Memory-Layout-From-Primitives-to-DSTs-with-Optimization-Insights/" class="post-title-link" itemprop="url">Rust 内存布局全解：从基础类型到动态大小的深度剖析与优化策略</a>
+            <a href="/2025/09/03/Clean-Architecture-vs-Hexagonal-Architecture-A-Deep-Dive-into-Their-Similarities-and-Differences/" class="post-title-link" itemprop="url">Clean Architecture vs. Hexagonal Architecture: A Deep Dive into Their Similarities and Differences</a>
         </h2>
 
         <div class="post-meta">
@@ -208,16 +208,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-07-26 16:46:24 / Modified: 16:47:44" itemprop="dateCreated datePublished" datetime="2025-07-26T16:46:24+08:00">2025-07-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/rust-notes/" itemprop="url" rel="index"><span itemprop="name">rust_notes</span></a>
-                </span>
+              <time title="Created: 2025-09-03 15:30:16 / Modified: 15:39:08" itemprop="dateCreated datePublished" datetime="2025-09-03T15:30:16+08:00">2025-09-03</time>
             </span>
 
           <br>
@@ -226,14 +217,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.1k</span>
+              <span>1.6k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
+              <span>6 mins.</span>
             </span>
 
         </div>
@@ -245,166 +236,87 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Rust 的内存布局设计强调效率、安全性和明确性，其布局规则由类型定义和编译器优化共同决定。以下是对 Rust 各类对象内存布局的详细分析：</p>
-<hr>
-<h3 id="一、基础类型布局"><a href="#一、基础类型布局" class="headerlink" title="一、基础类型布局"></a><strong>一、基础类型布局</strong></h3><ol>
-<li><p><strong>标量类型</strong>：</p>
-<ul>
-<li><strong>整数</strong>：<code>i32</code>&#x2F;<code>u32</code> 占 4 字节，对齐 4 字节</li>
-<li><strong>浮点数</strong>：<code>f64</code> 占 8 字节，对齐 8 字节</li>
-<li><strong>布尔值</strong>：<code>bool</code> 占 1 字节（<code>0x00</code> 或 <code>0x01</code>）</li>
-<li><strong>字符</strong>：<code>char</code> 占 4 字节（UTF-8 编码）</li>
-</ul>
-</li>
-<li><p><strong>复合类型</strong>：</p>
-<ul>
-<li>**元组 <code>(T1, T2)</code>**：字段顺序排列，按最大对齐要求填充。<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="type">i32</span>, <span class="type">u8</span>) <span class="comment">// 布局：[i32][u8][填充3字节] → 总大小8字节</span></span><br></pre></td></tr></table></figure></li>
-<li>**数组 <code>[T; N]</code>**：连续存储，无填充。<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">u16</span>; <span class="number">3</span>] <span class="comment">// 布局：[u16][u16][u16] → 总大小6字节</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
+          <p>好的，这是一个非常棒的架构问题。简洁架构（Clean Architecture）和六边形架构（Hexagonal Architecture，又名“端口与适配器”）是现代软件设计中最具影响力的两个架构模式。它们的目标高度一致，但在组织和表达方式上有所不同。</p>
+<p>下面我将详细对比它们的异同。</p>
+<h3 id="核心共同点：终极目标一致"><a href="#核心共同点：终极目标一致" class="headerlink" title="核心共同点：终极目标一致"></a>核心共同点：终极目标一致</h3><p>这两种架构的核心驱动力是相同的，都是为了解决传统分层架构的固有缺陷而诞生。它们的共同目标可以归结为：</p>
+<ol>
+<li><strong>框架无关性</strong>：核心业务逻辑不依赖于任何外部框架（如 Spring, Django, Express）。这些框架是“可拔插”的细节。</li>
+<li><strong>UI无关性</strong>：用户界面（Web, CLI, GUI）可以轻松改变，而不影响核心业务规则。</li>
+<li><strong>数据库无关性</strong>：业务逻辑不绑定于特定的数据库（SQL, NoSQL）或持久化技术。数据库是一个“可拔插”的细节。</li>
+<li><strong>外部 agency 无关性</strong>：任何外部服务（邮件、消息队列、第三方API）都不会影响业务逻辑。它们的实现细节被“推”到边缘。</li>
+<li><strong>可测试性</strong>：由于核心业务逻辑是独立的、纯粹的，你可以在不涉及 UI、数据库、Web 服务器或任何其他外部基础设施的情况下对其进行单元测试。</li>
 </ol>
+<p><strong>一言以蔽之：它们都致力于将核心业务逻辑放在应用的中央，而将技术实现细节放在外围，从而实现“关注点分离”和“依赖倒置原则”（DIP）。</strong></p>
 <hr>
-<h3 id="二、结构体（Struct）布局"><a href="#二、结构体（Struct）布局" class="headerlink" title="二、结构体（Struct）布局"></a><strong>二、结构体（Struct）布局</strong></h3><h4 id="1-默认布局（Rust布局）"><a href="#1-默认布局（Rust布局）" class="headerlink" title="1. 默认布局（Rust布局）"></a>1. <strong>默认布局（Rust布局）</strong></h4><ul>
-<li><strong>字段顺序</strong>：编译器可能重排字段以最小化填充。</li>
-<li><strong>对齐</strong>：按字段中最大对齐要求对齐。</li>
-<li><strong>示例</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">RustStruct</span> &#123;</span><br><span class="line">    a: <span class="type">u8</span>,   <span class="comment">// 1字节</span></span><br><span class="line">    b: <span class="type">u32</span>,  <span class="comment">// 4字节（对齐4）</span></span><br><span class="line">    c: <span class="type">u16</span>,  <span class="comment">// 2字节</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 优化后布局：[b(4)][c(2)][a(1)][填充1] → 总大小8字节</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="2-repr-C-布局"><a href="#2-repr-C-布局" class="headerlink" title="2. #[repr(C)] 布局"></a>2. <strong><code>#[repr(C)]</code> 布局</strong></h4><ul>
-<li><strong>字段顺序</strong>：严格按声明顺序排列。</li>
-<li><strong>对齐</strong>：同 C 语言规则。</li>
-<li><strong>示例</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[repr(C)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">CStruct</span> &#123;</span><br><span class="line">    a: <span class="type">u8</span>,   <span class="comment">// 1字节</span></span><br><span class="line">    b: <span class="type">u32</span>,  <span class="comment">// 4字节（对齐4）</span></span><br><span class="line">    c: <span class="type">u16</span>,  <span class="comment">// 2字节</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 布局：[a(1)][填充3][b(4)][c(2)] → 总大小12字节</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="3-特殊布局属性"><a href="#3-特殊布局属性" class="headerlink" title="3. 特殊布局属性"></a>3. <strong>特殊布局属性</strong></h4><ul>
-<li>**<code>#[repr(packed)]</code>**：取消填充（可能牺牲性能）。</li>
-<li>**<code>#[repr(align(n))]</code>**：强制对齐到 <code>n</code> 字节。</li>
-</ul>
-<hr>
-<h3 id="三、枚举（Enum）布局"><a href="#三、枚举（Enum）布局" class="headerlink" title="三、枚举（Enum）布局"></a><strong>三、枚举（Enum）布局</strong></h3><h4 id="1-带数据枚举"><a href="#1-带数据枚举" class="headerlink" title="1. 带数据枚举"></a>1. <strong>带数据枚举</strong></h4><ul>
-<li><strong>标签联合（Tagged Union）</strong>：<ul>
-<li><strong>标签（Discriminant）</strong>：标识当前变体（通常为 <code>usize</code>）。</li>
-<li><strong>联合体（Union）</strong>：存储变体数据。</li>
-</ul>
-</li>
-<li><strong>示例</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">MyEnum</span> &#123;</span><br><span class="line">    A,               <span class="comment">// 无数据</span></span><br><span class="line">    <span class="title function_ invoke__">B</span>(<span class="type">u32</span>),          <span class="comment">// 包含u32</span></span><br><span class="line">    C &#123; x: <span class="type">u8</span>, y: <span class="type">u8</span> &#125; <span class="comment">// 包含结构</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 布局：[标签][联合体] → 标签大小 + 最大变体大小</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="2-优化策略"><a href="#2-优化策略" class="headerlink" title="2. 优化策略"></a>2. <strong>优化策略</strong></h4><ul>
-<li><strong>空指针优化</strong>：<code>Option&lt;&amp;T&gt;</code> 中 <code>None</code> 用 <code>0</code> 表示，无需额外标签。</li>
-<li><strong>标签压缩</strong>：尝试用最小整数存储标签。</li>
-<li><strong>变体数据内联</strong>：小数据类型直接内联。</li>
-</ul>
-<h4 id="3-repr-u8-等"><a href="#3-repr-u8-等" class="headerlink" title="3. #[repr(u8)] 等"></a>3. <strong><code>#[repr(u8)]</code> 等</strong></h4><ul>
-<li>显式指定标签类型：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[repr(u8)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">HttpStatus</span> &#123;</span><br><span class="line">    <span class="literal">Ok</span> = <span class="number">200</span>,</span><br><span class="line">    NotFound = <span class="number">404</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h3 id="四、动态类型与智能指针"><a href="#四、动态类型与智能指针" class="headerlink" title="四、动态类型与智能指针"></a><strong>四、动态类型与智能指针</strong></h3><ol>
-<li><p>**切片（Slice） <code>&amp;[T]</code>**：</p>
-<ul>
-<li><strong>胖指针</strong>：<code>[指针, 长度]</code> → 16 字节（64位系统）。</li>
-<li><strong>内存连续</strong>：元素紧密排列。</li>
-</ul>
-</li>
-<li><p>**字符串 <code>&amp;str</code>**：</p>
-<ul>
-<li>同切片布局：<code>[指针, 长度]</code>。</li>
-</ul>
-</li>
-<li><p>**<code>Box&lt;T&gt;</code>**：</p>
-<ul>
-<li><strong>瘦指针</strong>：指向堆内存 → 8 字节（64位系统）。</li>
-<li><strong>内存布局</strong>：堆上存储 <code>T</code> 的值。</li>
-</ul>
-</li>
-<li><p>**<code>Vec&lt;T&gt;</code>**：</p>
-<ul>
-<li><strong>三元组</strong>：<code>[指针, 长度, 容量]</code> → 24 字节（64位系统）。</li>
-<li><strong>堆内存</strong>：连续存储元素。</li>
-</ul>
-</li>
-<li><p>**特征对象 <code>&amp;dyn Trait</code>**：</p>
-<ul>
-<li><strong>胖指针</strong>：<code>[数据指针, vtable指针]</code> → 16 字节。</li>
-<li><strong>vTable</strong>：包含方法指针、类型大小和对齐信息。</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="五、零大小类型（ZST）"><a href="#五、零大小类型（ZST）" class="headerlink" title="五、零大小类型（ZST）"></a><strong>五、零大小类型（ZST）</strong></h3><ul>
-<li><strong>特点</strong>：大小&#x3D;0，对齐&#x3D;1。</li>
-<li><strong>示例</strong>：<code>struct Nothing;</code>、<code>()</code>。</li>
-<li><strong>优化</strong>：编译器消除ZST的实际内存分配。</li>
-</ul>
-<hr>
-<h3 id="六、动态大小类型（DST）"><a href="#六、动态大小类型（DST）" class="headerlink" title="六、动态大小类型（DST）"></a><strong>六、动态大小类型（DST）</strong></h3><ul>
-<li><strong>特点</strong>：编译期大小未知（如 <code>[T]</code>、<code>dyn Trait</code>）。</li>
-<li><strong>使用限制</strong>：必须通过指针（如 <code>&amp;[T]</code>、<code>Box&lt;dyn Trait&gt;</code>）间接访问。</li>
-</ul>
-<hr>
-<h3 id="七、内存对齐控制"><a href="#七、内存对齐控制" class="headerlink" title="七、内存对齐控制"></a><strong>七、内存对齐控制</strong></h3><ul>
-<li><strong>对齐规则</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">AlignExample</span> &#123;</span><br><span class="line">    a: <span class="type">u8</span>,    <span class="comment">// 对齐1</span></span><br><span class="line">    b: <span class="type">u32</span>,   <span class="comment">// 对齐4 → 结构体对齐=4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><strong>手动对齐</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[repr(align(8))]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">ForceAligned</span>(<span class="type">u32</span>); <span class="comment">// 强制对齐到8字节</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h3 id="八、查看内存布局的工具"><a href="#八、查看内存布局的工具" class="headerlink" title="八、查看内存布局的工具"></a><strong>八、查看内存布局的工具</strong></h3><ol>
-<li><strong><code>std::mem</code> 函数</strong>：<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">std::mem::size_of::&lt;T&gt;()   <span class="comment">// 类型大小</span></span><br><span class="line">std::mem::align_of::&lt;T&gt;()  <span class="comment">// 对齐要求</span></span><br></pre></td></tr></table></figure></li>
-<li>**<code>#[derive(Debug)]</code>**：结合调试器查看内存。</li>
-<li><strong>第三方库</strong>：如 <code>std::mem::transmute</code>（谨慎使用）、<code>bytemuck</code>。</li>
-</ol>
-<hr>
-<h3 id="总结表"><a href="#总结表" class="headerlink" title="总结表"></a><strong>总结表</strong></h3><table>
+<h3 id="不同之处：视角与表达方式"><a href="#不同之处：视角与表达方式" class="headerlink" title="不同之处：视角与表达方式"></a>不同之处：视角与表达方式</h3><p>尽管目标相同，但它们以不同的方式组织和可视化这个核心思想。</p>
+<table>
 <thead>
 <tr>
-<th><strong>类型</strong></th>
-<th><strong>布局特点</strong></th>
-<th><strong>示例大小（64位）</strong></th>
+<th align="left">特性</th>
+<th align="left">六边形架构 (Hexagonal Architecture)</th>
+<th align="left">简洁架构 (Clean Architecture)</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>标量类型</td>
-<td>紧密排列，无填充</td>
-<td><code>i32</code>: 4字节</td>
+<td align="left"><strong>核心隐喻</strong></td>
+<td align="left"><strong>“端口与适配器”</strong>。应用是一个<strong>六边形</strong>，内部是核心逻辑，六边形的每条边代表一个<strong>端口</strong>（接口）。外部通过<strong>适配器</strong>与这些端口交互。</td>
+<td align="left"><strong>同心圆</strong>。<strong>内圆代表高级策略（业务逻辑）</strong>，外圆代表低级细节。依赖关系规则：<strong>内圆的一切不能依赖外圆的任何东西</strong>。</td>
 </tr>
 <tr>
-<td>默认结构体</td>
-<td>字段重排优化填充</td>
-<td>优化后可能≤12字节</td>
+<td align="left"><strong>可视化模型</strong></td>
+<td align="left"><strong>水平对称</strong>。将输入（驱动侧，如 HTTP API）和输出（被驱动侧，如数据库）视为<strong>平等</strong>的“侧面”，都通过适配器连接到六边形。</td>
+<td align="left"><strong>同心圆，有层次</strong>。<strong>由内向外</strong>，<strong>抽象程度递减</strong>，<strong>稳定性递增</strong>。</td>
 </tr>
 <tr>
-<td><code>#[repr(C)]</code> 结构体</td>
-<td>严格声明顺序，可能填充</td>
-<td>可能12字节</td>
+<td align="left"><strong>核心概念</strong></td>
+<td align="left">**端口 (Port)**：一个接口，定义应用程序如何与外界交互（例如，一个用于获取数据的 <code>UserRepository</code> 接口）。<br>**适配器 (Adapter)**：实现端口的具体技术（例如，一个实现了 <code>UserRepository</code> 的 <code>PostgresUserRepository</code> 类）。</td>
+<td align="left">**实体 (Entities)**：核心业务对象和规则。<br>**用例 (Use Cases)**：协调数据流向实体和从实体流出的应用特定逻辑。<br>**接口适配器 (Interface Adapters)**：将数据从外部格式转换为用例和实体所需的格式（相当于适配器）。<br>**框架与驱动 (Frameworks &amp; Drivers)**：外部工具和框架（Web 框架、数据库驱动）。</td>
 </tr>
 <tr>
-<td>枚举</td>
-<td>标签联合 + 优化策略</td>
-<td>通常8-24字节</td>
-</tr>
-<tr>
-<td>切片 <code>&amp;[T]</code></td>
-<td>胖指针（数据指针 + 长度）</td>
-<td>16字节</td>
-</tr>
-<tr>
-<td><code>Box&lt;T&gt;</code></td>
-<td>瘦指针（指向堆数据）</td>
-<td>8字节</td>
-</tr>
-<tr>
-<td><code>Vec&lt;T&gt;</code></td>
-<td>三元组（指针 + 长度 + 容量）</td>
-<td>24字节</td>
-</tr>
-<tr>
-<td>特征对象 <code>&amp;dyn T</code></td>
-<td>胖指针（数据指针 + vTable指针）</td>
-<td>16字节</td>
-</tr>
-<tr>
-<td>ZST</td>
-<td>不占实际空间</td>
-<td>0字节</td>
+<td align="left"><strong>关注点</strong></td>
+<td align="left">更强调应用程序的<strong>边界</strong>以及内部如何与<strong>多种外部主体</strong>（人类、程序、数据库）进行<strong>交互</strong>。</td>
+<td align="left">更强调<strong>依赖关系规则</strong>和<strong>代码的所属层次</strong>。它更详细地规定了内部结构的组织方式。</td>
 </tr>
 </tbody></table>
-<p>通过理解这些规则，您可以预测数据的内存占用、优化性能，并安全地进行FFI交互。Rust的布局设计在保证安全的同时，尽可能追求高效率。</p>
+<hr>
+<h3 id="关系与演进：可以理解为继承与发展"><a href="#关系与演进：可以理解为继承与发展" class="headerlink" title="关系与演进：可以理解为继承与发展"></a>关系与演进：可以理解为继承与发展</h3><p>你可以将简洁架构视为对六边形架构、洋葱架构等类似思想的<strong>进一步抽象、概括和精细化</strong>。</p>
+<ul>
+<li><strong>六边形架构</strong>是开创性的，它提出了“端口与适配器”这个强大且直观的隐喻，清晰地划定了应用边界。</li>
+<li><strong>简洁架构</strong>接受了六边形架构的所有前提，并在此基础上：<ol>
+<li><strong>定义了更清晰的内部结构</strong>：它明确地将“内部”分解为<strong>实体（Entity）</strong> 和<strong>用例（Use Case）</strong> 两层，这解决了在六边形中“核心逻辑”具体是什么的模糊性问题。</li>
+<li><strong>提出了更普适的依赖规则</strong>：著名的<strong>依赖规则（Dependency Rule）</strong>——源代码中的依赖关系必须只指向同心圆的内层，由内向外。这条规则比“端口与适配器”的表述更具操作性和强制性。</li>
+</ol>
+</li>
+</ul>
+<p><strong>一个简单的映射关系：</strong></p>
+<ul>
+<li>六边形的<strong>核心</strong> ≈ 简洁架构的<strong>实体层+用例层</strong>。</li>
+<li>六边形的<strong>端口</strong> ≈ 简洁架构中<strong>用例层或实体层定义的接口</strong>。</li>
+<li>六边形的<strong>适配器</strong> ≈ 简洁架构的<strong>接口适配器层</strong>和<strong>框架层</strong>。</li>
+</ul>
+<h3 id="总结与如何选择"><a href="#总结与如何选择" class="headerlink" title="总结与如何选择"></a>总结与如何选择</h3><table>
+<thead>
+<tr>
+<th align="left">架构</th>
+<th align="left">优点</th>
+<th align="left">适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>六边形架构</strong></td>
+<td align="left"><strong>直观易懂</strong>，隐喻（端口&#x2F;适配器）非常贴切，易于向团队解释和推行。<strong>对称性</strong>好，不区分输入&#x2F;输出的优先级。</td>
+<td align="left">非常适合作为<strong>引入清晰架构思想的起点</strong>。当你的系统需要与<strong>多种异构外部系统</strong>（多种数据库、多个第三方API）交互时，其对称性优势明显。</td>
+</tr>
+<tr>
+<td align="left"><strong>简洁架构</strong></td>
+<td align="left"><strong>结构更清晰</strong>，内部层次分明，<strong>约束更强</strong>（依赖规则），更容易写出符合设计的高质量代码。<strong>普适性更强</strong>，是一种元架构。</td>
+<td align="left">适合需要<strong>长期维护、高度复杂</strong>的领域驱动设计（DDD）系统。当团队需要非常严格的架构规范来保证代码一致性和可维护性时，它是更好的选择。</td>
+</tr>
+</tbody></table>
+<p><strong>结论：</strong></p>
+<p>它们不是非此即彼的对立关系，而是<strong>同一思想的不同表现形式</strong>。<strong>简洁架构是六边形架构的进一步发展和细化</strong>。</p>
+<p>在实际项目中，你很少会严格地、教条地遵循其中某一种。更多的时候，你会采用一种混合模式，其核心思想是：<br><strong>“定义核心业务逻辑（领域模型+用例），通过接口隔离外部细节，依赖指向内部”</strong>。</p>
+<p>这个混合模式通常就被称为 <strong>“端口与适配器”</strong> 或 <strong>“简洁架构”</strong>，这两个术语在今天常常被互换使用。你可以说你在用六边形架构的思想，但代码组织的层次更接近简洁架构。这完全没问题，因为它们本就是一脉相承的。</p>
 
       
     </div>
@@ -423,7 +335,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/124/">124</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/125/">125</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -489,7 +401,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">124</span>
+          <span class="site-state-item-count">125</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -502,7 +414,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -552,12 +464,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">216k</span>
+    <span title="Symbols count total">219k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">13:06</span>
+    <span title="Reading time total">13:16</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
