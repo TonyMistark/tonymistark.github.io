@@ -47,3 +47,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+          # GitHub Pages 从 hexo 分支发布(自定义域名 CNAME 也在该分支)
+          target_branch: hexo
