@@ -145,7 +145,7 @@ theme_config:
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/TonyMistark/tonymistark.github.io
+  repo: git@github.com:TonyMistark/tonymistark.github.io.git
   branch: gh-pages
 
 # Local search (插件 hexo-generator-searchdb)
