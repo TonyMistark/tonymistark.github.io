@@ -213,98 +213,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_02_defining_modules_to_control_scope_and_privacy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
-      <meta itemprop="name" content="Ice">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ice 的博客">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Ice 的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/05/18/rust_docs/ch_07_02_defining_modules_to_control_scope_and_privacy/" class="post-title-link" itemprop="url">Ch 07.02:在模块中对相关代码进行分组(Grouping Related Code in Modules)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-05-18 10:19:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:19:00+00:00">2023-05-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-28 11:51:57" itemprop="dateModified" datetime="2026-08-28T11:51:57+00:00">2026-08-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="在模块中对相关代码进行分组-Grouping-Related-Code-in-Modules"><a href="#在模块中对相关代码进行分组-Grouping-Related-Code-in-Modules" class="headerlink" title="在模块中对相关代码进行分组(Grouping Related Code in Modules)"></a>在模块中对相关代码进行分组(Grouping Related Code in Modules)</h4><p>模块让我们在crate中组织代码，以提高可读性和易于重用。模块还允许我们控制items的私有性，因为在module中的代码默认是私有的。Private items是内部实现的细节不对外使用。我们可以选择将模块以及其中的items设置为公共的，这样，外部代码就可以使用并依赖于它们。</p>
-<p>例如，让我们编写一个提供餐厅服务功能的library crate。我们将会定义函数的签名，但是函数的主题留空，集中于代码的组织，而不是实现一个餐馆。</p>
-<p>在餐厅业中，餐馆的某些部分被称为前台(front of house)，其他的部分称为后台(back of house)。前台是顾客所在的空间；这包括主座的顾客的位置，服务员接单和付款，以及调酒师调酒的地方。后台是主厨和厨师们在厨房，洗碗机清理，经历做行政工作。</p>
-<p>这样构建我们的crate，我们可以将这些功能组织成嵌套的模块。创建一个新的库(library)命名为<code>restaurant</code>，通过命令<code>cargo new restaurant --lib</code>。输入如下Listing 7-1代码到src&#x2F;lib.rs来定义一些模块和函数签名。这里是前台部分：</p>
-<p>src&#x2F;lib.rs</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> front_of_house &#123;</span><br><span class="line">    <span class="keyword">mod</span> hosting &#123;</span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">add_to_waitlist</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">seat_at_table</span>() &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">mod</span> serving &#123;</span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">take_order</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">serve_order</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">take_payment</span>() &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Listing 7-1: A <code>front_of_house</code>module containing other modules that then contain functions</p>
-<p>我们用<code>mod</code>关键字定义一个模块(在上面的例子中定义了<code>front_of_house</code>模块)。并用花括号包围模块的主体。在模块内，我们还可以定义其他模块，就像本例子中的<code>hosting</code>和<code>serving</code>模块。模块还可以hold一些定义的其他items，例如structs, enums, constants, traits, 以及Listing 7-1中的函数。</p>
-<p>通过使用模块，我们可以将相关的定义分组到一起，并指出他们为什么相关。程序设计者可以通过使用这段代码，更加容易找到他们想要的定义，因为他们可以基于分组来对代码进行导航，而不需要阅读所有的定义。程序设计者向这段代码中添加一个新功能时，他们也会知道代码应该放置在何处，可以保持程序的组织性。</p>
-<p>在前面我们提到了，<code>src/main.rs</code>和<code>src/lib.rs</code>叫做crate根。之所以这么叫它们是因为这两个文件中的任何一个内容都在crate模块结构的根组成了一个名为crate的模块，该结构被称为模块树(module tree)。</p>
-<p>Listing 7-2 展示了示例Listing 7-1中的模块树(modules tree)的结构。</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">crate</span></span><br><span class="line"> └── front_of_house</span><br><span class="line">     ├── hosting</span><br><span class="line">     │   ├── add_to_waitlist</span><br><span class="line">     │   └── seat_at_table</span><br><span class="line">     └── serving</span><br><span class="line">         ├── take_order</span><br><span class="line">         ├── serve_order</span><br><span class="line">         └── take_payment</span><br></pre></td></tr></table></figure>
-
-<p>Listing 7-2: The module tree for the code in Listing 7-1</p>
-<p>这个模块树展示了一些模块内嵌到另一个模块；例如，<code>hosting</code>内嵌在<code>front_of_house</code>之中。这个树结构还展示了一些模块是互为兄弟(siblings)的，这意味着它们定义在同一模块中(<code>hosting</code>和<code>serving</code>被一起定义在<code>front_of_house</code>中)。继续沿用家庭关系的比喻，如果一个模块A被包含在模块B中，我们将模块A称为模块B的子模块，B模块为A的父模块。注意，整个模块树都植根于隐式模块名为<code>crate</code>之下。</p>
-<p>模块树可能会让你想起计算机上的文件系统的目录树；这是一个非常恰当的比较！就像文件系统中的目录一样，你用模块来组织你的代码。就像文件目录中的文件，我们需要一个方式来找到我们的模块(modules)。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_01_packages_and_crates/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -341,7 +249,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-28 11:51:57" itemprop="dateModified" datetime="2026-08-28T11:51:57+00:00">2026-08-28</time>
+      <time title="修改时间：2026-08-28 11:53:58" itemprop="dateModified" datetime="2026-08-28T11:53:58+00:00">2026-08-28</time>
     </span>
 
   
@@ -366,6 +274,98 @@
 
 <p>运行<code>cargo new</code>之后，我们使用<code>ls</code>查看Cargo创建了什么，在这个项目目录里，Cargo会给我们创建一个Cargo.toml文件，这就是一个包(package)。这里也有一个src目录包含main.rs文件。用编辑器打开Cargo.toml，并且文件内容里面没有提及src&#x2F;main.rs。因为Cargo遵循的一个约定：src&#x2F;main.rs就是一个与包同名的二进制crate的crate根。同样地，Cargo知道如果包目录中包含src&#x2F;lib.rs，则包带有与其同名的库(library) crate。crate根文件将由Cargo传递给<code>rustc</code>来构建库(library)或者二进制(binary)。</p>
 <p>这里，我们有一个只包含src&#x2F;main.rs的包，意味着它只含有一个名为<code>my-project</code>的二进制crate。如果一个包同时含有src&#x2F;main.rs和src&#x2F;lib.rs，则它有两个crate：一个二进制(binary)的和一个库(library)，并且名字都与包相同。通过将文件放在src&#x2F;bin目录下，一个包可以拥有多个二进制crate：每个src&#x2F;bin下的文件都会被编译成一个独立的二进制crate。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/05/18/rust_docs/ch_07_02_defining_modules_to_control_scope_and_privacy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
+      <meta itemprop="name" content="Ice">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ice 的博客">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Ice 的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/05/18/rust_docs/ch_07_02_defining_modules_to_control_scope_and_privacy/" class="post-title-link" itemprop="url">Ch 07.02:在模块中对相关代码进行分组(Grouping Related Code in Modules)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-05-18 10:19:00" itemprop="dateCreated datePublished" datetime="2023-05-18T10:19:00+00:00">2023-05-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-28 11:53:58" itemprop="dateModified" datetime="2026-08-28T11:53:58+00:00">2026-08-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="在模块中对相关代码进行分组-Grouping-Related-Code-in-Modules"><a href="#在模块中对相关代码进行分组-Grouping-Related-Code-in-Modules" class="headerlink" title="在模块中对相关代码进行分组(Grouping Related Code in Modules)"></a>在模块中对相关代码进行分组(Grouping Related Code in Modules)</h4><p>模块让我们在crate中组织代码，以提高可读性和易于重用。模块还允许我们控制items的私有性，因为在module中的代码默认是私有的。Private items是内部实现的细节不对外使用。我们可以选择将模块以及其中的items设置为公共的，这样，外部代码就可以使用并依赖于它们。</p>
+<p>例如，让我们编写一个提供餐厅服务功能的library crate。我们将会定义函数的签名，但是函数的主题留空，集中于代码的组织，而不是实现一个餐馆。</p>
+<p>在餐厅业中，餐馆的某些部分被称为前台(front of house)，其他的部分称为后台(back of house)。前台是顾客所在的空间；这包括主座的顾客的位置，服务员接单和付款，以及调酒师调酒的地方。后台是主厨和厨师们在厨房，洗碗机清理，经历做行政工作。</p>
+<p>这样构建我们的crate，我们可以将这些功能组织成嵌套的模块。创建一个新的库(library)命名为<code>restaurant</code>，通过命令<code>cargo new restaurant --lib</code>。输入如下Listing 7-1代码到src&#x2F;lib.rs来定义一些模块和函数签名。这里是前台部分：</p>
+<p>src&#x2F;lib.rs</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> front_of_house &#123;</span><br><span class="line">    <span class="keyword">mod</span> hosting &#123;</span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">add_to_waitlist</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">seat_at_table</span>() &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">mod</span> serving &#123;</span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">take_order</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">serve_order</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">take_payment</span>() &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Listing 7-1: A <code>front_of_house</code>module containing other modules that then contain functions</p>
+<p>我们用<code>mod</code>关键字定义一个模块(在上面的例子中定义了<code>front_of_house</code>模块)。并用花括号包围模块的主体。在模块内，我们还可以定义其他模块，就像本例子中的<code>hosting</code>和<code>serving</code>模块。模块还可以hold一些定义的其他items，例如structs, enums, constants, traits, 以及Listing 7-1中的函数。</p>
+<p>通过使用模块，我们可以将相关的定义分组到一起，并指出他们为什么相关。程序设计者可以通过使用这段代码，更加容易找到他们想要的定义，因为他们可以基于分组来对代码进行导航，而不需要阅读所有的定义。程序设计者向这段代码中添加一个新功能时，他们也会知道代码应该放置在何处，可以保持程序的组织性。</p>
+<p>在前面我们提到了，<code>src/main.rs</code>和<code>src/lib.rs</code>叫做crate根。之所以这么叫它们是因为这两个文件中的任何一个内容都在crate模块结构的根组成了一个名为crate的模块，该结构被称为模块树(module tree)。</p>
+<p>Listing 7-2 展示了示例Listing 7-1中的模块树(modules tree)的结构。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">crate</span></span><br><span class="line"> └── front_of_house</span><br><span class="line">     ├── hosting</span><br><span class="line">     │   ├── add_to_waitlist</span><br><span class="line">     │   └── seat_at_table</span><br><span class="line">     └── serving</span><br><span class="line">         ├── take_order</span><br><span class="line">         ├── serve_order</span><br><span class="line">         └── take_payment</span><br></pre></td></tr></table></figure>
+
+<p>Listing 7-2: The module tree for the code in Listing 7-1</p>
+<p>这个模块树展示了一些模块内嵌到另一个模块；例如，<code>hosting</code>内嵌在<code>front_of_house</code>之中。这个树结构还展示了一些模块是互为兄弟(siblings)的，这意味着它们定义在同一模块中(<code>hosting</code>和<code>serving</code>被一起定义在<code>front_of_house</code>中)。继续沿用家庭关系的比喻，如果一个模块A被包含在模块B中，我们将模块A称为模块B的子模块，B模块为A的父模块。注意，整个模块树都植根于隐式模块名为<code>crate</code>之下。</p>
+<p>模块树可能会让你想起计算机上的文件系统的目录树；这是一个非常恰当的比较！就像文件系统中的目录一样，你用模块来组织你的代码。就像文件目录中的文件，我们需要一个方式来找到我们的模块(modules)。</p>
 
       
     </div>
@@ -428,7 +428,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-28 11:51:57" itemprop="dateModified" datetime="2026-08-28T11:51:57+00:00">2026-08-28</time>
+      <time title="修改时间：2026-08-28 11:53:58" itemprop="dateModified" datetime="2026-08-28T11:53:58+00:00">2026-08-28</time>
     </span>
 
   
@@ -515,7 +515,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-28 11:51:57" itemprop="dateModified" datetime="2026-08-28T11:51:57+00:00">2026-08-28</time>
+      <time title="修改时间：2026-08-28 11:53:58" itemprop="dateModified" datetime="2026-08-28T11:53:58+00:00">2026-08-28</time>
     </span>
 
   
@@ -593,7 +593,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-28 11:51:57" itemprop="dateModified" datetime="2026-08-28T11:51:57+00:00">2026-08-28</time>
+      <time title="修改时间：2026-08-28 11:53:58" itemprop="dateModified" datetime="2026-08-28T11:53:58+00:00">2026-08-28</time>
     </span>
 
   
@@ -683,7 +683,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-28 11:51:57" itemprop="dateModified" datetime="2026-08-28T11:51:57+00:00">2026-08-28</time>
+      <time title="修改时间：2026-08-28 11:53:58" itemprop="dateModified" datetime="2026-08-28T11:53:58+00:00">2026-08-28</time>
     </span>
 
   
@@ -787,7 +787,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-28 11:51:57" itemprop="dateModified" datetime="2026-08-28T11:51:57+00:00">2026-08-28</time>
+      <time title="修改时间：2026-08-28 11:53:58" itemprop="dateModified" datetime="2026-08-28T11:53:58+00:00">2026-08-28</time>
     </span>
 
   
@@ -864,7 +864,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-28 11:51:57" itemprop="dateModified" datetime="2026-08-28T11:51:57+00:00">2026-08-28</time>
+      <time title="修改时间：2026-08-28 11:53:58" itemprop="dateModified" datetime="2026-08-28T11:53:58+00:00">2026-08-28</time>
     </span>
 
   
@@ -941,7 +941,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-28 11:51:57" itemprop="dateModified" datetime="2026-08-28T11:51:57+00:00">2026-08-28</time>
+      <time title="修改时间：2026-08-28 11:53:58" itemprop="dateModified" datetime="2026-08-28T11:53:58+00:00">2026-08-28</time>
     </span>
 
   
@@ -1026,7 +1026,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-28 11:51:57" itemprop="dateModified" datetime="2026-08-28T11:51:57+00:00">2026-08-28</time>
+      <time title="修改时间：2026-08-28 11:53:58" itemprop="dateModified" datetime="2026-08-28T11:53:58+00:00">2026-08-28</time>
     </span>
 
   
