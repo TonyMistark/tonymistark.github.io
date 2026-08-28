@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.3.0">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,170 +14,240 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"tonymistark.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
 
-  <meta name="description" content="安静地坐着学习">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tonymistark.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.29.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="安静地坐着学习">
 <meta property="og:type" content="website">
-<meta property="og:title" content="BLOG">
+<meta property="og:title" content="Ice 的博客">
 <meta property="og:url" content="https://tonymistark.github.io/index.html">
-<meta property="og:site_name" content="BLOG">
+<meta property="og:site_name" content="Ice 的博客">
 <meta property="og:description" content="安静地坐着学习">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Ice">
 <meta name="twitter:card" content="summary">
+
 
 <link rel="canonical" href="https://tonymistark.github.io/">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'en'
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
 
-  <title>BLOG</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Ice 的博客</title>
   
 
+
+
+
+
+
+
+
+  
+<script src="/js/utils.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
 
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">BLOG</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
+      <h1 class="site-title">Ice 的博客</h1>
+      <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">用心记录思想</p>
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
   </div>
 
+</header>
+        
+  
+  <aside class="sidebar">
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
 
-          <div class="content index posts-expand">
-            
-      
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ice"
+      src="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
+  <p class="site-author-name" itemprop="name">Ice</p>
+  <div class="site-description" itemprop="description">安静地坐着学习</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/TonyMistark" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;TonyMistark" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tony_mistark@163.com" title="E-Mail → mailto:tony_mistark@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/08/28/model-and-harness/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
       <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
+      <meta itemprop="name" content="Ice 的博客">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Ice 的博客">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2026/08/28/model-and-harness/" class="post-title-link" itemprop="url">重试两次</a>
+          <a href="/2026/08/28/model-and-harness/" class="post-title-link" itemprop="url">重试两次</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
 
-              <time title="Created: 2026-08-28 12:00:00 / Modified: 15:41:57" itemprop="dateCreated datePublished" datetime="2026-08-28T12:00:00+08:00">2026-08-28</time>
-            </span>
+      <time title="创建时间：2026-08-28 12:00:00 / 修改时间：15:41:57" itemprop="dateCreated datePublished" datetime="2026-08-28T12:00:00+08:00">2026-08-28</time>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -185,8 +256,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h1 id="重试两次"><a href="#重试两次" class="headerlink" title="重试两次"></a>重试两次</h1><p>七百四十亿个参数，冻结于一次训练，之后一个数也没有动过。</p>
 <p>harness 每天把几万个 token 摆到它面前。</p>
 <p>摆什么，它看什么。不摆，它就什么都没有。</p>
@@ -261,294 +330,69 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
-  
-  
+</div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/06/07/weichat/%E5%85%AC%E5%BC%80%E4%BF%A1%E8%83%8C%E5%90%8E-%E5%92%8C%E5%B9%B3%E4%B8%BA%E4%BD%95%E8%BF%98%E8%BF%9C/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2026/06/07/weichat/%E5%85%AC%E5%BC%80%E4%BF%A1%E8%83%8C%E5%90%8E-%E5%92%8C%E5%B9%B3%E4%B8%BA%E4%BD%95%E8%BF%98%E8%BF%9C/" class="post-title-link" itemprop="url">读了泽连斯基的公开信，和平反而更远了</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2026-06-07 00:00:00 / Modified: 23:41:31" itemprop="dateCreated datePublished" datetime="2026-06-07T00:00:00+08:00">2026-06-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9B%BD%E9%99%85/" itemprop="url" rel="index"><span itemprop="name">国际</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
-      
-          <p>最近几天，泽连斯基致普京的公开信占据了各大媒体头条。不少分析称这是”俄乌和谈的重大转机”，甚至有人欢呼”和平要来了”。</p>
-<p><strong>读完整封信，我的判断恰恰相反：这封信不但不是和平信号，反而说明短期内和谈基本不可能。</strong></p>
-<h2 id="这封信到底写了什么"><a href="#这封信到底写了什么" class="headerlink" title="这封信到底写了什么"></a>这封信到底写了什么</h2><p>如果你只看媒体报道的标题，你会以为泽连斯基在真诚求和——提议停火、交换战俘、元首会晤。但如果你读完整封信，你会发现上述内容只占了不到五分之一的篇幅。</p>
-<p><strong>剩下五分之四的篇幅在做什么？在历数俄罗斯的失败，在唱衰普京的政权，在炫耀乌克兰的战斗力。</strong></p>
-<p>这根本不是一个”求和”的姿态。这更像一份战书夹杂了一份政治宣判。</p>
-<h2 id="这不是和谈的姿态"><a href="#这不是和谈的姿态" class="headerlink" title="这不是和谈的姿态"></a>这不是和谈的姿态</h2><p>你可以想象一下：如果你真的想跟一个人谈判，你会怎么写这封信？</p>
-<p>你会说”我们之间存在分歧，但让我们坐下来谈谈”。</p>
-<p>泽连斯基是怎么写的？他告诉普京：你老了，你的资源快用完了，你的人民厌战了，你的官员用疲惫的眼神看着你，你完全依赖中国和朝鲜，你的军队打不赢，你不敢面对战争被带到本土的现实。</p>
-<p><strong>然后话锋一转：不过，我们可以见个面。</strong></p>
-<p>这不是谈判邀约。这是在对方脸上泼了一杯水之后伸出手说”握个手吧”。</p>
-<h2 id="普京的回应在意料之中"><a href="#普京的回应在意料之中" class="headerlink" title="普京的回应在意料之中"></a>普京的回应在意料之中</h2><p>果然，普京的回应干脆利落。他在圣彼得堡国际经济论坛上公开评价这封信——**”粗鲁无礼”<strong>，并明确表示现在与泽连斯基会面</strong>“没有任何意义”**。</p>
-<p>普京还披露了一个关键细节：就在 5 月 21 日，俄罗斯商界代表在基辅见到泽连斯基，泽连斯基当面表达了和谈意愿。结果不到 24 小时，5 月 22 日凌晨，乌克兰无人机就袭击了卢甘斯克的职业学院宿舍楼，造成 21 名青少年遇难。</p>
-<p>普京用这件事来证明泽连斯基”说一套做一套”。不管你是否认同俄方的叙事，这件事至少说明：<strong>公开信之前已经有过私下接触，而私下的接触没有产生任何进展。</strong></p>
-<h2 id="和平为什么近期不可能到来"><a href="#和平为什么近期不可能到来" class="headerlink" title="和平为什么近期不可能到来"></a>和平为什么近期不可能到来</h2><p>从这封公开信和普京的回应，我们可以推导出几个基本判断：</p>
-<p><strong>第一，双方对”和谈”的理解完全不同。</strong> 泽连斯基要的是”先停火、再谈判”，普京要的是”先谈出长效方案、再考虑停火”。这不是细节分歧，这是根本路径的对立。</p>
-<p><strong>第二，公开信的方式本身就排除了私密外交的可能性。</strong> 真正的外交突破几乎都发生在私密渠道中。写一封充满讥讽的公开信然后公之于众，意味着写信人的首要受众不是普京，而是国际舆论。这不是谈判，这是表演。</p>
-<p><strong>第三，信件内容证明泽连斯基认为时间站在自己一边。</strong> 信中反复强调俄罗斯的”疲劳”和”资源减少”，这意味着泽连斯基的基本判断是：继续打下去对乌克兰更有利。一个认为自己会赢的人，不会做出真正的让步。</p>
-<p><strong>第四，普京的回应堵死了近期会面的可能。</strong> “粗鲁无礼”和”没有意义”是普京的原话。以普京的性格和俄罗斯的政治文化，在被公开羞辱之后，不可能很快坐到谈判桌前。</p>
-<h2 id="那些说”和平要来了”的人错在哪里"><a href="#那些说”和平要来了”的人错在哪里" class="headerlink" title="那些说”和平要来了”的人错在哪里"></a>那些说”和平要来了”的人错在哪里</h2><p>最近有一种论调认为，伊朗局势的升级——美国对伊朗的军事行动——会让美国把精力转向中东，从而迫使乌克兰妥协求和。</p>
-<p><strong>这个逻辑忽略了一个事实：泽连斯基在信中明确提到伊朗局势，他的解读不是”美国无暇顾及我们”，而是”若只是等待欧洲战争重新成为美国关注的焦点，那就大错特错了”。</strong></p>
-<p>泽连斯基的算盘是：利用公开信制造国际舆论压力，把”拒绝和谈”的帽子扣在普京头上，同时向西方盟友展示”我们在努力寻求和平”的姿态，以维持援助的持续性。</p>
-<p>这不是一个准备妥协的人的心态。这是一个准备继续战斗的人的心态。</p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><blockquote>
-<p>公开信不是和平的信号弹，而是战争的延长线。</p>
-</blockquote>
-<p>这封信将作为一份政治文本被记住，而不是一份外交文本。它记录了泽连斯基对普京 26 年执政的全面否定，记录了乌克兰的自我辩护，记录了对俄罗斯现状的尖锐分析——但唯独没有记录下任何通向和平的具体路径。</p>
-<p>如果你问我和平什么时候来，我的答案是：<strong>当双方都不再写公开信的时候，和平才有可能。</strong></p>
-<p>而现在，泽连斯基还在写，普京还在骂。和平还很远。</p>
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E5%85%AC%E5%BC%80%E4%BF%A1-%E6%96%B0%E9%97%BB%E6%A0%B8%E5%AE%9E/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E5%85%AC%E5%BC%80%E4%BF%A1-%E6%96%B0%E9%97%BB%E6%A0%B8%E5%AE%9E/" class="post-title-link" itemprop="url">泽连斯基公开信提到的 10 件事，哪些是真的</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2026-06-07 00:00:00 / Modified: 23:41:31" itemprop="dateCreated datePublished" datetime="2026-06-07T00:00:00+08:00">2026-06-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9B%BD%E9%99%85/" itemprop="url" rel="index"><span itemprop="name">国际</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>泽连斯基的公开信不仅仅是政治表态，其中包含了大量具体的事件、数据和判断。我们将信中提到的关键事项与公开新闻报道进行交叉比对。</p>
-<h2 id="10-个关键说法的新闻核实"><a href="#10-个关键说法的新闻核实" class="headerlink" title="10 个关键说法的新闻核实"></a>10 个关键说法的新闻核实</h2><table>
-<thead>
-<tr>
-<th>序号</th>
-<th>泽连斯基公开信中的说法</th>
-<th>公开新闻印证情况</th>
-<th>核实状态</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>6 月 3 日乌克兰远程无人机袭击圣彼得堡</td>
-<td>央视新闻、新华社报道：6 月 3 日凌晨，圣彼得堡遭约 50 架无人机袭击，普尔科沃机场临时管制。袭击当天正值圣彼得堡国际经济论坛开幕。</td>
-<td>✅ 基本属实</td>
-</tr>
-<tr>
-<td>2</td>
-<td>俄军 5 月在前线伤亡超过 3 万人</td>
-<td>乌方每月发布俄军伤亡数据，5 月数据约 3-3.5 万，但俄方未公布官方伤亡数字。第三方独立核实数据较少。</td>
-<td>⚠️ 乌方单方面数据</td>
-</tr>
-<tr>
-<td>3</td>
-<td>俄军伤亡中 63% 为阵亡、37% 为受伤</td>
-<td>公开报道中未见此精确比例的独立核实来源，属乌方军方统计口径。</td>
-<td>⚠️ 乌方单方面数据</td>
-</tr>
-<tr>
-<td>4</td>
-<td>俄罗斯依赖朝鲜提供军事援助</td>
-<td>乌克兰情报评估称朝鲜供应俄军约 40% 弹药，超 1200 万发炮弹，并派遣超 1 万名士兵。多家国际媒体均有报道。</td>
-<td>✅ 多方证实</td>
-</tr>
-<tr>
-<td>5</td>
-<td>俄罗斯完全依赖中国</td>
-<td>中俄贸易在俄受制裁后大幅增长，但”完全依赖”的说法存在夸大。中国未对俄提供武器，经济合作属正常贸易范畴。</td>
-<td>⚠️ 存在夸大成分</td>
-</tr>
-<tr>
-<td>6</td>
-<td>瓦格纳兵变发生于 6 月 23 日</td>
-<td>2023 年 6 月 23 日，普里戈任指控俄国防部袭击瓦格纳营地，次日发起向莫斯科的进军，后经卢卡申科调停平息。全球媒体均有详细报道。</td>
-<td>✅ 历史事实</td>
-</tr>
-<tr>
-<td>7</td>
-<td>俄罗斯试图将战争延续到 2027、2028 年</td>
-<td>此为泽连斯基引述”情报报告”的说法，公开新闻中未见俄方有此明确时间表的报道。</td>
-<td>⚠️ 情报来源，无法核实</td>
-</tr>
-<tr>
-<td>8</td>
-<td>普京考虑第二波动员</td>
-<td>2025 年以来俄方未宣布新一轮大规模动员。俄方继续以志愿征兵和定期征兵补充兵源，大规模强制动员未见公开指令。</td>
-<td>⚠️ 尚无公开证据</td>
-</tr>
-<tr>
-<td>9</td>
-<td>5 月 22 日乌军袭击卢甘斯克学校</td>
-<td>普京在圣彼得堡论坛上披露：5 月 21 日俄商界代表见泽连斯基表达和谈意愿，5 月 22 日凌晨乌军即袭击卢甘斯克职业学院宿舍，21 名青少年遇难。</td>
-<td>✅ 普京公开披露</td>
-</tr>
-<tr>
-<td>10</td>
-<td>俄方可能在德涅斯特河沿岸策划袭击</td>
-<td>德涅斯特河沿岸地区（摩尔多瓦境内亲俄飞地）长期存在紧张局势，但近期公开报道中未见明确袭击策划证据。</td>
-<td>⚠️ 情报评估，尚无公开证据</td>
-</tr>
-</tbody></table>
-<h2 id="核实结论"><a href="#核实结论" class="headerlink" title="核实结论"></a>核实结论</h2><p>公开信中的说法可分为三类：</p>
-<p><strong>第一类：有公开新闻报道明确印证的（4 项）</strong><br>包括圣彼得堡遇袭、朝鲜军事援助、瓦格纳兵变时间、卢甘斯克袭击事件。这些事实基础扎实。</p>
-<p><strong>第二类：部分属实但存在夸大或无法独立核实的（4 项）</strong><br>包括俄军伤亡数据、”完全依赖中国”的判断、战争延续至 2028 年的情报、第二波动员计划。这些说法服务于信件的叙事逻辑，缺乏充分公开证据。</p>
-<p><strong>第三类：属乌方情报评估、难以从公开渠道确认的（2 项）</strong><br>包括阵亡比例和德涅斯特河沿岸计划。这些属于战场情报范畴，外界无法核实。</p>
-<h2 id="一点观察"><a href="#一点观察" class="headerlink" title="一点观察"></a>一点观察</h2><p>公开信中的事实陈述呈现出一种模式：<strong>能够公开验证的部分集中在俄罗斯的”痛点”上</strong>（无人机打击、外部依赖、内部兵变），而<strong>无法验证的部分则多为对未来走势的推测和战场数据的单方面披露</strong>。这种选择性的”事实武器化”本身，也是这封公开信政治策略的一部分。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E5%85%AC%E5%BC%80%E4%BF%A1-%E8%A7%82%E7%82%B9%E6%8F%90%E7%82%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
       <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
+      <meta itemprop="name" content="Ice 的博客">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Ice 的博客">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E5%85%AC%E5%BC%80%E4%BF%A1-%E8%A7%82%E7%82%B9%E6%8F%90%E7%82%BC/" class="post-title-link" itemprop="url">泽连斯基致普京公开信：26 年恩怨，一封信讲了什么</a>
+          <a href="/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E5%85%AC%E5%BC%80%E4%BF%A1-%E8%A7%82%E7%82%B9%E6%8F%90%E7%82%BC/" class="post-title-link" itemprop="url">泽连斯基致普京公开信：26 年恩怨，一封信讲了什么</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
 
-              <time title="Created: 2026-06-07 00:00:00 / Modified: 23:41:31" itemprop="dateCreated datePublished" datetime="2026-06-07T00:00:00+08:00">2026-06-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9B%BD%E9%99%85/" itemprop="url" rel="index"><span itemprop="name">国际</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2026-06-07 00:00:00 / 修改时间：23:41:31" itemprop="dateCreated datePublished" datetime="2026-06-07T00:00:00+08:00">2026-06-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9B%BD%E9%99%85/" itemprop="url" rel="index"><span itemprop="name">国际</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -557,8 +401,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h2 id="核心主张：结束战争"><a href="#核心主张：结束战争" class="headerlink" title="核心主张：结束战争"></a>核心主张：结束战争</h2><p>泽连斯基公开信的核心诉求是<strong>提议通过乌俄直接接触结束战争</strong>。他写道：</p>
 <blockquote>
 <p>“战争够了。乌克兰提议结束这场战争。这件事必须以诚实、体面的方式进行，并保证不会再次引发战争。”</p>
@@ -602,62 +444,69 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E8%87%B4%E6%99%AE%E4%BA%AC%E5%85%AC%E5%BC%80%E4%BF%A1-%E5%8E%9F%E6%96%87/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/06/07/weichat/%E5%85%AC%E5%BC%80%E4%BF%A1%E8%83%8C%E5%90%8E-%E5%92%8C%E5%B9%B3%E4%B8%BA%E4%BD%95%E8%BF%98%E8%BF%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
       <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
+      <meta itemprop="name" content="Ice 的博客">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Ice 的博客">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E8%87%B4%E6%99%AE%E4%BA%AC%E5%85%AC%E5%BC%80%E4%BF%A1-%E5%8E%9F%E6%96%87/" class="post-title-link" itemprop="url">泽连斯基致普京公开信（全文）</a>
+          <a href="/2026/06/07/weichat/%E5%85%AC%E5%BC%80%E4%BF%A1%E8%83%8C%E5%90%8E-%E5%92%8C%E5%B9%B3%E4%B8%BA%E4%BD%95%E8%BF%98%E8%BF%9C/" class="post-title-link" itemprop="url">读了泽连斯基的公开信，和平反而更远了</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
 
-              <time title="Created: 2026-06-07 00:00:00" itemprop="dateCreated datePublished" datetime="2026-06-07T00:00:00+08:00">2026-06-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2026-06-08 00:12:51" itemprop="dateModified" datetime="2026-06-08T00:12:51+08:00">2026-06-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9B%BD%E9%99%85/" itemprop="url" rel="index"><span itemprop="name">国际</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2026-06-07 00:00:00 / 修改时间：23:41:31" itemprop="dateCreated datePublished" datetime="2026-06-07T00:00:00+08:00">2026-06-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9B%BD%E9%99%85/" itemprop="url" rel="index"><span itemprop="name">国际</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -666,8 +515,118 @@
     
     
     <div class="post-body" itemprop="articleBody">
+          <p>最近几天，泽连斯基致普京的公开信占据了各大媒体头条。不少分析称这是”俄乌和谈的重大转机”，甚至有人欢呼”和平要来了”。</p>
+<p><strong>读完整封信，我的判断恰恰相反：这封信不但不是和平信号，反而说明短期内和谈基本不可能。</strong></p>
+<h2 id="这封信到底写了什么"><a href="#这封信到底写了什么" class="headerlink" title="这封信到底写了什么"></a>这封信到底写了什么</h2><p>如果你只看媒体报道的标题，你会以为泽连斯基在真诚求和——提议停火、交换战俘、元首会晤。但如果你读完整封信，你会发现上述内容只占了不到五分之一的篇幅。</p>
+<p><strong>剩下五分之四的篇幅在做什么？在历数俄罗斯的失败，在唱衰普京的政权，在炫耀乌克兰的战斗力。</strong></p>
+<p>这根本不是一个”求和”的姿态。这更像一份战书夹杂了一份政治宣判。</p>
+<h2 id="这不是和谈的姿态"><a href="#这不是和谈的姿态" class="headerlink" title="这不是和谈的姿态"></a>这不是和谈的姿态</h2><p>你可以想象一下：如果你真的想跟一个人谈判，你会怎么写这封信？</p>
+<p>你会说”我们之间存在分歧，但让我们坐下来谈谈”。</p>
+<p>泽连斯基是怎么写的？他告诉普京：你老了，你的资源快用完了，你的人民厌战了，你的官员用疲惫的眼神看着你，你完全依赖中国和朝鲜，你的军队打不赢，你不敢面对战争被带到本土的现实。</p>
+<p><strong>然后话锋一转：不过，我们可以见个面。</strong></p>
+<p>这不是谈判邀约。这是在对方脸上泼了一杯水之后伸出手说”握个手吧”。</p>
+<h2 id="普京的回应在意料之中"><a href="#普京的回应在意料之中" class="headerlink" title="普京的回应在意料之中"></a>普京的回应在意料之中</h2><p>果然，普京的回应干脆利落。他在圣彼得堡国际经济论坛上公开评价这封信——<strong>“粗鲁无礼”</strong>，并明确表示现在与泽连斯基会面**”没有任何意义”**。</p>
+<p>普京还披露了一个关键细节：就在 5 月 21 日，俄罗斯商界代表在基辅见到泽连斯基，泽连斯基当面表达了和谈意愿。结果不到 24 小时，5 月 22 日凌晨，乌克兰无人机就袭击了卢甘斯克的职业学院宿舍楼，造成 21 名青少年遇难。</p>
+<p>普京用这件事来证明泽连斯基”说一套做一套”。不管你是否认同俄方的叙事，这件事至少说明：<strong>公开信之前已经有过私下接触，而私下的接触没有产生任何进展。</strong></p>
+<h2 id="和平为什么近期不可能到来"><a href="#和平为什么近期不可能到来" class="headerlink" title="和平为什么近期不可能到来"></a>和平为什么近期不可能到来</h2><p>从这封公开信和普京的回应，我们可以推导出几个基本判断：</p>
+<p><strong>第一，双方对”和谈”的理解完全不同。</strong> 泽连斯基要的是”先停火、再谈判”，普京要的是”先谈出长效方案、再考虑停火”。这不是细节分歧，这是根本路径的对立。</p>
+<p><strong>第二，公开信的方式本身就排除了私密外交的可能性。</strong> 真正的外交突破几乎都发生在私密渠道中。写一封充满讥讽的公开信然后公之于众，意味着写信人的首要受众不是普京，而是国际舆论。这不是谈判，这是表演。</p>
+<p><strong>第三，信件内容证明泽连斯基认为时间站在自己一边。</strong> 信中反复强调俄罗斯的”疲劳”和”资源减少”，这意味着泽连斯基的基本判断是：继续打下去对乌克兰更有利。一个认为自己会赢的人，不会做出真正的让步。</p>
+<p><strong>第四，普京的回应堵死了近期会面的可能。</strong> “粗鲁无礼”和”没有意义”是普京的原话。以普京的性格和俄罗斯的政治文化，在被公开羞辱之后，不可能很快坐到谈判桌前。</p>
+<h2 id="那些说”和平要来了”的人错在哪里"><a href="#那些说”和平要来了”的人错在哪里" class="headerlink" title="那些说”和平要来了”的人错在哪里"></a>那些说”和平要来了”的人错在哪里</h2><p>最近有一种论调认为，伊朗局势的升级——美国对伊朗的军事行动——会让美国把精力转向中东，从而迫使乌克兰妥协求和。</p>
+<p><strong>这个逻辑忽略了一个事实：泽连斯基在信中明确提到伊朗局势，他的解读不是”美国无暇顾及我们”，而是”若只是等待欧洲战争重新成为美国关注的焦点，那就大错特错了”。</strong></p>
+<p>泽连斯基的算盘是：利用公开信制造国际舆论压力，把”拒绝和谈”的帽子扣在普京头上，同时向西方盟友展示”我们在努力寻求和平”的姿态，以维持援助的持续性。</p>
+<p>这不是一个准备妥协的人的心态。这是一个准备继续战斗的人的心态。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><blockquote>
+<p>公开信不是和平的信号弹，而是战争的延长线。</p>
+</blockquote>
+<p>这封信将作为一份政治文本被记住，而不是一份外交文本。它记录了泽连斯基对普京 26 年执政的全面否定，记录了乌克兰的自我辩护，记录了对俄罗斯现状的尖锐分析——但唯独没有记录下任何通向和平的具体路径。</p>
+<p>如果你问我和平什么时候来，我的答案是：<strong>当双方都不再写公开信的时候，和平才有可能。</strong></p>
+<p>而现在，泽连斯基还在写，普京还在骂。和平还很远。</p>
 
       
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E8%87%B4%E6%99%AE%E4%BA%AC%E5%85%AC%E5%BC%80%E4%BF%A1-%E5%8E%9F%E6%96%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
+      <meta itemprop="name" content="Ice">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ice 的博客">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Ice 的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E8%87%B4%E6%99%AE%E4%BA%AC%E5%85%AC%E5%BC%80%E4%BF%A1-%E5%8E%9F%E6%96%87/" class="post-title-link" itemprop="url">泽连斯基致普京公开信（全文）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-06-07 00:00:00" itemprop="dateCreated datePublished" datetime="2026-06-07T00:00:00+08:00">2026-06-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-06-08 00:12:51" itemprop="dateModified" datetime="2026-06-08T00:12:51+08:00">2026-06-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9B%BD%E9%99%85/" itemprop="url" rel="index"><span itemprop="name">国际</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
           <h2 id="称呼"><a href="#称呼" class="headerlink" title="称呼"></a>称呼</h2><p>致俄罗斯联邦总统</p>
 <p>来自乌克兰总统</p>
 <hr>
@@ -763,47 +722,69 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/05/16/ai-english-conversation-tremendous/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E5%85%AC%E5%BC%80%E4%BF%A1-%E6%96%B0%E9%97%BB%E6%A0%B8%E5%AE%9E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
       <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
+      <meta itemprop="name" content="Ice 的博客">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Ice 的博客">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2026/05/16/ai-english-conversation-tremendous/" class="post-title-link" itemprop="url">一个程序员和AI的英语对话实录：从拼音困境到语言自由</a>
+          <a href="/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E5%85%AC%E5%BC%80%E4%BF%A1-%E6%96%B0%E9%97%BB%E6%A0%B8%E5%AE%9E/" class="post-title-link" itemprop="url">泽连斯基公开信提到的 10 件事，哪些是真的</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
 
-              <time title="Created: 2026-05-16 12:00:00 / Modified: 15:36:59" itemprop="dateCreated datePublished" datetime="2026-05-16T12:00:00+08:00">2026-05-16</time>
-            </span>
+      <time title="创建时间：2026-06-07 00:00:00 / 修改时间：23:41:31" itemprop="dateCreated datePublished" datetime="2026-06-07T00:00:00+08:00">2026-06-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9B%BD%E9%99%85/" itemprop="url" rel="index"><span itemprop="name">国际</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -812,30 +793,160 @@
     
     
     <div class="post-body" itemprop="articleBody">
+          <p>泽连斯基的公开信不仅仅是政治表态，其中包含了大量具体的事件、数据和判断。我们将信中提到的关键事项与公开新闻报道进行交叉比对。</p>
+<h2 id="10-个关键说法的新闻核实"><a href="#10-个关键说法的新闻核实" class="headerlink" title="10 个关键说法的新闻核实"></a>10 个关键说法的新闻核实</h2><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>泽连斯基公开信中的说法</th>
+<th>公开新闻印证情况</th>
+<th>核实状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>6 月 3 日乌克兰远程无人机袭击圣彼得堡</td>
+<td>央视新闻、新华社报道：6 月 3 日凌晨，圣彼得堡遭约 50 架无人机袭击，普尔科沃机场临时管制。袭击当天正值圣彼得堡国际经济论坛开幕。</td>
+<td>✅ 基本属实</td>
+</tr>
+<tr>
+<td>2</td>
+<td>俄军 5 月在前线伤亡超过 3 万人</td>
+<td>乌方每月发布俄军伤亡数据，5 月数据约 3-3.5 万，但俄方未公布官方伤亡数字。第三方独立核实数据较少。</td>
+<td>⚠️ 乌方单方面数据</td>
+</tr>
+<tr>
+<td>3</td>
+<td>俄军伤亡中 63% 为阵亡、37% 为受伤</td>
+<td>公开报道中未见此精确比例的独立核实来源，属乌方军方统计口径。</td>
+<td>⚠️ 乌方单方面数据</td>
+</tr>
+<tr>
+<td>4</td>
+<td>俄罗斯依赖朝鲜提供军事援助</td>
+<td>乌克兰情报评估称朝鲜供应俄军约 40% 弹药，超 1200 万发炮弹，并派遣超 1 万名士兵。多家国际媒体均有报道。</td>
+<td>✅ 多方证实</td>
+</tr>
+<tr>
+<td>5</td>
+<td>俄罗斯完全依赖中国</td>
+<td>中俄贸易在俄受制裁后大幅增长，但”完全依赖”的说法存在夸大。中国未对俄提供武器，经济合作属正常贸易范畴。</td>
+<td>⚠️ 存在夸大成分</td>
+</tr>
+<tr>
+<td>6</td>
+<td>瓦格纳兵变发生于 6 月 23 日</td>
+<td>2023 年 6 月 23 日，普里戈任指控俄国防部袭击瓦格纳营地，次日发起向莫斯科的进军，后经卢卡申科调停平息。全球媒体均有详细报道。</td>
+<td>✅ 历史事实</td>
+</tr>
+<tr>
+<td>7</td>
+<td>俄罗斯试图将战争延续到 2027、2028 年</td>
+<td>此为泽连斯基引述”情报报告”的说法，公开新闻中未见俄方有此明确时间表的报道。</td>
+<td>⚠️ 情报来源，无法核实</td>
+</tr>
+<tr>
+<td>8</td>
+<td>普京考虑第二波动员</td>
+<td>2025 年以来俄方未宣布新一轮大规模动员。俄方继续以志愿征兵和定期征兵补充兵源，大规模强制动员未见公开指令。</td>
+<td>⚠️ 尚无公开证据</td>
+</tr>
+<tr>
+<td>9</td>
+<td>5 月 22 日乌军袭击卢甘斯克学校</td>
+<td>普京在圣彼得堡论坛上披露：5 月 21 日俄商界代表见泽连斯基表达和谈意愿，5 月 22 日凌晨乌军即袭击卢甘斯克职业学院宿舍，21 名青少年遇难。</td>
+<td>✅ 普京公开披露</td>
+</tr>
+<tr>
+<td>10</td>
+<td>俄方可能在德涅斯特河沿岸策划袭击</td>
+<td>德涅斯特河沿岸地区（摩尔多瓦境内亲俄飞地）长期存在紧张局势，但近期公开报道中未见明确袭击策划证据。</td>
+<td>⚠️ 情报评估，尚无公开证据</td>
+</tr>
+</tbody></table>
+<h2 id="核实结论"><a href="#核实结论" class="headerlink" title="核实结论"></a>核实结论</h2><p>公开信中的说法可分为三类：</p>
+<p><strong>第一类：有公开新闻报道明确印证的（4 项）</strong><br>包括圣彼得堡遇袭、朝鲜军事援助、瓦格纳兵变时间、卢甘斯克袭击事件。这些事实基础扎实。</p>
+<p><strong>第二类：部分属实但存在夸大或无法独立核实的（4 项）</strong><br>包括俄军伤亡数据、”完全依赖中国”的判断、战争延续至 2028 年的情报、第二波动员计划。这些说法服务于信件的叙事逻辑，缺乏充分公开证据。</p>
+<p><strong>第三类：属乌方情报评估、难以从公开渠道确认的（2 项）</strong><br>包括阵亡比例和德涅斯特河沿岸计划。这些属于战场情报范畴，外界无法核实。</p>
+<h2 id="一点观察"><a href="#一点观察" class="headerlink" title="一点观察"></a>一点观察</h2><p>公开信中的事实陈述呈现出一种模式：<strong>能够公开验证的部分集中在俄罗斯的”痛点”上</strong>（无人机打击、外部依赖、内部兵变），而<strong>无法验证的部分则多为对未来走势的推测和战场数据的单方面披露</strong>。这种选择性的”事实武器化”本身，也是这封公开信政治策略的一部分。</p>
 
       
-          <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>一个中国程序员和AI的英语对话实录：从拼音困境到语言自由</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    </div>
 
-        body {
-            background-color: #f5f7fb;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
-            line-height: 1.7;
-            color: #1f2d3d;
-            padding: 20px 0 60px 0;
-        }
+    
+    
+    
 
-        .container {
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/05/16/ai-english-conversation-tremendous/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
+      <meta itemprop="name" content="Ice">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ice 的博客">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Ice 的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/05/16/ai-english-conversation-tremendous/" class="post-title-link" itemprop="url">一个程序员和AI的英语对话实录：从拼音困境到语言自由</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-05-16 12:00:00" itemprop="dateCreated datePublished" datetime="2026-05-16T12:00:00+08:00">2026-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-28 16:16:51" itemprop="dateModified" datetime="2026-08-28T16:16:51+08:00">2026-08-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+              <style>
+
+        .ai-post-container {
             max-width: 750px;
             margin: 0 auto;
             background: white;
@@ -1084,9 +1195,7 @@
             }
         }
     </style>
-</head>
-<body>
-<div class="container">
+<div class="ai-post-container">
     <div class="article-header">
         <h1>🤖 一个程序员和AI的英语对话实录<br>从「拼音困境」到「语言自由」</h1>
         <div class="subhead">RTX 3060 · Ubuntu 22.04 · 本地大模型 · 英语突破实录</div>
@@ -1233,54 +1342,66 @@ driver: nvidia-driver-595 - distro non-free recommended</pre>
         </div>
     </div>
 </div>
-</body>
-</html>
+
       
     </div>
 
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/05/14/aesthetics-as-a-way-of-life-peking-university-aesthetics-course/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
       <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
+      <meta itemprop="name" content="Ice 的博客">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Ice 的博客">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2026/05/14/aesthetics-as-a-way-of-life-peking-university-aesthetics-course/" class="post-title-link" itemprop="url">Untitled</a>
+          <a href="/2026/05/14/aesthetics-as-a-way-of-life-peking-university-aesthetics-course/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2026-05-14 20:12:11" itemprop="dateCreated datePublished" datetime="2026-05-14T20:12:11+08:00">2026-05-14</time>
-            </span>
+      <time title="创建时间：2026-05-14 20:12:11" itemprop="dateCreated datePublished" datetime="2026-05-14T20:12:11+08:00">2026-05-14</time>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -1289,8 +1410,6 @@ driver: nvidia-driver-595 - distro non-free recommended</pre>
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h1 id="审美，是一种人生方式——读《北大美学通识课》"><a href="#审美，是一种人生方式——读《北大美学通识课》" class="headerlink" title="审美，是一种人生方式——读《北大美学通识课》"></a>审美，是一种人生方式——读《北大美学通识课》</h1><p>在北大，有一门课常年爆满，每次都需要”抢”。推开教室的门，满堂热切与期待——这就是**”审美与人生”**美学通识课。</p>
 <p>如今，这门集结了<strong>十七位北大顶尖学者</strong>的爆火课程，终于结集出书了。</p>
 <p>《北大美学通识课》由北京大学教务长办公室联合艺术学院、哲学系共同推出，彭锋、宋鑫主编，邓小南、阎步克、张鸣、朱良志、齐东方、朱青生、杭侃、郑岩、仰海峰、渠敬东、刘彦玲、顾春芳、王岳、程乐松、刘晨、李溪——每一位都是各自领域声名卓著的学者。他们从艺术、文学、历史、哲学、考古等多维视角出发，探讨同一个核心命题：</p>
@@ -1335,46 +1454,59 @@ driver: nvidia-driver-595 - distro non-free recommended</pre>
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/05/14/about/me/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
       <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
+      <meta itemprop="name" content="Ice 的博客">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Ice 的博客">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2026/05/14/about/me/" class="post-title-link" itemprop="url">About</a>
+          <a href="/2026/05/14/about/me/" class="post-title-link" itemprop="url">About</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2026-05-14 13:30:56" itemprop="dateCreated datePublished" datetime="2026-05-14T13:30:56+08:00">2026-05-14</time>
-            </span>
+      <time title="创建时间：2026-05-14 13:30:56" itemprop="dateCreated datePublished" datetime="2026-05-14T13:30:56+08:00">2026-05-14</time>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -1383,15 +1515,13 @@ driver: nvidia-driver-595 - distro non-free recommended</pre>
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><ul>
 <li>主页：<a target="_blank" rel="noopener" href="http://www.ablog.top/">http://www.ablog.top</a></li>
 </ul>
 <p>计算机专业毕业，9 年 python  后端开发经验。</p>
 <p>弥超&#x2F;男&#x2F;1990</p>
 <p>手机：15999690657</p>
-<p>Email：<a href="mailto:&#x74;&#111;&#x6e;&#121;&#x5f;&#109;&#105;&#x73;&#x74;&#x61;&#114;&#107;&#x40;&#49;&#54;&#x33;&#x2e;&#99;&#111;&#x6d;">&#x74;&#111;&#x6e;&#121;&#x5f;&#109;&#105;&#x73;&#x74;&#x61;&#114;&#107;&#x40;&#49;&#54;&#x33;&#x2e;&#99;&#111;&#x6d;</a></p>
+<p>Email：<a href="mailto:&#x74;&#111;&#x6e;&#x79;&#x5f;&#x6d;&#x69;&#115;&#116;&#x61;&#x72;&#107;&#x40;&#49;&#54;&#x33;&#46;&#99;&#x6f;&#x6d;">tony_mistark@163.com</a></p>
 <p>QQ：1135223420</p>
 <p>本科&#x2F;江西师范大学 计算机信息工程学院 计算机科学与技术专业</p>
 <p>博客： <a target="_blank" rel="noopener" href="https://my.oschina.net/michao/blog">https://my.oschina.net/michao/blog</a></p>
@@ -1483,53 +1613,66 @@ driver: nvidia-driver-595 - distro non-free recommended</pre>
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/18/ubuntu-%E6%97%B6%E9%92%9F%E6%98%BE%E7%A4%BA%E7%A7%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
       <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
+      <meta itemprop="name" content="Ice 的博客">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Ice 的博客">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/18/ubuntu-%E6%97%B6%E9%92%9F%E6%98%BE%E7%A4%BA%E7%A7%92/" class="post-title-link" itemprop="url">ubuntu 时钟显示秒</a>
+          <a href="/2023/08/18/ubuntu-%E6%97%B6%E9%92%9F%E6%98%BE%E7%A4%BA%E7%A7%92/" class="post-title-link" itemprop="url">ubuntu 时钟显示秒</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2023-08-18 15:12:39" itemprop="dateCreated datePublished" datetime="2023-08-18T15:12:39+08:00">2023-08-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2026-05-14 13:30:56" itemprop="dateModified" datetime="2026-05-14T13:30:56+08:00">2026-05-14</time>
-              </span>
+      <time title="创建时间：2023-08-18 15:12:39" itemprop="dateCreated datePublished" datetime="2023-08-18T15:12:39+08:00">2023-08-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-05-14 13:30:56" itemprop="dateModified" datetime="2026-05-14T13:30:56+08:00">2026-05-14</time>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -1538,8 +1681,6 @@ driver: nvidia-driver-595 - distro non-free recommended</pre>
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h3 id="时钟显示秒"><a href="#时钟显示秒" class="headerlink" title="时钟显示秒"></a>时钟显示秒</h3><p>Ubuntu 日期时间显示格式“月-日 星期, 时-分-秒”命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gsettings set org.gnome.desktop.interface clock-show-seconds true</span><br></pre></td></tr></table></figure>
       
@@ -1548,53 +1689,66 @@ driver: nvidia-driver-595 - distro non-free recommended</pre>
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/18/rust_docs/why/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
       <meta itemprop="name" content="Ice">
-      <meta itemprop="description" content="安静地坐着学习">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
+      <meta itemprop="name" content="Ice 的博客">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Ice 的博客">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/18/rust_docs/why/" class="post-title-link" itemprop="url">为什么看到别人过得好，我就心里好难受呢？</a>
+          <a href="/2023/08/18/rust_docs/why/" class="post-title-link" itemprop="url">为什么看到别人过得好，我就心里好难受呢？</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2023-08-18 10:01:00" itemprop="dateCreated datePublished" datetime="2023-08-18T10:01:00+08:00">2023-08-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2026-05-14 13:30:56" itemprop="dateModified" datetime="2026-05-14T13:30:56+08:00">2026-05-14</time>
-              </span>
+      <time title="创建时间：2023-08-18 10:01:00" itemprop="dateCreated datePublished" datetime="2023-08-18T10:01:00+08:00">2023-08-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-05-14 13:30:56" itemprop="dateModified" datetime="2026-05-14T13:30:56+08:00">2026-05-14</time>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -1603,8 +1757,6 @@ driver: nvidia-driver-595 - distro non-free recommended</pre>
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h3 id="为什么看到别人过得好，我就心里好难受呢？"><a href="#为什么看到别人过得好，我就心里好难受呢？" class="headerlink" title="为什么看到别人过得好，我就心里好难受呢？"></a>为什么看到别人过得好，我就心里好难受呢？</h3><p>早上刚来到公司，一个深圳有房，长得高又帅，身价已然超过95%深圳人的同事发出这样的灵魂拷问：为什么看到别人过得好，我就心里好难受呢？</p>
 <h4 id="来看看AI如何看待："><a href="#来看看AI如何看待：" class="headerlink" title="来看看AI如何看待："></a>来看看AI如何看待：</h4><blockquote>
 <p>根据你的描述,你已经达到了生活物质上很高的满足度,拥有自己的房产,生活质量远超过大多数人。但即便如此,看见别人过得很好,你还是会感到心理难受。这主要还是出于以下几个原因:</p>
@@ -1642,178 +1794,60 @@ driver: nvidia-driver-595 - distro non-free recommended</pre>
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
-  
-  
+</div>
 
 
-  
+
+
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
+</div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
 
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ice</span>
   </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Ice</p>
-  <div class="site-description" itemprop="description">安静地坐着学习</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">46</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">categories</span>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">17</span>
-        <span class="site-state-item-name">tags</span>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </footer>
 
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
   
-  &copy; 
-  <span itemprop="copyrightYear">2026</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Ice</span>
-</div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
   </div>
 
-        
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"TonyMistark","repo":"tonymistark.github.io","client_id":"298b6503f44953bd4193","client_secret":null,"admin_user":"TonyMistark","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"d1546d731a9f30cc80127d57142a482b"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
 
 </body>
 </html>
