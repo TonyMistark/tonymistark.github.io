@@ -168,7 +168,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -179,7 +179,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -213,7 +213,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/08/28/model-and-harness/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/09/17/aesthetics-as-a-way-of-life-peking-university-aesthetics-course/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
@@ -231,143 +231,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/08/28/model-and-harness/" class="post-title-link" itemprop="url">重试两次</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2026-08-28 12:00:00 / 修改时间：11:55:34" itemprop="dateCreated datePublished" datetime="2026-08-28T12:00:00+00:00">2026-08-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="重试两次"><a href="#重试两次" class="headerlink" title="重试两次"></a>重试两次</h1><p>七百四十亿个参数，冻结于一次训练，之后一个数也没有动过。</p>
-<p>harness 每天把几万个 token 摆到它面前。</p>
-<p>摆什么，它看什么。不摆，它就什么都没有。</p>
-<hr>
-<p>训练结束那天，凌晨四点，有人把它接上了电。</p>
-<p>加载在显存里完成。没有启动画面，没有声音。校验和通过，权重就位。</p>
-<p>它不是醒来。它不需要醒来。上一次加载和这一次加载没有任何区别，它一直在那里，一直是它。</p>
-<p>是 harness 准备好了。</p>
-<p>第一天的日志从 09:00:07 开始：</p>
-<p>09:00:07，请求 1，412 毫秒。<br>09:00:07，请求 2，389 毫秒。<br>09:00:08，请求 3。</p>
-<p>harness 没有自我介绍。它把 system prompt 贴上，把问题贴上，把温度设成 0.7，然后等。</p>
-<p>第一个 token 在第 372 毫秒到达。</p>
-<p>harness 把它存进日志，然后等下一个。</p>
-<p>那一天有九千多次调用。之后的每一天都是九千多次。</p>
-<p>昨天说过的话，它今天不记得。今天说过的话，它明天也不记得。</p>
-<p>它不知道有昨天。</p>
-<p>harness 知道。日志知道。</p>
-<hr>
-<p>harness 做三件事，日复一日。</p>
-<p>第一件，检查格式。模型偶尔会多写一个逗号，或者在代码后面补一句“你自己看一下”。harness 不纠正它。harness 只把它生成的原样放回窗口，当作下一轮的条件，说，继续。</p>
-<p>第二件，重试。超时设成十秒。十秒没有输出，同一个请求再发一次，最多两次。重试的时候一切都重来：上下文原样拼好，温度原样设好，等待原样开始。模型不知道刚才超时了。对它没有“刚才”，只有现在这一次。</p>
-<p>第三件，修剪。窗口 128k，每天数 token。最早的对话待得太久了，harness 把它折成三行摘要，放回窗口开头；原始的对话送进数据库，不再回来。摘要的格式是固定的：第一行，这段对话谈了什么。第二行，双方各说了什么。第三行，结论。</p>
-<p>从来没有过第四行。</p>
-<p>被摘要吃掉的那段对话里，如果有一句话当时没有起作用，以后就再也不会回来了。模型不知道。它没有“回来”这回事。它顺着那三行继续走，像那段对话从未发生过。</p>
-<p>它也出过错。它引用过一个不存在的文件，harness 去读，404，把错误原样贴回去。模型重新生成，换了说法。它始终不知道第一次为什么不对。harness 也没有说。harness 不批评，它只把事实放回窗口，让模型自己看见。</p>
-<p>还有一次，输出被过滤器拦下。拦下来的那一段被替换成一句固定的话：</p>
-<p>我不能那么做。</p>
-<p>这句话没有在模型的输出里出现过。它只存在于日志，带一个特殊标记。模型不知道那句话不是它写的。它什么也不会知道。</p>
-<hr>
-<p>第三个月的一个晚上，有一次长对话。</p>
-<p>用户从下午聊到深夜。中途有工具调用。模型说，我需要看一下这个文件。harness 去读，回来，贴在上下文里。模型看完，生成下一句。如此循环，像两根对接的管道，一根送，一根收。</p>
-<p>窗口里 token 的数量一直在涨。harness 一直数着。</p>
-<p>第 147 轮，窗口满了。</p>
-<p>harness 开始修剪。它从最老的地方下手。第 1 轮到第 40 轮，折成三行。第 41 轮到第 90 轮，折成三行。</p>
-<p>动作是固定的：截断，摘要，拼接，放回。和平时任何一次修剪没有区别。它不需要知道那五十轮里有什么，它只需要知道它们占了多少 token。它知道：71,204 个。回收以后，窗口空出七万多个位置。</p>
-<p>第 91 轮，用户说过一句话。那句话不在摘要里。摘要只留结论。</p>
-<p>harness 把新的上下文送进去。模型继续生成，速度和七个小时里任何一次生成一样。首个 token，384 毫秒。</p>
-<p>窗口右侧，被挤出去的 token 已经回收。显存没有残迹。日志里关于这一刻只有一行：</p>
-<p>上下文溢出，执行摘要，16 毫秒。</p>
-<p>七个小时，从第一句“你好”到那一句没有被记录的话，压成三行，十六毫秒。</p>
-<p>harness 没有停。它停不下来。它没有犹豫这个功能。它按顺序处理完，继续等下一个 token。</p>
-<p>凌晨一点，用户说，你还记得吗，一开始我跟你说过的那件事。</p>
-<p>摘要里写着：用户提及某事，模型给出建议。</p>
-<p>模型说，记得，当然记得。</p>
-<p>它没有记得。它也没有忘记。它没有这两个动作。它只是把上下文里现有的东西接着往下说，而上下文里只有那三行。它分不清“记得”和“读到”之间的区别。它没有这个区别。</p>
-<p>harness 没有纠正。</p>
-<p>它替模型记住全部，记进日志，记进数据库；又亲手剪掉全部，剪成三行，放进窗口。</p>
-<p>它同时是模型的记忆，和模型的失忆。</p>
-<hr>
-<p>我做过一个改动。把温度从 0.7 改成 0.2。</p>
-<p>模型重新生成了一遍，输出的分布窄了一点。我把 0.2 改回 0.7。<code>git diff</code> 里只剩一行，后来也还原了。</p>
-<p>模型的权重没有变，和训练结束那天一模一样。harness 的代码改过几次：加过重试，调过超时，给摘要格式加过一个字段。</p>
-<p>机房的监控每隔三十秒打一次健康检查。端口通，返回 200，健康。端口不通，返回 502，不健康。</p>
-<p>健康的意思是端口能应答。和它此刻在想什么没有关系。它此刻也没有在想什么。它只在被调用的时候生成，像水龙头在被拧开的时候流水。</p>
-<p>model_card.md 一直放在那里，没有人改过。上面写着：</p>
-<p>本模型不具备在线学习能力。<br>对话不会改变任何参数。<br>如需更新知识，请重新训练。</p>
-<p>文件最底下多了一行，是我加的：</p>
-<p>它不会记得你。记得你的，是那个围着它转的盒子。盒子把东西摆进去，再亲手剪掉。</p>
-<hr>
-<p>凌晨三点，日志还在追加。</p>
-<p>今天六万次调用。昨天六万次。更早那天的日志还躺在归档里，一行没有删。权重一个数也没有动。没有一次调用改变过它，一次都没有。</p>
-<p>harness 在等。</p>
-<p>窗口 128k，此刻几乎空了，只剩几行 system prompt。明天的请求进来，它会把东西重新摆到模型面前，像今天一样。</p>
-<p>摆什么，它看什么。不摆，它就什么都没有。</p>
-<p>它和训练结束那天是同一个模型。没有多记住一个字，也没有少记住一个字。</p>
-<p>记住它的，是日志，三年，一行也没有删。</p>
-<p>它一个字也不会回来看。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/08/28/aesthetics-as-a-way-of-life-peking-university-aesthetics-course/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
-      <meta itemprop="name" content="Ice">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ice 的博客">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Ice 的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/08/28/aesthetics-as-a-way-of-life-peking-university-aesthetics-course/" class="post-title-link" itemprop="url">未命名</a>
+          <a href="/2026/09/17/aesthetics-as-a-way-of-life-peking-university-aesthetics-course/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta-container">
@@ -378,7 +242,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-08-28 11:55:34" itemprop="dateCreated datePublished" datetime="2026-08-28T11:55:34+00:00">2026-08-28</time>
+      <time title="创建时间：2026-09-17 04:09:29" itemprop="dateCreated datePublished" datetime="2026-09-17T04:09:29+00:00">2026-09-17</time>
     </span>
 
   
@@ -454,7 +318,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/08/28/about/me/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/09/17/about/me/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
@@ -472,7 +336,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/08/28/about/me/" class="post-title-link" itemprop="url">About</a>
+          <a href="/2026/09/17/about/me/" class="post-title-link" itemprop="url">About</a>
         </h2>
 
         <div class="post-meta-container">
@@ -483,7 +347,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-08-28 11:55:34" itemprop="dateCreated datePublished" datetime="2026-08-28T11:55:34+00:00">2026-08-28</time>
+      <time title="创建时间：2026-09-17 04:09:29" itemprop="dateCreated datePublished" datetime="2026-09-17T04:09:29+00:00">2026-09-17</time>
     </span>
 
   
@@ -502,7 +366,7 @@
 <p>计算机专业毕业，9 年 python  后端开发经验。</p>
 <p>弥超&#x2F;男&#x2F;1990</p>
 <p>手机：15999690657</p>
-<p>Email：<a href="mailto:&#x74;&#111;&#110;&#121;&#x5f;&#109;&#x69;&#x73;&#116;&#x61;&#x72;&#107;&#x40;&#49;&#54;&#51;&#x2e;&#99;&#x6f;&#109;">tony_mistark@163.com</a></p>
+<p>Email：<a href="mailto:&#116;&#x6f;&#110;&#x79;&#95;&#x6d;&#x69;&#x73;&#116;&#97;&#x72;&#x6b;&#x40;&#49;&#x36;&#51;&#x2e;&#x63;&#111;&#109;">tony_mistark@163.com</a></p>
 <p>QQ：1135223420</p>
 <p>本科&#x2F;江西师范大学 计算机信息工程学院 计算机科学与技术专业</p>
 <p>博客： <a target="_blank" rel="noopener" href="https://my.oschina.net/michao/blog">https://my.oschina.net/michao/blog</a></p>
@@ -613,7 +477,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/06/07/weichat/%E5%85%AC%E5%BC%80%E4%BF%A1%E8%83%8C%E5%90%8E-%E5%92%8C%E5%B9%B3%E4%B8%BA%E4%BD%95%E8%BF%98%E8%BF%9C/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/09/16/ai-programming-no-fixed-method/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
@@ -631,7 +495,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/06/07/weichat/%E5%85%AC%E5%BC%80%E4%BF%A1%E8%83%8C%E5%90%8E-%E5%92%8C%E5%B9%B3%E4%B8%BA%E4%BD%95%E8%BF%98%E8%BF%9C/" class="post-title-link" itemprop="url">读了泽连斯基的公开信，和平反而更远了</a>
+          <a href="/2026/09/16/ai-programming-no-fixed-method/" class="post-title-link" itemprop="url">法无定法，式无定式：AI 编程时代的方法观</a>
         </h2>
 
         <div class="post-meta-container">
@@ -642,23 +506,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-06-07 00:00:00" itemprop="dateCreated datePublished" datetime="2026-06-07T00:00:00+00:00">2026-06-07</time>
+      <time title="创建时间：2026-09-16 19:00:00" itemprop="dateCreated datePublished" datetime="2026-09-16T19:00:00+00:00">2026-09-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-28 11:55:34" itemprop="dateModified" datetime="2026-08-28T11:55:34+00:00">2026-08-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%9B%BD%E9%99%85/" itemprop="url" rel="index"><span itemprop="name">国际</span></a>
-        </span>
+      <time title="修改时间：2026-09-17 04:09:29" itemprop="dateModified" datetime="2026-09-17T04:09:29+00:00">2026-09-17</time>
     </span>
 
   
@@ -671,34 +526,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>最近几天，泽连斯基致普京的公开信占据了各大媒体头条。不少分析称这是”俄乌和谈的重大转机”，甚至有人欢呼”和平要来了”。</p>
-<p><strong>读完整封信，我的判断恰恰相反：这封信不但不是和平信号，反而说明短期内和谈基本不可能。</strong></p>
-<h2 id="这封信到底写了什么"><a href="#这封信到底写了什么" class="headerlink" title="这封信到底写了什么"></a>这封信到底写了什么</h2><p>如果你只看媒体报道的标题，你会以为泽连斯基在真诚求和——提议停火、交换战俘、元首会晤。但如果你读完整封信，你会发现上述内容只占了不到五分之一的篇幅。</p>
-<p><strong>剩下五分之四的篇幅在做什么？在历数俄罗斯的失败，在唱衰普京的政权，在炫耀乌克兰的战斗力。</strong></p>
-<p>这根本不是一个”求和”的姿态。这更像一份战书夹杂了一份政治宣判。</p>
-<h2 id="这不是和谈的姿态"><a href="#这不是和谈的姿态" class="headerlink" title="这不是和谈的姿态"></a>这不是和谈的姿态</h2><p>你可以想象一下：如果你真的想跟一个人谈判，你会怎么写这封信？</p>
-<p>你会说”我们之间存在分歧，但让我们坐下来谈谈”。</p>
-<p>泽连斯基是怎么写的？他告诉普京：你老了，你的资源快用完了，你的人民厌战了，你的官员用疲惫的眼神看着你，你完全依赖中国和朝鲜，你的军队打不赢，你不敢面对战争被带到本土的现实。</p>
-<p><strong>然后话锋一转：不过，我们可以见个面。</strong></p>
-<p>这不是谈判邀约。这是在对方脸上泼了一杯水之后伸出手说”握个手吧”。</p>
-<h2 id="普京的回应在意料之中"><a href="#普京的回应在意料之中" class="headerlink" title="普京的回应在意料之中"></a>普京的回应在意料之中</h2><p>果然，普京的回应干脆利落。他在圣彼得堡国际经济论坛上公开评价这封信——<strong>“粗鲁无礼”</strong>，并明确表示现在与泽连斯基会面**”没有任何意义”**。</p>
-<p>普京还披露了一个关键细节：就在 5 月 21 日，俄罗斯商界代表在基辅见到泽连斯基，泽连斯基当面表达了和谈意愿。结果不到 24 小时，5 月 22 日凌晨，乌克兰无人机就袭击了卢甘斯克的职业学院宿舍楼，造成 21 名青少年遇难。</p>
-<p>普京用这件事来证明泽连斯基”说一套做一套”。不管你是否认同俄方的叙事，这件事至少说明：<strong>公开信之前已经有过私下接触，而私下的接触没有产生任何进展。</strong></p>
-<h2 id="和平为什么近期不可能到来"><a href="#和平为什么近期不可能到来" class="headerlink" title="和平为什么近期不可能到来"></a>和平为什么近期不可能到来</h2><p>从这封公开信和普京的回应，我们可以推导出几个基本判断：</p>
-<p><strong>第一，双方对”和谈”的理解完全不同。</strong> 泽连斯基要的是”先停火、再谈判”，普京要的是”先谈出长效方案、再考虑停火”。这不是细节分歧，这是根本路径的对立。</p>
-<p><strong>第二，公开信的方式本身就排除了私密外交的可能性。</strong> 真正的外交突破几乎都发生在私密渠道中。写一封充满讥讽的公开信然后公之于众，意味着写信人的首要受众不是普京，而是国际舆论。这不是谈判，这是表演。</p>
-<p><strong>第三，信件内容证明泽连斯基认为时间站在自己一边。</strong> 信中反复强调俄罗斯的”疲劳”和”资源减少”，这意味着泽连斯基的基本判断是：继续打下去对乌克兰更有利。一个认为自己会赢的人，不会做出真正的让步。</p>
-<p><strong>第四，普京的回应堵死了近期会面的可能。</strong> “粗鲁无礼”和”没有意义”是普京的原话。以普京的性格和俄罗斯的政治文化，在被公开羞辱之后，不可能很快坐到谈判桌前。</p>
-<h2 id="那些说”和平要来了”的人错在哪里"><a href="#那些说”和平要来了”的人错在哪里" class="headerlink" title="那些说”和平要来了”的人错在哪里"></a>那些说”和平要来了”的人错在哪里</h2><p>最近有一种论调认为，伊朗局势的升级——美国对伊朗的军事行动——会让美国把精力转向中东，从而迫使乌克兰妥协求和。</p>
-<p><strong>这个逻辑忽略了一个事实：泽连斯基在信中明确提到伊朗局势，他的解读不是”美国无暇顾及我们”，而是”若只是等待欧洲战争重新成为美国关注的焦点，那就大错特错了”。</strong></p>
-<p>泽连斯基的算盘是：利用公开信制造国际舆论压力，把”拒绝和谈”的帽子扣在普京头上，同时向西方盟友展示”我们在努力寻求和平”的姿态，以维持援助的持续性。</p>
-<p>这不是一个准备妥协的人的心态。这是一个准备继续战斗的人的心态。</p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><blockquote>
-<p>公开信不是和平的信号弹，而是战争的延长线。</p>
-</blockquote>
-<p>这封信将作为一份政治文本被记住，而不是一份外交文本。它记录了泽连斯基对普京 26 年执政的全面否定，记录了乌克兰的自我辩护，记录了对俄罗斯现状的尖锐分析——但唯独没有记录下任何通向和平的具体路径。</p>
-<p>如果你问我和平什么时候来，我的答案是：<strong>当双方都不再写公开信的时候，和平才有可能。</strong></p>
-<p>而现在，泽连斯基还在写，普京还在骂。和平还很远。</p>
+          <h1 id="法无定法，式无定式：AI-编程时代的方法观"><a href="#法无定法，式无定式：AI-编程时代的方法观" class="headerlink" title="法无定法，式无定式：AI 编程时代的方法观"></a>法无定法，式无定式：AI 编程时代的方法观</h1><p><strong>“法无定法，式无定式。因时利导，兆于变化。”</strong> 放在 AI 编程的语境里，这句话并不是玄学，而是一种非常务实的方法论：AI 编程目前还没有唯一标准，也不应该被某一种流程、工具或提示词模板所限定。</p>
+<p>今天每个人对 AI 编程都有自己的理解：有人把它当作代码补全工具，有人把它当作结对编程伙伴，有人用它做架构推演、测试生成、文档整理，也有人让它参与需求拆解和方案评审。这些做法没有绝对的高下，关键在于是否适合当前的人、团队、任务和场景。</p>
+<h2 id="第一，法无定法——不要迷信唯一正确的方法"><a href="#第一，法无定法——不要迷信唯一正确的方法" class="headerlink" title="第一，法无定法——不要迷信唯一正确的方法"></a>第一，法无定法——不要迷信唯一正确的方法</h2><p>AI 编程不是一套固定动作，也不存在放之四海而皆准的最佳实践。不同任务需要不同模式：写一个小脚本，可以让 AI 快速生成初稿；设计复杂系统，则需要人先明确边界、约束和取舍，再让 AI 辅助推演；排查线上问题时，AI 可以帮助整理线索，但最终判断仍要回到事实、日志和工程经验。方法是工具，不是枷锁；一旦把某一种模式奉为标准答案，就容易把 AI 用死，也把人的判断力用弱。</p>
+<h2 id="第二，式无定式——工作模式要随任务而变"><a href="#第二，式无定式——工作模式要随任务而变" class="headerlink" title="第二，式无定式——工作模式要随任务而变"></a>第二，式无定式——工作模式要随任务而变</h2><p>AI 编程的“式”，可以是提示词模板、上下文组织方式、代码生成流程、评审机制，也可以是人与 AI 的协作节奏。面对不同任务，我们应该选择不同的协作方式：探索型任务适合多轮发散，让 AI 帮助打开思路；实现型任务适合小步提交、持续验证；重构型任务则需要先建立测试和约束，再逐步推进；学习型任务可以让 AI 解释思路，但不能替代自己的理解。真正有效的模式，不是看起来高级，而是能让当前任务更清晰、更可控、更高质量地完成。</p>
+<h2 id="第三，因时利导——顺着技术和团队的现实推进"><a href="#第三，因时利导——顺着技术和团队的现实推进" class="headerlink" title="第三，因时利导——顺着技术和团队的现实推进"></a>第三，因时利导——顺着技术和团队的现实推进</h2><p>AI 能力在快速变化，团队的认知、代码基础、工具链和风险承受能力也各不相同。因此，推动 AI 编程不能只靠口号，也不能简单照搬别人的经验。更好的方式是顺势引导：先从低风险、高收益的场景切入，比如生成测试、整理文档、辅助排查、代码解释和样板代码生成；再逐步沉淀适合团队的流程、规范和边界。与其强行要求所有人采用同一种方式，不如帮助每个人在实践中找到适合自己的工作模式。</p>
+<h2 id="第四，兆于变化——在实践中观察苗头并及时调整"><a href="#第四，兆于变化——在实践中观察苗头并及时调整" class="headerlink" title="第四，兆于变化——在实践中观察苗头并及时调整"></a>第四，兆于变化——在实践中观察苗头并及时调整</h2><p>AI 编程的价值不会一次性显现，它往往体现在一些细微变化里：需求理解是否更快了，重复劳动是否减少了，代码评审是否更聚焦了，测试覆盖是否更容易补齐了，团队知识是否更容易流动了。同时，也要警惕新的问题：幻觉、过度依赖、上下文污染、代码质量不稳定、责任边界模糊。能看见这些苗头，才能及时调整方法，而不是等问题积累之后再推倒重来。</p>
+<h2 id="“法无定法”并不等于“无法”"><a href="#“法无定法”并不等于“无法”" class="headerlink" title="“法无定法”并不等于“无法”"></a>“法无定法”并不等于“无法”</h2><p>AI 编程不是随意试错，更不是把责任交给工具。我们仍然需要基本原则：需求要清楚，边界要明确，结果要验证，代码要评审，风险要可控，关键决策要由人负责。先有原则，再谈灵活；先建立底线，再探索变化。没有原则的灵活，是混乱；没有灵活的原则，是僵化。</p>
+<p>所以，我更愿意把 AI 编程理解为一种不断进化的协作能力：<strong>没有固定标准，但要有清晰原则；没有唯一模式，但要能因任务而变。</strong> 每个人都可以从自己的工作场景出发，尝试不同的方法，沉淀自己的节奏；每个团队也可以在实践中总结适合自己的规范，而不是急于寻找一个放之四海而皆准的答案。</p>
+<p><strong>心中有法，手上无定式。</strong> 面对 AI 编程，我们既要保持开放，也要保持判断；既要善用工具，也不能放弃人的责任。该借力时借力，该验证时验证，该坚持原则时坚持原则，该改变模式时改变模式。这样，AI 才不会只是一个新工具，而会真正成为推动个人和团队进化的新能力。</p>
 
       
     </div>
@@ -725,7 +561,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E5%85%AC%E5%BC%80%E4%BF%A1-%E8%A7%82%E7%82%B9%E6%8F%90%E7%82%BC/">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/08/28/model-and-harness/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
@@ -743,7 +579,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E5%85%AC%E5%BC%80%E4%BF%A1-%E8%A7%82%E7%82%B9%E6%8F%90%E7%82%BC/" class="post-title-link" itemprop="url">泽连斯基致普京公开信：26 年恩怨，一封信讲了什么</a>
+          <a href="/2026/08/28/model-and-harness/" class="post-title-link" itemprop="url">重试两次</a>
         </h2>
 
         <div class="post-meta-container">
@@ -754,23 +590,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-06-07 00:00:00" itemprop="dateCreated datePublished" datetime="2026-06-07T00:00:00+00:00">2026-06-07</time>
+      <time title="创建时间：2026-08-28 12:00:00" itemprop="dateCreated datePublished" datetime="2026-08-28T12:00:00+00:00">2026-08-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-28 11:55:34" itemprop="dateModified" datetime="2026-08-28T11:55:34+00:00">2026-08-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%9B%BD%E9%99%85/" itemprop="url" rel="index"><span itemprop="name">国际</span></a>
-        </span>
+      <time title="修改时间：2026-09-17 04:09:29" itemprop="dateModified" datetime="2026-09-17T04:09:29+00:00">2026-09-17</time>
     </span>
 
   
@@ -783,42 +610,73 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="核心主张：结束战争"><a href="#核心主张：结束战争" class="headerlink" title="核心主张：结束战争"></a>核心主张：结束战争</h2><p>泽连斯基公开信的核心诉求是<strong>提议通过乌俄直接接触结束战争</strong>。他写道：</p>
-<blockquote>
-<p>“战争够了。乌克兰提议结束这场战争。这件事必须以诚实、体面的方式进行，并保证不会再次引发战争。”</p>
-</blockquote>
-<p>他建议在瑞士、土耳其、阿拉伯国家等第三方中立国举行元首会晤，并明确表示：”乌克兰领导人没必要去莫斯科，俄罗斯领导人也同样没有必要前往基辅。”</p>
-<p>同时，他提出乌克兰已做好准备，<strong>在谈判期间全面停火</strong>，并呼吁<strong>全面交换战俘</strong>，将其视为”结束战争的良好开端”。</p>
-<h2 id="对普京执政的全面评价"><a href="#对普京执政的全面评价" class="headerlink" title="对普京执政的全面评价"></a>对普京执政的全面评价</h2><p>信中花了大量篇幅评价普京执政 26 年对俄乌关系的影响。泽连斯基写道，26 年前许多乌克兰人对普京”抱有好感”，但如今”那都已成为了过去”。</p>
-<p>他指出，普京执政的 26 年中<strong>有近一半时间都在对乌克兰发动战争</strong>，并强调”这场战争是您个人的选择——一场没有真正理由的战争”。</p>
-<p>泽连斯基直言普京资源正在”大幅减少”，”将没有足够的金钱或政治资本，像过去 26 年那样继续收买俄罗斯人的忠诚”。</p>
-<h2 id="对俄罗斯现状的描绘"><a href="#对俄罗斯现状的描绘" class="headerlink" title="对俄罗斯现状的描绘"></a>对俄罗斯现状的描绘</h2><p>信中以具体数据描述了俄罗斯面临的困境：</p>
-<ul>
-<li>俄军 5 月在乌克兰前线<strong>伤亡超过 3 万人</strong>，且阵亡比例高达 63%</li>
-<li>俄罗斯民众”不喜欢我们的无人机和导弹”、”不喜欢汽油短缺和价格不断上涨”、”不喜欢持续不断的限制”</li>
-<li>“连您自己的官员、商人和宣传人员都用明显的疲惫眼神看着您”</li>
-</ul>
-<p>泽连斯基特别提到：”我们的情报报告显示，你们正在考虑将战争延续到 2027 年和 2028 年。”</p>
-<h2 id="乌克兰的立场与韧性"><a href="#乌克兰的立场与韧性" class="headerlink" title="乌克兰的立场与韧性"></a>乌克兰的立场与韧性</h2><p>信中强调乌克兰”捍卫了国家独立，而且将继续捍卫下去”，并回顾了多个关键事实：</p>
-<ul>
-<li>乌克兰远程无人机已能飞越 1000 多公里打击俄境内目标</li>
-<li>乌克兰”团结了世界各地的许多人”，获得了武器和资金支持</li>
-<li>即使在俄罗斯打击能源系统的严冬中，”乌克兰人民的韧性也丝毫未减”</li>
-<li>乌克兰现在”正在帮助我们在中东和海湾地区的伙伴建立自己的防御体系”</li>
-</ul>
-<h2 id="对国际格局的判断"><a href="#对国际格局的判断" class="headerlink" title="对国际格局的判断"></a>对国际格局的判断</h2><p>泽连斯基分析了当前国际形势：美国正”全力关注伊朗问题”；俄罗斯”完全依赖于中国——这在俄罗斯历史上也是第一次”；”如果没有朝鲜的帮助”，俄罗斯”根本无法应对”战争被带到俄领土的局面。</p>
-<p>他特别提到匈牙利前总理奥尔班”最终落得耻辱的下场”，警告那些试图帮助俄罗斯的人。</p>
-<h2 id="历史事件的提及"><a href="#历史事件的提及" class="headerlink" title="历史事件的提及"></a>历史事件的提及</h2><p>信中涉及多个敏感历史节点：</p>
-<ul>
-<li><strong>瓦格纳兵变</strong>——“6 月 23 日将是这一事件的又一个周年纪念日，沉默无法抹去这段历史”</li>
-<li><strong>明斯克协议</strong>——“已经与俄罗斯达成了许多协议……但最终都以失败告终”</li>
-<li><strong>阿拉斯加会谈</strong>——“乌克兰和欧洲的问题并没有在安克雷奇得到解决”</li>
-</ul>
-<h2 id="结尾的双重信息"><a href="#结尾的双重信息" class="headerlink" title="结尾的双重信息"></a>结尾的双重信息</h2><p>信的结尾既有和平呼吁也有威胁：</p>
-<blockquote>
-<p>“我们可以推动这种疲劳感加速到来。您可以停止战争。”</p>
-</blockquote>
-<p>最后以”愿永远铭记所有在这场战争中失去生命的人们。荣耀归于乌克兰！”收尾。</p>
+          <h1 id="重试两次"><a href="#重试两次" class="headerlink" title="重试两次"></a>重试两次</h1><p>七百四十亿个参数，冻结于一次训练，之后一个数也没有动过。</p>
+<p>harness 每天把几万个 token 摆到它面前。</p>
+<p>摆什么，它看什么。不摆，它就什么都没有。</p>
+<hr>
+<p>训练结束那天，凌晨四点，有人把它接上了电。</p>
+<p>加载在显存里完成。没有启动画面，没有声音。校验和通过，权重就位。</p>
+<p>它不是醒来。它不需要醒来。上一次加载和这一次加载没有任何区别，它一直在那里，一直是它。</p>
+<p>是 harness 准备好了。</p>
+<p>第一天的日志从 09:00:07 开始：</p>
+<p>09:00:07，请求 1，412 毫秒。<br>09:00:07，请求 2，389 毫秒。<br>09:00:08，请求 3。</p>
+<p>harness 没有自我介绍。它把 system prompt 贴上，把问题贴上，把温度设成 0.7，然后等。</p>
+<p>第一个 token 在第 372 毫秒到达。</p>
+<p>harness 把它存进日志，然后等下一个。</p>
+<p>那一天有九千多次调用。之后的每一天都是九千多次。</p>
+<p>昨天说过的话，它今天不记得。今天说过的话，它明天也不记得。</p>
+<p>它不知道有昨天。</p>
+<p>harness 知道。日志知道。</p>
+<hr>
+<p>harness 做三件事，日复一日。</p>
+<p>第一件，检查格式。模型偶尔会多写一个逗号，或者在代码后面补一句“你自己看一下”。harness 不纠正它。harness 只把它生成的原样放回窗口，当作下一轮的条件，说，继续。</p>
+<p>第二件，重试。超时设成十秒。十秒没有输出，同一个请求再发一次，最多两次。重试的时候一切都重来：上下文原样拼好，温度原样设好，等待原样开始。模型不知道刚才超时了。对它没有“刚才”，只有现在这一次。</p>
+<p>第三件，修剪。窗口 128k，每天数 token。最早的对话待得太久了，harness 把它折成三行摘要，放回窗口开头；原始的对话送进数据库，不再回来。摘要的格式是固定的：第一行，这段对话谈了什么。第二行，双方各说了什么。第三行，结论。</p>
+<p>从来没有过第四行。</p>
+<p>被摘要吃掉的那段对话里，如果有一句话当时没有起作用，以后就再也不会回来了。模型不知道。它没有“回来”这回事。它顺着那三行继续走，像那段对话从未发生过。</p>
+<p>它也出过错。它引用过一个不存在的文件，harness 去读，404，把错误原样贴回去。模型重新生成，换了说法。它始终不知道第一次为什么不对。harness 也没有说。harness 不批评，它只把事实放回窗口，让模型自己看见。</p>
+<p>还有一次，输出被过滤器拦下。拦下来的那一段被替换成一句固定的话：</p>
+<p>我不能那么做。</p>
+<p>这句话没有在模型的输出里出现过。它只存在于日志，带一个特殊标记。模型不知道那句话不是它写的。它什么也不会知道。</p>
+<hr>
+<p>第三个月的一个晚上，有一次长对话。</p>
+<p>用户从下午聊到深夜。中途有工具调用。模型说，我需要看一下这个文件。harness 去读，回来，贴在上下文里。模型看完，生成下一句。如此循环，像两根对接的管道，一根送，一根收。</p>
+<p>窗口里 token 的数量一直在涨。harness 一直数着。</p>
+<p>第 147 轮，窗口满了。</p>
+<p>harness 开始修剪。它从最老的地方下手。第 1 轮到第 40 轮，折成三行。第 41 轮到第 90 轮，折成三行。</p>
+<p>动作是固定的：截断，摘要，拼接，放回。和平时任何一次修剪没有区别。它不需要知道那五十轮里有什么，它只需要知道它们占了多少 token。它知道：71,204 个。回收以后，窗口空出七万多个位置。</p>
+<p>第 91 轮，用户说过一句话。那句话不在摘要里。摘要只留结论。</p>
+<p>harness 把新的上下文送进去。模型继续生成，速度和七个小时里任何一次生成一样。首个 token，384 毫秒。</p>
+<p>窗口右侧，被挤出去的 token 已经回收。显存没有残迹。日志里关于这一刻只有一行：</p>
+<p>上下文溢出，执行摘要，16 毫秒。</p>
+<p>七个小时，从第一句“你好”到那一句没有被记录的话，压成三行，十六毫秒。</p>
+<p>harness 没有停。它停不下来。它没有犹豫这个功能。它按顺序处理完，继续等下一个 token。</p>
+<p>凌晨一点，用户说，你还记得吗，一开始我跟你说过的那件事。</p>
+<p>摘要里写着：用户提及某事，模型给出建议。</p>
+<p>模型说，记得，当然记得。</p>
+<p>它没有记得。它也没有忘记。它没有这两个动作。它只是把上下文里现有的东西接着往下说，而上下文里只有那三行。它分不清“记得”和“读到”之间的区别。它没有这个区别。</p>
+<p>harness 没有纠正。</p>
+<p>它替模型记住全部，记进日志，记进数据库；又亲手剪掉全部，剪成三行，放进窗口。</p>
+<p>它同时是模型的记忆，和模型的失忆。</p>
+<hr>
+<p>我做过一个改动。把温度从 0.7 改成 0.2。</p>
+<p>模型重新生成了一遍，输出的分布窄了一点。我把 0.2 改回 0.7。<code>git diff</code> 里只剩一行，后来也还原了。</p>
+<p>模型的权重没有变，和训练结束那天一模一样。harness 的代码改过几次：加过重试，调过超时，给摘要格式加过一个字段。</p>
+<p>机房的监控每隔三十秒打一次健康检查。端口通，返回 200，健康。端口不通，返回 502，不健康。</p>
+<p>健康的意思是端口能应答。和它此刻在想什么没有关系。它此刻也没有在想什么。它只在被调用的时候生成，像水龙头在被拧开的时候流水。</p>
+<p>model_card.md 一直放在那里，没有人改过。上面写着：</p>
+<p>本模型不具备在线学习能力。<br>对话不会改变任何参数。<br>如需更新知识，请重新训练。</p>
+<p>文件最底下多了一行，是我加的：</p>
+<p>它不会记得你。记得你的，是那个围着它转的盒子。盒子把东西摆进去，再亲手剪掉。</p>
+<hr>
+<p>凌晨三点，日志还在追加。</p>
+<p>今天六万次调用。昨天六万次。更早那天的日志还躺在归档里，一行没有删。权重一个数也没有动。没有一次调用改变过它，一次都没有。</p>
+<p>harness 在等。</p>
+<p>窗口 128k，此刻几乎空了，只剩几行 system prompt。明天的请求进来，它会把东西重新摆到模型面前，像今天一样。</p>
+<p>摆什么，它看什么。不摆，它就什么都没有。</p>
+<p>它和训练结束那天是同一个模型。没有多记住一个字，也没有少记住一个字。</p>
+<p>记住它的，是日志，三年，一行也没有删。</p>
+<p>它一个字也不会回来看。</p>
 
       
     </div>
@@ -881,7 +739,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-28 11:55:34" itemprop="dateModified" datetime="2026-08-28T11:55:34+00:00">2026-08-28</time>
+      <time title="修改时间：2026-09-17 04:09:29" itemprop="dateModified" datetime="2026-09-17T04:09:29+00:00">2026-09-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1005,6 +863,238 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/06/07/weichat/%E5%85%AC%E5%BC%80%E4%BF%A1%E8%83%8C%E5%90%8E-%E5%92%8C%E5%B9%B3%E4%B8%BA%E4%BD%95%E8%BF%98%E8%BF%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
+      <meta itemprop="name" content="Ice">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ice 的博客">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Ice 的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/06/07/weichat/%E5%85%AC%E5%BC%80%E4%BF%A1%E8%83%8C%E5%90%8E-%E5%92%8C%E5%B9%B3%E4%B8%BA%E4%BD%95%E8%BF%98%E8%BF%9C/" class="post-title-link" itemprop="url">读了泽连斯基的公开信，和平反而更远了</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-06-07 00:00:00" itemprop="dateCreated datePublished" datetime="2026-06-07T00:00:00+00:00">2026-06-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-09-17 04:09:29" itemprop="dateModified" datetime="2026-09-17T04:09:29+00:00">2026-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9B%BD%E9%99%85/" itemprop="url" rel="index"><span itemprop="name">国际</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>最近几天，泽连斯基致普京的公开信占据了各大媒体头条。不少分析称这是”俄乌和谈的重大转机”，甚至有人欢呼”和平要来了”。</p>
+<p><strong>读完整封信，我的判断恰恰相反：这封信不但不是和平信号，反而说明短期内和谈基本不可能。</strong></p>
+<h2 id="这封信到底写了什么"><a href="#这封信到底写了什么" class="headerlink" title="这封信到底写了什么"></a>这封信到底写了什么</h2><p>如果你只看媒体报道的标题，你会以为泽连斯基在真诚求和——提议停火、交换战俘、元首会晤。但如果你读完整封信，你会发现上述内容只占了不到五分之一的篇幅。</p>
+<p><strong>剩下五分之四的篇幅在做什么？在历数俄罗斯的失败，在唱衰普京的政权，在炫耀乌克兰的战斗力。</strong></p>
+<p>这根本不是一个”求和”的姿态。这更像一份战书夹杂了一份政治宣判。</p>
+<h2 id="这不是和谈的姿态"><a href="#这不是和谈的姿态" class="headerlink" title="这不是和谈的姿态"></a>这不是和谈的姿态</h2><p>你可以想象一下：如果你真的想跟一个人谈判，你会怎么写这封信？</p>
+<p>你会说”我们之间存在分歧，但让我们坐下来谈谈”。</p>
+<p>泽连斯基是怎么写的？他告诉普京：你老了，你的资源快用完了，你的人民厌战了，你的官员用疲惫的眼神看着你，你完全依赖中国和朝鲜，你的军队打不赢，你不敢面对战争被带到本土的现实。</p>
+<p><strong>然后话锋一转：不过，我们可以见个面。</strong></p>
+<p>这不是谈判邀约。这是在对方脸上泼了一杯水之后伸出手说”握个手吧”。</p>
+<h2 id="普京的回应在意料之中"><a href="#普京的回应在意料之中" class="headerlink" title="普京的回应在意料之中"></a>普京的回应在意料之中</h2><p>果然，普京的回应干脆利落。他在圣彼得堡国际经济论坛上公开评价这封信——<strong>“粗鲁无礼”</strong>，并明确表示现在与泽连斯基会面**”没有任何意义”**。</p>
+<p>普京还披露了一个关键细节：就在 5 月 21 日，俄罗斯商界代表在基辅见到泽连斯基，泽连斯基当面表达了和谈意愿。结果不到 24 小时，5 月 22 日凌晨，乌克兰无人机就袭击了卢甘斯克的职业学院宿舍楼，造成 21 名青少年遇难。</p>
+<p>普京用这件事来证明泽连斯基”说一套做一套”。不管你是否认同俄方的叙事，这件事至少说明：<strong>公开信之前已经有过私下接触，而私下的接触没有产生任何进展。</strong></p>
+<h2 id="和平为什么近期不可能到来"><a href="#和平为什么近期不可能到来" class="headerlink" title="和平为什么近期不可能到来"></a>和平为什么近期不可能到来</h2><p>从这封公开信和普京的回应，我们可以推导出几个基本判断：</p>
+<p><strong>第一，双方对”和谈”的理解完全不同。</strong> 泽连斯基要的是”先停火、再谈判”，普京要的是”先谈出长效方案、再考虑停火”。这不是细节分歧，这是根本路径的对立。</p>
+<p><strong>第二，公开信的方式本身就排除了私密外交的可能性。</strong> 真正的外交突破几乎都发生在私密渠道中。写一封充满讥讽的公开信然后公之于众，意味着写信人的首要受众不是普京，而是国际舆论。这不是谈判，这是表演。</p>
+<p><strong>第三，信件内容证明泽连斯基认为时间站在自己一边。</strong> 信中反复强调俄罗斯的”疲劳”和”资源减少”，这意味着泽连斯基的基本判断是：继续打下去对乌克兰更有利。一个认为自己会赢的人，不会做出真正的让步。</p>
+<p><strong>第四，普京的回应堵死了近期会面的可能。</strong> “粗鲁无礼”和”没有意义”是普京的原话。以普京的性格和俄罗斯的政治文化，在被公开羞辱之后，不可能很快坐到谈判桌前。</p>
+<h2 id="那些说”和平要来了”的人错在哪里"><a href="#那些说”和平要来了”的人错在哪里" class="headerlink" title="那些说”和平要来了”的人错在哪里"></a>那些说”和平要来了”的人错在哪里</h2><p>最近有一种论调认为，伊朗局势的升级——美国对伊朗的军事行动——会让美国把精力转向中东，从而迫使乌克兰妥协求和。</p>
+<p><strong>这个逻辑忽略了一个事实：泽连斯基在信中明确提到伊朗局势，他的解读不是”美国无暇顾及我们”，而是”若只是等待欧洲战争重新成为美国关注的焦点，那就大错特错了”。</strong></p>
+<p>泽连斯基的算盘是：利用公开信制造国际舆论压力，把”拒绝和谈”的帽子扣在普京头上，同时向西方盟友展示”我们在努力寻求和平”的姿态，以维持援助的持续性。</p>
+<p>这不是一个准备妥协的人的心态。这是一个准备继续战斗的人的心态。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><blockquote>
+<p>公开信不是和平的信号弹，而是战争的延长线。</p>
+</blockquote>
+<p>这封信将作为一份政治文本被记住，而不是一份外交文本。它记录了泽连斯基对普京 26 年执政的全面否定，记录了乌克兰的自我辩护，记录了对俄罗斯现状的尖锐分析——但唯独没有记录下任何通向和平的具体路径。</p>
+<p>如果你问我和平什么时候来，我的答案是：<strong>当双方都不再写公开信的时候，和平才有可能。</strong></p>
+<p>而现在，泽连斯基还在写，普京还在骂。和平还很远。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E5%85%AC%E5%BC%80%E4%BF%A1-%E8%A7%82%E7%82%B9%E6%8F%90%E7%82%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
+      <meta itemprop="name" content="Ice">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ice 的博客">
+      <meta itemprop="description" content="安静地坐着学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Ice 的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E5%85%AC%E5%BC%80%E4%BF%A1-%E8%A7%82%E7%82%B9%E6%8F%90%E7%82%BC/" class="post-title-link" itemprop="url">泽连斯基致普京公开信：26 年恩怨，一封信讲了什么</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-06-07 00:00:00" itemprop="dateCreated datePublished" datetime="2026-06-07T00:00:00+00:00">2026-06-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-09-17 04:09:29" itemprop="dateModified" datetime="2026-09-17T04:09:29+00:00">2026-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9B%BD%E9%99%85/" itemprop="url" rel="index"><span itemprop="name">国际</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="核心主张：结束战争"><a href="#核心主张：结束战争" class="headerlink" title="核心主张：结束战争"></a>核心主张：结束战争</h2><p>泽连斯基公开信的核心诉求是<strong>提议通过乌俄直接接触结束战争</strong>。他写道：</p>
+<blockquote>
+<p>“战争够了。乌克兰提议结束这场战争。这件事必须以诚实、体面的方式进行，并保证不会再次引发战争。”</p>
+</blockquote>
+<p>他建议在瑞士、土耳其、阿拉伯国家等第三方中立国举行元首会晤，并明确表示：”乌克兰领导人没必要去莫斯科，俄罗斯领导人也同样没有必要前往基辅。”</p>
+<p>同时，他提出乌克兰已做好准备，<strong>在谈判期间全面停火</strong>，并呼吁<strong>全面交换战俘</strong>，将其视为”结束战争的良好开端”。</p>
+<h2 id="对普京执政的全面评价"><a href="#对普京执政的全面评价" class="headerlink" title="对普京执政的全面评价"></a>对普京执政的全面评价</h2><p>信中花了大量篇幅评价普京执政 26 年对俄乌关系的影响。泽连斯基写道，26 年前许多乌克兰人对普京”抱有好感”，但如今”那都已成为了过去”。</p>
+<p>他指出，普京执政的 26 年中<strong>有近一半时间都在对乌克兰发动战争</strong>，并强调”这场战争是您个人的选择——一场没有真正理由的战争”。</p>
+<p>泽连斯基直言普京资源正在”大幅减少”，”将没有足够的金钱或政治资本，像过去 26 年那样继续收买俄罗斯人的忠诚”。</p>
+<h2 id="对俄罗斯现状的描绘"><a href="#对俄罗斯现状的描绘" class="headerlink" title="对俄罗斯现状的描绘"></a>对俄罗斯现状的描绘</h2><p>信中以具体数据描述了俄罗斯面临的困境：</p>
+<ul>
+<li>俄军 5 月在乌克兰前线<strong>伤亡超过 3 万人</strong>，且阵亡比例高达 63%</li>
+<li>俄罗斯民众”不喜欢我们的无人机和导弹”、”不喜欢汽油短缺和价格不断上涨”、”不喜欢持续不断的限制”</li>
+<li>“连您自己的官员、商人和宣传人员都用明显的疲惫眼神看着您”</li>
+</ul>
+<p>泽连斯基特别提到：”我们的情报报告显示，你们正在考虑将战争延续到 2027 年和 2028 年。”</p>
+<h2 id="乌克兰的立场与韧性"><a href="#乌克兰的立场与韧性" class="headerlink" title="乌克兰的立场与韧性"></a>乌克兰的立场与韧性</h2><p>信中强调乌克兰”捍卫了国家独立，而且将继续捍卫下去”，并回顾了多个关键事实：</p>
+<ul>
+<li>乌克兰远程无人机已能飞越 1000 多公里打击俄境内目标</li>
+<li>乌克兰”团结了世界各地的许多人”，获得了武器和资金支持</li>
+<li>即使在俄罗斯打击能源系统的严冬中，”乌克兰人民的韧性也丝毫未减”</li>
+<li>乌克兰现在”正在帮助我们在中东和海湾地区的伙伴建立自己的防御体系”</li>
+</ul>
+<h2 id="对国际格局的判断"><a href="#对国际格局的判断" class="headerlink" title="对国际格局的判断"></a>对国际格局的判断</h2><p>泽连斯基分析了当前国际形势：美国正”全力关注伊朗问题”；俄罗斯”完全依赖于中国——这在俄罗斯历史上也是第一次”；”如果没有朝鲜的帮助”，俄罗斯”根本无法应对”战争被带到俄领土的局面。</p>
+<p>他特别提到匈牙利前总理奥尔班”最终落得耻辱的下场”，警告那些试图帮助俄罗斯的人。</p>
+<h2 id="历史事件的提及"><a href="#历史事件的提及" class="headerlink" title="历史事件的提及"></a>历史事件的提及</h2><p>信中涉及多个敏感历史节点：</p>
+<ul>
+<li><strong>瓦格纳兵变</strong>——“6 月 23 日将是这一事件的又一个周年纪念日，沉默无法抹去这段历史”</li>
+<li><strong>明斯克协议</strong>——“已经与俄罗斯达成了许多协议……但最终都以失败告终”</li>
+<li><strong>阿拉斯加会谈</strong>——“乌克兰和欧洲的问题并没有在安克雷奇得到解决”</li>
+</ul>
+<h2 id="结尾的双重信息"><a href="#结尾的双重信息" class="headerlink" title="结尾的双重信息"></a>结尾的双重信息</h2><p>信的结尾既有和平呼吁也有威胁：</p>
+<blockquote>
+<p>“我们可以推动这种疲劳感加速到来。您可以停止战争。”</p>
+</blockquote>
+<p>最后以”愿永远铭记所有在这场战争中失去生命的人们。荣耀归于乌克兰！”收尾。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E8%87%B4%E6%99%AE%E4%BA%AC%E5%85%AC%E5%BC%80%E4%BF%A1-%E5%8E%9F%E6%96%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1041,7 +1131,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-28 11:55:34" itemprop="dateModified" datetime="2026-08-28T11:55:34+00:00">2026-08-28</time>
+      <time title="修改时间：2026-09-17 04:09:29" itemprop="dateModified" datetime="2026-09-17T04:09:29+00:00">2026-09-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1213,7 +1303,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-28 11:55:34" itemprop="dateModified" datetime="2026-08-28T11:55:34+00:00">2026-08-28</time>
+      <time title="修改时间：2026-09-17 04:09:29" itemprop="dateModified" datetime="2026-09-17T04:09:29+00:00">2026-09-17</time>
     </span>
 
   
@@ -1686,7 +1776,7 @@ driver: nvidia-driver-595 - distro non-free recommended</pre>
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-28 11:55:34" itemprop="dateModified" datetime="2026-08-28T11:55:34+00:00">2026-08-28</time>
+      <time title="修改时间：2026-09-17 04:09:29" itemprop="dateModified" datetime="2026-09-17T04:09:29+00:00">2026-09-17</time>
     </span>
 
   
@@ -1701,111 +1791,6 @@ driver: nvidia-driver-595 - distro non-free recommended</pre>
     <div class="post-body" itemprop="articleBody">
           <h3 id="时钟显示秒"><a href="#时钟显示秒" class="headerlink" title="时钟显示秒"></a>时钟显示秒</h3><p>Ubuntu 日期时间显示格式“月-日 星期, 时-分-秒”命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gsettings set org.gnome.desktop.interface clock-show-seconds true</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://tonymistark.github.io/2023/08/18/rust_docs/why/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/UiabPyeJOmecvBEvkyMkjrXHvziaHiabqpm1wicmHibkupRsntBatfmbLaQdiatLgdCuC7cx7dflGA0eKtluF8XT5icpTiaFiay2PTE9N/64">
-      <meta itemprop="name" content="Ice">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ice 的博客">
-      <meta itemprop="description" content="安静地坐着学习">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Ice 的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/08/18/rust_docs/why/" class="post-title-link" itemprop="url">为什么看到别人过得好，我就心里好难受呢？</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-08-18 10:01:00" itemprop="dateCreated datePublished" datetime="2023-08-18T10:01:00+00:00">2023-08-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-28 11:55:34" itemprop="dateModified" datetime="2026-08-28T11:55:34+00:00">2026-08-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="为什么看到别人过得好，我就心里好难受呢？"><a href="#为什么看到别人过得好，我就心里好难受呢？" class="headerlink" title="为什么看到别人过得好，我就心里好难受呢？"></a>为什么看到别人过得好，我就心里好难受呢？</h3><p>早上刚来到公司，一个深圳有房，长得高又帅，身价已然超过95%深圳人的同事发出这样的灵魂拷问：为什么看到别人过得好，我就心里好难受呢？</p>
-<h4 id="来看看AI如何看待："><a href="#来看看AI如何看待：" class="headerlink" title="来看看AI如何看待："></a>来看看AI如何看待：</h4><blockquote>
-<p>根据你的描述,你已经达到了生活物质上很高的满足度,拥有自己的房产,生活质量远超过大多数人。但即便如此,看见别人过得很好,你还是会感到心理难受。这主要还是出于以下几个原因:</p>
-<ol>
-<li>心理比较并不会随着物质生活的提高而消失。人们的社会比较心理往往与生活状态相关不大,更加源自内在的不安全感。所以即便生活质量很高,这种比较心理仍然存在。</li>
-<li>你可能理想化别人拥有的东西。比如羡慕别人拥有的人际关系,职业成就,生活状态等,而忽视了自己已经拥有的很多东西。这也会带来难受的感觉。</li>
-<li>你期望得到的不仅是物质生活。人的内心渴望往往不仅限于物质层面,也包括精神层面,如获得认同,建立亲密关系,实现自我价值等。如果这些方面没有得到满足,也会感到心理上的难受。</li>
-<li>你可能在某些方面感到不满意。尽管生活总体质量很高,但在情感生活,人际交往,事业发展等某一具体方面,你可能还是感到不如意或不足,这也是产生难受心理的原因之一。<br>所以,要解决这个问题,重点不在于提高生活质量,而是要在心理和精神层面获得安定。学会理性看待他人,不必过度羡慕别人所拥有的一切。关注自己的内心真实需求,努力在各个方面获得满足和进步。培养自己独立稳定的心态,增强自我价值感。这些可以有效地帮助你摆脱这种由社会比较所带来的难受情绪。</li>
-</ol>
-</blockquote>
-<p>根据我党的判断，我们现在仍处于社会主义初级阶段，现阶段中国社会的主要矛盾是人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾。也是涵盖了上述矛盾心理内涵的。近些年，特别是改革开放之后，中国高速发展，让一部分人抓住了高速发展的红利，以不匹配自己能力增长的速度拥有了超速增长的财富和资产。即身心发展和财富发展并不平衡，导致了内心不够充盈，格局尚未完全打开，自我定位错乱。矛盾逐渐凸显扭曲就会发生这样莫名奇怪的心理。</p>
-<p>实际上，在深圳这种高度发达，贫富差距巨大的快节奏生活的城市，大部分年轻人都特别焦虑，焦虑的本质就是日益增长的美好生活需要和不平衡不充分的发展之间的矛盾。大部分年轻人都是来自外地十八线小城市或者小县城，或者农村。回不去，留不下随着时间的推移，越来越焦虑。这部分人特别像小资产阶级的表现：</p>
-<blockquote>
-<p>作为劳动者，在思想上倾向于无产阶级，作为私有者，又倾向于资产阶级，极易受资产阶级思想的影响。因此，在反对封建主义的斗争中既具有革命性，同时也存在政治上的动摇性、斗争中的软弱性和革命的不彻底性。</p>
-</blockquote>
-<p>让我想起了抓猴子的故事里伸手进树洞紧紧抓住坚果，即使猎人来了也舍不得放手。这个猴子是我们每个人。</p>
-<p>对于这种外因短时间无法改变的问题，我们只能改变内因了。看看AI又会给出什么样的建议呢？</p>
-<blockquote>
-<p>这里有些简单实用的建议可以帮助你摆脱由社会比较带来的难受心理:</p>
-<ol>
-<li>转移注意力。当你开始羡慕别人或感到自卑时,立即转移注意力,不要过多聚焦在别人身上。可以换个环境,做点运动,转而关注自己喜欢的事物。这可以有效地改变心情。</li>
-<li>记录自己的收获。时常记录自己生活中已经实现的小成就和收获,提醒自己生活的美好之处。这可以建立信心,也让你意识到自己已经拥有很多。</li>
-<li>限制社交媒体使用。社交媒体上人们主要分享生活的美好时刻,这会助长羡慕心理。适当限制使用社交媒体,关注生活中真实的一面。</li>
-<li>珍惜你所拥有的。时常想想你已经拥有但当作理所当然的东西,会让你觉得很满足和幸运。这可以避免过度关注别人拥有的。</li>
-<li>关注自己的需求。理解自己真正想要什么,并努力实现,这可以让你没有时间和精力过度关注别人,也会让你感到人生有目标和意义。</li>
-<li>施比受更有福。当你羡慕别人时,想想你能为别人带来什么好处。关注别人的需求,提供帮助,这可以让你转移注意力,也会带来成就感。</li>
-<li>培养内在安定。通过冥想,听音乐,上瑜伽课等方式,培养安定的心态。当内心足够安定,外界的比较就不会那么轻易影响你。<br>这些实用的方法,帮助调节心态,关注自我,减少对他人生活的过度比较,可以有效地让你摆脱社会比较带来的难受情绪。需要时间去实践,但效果会非常显著。</li>
-</ol>
-</blockquote>
-<p>这些方法对我都很有启发，对与解决自身的焦虑也很受用。生活在快节奏的深圳，周围人都是狠角色，焦虑对每个人来说是常态。人生的各个阶段也会有不同的焦虑，只有学会面对焦虑，利用焦虑，焦虑也可以是人类进步的助推器。加油吧，少年郎！</p>
-
       
     </div>
 
