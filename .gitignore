@@ -7,3 +7,5 @@ node_modules/
 public/
 .cc-connect/
 .claude/
+.env
+.serena/
