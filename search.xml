@@ -47,6 +47,25 @@
       </tags>
   </entry>
   <entry>
+    <title>法无定法，式无定式：AI 编程时代的方法观</title>
+    <url>/2026/09/16/ai-programming-no-fixed-method/</url>
+    <content><![CDATA[法无定法，式无定式：AI 编程时代的方法观“法无定法，式无定式。因时利导，兆于变化。” 放在 AI 编程的语境里，这句话并不是玄学，而是一种非常务实的方法论：AI 编程目前还没有唯一标准，也不应该被某一种流程、工具或提示词模板所限定。
+今天每个人对 AI 编程都有自己的理解：有人把它当作代码补全工具，有人把它当作结对编程伙伴，有人用它做架构推演、测试生成、文档整理，也有人让它参与需求拆解和方案评审。这些做法没有绝对的高下，关键在于是否适合当前的人、团队、任务和场景。
+第一，法无定法——不要迷信唯一正确的方法AI 编程不是一套固定动作，也不存在放之四海而皆准的最佳实践。不同任务需要不同模式：写一个小脚本，可以让 AI 快速生成初稿；设计复杂系统，则需要人先明确边界、约束和取舍，再让 AI 辅助推演；排查线上问题时，AI 可以帮助整理线索，但最终判断仍要回到事实、日志和工程经验。方法是工具，不是枷锁；一旦把某一种模式奉为标准答案，就容易把 AI 用死，也把人的判断力用弱。
+第二，式无定式——工作模式要随任务而变AI 编程的“式”，可以是提示词模板、上下文组织方式、代码生成流程、评审机制，也可以是人与 AI 的协作节奏。面对不同任务，我们应该选择不同的协作方式：探索型任务适合多轮发散，让 AI 帮助打开思路；实现型任务适合小步提交、持续验证；重构型任务则需要先建立测试和约束，再逐步推进；学习型任务可以让 AI 解释思路，但不能替代自己的理解。真正有效的模式，不是看起来高级，而是能让当前任务更清晰、更可控、更高质量地完成。
+第三，因时利导——顺着技术和团队的现实推进AI 能力在快速变化，团队的认知、代码基础、工具链和风险承受能力也各不相同。因此，推动 AI 编程不能只靠口号，也不能简单照搬别人的经验。更好的方式是顺势引导：先从低风险、高收益的场景切入，比如生成测试、整理文档、辅助排查、代码解释和样板代码生成；再逐步沉淀适合团队的流程、规范和边界。与其强行要求所有人采用同一种方式，不如帮助每个人在实践中找到适合自己的工作模式。
+第四，兆于变化——在实践中观察苗头并及时调整AI 编程的价值不会一次性显现，它往往体现在一些细微变化里：需求理解是否更快了，重复劳动是否减少了，代码评审是否更聚焦了，测试覆盖是否更容易补齐了，团队知识是否更容易流动了。同时，也要警惕新的问题：幻觉、过度依赖、上下文污染、代码质量不稳定、责任边界模糊。能看见这些苗头，才能及时调整方法，而不是等问题积累之后再推倒重来。
+“法无定法”并不等于“无法”AI 编程不是随意试错，更不是把责任交给工具。我们仍然需要基本原则：需求要清楚，边界要明确，结果要验证，代码要评审，风险要可控，关键决策要由人负责。先有原则，再谈灵活；先建立底线，再探索变化。没有原则的灵活，是混乱；没有灵活的原则，是僵化。
+所以，我更愿意把 AI 编程理解为一种不断进化的协作能力：没有固定标准，但要有清晰原则；没有唯一模式，但要能因任务而变。 每个人都可以从自己的工作场景出发，尝试不同的方法，沉淀自己的节奏；每个团队也可以在实践中总结适合自己的规范，而不是急于寻找一个放之四海而皆准的答案。
+心中有法，手上无定式。 面对 AI 编程，我们既要保持开放，也要保持判断；既要善用工具，也不能放弃人的责任。该借力时借力，该验证时验证，该坚持原则时坚持原则，该改变模式时改变模式。这样，AI 才不会只是一个新工具，而会真正成为推动个人和团队进化的新能力。
+]]></content>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>方法论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>重试两次</title>
     <url>/2026/08/28/model-and-harness/</url>
     <content><![CDATA[重试两次七百四十亿个参数，冻结于一次训练，之后一个数也没有动过。
@@ -127,6 +146,44 @@ harness 在等。
     <url>/2023/08/18/ubuntu-%E6%97%B6%E9%92%9F%E6%98%BE%E7%A4%BA%E7%A7%92/</url>
     <content><![CDATA[时钟显示秒Ubuntu 日期时间显示格式“月-日 星期, 时-分-秒”命令：
 gsettings set org.gnome.desktop.interface clock-show-seconds true]]></content>
+  </entry>
+  <entry>
+    <title>Ch 01.01:本地文档</title>
+    <url>/2022/12/25/rust_docs/ch_01_01_Installation/</url>
+    <content><![CDATA[本地文档安装过程包括了将对应Rust版本的文档复制到本地。所以你可以阅读官方文档，也可以通过命令：
+$ rustup doc
+
+会在浏览器里打开本地文档。
+标准库里面的任何一个类型或者函数你不确定的时候，或者你不知道怎么用。使用应用程序编程接口(API)文档来找出答案。
+]]></content>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 01.02:编译和运行是彼此独立的步骤</title>
+    <url>/2022/12/26/rust_docs/ch_01_02_hello_world/</url>
+    <content><![CDATA[编译和运行是彼此独立的步骤你刚刚运行了一个新的程序，所以让我们来检查一下这个过程的每一个步骤。
+在运行Rust程序之前，你必须通过rustc命令，用Rust编译器来编译这个它，并传入你源代码文件的名字，比如：
+$ rustc main.rs
+
+如果你有C或者C++的技术背景，你可以视作像gcc 或者clang。在编译成功之后，Rust 会输出一个二进制可执行文件。
+对于Linux,macOS和PowerShell on Windows,执行ls的shell命令之后，你就可以看到这个可执行文件。对于Linux，macOS，你可以看到两个文件。对于PowerShell on Windows,你会看到和使用CMD一样的三个文件。
+$ lsmain main.rs
+
+在Windows的CMD，输入命令：
+$ dir /B %= the /B option says to only show the file names =%main.exemain.pdbmain.rs
+
+这显示出以.rs为扩展名的源代码文件和可执行文件(main.exe on Windows, but main on all other platforms),并且，当使用Windows，一个文件包括了debugging信息的.pdb扩展名。到此，你可以开始运行main 或者main.exe文件，如：
+$ ./main # or .\main.exe on Windows
+
+如果main.rs是你的”Hello,world!”程序，这行将打印出”Hello,world!”到你的屏幕。
+如果你更加熟悉动态语言，如Ruby,Python, JavaScript, 你也许不习惯将编译和运行分为两个单独的步骤。Rust是一个预编译(ahead-of-time compiled)语言，代表你可以编译一个程序并且给可执行文件其他人，并且他们可以直接运行，不需要安装Rust。如果你给某人一个a.rb, .py, .js文件，他们需要安装一个Ruby,Python 或者JavaScript 实现(运行环境)。不过这些语言中，只需要一句命令就可以编译和运行程序。所有的事都是语言设计上的取舍。
+仅仅使用rustc编译简单程序是没有问题的。但是随着你的项目发展，你会想要管理所有的选项，使得更简单地共享你的代码。接下来，我们将介绍给你一个叫做Cargo的工具，它将帮助你编写真实世界的Rust程序。
+]]></content>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
   </entry>
   <entry>
     <title>一个程序员和AI的英语对话实录：从拼音困境到语言自由</title>
@@ -539,91 +596,23 @@ driver: nvidia-driver-595 - distro non-free recommended
       </tags>
   </entry>
   <entry>
-    <title>About me</title>
-    <url>/2023/08/17/about/me/</url>
-    <content><![CDATA[我是 Ice，一名程序员。
-主业做后端开发，长期和 Python 打交道；业余折腾 Rust、AI 工具和各类效率小玩意。
-这里主要记录：
+    <title>Ch 01.03:养成使用Cargo习惯</title>
+    <url>/2022/12/27/rust_docs/ch_01_03_hello_cargo/</url>
+    <content><![CDATA[养成使用Cargo习惯对于简单的项目，和rustc相比，Cargo不能提供多大的价值，但是对于复杂的项目，安装了很多crates, 它将会证明它的价值所在。让Cargo来协调构建工作会变得容易更多。
+即使hello_cargo这么简单的项目，它现在使用了很多你之后的Rust生涯将会用到的使用工具。其实，要在任何已存在的项目上工作时，可以使用如下的命令通过Git拿到代码，移动到你的projects目录，并构建：
+$ git clone example.org/someproject$ cd someproject$ cargo build
 
-Rust 学习笔记
-AI 工具的折腾与使用实录
-一些随想和读书笔记
+更多关于Cargo详情，请查看Cargo 文档(https://doc.rust-lang.org/cargo/)
+总结
+对于你的Rust之旅，你已经有一个很棒的开始了！本章你已经学会了如何：
 
-联系方式：
+使用rustup安装最新稳定版Rust
+更新到新版的Rust
+打开本地安装的文档
+直接通过rustc编写并运行”Hello,world!”程序
+使用Cargo创建并运行项目
 
-GitHub：TonyMistark
-E-Mail：tony_mistark@163.com
-
-本站使用 Hexo + NexT 搭建。
-]]></content>
-  </entry>
-  <entry>
-    <title>Ch 00.00:欢迎来到Rust编程语言世界！</title>
-    <url>/2022/12/24/rust_docs/ch_00_00_introducation/</url>
-    <content><![CDATA[欢迎来到Rust编程语言世界！不管写的好与差，挖坑先，要不然永远不会开始。
-Hello, World!
-fn main() &#123;    println!(&quot;Hello, World!&quot;);&#125;
-
-2022计划开始一系列关于学习Rust入门的学习笔记，主要是根据官方的文档入门学习。
-Rust程序设计语言能帮助你编写更快，更可靠的软件。在编程语言的设计中，高层工程学和底层控制常常是冲突的。Rust挑战了这种冲突。通过平衡强大的技术能力（powerful technical capacity）和 极好的开发者体验（great developer experience）,Rust 可以控制底层的细节（比如内存的使用）但不用忍受传统同类型语言那些困扰。
-Rust 已经在证明着自己，对于学习过编程知识的不同水平的开发者来说，如果他们开发大型协同项目都是不错的生产工具。底层的代码容易产生各种不易发现的bugs,在其他编程语言中，要发现这些bugs只能通过广泛的测试和团队中经验丰富的大佬们仔细的评审（review）。在Rust设计中，编译器（compiler）扮演着守门员的角色，它会拒绝包含各种bugs代码的编译。通过编译器的帮忙，开发团队将会把更多的时间用在程序的逻辑上，而不是one day day 地在写bugs与修bugs之间疲于奔命。
-]]></content>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ch 01.01:本地文档</title>
-    <url>/2022/12/25/rust_docs/ch_01_01_Installation/</url>
-    <content><![CDATA[本地文档安装过程包括了将对应Rust版本的文档复制到本地。所以你可以阅读官方文档，也可以通过命令：
-$ rustup doc
-
-会在浏览器里打开本地文档。
-标准库里面的任何一个类型或者函数你不确定的时候，或者你不知道怎么用。使用应用程序编程接口(API)文档来找出答案。
-]]></content>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>法无定法，式无定式：AI 编程时代的方法观</title>
-    <url>/2026/09/16/ai-programming-no-fixed-method/</url>
-    <content><![CDATA[法无定法，式无定式：AI 编程时代的方法观“法无定法，式无定式。因时利导，兆于变化。” 放在 AI 编程的语境里，这句话并不是玄学，而是一种非常务实的方法论：AI 编程目前还没有唯一标准，也不应该被某一种流程、工具或提示词模板所限定。
-今天每个人对 AI 编程都有自己的理解：有人把它当作代码补全工具，有人把它当作结对编程伙伴，有人用它做架构推演、测试生成、文档整理，也有人让它参与需求拆解和方案评审。这些做法没有绝对的高下，关键在于是否适合当前的人、团队、任务和场景。
-第一，法无定法——不要迷信唯一正确的方法AI 编程不是一套固定动作，也不存在放之四海而皆准的最佳实践。不同任务需要不同模式：写一个小脚本，可以让 AI 快速生成初稿；设计复杂系统，则需要人先明确边界、约束和取舍，再让 AI 辅助推演；排查线上问题时，AI 可以帮助整理线索，但最终判断仍要回到事实、日志和工程经验。方法是工具，不是枷锁；一旦把某一种模式奉为标准答案，就容易把 AI 用死，也把人的判断力用弱。
-第二，式无定式——工作模式要随任务而变AI 编程的“式”，可以是提示词模板、上下文组织方式、代码生成流程、评审机制，也可以是人与 AI 的协作节奏。面对不同任务，我们应该选择不同的协作方式：探索型任务适合多轮发散，让 AI 帮助打开思路；实现型任务适合小步提交、持续验证；重构型任务则需要先建立测试和约束，再逐步推进；学习型任务可以让 AI 解释思路，但不能替代自己的理解。真正有效的模式，不是看起来高级，而是能让当前任务更清晰、更可控、更高质量地完成。
-第三，因时利导——顺着技术和团队的现实推进AI 能力在快速变化，团队的认知、代码基础、工具链和风险承受能力也各不相同。因此，推动 AI 编程不能只靠口号，也不能简单照搬别人的经验。更好的方式是顺势引导：先从低风险、高收益的场景切入，比如生成测试、整理文档、辅助排查、代码解释和样板代码生成；再逐步沉淀适合团队的流程、规范和边界。与其强行要求所有人采用同一种方式，不如帮助每个人在实践中找到适合自己的工作模式。
-第四，兆于变化——在实践中观察苗头并及时调整AI 编程的价值不会一次性显现，它往往体现在一些细微变化里：需求理解是否更快了，重复劳动是否减少了，代码评审是否更聚焦了，测试覆盖是否更容易补齐了，团队知识是否更容易流动了。同时，也要警惕新的问题：幻觉、过度依赖、上下文污染、代码质量不稳定、责任边界模糊。能看见这些苗头，才能及时调整方法，而不是等问题积累之后再推倒重来。
-“法无定法”并不等于“无法”AI 编程不是随意试错，更不是把责任交给工具。我们仍然需要基本原则：需求要清楚，边界要明确，结果要验证，代码要评审，风险要可控，关键决策要由人负责。先有原则，再谈灵活；先建立底线，再探索变化。没有原则的灵活，是混乱；没有灵活的原则，是僵化。
-所以，我更愿意把 AI 编程理解为一种不断进化的协作能力：没有固定标准，但要有清晰原则；没有唯一模式，但要能因任务而变。 每个人都可以从自己的工作场景出发，尝试不同的方法，沉淀自己的节奏；每个团队也可以在实践中总结适合自己的规范，而不是急于寻找一个放之四海而皆准的答案。
-心中有法，手上无定式。 面对 AI 编程，我们既要保持开放，也要保持判断；既要善用工具，也不能放弃人的责任。该借力时借力，该验证时验证，该坚持原则时坚持原则，该改变模式时改变模式。这样，AI 才不会只是一个新工具，而会真正成为推动个人和团队进化的新能力。
-]]></content>
-      <tags>
-        <tag>AI</tag>
-        <tag>编程</tag>
-        <tag>方法论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ch 01.02:编译和运行是彼此独立的步骤</title>
-    <url>/2022/12/26/rust_docs/ch_01_02_hello_world/</url>
-    <content><![CDATA[编译和运行是彼此独立的步骤你刚刚运行了一个新的程序，所以让我们来检查一下这个过程的每一个步骤。
-在运行Rust程序之前，你必须通过rustc命令，用Rust编译器来编译这个它，并传入你源代码文件的名字，比如：
-$ rustc main.rs
-
-如果你有C或者C++的技术背景，你可以视作像gcc 或者clang。在编译成功之后，Rust 会输出一个二进制可执行文件。
-对于Linux,macOS和PowerShell on Windows,执行ls的shell命令之后，你就可以看到这个可执行文件。对于Linux，macOS，你可以看到两个文件。对于PowerShell on Windows,你会看到和使用CMD一样的三个文件。
-$ lsmain main.rs
-
-在Windows的CMD，输入命令：
-$ dir /B %= the /B option says to only show the file names =%main.exemain.pdbmain.rs
-
-这显示出以.rs为扩展名的源代码文件和可执行文件(main.exe on Windows, but main on all other platforms),并且，当使用Windows，一个文件包括了debugging信息的.pdb扩展名。到此，你可以开始运行main 或者main.exe文件，如：
-$ ./main # or .\main.exe on Windows
-
-如果main.rs是你的”Hello,world!”程序，这行将打印出”Hello,world!”到你的屏幕。
-如果你更加熟悉动态语言，如Ruby,Python, JavaScript, 你也许不习惯将编译和运行分为两个单独的步骤。Rust是一个预编译(ahead-of-time compiled)语言，代表你可以编译一个程序并且给可执行文件其他人，并且他们可以直接运行，不需要安装Rust。如果你给某人一个a.rb, .py, .js文件，他们需要安装一个Ruby,Python 或者JavaScript 实现(运行环境)。不过这些语言中，只需要一句命令就可以编译和运行程序。所有的事都是语言设计上的取舍。
-仅仅使用rustc编译简单程序是没有问题的。但是随着你的项目发展，你会想要管理所有的选项，使得更简单地共享你的代码。接下来，我们将介绍给你一个叫做Cargo的工具，它将帮助你编写真实世界的Rust程序。
+是时候通过构建更实质性的程序来熟悉写Rust代码了。所以在Chapter 2,我们将构建一个猜数字的游戏程序。如果你更想从学习Rust常用的编程概念开始，请阅读Chapter 3，接着回来看Chapter 2.
 ]]></content>
       <tags>
         <tag>Rust</tag>
@@ -633,49 +622,6 @@ $ ./main # or .\main.exe on Windows
     <title>Ch 03.00:关键字(Keywords)</title>
     <url>/2022/12/29/rust_docs/ch_03_00_common_programming_concepts/</url>
     <content><![CDATA[关键字(Keywords)Rust语言有一个关键字集合，这些关键字预留给语言本使用，和其他大部分语言一样。牢记在心，你不能使用这些单词作为变量名或者函数名。大部分的关键字有其特殊的意义，而且你会用这些关键字来做各种各样的任务在Rust程序里。一些关键词目前没有相应的功能，是为了将来可能添加的功能预留的。可以在Appendix A(https://doc.rust-lang.org/book/appendix-01-keywords.html)查看
-]]></content>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ch 03.01:隐藏(Shadowing)</title>
-    <url>/2022/12/29/rust_docs/ch_03_01_variables_and_mutability/</url>
-    <content><![CDATA[隐藏(Shadowing)如你在第二章猜数字游戏教程所见，你可以声明一个新的变量用和前面声明的变量同样的名字。Rustaceans说第一个变量被第二个隐藏(Shadowing)了，意思是第二个变量的值是在程序使用时才看到的。我们可以shadow一个变量使用相同的变量名，并重复地使用let关键字，如下：
-src&#x2F;main.rs
-fn main() &#123;    let x = 5;    let x = x + 1;    &#123;        let x = x * 2;        println!(&quot;The value of x in the inner scope is: &#123;&#125;&quot;, x);    &#125;    println!(&quot;The value of x is: &#123;&#125;&quot;, x);&#125;
-
-程序首先绑定了5给x。然后重新用let x&#x3D;隐藏了x，使得原来的值加1，所以变量的值变为了6。然后，在内部作用域，第三次let声明x, 将之前的值乘以2得到12。当内部作用结束，内部的隐藏结束，并且x变回6。当我们运行这个程序，它运行结果如下：
-$ cargo run   Compiling variables v0.1.0 (file:///projects/variables)    Finished dev [unoptimized + debuginfo] target(s) in 0.31s     Running `target/debug/variables`The value of x in the inner scope is: 12The value of x is: 6
-
-隐藏不同于将变量标记为mut，因为如果我们意外地尝试重新分配这个变量不使用let关键字，我们会得到一个编译错误。通过使用let，我们可以对一个值执行一些转换，但在这些转换完成后，变量是不可变的。
-其他的mut和shadowing之间的不同之处是因为当我们再次使用let关键字，我们实际上创建了一个新的变量。例如，假如我们的程序要求用户输入空格来显示文本之间需要多少空格，然后我们希望将输入存储为数字：
-fn main() &#123;    let spaces = &quot;   &quot;;    let spaces = spaces.len();&#125;
-
-首先spaces变量是一个string类型，然后第二个spaces变量是数字类型。因此shadowing使我们不需使用不同的变量名，如space_str 和 space_num；然而，如果我们尝试使用mut，如下，我们会得到一个编译时错误：
-fn main() &#123;    let mut spaces = &quot;   &quot;;    spaces = spaces.len();&#125;
-
-错误说我们不被允许转变变量的类型：
-$ cargo run   Compiling variables v0.1.0 (file:///projects/variables)error[E0308]: mismatched types --&gt; src/main.rs:3:14  |3 |     spaces = spaces.len();  |              ^^^^^^^^^^^^ expected `&amp;str`, found `usize`For more information about this error, try `rustc --explain E0308`.error: could not compile `variables` due to previous error
-
-现在，我们探索了变量是如何工作的，我们还有更多的数据类型等着你呢！
-]]></content>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ch 03.02:无效的数组元素访问</title>
-    <url>/2022/12/29/rust_docs/ch_03_02_data_types/</url>
-    <content><![CDATA[无效的数组元素访问让我们看看发生了什么，如果你尝试访问数组的一个元素，这个元素在数组的结尾之后呢。运行如下的代码，类似于第二章猜数字游戏，从用户输入那里获取数组索引：
-src&#x2F;main.rs
-use std::io;fn main() &#123;    let a = [1, 2, 3, 4, 5];    println!(&quot;Please enter an array index.&quot;);    let mut index = String::new();    io::stdin()        .read_line(&amp;mut index)        .expect(&quot;Failed to read line&quot;);    let index: usize = index        .trim()        .parse()        .expect(&quot;Index entered was not a number&quot;);    let element = a[index];    println!(        &quot;The value of the element at index &#123;&#125; is: &#123;&#125;&quot;,        index, element    );&#125;
-
-这段代码编译成功。如果运行这段代码使用cargo run然后输入0，1，2，3，4，这个程序会打印出在数组内对应索引的值。如果你输入一个超出范围的数字，比如10，你会看到输出如：
-thread &#x27;main&#x27; panicked at &#x27;index out of bounds: the len is 5 but the index is 10&#x27;, src/main.rs:19:19note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
-
-当你使用这个无效的值索引的时候，程序的结果是在运行时间的错误。程序退出并返回错误信息，并且没有运行最后的println!语句。当你试图用一个索引访问一个元素，Rust会检查你指定的这个索引是否会超过数组的长度。如果索引与数组长度相同或者更大，Rust就会死给你看。这个检查在运行时间，特别在这个例子中，因为编译器在编译完之后就不可能知道用户会输入什么。
-这是一个Rust的内存安全原则示例的表现。在很多底层代码语言中，当你提供一个错误的索引，这种类型的检查它们是不做的，无效内存就会被访问，会导致你不知道你到底访问到了别的什么奇奇怪怪的值。Rust项目中会立即退出，而不是允许你继续访问，从而保护你面授此类错误的影响。第九章将会讨论Rust的错误处理。
 ]]></content>
       <tags>
         <tag>Rust</tag>
@@ -713,6 +659,83 @@ Listing 2-6 Complete guessing game code
       </tags>
   </entry>
   <entry>
+    <title>About me</title>
+    <url>/2023/08/17/about/me/</url>
+    <content><![CDATA[我是 Ice，一名程序员。
+主业做后端开发，长期和 Python 打交道；业余折腾 Rust、AI 工具和各类效率小玩意。
+这里主要记录：
+
+Rust 学习笔记
+AI 工具的折腾与使用实录
+一些随想和读书笔记
+
+联系方式：
+
+GitHub：TonyMistark
+E-Mail：tony_mistark@163.com
+
+本站使用 Hexo + NexT 搭建。
+]]></content>
+  </entry>
+  <entry>
+    <title>Ch 03.01:隐藏(Shadowing)</title>
+    <url>/2022/12/29/rust_docs/ch_03_01_variables_and_mutability/</url>
+    <content><![CDATA[隐藏(Shadowing)如你在第二章猜数字游戏教程所见，你可以声明一个新的变量用和前面声明的变量同样的名字。Rustaceans说第一个变量被第二个隐藏(Shadowing)了，意思是第二个变量的值是在程序使用时才看到的。我们可以shadow一个变量使用相同的变量名，并重复地使用let关键字，如下：
+src&#x2F;main.rs
+fn main() &#123;    let x = 5;    let x = x + 1;    &#123;        let x = x * 2;        println!(&quot;The value of x in the inner scope is: &#123;&#125;&quot;, x);    &#125;    println!(&quot;The value of x is: &#123;&#125;&quot;, x);&#125;
+
+程序首先绑定了5给x。然后重新用let x&#x3D;隐藏了x，使得原来的值加1，所以变量的值变为了6。然后，在内部作用域，第三次let声明x, 将之前的值乘以2得到12。当内部作用结束，内部的隐藏结束，并且x变回6。当我们运行这个程序，它运行结果如下：
+$ cargo run   Compiling variables v0.1.0 (file:///projects/variables)    Finished dev [unoptimized + debuginfo] target(s) in 0.31s     Running `target/debug/variables`The value of x in the inner scope is: 12The value of x is: 6
+
+隐藏不同于将变量标记为mut，因为如果我们意外地尝试重新分配这个变量不使用let关键字，我们会得到一个编译错误。通过使用let，我们可以对一个值执行一些转换，但在这些转换完成后，变量是不可变的。
+其他的mut和shadowing之间的不同之处是因为当我们再次使用let关键字，我们实际上创建了一个新的变量。例如，假如我们的程序要求用户输入空格来显示文本之间需要多少空格，然后我们希望将输入存储为数字：
+fn main() &#123;    let spaces = &quot;   &quot;;    let spaces = spaces.len();&#125;
+
+首先spaces变量是一个string类型，然后第二个spaces变量是数字类型。因此shadowing使我们不需使用不同的变量名，如space_str 和 space_num；然而，如果我们尝试使用mut，如下，我们会得到一个编译时错误：
+fn main() &#123;    let mut spaces = &quot;   &quot;;    spaces = spaces.len();&#125;
+
+错误说我们不被允许转变变量的类型：
+$ cargo run   Compiling variables v0.1.0 (file:///projects/variables)error[E0308]: mismatched types --&gt; src/main.rs:3:14  |3 |     spaces = spaces.len();  |              ^^^^^^^^^^^^ expected `&amp;str`, found `usize`For more information about this error, try `rustc --explain E0308`.error: could not compile `variables` due to previous error
+
+现在，我们探索了变量是如何工作的，我们还有更多的数据类型等着你呢！
+]]></content>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 00.00:欢迎来到Rust编程语言世界！</title>
+    <url>/2022/12/24/rust_docs/ch_00_00_introducation/</url>
+    <content><![CDATA[欢迎来到Rust编程语言世界！不管写的好与差，挖坑先，要不然永远不会开始。
+Hello, World!
+fn main() &#123;    println!(&quot;Hello, World!&quot;);&#125;
+
+2022计划开始一系列关于学习Rust入门的学习笔记，主要是根据官方的文档入门学习。
+Rust程序设计语言能帮助你编写更快，更可靠的软件。在编程语言的设计中，高层工程学和底层控制常常是冲突的。Rust挑战了这种冲突。通过平衡强大的技术能力（powerful technical capacity）和 极好的开发者体验（great developer experience）,Rust 可以控制底层的细节（比如内存的使用）但不用忍受传统同类型语言那些困扰。
+Rust 已经在证明着自己，对于学习过编程知识的不同水平的开发者来说，如果他们开发大型协同项目都是不错的生产工具。底层的代码容易产生各种不易发现的bugs,在其他编程语言中，要发现这些bugs只能通过广泛的测试和团队中经验丰富的大佬们仔细的评审（review）。在Rust设计中，编译器（compiler）扮演着守门员的角色，它会拒绝包含各种bugs代码的编译。通过编译器的帮忙，开发团队将会把更多的时间用在程序的逻辑上，而不是one day day 地在写bugs与修bugs之间疲于奔命。
+]]></content>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 03.02:无效的数组元素访问</title>
+    <url>/2022/12/29/rust_docs/ch_03_02_data_types/</url>
+    <content><![CDATA[无效的数组元素访问让我们看看发生了什么，如果你尝试访问数组的一个元素，这个元素在数组的结尾之后呢。运行如下的代码，类似于第二章猜数字游戏，从用户输入那里获取数组索引：
+src&#x2F;main.rs
+use std::io;fn main() &#123;    let a = [1, 2, 3, 4, 5];    println!(&quot;Please enter an array index.&quot;);    let mut index = String::new();    io::stdin()        .read_line(&amp;mut index)        .expect(&quot;Failed to read line&quot;);    let index: usize = index        .trim()        .parse()        .expect(&quot;Index entered was not a number&quot;);    let element = a[index];    println!(        &quot;The value of the element at index &#123;&#125; is: &#123;&#125;&quot;,        index, element    );&#125;
+
+这段代码编译成功。如果运行这段代码使用cargo run然后输入0，1，2，3，4，这个程序会打印出在数组内对应索引的值。如果你输入一个超出范围的数字，比如10，你会看到输出如：
+thread &#x27;main&#x27; panicked at &#x27;index out of bounds: the len is 5 but the index is 10&#x27;, src/main.rs:19:19note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+当你使用这个无效的值索引的时候，程序的结果是在运行时间的错误。程序退出并返回错误信息，并且没有运行最后的println!语句。当你试图用一个索引访问一个元素，Rust会检查你指定的这个索引是否会超过数组的长度。如果索引与数组长度相同或者更大，Rust就会死给你看。这个检查在运行时间，特别在这个例子中，因为编译器在编译完之后就不可能知道用户会输入什么。
+这是一个Rust的内存安全原则示例的表现。在很多底层代码语言中，当你提供一个错误的索引，这种类型的检查它们是不做的，无效内存就会被访问，会导致你不知道你到底访问到了别的什么奇奇怪怪的值。Rust项目中会立即退出，而不是允许你继续访问，从而保护你面授此类错误的影响。第九章将会讨论Rust的错误处理。
+]]></content>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ch 03.03:函数(Functions)</title>
     <url>/2022/12/29/rust_docs/ch_03_03_how_functions_work/</url>
     <content><![CDATA[函数(Functions)函数在Rust代码中是很普遍的。你已经看了在语言中最重要的函数之一：main函数，是很多程序的入口。你也看到了fn关键字，它允许你声明一个新的函数。
@@ -737,49 +760,6 @@ fn main() &#123;    let x = plus_one(5);    println!(&quot;The value of x is: &#
       </tags>
   </entry>
   <entry>
-    <title>Ch 03.04:注释(Comments)</title>
-    <url>/2022/12/29/rust_docs/ch_03_04_comments/</url>
-    <content><![CDATA[注释(Comments)所有的程序设计人员努力使他们的代码更容易理解，但是有时候额外的解释是有必要的。在这种情况下程序设计人员在源代码中留下注释(comments)，编译器会忽略这些注释，但是人阅读源码会发现它很有用。
-这里有一个简单的注释例子：
-#![allow(unused)]fn main() &#123;// So we’re doing something complicated here, long enough that we need// multiple lines of comments to do it! Whew! Hopefully, this comment will// explain what’s going on.&#125;
-
-注释可以放在代码行结尾：
-src&#x2F;main.rs
-fn main() &#123;    let lucky_number = 7; // I’m feeling lucky today&#125;
-
-但是你经常看到更多是如下的格式，在代码的上方的单独一行注释：
-fn main() &#123;    // I’m feeling lucky today    let lucky_number = 7;&#125;
-
-Rust 也有其他类型的注释，文档注释(documentation comments)，详细在第14章的”Publishing a Crate to Crates.io” 部分介绍。
-]]></content>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ch 01.03:养成使用Cargo习惯</title>
-    <url>/2022/12/27/rust_docs/ch_01_03_hello_cargo/</url>
-    <content><![CDATA[养成使用Cargo习惯对于简单的项目，和rustc相比，Cargo不能提供多大的价值，但是对于复杂的项目，安装了很多crates, 它将会证明它的价值所在。让Cargo来协调构建工作会变得容易更多。
-即使hello_cargo这么简单的项目，它现在使用了很多你之后的Rust生涯将会用到的使用工具。其实，要在任何已存在的项目上工作时，可以使用如下的命令通过Git拿到代码，移动到你的projects目录，并构建：
-$ git clone example.org/someproject$ cd someproject$ cargo build
-
-更多关于Cargo详情，请查看Cargo 文档(https://doc.rust-lang.org/cargo/)
-总结
-对于你的Rust之旅，你已经有一个很棒的开始了！本章你已经学会了如何：
-
-使用rustup安装最新稳定版Rust
-更新到新版的Rust
-打开本地安装的文档
-直接通过rustc编写并运行”Hello,world!”程序
-使用Cargo创建并运行项目
-
-是时候通过构建更实质性的程序来熟悉写Rust代码了。所以在Chapter 2,我们将构建一个猜数字的游戏程序。如果你更想从学习Rust常用的编程概念开始，请阅读Chapter 3，接着回来看Chapter 2.
-]]></content>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Ch 03.05:总结(Summary)</title>
     <url>/2022/12/29/rust_docs/ch_03_05_control_flow/</url>
     <content><![CDATA[总结(Summary)你做到了！这是相当大的一章：你学习了关于variables, scalar and compound data type, functions, comments, if expressions, and loops! 讨论并练习这些概念。尝试构建如下的程序：
@@ -798,6 +778,26 @@ $ git clone example.org/someproject$ cd someproject$ cargo build
     <title>Ch 04.00:Understanding Ownership</title>
     <url>/2022/12/29/rust_docs/ch_04_00_understanding_ownership/</url>
     <content><![CDATA[Understanding OwnershipOwnership 是Rust最独特的特性，并且对剩下的部分有着深刻的意义。它能让Rust在不需要垃圾回收(garbage collection)就能保证内存安全，所以能够很好地理解owership是如何工作的是非常重要的。在本章，我们将讲和ownership关联的一些特性：borrowing, slice, 和Rust如何在内存中布局数据。
+]]></content>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 03.04:注释(Comments)</title>
+    <url>/2022/12/29/rust_docs/ch_03_04_comments/</url>
+    <content><![CDATA[注释(Comments)所有的程序设计人员努力使他们的代码更容易理解，但是有时候额外的解释是有必要的。在这种情况下程序设计人员在源代码中留下注释(comments)，编译器会忽略这些注释，但是人阅读源码会发现它很有用。
+这里有一个简单的注释例子：
+#![allow(unused)]fn main() &#123;// So we’re doing something complicated here, long enough that we need// multiple lines of comments to do it! Whew! Hopefully, this comment will// explain what’s going on.&#125;
+
+注释可以放在代码行结尾：
+src&#x2F;main.rs
+fn main() &#123;    let lucky_number = 7; // I’m feeling lucky today&#125;
+
+但是你经常看到更多是如下的格式，在代码的上方的单独一行注释：
+fn main() &#123;    // I’m feeling lucky today    let lucky_number = 7;&#125;
+
+Rust 也有其他类型的注释，文档注释(documentation comments)，详细在第14章的”Publishing a Crate to Crates.io” 部分介绍。
 ]]></content>
       <tags>
         <tag>Rust</tag>
@@ -840,35 +840,10 @@ Listing 4-5: Returning ownership of parameters
       </tags>
   </entry>
   <entry>
-    <title>Ch 05.00:Using Structs to Structure Related Data</title>
-    <url>/2022/12/29/rust_docs/ch_05_00_structs/</url>
-    <content><![CDATA[Using Structs to Structure Related Datastruct or structure 是一个自定义的数据类型，允许你包装和命名多个相关联的值，从而形成一个有意义的组合。如果你熟悉一门面向对象语言，struct就像对象中的数据属性。在本章中，我们会对元组和结构体进行对比和对照。还将演示如何定义和实现实例化结构体，并讨论如何定义关联函数，特别是被称为方法的那种关联函数，以指定与结构体类型相关的行为。你可以在程序中基于结构体和枚举(enum)（在第六章中介绍）创建新类型，以充分利用Rust的编译时类型检查。
-]]></content>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Ch 04.03:总结</title>
     <url>/2022/12/29/rust_docs/ch_04_03_slices/</url>
     <content><![CDATA[总结所有权、借用和slice这些概念让Rust程序在编译时保证内存安全。Rust语言提供了跟其他系统编程语言相同的方式来控制你使用内存，但拥有数据所有者在离开作用域后自动清除其数据的功能意味着你无需额外编写和调试相关的控制代码。
 所有权系统影响了Rust中很多其他部分的工作方式，所以我们还会继续讲到这些概念，这将贯穿本书余下的内容。让我们开始第五章吧，来看看如何将多份数据组合进一个struct中。
-]]></content>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ch 05.01:结构体数据的所有权(Ownership of Struct Data)</title>
-    <url>/2022/12/29/rust_docs/ch_05_01_defining_and_instantiating_structs/</url>
-    <content><![CDATA[结构体数据的所有权(Ownership of Struct Data)在Listing 5-1中的User结构体定义中，我们使用了自身拥有所有权的String类型而不是&amp;str字符串slice类型。这是一个有意为之的选择，因为我们想要这个结构体拥有它所有的数据，为此只要整个结构体是有效的话数据也是有效的。可以使结构体存储被其他对象拥有的数据的引用，不过这么做的话需要用上生命周期(lifetimes)，这是一个第十章会讨论的Rust功能。生命周期确保结构体引用的数据有效性跟结构体本身保持一致。如果你尝试在结构体中存储一个引用而不是指定生命周期将是无效的，比如这样：
-filename: src&#x2F;main.rs
-struct User &#123;    active: bool,    username: &amp;str,    email: &amp;str,    sign_in_count: u64,&#125;fn main() &#123;    let user1 = User &#123;        email: &quot;someone@example.com&quot;,        username: &quot;someusername123&quot;,        active: true,        sign_in_count: 1,    &#125;;&#125;
-
-编译器会控诉它需要生命周期标识符：
-$ cargo run   Compiling structs v0.1.0 (file:///projects/structs)error[E0106]: missing lifetime specifier --&gt; src/main.rs:3:15  |3 |     username: &amp;str,  |               ^ expected named lifetime parameter  |help: consider introducing a named lifetime parameter  |1 ~ struct User&lt;&#x27;a&gt; &#123;2 |     active: bool,3 ~     username: &amp;&#x27;a str,  |error[E0106]: missing lifetime specifier --&gt; src/main.rs:4:12  |4 |     email: &amp;str,  |            ^ expected named lifetime parameter  |help: consider introducing a named lifetime parameter  |1 ~ struct User&lt;&#x27;a&gt; &#123;2 |     active: bool,3 |     username: &amp;str,4 ~     email: &amp;&#x27;a str,  |For more information about this error, try `rustc --explain E0106`.error: could not compile `structs` due to 2 previous errors=
-
-第十章会讲到如何修复这个问题以便在结构体中存储引用，不过现在，我们使用像String这类拥有所有权的类型来替代&amp;str这样的引用以修正这个错误。
 ]]></content>
       <tags>
         <tag>Rust</tag>
@@ -893,6 +868,22 @@ $ cargo run   Compiling rectangles v0.1.0 (file:///projects/rectangles)    Finis
       </tags>
   </entry>
   <entry>
+    <title>Ch 05.01:结构体数据的所有权(Ownership of Struct Data)</title>
+    <url>/2022/12/29/rust_docs/ch_05_01_defining_and_instantiating_structs/</url>
+    <content><![CDATA[结构体数据的所有权(Ownership of Struct Data)在Listing 5-1中的User结构体定义中，我们使用了自身拥有所有权的String类型而不是&amp;str字符串slice类型。这是一个有意为之的选择，因为我们想要这个结构体拥有它所有的数据，为此只要整个结构体是有效的话数据也是有效的。可以使结构体存储被其他对象拥有的数据的引用，不过这么做的话需要用上生命周期(lifetimes)，这是一个第十章会讨论的Rust功能。生命周期确保结构体引用的数据有效性跟结构体本身保持一致。如果你尝试在结构体中存储一个引用而不是指定生命周期将是无效的，比如这样：
+filename: src&#x2F;main.rs
+struct User &#123;    active: bool,    username: &amp;str,    email: &amp;str,    sign_in_count: u64,&#125;fn main() &#123;    let user1 = User &#123;        email: &quot;someone@example.com&quot;,        username: &quot;someusername123&quot;,        active: true,        sign_in_count: 1,    &#125;;&#125;
+
+编译器会控诉它需要生命周期标识符：
+$ cargo run   Compiling structs v0.1.0 (file:///projects/structs)error[E0106]: missing lifetime specifier --&gt; src/main.rs:3:15  |3 |     username: &amp;str,  |               ^ expected named lifetime parameter  |help: consider introducing a named lifetime parameter  |1 ~ struct User&lt;&#x27;a&gt; &#123;2 |     active: bool,3 ~     username: &amp;&#x27;a str,  |error[E0106]: missing lifetime specifier --&gt; src/main.rs:4:12  |4 |     email: &amp;str,  |            ^ expected named lifetime parameter  |help: consider introducing a named lifetime parameter  |1 ~ struct User&lt;&#x27;a&gt; &#123;2 |     active: bool,3 |     username: &amp;str,4 ~     email: &amp;&#x27;a str,  |For more information about this error, try `rustc --explain E0106`.error: could not compile `structs` due to 2 previous errors=
+
+第十章会讲到如何修复这个问题以便在结构体中存储引用，不过现在，我们使用像String这类拥有所有权的类型来替代&amp;str这样的引用以修正这个错误。
+]]></content>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ch 05.03:总结(Summary)</title>
     <url>/2022/12/29/rust_docs/ch_05_03_method_syntax/</url>
     <content><![CDATA[总结(Summary)结构体让你创建自定义的类型在你的domain中。通过使用结构体，你可以将数据关联起来，使得它看起来更加清晰。在impl块内，你可以定义函数并关联你的类型，而且方法是一个很好的关联方式，它让你的结构体有了可以指定它特定行为的能力。
@@ -907,6 +898,29 @@ $ cargo run   Compiling rectangles v0.1.0 (file:///projects/rectangles)    Finis
     <url>/2022/12/29/rust_docs/ch_06_00_enums_and_pattern_matching/</url>
     <content><![CDATA[Enums and Pattern Matching本章中，我们讲述枚举(enumerations)，也称作enums。枚举允许你通过列举可能的成员(variants)来定义一个类型。首先，我们会定义并使用一个枚举来展示它是如何连同数据一起编码信息的。接下来，我们会探索一个特别有用的枚举，叫做Option，它代表一个值，要么是某个值要么是什么都不是。然后会讲到match表达式中使用模式匹配，针对不同的枚举值编写相应要执行的代码。然后会介绍if let，另一个简洁方便处理代码中枚举的结构。
 枚举是一个很多语言都有的功能，不过不同语言中其功能各不相同。Rust的枚举与F#，OCaml和Haskell这样的函数式编程语言中的代数数据类型(olgebraic data types)最为相似。
+]]></content>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 06.02:通用模式和_占位符(Catch-all Patterns and the _ Placeholder)</title>
+    <url>/2022/12/29/rust_docs/ch_06_02_match/</url>
+    <content><![CDATA[通用模式和_占位符(Catch-all Patterns and the _ Placeholder)使用枚举，我们希望对一些特定的值采取特殊操作，而对其他的值采用默认操作。想象我们正在玩一个游戏，如果你掷出一个骰子的值为3，角色不会移动，而是会得到一顶新奇的帽子。如果你掷出了7，你的角色将会失去新奇的帽子。对于其他的数值，你的角色会在棋盘上移动想的格子。这是一个实现了上述逻辑的match。骰子的结果是硬编码而不是一个随机值，其他的逻辑部分使用了没有函数体的函数来表示，实现它们超出了本例的范围：
+fn main() &#123;    let dice_roll = 9;    match dice_roll &#123;        3 =&gt; add_fancy_hat(),        7 =&gt; remove_fancy_hat(),        other =&gt; move_player(other),    &#125;    fn add_fancy_hat() &#123;&#125;    fn remove_fancy_hat() &#123;&#125;    fn move_player(num_spaces: u8) &#123;&#125;&#125;
+
+对于前两个分支，匹配模式是字面值3和7，最后一个分支则涵盖了所有其他可能性的值，模式使我们命名为other的一个变量。other分支的代码通过将其传递给move_player函数来使用这个变量。
+即使我们没有列出u8所有可能的值，这段代码依然能够编译，因为最后一个模式将匹配所有未被特殊列出的值。这种通配模式满足了match必须穷尽的要求。请注意，我们必须将通过通配分支放在最后，因为模式是按顺序匹配的。如果哦我们在通配分支后添加其他分支，Rust将会警告我们，因为此后的分支永远不会被匹配到。
+Rust还提供了一个模式，当我们不想使用通配模式的值时，请使用_，这是一个特殊模式，可以匹配任意值而不用绑定到该值。这告诉Rust我们不会使用这个值，所以Rust也不会警告我们存在未使用的变量。
+让我们改变游戏规则：现在，当你掷出的值不是3或7的时候，你必须再次掷出。这种情况下我们不需要使用这个值，所以我们改动代码使用_来替代变量other：
+fn main() &#123;    let dice_roll = 9;    match dice_roll &#123;        3 =&gt; add_fancy_hat(),        7 =&gt; remove_fancy_hat(),        _ =&gt; reroll(),    &#125;    fn add_fancy_hat() &#123;&#125;    fn remove_fancy_hat() &#123;&#125;    fn reroll() &#123;&#125;&#125;
+
+这个例子也满足穷举性要求，因为我们在最后一个分支中明确地忽略了其他的值。我们没有忘记任何东西。
+最后，我们再次改动游戏规则，如果投掷出3或者7以外的值，你的回合将无事发生。我们可以使用单元值(unit value：就是空的tuple，在”The Tuple Type”部分有提及)作为_分支的代码：
+fn main() &#123;    let dice_roll = 9;    match dice_roll &#123;        3 =&gt; add_fancy_hat(),        7 =&gt; remove_fancy_hat(),        _ =&gt; (),    &#125;    fn add_fancy_hat() &#123;&#125;    fn remove_fancy_hat() &#123;&#125;&#125;
+
+在这里，我们明确告诉Rust我们不会使用与前面模式不匹配的值，并且这种情况下我们不想运行任何代码。
+更详细的模式匹配相关我们将会在Chapter 18进行讲解。目前，我们继续讨论if let语法，这在match表达式有点冗长的情况下比较有用。
 ]]></content>
       <tags>
         <tag>Rust</tag>
@@ -950,54 +964,20 @@ $ cargo run   Compiling enums v0.1.0 (file:///projects/enums)error[E0277]: canno
       </tags>
   </entry>
   <entry>
+    <title>Ch 05.00:Using Structs to Structure Related Data</title>
+    <url>/2022/12/29/rust_docs/ch_05_00_structs/</url>
+    <content><![CDATA[Using Structs to Structure Related Datastruct or structure 是一个自定义的数据类型，允许你包装和命名多个相关联的值，从而形成一个有意义的组合。如果你熟悉一门面向对象语言，struct就像对象中的数据属性。在本章中，我们会对元组和结构体进行对比和对照。还将演示如何定义和实现实例化结构体，并讨论如何定义关联函数，特别是被称为方法的那种关联函数，以指定与结构体类型相关的行为。你可以在程序中基于结构体和枚举(enum)（在第六章中介绍）创建新类型，以充分利用Rust的编译时类型检查。
+]]></content>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ch 06.03:总结</title>
     <url>/2023/05/16/rust_docs/ch_06_03_if_let/</url>
     <content><![CDATA[总结现在我们学习了如何使用枚举创建自定义类型。我们也展示了标准库的Option&lt;T&gt;类型是如何帮助你利用类型系统来避免出错的。当枚举值包含数据时，你可以根据你需要处理多少种情况来选择使用mathc或者if let来提取或者使用这些值。
 你的Rust程序现在能够使用结构体和枚举在你自己的作用域内表现其内容了。在你的API中使用定义类型保证了类型安全：编译器会确保你的函数只会得到它期望的类型的值。
 为了提供一个有条理的API给你的用户，它使用起来很简单易懂，值暴露了你的用户需要的东西，现在我们准备开始学习Rust的模块。
-]]></content>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ch 06.02:通用模式和_占位符(Catch-all Patterns and the _ Placeholder)</title>
-    <url>/2022/12/29/rust_docs/ch_06_02_match/</url>
-    <content><![CDATA[通用模式和_占位符(Catch-all Patterns and the _ Placeholder)使用枚举，我们希望对一些特定的值采取特殊操作，而对其他的值采用默认操作。想象我们正在玩一个游戏，如果你掷出一个骰子的值为3，角色不会移动，而是会得到一顶新奇的帽子。如果你掷出了7，你的角色将会失去新奇的帽子。对于其他的数值，你的角色会在棋盘上移动想的格子。这是一个实现了上述逻辑的match。骰子的结果是硬编码而不是一个随机值，其他的逻辑部分使用了没有函数体的函数来表示，实现它们超出了本例的范围：
-fn main() &#123;    let dice_roll = 9;    match dice_roll &#123;        3 =&gt; add_fancy_hat(),        7 =&gt; remove_fancy_hat(),        other =&gt; move_player(other),    &#125;    fn add_fancy_hat() &#123;&#125;    fn remove_fancy_hat() &#123;&#125;    fn move_player(num_spaces: u8) &#123;&#125;&#125;
-
-对于前两个分支，匹配模式是字面值3和7，最后一个分支则涵盖了所有其他可能性的值，模式使我们命名为other的一个变量。other分支的代码通过将其传递给move_player函数来使用这个变量。
-即使我们没有列出u8所有可能的值，这段代码依然能够编译，因为最后一个模式将匹配所有未被特殊列出的值。这种通配模式满足了match必须穷尽的要求。请注意，我们必须将通过通配分支放在最后，因为模式是按顺序匹配的。如果哦我们在通配分支后添加其他分支，Rust将会警告我们，因为此后的分支永远不会被匹配到。
-Rust还提供了一个模式，当我们不想使用通配模式的值时，请使用_，这是一个特殊模式，可以匹配任意值而不用绑定到该值。这告诉Rust我们不会使用这个值，所以Rust也不会警告我们存在未使用的变量。
-让我们改变游戏规则：现在，当你掷出的值不是3或7的时候，你必须再次掷出。这种情况下我们不需要使用这个值，所以我们改动代码使用_来替代变量other：
-fn main() &#123;    let dice_roll = 9;    match dice_roll &#123;        3 =&gt; add_fancy_hat(),        7 =&gt; remove_fancy_hat(),        _ =&gt; reroll(),    &#125;    fn add_fancy_hat() &#123;&#125;    fn remove_fancy_hat() &#123;&#125;    fn reroll() &#123;&#125;&#125;
-
-这个例子也满足穷举性要求，因为我们在最后一个分支中明确地忽略了其他的值。我们没有忘记任何东西。
-最后，我们再次改动游戏规则，如果投掷出3或者7以外的值，你的回合将无事发生。我们可以使用单元值(unit value：就是空的tuple，在”The Tuple Type”部分有提及)作为_分支的代码：
-fn main() &#123;    let dice_roll = 9;    match dice_roll &#123;        3 =&gt; add_fancy_hat(),        7 =&gt; remove_fancy_hat(),        _ =&gt; (),    &#125;    fn add_fancy_hat() &#123;&#125;    fn remove_fancy_hat() &#123;&#125;&#125;
-
-在这里，我们明确告诉Rust我们不会使用与前面模式不匹配的值，并且这种情况下我们不想运行任何代码。
-更详细的模式匹配相关我们将会在Chapter 18进行讲解。目前，我们继续讨论if let语法，这在match表达式有点冗长的情况下比较有用。
-]]></content>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ch 07.00:使用包、Crate和模块管理不断增长的项目</title>
-    <url>/2023/05/18/rust_docs/ch_07_00_managing_growing_projects_with_packages_crates_and_modules/</url>
-    <content><![CDATA[使用包、Crate和模块管理不断增长的项目当你编写大型程序时，组织代码将变得越来越重要。通过相关功能进行分组，并将具有不同特性的代码分开，你将可以清楚地在哪里可以找到现实特定特性的代码，以及在哪里可以更改一个特性的工作方式。
-到目前为止，我们编写的代码都只在一个文件中的一个模块中。 随着项目不断增长，你应该通过多个模块和多个文件来组织拆分你的代码。一个包可以包含多个二进制crates和一个可选的crate程序库。随着你的包的增长，你可以将部分提取到单独的crates使它变成外部依赖。本章涵盖了所有这些技巧。对于由一组相互关联的包组成的非常大的项目，Cargo提供了工作区(workspaces)，我们将在第14章”Cargo Workspaces”部分学习。
-我们还将讨论封装实现的细节，这让你可以高水平重用代码：一旦你实现了一个操作，其他代码可以通过代码的公共接口调用，无需知道你的实现过程是如何运作。编写代码的方式定义了那些部分是其他代码使用的公共部分，那些代码是你保留更改权利的私有实现细节。这是另一种限制，减少你必须记住项目内容细节的数量的方法。
-这里还一个相关的概念是作用域(scope)：代码所在的嵌套上下文有一组定义”in scope”的名称。当你阅读，编写和编译代码，程序设计师和编译器需要知道模块，常量或者其他有意义的项。你可以创建作用域并改变那些名称再作用域内还是在作用域外。同一个作用域不能拥有两个相同名称的项；可以使用一些工具来解决名称冲突。
-Rust有许多特性允许你来管理你的代码组织结构，包括那些内容可以被公开，那些内容作为私有部分，以及程序每个作用域中的名字。这些功能。有时被称为”模块系统(the module system)”，包括：
-
-包(Packages)：Cargo的一个功能，它允许你构建，测试和分享crate。
-Crates：一个模块的树形结构，它形成了库或者二进制项目。
-模块(Modules)和Use：允许你控制组织结构的作用域和路径的私有性。
-路径(path)：一个命名例如结构体，函数或模块等项的方式。
-
-在本章，我们将涵盖所有这些特性，讨论他们怎样相互作用，并解释如何使用他们管理作用域。最后，你应该对模块系统有一个坚实的理解，并能够像专业人士一样使用作用域！
 ]]></content>
       <tags>
         <tag>Rust</tag>
@@ -1049,19 +1029,6 @@ Listing 7-2: The module tree for the code in Listing 7-1
       </tags>
   </entry>
   <entry>
-    <title>Ch 07.04:全局操作符(The Glob Operator)</title>
-    <url>/2023/05/18/rust_docs/ch_07_04_bringing_paths_into_scope_with_the_use_key_word/</url>
-    <content><![CDATA[全局操作符(The Glob Operator)如果想将一个路径下所有公有项引入作用域，可以使用指定路径后跟*，glob操作符:
-use std::collections::*;
-
-这个use语句会将std::collections中定义的所有的公有项引入到当前作用域。使用全局操作符时一定要多加小心！全局操作符会使得我们难以推导作用域中有什么名称和它们是定义在何处。
-全局操作符经常用于测试模块tests中，这时会将所有内容引入作用域；我们将在第十一章”How to Write Tests”部分中讲解。全局操作符有时也用于preclude模式；查看”标准库文档”(https://doc.rust-lang.org/std/prelude/index.html#other-preludes)了解更多细节。
-]]></content>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Ch 07.03:创建公有的结构体和枚举(Making Structs and Enums Public)</title>
     <url>/2023/05/18/rust_docs/ch_07_03_paths_for_referring_to_an_item_the_the_module_tree/</url>
     <content><![CDATA[创建公有的结构体和枚举(Making Structs and Enums Public)我们也可以使用pub来指定结构体和枚举为公有，但是这里有一些额外的使用详情需要注意。如果我们在使用pub定义一个结构体，我们使得这个结构体为公有，但是结构体的字段将仍是私有的。我们可以视情况而定让每一个字段成为公有或者私有。在Listing 7-9中，我们定义了一个公有的back_of_house::Breakfast结构体并且toast为公有字段，而seasonal_fruit为私有字段。该模型以餐厅为例，顾客可以选择随餐面包的类型，但是主厨会根据当季水果和库存来搭配什么水果。可选择的水果变化很快，所以顾客不能选择水果，甚至不能看到他们能得到的水果。
@@ -1085,24 +1052,43 @@ Listing 7-10: Designating an enum as public makes all its variants public
       </tags>
   </entry>
   <entry>
-    <title>Ch 07.05:总结</title>
-    <url>/2023/05/18/rust_docs/ch_07_05_separating_modules_into_different_files/</url>
-    <content><![CDATA[总结Rust提供了将包分成多个crate，将crate分成模块，以及通过指定绝对或者相对路径从一个模块引用另一个模块中定义的项的方式。你可以指定绝对路径或者相对路径。这个路径可以通过use声明引入到作用域，所以你可以在多次使用时可以使用更短的路径。模块定义的代码默认是私有的，不过可以选择增加pub关键字使其定义为公有。
-接下来，我们来看一些标准库提供的集合数据类型，你可以利用它们写出更漂亮整洁的代码。
+    <title>Ch 07.00:使用包、Crate和模块管理不断增长的项目</title>
+    <url>/2023/05/18/rust_docs/ch_07_00_managing_growing_projects_with_packages_crates_and_modules/</url>
+    <content><![CDATA[使用包、Crate和模块管理不断增长的项目当你编写大型程序时，组织代码将变得越来越重要。通过相关功能进行分组，并将具有不同特性的代码分开，你将可以清楚地在哪里可以找到现实特定特性的代码，以及在哪里可以更改一个特性的工作方式。
+到目前为止，我们编写的代码都只在一个文件中的一个模块中。 随着项目不断增长，你应该通过多个模块和多个文件来组织拆分你的代码。一个包可以包含多个二进制crates和一个可选的crate程序库。随着你的包的增长，你可以将部分提取到单独的crates使它变成外部依赖。本章涵盖了所有这些技巧。对于由一组相互关联的包组成的非常大的项目，Cargo提供了工作区(workspaces)，我们将在第14章”Cargo Workspaces”部分学习。
+我们还将讨论封装实现的细节，这让你可以高水平重用代码：一旦你实现了一个操作，其他代码可以通过代码的公共接口调用，无需知道你的实现过程是如何运作。编写代码的方式定义了那些部分是其他代码使用的公共部分，那些代码是你保留更改权利的私有实现细节。这是另一种限制，减少你必须记住项目内容细节的数量的方法。
+这里还一个相关的概念是作用域(scope)：代码所在的嵌套上下文有一组定义”in scope”的名称。当你阅读，编写和编译代码，程序设计师和编译器需要知道模块，常量或者其他有意义的项。你可以创建作用域并改变那些名称再作用域内还是在作用域外。同一个作用域不能拥有两个相同名称的项；可以使用一些工具来解决名称冲突。
+Rust有许多特性允许你来管理你的代码组织结构，包括那些内容可以被公开，那些内容作为私有部分，以及程序每个作用域中的名字。这些功能。有时被称为”模块系统(the module system)”，包括：
+
+包(Packages)：Cargo的一个功能，它允许你构建，测试和分享crate。
+Crates：一个模块的树形结构，它形成了库或者二进制项目。
+模块(Modules)和Use：允许你控制组织结构的作用域和路径的私有性。
+路径(path)：一个命名例如结构体，函数或模块等项的方式。
+
+在本章，我们将涵盖所有这些特性，讨论他们怎样相互作用，并解释如何使用他们管理作用域。最后，你应该对模块系统有一个坚实的理解，并能够像专业人士一样使用作用域！
 ]]></content>
       <tags>
         <tag>Rust</tag>
       </tags>
   </entry>
   <entry>
-    <title>Ch 08.01:丢弃vector 时也会丢弃其所有元素(Dropping a Vector Drops Its Elements)</title>
-    <url>/2023/05/18/rust_docs/ch_08_01_vectors/</url>
-    <content><![CDATA[丢弃vector 时也会丢弃其所有元素(Dropping a Vector Drops Its Elements)像其他数据结构一样，当一个vector离开了它的作用域，它就会被释放，如Listing 8-10所示：
-fn main() &#123;    &#123;        let v = vec![1, 2, 3, 4];        // do stuff with v    &#125; // &lt;- v goes out of scope and is freed here&#125;
+    <title>Ch 07.04:全局操作符(The Glob Operator)</title>
+    <url>/2023/05/18/rust_docs/ch_07_04_bringing_paths_into_scope_with_the_use_key_word/</url>
+    <content><![CDATA[全局操作符(The Glob Operator)如果想将一个路径下所有公有项引入作用域，可以使用指定路径后跟*，glob操作符:
+use std::collections::*;
 
-Listing 8-10: Showing where the vector and its elements are droped
-当vector被删除时，它的所有内容也会被删除，这意味着它所持有的整数将被清除。借用检查器确保仅在vector本身有效时才使用对向量内容的任何引用。
-接下来，我们将学习下一个集合类型：String
+这个use语句会将std::collections中定义的所有的公有项引入到当前作用域。使用全局操作符时一定要多加小心！全局操作符会使得我们难以推导作用域中有什么名称和它们是定义在何处。
+全局操作符经常用于测试模块tests中，这时会将所有内容引入作用域；我们将在第十一章”How to Write Tests”部分中讲解。全局操作符有时也用于preclude模式；查看”标准库文档”(https://doc.rust-lang.org/std/prelude/index.html#other-preludes)了解更多细节。
+]]></content>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 07.05:总结</title>
+    <url>/2023/05/18/rust_docs/ch_07_05_separating_modules_into_different_files/</url>
+    <content><![CDATA[总结Rust提供了将包分成多个crate，将crate分成模块，以及通过指定绝对或者相对路径从一个模块引用另一个模块中定义的项的方式。你可以指定绝对路径或者相对路径。这个路径可以通过use声明引入到作用域，所以你可以在多次使用时可以使用更短的路径。模块定义的代码默认是私有的，不过可以选择增加pub关键字使其定义为公有。
+接下来，我们来看一些标准库提供的集合数据类型，你可以利用它们写出更漂亮整洁的代码。
 ]]></content>
       <tags>
         <tag>Rust</tag>
@@ -1125,9 +1111,52 @@ hash map 允许你用一个特定的key关联一个值(value)，它是成为映�
       </tags>
   </entry>
   <entry>
-    <title>Ch 08.02:字符串并不简单</title>
-    <url>/2023/05/18/rust_docs/ch_08_02_strings/</url>
-    <content><![CDATA[字符串并不简单总之，字符串是很复杂的。不同的语言会有不同的选择如何将这种复杂性呈现给程序员。Rust选择将String数据的正确处理作为所有Rust程序的默认行为,这意味着程序员必须在处理UTF-8数据上花更多的心思。这个权衡在其他编程语言中暴露了更多字符串的复杂性,但它可以防止你在开发生命周期的后期处理涉及非ASCII字符的错误。好消息是标准库基于String和&amp;str类型提供了许多功能来正确处理这些复杂的情况。确保查看文档中有用的方法,比如在字符串中搜索的contains和用另一个字符串替换字符串的一部分replace。让我们切换到略微简单一点的内容:哈希映射!
+    <title>Ch 08.01:丢弃vector 时也会丢弃其所有元素(Dropping a Vector Drops Its Elements)</title>
+    <url>/2023/05/18/rust_docs/ch_08_01_vectors/</url>
+    <content><![CDATA[丢弃vector 时也会丢弃其所有元素(Dropping a Vector Drops Its Elements)像其他数据结构一样，当一个vector离开了它的作用域，它就会被释放，如Listing 8-10所示：
+fn main() &#123;    &#123;        let v = vec![1, 2, 3, 4];        // do stuff with v    &#125; // &lt;- v goes out of scope and is freed here&#125;
+
+Listing 8-10: Showing where the vector and its elements are droped
+当vector被删除时，它的所有内容也会被删除，这意味着它所持有的整数将被清除。借用检查器确保仅在vector本身有效时才使用对向量内容的任何引用。
+接下来，我们将学习下一个集合类型：String
+]]></content>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 09.00:错误处理</title>
+    <url>/2023/05/18/rust_docs/ch_09_00_error_handing/</url>
+    <content><![CDATA[错误处理在软件中错误是很常见的事实。当有时候软件运行错误的时候，Rust有很多处理这些场景的特性。在很多情况下，Rust要求你确认每一个错误发生的可能，并在代码编译前就采取相应的行为。这个必要前提会让你的程序更加健壮：确保你会提前发现错误，并处理得当，在你将代码部署到生产环境之前。
+Rust将错误分为两大类：可恢复的(recoverable)和不可恢复的(unrecoverable)。对于可恢复错误，比如文件未找打错误，我们很可能只是想向用户报告问题并重试操作。不可恢复错误总是系统性bugs，像尝试访问一个超过数组最尾端的位置，此时，我们就会想要程序立刻停止运行。
+大多数编程语言无法区分这两种错误，并且都使用同样的方式，使用如exceptions机制。Rust没有exceptions。而是有一个Result&lt;T, E&gt;的类型来处理可恢复错误。另外，当程序发生一个不可恢复的错误，Rust用panic!宏来中止运行程序。
+这一章，首次讨论panic!宏，然后讨论有关Result&lt;T, E&gt;返回的值。
+另外，我们还要探索如何决定一个错误应该是恢复或者是停止运行。
+]]></content>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 08.03:总结</title>
+    <url>/2023/05/18/rust_docs/ch_08_03_hash_maps/</url>
+    <content><![CDATA[总结vector、字符串和哈希 map 会在你的程序需要储存、访问和修改数据时帮助你。这里有一些你应该能够解决的练习问题:
+
+给定一系列数字，使用 vector 并返回这个列表的中位数（排列数组后位于中间的值）和众数（mode，出现次数最多的值；这里哈希 map 会很有帮助）。
+将字符串转换为 Pig Latin，也就是每一个单词的第一个辅音字母被移动到单词的结尾并增加 “ay”，所以 “first” 会变成 “irst-fay”。元音字母开头的单词则在结尾增加 “hay”（“apple” 会变成 “apple-hay”）。牢记 UTF-8 编码！
+使用哈希 map 和 vector，创建一个文本接口来允许用户向公司的部门中增加员工的名字。例如，“Add Sally to Engineering” 或 “Add Amir to Sales”。接着让用户获取一个部门的所有员工的列表，或者公司每个部门的所有员工按照字典序排列的列表。
+
+标准库 API 文档中描述的这些类型的方法将有助于你进行这些练习！
+我们已经开始接触可能会有失败操作的复杂程序了，这也意味着接下来是一个了解错误处理的绝佳时机！
+]]></content>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ch 09.02:带有结果的可恢复错误</title>
+    <url>/2023/08/18/rust_docs/ch_09_02_recoverable_errors_with_result/</url>
+    <content><![CDATA[带有结果的可恢复错误大多数错误并不严重到需要程序完全停止。有时，当一个函数失败时，其原因可以很容易地解释和响应。例如，如果您尝试打开一个文件，但由于该文件不存在而导致该操作失败，那么您可能希望创建该文件，而不是终止该进程。
 ]]></content>
       <tags>
         <tag>Rust</tag>
@@ -1153,35 +1182,6 @@ Listing 9-2: The backtrace generated by a panic!displayed when the environment v
 真是输出了一大坨啊！操作系统不同，Rust版本不同，你看到的输出可能会有所不同。为了使用这些信息进行回溯，必须启用debug模式。默认就是debug模式，只要在cargo build或者cargo run之后不要加--release参数。
 在Listing 9-2的第6行的backtrace指出了我们项目造成的问题：src/main.rs的第4行。如果我们不想我们的程序panic，我们就应该开始检查定位到第一行我们自己写的代码。在Listing 9-1中，我们故意写了造成panic的代码，修复这个panic就是不要去访问超出vector范围的索引。当你的代码在将来panic， 你需要弄清楚代码使用什么数据做了什么样的操作，以及正确情况下代码应该做什么。
 本章后面的小节 “To panic! Or not to panic!“ 部分讲回panic!，详细讲解应该或者不应该用panic!来处理错误情况。接下来一节我们来讲解如何使用Result恢复一个错误。
-]]></content>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ch 08.03:总结</title>
-    <url>/2023/05/18/rust_docs/ch_08_03_hash_maps/</url>
-    <content><![CDATA[总结vector、字符串和哈希 map 会在你的程序需要储存、访问和修改数据时帮助你。这里有一些你应该能够解决的练习问题:
-
-给定一系列数字，使用 vector 并返回这个列表的中位数（排列数组后位于中间的值）和众数（mode，出现次数最多的值；这里哈希 map 会很有帮助）。
-将字符串转换为 Pig Latin，也就是每一个单词的第一个辅音字母被移动到单词的结尾并增加 “ay”，所以 “first” 会变成 “irst-fay”。元音字母开头的单词则在结尾增加 “hay”（“apple” 会变成 “apple-hay”）。牢记 UTF-8 编码！
-使用哈希 map 和 vector，创建一个文本接口来允许用户向公司的部门中增加员工的名字。例如，“Add Sally to Engineering” 或 “Add Amir to Sales”。接着让用户获取一个部门的所有员工的列表，或者公司每个部门的所有员工按照字典序排列的列表。
-
-标准库 API 文档中描述的这些类型的方法将有助于你进行这些练习！
-我们已经开始接触可能会有失败操作的复杂程序了，这也意味着接下来是一个了解错误处理的绝佳时机！
-]]></content>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ch 09.00:错误处理</title>
-    <url>/2023/05/18/rust_docs/ch_09_00_error_handing/</url>
-    <content><![CDATA[错误处理在软件中错误是很常见的事实。当有时候软件运行错误的时候，Rust有很多处理这些场景的特性。在很多情况下，Rust要求你确认每一个错误发生的可能，并在代码编译前就采取相应的行为。这个必要前提会让你的程序更加健壮：确保你会提前发现错误，并处理得当，在你将代码部署到生产环境之前。
-Rust将错误分为两大类：可恢复的(recoverable)和不可恢复的(unrecoverable)。对于可恢复错误，比如文件未找打错误，我们很可能只是想向用户报告问题并重试操作。不可恢复错误总是系统性bugs，像尝试访问一个超过数组最尾端的位置，此时，我们就会想要程序立刻停止运行。
-大多数编程语言无法区分这两种错误，并且都使用同样的方式，使用如exceptions机制。Rust没有exceptions。而是有一个Result&lt;T, E&gt;的类型来处理可恢复错误。另外，当程序发生一个不可恢复的错误，Rust用panic!宏来中止运行程序。
-这一章，首次讨论panic!宏，然后讨论有关Result&lt;T, E&gt;返回的值。
-另外，我们还要探索如何决定一个错误应该是恢复或者是停止运行。
 ]]></content>
       <tags>
         <tag>Rust</tag>
@@ -1223,15 +1223,6 @@ Rust将错误分为两大类：可恢复的(recoverable)和不可恢复的(unrec
 ]]></content>
       <tags>
         <tag>随想</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ch 09.02:带有结果的可恢复错误</title>
-    <url>/2023/08/18/rust_docs/ch_09_02_recoverable_errors_with_result/</url>
-    <content><![CDATA[带有结果的可恢复错误大多数错误并不严重到需要程序完全停止。有时，当一个函数失败时，其原因可以很容易地解释和响应。例如，如果您尝试打开一个文件，但由于该文件不存在而导致该操作失败，那么您可能希望创建该文件，而不是终止该进程。
-]]></content>
-      <tags>
-        <tag>Rust</tag>
       </tags>
   </entry>
   <entry>
@@ -1278,54 +1269,12 @@ Rust将错误分为两大类：可恢复的(recoverable)和不可恢复的(unrec
       </tags>
   </entry>
   <entry>
-    <title>泽连斯基致普京公开信：26 年恩怨，一封信讲了什么</title>
-    <url>/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E5%85%AC%E5%BC%80%E4%BF%A1-%E8%A7%82%E7%82%B9%E6%8F%90%E7%82%BC/</url>
-    <content><![CDATA[核心主张：结束战争泽连斯基公开信的核心诉求是提议通过乌俄直接接触结束战争。他写道：
-
-“战争够了。乌克兰提议结束这场战争。这件事必须以诚实、体面的方式进行，并保证不会再次引发战争。”
-
-他建议在瑞士、土耳其、阿拉伯国家等第三方中立国举行元首会晤，并明确表示：”乌克兰领导人没必要去莫斯科，俄罗斯领导人也同样没有必要前往基辅。”
-同时，他提出乌克兰已做好准备，在谈判期间全面停火，并呼吁全面交换战俘，将其视为”结束战争的良好开端”。
-对普京执政的全面评价信中花了大量篇幅评价普京执政 26 年对俄乌关系的影响。泽连斯基写道，26 年前许多乌克兰人对普京”抱有好感”，但如今”那都已成为了过去”。
-他指出，普京执政的 26 年中有近一半时间都在对乌克兰发动战争，并强调”这场战争是您个人的选择——一场没有真正理由的战争”。
-泽连斯基直言普京资源正在”大幅减少”，”将没有足够的金钱或政治资本，像过去 26 年那样继续收买俄罗斯人的忠诚”。
-对俄罗斯现状的描绘信中以具体数据描述了俄罗斯面临的困境：
-
-俄军 5 月在乌克兰前线伤亡超过 3 万人，且阵亡比例高达 63%
-俄罗斯民众”不喜欢我们的无人机和导弹”、”不喜欢汽油短缺和价格不断上涨”、”不喜欢持续不断的限制”
-“连您自己的官员、商人和宣传人员都用明显的疲惫眼神看着您”
-
-泽连斯基特别提到：”我们的情报报告显示，你们正在考虑将战争延续到 2027 年和 2028 年。”
-乌克兰的立场与韧性信中强调乌克兰”捍卫了国家独立，而且将继续捍卫下去”，并回顾了多个关键事实：
-
-乌克兰远程无人机已能飞越 1000 多公里打击俄境内目标
-乌克兰”团结了世界各地的许多人”，获得了武器和资金支持
-即使在俄罗斯打击能源系统的严冬中，”乌克兰人民的韧性也丝毫未减”
-乌克兰现在”正在帮助我们在中东和海湾地区的伙伴建立自己的防御体系”
-
-对国际格局的判断泽连斯基分析了当前国际形势：美国正”全力关注伊朗问题”；俄罗斯”完全依赖于中国——这在俄罗斯历史上也是第一次”；”如果没有朝鲜的帮助”，俄罗斯”根本无法应对”战争被带到俄领土的局面。
-他特别提到匈牙利前总理奥尔班”最终落得耻辱的下场”，警告那些试图帮助俄罗斯的人。
-历史事件的提及信中涉及多个敏感历史节点：
-
-瓦格纳兵变——“6 月 23 日将是这一事件的又一个周年纪念日，沉默无法抹去这段历史”
-明斯克协议——“已经与俄罗斯达成了许多协议……但最终都以失败告终”
-阿拉斯加会谈——“乌克兰和欧洲的问题并没有在安克雷奇得到解决”
-
-结尾的双重信息信的结尾既有和平呼吁也有威胁：
-
-“我们可以推动这种疲劳感加速到来。您可以停止战争。”
-
-最后以”愿永远铭记所有在这场战争中失去生命的人们。荣耀归于乌克兰！”收尾。
+    <title>Ch 08.02:字符串并不简单</title>
+    <url>/2023/05/18/rust_docs/ch_08_02_strings/</url>
+    <content><![CDATA[字符串并不简单总之，字符串是很复杂的。不同的语言会有不同的选择如何将这种复杂性呈现给程序员。Rust选择将String数据的正确处理作为所有Rust程序的默认行为,这意味着程序员必须在处理UTF-8数据上花更多的心思。这个权衡在其他编程语言中暴露了更多字符串的复杂性,但它可以防止你在开发生命周期的后期处理涉及非ASCII字符的错误。好消息是标准库基于String和&amp;str类型提供了许多功能来正确处理这些复杂的情况。确保查看文档中有用的方法,比如在字符串中搜索的contains和用另一个字符串替换字符串的一部分replace。让我们切换到略微简单一点的内容:哈希映射!
 ]]></content>
-      <categories>
-        <category>国际</category>
-      </categories>
       <tags>
-        <tag>俄乌</tag>
-        <tag>和谈</tag>
-        <tag>泽连斯基</tag>
-        <tag>普京</tag>
-        <tag>公开信</tag>
+        <tag>Rust</tag>
       </tags>
   </entry>
   <entry>
@@ -1413,9 +1362,60 @@ Rust将错误分为两大类：可恢复的(recoverable)和不可恢复的(unrec
       </categories>
       <tags>
         <tag>俄乌</tag>
-        <tag>公开信</tag>
         <tag>事实核查</tag>
+        <tag>公开信</tag>
         <tag>新闻核实</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>泽连斯基致普京公开信：26 年恩怨，一封信讲了什么</title>
+    <url>/2026/06/07/weichat/%E6%B3%BD%E8%BF%9E%E6%96%AF%E5%9F%BA%E5%85%AC%E5%BC%80%E4%BF%A1-%E8%A7%82%E7%82%B9%E6%8F%90%E7%82%BC/</url>
+    <content><![CDATA[核心主张：结束战争泽连斯基公开信的核心诉求是提议通过乌俄直接接触结束战争。他写道：
+
+“战争够了。乌克兰提议结束这场战争。这件事必须以诚实、体面的方式进行，并保证不会再次引发战争。”
+
+他建议在瑞士、土耳其、阿拉伯国家等第三方中立国举行元首会晤，并明确表示：”乌克兰领导人没必要去莫斯科，俄罗斯领导人也同样没有必要前往基辅。”
+同时，他提出乌克兰已做好准备，在谈判期间全面停火，并呼吁全面交换战俘，将其视为”结束战争的良好开端”。
+对普京执政的全面评价信中花了大量篇幅评价普京执政 26 年对俄乌关系的影响。泽连斯基写道，26 年前许多乌克兰人对普京”抱有好感”，但如今”那都已成为了过去”。
+他指出，普京执政的 26 年中有近一半时间都在对乌克兰发动战争，并强调”这场战争是您个人的选择——一场没有真正理由的战争”。
+泽连斯基直言普京资源正在”大幅减少”，”将没有足够的金钱或政治资本，像过去 26 年那样继续收买俄罗斯人的忠诚”。
+对俄罗斯现状的描绘信中以具体数据描述了俄罗斯面临的困境：
+
+俄军 5 月在乌克兰前线伤亡超过 3 万人，且阵亡比例高达 63%
+俄罗斯民众”不喜欢我们的无人机和导弹”、”不喜欢汽油短缺和价格不断上涨”、”不喜欢持续不断的限制”
+“连您自己的官员、商人和宣传人员都用明显的疲惫眼神看着您”
+
+泽连斯基特别提到：”我们的情报报告显示，你们正在考虑将战争延续到 2027 年和 2028 年。”
+乌克兰的立场与韧性信中强调乌克兰”捍卫了国家独立，而且将继续捍卫下去”，并回顾了多个关键事实：
+
+乌克兰远程无人机已能飞越 1000 多公里打击俄境内目标
+乌克兰”团结了世界各地的许多人”，获得了武器和资金支持
+即使在俄罗斯打击能源系统的严冬中，”乌克兰人民的韧性也丝毫未减”
+乌克兰现在”正在帮助我们在中东和海湾地区的伙伴建立自己的防御体系”
+
+对国际格局的判断泽连斯基分析了当前国际形势：美国正”全力关注伊朗问题”；俄罗斯”完全依赖于中国——这在俄罗斯历史上也是第一次”；”如果没有朝鲜的帮助”，俄罗斯”根本无法应对”战争被带到俄领土的局面。
+他特别提到匈牙利前总理奥尔班”最终落得耻辱的下场”，警告那些试图帮助俄罗斯的人。
+历史事件的提及信中涉及多个敏感历史节点：
+
+瓦格纳兵变——“6 月 23 日将是这一事件的又一个周年纪念日，沉默无法抹去这段历史”
+明斯克协议——“已经与俄罗斯达成了许多协议……但最终都以失败告终”
+阿拉斯加会谈——“乌克兰和欧洲的问题并没有在安克雷奇得到解决”
+
+结尾的双重信息信的结尾既有和平呼吁也有威胁：
+
+“我们可以推动这种疲劳感加速到来。您可以停止战争。”
+
+最后以”愿永远铭记所有在这场战争中失去生命的人们。荣耀归于乌克兰！”收尾。
+]]></content>
+      <categories>
+        <category>国际</category>
+      </categories>
+      <tags>
+        <tag>俄乌</tag>
+        <tag>和谈</tag>
+        <tag>泽连斯基</tag>
+        <tag>普京</tag>
+        <tag>公开信</tag>
       </tags>
   </entry>
   <entry>
