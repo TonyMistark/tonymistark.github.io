@@ -1,3 +1,4 @@
+# ===== 项目 / 构建产物 =====
 .DS_Store
 Thumbs.db
 db.json
@@ -5,7 +6,9 @@ db.json
 node_modules/
 .deploy*/
 public/
-.cc-connect/
-.claude/
+
+# ===== 本机配置 / 密钥 =====
 .env
-.serena/
+
+# 说明：AI / 智能体工具目录（.workbuddy/、.claude/、.serena/、.cc-connect/ 等）
+# 统一放在 .git/info/exclude 里做「本机忽略」，不写在这里，避免公开仓库暴露本机工具链。
